@@ -62,7 +62,7 @@ const Signup = (props) => {
         이름 : <input onChange={(e) => { setName(e.target.value) }}></input>
         <br />
 
-        기술스택 : <input onChange={(e) => { setStack(e.target.value) }}></input>
+        기술스택! : <input onChange={(e) => { setStack(e.target.value) }}></input>
         <br />
 
         전화번호 : <input onChange={(e) => { setPhoneNum(e.target.value) }}></input>
