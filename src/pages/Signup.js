@@ -4,10 +4,17 @@ import { emailCheck } from '../shared/common';
 // import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signup = (props) => {
-  const [userEmail, setEmail] = React.useState("");
   const [password, setPw] = React.useState("");
   const [passwordcheck, setPwCheck] = React.useState("");
   const [name, setName] = React.useState("");
+  const [stack, setStack] = React.useState("");
+  const [phoneNum, setPhoneNum] = React.useState("");
+  const [gitUrl, setGitUrl] = React.useState("");
+  const [blogUrl, setBlogUrl] = React.useState("");
+
+
+
+  const [status, setStatus] = React.useState(false);
 
   const signup = () => {
 
@@ -20,31 +27,59 @@ const Signup = (props) => {
       window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
       return;
     }
-    if (!name) {
-      alert("이름을 입력해주세요!");
-      return;
-    }
+    // if (!name) {
+    //   alert("이름을 입력해주세요!");
+    //   return;
+    // }
     // dispatch(userActions.signupAction(userEmail, password, passwordcheck, userName));
     // dispatch(userActions.loginAction(userEmail, password));
-
+    setStatus(true)
   };
-  return (
 
-    <>
-      이름 : <input onChange={(e) => { setName(e.target.value) }}></input>
-      <br />
+  const addInfo = () => {
+    console.log(name, stack, phoneNum, gitUrl, blogUrl)
+  }
 
-      비밀번호 : <input onChange={(e) => { setPw(e.target.value) }}></input>
+  if (status === false) {
+    return (
+      <>
+        <h2>회원가입</h2>
+        <p>email:{props.email}</p>
+        비밀번호 : <input onChange={(e) => { setPw(e.target.value) }}></input>
+        <br />
+        비밀번호확인 : <input onChange={(e) => { setPwCheck(e.target.value) }}></input>
+        <br />
 
-      <br />
+        <button onClick={signup}>회원가입</button>
+      </>
 
-      비밀번호확인 : <input onChange={(e) => { setPwCheck(e.target.value) }}></input>
-      <br />
+    )
+  }
+  else {
+    return (
+      <>
+        <h2>추가기입</h2>
+        이름 : <input onChange={(e) => { setName(e.target.value) }}></input>
+        <br />
 
-      <button onClick={signup}>회원가입</button>
-    </>
+        기술스택 : <input onChange={(e) => { setStack(e.target.value) }}></input>
+        <br />
 
-  )
+        전화번호 : <input onChange={(e) => { setPhoneNum(e.target.value) }}></input>
+        <br />
+
+        gitUrl : <input onChange={(e) => { setGitUrl(e.target.value) }}></input>
+        <br />
+
+        blogUrl : <input onChange={(e) => { setBlogUrl(e.target.value) }}></input>
+        <br />
+
+        <button onClick={addInfo}>회원가입</button>
+
+      </>
+    )
+  }
+
 }
 
 export default Signup;
@@ -60,7 +95,7 @@ margin: auto;
 /* background-color: ${props => props.theme === 'light' ? 'white' : '#121212'};; */
 `
 
-const Btn = styled.button`
+const Stack = styled.button`
   margin: 10px 10px 0px 0px;
   font-size: 16px;
   background-color: #4cbc9b;

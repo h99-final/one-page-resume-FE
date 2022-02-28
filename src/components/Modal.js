@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import { apis } from '../shared/axios';
 
 const Modal = ({ modalClose }) => {
 
@@ -13,14 +14,24 @@ const Modal = ({ modalClose }) => {
   }
 
   const userE = "aaa@aaa.com"
+
   const sumitEmail = () => {
-    console.log(email)
-    if (email === userE) {
+    if (userE === email) {
       return (
-        setStatus("bbb")
+        setStatus(true)
       )
     }
-    setStatus("ccc")
+    setStatus(false)
+
+    // apis.emailCheck(email)
+    //   .then((res) => {
+    //     if (res === true) {
+    //       return (
+    //         setStatus(true)
+    //       )
+    //     }
+    //     setStatus(false)
+    //   })
   }
 
 
@@ -29,21 +40,23 @@ const Modal = ({ modalClose }) => {
       <Container>
         <ModalBox>
           <WelcomeBox >
-            이미지가 들어갈곳?aa
+            이미지가 들어갈곳?
           </WelcomeBox>
           <UserBox >
 
             <button style={{ float: "right", backgroundColor: "inherit", border: "none" }} onClick={() => { modalClose(false); }}>❌</button>
-            <h2>포트폴리오 작성 사이트입니다!</h2>
+
 
             {status === "aaa" && <>
+              <h2>포트폴리오 작성 사이트입니다!</h2>
               이메일 : <input onChange={inputEmail} />
               <button onClick={sumitEmail}>시작하기</button>
               <br></br>
             </>
             }
-            {status === "bbb" && <Login />}
-            {status === "ccc" && <Signup />}
+
+            {status === true && <Login email={email} />}
+            {status === false && <Signup email={email} />}
 
           </UserBox>
 

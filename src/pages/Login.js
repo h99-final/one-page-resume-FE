@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import { emailCheck } from '../shared/common';
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [userEmail, loginEmail] = React.useState("");
   const [password, loginPw] = React.useState("");
@@ -20,6 +20,8 @@ const Login = () => {
   };
   return (
     <>
+      <h2>비밀번호 입력</h2>
+      <p>email:{props.email}</p>
       비밀번호 : <input onChange={(e) => {
         loginPw(e.target.value);
       }}></input>
