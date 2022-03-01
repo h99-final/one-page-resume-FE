@@ -4,7 +4,7 @@ const tokencheck = document.cookie;
 const token = tokencheck.split("=")[1];
 const search = localStorage.getItem("search");
 
-export const instance = axios.create({
+const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: "",
   headers: {
@@ -14,6 +14,15 @@ export const instance = axios.create({
     accept: "application/json",
     token: token,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
+  },
+});
+
+
+const apiForms = axios.create({
+  baseURL: "",
+  headers: {
+    "content-type": "multypart/form-data",
+    accept: "application/json",
   },
 });
 
@@ -67,4 +76,10 @@ export const apis = {
       gitUrl: gitUrl,
       blogUrl: blogUrl,
     }),
+
 };
+
+export const apiForm = {
+  createIntro: (frm) => apiForms.post("/porf/intro", frm),
+};
+
