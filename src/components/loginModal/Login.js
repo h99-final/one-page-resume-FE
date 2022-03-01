@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 // import { actionCreators as userActions } from '../redux/modules/user';
 // import { emailCheck } from '../shared/common';
 
 const Login = (props) => {
-  const [userEmail, loginEmail] = React.useState("");
-  const [password, loginPw] = React.useState("");
+  const [password, loginPw] = useState("");
+
   const login = () => {
-    if (!password || password.length < 4) {
-      alert("비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다");
+    if (password.length < 4) {
+      window.alert("비밀번호가 틀렸습니다.");
       return;
     }
 

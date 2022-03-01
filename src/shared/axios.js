@@ -2,7 +2,7 @@ import axios from "axios";
 
 const tokencheck = document.cookie;
 const token = tokencheck.split("=")[1];
-const search = localStorage.getItem("search")
+const search = localStorage.getItem("search");
 
 export const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
@@ -37,16 +37,17 @@ instance.interceptors.request.use(function (config) {
   return config;
 });
 
-
 export const apis = {
-  emailCheck: (email) =>
-    instance.post("/user/dupEmail", { email: email }),
+  emailCheck: (email) => instance.post("/user/dupEmail", { email: email }),
 
   // 로그인 요청
   login: (email, password) =>
-    instance.post("/user/login", {
-      email: email, password: password
-    },
+    instance.post(
+      "/user/login",
+      {
+        email: email,
+        password: password,
+      },
 
       { withCredentials: true }
     ),
@@ -56,8 +57,8 @@ export const apis = {
       email: email,
       password: password,
       passwordCheck: passwordCheck,
-    },
-    ),
+    }),
+
   addInfo: (name, stack, phoneNum, gitUrl, blogUrl) =>
     instance.post("/user/signup", {
       name: name,
@@ -65,59 +66,5 @@ export const apis = {
       phoneNum: phoneNum,
       gitUrl: gitUrl,
       blogUrl: blogUrl,
-    }
-    ),
-
-  // 게시물 불러오기
-  getPost: () => instance.get("/api/posting"),
-
-  getSearch: (search) => instance.post("/api/search", {
-    search: search
-  },
-    { withCredentials: true }
-  ),
-  getDetail: (id) => instance.get(`/api/posting/${id}`),
-  delPost: (id) => instance.delete(`/api/posting/${id}`),
-
-  // 게시물 한개불러오기
-  // getOnePost: (meetingId) => instance.get(`/api/meeting/${meetingId}`),
-  // 게시물 작성하기
-  createPost: (ImgId, content, title) => instance.post(`/api/posting/${ImgId}`, {
-    content: content,
-    title: title,
-  },
-    { withCredentials: true }
-  ),
-  likePost: (postId, likeValue) => instance.post(`/api/likes/${postId}`, {
-    likeValue: likeValue,
-  },
-    { withCredentials: true }
-  ),
-  // 게시물 수정하기
-  editPost: (postId, content, title) => instance.put(`/api/posting/${postId}`, {
-    content: content,
-    title: title,
-  },
-    { withCredentials: true }
-  ),
-  // 게시물 삭제하기
-
-
-  // 댓글 불러오기
-  getComment: (meetingId) => instance.get(`api/meeting/${meetingId}`),
-  // 댓글 작성하기
-  createComment: (postId, comment) => instance.post("api/comment", {
-    postId: postId,
-    comment: comment
-  }),
-  // 댓글 수정하기
-  // editComment: (meetingId, content, commentId) => instance.put(`api/meeting/${meetingId}/comments/${commentId}`, content),
-  // 댓글 삭제하기
-  delCommentDB: (commentId) => instance.delete(`api/comment/${commentId}`),
-
-
-  //모임 참여하기
-  createJoin: (meetingId) => instance.post(`api/meeting/${meetingId}/user/`),
-  //모임 탈퇴하기
-  deleteJoin: (meetingId) => instance.delete(`api/meeting/${meetingId}/user/`),
+    }),
 };
