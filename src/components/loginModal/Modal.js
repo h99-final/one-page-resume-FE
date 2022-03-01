@@ -1,136 +1,122 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Login from "./Login";
-import Signup from "./Signup";
-import { apis } from "../../shared/axios";
+
+import React from 'react';
+import styled from 'styled-components';
+import Login from './Login';
+import Signup from './Signup';
+import { apis } from '../../shared/axios';
 
 const Modal = ({ modalClose }) => {
-  const [page, setPage] = useState(0);
-  const [email, setEmail] = useState(null);
+
+  const [status, setStatus] = React.useState("aaa");
+  const [email, setEmail] = React.useState();
 
   const inputEmail = (e) => {
-    setEmail(e.target.value);
-  };
+    setEmail(e.target.value)
+  }
 
-  const userE = "aaa@aaa.com";
+  const userE = "aaa@aaa.com"
 
   const sumitEmail = () => {
-    console.log("axios");
     if (userE === email) {
-      return setPage(1);
-    } else {
-      setPage(2);
+      return (
+        setStatus(true)
+      )
     }
+    setStatus(false)
 
-    // apis.emailCheck(email)
-    //   .then((res) => {
-    //     if (res === true) {
-    //       return (
-    //         setStatus(true)
-    //       )
-    //     }
-    //     setStatus(false)
-    //   })
-  };
+    apis.emailCheck(email)
+      .then((res) => {
+        if (res === true) {
+          return (
+            setStatus(true)
+          )
+        }
+        setStatus(false)
+      })
+  }
+
 
   return (
     <>
-      <Container>
-        <ModalBox>
-          <WelcomeBox>이미지가 들어갈곳?</WelcomeBox>
-          <UserBox>
+      <ModalBox>
+        <WelcomeBox >
+          <h1>Portfolio</h1>
+          <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
+          <TextBox>내 프로젝트에 도움이 되는 다양한 영감을 얻어요!</TextBox>
+          <TextBox>예쁜 포트폴리오를 빠르게 만들어요.</TextBox>
+          <TextBox>내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.</TextBox>
+        </WelcomeBox>
+        <UserBox >
+          <div>
+            <button style={{ float: "right", backgroundColor: "inherit", border: "none" }} onClick={() => { modalClose(false); }}>❌</button>
+          </div>
+
+          {status === "aaa" && <>
+            <h1>시작하기</h1>
+            <p>이메일을 입력해주세요</p>
+
+            이메일 : <input onChange={inputEmail} />
             <div>
-              <button
-                style={{
-                  float: "right",
-                  backgroundColor: "inherit",
-                  border: "none",
-                }}
-                onClick={() => {
-                  modalClose(false);
-                }}
-              >
-                ❌
-              </button>
+              <button onClick={sumitEmail}>시작하기</button>
             </div>
 
-            {page === 0 && (
-              <>
-                <h2>포트폴리오 작성 사이트입니다!</h2>
-                <label htmlFor="email"></label>
-                <input onChange={inputEmail} type="text" />
-                <button onClick={sumitEmail}>시작하기</button>
-                <br />
-              </>
-            )}
-            {page === 1 && <Login email={email} />}
-            {page === 2 && <Signup email={email} />}
-          </UserBox>
-        </ModalBox>
-      </Container>
+            <br></br>
+          </>
+          }
+
+          {status === true && <Login email={email} />}
+          {status === false && <Signup email={email} />}
+
+        </UserBox>
+      </ModalBox>
     </>
-  );
-};
+  )
+}
 
 export default Modal;
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  // opacity: 0.5;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-`;
 
 const ModalBox = styled.div`
   border: 1px solid red;
-
   display: flex;
-  width: 100vh;
-  height: 60vh;
+  width: 1020px;
+  height: 80vh;
   // Modal 창 브라우저 가운데로 조정
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
 
 const WelcomeBox = styled.div`
-  border: 1px solid black;
-  padding: 24px;
-  width: 350px;
+border: 1px solid red;
+background-color: inherit;
+width: 50%;
+padding: 20px;
+position: relative;
+border-radius: 10px;
 `;
 
-const ChangBtn = styled.div`
-  background-color: ${(props) =>
-    props.theme === "light" ? "white" : "#121212"};
-  width: auto;
-  margin: -1.5px;
-  font-size: 16px;
-  margin-left: 10px;
-  font-weight: 600;
-  color: #4cbc9b;
-  font-weight: bold;
-
-  :hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
+const TextBox = styled.div`
+background-color: white;
+align-items: center;
+text-align: center;
+padding: 5px;
+border-radius: 10px;
+margin: 10px;
 `;
 
 const UserBox = styled.div`
-  border: 1px solid black;
-  padding: 24px;
-  width: 100%;
+  background-color: white;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  min-height: 500px;
+  min-width: 350px;
+  width: 50%;
+
 `;
 
-const ChangeDiv = styled.div`
-  display: flex;
-  align-items: flex-start;
-  position: absolute;
-  right: 25px;
-  bottom: -40px;
-`;
+
