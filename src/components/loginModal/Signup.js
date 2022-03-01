@@ -64,8 +64,6 @@ const Signup = (props) => {
     setStatus(true)
   };
 
-
-
   const addInfo = () => {
     console.log(name, stack, phoneNum, gitUrl, blogUrl)
     apis.emailCheck(name, stack, phoneNum, gitUrl, blogUrl)
