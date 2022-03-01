@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import Login from './Login';
@@ -84,6 +85,7 @@ const ModalBox = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
@@ -116,4 +118,5 @@ const UserBox = styled.div`
   width: 50%;
 
 `;
+
 

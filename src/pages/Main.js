@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../shared/Header';
@@ -17,4 +18,5 @@ background-color: #555555;
 width: 100%;
 height: 100vh;
 `;
+
 export default Main;
