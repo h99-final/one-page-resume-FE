@@ -17,7 +17,6 @@ const instance = axios.create({
   },
 });
 
-
 const apiForms = axios.create({
   baseURL: "",
   headers: {
@@ -76,10 +75,8 @@ export const apis = {
       gitUrl: gitUrl,
       blogUrl: blogUrl,
     }),
-
 };
 
 export const apiForm = {
   createIntro: (frm) => apiForms.post("/porf/intro", frm),
 };
-
