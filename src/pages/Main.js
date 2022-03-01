@@ -9,6 +9,7 @@ const Main = () => {
     <>
       <Container>
         <Header />
+
       </Container>
     </>
   )

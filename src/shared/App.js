@@ -10,8 +10,6 @@ function App() {
     <>
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route exact path="/write/:id" component={MakePorf} />
-        <Route exact path="/write/" component={MakePorf} />
       </Switch>
     </>
   );
