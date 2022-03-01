@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 // import { actionCreators as userActions } from '../redux/modules/user';
 // import { emailCheck } from '../shared/common';
-
+import { apis } from '../../shared/axios';
 
 const Login = (props) => {
-
+  const email = props.email
   const [userEmail, loginEmail] = React.useState("");
   const [password, loginPw] = React.useState("");
   const login = () => {
@@ -15,6 +15,14 @@ const Login = (props) => {
       return;
     }
 
+    apis.emailCheck(email, password)
+      .then((res) => {
+        if (res === true) {
+          return (
+            console.log(res.data)
+          )
+        }
+      })
     // dispatch(userActions.loginAction(userEmail, password));
 
   };
@@ -25,7 +33,10 @@ const Login = (props) => {
       비밀번호 : <input onChange={(e) => {
         loginPw(e.target.value);
       }}></input>
-      <button onClick={login}>로그인</button>
+      <div>
+        <button onClick={login}>로그인</button>
+      </div>
+
     </>
 
 
@@ -34,22 +45,4 @@ const Login = (props) => {
 
 export default Login;
 
-const StyledBox = styled.div`
-`
 
-const Btn = styled.button`
-
-  margin: 10px 10px 0px 0px;
-  font-size: 16px;
-  background-color: #4cbc9b;
-  color: white;
-  padding: 10px 15px;
-  font-weight: bold;
-  width: 95.99px;
-  height: 47.99px;
-  border: none;
-  position: absolute;
-  right: 36px;
-  border: none;
-
-`;
