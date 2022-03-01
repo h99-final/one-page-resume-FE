@@ -1,7 +1,7 @@
 
 import Main from "../pages/Main";
 import { Route, Switch } from "react-router-dom";
-
+import MakePorf from '../pages/MakePorf';
 
 import "./App.css";
 
