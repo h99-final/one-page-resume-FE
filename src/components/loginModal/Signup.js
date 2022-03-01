@@ -1,3 +1,4 @@
+
 import { current } from 'immer';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -38,6 +39,7 @@ const Signup = (props) => {
 
   const signup = () => {
 
+
     if (!password || password.length < 4) {
       alert("비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다");
       return;
@@ -51,6 +53,7 @@ const Signup = (props) => {
     //   alert("이름을 입력해주세요!");
     //   return;
     // }
+
     apis.emailCheck(email, password, passwordcheck)
       .then((res) => {
         if (res === true) {
@@ -81,6 +84,7 @@ const Signup = (props) => {
   React.useState(() => {
 
   }, [])
+
 
   if (status === false) {
     return (
@@ -199,15 +203,18 @@ const Signup = (props) => {
 
 }
 
+
 export default Signup;
 
 const StyledBox = styled.div`
 margin: auto;
+
   padding: 20px;
   min-width: 250px;
   width: auto;
   height: auto;
 `
+
 
 const Stack = styled.button`
   margin: 10px 10px 0px 0px;
@@ -227,4 +234,5 @@ const Stack = styled.button`
     background-color: yellow;
   }
   
+
 `;

@@ -70,4 +70,6 @@ const WriteBtn = styled.button`
   padding: 10px 10px;
   border: 1px solid black;
   border-radius: 25px;
+
 `;
+

@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# One Page Resume`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+💡 문제 인식
 
-## Available Scripts
+- 정보 전달의 이력서 양식이 더 이상 개발자의 모든 정보를 담을 수가 없다.
+- 개발자는 현 트렌드상 깃허브와 블로그를 기입하고 공유하여야 한다.
+- 평가자 입장에서 여러 브라우저를 활용하여 화면 이동을 하는 단점이 있다.
 
-In the project directory, you can run:
+💡 서비스 기획
 
-### `npm start`
+- 타겟층 : 개발자 구직, 구인자
+- 개인이 커스텀 할 수 있는 `resume`
+- 양식을 미리 제공하여 `resume` 작성에 시간을 들이지 않음
+- 참고 사이트(점핏, 링크드인, zety)
+- 결국 각 개인이 주제를 정하고 그 주제마다 템플릿을 수정하여 포트폴리오 화면의 가독성을 높이는거
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+💡 서비스 이름
+One Page Resume
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- with OnePageResume
+  OwnPersonalRepresents
 
-### `npm test`
+💡 메인 기능
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 메인페이지
+  - 메뉴바
+    - 전체 조회 페이지
+    - 포트폴리오 만들기 → 로그인 했을 때만
+  - 포트폴리오 제작 과정 예시
+  - 템플릿 컨셉 5개 정도
+- 로그인, 회원가입 페이지 - 모달
+  - 카카오 로그인, 자체 로그인(JWT)
+- 작성페이지
+  - 임시저장 기능 : 각 템플릿 저장할 때에 임시 저장, 주기적으로 저장(2/26 기획)
+  - 내 소개(카테고리 설정: { 내 소개(required),기본 정보, 기술 스택, 이력 , 프로젝트, 트러블 슈팅 })
+  - 기술 스택
+  - 이력
+  - 프로젝트
+  - 트러블 슈팅
+  - github 구현 가능 !! 다른점 비교로 트러블 슈팅 설명 가능 (2/26)
+  - ~~tistory~~(2/26)
+  - 내 포폴 방문자(10분)
+  - \*\* 프리뷰 기능
 
-### `npm run build`
+💡 서브 기능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 로그인, 회원가입 페이지 - 모달
+  - 카카오 로그인, 자체 로그인(JWT)
+- 전체 조회 페이지
+  - 조회순, 최신순
+  - 기술 태그
+- 상세 조회 페이지 (== 작성 페이지)
+  - 북마크 기능
+  - 알림 설정 기능 → 북마크한 포트폴리오 수정시 북마크 한 사람 에게 알림
+- 마이페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - 기본 정보 → 이름, 주소지, 생년월일, 이메일 (+ github 주소, tistory 주소, 포트폴리오 주소)
+  - 내 포트폴리오 조회, 수정, 삭제
+  - 북마크한 포트폴리오 조회
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 포트폴리오 북마크 기능 → 북마크시 주인에게 실시간 알림(+email)
+- 누가 자신의 포트폴리오를 봤는지 조회할 수 있도록 제공(5분이 지나면 정보 제공)
+- 기술 태그를 사용해 기술을 분류하여 볼 수 있도록 구성
+- 공개, 비공개로 설정 가능(비공개일 경우 권한을 부여하여 조회하도록)
+- JWT 토큰 발급을 통한 로그인, 카카오 로그인
+- 포트폴리오 공유 기능(카카오톡 등)
+- 채용 공고 확인 (잡코리아,사람인)
+- 깃허브 api를 사용하여 readme 파일등을 읽어와 프로젝트 소개글 작성
+- // tistory api를 사용하여 블로그 글 등을 읽어와 소개글 작성
 
-### `npm run eject`
+## Trouble Shooting
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**한 페이지 안에서 다른 템플릿 넘나들지 않고 트러블 슈팅한 내역을 조회하게 하고 싶었다.**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 포트폴리오를 볼 때 github의 세세한 커밋을 보지 않는 점
+- URL로써 다른 페이지에 들어가는 것은 직관적이지 못하다는 점
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**깃헙에서 트러블 슈팅한 특정 커밋을 불러오려고한다.**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+→ 모든 데이터를 다 가져와서 DB에서 해버릴까?
 
-## Learn More
+→ 커밋 ID와 message만 가져와서 API호출을 2번한다?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**작업방식**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<iframe> 태그를 이용해서 모달로 커밋 페이지가 나오게끔 하였다
 
-### Code Splitting
+→ CSP 보안 문제로 깃헙 URL을 불러오는데에 실패하였다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![스크린샷 2022-02-26 오전 12.18.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b138685f-4db7-444f-b507-74941ab390bf/스크린샷_2022-02-26_오전_12.18.00.png)
 
-### Analyzing the Bundle Size
+kohsuke 라이브러리에서 getPatch() 라는 함수를 찾았다.
+→ patch가 무엇인가 라는 질문에서
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+→ github API에서 patch가 무엇인지 찾아보았다.
 
-### Making a Progressive Web App
+→ 달라지는 부분을 나타내주는 API였다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 회의록
 
-### Advanced Configuration
+- 2022-02-28
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  - react-hook-form 공유
+  - 배열 디스트럭쳐링 공유
+  - API 설계
+  - defaultStack 중요도 선정
+  - 회원가입 로그인 방식 확정
+  - 프로젝트 임시저장/ 저장 후 공개 방식 확정
+  - 깃허브 파일 불러오기 방식 확정
 
-### Deployment
+- 2022-02-27
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  - **DefaultStack**
+  - **Email로 회원가입하면 인증코드**
+  - **로그인 방식**
+  - **github API 설계의 문제가 드러났다.**
+  - **임시저장에 대한 문제**
+  - **생성날짜, 조회수, 북마크한 사람 수 에 대한 고려를 전혀 하지 않았다.**
+  - [https://macgle.wordpress.com/2022/02/28/project-onepageresume-day3/](https://macgle.wordpress.com/2022/02/28/project-onepageresume-day3/)
 
-### `npm run build` fails to minify
+- 2022-02-26
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  - 임시저장 기능에 대한 추가 → 임시저장 기능 구현 어떻게 할지 추후 결정
+  - 회원가입시 이메일로 인증
+  - 다른 사람이 내 포트폴리오를 북마크했을때 이메일로 알림
+  - 대략적인 API 설계 → 메인 페이지 전체 조회 , 상세 페이지 미설계
+  - Back-end ERD 설계 → 내일 수정 예정 (포트폴리오 테이블의 내용이 많아 여러 개로 쪼개어 관리)
+  - 전체 포트폴리오에서 구역을 나누어 구역마다 저장할 수 있게 수정
+    (원래는 전체 페이지를 한번에 저장하려고 했음)
+  - 포트폴리오 개수 1개 제한 안하고 여러개 할 수 있음
+  - 로그인 페이지 디자인 구성
+
+- 2022-02-25
+  - 프로젝트 주제 선정
+  - 팀 노션 작성
+  - 기획서 작성
+  - 타임라인 1주차 작성
+  - 와이어프레임 1차 작성
+  - 1차 기능 구상
