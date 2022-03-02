@@ -9,7 +9,6 @@ function Introduce(props) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const history = useHistory();
 
   const introSubmit = (data) => {
     const { introTitle, introContents, githubUrl, blogUrl, bgImage } = data;
@@ -19,13 +18,11 @@ function Introduce(props) {
       githubUrl: githubUrl,
       blogUrl: blogUrl,
     };
-    console.log(jsonFrm);
     let frm = new FormData();
     frm.append("data", jsonFrm);
     frm.append("bgImage", bgImage);
 
     console.log("axios");
-    history.push("/write/template");
   };
 
   return (

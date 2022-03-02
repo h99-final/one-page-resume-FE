@@ -2,27 +2,63 @@
 import { current } from 'immer';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { emailCheck } from '../../shared/common';
+import { phoneCheck, urlCheck } from '../../shared/common';
 // import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from '../../shared/axios';
+import { TextField } from '@mui/material';
+
+import Input from '@mui/material/Input';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+
+import { actionCreators as userActions } from '../../redux/modules/user';
+import { useDispatch } from 'react-redux';
 
 const Signup = (props) => {
+  const dispatch = useDispatch();
 
   const email = props.email
 
 
   const [password, setPw] = React.useState("");
-  const [passwordcheck, setPwCheck] = React.useState("");
+  const [passwordCheck, setPwCheck] = React.useState("");
   const [name, setName] = React.useState("");
   const [phoneNum, setPhoneNum] = React.useState("");
   const [gitUrl, setGitUrl] = React.useState("");
   const [blogUrl, setBlogUrl] = React.useState("");
 
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordCheckError, setPasswordCheckError] = useState('');
+
+  const [nameError, setNameError] = React.useState("");
+  const [phoneNumError, setPhoneNumError] = React.useState("");
+  const [gitUrlError, setGitUrlError] = React.useState("");
+  const [blogUrlError, setBlogUrlError] = React.useState("");
+
   const [status, setStatus] = React.useState(false);
 
-  const [isChecked, setIsChecked] = React.useState(false);
 
   const [stack, setStack] = useState([]);
+  const [values, setValues] = React.useState({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -38,201 +74,106 @@ const Signup = (props) => {
   const disabled = !isAllChecked;
 
   const signup = () => {
-
-
     if (!password || password.length < 4) {
-      alert("비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다");
+      setPasswordError("비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다");
       return;
     }
+    setPasswordError("");
     // 비밀번호와 비밀번호 확인 부분이 일치하나 확인!
-    if (password !== passwordcheck) {
-      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+    if (password !== passwordCheck) {
+      setPasswordCheckError("패스워드와 패스워드 확인이 일치하지 않습니다!");
       return;
     }
-    // if (!name) {
-    //   alert("이름을 입력해주세요!");
-    //   return;
-    // }
+    setPasswordCheckError("");
 
-    apis.emailCheck(email, password, passwordcheck)
-      .then((res) => {
-        if (res === true) {
-          return (
-            console.log(res)
-          )
-        }
-      })
-    // dispatch(userActions.signupAction(userEmail, password, passwordcheck, userName));
-    // dispatch(userActions.loginAction(userEmail, password));
-    setStatus(true)
+    dispatch(userActions.SignUpDB(email, password, passwordCheck))
+
   };
 
 
-
-  const addInfo = () => {
-    console.log(name, stack, phoneNum, gitUrl, blogUrl)
-    apis.emailCheck(name, stack, phoneNum, gitUrl, blogUrl)
-      .then((res) => {
-        if (res === true) {
-          return (
-            console.log(res)
+  return (
+    <>
+      <h2>회원가입하기 (1/3)</h2>
+      <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
+      <TextField
+        id="standard-read-only-input"
+        defaultValue={props.email}
+        fullWidth
+        InputProps={{
+          readOnly: true,
+        }}
+        variant="standard"
+      />
+      <TextField
+        onChange={(e) => { setPw(e.target.value) }}
+        required
+        variant='standard'
+        fullWidth
+        type={values.showPassword ? 'text' : 'password'}
+        id="password"
+        name="password"
+        label="비밀번호(4글자 이상)"
+        error={passwordError !== '' || false}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
           )
-        }
-      })
-  }
+        }}
+      />
+      {passwordError && <span style={{ fontSize: "12px", color: "red" }}>{passwordError}</span>}
 
-  React.useState(() => {
-
-  }, [])
-
-
-  if (status === false) {
-    return (
-      <>
-        <h2>회원가입</h2>
-        <p>email:{props.email}</p>
-        비밀번호 : <input onChange={(e) => { setPw(e.target.value) }}></input>
-        <br />
-        비밀번호확인 : <input onChange={(e) => { setPwCheck(e.target.value) }}></input>
-        <br />
-
-        <button onClick={signup}>회원가입</button>
-      </>
-    )
-  }
-  else {
-    return (
-      <>
-        <h2>추가기입</h2>
-        이름 : <input onChange={(e) => { setName(e.target.value) }}></input>
-        <br />
-
-
-
-        전화번호 : <input onChange={(e) => { setPhoneNum(e.target.value) }}></input>
-        <br />
-
-        gitUrl : <input onChange={(e) => { setGitUrl(e.target.value) }}></input>
-        <br />
-
-        blogUrl : <input onChange={(e) => { setBlogUrl(e.target.value) }}></input>
-        <br />
-
-        <input
-          type="checkbox"
-          id="JS"
-          checked={stack.includes('JS') ? true : false}
-          onChange={e => {
-            changeHandler(e.currentTarget.checked, 'JS');
-          }}
-        ></input>
-        <label id="JS" htmlFor="JS"></label>
-        <span>JS</span>
-
-        <input
-
-          type="checkbox"
-          id="JAVA"
-          checked={stack.includes('JAVA') ? true : false}
-          onChange={e => {
-            changeHandler(e.currentTarget.checked, 'JAVA');
-          }}
-        ></input>
-        <label id="JAVA" htmlFor="JAVA"></label>
-        <span>JAVA</span>
-
-        <input
-          type="checkbox"
-          id="PYTHON"
-          checked={stack.includes('PYTHON') ? true : false}
-          onChange={e => {
-            changeHandler(e.currentTarget.checked, 'PYTHON');
-          }}
-        ></input>
-        <label id="PYTHON" htmlFor="PYTHON"></label>
-        <span>PYTHON</span>
-
-        <input
-          type="checkbox"
-          id="C"
-          checked={stack.includes('C') ? true : false}
-          onChange={e => {
-            changeHandler(e.currentTarget.checked, 'C');
-          }}
-        ></input>
-        <label id="C" htmlFor="C"></label>
-        <span>C</span>
-
-        <input
-          type="checkbox"
-          id="REACT"
-          checked={stack.includes('REACT') ? true : false}
-          onChange={e => {
-            changeHandler(e.currentTarget.checked, 'REACT');
-          }}
-        ></input>
-        <label id="REACT" htmlFor="REACT"></label>
-        <span>REACT</span>
-
-
-        {/* {defaultStack.map((stack, index) => {
-          return (
-            <>
-              <label htmlFor={stack}>{stack}</label>
-              <input type="checkbox" id={stack} onChange={() => checkHandler(index)}></input>
-            </>
-
+      <TextField
+        onChange={(e) => { setPwCheck(e.target.value) }}
+        required
+        variant='standard'
+        fullWidth
+        type={values.showPassword ? 'text' : 'password'}
+        id="passwordcheck"
+        name="passwordcheck"
+        label="비밀번호 재입력"
+        error={passwordCheckError !== '' || false}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
           )
-        })} */}
-        {/* <label>JS</label><input type="checkbox" value="JS" onChange={(e) => { checkHandler(e) }} />
-        <label>Java</label><input type="checkbox" value="Java" onChange={(e) => { checkHandler(e) }} />
-        <label>Python</label><input type="checkbox" value="Python" onChange={(e) => { checkHandler(e) }} />
-        <label>C</label><input type="checkbox" value="C" onChange={(e) => { checkHandler(e) }} /> */}
+        }}
+      />
+      {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
 
-
-        {/* <Stack onClick={addStack} >스택추가</Stack> */}
-        {/* <Stack onChange={(e) => { setStackValue(e.target.value) }} onClick={addStack} >Java</Stack>
-        <Stack onChange={(e) => { setStackValue(e.target.value) }} onClick={addStack} >React</Stack> */}
-
-        <div>
-          <button onClick={addInfo}>완료</button>
-        </div>
-      </>
-    )
-  }
+      <br />
+      <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
+    </>
+  )
 
 }
 
 
 export default Signup;
 
-const StyledBox = styled.div`
-margin: auto;
-
-  padding: 20px;
-  min-width: 250px;
-  width: auto;
-  height: auto;
-`
-
-
-const Stack = styled.button`
-  margin: 10px 10px 0px 0px;
-  font-size: 16px;
-  background-color: #4cbc9b;
-  color: white;
-  padding: 10px 1px;
-  font-weight: bold;
-  width: 90px;
-  height: 45px;
+const WriteBtn = styled.button`
+  cursor: pointer;
+  position: absolute;
+  right: 80px;
+  border-radius: 25px;
+  margin: 15px 0px 0px 5px;
+  font-size: 17px;
+  padding: 10px 10px;
   border: none;
   border-radius: 25px;
-  :hover{
-    background-color: red;
+  color: white;
+  background-color: black;
+  :disabled{
+    border: none;
+    background-color: gray;
   }
-  :checked{
-    background-color: yellow;
-  }
-  
-
 `;
+
+

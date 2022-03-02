@@ -4,37 +4,28 @@ import styled from 'styled-components';
 import Login from './Login';
 import Signup from './Signup';
 import { apis } from '../../shared/axios';
+import { useState } from 'react';
+import { TextField } from '@mui/material';
+import { emailCheck } from '../../shared/common';
+import { useSelector } from 'react-redux';
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { useDispatch } from 'react-redux';
+import AddInfo from './AddInfo';
+import Start from './Start';
 
 const Modal = ({ modalClose }) => {
+  const userInfo = useSelector(state => state.user.user)
+  console.log(userInfo)
+
+  const dispatch = useDispatch();
 
   const [status, setStatus] = React.useState("aaa");
+
   const [email, setEmail] = React.useState();
+  const [emailError, setEmailError] = useState('');
 
-  const inputEmail = (e) => {
-    setEmail(e.target.value)
-  }
 
-  const userE = "aaa@aaa.com"
-
-  const sumitEmail = () => {
-    if (userE === email) {
-      return (
-        setStatus(true)
-      )
-    }
-    setStatus(false)
-
-    apis.emailCheck(email)
-      .then((res) => {
-        if (res === true) {
-          return (
-            setStatus(true)
-          )
-        }
-        setStatus(false)
-      })
-  }
-
+  console.log(email)
 
   return (
     <>
@@ -50,22 +41,18 @@ const Modal = ({ modalClose }) => {
           <div>
             <button style={{ float: "right", backgroundColor: "inherit", border: "none" }} onClick={() => { modalClose(false); }}>❌</button>
           </div>
-
-          {status === "aaa" && <>
-            <h1>시작하기</h1>
-            <p>이메일을 입력해주세요</p>
-
-            이메일 : <input onChange={inputEmail} />
-            <div>
-              <button onClick={sumitEmail}>시작하기</button>
-            </div>
-
-            <br></br>
-          </>
+          {userInfo.isFirstLogin === false
+            ?
+            <>
+              {status === "aaa" && <Start status={setStatus} email={setEmail} />}
+              {status === true && <Login email={email} />}
+              {status === false && <Signup email={email} />}
+            </>
+            :
+            <>
+              {userInfo.isFirstLogin === true && <AddInfo />}
+            </>
           }
-
-          {status === true && <Login email={email} />}
-          {status === false && <Signup email={email} />}
 
         </UserBox>
       </ModalBox>
@@ -77,7 +64,8 @@ export default Modal;
 
 
 const ModalBox = styled.div`
-  border: 1px solid red;
+
+  border-radius: 10px;
   display: flex;
   width: 1020px;
   height: 80vh;
@@ -85,34 +73,36 @@ const ModalBox = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
 
 const WelcomeBox = styled.div`
-border: 1px solid red;
-background-color: inherit;
+background-color: #777777;
 width: 50%;
 padding: 20px;
 position: relative;
-border-radius: 10px;
+padding-top: 250px;
+border-bottom-left-radius: 10px;
+border-top-left-radius: 10px;
 `;
 
 const TextBox = styled.div`
 background-color: white;
+border-radius: 110px;
 align-items: center;
 text-align: center;
 padding: 5px;
-border-radius: 10px;
 margin: 10px;
 `;
 
 const UserBox = styled.div`
   background-color: white;
-  padding: 20px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 100px;
+  
   position: relative;
-  border-radius: 10px;
   min-height: 500px;
   min-width: 350px;
   width: 50%;
