@@ -10,6 +10,7 @@ import Header from "../shared/Header";
 
 function MakePorf() {
   const { id } = useParams();
+  console.log(id);
   return (
     <>
       <Header />

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Select from "react-select";
-import options from "../makeporf/Stack";
-import makeAnimated from "react-select/animated";
 
 function MakeProject() {
   //포트폴리오 프로젝트 생성
@@ -12,26 +9,19 @@ function MakeProject() {
     formState: { errors },
   } = useForm();
 
-  const animatedComponents = makeAnimated();
-
-  const [stack, setStack] = useState();
-
-  const handleChange = (e) => {
-    let projStackArray = [];
-    e.map((stack) => {
-      return projStackArray.push(stack.value);
-    });
-    setStack(projStackArray);
+  const [stacks, setStacks] = useState([]);
+  console.log(stacks);
+  const stackSubmit = ({ stack }) => {
+    setStacks((oldStacks) => [...oldStacks, stack]);
   };
 
   const projectSubmit = (data) => {
-    console.log(data);
     const { projectTitle, projectContent, images } = data;
 
     const jsonFrm = {
       projectTitle: projectTitle,
       projectContent: projectContent,
-      projectStack: stack,
+      projectStack: stacks,
     };
     let frm = new FormData();
     frm.append("data", jsonFrm);
@@ -49,17 +39,27 @@ function MakeProject() {
       <form onSubmit={handleSubmit(projectSubmit)}>
         <input type="text" {...register("projectTitle")}></input>
         <input type="text" {...register("projectContent")}></input>
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          {...register("projectStack")}
-          options={options}
-          onChange={handleChange}
-        />
+        <input type="text" />
         {/* // 파일 여러개 받는 법 */}
         <input type="file" {...register("images")} />
+
+        <input type="submit" />
       </form>
+      <form onSubmit={handleSubmit(stackSubmit)}>
+        {" "}
+        <input
+          {...register("stack", {
+            required: "your stack",
+          })}
+          placeholder="Stack 작성"
+        />
+        <input type="submit" />
+      </form>
+      <ul>
+        {stacks.map((stack, index) => (
+          <li key={index}>{stack}</li>
+        ))}
+      </ul>
     </>
   );
 }
