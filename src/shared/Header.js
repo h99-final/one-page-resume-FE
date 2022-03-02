@@ -4,7 +4,6 @@ import Modal from "../components/loginModal/Modal";
 
 const Header = (props) => {
   // const userName = localStorage?.getItem("userName")?.substring(0, 2)
-  const [nav, setNav] = React.useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {

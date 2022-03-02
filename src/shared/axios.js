@@ -2,6 +2,7 @@ import axios from "axios";
 
 const tokencheck = document.cookie;
 const token = tokencheck.split("=")[1];
+
 const search = localStorage.getItem("search");
 
 const instance = axios.create({
@@ -34,7 +35,6 @@ const forsearch = axios.create({
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
     token: token,
-    search: search,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
   },
 });
@@ -46,7 +46,7 @@ instance.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  emailCheck: (email) => instance.post("/user/dupEmail", { email: email }),
+  dupCheck: (email) => instance.post("/user/dupEmail", { email: email }),
 
   // 로그인 요청
   login: (email, password) =>
@@ -68,7 +68,7 @@ export const apis = {
     }),
 
   addInfo: (name, stack, phoneNum, gitUrl, blogUrl) =>
-    instance.post("/user/signup", {
+    instance.post("/user/info", {
       name: name,
       stack: stack,
       phoneNum: phoneNum,
