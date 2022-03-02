@@ -50,7 +50,7 @@ const Modal = ({ modalClose }) => {
             </>
             :
             <>
-              {userInfo.isFirstLogin === true && <AddInfo />}
+              {userInfo.isFirstLogin === true && <AddInfo isFirstLogin={userInfo.isFirstLogin} />}
             </>
           }
 
