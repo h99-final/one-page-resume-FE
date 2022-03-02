@@ -18,7 +18,6 @@ function Introduce(props) {
       githubUrl: githubUrl,
       blogUrl: blogUrl,
     };
-    console.log(jsonFrm);
     let frm = new FormData();
     frm.append("data", jsonFrm);
     frm.append("bgImage", bgImage);
