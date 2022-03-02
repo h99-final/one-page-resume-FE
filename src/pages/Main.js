@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../shared/Header';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
 
@@ -9,6 +10,7 @@ const Main = () => {
     <>
       <Container>
         <Header />
+
       </Container>
     </>
   )
