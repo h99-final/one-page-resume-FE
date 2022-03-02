@@ -11,55 +11,70 @@ import { useSelector } from 'react-redux';
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from 'react-redux';
 import AddInfo from './AddInfo';
-import Start from './Start';
 
-const Modal = ({ modalClose }) => {
+const Start = (props) => {
   const userInfo = useSelector(state => state.user.user)
 
   const dispatch = useDispatch();
 
-  const [status, setStatus] = React.useState("aaa");
+  const statusFunction = props.status
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState('');
+  const inputEmail = (e) => {
+    setEmail(e.target.value)
+  }
 
+  const sumitEmail = () => {
 
+    if (!emailCheck(email) || !email) {
+      setEmailError("이메일 형식을 다시 확인해주세요!");
+      return;
+    }
+    statusFunction(true)
+    // dispatch(userActions.emailCheckDB(email))
+    // apis.dupCheck(email)
+    //   .then((res) => {
+    //     console.log(res.data.result)
+    //     if (res.data.result === true) {
+    //       return (
+    //         setStatus(true)
+    //       )
+    //     }
+    //     setStatus(false)
+    //   })
+
+  }
 
   return (
     <>
-      <ModalBox>
-        <WelcomeBox >
-          <h1>Portfolio</h1>
-          <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
-          <TextBox>내 프로젝트에 도움이 되는 다양한 영감을 얻어요!</TextBox>
-          <TextBox>예쁜 포트폴리오를 빠르게 만들어요.</TextBox>
-          <TextBox>내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.</TextBox>
-        </WelcomeBox>
-        <UserBox >
-          <div>
-            <button style={{ float: "right", backgroundColor: "inherit", border: "none" }} onClick={() => { modalClose(false); }}>❌</button>
-          </div>
-          {userInfo.isFirstLogin === false
-            ?
-            <>
-              {status === "aaa" && <Start status={setStatus} />}
-              {status === true && <Login email={email} />}
-              {status === false && <Signup email={email} />}
-            </>
-            :
-            <>
-              {userInfo.isFirstLogin === true && <AddInfo />}
-            </>
-          }
+      <h1>시작하기</h1>
+      <p>이메일을 입력해주세요</p>
+      <TextField
+        onChange={inputEmail}
+        variant="standard"
+        required
+        autoFocus
+        fullWidth
+        type="email"
+        id="email"
+        name="email"
+        label="이메일 주소"
+        error={emailError !== '' || false}
+      />
 
+      {emailError && <span style={{ fontSize: "12px", color: "red" }}>{emailError}</span>}
 
-        </UserBox>
-      </ModalBox>
+      <div>
+        <button onClick={sumitEmail}>시작하기</button>
+      </div>
+      <br></br>
+
     </>
   )
 }
 
-export default Modal;
+export default Start;
 
 
 const ModalBox = styled.div`

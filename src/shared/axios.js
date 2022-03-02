@@ -2,40 +2,18 @@ import axios from "axios";
 
 const tokencheck = document.cookie;
 const token = tokencheck.split("=")[1];
+
 const search = localStorage.getItem("search");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
+  baseURL: "http://3.34.52.24/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
     token: token,
-    //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
-  },
-});
-
-
-const apiForms = axios.create({
-  baseURL: "",
-  headers: {
-    "content-type": "multypart/form-data",
-    accept: "application/json",
-  },
-});
-
-const forsearch = axios.create({
-  // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
-  headers: {
-    // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-    // accept: "*/*",
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
-    token: token,
-    search: search,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
   },
 });
@@ -47,7 +25,7 @@ instance.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  emailCheck: (email) => instance.post("/user/dupEmail", { email: email }),
+  dupCheck: (email) => instance.post("/user/dupEmail", { email: email }),
 
   // 로그인 요청
   login: (email, password) =>
@@ -69,7 +47,7 @@ export const apis = {
     }),
 
   addInfo: (name, stack, phoneNum, gitUrl, blogUrl) =>
-    instance.post("/user/signup", {
+    instance.post("/user/info", {
       name: name,
       stack: stack,
       phoneNum: phoneNum,
@@ -78,8 +56,3 @@ export const apis = {
     }),
 
 };
-
-export const apiForm = {
-  createIntro: (frm) => apiForms.post("/porf/intro", frm),
-};
-
