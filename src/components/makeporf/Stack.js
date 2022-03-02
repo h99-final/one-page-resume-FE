@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 
-const options = [
+export const options = [
   { value: "python", label: "python" },
   { value: "javascript", label: "javascript" },
   { value: "spring", label: "spring" },
