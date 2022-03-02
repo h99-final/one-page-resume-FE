@@ -15,7 +15,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // initialState
 const initialState = {
-  user: { email: "", nickname: "", isFirstLogin: false, },
+  user: { email: "aaa@aaa.com", isFirstLogin: false, },
   token: null,
 };
 
@@ -25,15 +25,16 @@ const loginDB = (email, password) => {
     apis
       .login(email, password)
       .then((res) => {
-        setCookie("token", res.headers["authorization"], 1);
-        const token = res.headers["authorization"];
+        setCookie("token", res.headers.Authorization, 5);
+        const token = res.headers.Authorization;
+        console.log(res.headers)
         dispatch(
           setUser({
-            isFirstLogin: res.data.isFirstLogin,
-            portfolioId: res.data.portfolioId,
-            userId: res.data.userId,
-            email: res.data.email,
-            stack: res.data.stack,
+            isFirstLogin: res.data.data.isFirstLogin,
+            portfolioId: res.data.data.portfolioId,
+            userId: res.data.data.userId,
+            email: res.data.data.email,
+            stack: res.data.data.stack,
             token: token
           })
         )
@@ -70,13 +71,30 @@ const SignUpDB = (email, password, passwordcheck) => {
   };
 };
 
+const emailCheckDB = (email) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .dupCheck(email)
+      .then((res) => {
+        dispatch(
+          setUser({
+            email: email
+          })
+        )
+        alert("회원가입이 완료되었습니다.");
+      })
+      .catch((error) => {
+        alert("회원가입에 실패했습니다.");
+      });
+  };
+};
+
 
 const userInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(name, stack, phoneNum, gitURl, blogURl)
       .then((res) => {
-        console.log(res);
       })
       .catch((error) => console.log(error));
   };
@@ -90,11 +108,14 @@ export default handleActions(
       produce(state, (draft) => {
         // setCookie("is_login", "success");
         draft.token = action.payload.user.token;
-        draft.userinfo = {
+        draft.user = {
           email: action.payload.user.email,
-          nickname: action.payload.user.nickname,
-
+          isFirstLogin: action.payload.user.isFirstLogin,
+          portfolioId: action.payload.user.portfolioId,
+          stack: action.payload.user.stack,
+          userId: action.payload.user.userId,
         };
+        console.log(action.payload)
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
@@ -114,7 +135,7 @@ const actionCreators = {
   getUser,
   loginDB,
   SignUpDB,
-
+  emailCheckDB,
   // loginCheckDB,
   userInfoDB,
   logOutDB,

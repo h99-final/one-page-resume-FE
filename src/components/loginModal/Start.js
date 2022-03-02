@@ -18,9 +18,11 @@ const Start = (props) => {
   const dispatch = useDispatch();
 
   const statusFunction = props.status
+  const emailFunction = props.email
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState('');
+
   const inputEmail = (e) => {
     setEmail(e.target.value)
   }
@@ -31,18 +33,21 @@ const Start = (props) => {
       setEmailError("이메일 형식을 다시 확인해주세요!");
       return;
     }
-    statusFunction(true)
-    // dispatch(userActions.emailCheckDB(email))
-    // apis.dupCheck(email)
-    //   .then((res) => {
-    //     console.log(res.data.result)
-    //     if (res.data.result === true) {
-    //       return (
-    //         setStatus(true)
-    //       )
-    //     }
-    //     setStatus(false)
-    //   })
+
+    // statusFunction(true)
+
+    apis.dupCheck(email)
+      .then((res) => {
+        emailFunction(email)
+        console.log(res.data.result)
+        if (res.data.result === true) {
+          return (
+            statusFunction(true)
+
+          )
+        }
+        statusFunction(false)
+      })
 
   }
 
@@ -65,9 +70,7 @@ const Start = (props) => {
 
       {emailError && <span style={{ fontSize: "12px", color: "red" }}>{emailError}</span>}
 
-      <div>
-        <button onClick={sumitEmail}>시작하기</button>
-      </div>
+      <WriteBtn disabled={!(email) || !email ? true : false} onClick={sumitEmail}>시작하기</WriteBtn>
       <br></br>
 
     </>
@@ -77,47 +80,20 @@ const Start = (props) => {
 export default Start;
 
 
-const ModalBox = styled.div`
-  border: 1px solid red;
-  display: flex;
-  width: 1020px;
-  height: 80vh;
-  // Modal 창 브라우저 가운데로 조정
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-  z-index: 100;
-`;
-
-const WelcomeBox = styled.div`
-border: 1px solid red;
-background-color: inherit;
-width: 50%;
-padding: 20px;
-position: relative;
-border-radius: 10px;
-`;
-
-const TextBox = styled.div`
-background-color: white;
-align-items: center;
-text-align: center;
-padding: 5px;
-border-radius: 10px;
-margin: 10px;
-`;
-
-const UserBox = styled.div`
-  background-color: white;
-  padding: 20px;
-  position: relative;
-  border-radius: 10px;
-  min-height: 500px;
-  min-width: 350px;
-  width: 50%;
-
+const WriteBtn = styled.button`
+  cursor: pointer;
+  border-radius: 25px;
+  margin: 15px 0px 0px 5px;
+  border: none;
+  font-size: 17px;
+  padding: 10px 10px;
+  border-radius: 25px;
+  color: white;
+  background-color: black;
+  :disabled{
+    border: none;
+    background-color: gray;
+  }
 `;
 
 

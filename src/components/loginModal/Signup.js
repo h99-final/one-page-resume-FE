@@ -87,50 +87,23 @@ const Signup = (props) => {
     setPasswordCheckError("");
 
     dispatch(userActions.SignUpDB(email, password, passwordCheck))
-    // if (!name) {
-    //   alert("이름을 입력해주세요!");
-    //   return;
-    // }
 
-    // apis.signup(email, password, passwordcheck)
-    //   .then((res) => {
-    //     if (res === true) {
-    //       return (
-    //         console.log(res)
-    //       )
-    //     }
-    //   })
-    // dispatch(userActions.signupAction(userEmail, password, passwordcheck, userName));
-    // dispatch(userActions.loginAction(userEmail, password));
-    setStatus(true)
   };
 
-  const addInfo = () => {
-    console.log(name, stack, phoneNum, gitUrl, blogUrl)
-    const nameRegex = /^[가-힣a-zA-Z]+$/;
-    if (!nameRegex.test(name) || name.length < 2) {
-      setNameError("이름을 입력해주세요");
-      return;
-    }
-    else setNameError("")
-
-    if (!phoneCheck(phoneNum)) {
-      setPhoneNumError("올바른 번호를 입력하세요");
-      return;
-    }
-    else setPhoneNumError("")
-
-    if (!urlCheck(gitUrl)) {
-      setGitUrlError("URL형식이 잘못되었습니다.");
-      return;
-    }
-    setGitUrlError("");
-  }
 
   return (
     <>
-      <h2>회원가입</h2>
-      <p>email:{props.email}</p>
+      <h2>회원가입하기 (1/3)</h2>
+      <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
+      <TextField
+        id="standard-read-only-input"
+        defaultValue={props.email}
+        fullWidth
+        InputProps={{
+          readOnly: true,
+        }}
+        variant="standard"
+      />
       <TextField
         onChange={(e) => { setPw(e.target.value) }}
         required
@@ -162,7 +135,7 @@ const Signup = (props) => {
         id="passwordcheck"
         name="passwordcheck"
         label="비밀번호 재입력"
-        error={passwordError !== '' || false}
+        error={passwordCheckError !== '' || false}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -176,7 +149,7 @@ const Signup = (props) => {
       {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
 
       <br />
-      <button onClick={signup}>회원가입</button>
+      <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
     </>
   )
 
@@ -185,33 +158,22 @@ const Signup = (props) => {
 
 export default Signup;
 
-const StyledBox = styled.div`
-margin: auto;
-
-  padding: 20px;
-  min-width: 250px;
-  width: auto;
-  height: auto;
-`
-
-
-const Stack = styled.button`
-  margin: 10px 10px 0px 0px;
-  font-size: 16px;
-  background-color: #4cbc9b;
-  color: white;
-  padding: 10px 1px;
-  font-weight: bold;
-  width: 90px;
-  height: 45px;
+const WriteBtn = styled.button`
+  cursor: pointer;
+  position: absolute;
+  right: 80px;
+  border-radius: 25px;
+  margin: 15px 0px 0px 5px;
+  font-size: 17px;
+  padding: 10px 10px;
   border: none;
   border-radius: 25px;
-  :hover{
-    background-color: red;
+  color: white;
+  background-color: black;
+  :disabled{
+    border: none;
+    background-color: gray;
   }
-  :checked{
-    background-color: yellow;
-  }
-  
-
 `;
+
+

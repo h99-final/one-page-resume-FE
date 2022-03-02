@@ -48,7 +48,7 @@ const Login = (props) => {
     //       )
     //     }
     //   })
-    dispatch(userActions.loginDB(userEmail, password));
+    dispatch(userActions.loginDB(email, password));
 
   };
   const handleChange = (prop) => (event) => {
@@ -67,6 +67,15 @@ const Login = (props) => {
   return (
     <>
       <h2>비밀번호 입력</h2>
+      <TextField
+        id="standard-read-only-input"
+        defaultValue={props.email}
+        fullWidth
+        InputProps={{
+          readOnly: true,
+        }}
+        variant="standard"
+      />
       <TextField
         onChange={(e) => { loginPw(e.target.value) }}
         required
@@ -91,7 +100,7 @@ const Login = (props) => {
 
 
       <div>
-        <button onClick={login}>로그인</button>
+        <WriteBtn disabled={!(password) ? true : false} onClick={login}>로그인</WriteBtn>
       </div>
 
     </>
@@ -100,5 +109,20 @@ const Login = (props) => {
   )
 }
 
+const WriteBtn = styled.button`
+  cursor: pointer;
+  border-radius: 25px;
+  margin: 15px 0px 0px 5px;
+  border: none;
+  font-size: 17px;
+  padding: 10px 10px;
+  border-radius: 25px;
+  color: white;
+  background-color: black;
+  :disabled{
+    border: none;
+    background-color: gray;
+  }
+`;
 export default Login;
 

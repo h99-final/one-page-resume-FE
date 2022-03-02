@@ -15,6 +15,7 @@ import Start from './Start';
 
 const Modal = ({ modalClose }) => {
   const userInfo = useSelector(state => state.user.user)
+  console.log(userInfo)
 
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const Modal = ({ modalClose }) => {
   const [emailError, setEmailError] = useState('');
 
 
+  console.log(email)
 
   return (
     <>
@@ -42,7 +44,7 @@ const Modal = ({ modalClose }) => {
           {userInfo.isFirstLogin === false
             ?
             <>
-              {status === "aaa" && <Start status={setStatus} />}
+              {status === "aaa" && <Start status={setStatus} email={setEmail} />}
               {status === true && <Login email={email} />}
               {status === false && <Signup email={email} />}
             </>
@@ -51,7 +53,6 @@ const Modal = ({ modalClose }) => {
               {userInfo.isFirstLogin === true && <AddInfo />}
             </>
           }
-
 
         </UserBox>
       </ModalBox>
@@ -63,7 +64,8 @@ export default Modal;
 
 
 const ModalBox = styled.div`
-  border: 1px solid red;
+
+  border-radius: 10px;
   display: flex;
   width: 1020px;
   height: 80vh;
@@ -71,34 +73,36 @@ const ModalBox = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
 
 const WelcomeBox = styled.div`
-border: 1px solid red;
-background-color: inherit;
+background-color: #777777;
 width: 50%;
 padding: 20px;
 position: relative;
-border-radius: 10px;
+padding-top: 250px;
+border-bottom-left-radius: 10px;
+border-top-left-radius: 10px;
 `;
 
 const TextBox = styled.div`
 background-color: white;
+border-radius: 110px;
 align-items: center;
 text-align: center;
 padding: 5px;
-border-radius: 10px;
 margin: 10px;
 `;
 
 const UserBox = styled.div`
   background-color: white;
-  padding: 20px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 100px;
+  
   position: relative;
-  border-radius: 10px;
   min-height: 500px;
   min-width: 350px;
   width: 50%;
