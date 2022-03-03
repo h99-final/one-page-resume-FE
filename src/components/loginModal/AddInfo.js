@@ -1,7 +1,7 @@
 import { current } from "immer";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { phoneCheck, urlCheck } from "../../shared/common";
+import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
 // import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from "../../shared/axios";
 import { TextField } from "@mui/material";
@@ -21,27 +21,21 @@ import { useHistory } from "react-router-dom";
 const AddInfo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const loginClose = props.loginClose
   const [name, setName] = React.useState("");
   const [phoneNum, setPhoneNum] = React.useState("");
   const [gitUrl, setGitUrl] = React.useState("");
   const [blogUrl, setBlogUrl] = React.useState("");
+  const [job, setJob] = React.useState("");
 
-  const [page, setPage] = React.useState("2");
+  const [page, setPage] = React.useState("0");
 
   const [nameError, setNameError] = React.useState("");
   const [phoneNumError, setPhoneNumError] = React.useState("");
   const [gitUrlError, setGitUrlError] = React.useState("");
-  const [blogUrlError, setBlogUrlError] = React.useState("");
+  const [jobError, setJobError] = React.useState("");
 
   const [stack, setStack] = useState([]);
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -53,25 +47,34 @@ const AddInfo = (props) => {
     }
   };
   console.log(stack);
+
   const isAllChecked = stack.length === 2;
   const disabled = !isAllChecked;
 
   const goNext = () => {
-    const nameRegex = /^[가-힣a-zA-Z]+$/;
-    if (!nameRegex.test(name) || name.length < 2) {
+
+    if (!nameCheck(name) || name.length < 2) {
       setNameError("이름을 입력해주세요");
       return;
-    } else setNameError("");
-
-    if (!phoneCheck(phoneNum)) {
-      setPhoneNumError("올바른 번호를 입력하세요");
-      return;
-    } else setPhoneNumError("");
-
-    if (!urlCheck(gitUrl)) {
-      setGitUrlError("URL형식이 잘못되었습니다.");
-      return;
     }
+    setNameError("");
+
+    // if (!phoneCheck(phoneNum)) {
+    //   setPhoneNumError("올바른 번호를 입력하세요");
+    //   return;
+    // }
+    // setPhoneNumError("");
+
+    if (!urlCheck(gitUrl) || gitUrl.length < 0) {
+      setGitUrlError("URL형식이 잘못되었습니다.");
+      return
+    }
+    setGitUrlError("");
+
+    // if (!nameCheck(job) || job.length < 2) {
+    //   setJobError("직업을 입력해주세요")
+    //   return;
+    // } else setJobError("");
 
     setPage("2");
   };
@@ -79,6 +82,7 @@ const AddInfo = (props) => {
     console.log(name, stack, phoneNum, gitUrl, blogUrl);
 
     dispatch(userActions.userInfoDB(name, stack, phoneNum, gitUrl, blogUrl));
+    loginClose(false)
   };
 
   return (
@@ -113,7 +117,7 @@ const AddInfo = (props) => {
       )}
       {page === "1" && (
         <Wrap>
-          <h2>추가정보 입력하기 (2/3)</h2>
+          <h2>추가정보 입력하기 (1/2)</h2>
           <p>Portfolio와 함께 멋진 포트폴리오를 만들어보세요.</p>
           <TextField
             onChange={(e) => {
@@ -133,34 +137,17 @@ const AddInfo = (props) => {
 
           <br />
           <br />
-          <TextField
-            onChange={(e) => {
-              setPhoneNum(e.target.value);
-            }}
-            required
-            variant='standard'
-            fullWidth
-            id='phone'
-            name='phone'
-            label='전화번호'
-            error={phoneNumError !== "" || false}
-          />
-          {phoneNumError && (
-            <span style={{ fontSize: "12px", color: "red" }}>
-              {phoneNumError}
-            </span>
-          )}
-          <br />
-          <br />
+
           <TextField
             onChange={(e) => {
               setGitUrl(e.target.value);
             }}
+            required
             variant='standard'
             fullWidth
-            id='giturl'
-            name='giturl'
-            label='gitURl'
+            id='gitURL'
+            name='gitURL'
+            label='gitURL'
             error={gitUrlError !== "" || false}
           />
           {gitUrlError && (
@@ -182,7 +169,38 @@ const AddInfo = (props) => {
           // error={blogUrlError !== '' || false}
           />
           {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
-
+          <TextField
+            onChange={(e) => {
+              setPhoneNum(e.target.value);
+            }}
+            variant='standard'
+            fullWidth
+            id='phone'
+            name='phone'
+            label='전화번호'
+          // error={phoneNumError !== "" || false}
+          />
+          {/* {phoneNumError && (
+            <span style={{ fontSize: "12px", color: "red" }}>
+              {phoneNumError}
+            </span>
+          )} */}
+          <br />
+          <br />
+          <TextField
+            onChange={(e) => {
+              setJob(e.target.value);
+            }}
+            variant='standard'
+            fullWidth
+            id='job'
+            name='job'
+            label='직무'
+          // error={jobError !== "" || false}
+          />
+          {/* {jobError && (
+            <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
+          )} */}
           <div>
             <WriteBtn
               disabled={!name || !gitUrl ? true : false}
@@ -195,7 +213,7 @@ const AddInfo = (props) => {
       )}
       {page === "2" && (
         <Wrap>
-          <h2>3가지 고르세요(3/3)</h2>
+          <h2>3가지 고르세요(2/2)</h2>
           <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
           <Grid>
             <StyledBox>

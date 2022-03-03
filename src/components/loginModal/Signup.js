@@ -1,44 +1,31 @@
 
-import { current } from 'immer';
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { phoneCheck, urlCheck } from '../../shared/common';
 // import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from '../../shared/axios';
 import { TextField } from '@mui/material';
 
-import Input from '@mui/material/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { setCookie } from '../../shared/cookie';
 import { actionCreators as userActions } from '../../redux/modules/user';
 import { useDispatch } from 'react-redux';
 
 const Signup = (props) => {
   const dispatch = useDispatch();
 
+  const loginClose = props.loginClose
   const email = props.email
 
 
   const [password, setPw] = React.useState("");
   const [passwordCheck, setPwCheck] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [phoneNum, setPhoneNum] = React.useState("");
-  const [gitUrl, setGitUrl] = React.useState("");
-  const [blogUrl, setBlogUrl] = React.useState("");
 
   const [passwordError, setPasswordError] = useState('');
   const [passwordCheckError, setPasswordCheckError] = useState('');
-
-  const [nameError, setNameError] = React.useState("");
-  const [phoneNumError, setPhoneNumError] = React.useState("");
-  const [gitUrlError, setGitUrlError] = React.useState("");
-  const [blogUrlError, setBlogUrlError] = React.useState("");
-
-  const [status, setStatus] = React.useState(false);
 
 
   const [stack, setStack] = useState([]);
@@ -86,7 +73,28 @@ const Signup = (props) => {
     }
     setPasswordCheckError("");
 
-    dispatch(userActions.SignUpDB(email, password, passwordCheck))
+    apis
+      .signup(email, password, passwordCheck)
+      .then((res) => {
+        apis
+          .login(email, password)
+          .then((res) => {
+            setCookie("token", res.headers.authorization, 5);
+            dispatch(userActions.loginDB(res.data.data.isFirstLogin))
+
+            if (res.data.data.isFirstLogin === true) {
+              console.log(res.data.data.isFirstLogin)
+            }
+            else {
+              loginClose(false)
+            }
+          })
+          .catch((error) => alert("회원정보가 일치하지 않습니다."));
+      })
+      .catch((error) => {
+        alert("회원가입에 실패했습니다.");
+      });
+
 
   };
 

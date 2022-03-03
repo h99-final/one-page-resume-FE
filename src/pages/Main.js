@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 
 const Main = () => {
 
+  // const userInfo = useSelector(state => state.user.user)
+  // console.log(userInfo)
+
   return (
     <>
       <Container>

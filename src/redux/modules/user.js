@@ -15,45 +15,18 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // initialState
 const initialState = {
-  user: { email: "aaa@aaa.com", isFirstLogin: true, },
+  user: { isFirstLogin: false },
   token: null,
 };
 
 // middleware actions
-const loginDB = (email, password) => {
+const loginDB = (isFirstLogin) => {
   return function (dispatch, getState, { history }) {
-    apis
-      .login(email, password)
-      .then((res) => {
-        setCookie("token", res.headers.authorization, 5);
-        const token = res.headers.authorization;
-        console.log(res.headers)
-        dispatch(
-          setUser({
-            isFirstLogin: res.data.data.isFirstLogin,
-            portfolioId: res.data.data.portfolioId,
-            userId: res.data.data.userId,
-            email: res.data.data.email,
-            stack: res.data.data.stack,
-            token: token
-          })
-        )
+    dispatch(
+      setUser({
+        isFirstLogin: isFirstLogin,
       })
-      .catch((error) => alert("회원정보가 일치하지 않습니다."));
-  };
-};
-
-
-
-const logOutDB = () => {
-  return function (dispatch, getState, { history }) {
-    deleteCookie("token");
-    deleteCookie("token");
-    deleteCookie("token");
-    // localStorage.removeItem("authorization");
-    dispatch(logOut({ userinfo: { email: "", nickname: "" }, token: null }));
-    history.replace("/");
-    history.go(0);
+    )
   };
 };
 
@@ -62,7 +35,6 @@ const SignUpDB = (email, password, passwordcheck) => {
     apis
       .signup(email, password, passwordcheck)
       .then((res) => {
-        dispatch(loginDB(email, password))
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
@@ -137,7 +109,6 @@ const actionCreators = {
   emailCheckDB,
   // loginCheckDB,
   userInfoDB,
-  logOutDB,
 };
 
 export { actionCreators };

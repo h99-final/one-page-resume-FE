@@ -1,32 +1,63 @@
+import { Token } from '@mui/icons-material';
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import Modal from "../components/loginModal/Modal";
-
+import { deleteCookie } from './cookie';
+import { Avatar } from '@mui/material';
 const Header = (props) => {
+  const history = useHistory();
   // const userName = localStorage?.getItem("userName")?.substring(0, 2)
 
+  const user = document.cookie
+  console.log(user)
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
     setModalOpen(!modalOpen);
   };
+  const logout = () => {
+    deleteCookie(user)
+    window.location.reload()
+  }
 
-  return (
-    <>
-      <StyledHeader>
-        <RightMenu>로고</RightMenu>
-        <LeftMenu>
-          <WriteBtn
-            onClick={() => {
-              modalClose();
-            }}
-          >
-            로그인/회원가입
-          </WriteBtn>
-          {modalOpen && <Modal modalClose={modalClose}></Modal>}
-        </LeftMenu>
-      </StyledHeader>
-    </>
-  );
+  if (!user) {
+    return (
+      <>
+        <StyledHeader>
+          <LeftMenu>로고</LeftMenu>
+          <RightMenu>
+            <WriteBtn
+              onClick={() => {
+                modalClose();
+              }}
+            >
+              로그인/회원가입
+            </WriteBtn>
+            {modalOpen && <Modal modalClose={modalClose}></Modal>}
+          </RightMenu>
+        </StyledHeader>
+      </>
+    );
+  }
+  else {
+    return (
+      <>
+        <StyledHeader>
+          <LeftMenu>로고</LeftMenu>
+          <RightMenu>
+            <Avatar
+              onClick={() => { logout() }}
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
+              sx={{ width: 56, height: 56 }}
+            />
+            {modalOpen && <Modal modalClose={modalClose}></Modal>}
+          </RightMenu>
+        </StyledHeader>
+      </>
+    );
+  }
+
 };
 
 export default Header;
@@ -43,7 +74,7 @@ const StyledHeader = styled.div`
   margin-right: auto;
 `;
 
-const RightMenu = styled.div`
+const LeftMenu = styled.div`
   display: flex;
   align-items: center;
   font-size: 25px;
@@ -53,7 +84,7 @@ const RightMenu = styled.div`
   font-weight: 500;
 `;
 
-const LeftMenu = styled.div`
+const RightMenu = styled.div`
   background-color: inherit;
   border: none;
   font-size: 16px;

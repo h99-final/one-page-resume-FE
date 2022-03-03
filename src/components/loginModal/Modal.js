@@ -15,12 +15,17 @@ import Start from './Start';
 import ExitModal from './ExitModal';
 
 const Modal = ({ modalClose }) => {
+
   const userInfo = useSelector(state => state.user.user)
   console.log(userInfo)
 
   const [modalOpen, setModalOpen] = useState(false);
 
   const exitClose = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const loginClose = () => {
     setModalOpen(!modalOpen);
   };
 
@@ -45,27 +50,36 @@ const Modal = ({ modalClose }) => {
           <TextBox>내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.</TextBox>
         </WelcomeBox>
         <UserBox >
-          <div>
-            <button style={{ float: "right", backgroundColor: "inherit", border: "none" }}
-              onClick={() => { exitClose(); }}>❌</button>
-          </div>
+
           {userInfo.isFirstLogin === false
             ?
             <>
+              <div style={{
+                position: "fixed", top: "2%", right: "2%"
+              }}>
+                <button style={{ float: "right", backgroundColor: "inherit", border: "none" }}
+                  onClick={() => { modalClose(); }}>❌</button>
+              </div>
               {status === "aaa" && <Start status={setStatus} email={setEmail} />}
-              {status === true && <Login email={email} />}
-              {status === false && <Signup email={email} />}
+              {status === true && <Login email={email} isFirstLogin={userInfo.isFirstLogin} loginClose={modalClose} />}
+              {status === false && <Signup email={email} loginClose={modalClose} />}
             </>
             :
             <>
-              {userInfo.isFirstLogin === true && <AddInfo isFirstLogin={userInfo.isFirstLogin} />}
+              <div style={{
+                position: "fixed", top: "2%", right: "2%"
+              }}>
+                <button style={{ float: "right", backgroundColor: "inherit", border: "none" }}
+                  onClick={() => { exitClose(); }}>❌</button>
+              </div>
+              {userInfo.isFirstLogin === true && <AddInfo loginClose={modalClose} isFirstLogin={userInfo.isFirstLogin} />}
             </>
           }
 
         </UserBox>
 
         {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
-      </ModalBox>
+      </ModalBox >
 
     </>
   )
@@ -93,7 +107,7 @@ background-color: #777777;
 width: 50%;
 padding: 20px;
 position: relative;
-padding-top: 250px;
+padding: 250px 50px 10px 50px;
 border-bottom-left-radius: 10px;
 border-top-left-radius: 10px;
 `;
@@ -111,7 +125,7 @@ const UserBox = styled.div`
   background-color: white;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 100px;
+  padding: 50px 50px 0px 50px;
   
   position: relative;
   min-height: 500px;

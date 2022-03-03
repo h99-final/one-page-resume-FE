@@ -7,7 +7,12 @@ import MainProj from "../pages/MakeProj";
 import NotFound from "../pages/NotFound";
 import MakeProj from "../pages/MakeProj";
 
+import { useSelector } from 'react-redux';
+
 function App() {
+  // const userInfo = useSelector(state => state.user.user)
+  // console.log(userInfo)
+
   return (
     <>
       <Switch>

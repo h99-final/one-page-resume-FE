@@ -6,7 +6,7 @@ import { emailCheck } from '../../shared/common';
 import { apis } from '../../shared/axios';
 import { useState } from 'react';
 import { TextField } from '@mui/material';
-
+import { setCookie } from '../../shared/cookie';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../redux/modules/user';
 import { useSelector } from 'react-redux';
@@ -15,16 +15,20 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useHistory } from 'react-router-dom';
 
 const Login = (props) => {
-  const dispatch = useDispatch();
 
+  const userInfo = useSelector(state => state.user.user)
+  console.log(userInfo.isFirstLogin)
+
+  const dispatch = useDispatch();
+  const history = useHistory();
   const email = props.email
-  const [userEmail, loginEmail] = React.useState("");
+  const loginClose = props.loginClose
   const [password, loginPw] = React.useState("");
 
   const [passwordError, setPasswordError] = useState('');
-  // const [nameError, setNameError] = useState('');
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -32,25 +36,35 @@ const Login = (props) => {
     weightRange: '',
     showPassword: false,
   });
-  const login = () => {
 
+  const login = async () => {
     if (!password || password.length < 4) {
       setPasswordError("비밀번호가 틀림");
       return;
     }
     setPasswordError("")
-    console.log(email, password)
-    // apis.login(email, password)
-    //   .then((res) => {
-    //     if (res === true) {
-    //       return (
-    //         console.log(res.data)
-    //       )
-    //     }
-    //   })
-    dispatch(userActions.loginDB(email, password));
 
+    await apis
+      .login(email, password)
+      .then((res) => {
+        setCookie("token", res.headers.authorization, 5);
+        dispatch(userActions.loginDB(res.data.data.isFirstLogin))
+
+        if (res.data.data.isFirstLogin === true) {
+          console.log(res.data.data.isFirstLogin)
+        }
+        else {
+          loginClose(false)
+        }
+      })
+      .catch((error) => alert("회원정보가 일치하지 않습니다."));
+
+    // dispatch(userActions.loginDB(email, password));
+
+    console.log(userInfo)
+    console.log(props.isFirstLogin)
   };
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -64,6 +78,7 @@ const Login = (props) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
   return (
     <>
       <h2>비밀번호 입력</h2>

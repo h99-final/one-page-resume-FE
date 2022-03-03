@@ -43,7 +43,6 @@ const Start = (props) => {
         if (res.data.result === true) {
           return (
             statusFunction(true)
-
           )
         }
         statusFunction(false)
