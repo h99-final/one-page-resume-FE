@@ -12,10 +12,17 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from 'react-redux';
 import AddInfo from './AddInfo';
 import Start from './Start';
+import ExitModal from './ExitModal';
 
 const Modal = ({ modalClose }) => {
   const userInfo = useSelector(state => state.user.user)
   console.log(userInfo)
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const exitClose = () => {
+    setModalOpen(!modalOpen);
+  };
 
   const dispatch = useDispatch();
 
@@ -39,7 +46,8 @@ const Modal = ({ modalClose }) => {
         </WelcomeBox>
         <UserBox >
           <div>
-            <button style={{ float: "right", backgroundColor: "inherit", border: "none" }} onClick={() => { modalClose(false); }}>❌</button>
+            <button style={{ float: "right", backgroundColor: "inherit", border: "none" }}
+              onClick={() => { exitClose(); }}>❌</button>
           </div>
           {userInfo.isFirstLogin === false
             ?
@@ -55,7 +63,10 @@ const Modal = ({ modalClose }) => {
           }
 
         </UserBox>
+
+        {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
       </ModalBox>
+
     </>
   )
 }
