@@ -53,13 +53,11 @@ const RightMenu = styled.div`
   font-weight: 500;
 `;
 
-const LeftMenu = styled.button`
+const LeftMenu = styled.div`
   background-color: inherit;
   border: none;
   font-size: 16px;
   font-weight: 500;
-  button {
-  }
 `;
 const WriteBtn = styled.button`
   cursor: pointer;

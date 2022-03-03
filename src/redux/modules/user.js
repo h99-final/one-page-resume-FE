@@ -15,7 +15,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // initialState
 const initialState = {
-  user: { email: "aaa@aaa.com", isFirstLogin: false, },
+  user: { email: "aaa@aaa.com", isFirstLogin: true, },
   token: null,
 };
 
@@ -25,8 +25,8 @@ const loginDB = (email, password) => {
     apis
       .login(email, password)
       .then((res) => {
-        setCookie("token", res.headers.Authorization, 5);
-        const token = res.headers.Authorization;
+        setCookie("token", res.headers.authorization, 5);
+        const token = res.headers.authorization;
         console.log(res.headers)
         dispatch(
           setUser({
@@ -106,7 +106,6 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        // setCookie("is_login", "success");
         draft.token = action.payload.user.token;
         draft.user = {
           email: action.payload.user.email,

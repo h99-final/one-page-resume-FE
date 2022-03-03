@@ -64,10 +64,10 @@ export default Modal;
 
 
 const ModalBox = styled.div`
-
+  text-align: center;
   border-radius: 10px;
   display: flex;
-  width: 1020px;
+  width: 1120px;
   height: 80vh;
   // Modal 창 브라우저 가운데로 조정
   position: absolute;

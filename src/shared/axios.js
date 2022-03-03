@@ -7,28 +7,7 @@ const search = localStorage.getItem("search");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
-  headers: {
-    // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-    // accept: "*/*",
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
-    token: token,
-    //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
-  },
-});
-
-const apiForms = axios.create({
-  baseURL: "",
-  headers: {
-    "content-type": "multypart/form-data",
-    accept: "application/json",
-  },
-});
-
-const forsearch = axios.create({
-  // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
+  baseURL: "http://3.36.85.128/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -56,8 +35,6 @@ export const apis = {
         email: email,
         password: password,
       },
-
-      { withCredentials: true }
     ),
 
   signup: (email, password, passwordCheck) =>
@@ -75,8 +52,5 @@ export const apis = {
       gitUrl: gitUrl,
       blogUrl: blogUrl,
     }),
-};
 
-export const apiForm = {
-  createIntro: (frm) => apiForms.post("/porf/intro", frm),
 };
