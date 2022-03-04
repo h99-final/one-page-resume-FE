@@ -162,7 +162,6 @@ const Signup = (props) => {
         />
         {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
 
-        <br />
         <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
       </InputBox>
 
@@ -205,7 +204,7 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 296px 0px 0px 262px ;
+  margin: 156px 0px 0px 262px ;
   padding: 5px 18px 5px 18px;
   color: white;
   background-color: #333333;

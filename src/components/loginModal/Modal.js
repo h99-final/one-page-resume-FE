@@ -99,7 +99,7 @@ const ModalBox = styled.div`
   border-radius: 10px;
   display: flex;
   width: 1160px;
-  height: 80vh;
+  height: 800px;
   // Modal 창 브라우저 가운데로 조정
   position: absolute;
   left: 50%;

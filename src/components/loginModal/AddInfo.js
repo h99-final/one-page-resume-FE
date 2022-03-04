@@ -88,134 +88,145 @@ const AddInfo = (props) => {
   return (
     <>
       {page === "0" && (
-        <Wrap>
-          <h2>추가정보를 입력하시겠어요?</h2>
-
-          <p>회원가입을 완료했어요!</p>
-          <p>추가정보를 3가지만 입력하면</p>
-          <p>Portfolio의 다양한 기능을 이용할 수 있어요.</p>
-          <p>최신 프로젝트까지 추천드릴께요.</p>
+        <>
+          <TextContainer>
+            <h1>추가정보를 입력하시겠어요?</h1>
+          </TextContainer>
+          <ImgInputBox>
+            <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg' />
+            <p>회원가입을 완료했어요👏👏</p>
+            <p>추가정보를 3가지만 입력하면</p>
+            <p>Portfolio의 다양한 기능을 이용할 수 있어요.</p>
+            <p>최신 프로젝트까지 추천드릴께요.</p>
+          </ImgInputBox>
           <div>
             <span>
-              <WriteeBtn
+              <CloseBtn
                 onClick={() => {
                   window.location.replace("/");
                 }}
               >
-                안하기
-              </WriteeBtn>
+                다음에 할게요
+              </CloseBtn>
             </span>
-            <WriteBtn
+            <ContinueBtn
               onClick={() => {
                 setPage("1");
               }}
             >
               추가정보 입력하기
-            </WriteBtn>
+            </ContinueBtn>
           </div>
-        </Wrap>
+        </>
       )}
       {page === "1" && (
-        <Wrap>
-          <h2>추가정보 입력하기 (1/2)</h2>
-          <p>Portfolio와 함께 멋진 포트폴리오를 만들어보세요.</p>
-          <TextField
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            required
-            variant='standard'
-            fullWidth
-            id='name'
-            name='name'
-            label='이름'
-            error={nameError !== "" || false}
-          />
-          {nameError && (
-            <span style={{ fontSize: "12px", color: "red" }}>{nameError}</span>
-          )}
+        <>
+          <TextContainer>
+            <h1>추가정보 입력하기 (1/2)</h1>
+            <p>몇가지 정보만 더 기입하면 돼요!</p>
 
-          <br />
-          <br />
+          </TextContainer>
+          <InputBox>
+            <TextField
+              style={{ marginTop: "55px" }}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              required
+              variant='standard'
+              fullWidth
+              id='name'
+              name='name'
+              placeholder='이름*'
+              error={nameError !== "" || false}
+            />
+            {nameError && (
+              <span style={{ fontSize: "12px", color: "red" }}>{nameError}</span>
+            )}
 
-          <TextField
-            onChange={(e) => {
-              setGitUrl(e.target.value);
-            }}
-            required
-            variant='standard'
-            fullWidth
-            id='gitURL'
-            name='gitURL'
-            label='gitURL'
-            error={gitUrlError !== "" || false}
-          />
-          {gitUrlError && (
-            <span style={{ fontSize: "12px", color: "red" }}>
-              {gitUrlError}
-            </span>
-          )}
-          <br />
-          <br />
-          <TextField
-            onChange={(e) => {
-              setBlogUrl(e.target.value);
-            }}
-            variant='standard'
-            fullWidth
-            id='blogurl'
-            name='blogurl'
-            label='blogURl'
-          // error={blogUrlError !== '' || false}
-          />
-          {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
-          <TextField
-            onChange={(e) => {
-              setPhoneNum(e.target.value);
-            }}
-            variant='standard'
-            fullWidth
-            id='phone'
-            name='phone'
-            label='전화번호'
-          // error={phoneNumError !== "" || false}
-          />
-          {/* {phoneNumError && (
+            <TextField
+              onChange={(e) => {
+                setGitUrl(e.target.value);
+              }}
+              style={{ marginTop: "35px" }}
+              required
+              variant='standard'
+              fullWidth
+              id='gitURL'
+              name='gitURL'
+              placeholder='gitURL*'
+              error={gitUrlError !== "" || false}
+            />
+            {gitUrlError && (
+              <span style={{ fontSize: "12px", color: "red" }}>
+                {gitUrlError}
+              </span>
+            )}
+            <TextField
+              onChange={(e) => {
+                setBlogUrl(e.target.value);
+              }}
+              style={{ marginTop: "35px" }}
+              variant='standard'
+              fullWidth
+              id='blogurl'
+              name='blogurl'
+              placeholder='blogURl'
+            // error={blogUrlError !== '' || false}
+            />
+            {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
+            <TextField
+              onChange={(e) => {
+                setPhoneNum(e.target.value);
+              }}
+              style={{ marginTop: "35px" }}
+              variant='standard'
+              fullWidth
+              id='phone'
+              name='phone'
+              placeholder='전화번호'
+            // error={phoneNumError !== "" || false}
+            />
+            {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
               {phoneNumError}
             </span>
           )} */}
-          <br />
-          <br />
-          <TextField
-            onChange={(e) => {
-              setJob(e.target.value);
-            }}
-            variant='standard'
-            fullWidth
-            id='job'
-            name='job'
-            label='직무'
-          // error={jobError !== "" || false}
-          />
-          {/* {jobError && (
+
+            <TextField
+              onChange={(e) => {
+                setJob(e.target.value);
+              }}
+              style={{ marginTop: "35px" }}
+              variant='standard'
+              fullWidth
+              id='job'
+              name='job'
+              placeholder='직무'
+            // error={jobError !== "" || false}
+            />
+            {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
           )} */}
-          <div>
             <WriteBtn
               disabled={!name || !gitUrl ? true : false}
               onClick={goNext}
             >
               다음{">"}
             </WriteBtn>
-          </div>
-        </Wrap>
+
+          </InputBox>
+
+        </>
       )}
       {page === "2" && (
-        <Wrap>
-          <h2>3가지 고르세요(2/2)</h2>
-          <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
-          <Grid>
+        <>
+          <TextContainer>
+            <h1>나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)</h1>
+            <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
+
+          </TextContainer>
+          <Grid style={{ paddingTop: "50px" }}>
             <StyledBox>
               <input
                 type='checkbox'
@@ -434,7 +445,7 @@ const AddInfo = (props) => {
               가입하기
             </WriteBtn>
           </div>
-        </Wrap>
+        </>
       )}
     </>
   );
@@ -442,6 +453,60 @@ const AddInfo = (props) => {
 
 export default AddInfo;
 
+const TextContainer = styled.div`
+  width:370px;
+  height: 38px;
+  margin: 80px 115px 70px 115px;
+  h1{
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+  }
+`;
+const ImgInputBox = styled.div`
+  width:350px;
+  height: 240px;
+  margin: 70px 115px 193px 115px;
+  img{
+    width: 200px;
+    margin-bottom: 17px;
+  }
+  p{
+    margin-top: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+  }
+`;
+
+const InputBox = styled.div`
+  width:350px;
+  height: 240px;
+  margin: 70px 115px 193px 115px;
+`;
+
+const WriteBtn = styled.button`
+  cursor: pointer;
+  width: 88px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  margin: 156px 0px 0px 262px ;
+  padding: 5px 18px 5px 18px;
+  color: white;
+  background-color: #333333;
+  :disabled{
+    border: none;
+    background-color: gray;
+  }
+`;
 const StyledBox = styled.span`
   padding: 0px 5px 0px 5px;
   img {
@@ -468,7 +533,7 @@ const StyledBox = styled.span`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #bcbcbc;
+    border: 2px solid #333333;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -477,8 +542,8 @@ const StyledBox = styled.span`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #555555;
-    border: 2px solid #555555;
+    background-color: #333333;
+    border: 2px solid #333333;
     cursor: pointer;
   }
 `;
@@ -486,38 +551,39 @@ const Grid = styled.div`
   
   padding-bottom: 20px;
 `;
-const WriteBtn = styled.button`
+const ContinueBtn = styled.button`
   cursor: pointer;
   position: absolute;
-  right: 10%;
-  top: 80%;
+  right: 20%;
+  top: 83%;
+  width: 145px;
+  height: 42px;
   border-radius: 25px;
-  margin: 15px 0px 0px 5px;
-  font-size: 17px;
-  padding: 10px 10px;
-  border: 1px none;
-  border-radius: 25px;
+  font-size: 14px;
+  padding: 15px 20px;
+  border-radius: 30px;
+  border: none;
   color: white;
-  background-color: black;
+  background-color: #333333;
   :disabled {
     border: none;
     background-color: gray;
   }
 `;
 
-const WriteeBtn = styled.button`
+const CloseBtn = styled.button`
   cursor: pointer;
   position: absolute;
-  right: 78%;
-  top: 80%;
-  border-radius: 25px;
-  margin: 15px 0px 0px 5px;
-  font-size: 17px;
-  padding: 10px 10px;
-  border: 1px none;
-  border-radius: 25px;
+  right: 55%;
+  top: 83%;
+  width: 145px;
+  height: 42px;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 15px 20px;
+  border: none;
   color: white;
-  background-color: black;
+  background-color: #999999;
   :disabled {
     border: none;
     background-color: gray;

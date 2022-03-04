@@ -188,7 +188,6 @@ const Line = styled.div`
   margin-top: 14px;
 `;
 
-
 const Or = styled.div`
 position: absolute;
   background-color: white;
