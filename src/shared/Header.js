@@ -6,6 +6,7 @@ import Modal from "../components/loginModal/Modal";
 import { deleteCookie } from './cookie';
 import { Avatar } from '@mui/material';
 import Nav from './Nav';
+import Pnav from './Pnav';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
@@ -14,6 +15,7 @@ const Header = (props) => {
   // const userName = localStorage?.getItem("userName")?.substring(0, 2)
 
   const [nav, setNav] = React.useState(false)
+  const [pnav, setPnav] = React.useState(false)
   const user = document.cookie
   console.log(user)
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,12 +27,23 @@ const Header = (props) => {
   const navBtn = () => {
     if (nav) {
       setNav(false)
+
     } else {
       setNav(true)
+      setPnav(false)
     }
   }
 
-  if (user) {
+  const PnavBtn = () => {
+    if (pnav) {
+      setPnav(false)
+    } else {
+      setPnav(true)
+      setNav(false)
+    }
+  }
+
+  if (!user) {
     return (
       <>
         <StyledHeader>
@@ -61,11 +74,16 @@ const Header = (props) => {
           <LeftMenu>
             <Circle />
             Portfolio
-            <Port>포트폴리오</Port>
+            <Port
+              onClick={() => { alert("@") }}>포트폴리오</Port>
             <Proj>프로젝트</Proj>
+
+            <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>
-            <SharedBtn>작업 공유하기</SharedBtn>
+            <SharedBtn
+              onClick={() => { PnavBtn() }}
+            >작업 공유하기</SharedBtn>
             <BookmarkIcon
               style={{
                 width: "26px", height: "26px",

@@ -42,7 +42,7 @@ const Nav = (props) => {
             설정
           </NavSet>
           <NavLog>
-
+            <Logout onClick={signOut}>로그아웃</Logout>
           </NavLog>
         </NavBar>
         : null
@@ -50,7 +50,6 @@ const Nav = (props) => {
     </React.Fragment>
   )
 }
-
 // NavBar component
 const NavBar = styled.nav`
 
@@ -58,7 +57,7 @@ const NavBar = styled.nav`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    
     position:absolute;
     width: auto;
     top: 75px;
@@ -74,17 +73,18 @@ const Profile = styled.div`
     text-align: center;
     background-color: white;
     width: 160px;
-    height: 60px;
+    height: 70px;
     border: 1px solid #999999;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
-    padding: 28px 60px 29px 60px;
+    padding: 25px 60px 7px 60px;
     
     name{
-    font-weight: 600;
-    font-size: 26px;
+      font-weight: 600;
+      font-size: 26px;
     }
     email{
+      
       font-size: 14px;
       color: #5f5f5f;
     }
@@ -129,18 +129,38 @@ const NavSet = styled.div`
     };
 `
 const NavLog = styled.div`
-border: 1px solid #999999;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
-flex-direction: column;
+  border: 1px solid #999999;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 17px 96px 17px 96px;
+  background-color: white;
+  width:88px;
+  height: 40px;
+  cursor:pointer;
+  &:hover {
+  };
+  `
+const Logout = styled.button`
+  display: flex;
+flex-direction: row;
 justify-content: center;
 align-items: center;
-background-color: white;
-width:280px;
-height: 74px;
-cursor:pointer;
-
-&:hover {
-};
-`
+width: 88px;
+height: 40px;
+/* C6 */
+background: #FFFFFF;
+/* C4 */
+color: #999999;
+border: 1px solid #999999;
+box-sizing: border-box;
+border-radius: 30px;
+:hover{
+  color:white;
+  background-color: #999999;
+}
+`;
 export default Nav

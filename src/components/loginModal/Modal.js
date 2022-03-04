@@ -43,11 +43,17 @@ const Modal = ({ modalClose }) => {
     <>
       <ModalBox>
         <WelcomeBox >
-          <h1>Portfolio</h1>
-          <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
-          <TextBox>내 프로젝트에 도움이 되는 다양한 영감을 얻어요!</TextBox>
-          <TextBox>예쁜 포트폴리오를 빠르게 만들어요.</TextBox>
-          <TextBox>내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.</TextBox>
+          <TextContainer>
+            <h1>Portfolio</h1>
+
+            <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
+
+            <TextBox style={{ margin: "0px 33.5px 0px 33.5px" }}>내 프로젝트에 도움이 되는 다양한 영감을 얻어요!</TextBox>
+            <TextBox style={{ margin: "15px 73px 0px 73px" }}>예쁜 포트폴리오를 빠르게 만들어요.</TextBox>
+            <TextBox style={{ margin: "15px 0px" }}>내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.</TextBox>
+          </TextContainer>
+
+
         </WelcomeBox>
         <UserBox >
 
@@ -92,7 +98,7 @@ const ModalBox = styled.div`
   text-align: center;
   border-radius: 10px;
   display: flex;
-  width: 1120px;
+  width: 1160px;
   height: 80vh;
   // Modal 창 브라우저 가운데로 조정
   position: absolute;
@@ -105,27 +111,43 @@ const ModalBox = styled.div`
 const WelcomeBox = styled.div`
 background-color: #777777;
 width: 50%;
-padding: 20px;
 position: relative;
-padding: 250px 50px 10px 50px;
 border-bottom-left-radius: 10px;
 border-top-left-radius: 10px;
 `;
 
+const TextContainer = styled.div`
+  width:408px;
+  height: 323px;
+  margin: 240px 85px 240px 85px;
+  h1{
+    font-size: 48px;
+    font-weight: bold;
+  }
+  p{
+    margin-top: 34px;
+    margin-bottom: 60px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+`;
+
 const TextBox = styled.div`
 background-color: white;
-border-radius: 110px;
+border-radius: 15px;
 align-items: center;
 text-align: center;
-padding: 5px;
-margin: 10px;
+width: auto;
+padding: 10px 20px;
+font-size: 15px;
+font-weight: normal;
 `;
 
 const UserBox = styled.div`
   background-color: white;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 50px 50px 0px 50px;
   
   position: relative;
   min-height: 500px;
