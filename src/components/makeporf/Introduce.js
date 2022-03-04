@@ -1,44 +1,56 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 
-function Introduce(props) {
-  console.log("파라미터로 포트폴리오 id값 받으면 수정 페이지로 변함");
+function Introduce() {
+  const defaultValues = {};
+  const [title, setTitle] = useState("sasd");
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    control,
+  } = useForm({ defaultValues });
 
-  const introSubmit = (data) => {
-    const { introTitle, introContents, githubUrl, blogUrl, bgImage } = data;
-    const jsonFrm = {
+  const introSubmit = (oldData) => {
+    console.log(oldData);
+    const { introTitle, introContents } = oldData;
+    const data = {
       introTitle: introTitle,
       introContents: introContents,
-      githubUrl: githubUrl,
-      blogUrl: blogUrl,
     };
-    let frm = new FormData();
-    frm.append("data", jsonFrm);
-    frm.append("bgImage", bgImage);
-
     console.log("axios");
   };
 
+  const onTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log("axios 유저 포트폴리오 id로 포트폴리오 정보 받아오기");
+  }, []);
+
   return (
     <>
-      <div>포트폴리오 소개글 생성</div>
       <div>
-        <form onSubmit={handleSubmit(introSubmit)}>
-          <div>
-            <input type="text" {...register("introTitle")} />
-            <input type="text" {...register("introContents")} />
-            <input type="text" {...register("githubUrl")} />
-            <input type="text" {...register("blogUrl")} />
-            <input type="file" {...register("bgImage")} />
+        <div>포트폴리오 정보</div>
+        <div>
+          <form onSubmit={handleSubmit(introSubmit)}>
+            <Controller
+              render={({ field }) => <TextField {...field} />}
+              name="introTitle"
+              control={control}
+              defaultValue="abc"
+            />
+            <Controller
+              render={({ field }) => <TextField {...field} />}
+              name="introContents"
+              control={control}
+              defaultValue="abc"
+            />
             <input type="submit" />
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );
