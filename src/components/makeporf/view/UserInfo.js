@@ -37,6 +37,24 @@ function UserInfo() {
   );
 }
 
-const UserInfoForm = styled.div``;
+const UserInfoForm = styled.div`
+  position: static;
+  width: 1380px;
+  height: 891px;
+  left: 0px;
+  top: 85px;
+
+  /* C5 */
+
+  background: #ededed;
+  border-radius: 10px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 15px 0px;
+`;
 
 export default UserInfo;

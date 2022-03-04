@@ -34,11 +34,9 @@ function Template() {
 }
 
 const BottomNav = styled.div`
-  position: absolute;
-  width: 1440px;
+  width: 100%;
   height: 100px;
-  left: 0px;
-  top: 956px;
+  bottom: 0px;
   background: #999999;
 `;
 

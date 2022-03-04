@@ -38,7 +38,7 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   width: auto;
-  height: 64px;
+  height: 60px;
   margin-left: auto;
   margin-right: auto;
 `;
