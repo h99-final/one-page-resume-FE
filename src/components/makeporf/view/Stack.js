@@ -22,6 +22,7 @@ function Stack() {
 
   useEffect(() => {
     console.log("axios 스택 보내기");
+    console.log(stack);
   }, [stack]);
   return (
     <>

@@ -1,7 +1,9 @@
-import { TextField } from "@mui/material";
+import { InputUnstyled } from "@mui/base";
+import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
+import { apis } from "../../../shared/axios";
 
 function Introduce() {
   const defaultValues = {};
@@ -17,11 +19,12 @@ function Introduce() {
       introTitle: introTitle,
       introContents: introContents,
     };
-    console.log("axios", data);
+    apis.introPorf(data);
   };
 
   useEffect(() => {
     console.log("axios 유저 포트폴리오 id로 포트폴리오 정보 받아오기");
+    return handleSubmit(introSubmit);
   }, []);
 
   return (
@@ -38,10 +41,9 @@ function Introduce() {
             </Label>
             <Controller
               render={({ field }) => (
-                <TextField
-                  id="outlined-multiline-flexible"
-                  fullWidth
-                  sx={_textField}
+                <InputCustom
+                  type="text"
+                  style={{ border: "none", background: "white" }}
                   {...field}
                 />
               )}
@@ -56,12 +58,11 @@ function Introduce() {
             </Label>
             <Controller
               render={({ field }) => (
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={6}
-                  sx={_textFieldContents}
+                <InputCustomTextarea
+                  type="text"
+                  style={{ border: "none", background: "white" }}
                   {...field}
+                  rows="5"
                 />
               )}
               name="introContents"
@@ -75,24 +76,23 @@ function Introduce() {
   );
 }
 
-const _textField = {
-  justifyContent: "center",
-  alignItems: "center",
-  height: "50px",
-  padding: "15px",
-  bgColor: "#ffffff",
-};
+const InputCustom = styled.textarea`
+  width: 1120px;
+  height: 19px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  margin: auto;
+`;
 
-const _textFieldContents = {
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "15px",
-  bgColor: "#ffffff",
-  height: "174px",
-};
+const InputCustomTextarea = styled(InputCustom)`
+  height: 100px;
+`;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
+  justify-content: center;
 `;
 
 const FormText = styled.div`
@@ -123,8 +123,7 @@ export const Title = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
-  margin: 0px 50px;
+  margin: auto 50px;
 `;
 
 export const Content = styled.div`
@@ -138,7 +137,6 @@ export const Content = styled.div`
 export const Label = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   padding: 15px 0px;
 
   width: 150px;

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Select from "react-select";
 import styled from "styled-components";
+import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
+import { FormText, Next } from "./_sharedStyle";
+import { Button, Menu, MenuItem, Select } from "@mui/material";
+import { actionCreators } from "../../../redux/modules/portfolio";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
@@ -11,33 +15,92 @@ const options = [
 
 function Template() {
   const history = useHistory();
+  const { porfId } = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const [template, setTemplate] = useState(0);
-  const handleChange = (e) => {
-    setTemplate(e.id);
+  const open = Boolean(template);
+
+  const handleClick = (event) => {
+    setTemplate(event.currentTarget);
+    dispatch(actionCreators.setTemplate(event.currentTarget));
   };
 
-  const handleClick = (e) => {
-    history.push("/write/portfolio/introduce/:porfId");
+  const handleClose = (event) => {
+    setTemplate(null);
   };
 
-  useEffect(() => {
-    return console.log("axios 템플릿 건네주기");
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
       <BottomNav>
-        <button onClick={handleClick}>템플릿 선택</button>
+        <TemplateSelector>
+          <Button
+            sx={{ color: "white" }}
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            <TableChartRoundedIcon onClick={handleClick} />
+            <FormText style={{ color: "white" }}>템플릿 선택</FormText>
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={template}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>0</MenuItem>
+            <MenuItem onClick={handleClose}>1</MenuItem>
+            <MenuItem onClick={handleClose}>2</MenuItem>
+          </Menu>
+        </TemplateSelector>
+        <Save>
+          <FormTextWhite>포트폴리오 저장</FormTextWhite>
+        </Save>
       </BottomNav>
     </>
   );
 }
 
+const Save = styled(Next)`
+  width: 125px;
+  height: 62px;
+  padding: 5px 50px;
+  background-color: #cccccc;
+`;
+
+const TemplateSelector = styled.div`
+  display: flex;
+  margin: 20px 32px;
+  justify-content: center;
+  align-items: center;
+`;
+
 const BottomNav = styled.div`
-  width: 100%;
+  border-bottom: 1px solid black;
+  display: fixed;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  min-width: 1440px;
   height: 100px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
   bottom: 0px;
   background: #999999;
+`;
+
+const FormTextWhite = styled(FormText)`
+  color: #ffffff;
 `;
 
 export default Template;

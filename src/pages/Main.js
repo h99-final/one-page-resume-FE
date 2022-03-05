@@ -1,11 +1,9 @@
-
-import React from 'react';
-import styled from 'styled-components';
-import Header from '../shared/Header';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import Header from "../shared/Header";
+import { useSelector } from "react-redux";
 
 const Main = () => {
-
   // const userInfo = useSelector(state => state.user.user)
   // console.log(userInfo)
 
@@ -13,16 +11,15 @@ const Main = () => {
     <>
       <Container>
         <Header />
-
       </Container>
     </>
-  )
-}
+  );
+};
 const Container = styled.div`
-background-color: #555555;
-position: relative;
-width: 100%;
-height: 100vh;
+  background-color: #555555;
+  position: relative;
+  width: 100%;
+  height: 100vh;
 `;
 
 export default Main;
