@@ -1,33 +1,42 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { deleteCookie, setCookie } from "../../shared/cookie";
 import { apis } from "../../shared/axios";
-import { AddAlarm } from '@mui/icons-material';
+import { getCookie, setCookie } from "../../shared/cookie";
 
 // actions
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
+const IS_FIRST_LOGIN = "IS_FIRST_LOGIN";
 
 // action creators
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
-
+const setUser = createAction(SET_USER, (user, token) => ({ user, token }));
+const setFirstLogin = createAction(IS_FIRST_LOGIN, (status) => ({ status }));
 // initialState
 const initialState = {
-  user: { isFirstLogin: false },
+  user: {},
   token: null,
+  isFirstLogin: false,
 };
 
 // middleware actions
-const loginDB = (isFirstLogin) => {
+const loginDB = (email, password) => {
   return function (dispatch, getState, { history }) {
-    dispatch(
-      setUser({
-        isFirstLogin: isFirstLogin,
+    apis
+      .login(email, password)
+      .then((res) => {
+        console.log(res);
+        setCookie("token", res.headers.authorization, 5);
+        dispatch(setFirstLogin(res.data.data.isFirstLogin));
+        if (res.data.data.isFirstLogin === true) {
+          console.log(res.data.data.isFirstLogin);
+        } else {
+          window.location.reload();
+        }
       })
-    )
+      .catch((error) => alert("회원정보가 일치하지 않습니다."));
   };
 };
 
@@ -44,6 +53,20 @@ const SignUpDB = (email, password, passwordcheck) => {
   };
 };
 
+const userInfoDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .userInfo()
+      .then(function (res) {
+        console.log(res.data.data);
+        dispatch(setUser(res.data.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
 const emailCheckDB = (email) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -51,9 +74,9 @@ const emailCheckDB = (email) => {
       .then((res) => {
         dispatch(
           setUser({
-            email: email
+            email: email,
           })
-        )
+        );
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
@@ -62,13 +85,11 @@ const emailCheckDB = (email) => {
   };
 };
 
-
-const userInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
+const addInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(name, stack, phoneNum, gitURl, blogURl)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((error) => console.log(error));
   };
 };
@@ -80,14 +101,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.token = action.payload.user.token;
-        draft.user = {
-          email: action.payload.user.email,
-          isFirstLogin: action.payload.user.isFirstLogin,
-          portfolioId: action.payload.user.portfolioId,
-          stack: action.payload.user.stack,
-          userId: action.payload.user.userId,
-        };
-        console.log(action.payload)
+        draft.user = action.payload.user;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
@@ -95,7 +109,12 @@ export default handleActions(
         draft.userinfo = null;
         draft.token = null;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [IS_FIRST_LOGIN]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isFirstLogin = action.payload.status;
+        console.log(action.payload.status);
+      }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -103,12 +122,13 @@ export default handleActions(
 // action creator export
 
 const actionCreators = {
+  setUser,
   logOut,
   getUser,
   loginDB,
   SignUpDB,
   emailCheckDB,
-  // loginCheckDB,
+  addInfoDB,
   userInfoDB,
 };
 

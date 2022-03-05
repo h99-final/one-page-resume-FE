@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import styled from "styled-components";
 import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
@@ -13,7 +12,7 @@ import { useHistory } from "react-router-dom";
 const AddInfo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const loginClose = props.loginClose
+  const loginClose = props.loginClose;
   const [name, setName] = React.useState("");
   const [phoneNum, setPhoneNum] = React.useState("");
   const [gitUrl, setGitUrl] = React.useState("");
@@ -29,7 +28,6 @@ const AddInfo = (props) => {
 
   const [stack, setStack] = useState([]);
 
-
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
@@ -39,7 +37,6 @@ const AddInfo = (props) => {
       console.log("체크 해제 반영 완료");
     }
   };
-  console.log(stack);
 
   const isAllChecked = stack.length === 2;
   const disabled = !isAllChecked;
@@ -50,31 +47,18 @@ const AddInfo = (props) => {
       return;
     }
     setNameError("");
-
-    // if (!phoneCheck(phoneNum)) {
-    //   setPhoneNumError("올바른 번호를 입력하세요");
-    //   return;
-    // }
-    // setPhoneNumError("");
-
     if (!urlCheck(gitUrl) || gitUrl.length < 0) {
       setGitUrlError("URL형식이 잘못되었습니다.");
-      return
+      return;
     }
     setGitUrlError("");
-
-    // if (!nameCheck(job) || job.length < 2) {
-    //   setJobError("직업을 입력해주세요")
-    //   return;
-    // } else setJobError("");
-
     setPage("2");
   };
   const addInfo = () => {
     console.log(name, stack, phoneNum, gitUrl, blogUrl);
 
-    dispatch(userActions.userInfoDB(name, stack, phoneNum, gitUrl, blogUrl));
-    loginClose(false)
+    dispatch(userActions.addInfoDB(name, stack, phoneNum, gitUrl, blogUrl));
+    loginClose(false);
   };
 
   return (
@@ -85,7 +69,10 @@ const AddInfo = (props) => {
             <h1>추가정보를 입력하시겠어요?</h1>
           </TextContainer>
           <ImgInputBox>
-            <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg' />
+            <img
+              alt=""
+              src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg"
+            />
             <p>회원가입을 완료했어요👏👏</p>
             <p>추가정보를 3가지만 입력하면</p>
             <p>Portfolio의 다양한 기능을 이용할 수 있어요.</p>
@@ -116,7 +103,6 @@ const AddInfo = (props) => {
           <TextContainer>
             <h1>추가정보 입력하기 (1/2)</h1>
             <p>몇가지 정보만 더 기입하면 돼요!</p>
-
           </TextContainer>
           <InputBox>
             <TextField
@@ -125,15 +111,17 @@ const AddInfo = (props) => {
                 setName(e.target.value);
               }}
               required
-              variant='standard'
+              variant="standard"
               fullWidth
-              id='name'
-              name='name'
-              placeholder='이름*'
+              id="name"
+              name="name"
+              placeholder="이름*"
               error={nameError !== "" || false}
             />
             {nameError && (
-              <span style={{ fontSize: "12px", color: "red" }}>{nameError}</span>
+              <span style={{ fontSize: "12px", color: "red" }}>
+                {nameError}
+              </span>
             )}
 
             <TextField
@@ -142,11 +130,11 @@ const AddInfo = (props) => {
               }}
               style={{ marginTop: "35px" }}
               required
-              variant='standard'
+              variant="standard"
               fullWidth
-              id='gitURL'
-              name='gitURL'
-              placeholder='gitURL*'
+              id="gitURL"
+              name="gitURL"
+              placeholder="gitURL*"
               error={gitUrlError !== "" || false}
             />
             {gitUrlError && (
@@ -159,12 +147,12 @@ const AddInfo = (props) => {
                 setBlogUrl(e.target.value);
               }}
               style={{ marginTop: "35px" }}
-              variant='standard'
+              variant="standard"
               fullWidth
-              id='blogurl'
-              name='blogurl'
-              placeholder='blogURl'
-            // error={blogUrlError !== '' || false}
+              id="blogurl"
+              name="blogurl"
+              placeholder="blogURl"
+              // error={blogUrlError !== '' || false}
             />
             {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
             <TextField
@@ -172,12 +160,12 @@ const AddInfo = (props) => {
                 setPhoneNum(e.target.value);
               }}
               style={{ marginTop: "35px" }}
-              variant='standard'
+              variant="standard"
               fullWidth
-              id='phone'
-              name='phone'
-              placeholder='전화번호'
-            // error={phoneNumError !== "" || false}
+              id="phone"
+              name="phone"
+              placeholder="전화번호"
+              // error={phoneNumError !== "" || false}
             />
             {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -190,12 +178,12 @@ const AddInfo = (props) => {
                 setJob(e.target.value);
               }}
               style={{ marginTop: "35px" }}
-              variant='standard'
+              variant="standard"
               fullWidth
-              id='job'
-              name='job'
-              placeholder='직무'
-            // error={jobError !== "" || false}
+              id="job"
+              name="job"
+              placeholder="직무"
+              // error={jobError !== "" || false}
             />
             {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -206,32 +194,33 @@ const AddInfo = (props) => {
             >
               다음{">"}
             </WriteBtn>
-
           </InputBox>
-
         </>
       )}
       {page === "2" && (
         <>
           <TextContainer>
-            <h1>나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)</h1>
+            <h1>
+              나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)
+            </h1>
             <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
-
           </TextContainer>
           <Grid style={{ paddingTop: "50px" }}>
             <StyledBox>
               <input
-                type='checkbox'
-                id='JS'
+                type="checkbox"
+                id="JS"
                 checked={stack.includes("JS") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "JS");
                 }}
-
               ></input>
-              <label id='JS' htmlFor='JS'>
+              <label id="JS" htmlFor="JS">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   JS
                 </span>
               </label>
@@ -239,16 +228,19 @@ const AddInfo = (props) => {
 
             <StyledBox>
               <input
-                type='checkbox'
-                id='JAVA'
+                type="checkbox"
+                id="JAVA"
                 checked={stack.includes("JAVA") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "JAVA");
                 }}
               ></input>
-              <label id='JAVA' htmlFor='JAVA'>
+              <label id="JAVA" htmlFor="JAVA">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   JAVA
                 </span>
               </label>
@@ -256,16 +248,19 @@ const AddInfo = (props) => {
 
             <StyledBox>
               <input
-                type='checkbox'
-                id='PYTHON'
+                type="checkbox"
+                id="PYTHON"
                 checked={stack.includes("PYTHON") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "PYTHON");
                 }}
               ></input>
-              <label id='PYTHON' htmlFor='PYTHON'>
+              <label id="PYTHON" htmlFor="PYTHON">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   PYTHON
                 </span>
               </label>
@@ -274,159 +269,178 @@ const AddInfo = (props) => {
           <Grid>
             <StyledBox>
               <input
-                type='checkbox'
-                id='C'
+                type="checkbox"
+                id="C"
                 checked={stack.includes("C") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "C");
                 }}
               ></input>
-              <label id='C' htmlFor='C'>
+              <label id="C" htmlFor="C">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   C
                 </span>
               </label>
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='C++'
+                type="checkbox"
+                id="C++"
                 checked={stack.includes("C++") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "C++");
                 }}
               ></input>
-              <label id='C++' htmlFor='C++'>
+              <label id="C++" htmlFor="C++">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   C++
                 </span>
               </label>
-
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='iOS'
+                type="checkbox"
+                id="iOS"
                 checked={stack.includes("iOS") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "iOS");
                 }}
               ></input>
-              <label id='iOS' htmlFor='iOS'>
+              <label id="iOS" htmlFor="iOS">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   iOS
                 </span>
               </label>
-
             </StyledBox>
           </Grid>
           <Grid>
             <StyledBox>
               <input
-                type='checkbox'
-                id='Android'
+                type="checkbox"
+                id="Android"
                 checked={stack.includes("Android") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "Android");
                 }}
               ></input>
-              <label id='Android' htmlFor='Android'>
+              <label id="Android" htmlFor="Android">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   Android
                 </span>
               </label>
-
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='REACT'
+                type="checkbox"
+                id="REACT"
                 checked={stack.includes("REACT") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "REACT");
                 }}
               ></input>
-              <label id='REACT' htmlFor='REACT'>
+              <label id="REACT" htmlFor="REACT">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   REACT
                 </span>
               </label>
-
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='Spring'
+                type="checkbox"
+                id="Spring"
                 checked={stack.includes("Spring") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "Spring");
                 }}
               ></input>
-              <label id='Spring' htmlFor='Spring'>
+              <label id="Spring" htmlFor="Spring">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   Spring
                 </span>
               </label>
-
             </StyledBox>
           </Grid>
           <Grid>
             <StyledBox>
               <input
-                type='checkbox'
-                id='Node.js'
+                type="checkbox"
+                id="Node.js"
                 checked={stack.includes("Node.js") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "Node.js");
                 }}
               ></input>
-              <label id='Node.js' htmlFor='Node.js'>
+              <label id="Node.js" htmlFor="Node.js">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   Node.js
                 </span>
               </label>
-
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='Vue.js'
+                type="checkbox"
+                id="Vue.js"
                 checked={stack.includes("Vue.js") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "Vue.js");
                 }}
               ></input>
-              <label id='Vue.js' htmlFor='Vue.js'>
+              <label id="Vue.js" htmlFor="Vue.js">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   Vue.js
                 </span>
               </label>
-
             </StyledBox>
             <StyledBox>
               <input
-                type='checkbox'
-                id='Git'
+                type="checkbox"
+                id="Git"
                 checked={stack.includes("Git") ? true : false}
                 onChange={(e) => {
                   changeHandler(e.currentTarget.checked, "Git");
                 }}
               ></input>
-              <label id='Git' htmlFor='Git'>
+              <label id="Git" htmlFor="Git">
                 <span>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png' />
+                  <img
+                    alt=""
+                    src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                  />
                   Git
                 </span>
               </label>
-
             </StyledBox>
           </Grid>
           <div>
@@ -446,30 +460,30 @@ const AddInfo = (props) => {
 export default AddInfo;
 
 const TextContainer = styled.div`
-  width:370px;
+  width: 370px;
   height: 38px;
   margin: 80px 115px 70px 115px;
-  h1{
+  h1 {
     text-align: center;
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 30px;
   }
-  p{
+  p {
     text-align: center;
     font-size: 16px;
     font-weight: normal;
   }
 `;
 const ImgInputBox = styled.div`
-  width:350px;
+  width: 350px;
   height: 240px;
   margin: 70px 115px 193px 115px;
-  img{
+  img {
     width: 200px;
     margin-bottom: 17px;
   }
-  p{
+  p {
     margin-top: 8px;
     text-align: center;
     font-size: 16px;
@@ -478,7 +492,7 @@ const ImgInputBox = styled.div`
 `;
 
 const InputBox = styled.div`
-  width:350px;
+  width: 350px;
   height: 240px;
   margin: 70px 115px 193px 115px;
 `;
@@ -490,11 +504,11 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 156px 0px 0px 262px ;
+  margin: 156px 0px 0px 262px;
   padding: 5px 18px 5px 18px;
   color: white;
   background-color: #333333;
-  :disabled{
+  :disabled {
     border: none;
     background-color: gray;
   }
@@ -515,7 +529,7 @@ const StyledBox = styled.span`
   input[type="checkbox"] {
     display: none;
   }
-  span{
+  span {
     font-size: 20px;
     position: relative;
     top: 20%;
@@ -529,7 +543,7 @@ const StyledBox = styled.span`
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
-    color:white;
+    color: white;
     display: inline-block;
     width: 120px;
     height: 50px;
@@ -540,7 +554,6 @@ const StyledBox = styled.span`
   }
 `;
 const Grid = styled.div`
-  
   padding-bottom: 20px;
 `;
 const ContinueBtn = styled.button`

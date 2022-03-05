@@ -1,39 +1,35 @@
-
-
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 // import { actionCreators as userActions } from "../redux/modules/user";
-import { apis } from '../../shared/axios';
-import { TextField } from '@mui/material';
+import { apis } from "../../shared/axios";
+import { TextField } from "@mui/material";
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import { setCookie } from '../../shared/cookie';
-import { actionCreators as userActions } from '../../redux/modules/user';
-import { useDispatch } from 'react-redux';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import { setCookie } from "../../shared/cookie";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { useDispatch } from "react-redux";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
 
-  const loginClose = props.loginClose
-  const email = props.email
-
+  const loginClose = props.loginClose;
+  const email = props.email;
 
   const [password, setPw] = React.useState("");
   const [passwordCheck, setPwCheck] = React.useState("");
 
-  const [passwordError, setPasswordError] = useState('');
-  const [passwordCheckError, setPasswordCheckError] = useState('');
-
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordCheckError, setPasswordCheckError] = useState("");
 
   const [stack, setStack] = useState([]);
   const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
     showPassword: false,
   });
 
@@ -52,17 +48,18 @@ const Signup = (props) => {
       setStack([...stack, id]);
       console.log("체크 반영 완료", stack);
     } else {
-      setStack(stack.filter(el => el !== id));
+      setStack(stack.filter((el) => el !== id));
       console.log("체크 해제 반영 완료", stack);
     }
   };
-  console.log(stack)
   const isAllChecked = stack.length === 2;
   const disabled = !isAllChecked;
 
   const signup = () => {
     if (!password || password.length < 4) {
-      setPasswordError("비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다");
+      setPasswordError(
+        "비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다"
+      );
       return;
     }
     setPasswordError("");
@@ -76,35 +73,31 @@ const Signup = (props) => {
     apis
       .signup(email, password, passwordCheck)
       .then((res) => {
-        apis
-          .login(email, password)
-          .then((res) => {
-            setCookie("token", res.headers.authorization, 5);
-            dispatch(userActions.loginDB(res.data.data.isFirstLogin))
+        dispatch(userActions.loginDB(email, password));
+        // apis
+        //   .login(email, password)
+        //   .then((res) => {
+        //     setCookie("token", res.headers.authorization, 5);
+        //     dispatch(userActions.loginDB(res.data.data.isFirstLogin));
 
-            if (res.data.data.isFirstLogin === true) {
-              console.log(res.data.data.isFirstLogin)
-            }
-            else {
-              loginClose(false)
-            }
-          })
-          .catch((error) => alert("회원정보가 일치하지 않습니다."));
+        //     if (res.data.data.isFirstLogin === true) {
+        //       console.log(res.data.data.isFirstLogin);
+        //     } else {
+        //       loginClose(false);
+        //     }
+        //   })
+        //   .catch((error) => alert("회원정보가 일치하지 않습니다."));
       })
       .catch((error) => {
         alert("회원가입에 실패했습니다.");
       });
-
-
   };
-
 
   return (
     <>
       <TextContainer>
         <h2>회원가입하기</h2>
         <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
-
       </TextContainer>
       <InputBox>
         <TextField
@@ -118,71 +111,91 @@ const Signup = (props) => {
         />
         <TextField
           style={{ marginTop: "35px" }}
-          onChange={(e) => { setPw(e.target.value) }}
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
           required
-          variant='standard'
+          variant="standard"
           fullWidth
-          type={values.showPassword ? 'text' : 'password'}
+          type={values.showPassword ? "text" : "password"}
           id="password"
           name="password"
           placeholder="비밀번호(4글자 이상)*"
-          error={passwordError !== '' || false}
+          error={passwordError !== "" || false}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                <IconButton
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            )
+            ),
           }}
         />
-        {passwordError && <span style={{ fontSize: "12px", color: "red" }}>{passwordError}</span>}
+        {passwordError && (
+          <span style={{ fontSize: "12px", color: "red" }}>
+            {passwordError}
+          </span>
+        )}
 
         <TextField
           style={{ marginTop: "35px" }}
-          onChange={(e) => { setPwCheck(e.target.value) }}
+          onChange={(e) => {
+            setPwCheck(e.target.value);
+          }}
           required
-          variant='standard'
+          variant="standard"
           fullWidth
-          type={values.showPassword ? 'text' : 'password'}
+          type={values.showPassword ? "text" : "password"}
           id="passwordcheck"
           name="passwordcheck"
           placeholder="비밀번호 재입력*"
-          error={passwordCheckError !== '' || false}
+          error={passwordCheckError !== "" || false}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                <IconButton
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            )
+            ),
           }}
         />
-        {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
+        {passwordCheckError && (
+          <span style={{ fontSize: "12px", color: "red" }}>
+            {passwordCheckError}
+          </span>
+        )}
 
-        <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
+        <WriteBtn
+          disabled={!passwordCheck || !password ? true : false}
+          onClick={signup}
+        >
+          다음 {">"}{" "}
+        </WriteBtn>
       </InputBox>
-
     </>
-  )
-
-}
-
+  );
+};
 
 export default Signup;
 
 const TextContainer = styled.div`
-  width:350px;
+  width: 350px;
   height: 102px;
   margin: 80px 115px 125px 115px;
-  h1{
+  h1 {
     text-align: left;
     font-size: 36px;
     font-weight: 600;
   }
-  p{
+  p {
     text-align: left;
     margin-top: 34px;
     margin-bottom: 60px;
@@ -192,7 +205,7 @@ const TextContainer = styled.div`
 `;
 
 const InputBox = styled.div`
-  width:350px;
+  width: 350px;
   height: 240px;
   margin: 0px 115px 193px 115px;
 `;
@@ -204,14 +217,12 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 156px 0px 0px 262px ;
+  margin: 156px 0px 0px 262px;
   padding: 5px 18px 5px 18px;
   color: white;
   background-color: #333333;
-  :disabled{
+  :disabled {
     border: none;
     background-color: gray;
   }
 `;
-
-
