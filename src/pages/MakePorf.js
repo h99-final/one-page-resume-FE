@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Introduce from "../components/makeporf/view/Introduce";
 import PorfWriteHeader from "../components/makeporf/shared/PorfWriteHeader";
-import SetProject from "../components/makeporf/SetProject";
+// import SetProject from "../components/makeporf/SetProject";
 import SideBar from "../components/makeporf/shared/SideBar";
 import Stack from "../components/makeporf/view/Stack";
 import Template from "../components/makeporf/shared/Template";
@@ -26,7 +26,7 @@ function MakePorf() {
             {id === "introduce" ? <Introduce /> : null}
             {id === "info" ? <UserInfo /> : null}
             {id === "stack" ? <Stack /> : null}
-            {id === "project" ? <SetProject /> : null}
+            {/* {id === "project" ? <SetProject /> : null} */}
           </WriteableForm>
         </WriteTemplate>
         <PreviousNext />

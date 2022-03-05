@@ -34,9 +34,6 @@ export const renameKeys = (mapping, list) => {
   return renamedObjArr;
 };
 
-  return regUrl.test(gitUrl)
-}
-
 export const nameCheck = (name) => {
   const regName = /^[가-힣a-zA-Z]+$/;
 
