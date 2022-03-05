@@ -29,13 +29,10 @@ export const apis = {
 
   // 로그인 요청
   login: (email, password) =>
-    instance.post(
-      "/user/login",
-      {
-        email: email,
-        password: password,
-      },
-    ),
+    instance.post("/user/login", {
+      email: email,
+      password: password,
+    }),
 
   signup: (email, password, passwordCheck) =>
     instance.post("/user/signup", {
@@ -53,4 +50,7 @@ export const apis = {
       blogUrl: blogUrl,
     }),
   userInfo: () => instance.get("user/info"),
+
+  introPorf: (introTitle, introContents) => instance.post("porf/intro"),
+
 };

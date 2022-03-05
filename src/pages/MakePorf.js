@@ -37,11 +37,19 @@ function MakePorf() {
 }
 const WriteForm = styled.div`
   width: 1440px;
+  height: auto;
+  min-height: 80vh;
+
   display: block;
   justify-content: center;
   margin: 0px 30px;
 
   background: #ffffff;
+  @media screen and (min-width: 1194) {
+    & {
+      width: auto;
+    }
+  }
   @media screen and (min-width: 1440px) {
     & {
       margin: 0px auto;
@@ -53,7 +61,6 @@ const WriteTemplate = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   top: 252px;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -75,5 +82,6 @@ export const WriteableForm = styled.div`
   order: 1;
   flex-grow: 0;
   margin: 0px;
+  padding-bottom: 80px;
 `;
 export default MakePorf;
