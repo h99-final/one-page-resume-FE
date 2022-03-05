@@ -1,44 +1,31 @@
 
-import { current } from 'immer';
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { phoneCheck, urlCheck } from '../../shared/common';
 // import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from '../../shared/axios';
 import { TextField } from '@mui/material';
 
-import Input from '@mui/material/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { setCookie } from '../../shared/cookie';
 import { actionCreators as userActions } from '../../redux/modules/user';
 import { useDispatch } from 'react-redux';
 
 const Signup = (props) => {
   const dispatch = useDispatch();
 
+  const loginClose = props.loginClose
   const email = props.email
 
 
   const [password, setPw] = React.useState("");
   const [passwordCheck, setPwCheck] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [phoneNum, setPhoneNum] = React.useState("");
-  const [gitUrl, setGitUrl] = React.useState("");
-  const [blogUrl, setBlogUrl] = React.useState("");
 
   const [passwordError, setPasswordError] = useState('');
   const [passwordCheckError, setPasswordCheckError] = useState('');
-
-  const [nameError, setNameError] = React.useState("");
-  const [phoneNumError, setPhoneNumError] = React.useState("");
-  const [gitUrlError, setGitUrlError] = React.useState("");
-  const [blogUrlError, setBlogUrlError] = React.useState("");
-
-  const [status, setStatus] = React.useState(false);
 
 
   const [stack, setStack] = useState([]);
@@ -86,70 +73,98 @@ const Signup = (props) => {
     }
     setPasswordCheckError("");
 
-    dispatch(userActions.SignUpDB(email, password, passwordCheck))
+    apis
+      .signup(email, password, passwordCheck)
+      .then((res) => {
+        apis
+          .login(email, password)
+          .then((res) => {
+            setCookie("token", res.headers.authorization, 5);
+            dispatch(userActions.loginDB(res.data.data.isFirstLogin))
+
+            if (res.data.data.isFirstLogin === true) {
+              console.log(res.data.data.isFirstLogin)
+            }
+            else {
+              loginClose(false)
+            }
+          })
+          .catch((error) => alert("회원정보가 일치하지 않습니다."));
+      })
+      .catch((error) => {
+        alert("회원가입에 실패했습니다.");
+      });
+
 
   };
 
 
   return (
     <>
-      <h2>회원가입하기 (1/3)</h2>
-      <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
-      <TextField
-        id="standard-read-only-input"
-        defaultValue={props.email}
-        fullWidth
-        InputProps={{
-          readOnly: true,
-        }}
-        variant="standard"
-      />
-      <TextField
-        onChange={(e) => { setPw(e.target.value) }}
-        required
-        variant='standard'
-        fullWidth
-        type={values.showPassword ? 'text' : 'password'}
-        id="password"
-        name="password"
-        label="비밀번호(4글자 이상)"
-        error={passwordError !== '' || false}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          )
-        }}
-      />
-      {passwordError && <span style={{ fontSize: "12px", color: "red" }}>{passwordError}</span>}
+      <TextContainer>
+        <h2>회원가입하기</h2>
+        <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
 
-      <TextField
-        onChange={(e) => { setPwCheck(e.target.value) }}
-        required
-        variant='standard'
-        fullWidth
-        type={values.showPassword ? 'text' : 'password'}
-        id="passwordcheck"
-        name="passwordcheck"
-        label="비밀번호 재입력"
-        error={passwordCheckError !== '' || false}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          )
-        }}
-      />
-      {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
+      </TextContainer>
+      <InputBox>
+        <TextField
+          id="standard-read-only-input"
+          defaultValue={props.email}
+          fullWidth
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="standard"
+        />
+        <TextField
+          style={{ marginTop: "35px" }}
+          onChange={(e) => { setPw(e.target.value) }}
+          required
+          variant='standard'
+          fullWidth
+          type={values.showPassword ? 'text' : 'password'}
+          id="password"
+          name="password"
+          placeholder="비밀번호(4글자 이상)*"
+          error={passwordError !== '' || false}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+        />
+        {passwordError && <span style={{ fontSize: "12px", color: "red" }}>{passwordError}</span>}
 
-      <br />
-      <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
+        <TextField
+          style={{ marginTop: "35px" }}
+          onChange={(e) => { setPwCheck(e.target.value) }}
+          required
+          variant='standard'
+          fullWidth
+          type={values.showPassword ? 'text' : 'password'}
+          id="passwordcheck"
+          name="passwordcheck"
+          placeholder="비밀번호 재입력*"
+          error={passwordCheckError !== '' || false}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+        />
+        {passwordCheckError && <span style={{ fontSize: "12px", color: "red" }}>{passwordCheckError}</span>}
+
+        <WriteBtn disabled={!(passwordCheck) || !(password) ? true : false} onClick={signup}>다음 {'>'} </WriteBtn>
+      </InputBox>
+
     </>
   )
 
@@ -158,18 +173,41 @@ const Signup = (props) => {
 
 export default Signup;
 
+const TextContainer = styled.div`
+  width:350px;
+  height: 102px;
+  margin: 80px 115px 125px 115px;
+  h1{
+    text-align: left;
+    font-size: 36px;
+    font-weight: 600;
+  }
+  p{
+    text-align: left;
+    margin-top: 34px;
+    margin-bottom: 60px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+`;
+
+const InputBox = styled.div`
+  width:350px;
+  height: 240px;
+  margin: 0px 115px 193px 115px;
+`;
+
 const WriteBtn = styled.button`
   cursor: pointer;
-  position: absolute;
-  right: 80px;
-  border-radius: 25px;
-  margin: 15px 0px 0px 5px;
-  font-size: 17px;
-  padding: 10px 10px;
+  width: 88px;
+  height: 40px;
+  border-radius: 30px;
   border: none;
-  border-radius: 25px;
+  font-size: 14px;
+  margin: 156px 0px 0px 262px ;
+  padding: 5px 18px 5px 18px;
   color: white;
-  background-color: black;
+  background-color: #333333;
   :disabled{
     border: none;
     background-color: gray;

@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 
 const Main = () => {
 
+  // const userInfo = useSelector(state => state.user.user)
+  // console.log(userInfo)
+
   return (
     <>
       <Container>
@@ -17,6 +20,7 @@ const Main = () => {
 }
 const Container = styled.div`
 background-color: #555555;
+position: relative;
 width: 100%;
 height: 100vh;
 `;
