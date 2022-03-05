@@ -17,7 +17,7 @@ function Template() {
   };
 
   const handleClick = (e) => {
-    history.push("/write/stack");
+    history.push("/write/portfolio/introduce/:porfId");
   };
 
   useEffect(() => {

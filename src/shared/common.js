@@ -37,7 +37,5 @@ export const renameKeys = (mapping, list) => {
 export const nameCheck = (name) => {
   const regName = /^[가-힣a-zA-Z]+$/;
 
-  return regName.test(name)
-
-}
-
+  return regName.test(name);
+};

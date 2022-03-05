@@ -42,7 +42,6 @@ function Introduce() {
                   id="outlined-multiline-flexible"
                   fullWidth
                   sx={_textField}
-                  bgColor="#ffffff"
                   {...field}
                 />
               )}

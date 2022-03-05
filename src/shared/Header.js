@@ -1,64 +1,46 @@
-import { Token } from '@mui/icons-material';
+import { Token } from "@mui/icons-material";
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../components/loginModal/Modal";
-import { deleteCookie } from './cookie';
-import { Avatar } from '@mui/material';
-import Nav from './Nav';
-import Pnav from './Pnav';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { useEffect } from 'react';
-import { apis } from './axios';
+import { Avatar } from "@mui/material";
+import Nav from "./Nav";
+import Pnav from "./Pnav";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { useEffect } from "react";
+import { apis } from "./axios";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 const Header = (props) => {
-  const history = useHistory();
-  // const userName = localStorage?.getItem("userName")?.substring(0, 2)
+  const [nav, setNav] = React.useState(false);
+  const [pnav, setPnav] = React.useState(false);
 
-  const [nav, setNav] = React.useState(false)
-  const [pnav, setPnav] = React.useState(false)
+  const userInfo = useSelector((state) => state.user.user);
 
-  const [name, setName] = React.useState("")
-  const [ava, setAva] = React.useState("")
-  const [email, setEmail] = React.useState("")
-
-  const user = document.cookie
-  console.log(user)
+  const user = document.cookie;
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
     setModalOpen(!modalOpen);
   };
 
-  useEffect(() => {
-    apis.userInfo()
-      .then(function (res) {
-        setName(res.data.data.name)
-        setAva(res.data.data.profileImage)
-        setEmail(res.data.data.email)
-        console.log(res.data.data)
-      }).catch(function (error) {
-        console.log(error)
-      })
-  }, [])
-
   const navBtn = () => {
     if (nav) {
-      setNav(false)
-
+      setNav(false);
     } else {
-      setNav(true)
-      setPnav(false)
+      setNav(true);
+      setPnav(false);
     }
-  }
+  };
 
   const PnavBtn = () => {
     if (pnav) {
-      setPnav(false)
+      setPnav(false);
     } else {
-      setPnav(true)
-      setNav(false)
+      setPnav(true);
+      setNav(false);
     }
-  }
+  };
 
   if (!user) {
     return (
@@ -83,8 +65,7 @@ const Header = (props) => {
         </StyledHeader>
       </>
     );
-  }
-  else {
+  } else {
     return (
       <>
         <StyledHeader>
@@ -92,44 +73,54 @@ const Header = (props) => {
             <Circle />
             Portfolio
             <Port
-              onClick={() => { alert("@") }}>포트폴리오</Port>
+              onClick={() => {
+                alert("@");
+              }}
+            >
+              포트폴리오
+            </Port>
             <Proj>프로젝트</Proj>
-
             <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>
             <SharedBtn
-              onClick={() => { PnavBtn() }}
-            >작업 공유하기</SharedBtn>
+              onClick={() => {
+                PnavBtn();
+              }}
+            >
+              작업 공유하기
+            </SharedBtn>
             <BookmarkIcon
               style={{
-                width: "26px", height: "26px",
+                width: "26px",
+                height: "26px",
                 color: "#333333",
-                marginRight: "12px"
+                marginRight: "12px",
               }}
             />
             <NotificationsIcon
               style={{
-                width: "26px", height: "26px",
+                width: "26px",
+                height: "26px",
                 color: "#333333",
-                marginRight: "15px"
+                marginRight: "15px",
               }}
             />
             <Avatar
-
-              onClick={() => { navBtn() }}
-              alt={name}
-              src={ava}
+              onClick={() => {
+                navBtn();
+              }}
+              alt={userInfo.name}
+              src={userInfo.profileImage}
               sx={{ width: 38, height: 38 }}
             />
-            <Nav nav={nav} name={name} email={email} />
+            <Nav nav={nav} name={userInfo.name} email={userInfo.email} />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
       </>
     );
   }
-
 };
 
 export default Header;
@@ -149,7 +140,6 @@ const StyledHeader = styled.div`
 `;
 
 const LeftMenu = styled.div`
-  
   display: flex;
   align-items: center;
   font-size: 25px;
@@ -166,7 +156,6 @@ const Circle = styled.div`
   margin-right: 10px;
 `;
 const Port = styled.div`
-  
   font-size: 20px;
   width: 90px;
   height: 24px;
@@ -179,8 +168,6 @@ const Proj = styled.div`
   margin-left: 40px;
 `;
 
-
-
 const RightMenu = styled.div`
   display: flex;
   align-items: center;
@@ -189,9 +176,7 @@ const RightMenu = styled.div`
   font-weight: 500;
 `;
 
-
 const SharedBtn = styled.button`
-
   cursor: pointer;
   background-color: #333333;
   width: 120px;
@@ -204,8 +189,6 @@ const SharedBtn = styled.button`
   margin-right: 30px;
 `;
 
-
-
 const WriteBtn = styled.button`
   cursor: pointer;
   background-color: black;
@@ -216,5 +199,4 @@ const WriteBtn = styled.button`
   font-size: 17px;
   padding: 5px 10px 5px 10px;
   border: none;
-
 `;
