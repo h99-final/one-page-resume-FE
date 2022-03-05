@@ -52,5 +52,5 @@ export const apis = {
       gitUrl: gitUrl,
       blogUrl: blogUrl,
     }),
-  userInfo: () => instance.get("user/info")
+  userInfo: () => instance.get("user/info"),
 };
