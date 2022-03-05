@@ -141,7 +141,7 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   width: auto;
-  height: 64px;
+  height: 60px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 30px;
@@ -189,6 +189,7 @@ const RightMenu = styled.div`
   font-weight: 500;
 `;
 
+
 const SharedBtn = styled.button`
 
   cursor: pointer;
@@ -215,5 +216,5 @@ const WriteBtn = styled.button`
   font-size: 17px;
   padding: 5px 10px 5px 10px;
   border: none;
-`;
 
+`;
