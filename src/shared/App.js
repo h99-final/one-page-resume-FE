@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/portfolio">
           <>
             <div>포트폴리오 총 집합</div>
-            <Link to={`/write/portfolio/:id/${userInfo.porfId}`}>
+            <Link to={`/write/portfolio/introduce/${userInfo.porfId}`}>
               포트폴리오 작성하기 임시 버튼입니다.
             </Link>
           </>
@@ -104,6 +104,14 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+* {
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
 }
 `;
 

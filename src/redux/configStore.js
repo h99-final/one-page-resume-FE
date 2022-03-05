@@ -4,6 +4,8 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
+import portfolio from "./modules/portfolio";
+import image from "./modules/image";
 // import Post from "./modules/post";
 // import Image from "./modules/image";
 // import Comment from "./modules/comment";
@@ -12,8 +14,8 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: User,
-  // post: Post,
-  // image: Image,
+  portfolio: portfolio,
+  image: image,
   // comment: Comment,
   router: connectRouter(history),
 });
@@ -32,8 +34,8 @@ const middlewares = [thunk.withExtraArgument({ history: history })];
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-    })
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
     : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
