@@ -5,9 +5,18 @@ import MakePorf from "../pages/MakePorf";
 
 import NotFound from "../pages/NotFound";
 import MakeProj from "../pages/MakeProj";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    dispatch(userActions.userInfoDB());
+  }, []);
+
   return (
     <>
       <GlobalStyle />
@@ -16,7 +25,7 @@ function App() {
         <Route exact path="/portfolio">
           <>
             <div>포트폴리오 총 집합</div>
-            <Link to="/write/portfolio/:id/:profid">
+            <Link to={`/write/portfolio/:id/${userInfo.porfId}`}>
               포트폴리오 작성하기 임시 버튼입니다.
             </Link>
           </>
@@ -98,6 +107,4 @@ table {
 }
 `;
 
-
 export default App;
-

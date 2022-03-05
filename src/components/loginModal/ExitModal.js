@@ -1,31 +1,29 @@
-
-import React from 'react';
-import styled from 'styled-components';
-import Login from './Login';
-import Signup from './Signup';
-import { apis } from '../../shared/axios';
-import { useState } from 'react';
-import { TextField } from '@mui/material';
-import { emailCheck } from '../../shared/common';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import Login from "./Login";
+import Signup from "./Signup";
+import { apis } from "../../shared/axios";
+import { useState } from "react";
+import { TextField } from "@mui/material";
+import { emailCheck } from "../../shared/common";
+import { useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
-import { useDispatch } from 'react-redux';
-import AddInfo from './AddInfo';
-import Start from './Start';
+import { useDispatch } from "react-redux";
+import AddInfo from "./AddInfo";
+import Start from "./Start";
 
 const ExitModal = ({ exitClose }) => {
-  const userInfo = useSelector(state => state.user.user)
-  console.log(userInfo)
+  const userInfo = useSelector((state) => state.user.user);
+  console.log(userInfo);
 
   const dispatch = useDispatch();
 
   const [status, setStatus] = React.useState("aaa");
 
   const [email, setEmail] = React.useState();
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState("");
 
-
-  console.log(email)
+  console.log(email);
 
   return (
     <>
@@ -46,7 +44,9 @@ const ExitModal = ({ exitClose }) => {
             </Btn>
           </span>
           <Btn2
-            onClick={() => { exitClose(false) }}
+            onClick={() => {
+              exitClose(false);
+            }}
           >
             입력할게요
           </Btn2>
@@ -55,11 +55,10 @@ const ExitModal = ({ exitClose }) => {
         <Btn onClick={() => { exitClose(false) }}>입력할게요</Btn> */}
       </ModalBox>
     </>
-  )
-}
+  );
+};
 
 export default ExitModal;
-
 
 const ModalBox = styled.div`
   border-radius: 10px;
@@ -73,7 +72,7 @@ const ModalBox = styled.div`
   transform: translate(-50%, -50%);
   z-index: 100;
   background-color: #333333;
-  color:white;
+  color: white;
 `;
 
 const Btn = styled.button`
@@ -120,17 +119,15 @@ const TextContainer = styled.div`
   width: 408px;
   height: 126px;
   margin: 40px 135px 0px 135px;
-  h1{
+  h1 {
     text-align: center;
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 30px;
   }
-  p{
+  p {
     text-align: center;
     font-size: 16px;
     font-weight: normal;
   }
 `;
-
-
