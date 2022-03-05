@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
+import styled from "styled-components";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
@@ -25,10 +26,18 @@ function Template() {
 
   return (
     <>
-      <Select options={options} onChange={handleChange} />
-      <button onClick={handleClick}>다음</button>
+      <BottomNav>
+        <button onClick={handleClick}>템플릿 선택</button>
+      </BottomNav>
     </>
   );
 }
+
+const BottomNav = styled.div`
+  width: 100%;
+  height: 100px;
+  bottom: 0px;
+  background: #999999;
+`;
 
 export default Template;
