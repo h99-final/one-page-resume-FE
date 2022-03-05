@@ -50,5 +50,7 @@ export const apis = {
       blogUrl: blogUrl,
     }),
   userInfo: () => instance.get("user/info"),
+
   introPorf: (introTitle, introContents) => instance.post("porf/intro"),
+
 };

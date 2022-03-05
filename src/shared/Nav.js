@@ -52,6 +52,7 @@ const Nav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   justify-content: center;
