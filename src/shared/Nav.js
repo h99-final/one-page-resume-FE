@@ -32,8 +32,8 @@ const Nav = (props) => {
         ?
         <NavBar >
           <Profile>
-            <name>김철수</name>
-            <email>aaa@example.com</email>
+            <h1>{props.name}</h1>
+            <p>{props.email}</p>
           </Profile>
           <NavPro >
             프로필
@@ -79,12 +79,12 @@ const Profile = styled.div`
     border-top-right-radius:5px;
     padding: 25px 60px 7px 60px;
     
-    name{
+    h1{
       font-weight: 600;
       font-size: 26px;
     }
-    email{
-      
+    p{
+      margin-top: 15px;
       font-size: 14px;
       color: #5f5f5f;
     }

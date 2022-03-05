@@ -1,4 +1,4 @@
-import { current } from "immer";
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
@@ -6,15 +6,7 @@ import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
 import { apis } from "../../shared/axios";
 import { TextField } from "@mui/material";
 
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-
-import {
-  actionCreators,
-  actionCreators as userActions,
-} from "../../redux/modules/user";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -37,6 +29,7 @@ const AddInfo = (props) => {
 
   const [stack, setStack] = useState([]);
 
+
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
@@ -52,7 +45,6 @@ const AddInfo = (props) => {
   const disabled = !isAllChecked;
 
   const goNext = () => {
-
     if (!nameCheck(name) || name.length < 2) {
       setNameError("이름을 입력해주세요");
       return;

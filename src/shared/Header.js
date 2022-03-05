@@ -9,13 +9,19 @@ import Nav from './Nav';
 import Pnav from './Pnav';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-
+import { useEffect } from 'react';
+import { apis } from './axios';
 const Header = (props) => {
   const history = useHistory();
   // const userName = localStorage?.getItem("userName")?.substring(0, 2)
 
   const [nav, setNav] = React.useState(false)
   const [pnav, setPnav] = React.useState(false)
+
+  const [name, setName] = React.useState("")
+  const [ava, setAva] = React.useState("")
+  const [email, setEmail] = React.useState("")
+
   const user = document.cookie
   console.log(user)
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,6 +29,17 @@ const Header = (props) => {
     setModalOpen(!modalOpen);
   };
 
+  useEffect(() => {
+    apis.userInfo()
+      .then(function (res) {
+        setName(res.data.data.name)
+        setAva(res.data.data.profileImage)
+        setEmail(res.data.data.email)
+        console.log(res.data.data)
+      }).catch(function (error) {
+        console.log(error)
+      })
+  }, [])
 
   const navBtn = () => {
     if (nav) {
@@ -101,11 +118,11 @@ const Header = (props) => {
             <Avatar
 
               onClick={() => { navBtn() }}
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              alt={name}
+              src={ava}
               sx={{ width: 38, height: 38 }}
             />
-            <Nav nav={nav} />
+            <Nav nav={nav} name={name} email={email} />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>

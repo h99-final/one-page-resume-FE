@@ -106,6 +106,11 @@ const ModalBox = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+
+  @media only screen and (max-width: 1300px) {
+    width: 580px;
+    height: 800px;
+  }
 `;
 
 const WelcomeBox = styled.div`
@@ -114,6 +119,9 @@ width: 50%;
 position: relative;
 border-bottom-left-radius: 10px;
 border-top-left-radius: 10px;
+@media only screen and (max-width: 1300px) {
+    display: none;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -153,6 +161,10 @@ const UserBox = styled.div`
   min-height: 500px;
   min-width: 350px;
   width: 50%;
+  @media only screen and (max-width: 1300px) {
+    width: 100%;
+    border-radius: 10px;
+  }
 
 `;
 
