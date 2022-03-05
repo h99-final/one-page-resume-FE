@@ -5,6 +5,7 @@ import MakePorf from "../pages/MakePorf";
 
 import NotFound from "../pages/NotFound";
 import MakeProj from "../pages/MakeProj";
+import styled from "styled-components";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <div>개인 포트폴리오 보여줌</div>
         </Route>
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
+
         <Route exact path="/project">
           <>
             <div>프로젝트 총 집합</div>
