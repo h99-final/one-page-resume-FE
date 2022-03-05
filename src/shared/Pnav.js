@@ -44,7 +44,8 @@ const Pnav = (props) => {
 // NavBar component
 const NavBar = styled.nav`
 
-display: flex;
+    z-index: 99999;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
