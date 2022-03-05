@@ -18,7 +18,7 @@ const setFirstLogin = createAction(IS_FIRST_LOGIN, (status) => ({ status }));
 const initialState = {
   user: {},
   token: null,
-  isFirstLogin: false,
+  isFirstLogin: true,
 };
 
 // middleware actions
@@ -89,7 +89,7 @@ const addInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(name, stack, phoneNum, gitURl, blogURl)
-      .then((res) => {})
+      .then((res) => { })
       .catch((error) => console.log(error));
   };
 };
@@ -114,7 +114,7 @@ export default handleActions(
         draft.isFirstLogin = action.payload.status;
         console.log(action.payload.status);
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) => produce(state, (draft) => { }),
   },
   initialState
 );
