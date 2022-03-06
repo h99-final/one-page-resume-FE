@@ -6,6 +6,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { grey } from '@mui/material/colors'
 
 import Grid from '@mui/material/Grid';
+
 export const options = [
   { value: "python", label: "python" },
   { value: "javascript", label: "javascript" },
@@ -16,7 +17,7 @@ function Stack() {
   const animatedComponents = makeAnimated();
   const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
-
+  const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
@@ -29,252 +30,52 @@ function Stack() {
 
   const handleChange = (e) => {
     let stackArray = [];
-    e.map((stack) => {
-      return stackArray.push(stack.value);
+    e.map((addStack) => {
+      return stackArray.push(addStack.value);
     });
-    setStack(stackArray);
+    setAddStack(stackArray);
   };
 
   useEffect(() => {
     console.log("axios 스택 보내기");
-  }, [stack]);
+  }, [addStack]);
+
   return (
     <>
-      <Wrap style={{ paddingTop: "20px" }}>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="JS"
-            checked={stack.includes("JS") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "JS");
-            }}
-          ></input>
-          <label id="JS" htmlFor="JS">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              JS
-            </span>
-          </label>
-        </StyledBox>
 
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="JAVA"
-            checked={stack.includes("JAVA") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "JAVA");
-            }}
-          ></input>
-          <label id="JAVA" htmlFor="JAVA">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              JAVA
-            </span>
-          </label>
-        </StyledBox>
-
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="PYTHON"
-            checked={stack.includes("PYTHON") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "PYTHON");
-            }}
-          ></input>
-          <label id="PYTHON" htmlFor="PYTHON">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              PYTHON
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="C"
-            checked={stack.includes("C") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "C");
-            }}
-          ></input>
-          <label id="C" htmlFor="C">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              C
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="C++"
-            checked={stack.includes("C++") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "C++");
-            }}
-          ></input>
-          <label id="C++" htmlFor="C++">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              C++
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="iOS"
-            checked={stack.includes("iOS") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "iOS");
-            }}
-          ></input>
-          <label id="iOS" htmlFor="iOS">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              iOS
-            </span>
-          </label>
-        </StyledBox>
-      </Wrap>
-      <Wrap>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="Android"
-            checked={stack.includes("Android") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "Android");
-            }}
-          ></input>
-          <label id="Android" htmlFor="Android">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              Android
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="REACT"
-            checked={stack.includes("REACT") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "REACT");
-            }}
-          ></input>
-          <label id="REACT" htmlFor="REACT">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              REACT
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="Spring"
-            checked={stack.includes("Spring") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "Spring");
-            }}
-          ></input>
-          <label id="Spring" htmlFor="Spring">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              Spring
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="Node.js"
-            checked={stack.includes("Node.js") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "Node.js");
-            }}
-          ></input>
-          <label id="Node.js" htmlFor="Node.js">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              Node.js
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="Vue.js"
-            checked={stack.includes("Vue.js") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "Vue.js");
-            }}
-          ></input>
-          <label id="Vue.js" htmlFor="Vue.js">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              Vue.js
-            </span>
-          </label>
-        </StyledBox>
-        <StyledBox>
-          <input
-            type="checkbox"
-            id="Git"
-            checked={stack.includes("Git") ? true : false}
-            onChange={(e) => {
-              changeHandler(e.currentTarget.checked, "Git");
-            }}
-          ></input>
-          <label id="Git" htmlFor="Git">
-            <span>
-              <img
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-              />
-              Git
-            </span>
-          </label>
-        </StyledBox>
-      </Wrap>
       <div style={{ width: "1120px" }}>
+
+        {stack.length > 3 ? (
+          <p style={{ fontSize: "12px", color: "red" }}>
+            3가지만 골라주세요
+          </p>
+        ) : <p style={{ color: "inherit", fontSize: "12px" }}>3가지만 골라주세요</p>}
+        <StackBox>
+          {defaultStack.map((s, index) => {
+            return (
+              <StyledBox>
+                <input
+                  type="checkbox"
+                  id={s}
+                  checked={stack.includes(`${s}`) ? true : false}
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, `${s}`);
+                  }}
+                ></input>
+                <label id={s} htmlFor={s}>
+                  <span>
+                    <img
+                      alt=""
+                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                    />
+                    {s}
+                  </span>
+                </label>
+              </StyledBox>
+            )
+          })}
+        </StackBox>
+
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
@@ -283,10 +84,10 @@ function Stack() {
           onChange={handleChange}
         />
         <StackBox>
-          {stack.map((stack, index) => {
+          {stack.map((addStack, index) => {
             return (
-              <SelectStack key={index}{...stack}>
-                {stack}
+              <SelectStack key={index}{...addStack}>
+                {addStack}
                 <ClearIcon
                   sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }} onClick={() => { alert("@@") }}></ClearIcon>
               </SelectStack>
@@ -304,7 +105,7 @@ const StackBox = styled.div`
   width: 1120px;
   height: 160px;
   border-radius: 10px;
-  border: 1px solid;
+  border: 1px solid #cccccc;
   background-color: white;
 `;
 
@@ -323,8 +124,12 @@ const Wrap = styled.div`
   padding-bottom: 20px;
 `;
 
-const StyledBox = styled.span`
-  padding: 0px 5px 0px 5px;
+const StyledBox = styled.button`
+  border: none;
+  background-color: white;
+  padding: 10px 15px 10px 15px;
+  margin-top: 5px;
+  border-radius: 10px;
   img {
     border-radius: 5px;
     background-color: gray;
@@ -335,7 +140,6 @@ const StyledBox = styled.span`
     padding: 1px;
     object-fit: cover;
     margin-right: 5px;
-    margin-left: 15px;
   }
   input[type="checkbox"] {
     display: none;
@@ -350,7 +154,7 @@ const StyledBox = styled.span`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #333333;
+    border: 2px solid #cccccc;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
-// import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from "../../shared/axios";
 import { TextField } from "@mui/material";
-import StackBox from './StackBox';
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -19,7 +17,7 @@ const AddInfo = (props) => {
   const [blogUrl, setBlogUrl] = React.useState("");
   const [job, setJob] = React.useState("");
 
-  const [page, setPage] = React.useState("2");
+  const [page, setPage] = React.useState("0");
 
   const [nameError, setNameError] = React.useState("");
   const [phoneNumError, setPhoneNumError] = React.useState("");

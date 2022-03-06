@@ -18,7 +18,7 @@ const setFirstLogin = createAction(IS_FIRST_LOGIN, (status) => ({ status }));
 const initialState = {
   user: {},
   token: null,
-  isFirstLogin: true,
+  isFirstLogin: false,
 };
 
 // middleware actions

@@ -36,7 +36,7 @@ const Banner = () => {
           slot="container-start"
           className="parallax-bg"
           style={{
-            "background-image":
+            "backgroundImage":
               "url(https://swiperjs.com/demos/images/nature-3.jpg)",
           }}
           data-swiper-parallax="-23%"
