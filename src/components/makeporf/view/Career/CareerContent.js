@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../../../../redux/modules/portfolio";
+import { actionCreators as contentActions } from "../../../../redux/modules/careercontent";
 import { InputCustom } from "../../shared/_sharedStyle";
 
 function CareerContent(props) {
@@ -14,24 +13,27 @@ function CareerContent(props) {
     control,
   } = useForm({ defaultValues });
 
-  const [value, setValue] = useState(content);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    dispatch(actionCreators.updateCareer(value, index));
+  const deleteContent = (e) => {
+    console.log(index);
+    // e.preventDefault();
+    dispatch(contentActions.deleteContent(index));
   };
+
   return (
     <>
-      <InputCustom
-        type="text"
-        style={{
-          border: "none",
-          background: "white",
-          marginTop: "15px",
-        }}
-        value={content}
-        disabled
-      />
+      <div style={{ display: "flex" }}>
+        <InputCustom
+          type="text"
+          style={{
+            border: "none",
+            background: "white",
+            marginTop: "15px",
+          }}
+          value={content}
+          disabled
+        />
+        <div onClick={deleteContent}>-</div>
+      </div>
     </>
   );
 }

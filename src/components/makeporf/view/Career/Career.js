@@ -11,7 +11,8 @@ import { Content, Font, FormContents, Label } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as porfActions } from "../../../../redux/modules/portfolio";
+import { actionCreators as porfActions } from "../../../../redux/modules/careercontent";
+import CareerShow from "./CareerShow";
 
 function Career() {
   const dispatch = useDispatch();
@@ -24,12 +25,11 @@ function Career() {
   } = useForm({ defaultValues });
 
   const content = useRef(null);
-  const contents = useSelector((state) => state.portfolio.career);
-  console.log(contents);
-  // const [content, setContent] = useState("");
+  const contents = useSelector((state) => state.careerContent.content);
+  const careers = useSelector((state) => state.career.careers);
 
   const contentsAdd = () => {
-    dispatch(porfActions.addCareer(content.current.value));
+    dispatch(porfActions.addContent(content.current.value));
     setValue("content", "");
   };
 
@@ -160,9 +160,22 @@ function Career() {
           </ContentCareer>
         </FormContents>
       </form>
+      {careers.map((e) => {
+        return <CareerShow {...e} />;
+      })}
+      <AddButton>
+        <hr />
+        <ContentCareer>직무 경험 추가 하기</ContentCareer>
+      </AddButton>
     </>
   );
 }
+
+const AddButton = styled.div`
+  display: flex;
+  justify-content: "center";
+  align-items: "center";
+`;
 
 const InputCustomDate = styled(InputCustom)`
   width: 8vw;

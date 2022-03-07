@@ -5,7 +5,7 @@ import styled from "styled-components";
 import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
 import { Button, Menu, MenuItem, Select } from "@mui/material";
-import { actionCreators } from "../../../redux/modules/portfolio";
+import { actionCreators } from "../../../redux/modules/careercontent";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
