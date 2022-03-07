@@ -72,12 +72,10 @@ const Header = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
-            <Circle />
+            <Circle onClick={() => { history.push('/') }} />
             Portfolio
             <Port
-              onClick={() => {
-                alert("@");
-              }}
+              onClick={() => { history.push('/portfolio') }}
             >
               포트폴리오
             </Port>
