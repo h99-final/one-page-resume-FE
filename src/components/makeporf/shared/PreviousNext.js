@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -10,14 +11,16 @@ function PreviousNext() {
   const history = useHistory();
   const isSame = (e) => e === id;
 
+  const { porfId } = useSelector((state) => state.user.user);
+
   const handleNextClick = () => {
     const index = paramsId.findIndex(isSame);
-    history.push(`/write/portfolio/${paramsId[index + 1]}/:porfId`);
+    history.push(`/write/portfolio/${paramsId[index + 1]}/${porfId}`);
   };
 
   const handlePreviousClick = () => {
     const index = paramsId.findIndex(isSame);
-    history.push(`/write/portfolio/${paramsId[index - 1]}/:porfId`);
+    history.push(`/write/portfolio/${paramsId[index - 1]}/${porfId}`);
   };
 
   const handleSubmit = () => {

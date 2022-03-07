@@ -16,6 +16,8 @@ function Introduce() {
 
   const userInfo = useSelector((state) => state.user.user);
 
+  const [data, setData] = useState({});
+
   const introSubmit = (oldData) => {
     const { introTitle, introContents } = oldData;
     const data = {
@@ -26,10 +28,13 @@ function Introduce() {
   };
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId);
+    apis
+      .introPorfGet(userInfo.porfId)
+      .then((res) => console.log(res.data.data));
     return handleSubmit(introSubmit);
   }, []);
 
+  console.log(data);
   return (
     <>
       <FormTitle>
@@ -52,7 +57,7 @@ function Introduce() {
               )}
               name="introTitle"
               control={control}
-              defaultValue="abc"
+              defaultValue={data.title}
             />
           </Title>
           <Content>
@@ -69,7 +74,7 @@ function Introduce() {
               )}
               name="introContents"
               control={control}
-              defaultValue="abc"
+              defaultValue={data.contents}
             />
           </Content>
         </FormContents>
@@ -140,14 +145,13 @@ export const Label = styled.div`
   display: flex;
   flex-direction: row;
   padding: 15px 0px;
-
   width: 150px;
   height: 49px;
   left: 0px;
 `;
 
 export const Font = styled.div`
-  width: 158px;
+  width: auto;
   height: 38px;
   left: 0px;
   top: 5.5px;

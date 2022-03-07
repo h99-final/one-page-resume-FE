@@ -11,7 +11,7 @@ import Header from "../shared/Header";
 import styled from "styled-components";
 import UserInfo from "../components/makeporf/view/UserInfo";
 import PreviousNext from "../components/makeporf/shared/PreviousNext";
-import Career from "../components/makeporf/view/Career";
+import Career from "../components/makeporf/view/Career/Career";
 
 function MakePorf() {
   const { id } = useParams();
