@@ -1,6 +1,4 @@
-import { Token } from "@mui/icons-material";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../components/loginModal/Modal";
 import { Avatar } from "@mui/material";

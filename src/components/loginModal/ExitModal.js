@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Login from "./Login";
 import Signup from "./Signup";
-import { apis } from "../../shared/axios";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { emailCheck } from "../../shared/common";

@@ -74,19 +74,6 @@ const Signup = (props) => {
       .signup(email, password, passwordCheck)
       .then((res) => {
         dispatch(userActions.loginDB(email, password));
-        // apis
-        //   .login(email, password)
-        //   .then((res) => {
-        //     setCookie("token", res.headers.authorization, 5);
-        //     dispatch(userActions.loginDB(res.data.data.isFirstLogin));
-
-        //     if (res.data.data.isFirstLogin === true) {
-        //       console.log(res.data.data.isFirstLogin);
-        //     } else {
-        //       loginClose(false);
-        //     }
-        //   })
-        //   .catch((error) => alert("회원정보가 일치하지 않습니다."));
       })
       .catch((error) => {
         alert("회원가입에 실패했습니다.");

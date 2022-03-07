@@ -11,6 +11,7 @@ import Header from "../shared/Header";
 import styled from "styled-components";
 import UserInfo from "../components/makeporf/view/UserInfo";
 import PreviousNext from "../components/makeporf/shared/PreviousNext";
+import Career from "../components/makeporf/view/Career";
 
 function MakePorf() {
   const { id } = useParams();
@@ -26,6 +27,7 @@ function MakePorf() {
             {id === "introduce" ? <Introduce /> : null}
             {id === "info" ? <UserInfo /> : null}
             {id === "stack" ? <Stack /> : null}
+            {id === "career" ? <Career /> : null}
             {/* {id === "project" ? <SetProject /> : null} */}
           </WriteableForm>
         </WriteTemplate>
@@ -73,7 +75,6 @@ export const WriteableForm = styled.div`
 
   width: 100%;
   height: 100%;
-
   background-color: #ededed;
   border-radius: 10px;
   /* Inside auto layout */
