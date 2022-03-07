@@ -9,10 +9,9 @@ import "swiper/css/navigation";
 
 import "./banner.css";
 
-
 // import required modules
 import { Parallax, Pagination, Navigation } from "swiper";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Banner = () => {
   return (
@@ -24,7 +23,6 @@ const Banner = () => {
         }}
         speed={600}
         parallax={true}
-
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
@@ -36,13 +34,14 @@ const Banner = () => {
           slot="container-start"
           className="parallax-bg"
           style={{
+
             "backgroundImage":
+
               "url(https://swiperjs.com/demos/images/nature-3.jpg)",
           }}
           data-swiper-parallax="-23%"
         ></div>
         <SwiperSlide>
-
           <button>지금 시작하기</button>
         </SwiperSlide>
         <SwiperSlide>
@@ -64,37 +63,34 @@ const Banner = () => {
             </p>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-        </SwiperSlide>
+        <SwiperSlide></SwiperSlide>
         <SwiperSlide>
           <H1>
             <Btn>지금 시작하기</Btn>
           </H1>
         </SwiperSlide>
         <SwiperSlide>
-          <H1>
-          </H1>
+          <H1></H1>
 
           <Btn>지금 시작하기</Btn>
         </SwiperSlide>
       </Swiper>
     </>
   );
-}
+};
 
 const H1 = styled.div`
   width: 100%;
   height: 100vh;
-  
 `;
 
 const Btn = styled.button`
-font-size: 18px;
+  font-size: 18px;
   background: black;
   border: none;
   border-radius: 43px;
   width: 211px;
   height: 62px;
   color: white;
-`
+`;
 export default Banner;
