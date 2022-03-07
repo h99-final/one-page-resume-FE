@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
 // import { actionCreators as userActions } from "../redux/modules/user";
-import { apis } from "../../shared/axios";
 import { TextField } from "@mui/material";
 
 import { actionCreators as userActions } from "../../redux/modules/user";

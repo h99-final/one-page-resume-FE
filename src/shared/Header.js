@@ -1,6 +1,4 @@
-import { Token } from "@mui/icons-material";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../components/loginModal/Modal";
 import { Avatar } from "@mui/material";
@@ -8,10 +6,8 @@ import Nav from "./Nav";
 import Pnav from "./Pnav";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { useEffect } from "react";
-import { apis } from "./axios";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { useSelector } from "react-redux";
+
 const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);

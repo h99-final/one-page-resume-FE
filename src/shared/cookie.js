@@ -10,6 +10,7 @@ const getCookie = (name) => {
 };
 const setCookie = (name, value, exp = 5) => {
   if (document.cookie) {
+    console.log(document.cookie);
     return;
   }
   const date = new Date();

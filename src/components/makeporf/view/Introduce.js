@@ -2,6 +2,7 @@ import { InputUnstyled } from "@mui/base";
 import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
@@ -13,17 +14,19 @@ function Introduce() {
     control,
   } = useForm({ defaultValues });
 
+  const userInfo = useSelector((state) => state.user.user);
+
   const introSubmit = (oldData) => {
     const { introTitle, introContents } = oldData;
     const data = {
-      introTitle: introTitle,
-      introContents: introContents,
+      title: introTitle,
+      contents: introContents,
     };
     apis.introPorf(data);
   };
 
   useEffect(() => {
-    console.log("axios 유저 포트폴리오 id로 포트폴리오 정보 받아오기");
+    apis.introPorfGet(userInfo.porfId);
     return handleSubmit(introSubmit);
   }, []);
 
@@ -62,7 +65,6 @@ function Introduce() {
                   type="text"
                   style={{ border: "none", background: "white" }}
                   {...field}
-                  rows="5"
                 />
               )}
               name="introContents"
@@ -123,7 +125,7 @@ export const Title = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin: auto 50px;
+  margin: auto 2.6vw;
 `;
 
 export const Content = styled.div`
@@ -142,7 +144,6 @@ export const Label = styled.div`
   width: 150px;
   height: 49px;
   left: 0px;
-  top: 10px;
 `;
 
 export const Font = styled.div`
