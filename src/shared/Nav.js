@@ -23,6 +23,7 @@ const Nav = (props) => {
     setNav(false);
     console.log(getCookie("token"));
     deleteCookie(token);
+    console.log(getCookie("token"));
     window.location.reload("/");
   };
 
