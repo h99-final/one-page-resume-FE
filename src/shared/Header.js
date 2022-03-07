@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import { useHistory } from 'react-router-dom';
 
 const Header = (props) => {
   const [nav, setNav] = React.useState(false);

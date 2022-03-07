@@ -38,21 +38,24 @@ function MakePorf() {
   );
 }
 const WriteForm = styled.div`
-  width: 1440px;
+  width: 80%;
   height: auto;
+  min-width: 834px;
   min-height: 80vh;
 
   display: block;
   justify-content: center;
-  margin: 0px 30px;
+  margin: 0px auto;
 
   background: #ffffff;
   @media screen and (min-width: 1194) {
     & {
-      width: auto;
+      width: 80%;
+      justify-content: center;
+      margin: 0px auto ;
     }
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 834px) {
     & {
       margin: 0px auto;
     }
