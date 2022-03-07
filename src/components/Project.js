@@ -30,10 +30,13 @@ const Project = () => {
           <H1>지금 시작하기</H1>
         </SwiperSlide>
         <SwiperSlide>
+          <H1>지금 시작하기</H1>
         </SwiperSlide>
         <SwiperSlide>
+          <H1>지금 시작하기</H1>
         </SwiperSlide>
         <SwiperSlide>
+          <H1>지금 시작하기</H1>
         </SwiperSlide>
       </Swiper>
     </>
@@ -43,6 +46,7 @@ const Project = () => {
 const H1 = styled.h1`
   width: 100%;
   height: 40vh;
-  background-color: red;
+  background-color: black;
+  color: white;
 `;
 export default Project;

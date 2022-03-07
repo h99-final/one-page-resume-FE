@@ -6,14 +6,18 @@ import Nav from "./Nav";
 import Pnav from "./Pnav";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { apis } from "./axios";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 
 const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
   const userInfo = useSelector((state) => state.user.user);
-
+  const history = useHistory();
   const user = document.cookie;
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
@@ -42,10 +46,10 @@ const Header = (props) => {
     return (
       <>
         <StyledHeader>
-          <LeftMenu>
-            <Circle />
+          <LeftMenu  >
+            <Circle onClick={() => { history.push('/') }} />
             Portfolio
-            <Port>포트폴리오</Port>
+            <Port onClick={() => { history.push('/portfolio') }}>포트폴리오</Port>
             <Proj>프로젝트</Proj>
           </LeftMenu>
           <RightMenu>

@@ -36,16 +36,21 @@ function FileUpload() {
         accept="image/png, image/jpeg, image/gif"
       ></FileInput>
       {preview !== null ? (
-        <Image>
-          <label htmlFor="file">
-            <Inner src={preview}></Inner>
-          </label>
-        </Image>
+        <>
+          <Image>
+            <label htmlFor="file">
+              <Inner src={preview ? preview : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"}>
+
+              </Inner>
+              <Font style={{ position: "relative" }} >Drag files to upload</Font>
+            </label>
+          </Image>
+
+        </>
       ) : (
         <label htmlFor="file">
           <Image>
             <AddPhotoAlternateIcon sx={_styles} />
-            <Font>Drag files to upload</Font>
           </Image>
         </label>
       )}

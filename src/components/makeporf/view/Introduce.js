@@ -147,7 +147,7 @@ export const Label = styled.div`
 `;
 
 export const Font = styled.div`
-  width: 108px;
+  width: 158px;
   height: 38px;
   left: 0px;
   top: 5.5px;
@@ -170,7 +170,6 @@ export const Font = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  margin: 0px 10px;
 `;
 
 export default Introduce;
