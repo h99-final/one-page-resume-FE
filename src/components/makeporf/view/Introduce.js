@@ -84,7 +84,7 @@ function Introduce() {
 }
 
 const InputCustom = styled.textarea`
-  width: 1120px;
+  width: 100%;
   height: 19px;
   border-radius: 10px;
   justify-content: center;

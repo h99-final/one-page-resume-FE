@@ -82,7 +82,7 @@ function UserInfo() {
 }
 
 const UserInfoForm = styled.div`
-  width: 1380px;
+  width: 100%;
   left: 0px;
   top: 85px;
 

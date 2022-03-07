@@ -10,7 +10,8 @@ import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 const Header = (props) => {
   const [nav, setNav] = React.useState(false);
@@ -80,12 +81,10 @@ const Header = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
-            <Circle />
+            <Circle onClick={() => { history.push('/') }} />
             Portfolio
             <Port
-              onClick={() => {
-                history.push("/portfolio");
-              }}
+              onClick={() => { history.push('/portfolio') }}
             >
               포트폴리오
             </Port>

@@ -51,7 +51,7 @@ function SideBar() {
 const List = styled.div`
   display: flex;
   /* position: relative; */
-  width: 1440px;
+  width: 100%;
   height: 70px;
   left: 0px;
   top: 0px;
@@ -68,7 +68,7 @@ const ListInside = styled.div`
   flex-direction: row;
   align-items: flex-start;
 
-  width: 900px;
+  width: 100%;
   height: 50px;
   margin: auto 10px;
 `;
