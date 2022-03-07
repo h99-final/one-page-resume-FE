@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const [nav, setNav] = React.useState(false);
@@ -46,10 +46,20 @@ const Header = (props) => {
     return (
       <>
         <StyledHeader>
-          <LeftMenu  >
-            <Circle onClick={() => { history.push('/') }} />
+          <LeftMenu>
+            <Circle
+              onClick={() => {
+                history.push("/");
+              }}
+            />
             Portfolio
-            <Port onClick={() => { history.push('/portfolio') }}>포트폴리오</Port>
+            <Port
+              onClick={() => {
+                history.push("/portfolio");
+              }}
+            >
+              포트폴리오
+            </Port>
             <Proj>프로젝트</Proj>
           </LeftMenu>
           <RightMenu>
@@ -74,7 +84,7 @@ const Header = (props) => {
             Portfolio
             <Port
               onClick={() => {
-                alert("@");
+                history.push("/portfolio");
               }}
             >
               포트폴리오

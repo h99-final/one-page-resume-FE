@@ -49,7 +49,7 @@ export const FormTitle = styled.div`
   justify-content: center;
 `;
 
-export const InputCustom = styled.textarea`
+export const InputCustom = styled.input`
   width: 1120px;
   height: 19px;
   border-radius: 10px;
@@ -76,4 +76,11 @@ export const Content = styled.div`
   align-items: flex-start;
 
   margin: 0px 50px;
+`;
+
+export const ContentForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 5px;
 `;
