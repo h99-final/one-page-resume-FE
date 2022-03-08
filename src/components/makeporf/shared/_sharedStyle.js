@@ -83,3 +83,52 @@ export const ContentForm = styled.div`
   align-items: flex-start;
   margin-bottom: 5px;
 `;
+
+export const Inner = styled.img`
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+`;
+
+export const Line = styled.hr``;
+
+export const ButtonText = styled(FormText)`
+  width: 100%;
+  font-size: 16px;
+  font-style: normal;
+`;
+
+export const AddButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 50px;
+`;
+
+export const ContentCareer = styled(Content)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MakeCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  width: 100%;
+  height: 45px;
+  background-color: #ffffff;
+  border-radius: 50px;
+`;
