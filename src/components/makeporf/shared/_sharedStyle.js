@@ -56,7 +56,6 @@ export const InputCustom = styled.input`
   justify-content: center;
   align-items: center;
   padding: 15px 15px;
-  margin: auto;
 `;
 
 export const Label = styled.div`

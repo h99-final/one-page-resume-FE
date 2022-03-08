@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     dispatch(userActions.userInfoDB());
   }, []);
-
   return (
     <>
       <GlobalStyle />
