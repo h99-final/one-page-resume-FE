@@ -22,23 +22,9 @@ function Career() {
         return <CareerShow key={i} {...e} index={i} />;
       })}
       <hr />
-      <AddButton>
-        <ContentCareer>직무 경험 추가 하기</ContentCareer>
-      </AddButton>
     </>
   );
 }
-
-const AddButton = styled.div`
-  display: flex;
-  justify-content: "center";
-  align-items: "center";
-`;
-
-export const ContentCareer = styled(Content)`
-  display: flex;
-  flex-direction: column;
-`;
 
 const FormTitleFlex = styled(FormTitle)`
   display: flex;

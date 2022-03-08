@@ -15,6 +15,7 @@ function Introduce() {
   } = useForm({ defaultValues });
 
   const userInfo = useSelector((state) => state.user.user);
+  console.log(userInfo);
 
   const [data, setData] = useState({});
 
@@ -24,7 +25,9 @@ function Introduce() {
       title: introTitle,
       contents: introContents,
     };
-    apis.introPorf(data);
+    apis.introPorf(data).then((res) => {
+      console.log(res);
+    });
   };
 
   useEffect(() => {
@@ -153,8 +156,6 @@ export const Label = styled.div`
 export const Font = styled.div`
   width: auto;
   height: 38px;
-  left: 0px;
-  top: 5.5px;
 
   /* body1 */
 
@@ -170,10 +171,6 @@ export const Font = styled.div`
   color: #333333;
 
   /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 `;
 
 export default Introduce;

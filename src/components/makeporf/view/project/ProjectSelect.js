@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ProjectCard from "../../Element/ProjectCard";
-import { FormText, FormTitle } from "../shared/_sharedStyle";
+import { useDispatch, useSelector } from "react-redux";
+import ProjectCard from "../../../Element/ProjectCard";
+import {
+  AddButton,
+  ButtonText,
+  ContentCareer,
+  FormText,
+  FormTitle,
+  MakeCenter,
+} from "../../shared/_sharedStyle";
 import styled from "styled-components";
-import { apis } from "../../../shared/axios";
 
 function ProjectSelect() {
+  const dispatch = useDispatch();
   // 사용자 프로젝트 가져오기 axios
   const project = useSelector((state) => state.project.projects);
 
   const [selectedProject, setSelectedProject] = useState([]);
-  console.log(selectedProject);
-
-  // useEffect(() => {
-  //   apis.
-  // },[])
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
@@ -26,12 +29,20 @@ function ProjectSelect() {
           return (
             <ProjectCard
               setSelectedProject={setSelectedProject}
-              key={i}
+              selectedProject={selectedProject}
+              key={i + "e"}
               {...e}
             />
           );
         })}
       </ProjectBox>
+      <MakeCenter style={{ marginTop: "20px" }}>
+        <AddButton onClick={() => setModalOpen(true)}>
+          <ContentCareer>
+            <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
+          </ContentCareer>
+        </AddButton>
+      </MakeCenter>
     </>
   );
 }

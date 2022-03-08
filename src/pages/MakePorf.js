@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Introduce from "../components/makeporf/view/Introduce";
 import PorfWriteHeader from "../components/makeporf/shared/PorfWriteHeader";
-// import SetProject from "../components/makeporf/SetProject";
 import SideBar from "../components/makeporf/shared/SideBar";
 import Stack from "../components/makeporf/view/Stack";
 import Template from "../components/makeporf/shared/Template";
@@ -12,7 +11,7 @@ import styled from "styled-components";
 import UserInfo from "../components/makeporf/view/UserInfo";
 import PreviousNext from "../components/makeporf/shared/PreviousNext";
 import Career from "../components/makeporf/view/Career/Career";
-import ProjectSelect from "../components/makeporf/view/ProjectSelect";
+import ProjectSelect from "../components/makeporf/view/project/ProjectSelect";
 
 function MakePorf() {
   const { id } = useParams();
@@ -49,7 +48,7 @@ const WriteForm = styled.div`
   margin: 0px auto;
 
   background: #ffffff;
-  @media screen and (min-width: 1194) {
+  @media screen and (min-width: 1194px) {
     & {
       width: 80%;
       justify-content: center;

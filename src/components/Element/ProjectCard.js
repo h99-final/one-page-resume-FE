@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Inner } from "../makeporf/shared/_sharedStyle";
@@ -8,15 +8,19 @@ function ProjectCard(props) {
   const userInfo = useSelector((state) => state.user.user);
   const { id, title, stack, img } = props;
 
-  const [selected, setSelected] = useState(false);
-
-  const handleClick = () => {
-    setSelected((prev) => !prev);
-  };
+  // useEffect(() => {
+  //   if (selected) {
+  //     setSelectedProject((selectedProject) => [...selectedProject, id]);
+  //   } else {
+  //     setSelectedProject((selectedProject) =>
+  //       selectedProject.filter((e) => e !== id)
+  //     );
+  //   }
+  // }, []);
 
   return (
     <>
-      <ProjectForm onClick={handleClick} selected={selected}>
+      <ProjectForm>
         <InnerCard src="http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg" />
         <ProjectDetail>
           <ProjectStacks>

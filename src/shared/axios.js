@@ -55,4 +55,6 @@ export const apis = {
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
 
   careerPorf: (data) => instance.post("/porf/career", data),
+
+  projectPorf: () => instance.get("/user/project"),
 };

@@ -2,8 +2,12 @@ import { produce } from "immer";
 import { createAction, handleActions } from "redux-actions";
 
 const SET_PROJECT = "SET_PROJECT";
+const SELECT_PROJECT = "SELECT_PROJECT";
 
-const setProject = createAction((projects) => ({ projects }));
+const setProject = createAction(SET_PROJECT, (projects) => ({ projects }));
+const selectProject = createAction(SELECT_PROJECT, (projectId) => ({
+  projectId,
+}));
 
 const initialState = {
   projects: [
@@ -28,12 +32,19 @@ export default handleActions(
       produce(state, (draft) => {
         draft.projects = action.payload.projects;
       }),
+    [SELECT_PROJECT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.projects = action.payload.projectId.map((e) => {
+          draft.projects.filter((element) => element.id === e);
+        });
+      }),
   },
   initialState
 );
 
 const actionCreators = {
   setProject,
+  selectProject,
 };
 
 export { actionCreators };
