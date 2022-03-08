@@ -34,79 +34,84 @@ function FileUpload() {
   }
 
   return (
-
-    <ProfileBox style={{ display: "flex", }}>
+    <>
       <Dropzone onDrop={dropHandler}>
-
-
         {({ getRootProps, getInputProps, isDragActive }) => (
-          <section>
-
+          <>
             <Inner
               {...getRootProps()}>
-              {isDragActive ? (
-                <p>여기에 올려놓으세요</p>
-              ) : (
-                <p>여기에 파일을 드래그하거나 <br />클릭하여 이미지를 등록해주세요</p>
-              )}
+
               <Image>
+
                 <img
                   style={{ borderRadius: "10px" }}
                   width='100%'
                   alt=''
                   src={img}
                 />
+                {isDragActive ? (
+                  <Label>여기에 올려놓으세요</Label>
+                ) : (
+                  <Label>여기에 파일을 드래그하거나 <br />클릭하여 이미지를 등록해주세요</Label>
+                )}
               </Image>
               <input {...getInputProps()} />
             </Inner>
 
-          </section>
+          </>
         )}
-
       </Dropzone>
-
-      {/* Dropzone옆에 올린 파일 보여지는 곳 */}
-
-      {/* {Images.map((image, index) => ( */}
-
-      {/* ))} */}
-
-
-    </ProfileBox>
+    </>
   )
 }
 
 const ProfileBox = styled.div`
-  
-`;
+
+        `;
 const Inner = styled.div`
-  width: 250px;
-  height: 250px;
-  margin: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  object-fit: cover;
-  background-color: white;
-  p{
-    position: relative;
-    top: 45%;
-    text-align: center;
-    padding: 0px 10px;
-    z-index: 1;
-  }
-`;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid;
+    overflow: hidden;
+    object-fit: cover;
+    background-color: white;
+    
+        `;
 
 const Image = styled.div`
-  display: flex;
-  margin: 10px;
-  border-radius: 10px;
-  background: #333333;
-  z-index: 2;
-  img{
-    :hover{
-      border: 5px solid;
+    width: 99%;
+    height: 99%;
+    margin: 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    z-index: 2;
+    img{
+
+    z-index: 1125;
+      :hover{
+        border: 5px solid;
     }
+    span{
+    width: 99%;
+    color: white;
+    border: 1px solid white;
+    z-index: 1;
   }
+}
+`;
+
+export const Label = styled.div`
+  
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  width: 99%;
+  z-index: 0;
+  min-width: 250px;
 `;
 
 export default FileUpload

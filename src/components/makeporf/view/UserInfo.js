@@ -11,6 +11,7 @@ import {
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
+import { border } from '@mui/system';
 
 function UserInfo() {
   const defaultValues = {};
@@ -31,7 +32,6 @@ function UserInfo() {
         <FormText>내 정보</FormText>
       </FormTitle>
       <UserInfoForm>
-        <div></div>
         <Content>
           <Label>
             <Font>*이름(실명)</Font>
@@ -64,12 +64,12 @@ function UserInfo() {
             defaultValue="abc"
           />
         </Content>
-        <Content>
-          <Label>
+        <MultiContent>
+          <Label style={{ minWidth: "150px" }}>
             <Font>프로필 이미지</Font>
           </Label>
           <FileUpload />
-        </Content>
+        </MultiContent>
         <Content>
           <Label>
             <Font>전화번호</Font>
@@ -93,8 +93,10 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ background: "white" }}
+
                 {...field}
+
               />
             )}
             name="email"
@@ -103,7 +105,7 @@ function UserInfo() {
           />
         </Content>
         <Content>
-          <Label>
+          <Label >
             <Font>GitHub URL</Font>
           </Label>
           <Controller
@@ -139,23 +141,18 @@ function UserInfo() {
     </>
   );
 }
+export const MultiContent = styled.div`
+display: flex;
+flex-direction: row;
+margin: 0px 50px 0px 50px;
+`;
 
 const UserInfoForm = styled.div`
-  width: 100%;
-  left: 0px;
-  top: 85px;
-
-  /* C5 */
-
-  background: #ededed;
-  border-radius: 10px;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 10px 0px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  height: 100%;
 `;
+
 
 export default UserInfo;

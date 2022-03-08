@@ -4,8 +4,8 @@ import Select from "react-select";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
+import { useSelector } from 'react-redux';
 
 export const options = [
   { value: "python", label: "python" },
@@ -14,33 +14,23 @@ export const options = [
 ];
 
 function Stack() {
+  const checkedStack = useSelector((state) => (state.user.user.stack))
+
   const animatedComponents = makeAnimated();
-  const [stack, setStack] = useState([]);
+  const [stack, setStack] = useState(checkedStack);
   const [addStack, setAddStack] = useState([]);
-  const defaultStack = [
-    "JS",
-    "JAVA",
-    "PYTHON",
-    "C",
-    "C++",
-    "iOS",
-    "Android",
-    "React",
-    "Spring",
-    "Node.js",
-    "Vue.js",
-    "git",
-  ];
+
+  const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
       console.log("체크 반영 완료");
+      console.log(checked)
     } else {
       setStack(stack.filter((e) => e !== id));
       console.log("체크 해제 반영 완료");
     }
   };
-
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -58,12 +48,10 @@ function Stack() {
 
       <div style={{ width: "98%", margin: "0px 10px 0px 10px" }}>
         {stack.length > 3 ? (
-          <p style={{ fontSize: "12px", color: "red" }}>3가지만 골라주세요</p>
-        ) : (
-          <p style={{ color: "inherit", fontSize: "12px" }}>
+          <p style={{ fontSize: "12px", color: "red", textAlign: "center" }}>
             3가지만 골라주세요
           </p>
-        )}
+        ) : <p style={{ color: "inherit", fontSize: "12px", textAlign: "center" }}>3가지만 골라주세요</p>}
         <StackBox>
           {defaultStack.map((s, index) => {
             return (
@@ -89,16 +77,17 @@ function Stack() {
             );
           })}
         </StackBox>
-
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          options={options}
-          isMulti
-          onChange={handleChange}
-        />
+        <SelectBox>
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            options={options}
+            isMulti
+            onChange={handleChange}
+          />
+        </SelectBox>
         <StackBox>
-          {stack.map((addStack, index) => {
+          {addStack.map((addStack, index) => {
             return (
               <SelectStack key={index} {...addStack}>
                 {addStack}
@@ -118,12 +107,16 @@ function Stack() {
 }
 
 const StackBox = styled.div`
-  margin: 10px 0px;
-  width: 100%;
+  margin: 10px 10px 10px 10px;
   height: auto;
   border-radius: 10px;
   border: 1px solid #cccccc;
   background-color: white;
+`;
+
+const SelectBox = styled.div`
+  margin: 10px 10px 10px 10px;
+  height: auto;
 `;
 
 const SelectStack = styled.button`
