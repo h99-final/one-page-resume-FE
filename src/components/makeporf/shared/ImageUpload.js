@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { actionCreators } from "../../../redux/modules/image";
 import { Font } from "../view/Introduce";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { Inner } from "./_sharedStyle";
 
 function FileUpload() {
   const fileInput = useRef();
@@ -39,13 +40,16 @@ function FileUpload() {
         <>
           <Image>
             <label htmlFor="file">
-              <Inner src={preview ? preview : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"}>
-
-              </Inner>
-              <Font style={{ position: "relative" }} >Drag files to upload</Font>
+              <Inner
+                src={
+                  preview
+                    ? preview
+                    : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"
+                }
+              ></Inner>
+              <Font style={{ position: "relative" }}>Drag files to upload</Font>
             </label>
           </Image>
-
         </>
       ) : (
         <label htmlFor="file">
@@ -64,15 +68,6 @@ const _styles = {
 
 const FileInput = styled.input`
   display: none;
-`;
-
-const Inner = styled.img`
-  width: 250px;
-  height: 250px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  object-fit: cover;
 `;
 
 const Image = styled.div`
