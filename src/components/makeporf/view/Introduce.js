@@ -2,50 +2,58 @@ import { InputUnstyled } from "@mui/base";
 import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
+import { actionCreators as introduceActions } from "../../../redux/modules/introduce";
 
 function Introduce() {
-  const defaultValues = {};
+  const defaultValues = {
+    fieldObj: {
+      introTitle: "",
+      introContents: "",
+    },
+  };
   const {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
+    setError,
   } = useForm({ defaultValues });
 
-  const userInfo = useSelector((state) => state.user.user);
-  console.log(userInfo);
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState({});
-
+  const introduceData = useSelector((state) => state.introduce);
   const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData;
+    const { introTitle, introContents } = oldData.fieldObj;
     const data = {
       title: introTitle,
       contents: introContents,
     };
-    apis.introPorf(data).then((res) => {
-      console.log(res);
-    });
   };
 
   useEffect(() => {
-    apis
-      .introPorfGet(userInfo.porfId)
-      .then((res) => console.log(res.data.data));
+    dispatch(introduceActions.setIntroduceDB());
+    setValue("fieldObj", {
+      introTitle: introduceData.introTitle,
+      introContents: introduceData.introContents,
+    });
+
     return handleSubmit(introSubmit);
   }, []);
 
-  console.log(data);
   return (
     <>
       <FormTitle>
         <FormText>포트폴리오 정보</FormText>
       </FormTitle>
-
       <form onSubmit={handleSubmit(introSubmit)}>
         <FormContents>
+          <ErrorMessage>
+            {errors.fieldObj?.introTitle?.type === "required" &&
+              "First name is required"}
+          </ErrorMessage>
           <Title>
             <Label>
               <Font>포트폴리오 제목(0/50)</Font>
@@ -54,15 +62,24 @@ function Introduce() {
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{ border: "none", background: "white" }}
+                  style={{
+                    border: "none",
+                    background: "white",
+                  }}
                   {...field}
+                  size={10}
+                  maxLength={50}
                 />
               )}
-              name="introTitle"
+              rules={{ required: true, maxLength: 50 }}
+              name="fieldObj.introTitle"
               control={control}
-              defaultValue={data.title}
             />
           </Title>
+          <ErrorMessage>
+            {errors.fieldObj?.introContents?.type === "required" &&
+              "First name is required"}
+          </ErrorMessage>
           <Content>
             <Label>
               <Font>포트폴리오 소개글(0/200)</Font>
@@ -71,20 +88,30 @@ function Introduce() {
               render={({ field }) => (
                 <InputCustomTextarea
                   type="text"
+                  size={10}
+                  maxLength={200}
                   style={{ border: "none", background: "white" }}
                   {...field}
                 />
               )}
-              name="introContents"
+              rules={{ required: true, maxLength: 200 }}
+              name="fieldObj.introContents"
               control={control}
-              defaultValue={data.contents}
             />
           </Content>
         </FormContents>
+        <input type="submit" />
       </form>
     </>
   );
 }
+
+export const ErrorMessage = styled.p`
+  width: 20vw;
+  margin-left: auto;
+  color: #f00;
+  font-size: 12px;
+`;
 
 const InputCustom = styled.textarea`
   width: 100%;
