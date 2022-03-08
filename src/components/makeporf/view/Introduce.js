@@ -2,12 +2,11 @@ import { InputUnstyled } from "@mui/base";
 import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom } from '../shared/_sharedStyle';
-import { actionCreators as userActions } from '../../../redux/modules/user';
+import { InputCustom } from "../shared/_sharedStyle";
+import { actionCreators as userActions } from "../../../redux/modules/user";
 function Introduce() {
   const dispatch = useDispatch();
   const defaultValues = {};
@@ -15,42 +14,43 @@ function Introduce() {
     handleSubmit,
     formState: { errors },
     control,
-    setValue,
-    setError,
   } = useForm({ defaultValues });
 
-  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.user);
 
-  const introduceData = useSelector((state) => state.introduce);
+  const [data, setData] = useState({});
+
   const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData.fieldObj;
+    const { introTitle, introContents } = oldData;
     const data = {
       title: introTitle,
       contents: introContents,
     };
+    apis.introPorf(data);
   };
 
   useEffect(() => {
-    apis
-      .introPorfGet(userInfo.porfId)
-      .then((res) => {
-        console.log(res.data.data)
-        setData(res.data.data)
-      });
+    apis.introPorfGet(userInfo.porfId).then((res) => {
+      console.log(res.data.data);
+      setData(res.data.data);
+    });
     return handleSubmit(introSubmit);
   }, []);
 
+  console.log(data);
   return (
     <>
       <FormTitle>
         <FormText>포트폴리오 정보</FormText>
       </FormTitle>
+
       <form onSubmit={handleSubmit(introSubmit)}>
         <FormContents>
-
           <Content>
             <Label>
-              <Font>포트폴리오 제목<br></br>(0/50)</Font>
+              <Font>
+                포트폴리오 제목<br></br>(0/50)
+              </Font>
             </Label>
             <Controller
               render={({ field }) => (
@@ -61,14 +61,15 @@ function Introduce() {
                   defaultValue={data.title}
                 />
               )}
-              rules={{ required: true, maxLength: 50 }}
-              name="fieldObj.introTitle"
+              name="introTitle"
               control={control}
             />
           </Content>
           <MultiContent>
             <Label>
-              <Font>포트폴리오 소개글 <br></br>(0/2000)</Font>
+              <Font>
+                포트폴리오 소개글 <br></br>(0/2000)
+              </Font>
             </Label>
             <Controller
               render={({ field }) => (
@@ -79,24 +80,32 @@ function Introduce() {
                   defaultValue={data.contents}
                 />
               )}
-              rules={{ required: true, maxLength: 200 }}
-              name="fieldObj.introContents"
+              name="introContents"
               control={control}
             />
           </MultiContent>
         </FormContents>
-        <input type="submit" />
       </form>
     </>
   );
 }
 
-export const ErrorMessage = styled.p`
-  width: 20vw;
-  margin-left: auto;
-  color: #f00;
-  font-size: 12px;
-`;
+// const InputCustom = styled.textarea`
+//   width: 100%;
+//   height: 19px;
+//   border-radius: 10px;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 15px 15px;
+//   margin: auto;
+// `;
+
+// const InputCustomTextarea = styled.textarea`
+//   height: 100px;
+//   width: 100%;
+//   border-radius: 10px;
+//   justify-content: center;
+// `;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -128,9 +137,9 @@ export const FormContents = styled.div`
 `;
 
 export const MultiContent = styled.div`
-display: flex;
-flex-direction: row;
-margin: 0px 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px;
 `;
 
 export const Content = styled.div`
@@ -152,7 +161,6 @@ export const Label = styled.div`
 `;
 
 export const Font = styled.div`
-
   /* body1 */
   font-family: Pretendard;
   font-style: normal;
@@ -164,7 +172,7 @@ export const Font = styled.div`
   /* C1 */
 
   color: #333333;
-  
+
   margin: 10px;
 
   /* Inside auto layout */
