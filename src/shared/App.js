@@ -13,9 +13,9 @@ function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
 
-  useEffect(() => {
-    dispatch(userActions.userInfoDB());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(userActions.userInfoDB());
+  // }, []);
 
   return (
     <>
