@@ -29,7 +29,7 @@ function Template() {
     setTemplate(null);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <>
@@ -77,7 +77,6 @@ const Save = styled(Next)`
 
 const TemplateSelector = styled.div`
   display: flex;
-  margin: 20px 32px;
   justify-content: center;
   align-items: center;
 `;
@@ -85,16 +84,14 @@ const TemplateSelector = styled.div`
 const BottomNav = styled.div`
   border-bottom: 1px solid black;
   display: fixed;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
-  width: auto;
-  min-width: 1440px;
+  width: 100%;
+  min-width: 768px;
   height: 100px;
   margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
+  
   bottom: 0px;
   background: #999999;
 `;

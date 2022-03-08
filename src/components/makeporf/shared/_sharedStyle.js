@@ -49,32 +49,33 @@ export const FormTitle = styled.div`
   justify-content: center;
 `;
 
-export const InputCustom = styled.input`
+export const InputCustom = styled.textarea`
   width: 1120px;
   height: 19px;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   padding: 15px 15px;
+  resize: none;
+  border: none;
+  background-color: white;
 `;
 
 export const Label = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: row;
-  padding: 15px 0px;
-
-  width: 150px;
+  min-width: 150px;
   height: 49px;
   left: 0px;
-  top: 10px;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-
-  margin: 0px 50px;
+  align-items: center;
+  margin: 0px 50px 20px 50px;
+  vertical-align: middle;
 `;
 
 export const ContentForm = styled.div`
