@@ -45,9 +45,9 @@ const CareerWrite = () => {
     <form onSubmit={handleSubmit(careerSubmit)}>
       <FormContents>
         <ContentCareer>
-          <IconBox>
+          {/* <IconBox>
             <DeleteForeverIcon />
-          </IconBox>
+          </IconBox> */}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Label>
               <Font>직무 카테고리</Font>
@@ -60,7 +60,7 @@ const CareerWrite = () => {
                   {...field}
                 />
               )}
-              name="Title"
+              name="title"
               control={control}
             />
           </div>

@@ -1,20 +1,11 @@
-import React, { useRef, useState } from "react";
-import {
-  Content,
-  ContentForm,
-  FormText,
-  FormTitle,
-  InputCustom,
-} from "../../shared/_sharedStyle";
+import React from "react";
+import { Content, FormText, FormTitle } from "../../shared/_sharedStyle";
 import styled from "styled-components";
-import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import CareerShow from "./CareerShow";
 import CareerWrite from "./CareerWrite";
 
 function Career() {
-  const dispatch = useDispatch();
-
   const careers = useSelector((state) => state.career.careers);
 
   return (
@@ -28,7 +19,7 @@ function Career() {
       <CareerWrite />
       <hr />
       {careers?.map((e, i) => {
-        return <CareerShow key={i} {...e} />;
+        return <CareerShow key={i} {...e} index={i} />;
       })}
       <hr />
       <AddButton>

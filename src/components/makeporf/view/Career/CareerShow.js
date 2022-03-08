@@ -11,18 +11,23 @@ import { Content, Font, FormContents, Label } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as careerActions } from "../../../../redux/modules/career";
 
 function CareerShow(props) {
   const dispatch = useDispatch();
 
-  const { title, subTitle, contents, startTime, endTime } = props;
+  const { title, subTitle, contents, startTime, endTime, index } = props;
+
+  function handleDelete() {
+    dispatch(careerActions.deleteCareer(index));
+  }
 
   return (
     <>
       <FormContents>
         <ContentCareer>
           <IconBox>
-            <DeleteForeverIcon />
+            <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Label>
@@ -87,7 +92,6 @@ function CareerShow(props) {
               defaultValue={endTime}
             />
           </div>
-          <input type="submit" />
         </ContentCareer>
       </FormContents>
     </>
