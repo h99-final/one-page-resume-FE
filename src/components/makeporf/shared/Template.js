@@ -5,7 +5,6 @@ import styled from "styled-components";
 import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
 import { Button, Menu, MenuItem, Select } from "@mui/material";
-import { actionCreators } from "../../../redux/modules/portfolio";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
@@ -22,7 +21,6 @@ function Template() {
 
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
-    dispatch(actionCreators.setTemplate(event.currentTarget));
   };
 
   const handleClose = (event) => {

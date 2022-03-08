@@ -24,7 +24,7 @@ const formInstance = axios.create({
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
-    'content-type': 'multipart/form-data',
+    "content-type": "multipart/form-data",
     accept: "application/json",
     token: token,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
@@ -73,5 +73,7 @@ export const apis = {
   introPorf: (data) => instance.post(`porf/intro`, data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
 
-  addImg: (formData) => formInstance.put('user/profile', formData),
+  careerPorf: (data) => instance.post("/porf/career", data),
+
+  projectPorf: () => instance.get("/user/project"),
 };

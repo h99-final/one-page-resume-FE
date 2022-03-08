@@ -2,6 +2,7 @@ import { InputUnstyled } from "@mui/base";
 import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
@@ -14,19 +15,19 @@ function Introduce() {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
+    setError,
   } = useForm({ defaultValues });
 
-  const userInfo = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState({});
-
+  const introduceData = useSelector((state) => state.introduce);
   const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData;
+    const { introTitle, introContents } = oldData.fieldObj;
     const data = {
       title: introTitle,
       contents: introContents,
     };
-    apis.introPorf(data);
   };
 
   useEffect(() => {
@@ -39,13 +40,11 @@ function Introduce() {
     return handleSubmit(introSubmit);
   }, []);
 
-  console.log(data);
   return (
     <>
       <FormTitle>
         <FormText>포트폴리오 정보</FormText>
       </FormTitle>
-
       <form onSubmit={handleSubmit(introSubmit)}>
         <FormContents>
 
@@ -62,7 +61,8 @@ function Introduce() {
                   defaultValue={data.title}
                 />
               )}
-              name="introTitle"
+              rules={{ required: true, maxLength: 50 }}
+              name="fieldObj.introTitle"
               control={control}
             />
           </Content>
@@ -79,32 +79,24 @@ function Introduce() {
                   defaultValue={data.contents}
                 />
               )}
-              name="introContents"
+              rules={{ required: true, maxLength: 200 }}
+              name="fieldObj.introContents"
               control={control}
             />
           </MultiContent>
         </FormContents>
+        <input type="submit" />
       </form>
     </>
   );
 }
 
-// const InputCustom = styled.textarea`
-//   width: 100%;
-//   height: 19px;
-//   border-radius: 10px;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 15px 15px;
-//   margin: auto;
-// `;
-
-// const InputCustomTextarea = styled.textarea`
-//   height: 100px;
-//   width: 100%;
-//   border-radius: 10px;
-//   justify-content: center;
-// `;
+export const ErrorMessage = styled.p`
+  width: 20vw;
+  margin-left: auto;
+  color: #f00;
+  font-size: 12px;
+`;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -176,8 +168,6 @@ export const Font = styled.div`
   margin: 10px;
 
   /* Inside auto layout */
-
-
 `;
 
 export default Introduce;
