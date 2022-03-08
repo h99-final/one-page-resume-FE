@@ -11,7 +11,6 @@ import { Content, Font, FormContents, Label } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as porfActions } from "../../../../redux/modules/careercontent";
 
 function CareerShow(props) {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ function CareerShow(props) {
             <InputCustom
               type="text"
               style={{ border: "none", background: "white" }}
-              value={title}
+              defaultValue={title}
             />
           </div>
           <div style={{ display: "flex" }}>
@@ -42,7 +41,7 @@ function CareerShow(props) {
             <InputCustom
               type="text"
               style={{ border: "none", background: "white" }}
-              value={subTitle}
+              defaultValue={subTitle}
             />
           </div>
           <div style={{ display: "flex" }}>
@@ -50,7 +49,7 @@ function CareerShow(props) {
               <Font>직무 내용(0/100)</Font>
             </Label>
             <ContentForm>
-              {contents.map((e, i) => {
+              {contents?.map((e, i) => {
                 return <CareerContent key={i} content={e} index={i} />;
               })}
             </ContentForm>
@@ -73,7 +72,7 @@ function CareerShow(props) {
                 background: "white",
                 marginRight: "10px",
               }}
-              value={startTime}
+              defaultValue={startTime}
             />
 
             <div>~</div>
@@ -85,7 +84,7 @@ function CareerShow(props) {
                 background: "white",
                 marginLeft: "10px",
               }}
-              value={endTime}
+              defaultValue={endTime}
             />
           </div>
           <input type="submit" />

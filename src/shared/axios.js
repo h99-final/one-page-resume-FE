@@ -53,4 +53,6 @@ export const apis = {
 
   introPorf: (data) => instance.post(`porf/intro`, data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
+
+  careerPorf: (data) => instance.post("/porf/career", data),
 };

@@ -84,3 +84,14 @@ export const ContentForm = styled.div`
   align-items: flex-start;
   margin-bottom: 5px;
 `;
+
+export const Inner = styled.img`
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+`;
+
+export const Line = styled.hr``;

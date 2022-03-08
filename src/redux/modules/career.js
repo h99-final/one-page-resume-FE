@@ -4,19 +4,11 @@ import { createAction, handleActions } from "redux-actions";
 const SET_CAREER = "SET_CAREER";
 const ADD_CAREER = "ADD_CAREER";
 
-const setCareer = createAction((careers) => ({ careers }));
-const addCareer = createAction((career) => ({ career }));
+const setCareer = createAction(SET_CAREER, (careers) => ({ careers }));
+const addCareer = createAction(ADD_CAREER, (career) => ({ career }));
 
 const initialState = {
-  careers: [
-    {
-      title: "title",
-      subTitle: "subTitle",
-      contents: ["contents0", "contents1"],
-      startTime: "time",
-      endTime: "time",
-    },
-  ],
+  careers: [],
 };
 
 export default handleActions(
@@ -27,6 +19,7 @@ export default handleActions(
       }),
     [ADD_CAREER]: (state, action) =>
       produce(state, (draft) => {
+        console.log(state.careers);
         draft.careers.unshift(action.payload.career);
       }),
   },

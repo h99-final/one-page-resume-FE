@@ -12,6 +12,7 @@ import styled from "styled-components";
 import UserInfo from "../components/makeporf/view/UserInfo";
 import PreviousNext from "../components/makeporf/shared/PreviousNext";
 import Career from "../components/makeporf/view/Career/Career";
+import ProjectSelect from "../components/makeporf/view/ProjectSelect";
 
 function MakePorf() {
   const { id } = useParams();
@@ -28,7 +29,7 @@ function MakePorf() {
             {id === "info" ? <UserInfo /> : null}
             {id === "stack" ? <Stack /> : null}
             {id === "career" ? <Career /> : null}
-            {/* {id === "project" ? <SetProject /> : null} */}
+            {id === "project" ? <ProjectSelect /> : null}
           </WriteableForm>
         </WriteTemplate>
         <PreviousNext />
@@ -52,7 +53,7 @@ const WriteForm = styled.div`
     & {
       width: 80%;
       justify-content: center;
-      margin: 0px auto ;
+      margin: 0px auto;
     }
   }
   @media screen and (min-width: 834px) {

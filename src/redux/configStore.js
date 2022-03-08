@@ -4,9 +4,10 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
-import CareerContent from "./modules/careercontent";
+import CareerContent from "./modules/careerContent";
 import image from "./modules/image";
 import career from "./modules/career";
+import project from "./modules/project";
 // import Post from "./modules/post";
 // import Image from "./modules/image";
 // import Comment from "./modules/comment";
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   careerContent: CareerContent,
   image: image,
   career: career,
+  project: project,
   router: connectRouter(history),
 });
 

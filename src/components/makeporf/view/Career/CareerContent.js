@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as contentActions } from "../../../../redux/modules/careercontent";
+import { actionCreators } from "../../../../redux/modules/careerContent";
 import { InputCustom } from "../../shared/_sharedStyle";
 
 function CareerContent(props) {
   const dispatch = useDispatch();
-  const { content, index } = props;
+  const { content, index, id } = props;
 
   const defaultValues = {};
   const {
@@ -13,10 +14,15 @@ function CareerContent(props) {
     control,
   } = useForm({ defaultValues });
 
+  const [value, setValue] = useState("");
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    dispatch(actionCreators.updateContent(e.target.value, index));
+  };
+
   const deleteContent = (e) => {
     console.log(index);
-    // e.preventDefault();
-    dispatch(contentActions.deleteContent(index));
+    dispatch(actionCreators.deleteContent(id));
   };
 
   return (
@@ -29,8 +35,9 @@ function CareerContent(props) {
             background: "white",
             marginTop: "15px",
           }}
+          defaultValue={content}
           value={content}
-          disabled
+          onChange={handleChange}
         />
         <div onClick={deleteContent}>-</div>
       </div>
