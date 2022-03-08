@@ -43,7 +43,7 @@ function Stack() {
   return (
     <>
 
-      <div style={{ width: "1120px" }}>
+      <div style={{ width: "98%", margin: "0px 10px 0px 10px" }}>
 
         {stack.length > 3 ? (
           <p style={{ fontSize: "12px", color: "red" }}>
@@ -102,8 +102,8 @@ function Stack() {
 
 const StackBox = styled.div`
   margin: 10px 0px;
-  width: 1120px;
-  height: 160px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
   border: 1px solid #cccccc;
   background-color: white;

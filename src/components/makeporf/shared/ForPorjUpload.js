@@ -9,7 +9,7 @@ function FileUpload() {
   const tokencheck = document.cookie;
   const token = tokencheck.split("=")[1];
   const [Images, setImages] = useState([])
-  const [img, setImg] = useState("");
+
 
   const dropHandler = (files) => {
 
@@ -25,7 +25,6 @@ function FileUpload() {
       .then(response => {
         if (response.data) {
           setImages([...Images, response.data.data.img])
-          setImg(response.data.data.img)
         } else {
           alert('파일 저장 실패')
         }
@@ -36,39 +35,28 @@ function FileUpload() {
   return (
     <ProfileBox style={{ display: "flex", }}>
       <Dropzone onDrop={dropHandler}>
-
-        {({ getRootProps, getInputProps, isDragActive }) => (
+        {({ getRootProps, getInputProps }) => (
           <section>
-
             <Inner
               {...getRootProps()}>
-              {isDragActive ? (
-                <p>여기에 올려놓으세요</p>
-              ) : (
-                <p>여기에 파일을 드래그하거나 <br />클릭하여 이미지를 등록해주세요</p>
-              )}
-              <Image>
-                <img
-                  style={{ borderRadius: "10px" }}
-                  width='100%'
-                  alt=''
-                  src={img}
-                />
-              </Image>
               <input {...getInputProps()} />
             </Inner>
-
           </section>
-
         )}
-
       </Dropzone>
 
       {/* Dropzone옆에 올린 파일 보여지는 곳 */}
 
-      {/* {Images.map((image, index) => ( */}
-
-      {/* ))} */}
+      {Images.map((image, index) => (
+        <Image>
+          <img
+            style={{ borderRadius: "10px" }}
+            width='250px'
+            alt=''
+            src={image}
+          />
+        </Image>
+      ))}
 
 
     </ProfileBox>
@@ -76,7 +64,12 @@ function FileUpload() {
 }
 
 const ProfileBox = styled.div`
-  
+  margin: 10px 0px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  background-color: white;
 `;
 const Inner = styled.div`
   width: 250px;
@@ -85,14 +78,7 @@ const Inner = styled.div`
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
-  background-color: white;
-  p{
-    position: relative;
-    top: 45%;
-    text-align: center;
-    padding: 0px 10px;
-    z-index: 1;
-  }
+  background-color: #555555;
 `;
 
 const Image = styled.div`
@@ -100,12 +86,5 @@ const Image = styled.div`
   margin: 10px;
   border-radius: 10px;
   background: #333333;
-  z-index: 2;
-  img{
-    :hover{
-      border: 5px solid;
-    }
-  }
 `;
-
 export default FileUpload

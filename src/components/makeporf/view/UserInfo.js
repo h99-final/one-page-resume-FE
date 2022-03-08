@@ -68,15 +68,74 @@ function UserInfo() {
           <Label>
             <Font>프로필 이미지</Font>
           </Label>
-          {/* <Controller
-            render={({ field }) => <FileUpload {...field} />}
-            name="job"
-            control={control}
-            defaultValue="abc"
-          /> */}
           <FileUpload />
         </Content>
+        <Content>
+          <Label>
+            <Font>전화번호</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                style={{ border: "none", background: "white" }}
+                {...field}
+              />
+            )}
+            name="phone"
+            control={control}
+            defaultValue="abc"
+          />
+        </Content>
+        <Content>
+          <Label>
+            <Font>이메일</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                style={{ border: "none", background: "white" }}
+                {...field}
+              />
+            )}
+            name="email"
+            control={control}
+            defaultValue="abc"
+          />
+        </Content>
+        <Content>
+          <Label>
+            <Font>GitHub URL</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                style={{ border: "none", background: "white" }}
+                {...field}
+              />
+            )}
+            name="gitUrl"
+            control={control}
+            defaultValue="abc"
+          />
+        </Content>
+        <Content>
+          <Label>
+            <Font>Blog URL</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                style={{ border: "none", background: "white" }}
+                {...field}
+              />
+            )}
+            name="blogUrl"
+            control={control}
+            defaultValue="abc"
+          />
+        </Content>
       </UserInfoForm>
+
     </>
   );
 }
@@ -96,7 +155,7 @@ const UserInfoForm = styled.div`
   flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 15px 0px;
+  margin: 10px 0px;
 `;
 
 export default UserInfo;

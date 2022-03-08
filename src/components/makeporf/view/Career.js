@@ -113,7 +113,9 @@ const ContentCareer = styled(Content)`
   flex-direction: column;
 `;
 
-const InputCustomTextarea = styled(InputCustom)``;
+const InputCustomTextarea = styled(InputCustom)`
+  width:100%;
+`;
 
 const FormTitleFlex = styled(FormTitle)`
   display: flex;

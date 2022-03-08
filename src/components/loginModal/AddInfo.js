@@ -365,7 +365,7 @@ const ContinueBtn = styled.button`
   height: 42px;
   border-radius: 25px;
   font-size: 14px;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 30px;
   border: none;
   color: white;
@@ -385,7 +385,7 @@ const CloseBtn = styled.button`
   height: 42px;
   border-radius: 30px;
   font-size: 14px;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border: none;
   color: white;
   background-color: #999999;
