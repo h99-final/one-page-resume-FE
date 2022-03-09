@@ -17,6 +17,9 @@ function App() {
     dispatch(userActions.userInfoDB());
   }, []);
 
+  localStorage.setItem("userInfo", JSON.stringify(userInfo))
+  console.log(JSON.parse(localStorage.getItem("userInfo")))
+
   return (
     <>
       <GlobalStyle />
