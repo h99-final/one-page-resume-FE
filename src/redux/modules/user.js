@@ -38,7 +38,7 @@ const loginDB = (email, password) => {
         if (res.data.data.isFirstLogin === true) {
           console.log(res.data.data.isFirstLogin);
         } else {
-          window.location.reload();
+          history.push("/");
         }
       })
       .catch((error) => alert("회원정보가 일치하지 않습니다."));
@@ -65,6 +65,7 @@ const userInfoDB = () => {
       .then(function (res) {
         console.log(res.data.data);
         dispatch(setUser(res.data.data));
+        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
       .catch(function (error) {
         console.log(error);

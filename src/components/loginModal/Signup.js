@@ -8,7 +8,6 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import { setCookie } from "../../shared/cookie";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 

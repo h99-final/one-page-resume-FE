@@ -1,5 +1,6 @@
 import { produce } from "immer";
 import { createAction, handleActions } from "redux-actions";
+import { apis } from "../../shared/axios";
 
 const SET_CAREER = "SET_CAREER";
 const ADD_CAREER = "ADD_CAREER";
@@ -12,7 +13,29 @@ const deleteCareer = createAction(DELETE_CAREER, (careerIndex) => ({
 }));
 
 const initialState = {
-  careers: [],
+  careers: {},
+};
+
+const setCareerDB = (porfId) => {
+  return async function (dispatch, getState, { history }) {
+    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    await apis
+      .careerPorfGet(porfId)
+      .then((res) => {
+        dispatch(setCareer(res.data.data));
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+};
+
+const addCareerDB = (career) => {
+  return async function (dispatch, getState, { history }) {
+    await apis.careerPorf(career).then((res) => {
+      console.log(res.data.data);
+    });
+  };
 };
 
 export default handleActions(
@@ -40,6 +63,8 @@ const actionCreators = {
   setCareer,
   addCareer,
   deleteCareer,
+  setCareerDB,
+  addCareerDB,
 };
 
 export { actionCreators };

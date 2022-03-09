@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const tokencheck = document.cookie;
-const token = tokencheck.split("=")[1];
+const token = tokencheck.split(";")[1];
 
 const search = localStorage.getItem("search");
 
@@ -33,6 +33,7 @@ const formInstance = axios.create({
 
 instance.interceptors.request.use(function (config) {
   const accesstoken = document.cookie.split("=")[1];
+  console.log(accesstoken);
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });
@@ -62,16 +63,15 @@ export const apis = {
 
   addInfo: (data) => instance.post("/user/info", data),
   userInfo: () => instance.get("user/info"),
-
   putInfo: (data) => instance.put("user/info", data),
 
   introPorf: (data) => instance.put(`porf/intro`, data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
 
   careerPorf: (data) => instance.post("/porf/career", data),
+  careerPorfGet: (porfId) => instance.get(`/porf/${porfId}/career`),
 
   projectPorf: () => instance.get("/user/project"),
 
   addImg: (formData) => formInstance.put("user/profile", formData),
-
 };

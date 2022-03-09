@@ -54,6 +54,7 @@ function Introduce() {
                 포트폴리오 제목<br></br>(0/50)
               </Font>
             </Label>
+
             <Controller
               render={({ field }) => (
                 <InputCustom
@@ -61,12 +62,27 @@ function Introduce() {
                   style={{}}
                   {...field}
                   defaultValue={data?.title}
+                  placeholder={errors?.title?.message}
+                  maxLength={50}
                 />
               )}
+              rules={{
+                required: "제목을 입력해주세요.",
+                maxLength: {
+                  value: 50,
+                  message: "50자 제한 입니다.",
+                },
+                minLength: {
+                  value: 5,
+                  message: "제목이 너무 짧습니다.",
+                },
+              }}
               name="title"
               control={control}
             />
+            <ErrorMessage>{errors?.title?.message}</ErrorMessage>
           </Content>
+
           <MultiContent>
             <Label>
               <Font>
@@ -82,16 +98,41 @@ function Introduce() {
                   defaultValue={data?.contents}
                 />
               )}
+              rules={{
+                required: "소개글을 입력해주세요.",
+                maxLength: {
+                  value: 500,
+                  message: "500자 제한 입니다.",
+                },
+                minLength: {
+                  value: 50,
+                  message: "소개글이 너무 짧습니다.",
+                },
+              }}
               name="contents"
               control={control}
             />
+            <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
           </MultiContent>
         </FormContents>
+        <input type="submit" value="ToDo" />
       </form>
-
     </>
   );
 }
+
+const ErrorMessage = styled.span`
+  font-family: Pretendard;
+  font-size: 12px;
+  color: #f00;
+
+  padding: 10px 5px;
+
+  display: relative;
+  width: 100%;
+  max-width: 120px;
+  margin-left: auto;
+`;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -123,7 +164,6 @@ export const FormContents = styled.div`
 `;
 
 export const MultiContent = styled.div`
-
   display: flex;
   flex-direction: row;
   margin: 0px 50px;
@@ -163,8 +203,6 @@ export const Font = styled.div`
   margin: 10px;
 
   /* Inside auto layout */
-
-
 `;
 
 export default Introduce;
