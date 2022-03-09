@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Content, FormText, FormTitle } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import CareerShow from "./CareerShow";
 import CareerWrite from "./CareerWrite";
+import { actionCreators as careerActions } from "../../../../redux/modules/career";
 
 function Career() {
-  const careers = useSelector((state) => state.career.careers);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    dispatch(careerActions.setCareerDB(porfId));
+  }, []);
+
+  const careers = useSelector((state) => state.career.careers.careers);
+  console.log(careers);
   return (
     <>
       <FormTitleFlex>
@@ -18,9 +26,9 @@ function Career() {
       </FormTitleFlex>
       <CareerWrite />
       <hr />
-      {/* {careers?.map((e, i) => {
+      {careers?.map((e, i) => {
         return <CareerShow key={i} {...e} index={i} />;
-      })} */}
+      })}
       <hr />
     </>
   );

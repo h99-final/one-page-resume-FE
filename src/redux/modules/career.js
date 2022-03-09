@@ -13,7 +13,14 @@ const deleteCareer = createAction(DELETE_CAREER, (careerIndex) => ({
 }));
 
 const initialState = {
-  careers: {},
+  careers: [
+    {
+      id: "id",
+      title: "title",
+      subTitle: "title",
+      contents: ["contents0", "contents1"],
+    },
+  ],
 };
 
 const setCareerDB = (porfId) => {

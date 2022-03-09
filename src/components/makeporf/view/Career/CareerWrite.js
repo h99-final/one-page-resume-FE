@@ -65,11 +65,6 @@ const CareerWrite = () => {
     }
   };
 
-  useEffect(() => {
-    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
-    dispatch(careerActions.setCareerDB(porfId));
-  }, []);
-
   return (
     <>
       <form onSubmit={handleSubmit(careerSubmit)}>
