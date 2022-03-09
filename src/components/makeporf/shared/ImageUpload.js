@@ -10,6 +10,7 @@ function FileUpload() {
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
 
@@ -43,7 +44,7 @@ function FileUpload() {
                   style={{ borderRadius: "10px" }}
                   width="100%"
                   alt=""
-                  src={img}
+                  src={img ? img : `${userInfo?.profileImage}`}
                 />
                 {isDragActive ? (
                   <Label>여기에 올려놓으세요</Label>

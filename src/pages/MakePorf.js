@@ -38,7 +38,7 @@ function MakePorf() {
   );
 }
 const WriteForm = styled.div`
-  width: 90%;
+  width: 95%;
   height: auto;
   min-width: 834px;
   min-height: 80vh;
@@ -50,7 +50,7 @@ const WriteForm = styled.div`
   background: #ffffff;
   @media screen and (min-width: 1194px) {
     & {
-      width: 80%;
+      width: 95%;
       justify-content: center;
       margin: 0px auto;
     }
