@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
-import styled from 'styled-components';
-import ClearIcon from '@mui/icons-material/Clear';
-import { grey } from '@mui/material/colors'
-
+import styled from "styled-components";
+import ClearIcon from "@mui/icons-material/Clear";
+import { grey } from "@mui/material/colors";
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
 
@@ -28,7 +27,6 @@ function Stack() {
   const [addStack, setAddStack] = useState([]);
 
   const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
-
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
@@ -55,18 +53,15 @@ function Stack() {
     <>
 
       <div style={{ width: "98%", margin: "0px 10px 0px 10px" }}>
-
         {stack.length > 3 ? (
-
           <p style={{ fontSize: "12px", color: "red", textAlign: "center" }}>
             3가지만 골라주세요
           </p>
         ) : <p style={{ color: "inherit", fontSize: "12px", textAlign: "center" }}>3가지만 골라주세요</p>}
-
         <StackBox>
           {defaultStack.map((s, index) => {
             return (
-              <StyledBox>
+              <StyledBox key={index}>
                 <input
                   type="checkbox"
                   id={s}
@@ -85,7 +80,7 @@ function Stack() {
                   </span>
                 </label>
               </StyledBox>
-            )
+            );
           })}
         </StackBox>
         <SelectBox>
@@ -100,12 +95,16 @@ function Stack() {
         <StackBox>
           {addStack.map((addStack, index) => {
             return (
-              <SelectStack key={index}{...addStack}>
+              <SelectStack key={index} {...addStack}>
                 {addStack}
                 <ClearIcon
-                  sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }} onClick={() => { alert("@@") }}></ClearIcon>
+                  sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
+                  onClick={() => {
+                    alert("@@");
+                  }}
+                ></ClearIcon>
               </SelectStack>
-            )
+            );
           })}
         </StackBox>
       </div>

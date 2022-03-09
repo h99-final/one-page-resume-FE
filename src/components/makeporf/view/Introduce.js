@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 import { InputCustom } from '../shared/_sharedStyle';
 import { actionCreators as userActions } from '../../../redux/modules/user';
+import Template from '../shared/Template';
 function Introduce() {
   const dispatch = useDispatch();
   const defaultValues = {};
@@ -85,6 +86,7 @@ function Introduce() {
           </MultiContent>
         </FormContents>
       </form>
+
     </>
   );
 }
@@ -124,6 +126,7 @@ export const MultiContent = styled.div`
 display: flex;
 flex-direction: row;
 margin: 0px 50px;
+
 `;
 
 export const Content = styled.div`

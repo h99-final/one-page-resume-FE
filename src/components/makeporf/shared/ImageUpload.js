@@ -1,9 +1,9 @@
+
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
 import { apis } from '../../../shared/axios';
 import styled from 'styled-components';
-
 function FileUpload() {
 
   const tokencheck = document.cookie;
@@ -35,7 +35,6 @@ function FileUpload() {
 
   return (
     <>
-
       <Dropzone onDrop={dropHandler}>
         {({ getRootProps, getInputProps, isDragActive }) => (
           <>
@@ -58,6 +57,7 @@ function FileUpload() {
               </Image>
               <input {...getInputProps()} />
             </Inner>
+
           </>
         )}
       </Dropzone>
