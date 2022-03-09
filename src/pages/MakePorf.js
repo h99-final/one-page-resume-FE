@@ -38,11 +38,11 @@ function MakePorf() {
   );
 }
 const WriteForm = styled.div`
-  width: 80%;
+  width: 90%;
   height: auto;
   min-width: 834px;
   min-height: 80vh;
-
+  
   display: block;
   justify-content: center;
   margin: 0px auto;
@@ -86,6 +86,6 @@ export const WriteableForm = styled.div`
   order: 1;
   flex-grow: 0;
   margin: 0px;
-  padding-bottom: 80px;
+  padding-bottom: 10px;
 `;
 export default MakePorf;

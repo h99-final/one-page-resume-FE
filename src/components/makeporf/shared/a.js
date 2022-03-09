@@ -42,7 +42,7 @@ function FileUpload() {
               <Inner src={preview ? preview : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"}>
 
               </Inner>
-              <Font style={{ position: "relative" }} >Drag files to upload</Font>
+              <Font style={{ position: "relative" }} >Dragg files to upload</Font>
             </label>
           </Image>
 

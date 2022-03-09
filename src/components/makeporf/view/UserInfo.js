@@ -148,6 +148,7 @@ margin: 0px 50px 0px 50px;
 `;
 
 const UserInfoForm = styled.div`
+  
   flex-direction: column;
   align-items: center;
   padding: 0px;

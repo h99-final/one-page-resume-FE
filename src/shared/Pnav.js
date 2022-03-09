@@ -7,7 +7,6 @@ import { deleteCookie } from './cookie';
 const Pnav = (props) => {
 
   const user = document.cookie
-
   // props.nav (false or true)
   const navState = props.pnav
 
@@ -22,7 +21,7 @@ const Pnav = (props) => {
   // SignOut
   const signOut = () => {
     setPnav(false)
-    deleteCookie(user)
+    deleteCookie("token")
     window.location.reload()
   }
 

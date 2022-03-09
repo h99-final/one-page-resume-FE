@@ -76,4 +76,6 @@ export const apis = {
   careerPorf: (data) => instance.post("/porf/career", data),
 
   projectPorf: () => instance.get("/user/project"),
+
+  addImg: (formData) => formInstance.put('user/profile', formData),
 };

@@ -4,14 +4,16 @@ import {
   FormText,
   FormTitle,
   InputCustom,
+  Label,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Content, Font, FormContents, Label } from "../Introduce";
+import { Content, Font, FormContents } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
+import { MultiContent } from './CareerWrite';
 
 function CareerShow(props) {
   const dispatch = useDispatch();
@@ -25,98 +27,73 @@ function CareerShow(props) {
   return (
     <>
       <FormContents>
-        <ContentCareer>
-          <IconBox>
-            <DeleteForeverIcon onClick={handleDelete} />
-          </IconBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Label>
-              <Font>직무 카테고리</Font>
-            </Label>
-            <InputCustom
-              type="text"
-              style={{ border: "none", background: "white" }}
-              defaultValue={title}
-            />
-          </div>
-          <div style={{ display: "flex" }}>
-            <Label>
-              <Font>직무 경험</Font>
-            </Label>
-            <InputCustom
-              type="text"
-              style={{ border: "none", background: "white" }}
-              defaultValue={subTitle}
-            />
-          </div>
-          <div style={{ display: "flex" }}>
-            <Label>
-              <Font>직무 내용(0/100)</Font>
-            </Label>
-            <ContentForm>
-              {contents?.map((e, i) => {
-                return <CareerContent key={i} content={e} index={i} />;
-              })}
-            </ContentForm>
-          </div>
-          <div
+        <IconBox>
+          <DeleteForeverIcon onClick={handleDelete} />
+        </IconBox>
+        <Content>
+          <Label>
+            <Font>직무 카테고리</Font>
+          </Label>
+          <InputCustom
+            type="text"
+            style={{ border: "none", background: "white" }}
+            defaultValue={title}
+          />
+        </Content>
+        <Content>
+          <Label>
+            <Font>직무 경험</Font>
+          </Label>
+          <InputCustom
+            type="text"
+            style={{ border: "none", background: "white" }}
+            defaultValue={subTitle}
+          />
+        </Content>
+        <MultiContent>
+          <Label>
+            <Font>직무 내용(0/100)</Font>
+          </Label>
+
+          {contents?.map((e, i) => {
+            return <CareerContent key={i} content={e} index={i} />;
+          })}
+        </MultiContent>
+        <Content
+        >
+          <Label>
+            <Font>활동 기간</Font>
+          </Label>
+
+          <InputCustomDate
+            type="text"
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              border: "none",
+              background: "white",
+              marginRight: "10px",
             }}
-          >
-            <Label>
-              <Font>활동 기간</Font>
-            </Label>
+            defaultValue={startTime}
+          />
 
-            <InputCustomDate
-              type="text"
-              style={{
-                border: "none",
-                background: "white",
-                marginRight: "10px",
-              }}
-              defaultValue={startTime}
-            />
+          <div>~</div>
 
-            <div>~</div>
-
-            <InputCustomDate
-              type="text"
-              style={{
-                border: "none",
-                background: "white",
-                marginLeft: "10px",
-              }}
-              defaultValue={endTime}
-            />
-          </div>
-        </ContentCareer>
+          <InputCustomDate
+            type="text"
+            style={{
+              border: "none",
+              background: "white",
+              marginLeft: "10px",
+            }}
+            defaultValue={endTime}
+          />
+        </Content>
       </FormContents>
     </>
   );
 }
 
 const InputCustomDate = styled(InputCustom)`
-  width: 8vw;
-`;
-
-const ContentCareer = styled(Content)`
-  display: flex;
-  flex-direction: column;
-`;
-
-const InputCustomTextarea = styled(InputCustom)``;
-
-const FormTitleFlex = styled(FormTitle)`
-  display: flex;
-  justify-content: flex-start;
-`;
-
-const FormTextSpan = styled(FormText)`
-  font-size: 16px;
-  width: 100%;
+  width: 8vh;
 `;
 
 const IconBox = styled.div`

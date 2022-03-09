@@ -2,12 +2,12 @@ import { InputUnstyled } from "@mui/base";
 import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 import { InputCustom } from '../shared/_sharedStyle';
 import { actionCreators as userActions } from '../../../redux/modules/user';
+import Template from '../shared/Template';
 function Introduce() {
   const dispatch = useDispatch();
   const defaultValues = {};
@@ -15,19 +15,19 @@ function Introduce() {
     handleSubmit,
     formState: { errors },
     control,
-    setValue,
-    setError,
   } = useForm({ defaultValues });
 
-  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.user);
 
-  const introduceData = useSelector((state) => state.introduce);
+  const [data, setData] = useState({});
+
   const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData.fieldObj;
+    const { introTitle, introContents } = oldData;
     const data = {
       title: introTitle,
       contents: introContents,
     };
+    apis.introPorf(data);
   };
 
   useEffect(() => {
@@ -40,11 +40,13 @@ function Introduce() {
     return handleSubmit(introSubmit);
   }, []);
 
+  console.log(data);
   return (
     <>
       <FormTitle>
         <FormText>포트폴리오 정보</FormText>
       </FormTitle>
+
       <form onSubmit={handleSubmit(introSubmit)}>
         <FormContents>
 
@@ -61,8 +63,7 @@ function Introduce() {
                   defaultValue={data.title}
                 />
               )}
-              rules={{ required: true, maxLength: 50 }}
-              name="fieldObj.introTitle"
+              name="introTitle"
               control={control}
             />
           </Content>
@@ -79,24 +80,18 @@ function Introduce() {
                   defaultValue={data.contents}
                 />
               )}
-              rules={{ required: true, maxLength: 200 }}
-              name="fieldObj.introContents"
+              name="introContents"
               control={control}
             />
           </MultiContent>
         </FormContents>
-        <input type="submit" />
       </form>
+
     </>
   );
 }
 
-export const ErrorMessage = styled.p`
-  width: 20vw;
-  margin-left: auto;
-  color: #f00;
-  font-size: 12px;
-`;
+
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -123,7 +118,7 @@ const FormText = styled.div`
 export const FormContents = styled.div`
   flex-direction: column;
   align-items: center;
-  padding: 0px;
+  padding-bottom: 50px;
   height: 100%;
 `;
 
@@ -131,6 +126,7 @@ export const MultiContent = styled.div`
 display: flex;
 flex-direction: row;
 margin: 0px 50px;
+
 `;
 
 export const Content = styled.div`
@@ -168,6 +164,8 @@ export const Font = styled.div`
   margin: 10px;
 
   /* Inside auto layout */
+
+
 `;
 
 export default Introduce;

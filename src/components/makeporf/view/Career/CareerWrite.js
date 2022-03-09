@@ -5,12 +5,13 @@ import {
   ContentForm,
   InputCustom,
   MakeCenter,
+  Label
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { FormContents } from "../Introduce";
-import { ContentCareer } from "../../shared/_sharedStyle";
+import { Content, ContentCareer } from "../../shared/_sharedStyle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Content, Font, Label } from "../Introduce";
+import { Font } from "../Introduce";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as contentActions } from "../../../../redux/modules/careerContent";
@@ -50,118 +51,107 @@ const CareerWrite = () => {
   return (
     <>
       <form onSubmit={handleSubmit(careerSubmit)}>
-        <FormContents>
-          <ContentCareer>
-            {/* <IconBox>
+        {/* <IconBox>
             <DeleteForeverIcon />
           </IconBox> */}
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Label>
-                <Font>직무 카테고리</Font>
-              </Label>
-              <Controller
-                render={({ field }) => (
-                  <InputCustom
-                    type="text"
-                    style={{ border: "none", background: "white" }}
-                    {...field}
-                  />
-                )}
-                name="title"
-                control={control}
+        <Content >
+          <Label>
+            <Font>직무 카테고리</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                type="text"
+                style={{ border: "none", background: "white" }}
+                {...field}
               />
-            </div>
-            <div style={{ display: "flex" }}>
-              <Label>
-                <Font>직무 경험</Font>
-              </Label>
-              <Controller
-                render={({ field }) => (
-                  <InputCustom
-                    type="text"
-                    style={{ border: "none", background: "white" }}
-                    {...field}
-                  />
-                )}
-                name="subTitle"
-                control={control}
+            )}
+            name="title"
+            control={control}
+          />
+        </Content>
+        <Content>
+          <Label>
+            <Font>직무 경험</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                type="text"
+                style={{ border: "none", background: "white" }}
+                {...field}
               />
-            </div>
-            <div style={{ display: "flex" }}>
-              <Label>
-                <Font>직무 내용(0/100)</Font>
-              </Label>
-              <ContentForm>
-                <Controller
-                  render={({ field }) => (
-                    <InputCustomTextarea
-                      type="text"
-                      style={{ border: "none", background: "white" }}
-                      {...field}
-                      ref={content}
-                    />
-                  )}
-                  name="contents"
-                  control={control}
-                  // defaultValue="abc"
-                />
-                {contents.map((e, i) => {
-                  return (
-                    <CareerContent
-                      key={i}
-                      content={e.content}
-                      id={e.id}
-                      index={i}
-                    />
-                  );
-                })}
-              </ContentForm>
-              <div onClick={contentsAdd}>+</div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Label>
-                <Font>활동 기간</Font>
-              </Label>
-              <Controller
-                render={({ field }) => (
-                  <InputCustomDate
-                    type="text"
-                    style={{
-                      border: "none",
-                      background: "white",
-                      marginRight: "10px",
-                    }}
-                    {...field}
-                  />
-                )}
-                name="startTime"
-                control={control}
+            )}
+            name="subTitle"
+            control={control}
+          />
+        </Content>
+        <MultiContent>
+          <Label>
+            <Font>직무 내용(0/100)</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustom
+                type="text"
+                style={{ marginBottom: "20px", height: "40px" }}
+                {...field}
+                ref={content}
               />
-              <div>~</div>
-              <Controller
-                render={({ field }) => (
-                  <InputCustomDate
-                    type="text"
-                    style={{
-                      border: "none",
-                      background: "white",
-                      marginLeft: "10px",
-                    }}
-                    {...field}
-                  />
-                )}
-                name="endTime"
-                control={control}
+            )}
+            name="contents"
+            control={control}
+          // defaultValue="abc"
+          />
+
+          <span onClick={contentsAdd}>+</span>
+        </MultiContent>
+        {contents.map((e, i) => {
+          return (
+            <CareerContent
+              key={i}
+              content={e.content}
+              id={e.id}
+              index={i}
+            />
+          );
+        })}
+        <Content>
+          <Label style={{ minWidth: "150px" }}>
+            <Font>활동 기간</Font>
+          </Label>
+          <Controller
+            render={({ field }) => (
+              <InputCustomDate
+                type="text"
+                style={{
+                  border: "none",
+                  background: "white",
+                  marginRight: "10px",
+                }}
+                {...field}
               />
-            </div>
-          </ContentCareer>
-        </FormContents>
+            )}
+            name="startTime"
+            control={control}
+          />
+          <div>~</div>
+          <Controller
+            render={({ field }) => (
+              <InputCustomDate
+                type="text"
+                style={{
+                  border: "none",
+                  background: "white",
+                  marginLeft: "10px",
+                }}
+                {...field}
+              />
+            )}
+            name="endTime"
+            control={control}
+          />
+        </Content>
       </form>
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={handleSubmit(careerSubmit)}>
@@ -179,5 +169,15 @@ const InputCustomDate = styled(InputCustom)`
 `;
 
 const InputCustomTextarea = styled(InputCustom)``;
-
+export const MultiContent = styled.div`
+display: flex;
+flex-direction: row;
+margin: 0px 50px;
+  span{
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    height: 70px;
+  }
+`;
 export default CareerWrite;
