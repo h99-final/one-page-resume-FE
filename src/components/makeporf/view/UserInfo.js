@@ -11,6 +11,8 @@ import {
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
+import { SettingsOverscanOutlined } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 function UserInfo() {
   const defaultValues = {};
@@ -19,18 +21,38 @@ function UserInfo() {
     handleSubmit,
     formState: { errors },
     control,
+    onChange,
+    setValue,
   } = useForm({ defaultValues });
 
   const [data, setData] = useState({});
 
+  const userInfo = useSelector((state) => state.user.user);
+
   const onValid = (data) => {
-    console.log(data);
+    const stack = userInfo.stack;
+    const _data = { ...data, stack };
+    apis.addInfo(_data).then((res) => {
+      console.log(res);
+    });
   };
 
   useEffect(() => {
-    apis.userInfo().then((res) => {
-      setData(res.data.data);
-    });
+    apis
+      .userInfo()
+      .then((res) => {
+        const { name, job, phoneNum, gitUrl, email, blogUrl } = res.data.data;
+        setData(res.data.data);
+        setValue("name", name);
+        setValue("job", job);
+        setValue("phoneNum", phoneNum);
+        setValue("gitUrl", gitUrl);
+        setValue("email", email);
+        setValue("blogUrl", blogUrl);
+      })
+      .catch((error) => {
+        setValue(null);
+      });
   }, []);
 
   return (
@@ -48,9 +70,10 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
-                defaultValue={data.name}
+                defaultValue={data?.name}
               />
             )}
+            onChange={onChange}
             name="name"
             control={control}
           />
@@ -64,7 +87,7 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
-                defaultValue={data.job}
+                defaultValue={data?.job}
               />
             )}
             name="job"
@@ -86,10 +109,10 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
-                defaultValue={data.phoneNum}
+                defaultValue={data?.phoneNum}
               />
             )}
-            name="phone"
+            name="phoneNum"
             control={control}
           />
         </Content>
@@ -102,7 +125,7 @@ function UserInfo() {
               <InputCustom
                 style={{ background: "white" }}
                 {...field}
-                defaultValue={data.email}
+                defaultValue={data?.email}
               />
             )}
             name="email"
@@ -118,7 +141,7 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
-                defaultValue={data.gitUrl}
+                defaultValue={data?.gitUrl}
               />
             )}
             name="gitUrl"
@@ -134,7 +157,7 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
-                defaultValue={data.blogUrl}
+                defaultValue={data?.blogUrl}
               />
             )}
             name="blogUrl"

@@ -60,14 +60,7 @@ export const apis = {
       passwordCheck: passwordCheck,
     }),
 
-  addInfo: (name, stack, phoneNum, gitUrl, blogUrl) =>
-    instance.post("/user/info", {
-      name: name,
-      stack: stack,
-      phoneNum: phoneNum,
-      gitUrl: gitUrl,
-      blogUrl: blogUrl,
-    }),
+  addInfo: (data) => instance.post("/user/info", data),
   userInfo: () => instance.get("user/info"),
 
   putInfo: (data) => instance.put("user/info", data),

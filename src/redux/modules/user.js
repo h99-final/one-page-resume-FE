@@ -90,10 +90,10 @@ const emailCheckDB = (email) => {
   };
 };
 
-const addInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
+const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addInfo(name, stack, phoneNum, gitURl, blogURl)
+      .addInfo(data)
       .then((res) => {})
       .catch((error) => console.log(error));
   };

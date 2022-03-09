@@ -14,6 +14,7 @@ function Introduce() {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm({ defaultValues });
 
   const userInfo = useSelector((state) => state.user.user);
@@ -30,12 +31,14 @@ function Introduce() {
     apis.userInfo().then((res) => {
       const { porfId } = res.data.data;
       apis.introPorfGet(porfId).then((res) => {
+        const { title, contents } = res.data.data;
         setData(res.data.data);
+        setValue("title", title);
+        setValue("contents", contents);
       });
     });
   }, []);
 
-  console.log(data);
   return (
     <>
       <FormTitle>
