@@ -24,4 +24,11 @@ const deleteCookie = (name) => {
   document.cookie = name + "=; expires=" + date;
 };
 
-export { getCookie, setCookie, deleteCookie };
+const resetCookie = (name) => {
+  let expireDate = new Date();
+  expireDate.setDate(expireDate.getDate() - 1);
+  document.cookie =
+    name + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+};
+
+export { getCookie, setCookie, deleteCookie, resetCookie };

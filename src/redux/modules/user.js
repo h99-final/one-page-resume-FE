@@ -1,7 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/axios";
-import { getCookie, setCookie } from "../../shared/cookie";
+import {
+  deleteCookie,
+  getCookie,
+  resetCookie,
+  setCookie,
+} from "../../shared/cookie";
 
 // actions
 const LOG_OUT = "LOG_OUT";
@@ -89,8 +94,16 @@ const addInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(name, stack, phoneNum, gitURl, blogURl)
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => console.log(error));
+  };
+};
+
+const logOutDB = () => {
+  return function (dispatch, getState, { history }) {
+    deleteCookie("token");
+    resetCookie("token");
+    history.go("/");
   };
 };
 
@@ -114,7 +127,7 @@ export default handleActions(
         draft.isFirstLogin = action.payload.status;
         console.log(action.payload.status);
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -130,6 +143,7 @@ const actionCreators = {
   emailCheckDB,
   addInfoDB,
   userInfoDB,
+  logOutDB,
 };
 
 export { actionCreators };

@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
-import { TextField } from "@mui/material";
 import {
   Content,
   FormText,
@@ -11,7 +10,7 @@ import {
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
-import { border } from '@mui/system';
+import { apis } from "../../../shared/axios";
 
 function UserInfo() {
   const defaultValues = {};
@@ -22,8 +21,16 @@ function UserInfo() {
     control,
   } = useForm({ defaultValues });
 
+  const [data, setData] = useState({});
+
+  const onValid = (data) => {
+    console.log(data);
+  };
+
   useEffect(() => {
-    console.log("axios 개인 정보 가져오기");
+    apis.userInfo().then((res) => {
+      setData(res.data.data);
+    });
   }, []);
 
   return (
@@ -31,7 +38,7 @@ function UserInfo() {
       <FormTitle>
         <FormText>내 정보</FormText>
       </FormTitle>
-      <UserInfoForm>
+      <UserInfoForm onSubmit={handleSubmit(onValid)}>
         <Content>
           <Label>
             <Font>*이름(실명)</Font>
@@ -41,11 +48,11 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
+                defaultValue={data.name}
               />
             )}
             name="name"
             control={control}
-            defaultValue="abc"
           />
         </Content>
         <Content>
@@ -57,11 +64,11 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
+                defaultValue={data.job}
               />
             )}
             name="job"
             control={control}
-            defaultValue="abc"
           />
         </Content>
         <MultiContent>
@@ -79,11 +86,11 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
+                defaultValue={data.phoneNum}
               />
             )}
             name="phone"
             control={control}
-            defaultValue="abc"
           />
         </Content>
         <Content>
@@ -94,18 +101,16 @@ function UserInfo() {
             render={({ field }) => (
               <InputCustom
                 style={{ background: "white" }}
-
                 {...field}
-
+                defaultValue={data.email}
               />
             )}
             name="email"
             control={control}
-            defaultValue="abc"
           />
         </Content>
         <Content>
-          <Label >
+          <Label>
             <Font>GitHub URL</Font>
           </Label>
           <Controller
@@ -113,11 +118,11 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
+                defaultValue={data.gitUrl}
               />
             )}
             name="gitUrl"
             control={control}
-            defaultValue="abc"
           />
         </Content>
         <Content>
@@ -129,30 +134,29 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none", background: "white" }}
                 {...field}
+                defaultValue={data.blogUrl}
               />
             )}
             name="blogUrl"
             control={control}
-            defaultValue="abc"
           />
         </Content>
+        <input type="submit" />
       </UserInfoForm>
-
     </>
   );
 }
 export const MultiContent = styled.div`
-display: flex;
-flex-direction: row;
-margin: 0px 50px 0px 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px 0px 50px;
 `;
 
-const UserInfoForm = styled.div`
+const UserInfoForm = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 0px;
   height: 100%;
 `;
-
 
 export default UserInfo;

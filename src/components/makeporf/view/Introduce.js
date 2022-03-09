@@ -20,21 +20,19 @@ function Introduce() {
 
   const [data, setData] = useState({});
 
-  const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData;
-    const data = {
-      title: introTitle,
-      contents: introContents,
-    };
-    apis.introPorf(data);
+  const introSubmit = (data) => {
+    apis.introPorf(data).then((res) => {
+      setData(res.data.data);
+    });
   };
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId).then((res) => {
-      console.log(res.data.data);
-      setData(res.data.data);
+    apis.userInfo().then((res) => {
+      const { porfId } = res.data.data;
+      apis.introPorfGet(porfId).then((res) => {
+        setData(res.data.data);
+      });
     });
-    return handleSubmit(introSubmit);
   }, []);
 
   console.log(data);
@@ -58,10 +56,10 @@ function Introduce() {
                   type="text"
                   style={{}}
                   {...field}
-                  defaultValue={data.title}
+                  defaultValue={data?.title}
                 />
               )}
-              name="introTitle"
+              name="title"
               control={control}
             />
           </Content>
@@ -77,14 +75,15 @@ function Introduce() {
                   type="text"
                   style={{ height: "200px" }}
                   {...field}
-                  defaultValue={data.contents}
+                  defaultValue={data?.contents}
                 />
               )}
-              name="introContents"
+              name="contents"
               control={control}
             />
           </MultiContent>
         </FormContents>
+        <input type="submit" />
       </form>
     </>
   );
