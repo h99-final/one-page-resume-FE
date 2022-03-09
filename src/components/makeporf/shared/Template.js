@@ -70,8 +70,8 @@ function Template() {
 
 const Save = styled(Next)`
   width: 125px;
-  height: 62px;
-  padding: 5px 50px;
+  height: 42px;
+  padding: 5px 10px;
   background-color: #cccccc;
 `;
 
@@ -89,9 +89,8 @@ const BottomNav = styled.div`
   justify-content: space-between;
   width: 100%;
   min-width: 768px;
-  height: 100px;
+  height: 70px;
   margin-top: 50px;
-  
   bottom: 0px;
   background: #999999;
 `;
