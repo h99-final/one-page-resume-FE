@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie, getCookie } from "./cookie";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { useHistory } from 'react-router-dom';
+
 // JS파일
 
 const Nav = (props) => {
@@ -47,7 +49,7 @@ const Nav = (props) => {
             설정
           </NavSet>
           <NavLog>
-            <Logout onClick={signOut}>로그아웃</Logout>
+            <Logout onClick={() => { signOut() }}>로그아웃</Logout>
           </NavLog>
         </NavBar>
       ) : null}

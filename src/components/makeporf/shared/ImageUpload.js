@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import Dropzone from "react-dropzone";
-import axios from "axios";
-import { apis } from "../../../shared/axios";
-import styled from "styled-components";
+
+import React, { useState } from 'react'
+import Dropzone from 'react-dropzone'
+import axios from 'axios'
+import { apis } from '../../../shared/axios';
+import styled from 'styled-components';
 function FileUpload() {
   const tokencheck = document.cookie;
   const token = tokencheck.split("=")[1];
@@ -32,6 +33,7 @@ function FileUpload() {
 
   return (
     <>
+
       <Dropzone onDrop={dropHandler}>
         {({ getRootProps, getInputProps, isDragActive }) => (
           <>
@@ -63,15 +65,15 @@ function FileUpload() {
 
 const ProfileBox = styled.div``;
 const Inner = styled.div`
-  width: 250px;
-  height: 250px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid;
-  overflow: hidden;
-  object-fit: cover;
-  background-color: white;
-`;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid;
+    overflow: hidden;
+    object-fit: cover;
+    
+        `;
 
 const Image = styled.div`
   width: 99%;
@@ -93,13 +95,17 @@ const Image = styled.div`
       border: 1px solid white;
       z-index: 1;
     }
-  }
+
+    
+}
 `;
 
 export const Label = styled.div`
+  position: absolute;
   align-items: center;
   text-align: center;
   flex-direction: row;
+  
   width: 99%;
   z-index: 0;
   min-width: 250px;

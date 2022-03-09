@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../../redux/modules/careerContent";
-import { InputCustom } from "../../shared/_sharedStyle";
+import { Content, InputCustom, Label } from "../../shared/_sharedStyle";
+import { Font } from '../Introduce';
 
 function CareerContent(props) {
   const dispatch = useDispatch();
@@ -27,20 +28,23 @@ function CareerContent(props) {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <Content>
+        <Label>
+          <Font></Font>
+        </Label>
         <InputCustom
           type="text"
           style={{
             border: "none",
             background: "white",
-            marginTop: "15px",
+            height: "40px",
           }}
           defaultValue={content}
           value={content}
           onChange={handleChange}
         />
         <div onClick={deleteContent}>-</div>
-      </div>
+      </Content>
     </>
   );
 }

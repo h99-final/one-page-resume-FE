@@ -11,6 +11,12 @@ export const options = [
   { value: "python", label: "python" },
   { value: "javascript", label: "javascript" },
   { value: "spring", label: "spring" },
+  { value: "python", label: "python" },
+  { value: "javascript", label: "javascript" },
+  { value: "spring", label: "spring" },
+  { value: "python", label: "python" },
+  { value: "javascript", label: "javascript" },
+  { value: "spring", label: "spring" },
 ];
 
 function Stack() {

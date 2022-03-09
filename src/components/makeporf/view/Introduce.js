@@ -39,6 +39,7 @@ function Introduce() {
     });
   }, []);
 
+  console.log(data);
   return (
     <>
       <FormTitle>
@@ -86,28 +87,11 @@ function Introduce() {
             />
           </MultiContent>
         </FormContents>
-        <input type="submit" />
       </form>
+
     </>
   );
 }
-
-// const InputCustom = styled.textarea`
-//   width: 100%;
-//   height: 19px;
-//   border-radius: 10px;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 15px 15px;
-//   margin: auto;
-// `;
-
-// const InputCustomTextarea = styled.textarea`
-//   height: 100px;
-//   width: 100%;
-//   border-radius: 10px;
-//   justify-content: center;
-// `;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -134,11 +118,12 @@ const FormText = styled.div`
 export const FormContents = styled.div`
   flex-direction: column;
   align-items: center;
-  padding: 0px;
+  padding-bottom: 50px;
   height: 100%;
 `;
 
 export const MultiContent = styled.div`
+
   display: flex;
   flex-direction: row;
   margin: 0px 50px;
@@ -178,6 +163,8 @@ export const Font = styled.div`
   margin: 10px;
 
   /* Inside auto layout */
+
+
 `;
 
 export default Introduce;

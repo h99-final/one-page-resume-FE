@@ -100,12 +100,11 @@ export const ButtonText = styled(FormText)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
+  
 `;
 
 export const AddButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 1px solid;
   width: 350px;
   height: 80px;
   background: #ffffff;
@@ -114,13 +113,16 @@ export const AddButton = styled.div`
 
 export const ContentCareer = styled(Content)`
   display: flex;
-  flex-direction: column;
+  margin: 25px 0px;
+  text-align: center;
 `;
 
 export const MakeCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  vertical-align: middle;
 `;
 
 export const IconBox = styled.div`
