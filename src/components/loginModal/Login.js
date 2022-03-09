@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 // import { actionCreators as userActions } from '../redux/modules/user';
-import { emailCheck } from "../../shared/common";
-import { apis } from "../../shared/axios";
+
 import { useState } from "react";
 import { TextField } from "@mui/material";
-import { setCookie } from "../../shared/cookie";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useSelector } from "react-redux";

@@ -8,9 +8,12 @@ const getCookie = (name) => {
 };
 
 const setCookie = (name, value, exp = 5) => {
+  if (document.cookie) {
+    return;
+  }
   let date = new Date();
   date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${value}; expires=${date.toUTCString()}`;
+  document.cookie = `${name}=${value}; expires=${date.toUTCString()} + ; path=/`;
 };
 
 const deleteCookie = (name) => {
@@ -18,7 +21,6 @@ const deleteCookie = (name) => {
 
   document.cookie = `${name}=; expires=${date}`;
 };
-
 
 const resetCookie = (name) => {
   let expireDate = new Date();
@@ -28,4 +30,3 @@ const resetCookie = (name) => {
 };
 
 export { getCookie, setCookie, deleteCookie, resetCookie };
-

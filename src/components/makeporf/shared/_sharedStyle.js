@@ -100,7 +100,6 @@ export const ButtonText = styled(FormText)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
-  
 `;
 
 export const AddButton = styled.div`
@@ -134,4 +133,18 @@ export const IconBox = styled.div`
   height: 45px;
   background-color: #ffffff;
   border-radius: 50px;
+`;
+
+export const ErrorMessage = styled.span`
+  font-family: Pretendard;
+  font-size: 12px;
+  color: #f00;
+
+  padding: 10px 5px;
+
+  display: relative;
+  width: 100%;
+  max-width: 120px;
+  margin-left: auto;
+  height: 10px;
 `;

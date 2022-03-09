@@ -5,7 +5,8 @@ import {
   ContentForm,
   InputCustom,
   MakeCenter,
-  Label
+  Label,
+  ErrorMessage,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { FormContents } from "../Introduce";
@@ -17,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as contentActions } from "../../../../redux/modules/careerContent";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import CareerContent from "./CareerContent";
+import { flexbox } from "@mui/system";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();
@@ -26,9 +28,9 @@ const CareerWrite = () => {
     formState: { errors },
     control,
     setValue,
+    setError,
   } = useForm({ defaultValues });
 
-  //   const contents = useSelector((state) => state.careerContent.contents);
   const contents = useSelector((state) => state.careerContent.contents);
   const content = useRef();
 
@@ -36,25 +38,42 @@ const CareerWrite = () => {
     let _content = [];
     contents.map((e) => _content.push(e.content));
     let _data = { ...oldData, contents: _content };
-    dispatch(careerActions.addCareer(_data));
+    dispatch(careerActions.addCareerDB(_data));
+    setValue("title", "");
+    setValue("contents", "");
+    setValue("subTitle", "");
+    setValue("startTime", "");
+    setValue("endTime", "");
   };
 
   const contentsAdd = () => {
+    if (content.current.value === "") {
+      setError(
+        "contents",
+        { message: "직무 내용을 입력해주세요" },
+        { shouldFocus: true }
+      );
+      return;
+    }
     dispatch(contentActions.addContent(content.current.value));
     setValue("contents", "");
   };
 
-  // useEffect(() => {
-  //   dispatch(contentActions.setContent(contents));
-  // }, [contents]);
+  const onCheckEnter = (e) => {
+    if (e.key === "Enter") {
+      contentsAdd();
+    }
+  };
+
+  useEffect(() => {
+    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    dispatch(careerActions.setCareerDB(porfId));
+  }, []);
 
   return (
     <>
       <form onSubmit={handleSubmit(careerSubmit)}>
-        {/* <IconBox>
-            <DeleteForeverIcon />
-          </IconBox> */}
-        <Content >
+        <Content>
           <Label>
             <Font>직무 카테고리</Font>
           </Label>
@@ -64,11 +83,16 @@ const CareerWrite = () => {
                 type="text"
                 style={{ border: "none", background: "white" }}
                 {...field}
+                maxLength={50}
               />
             )}
+            rules={{
+              required: "필수 항목 입니다.",
+            }}
             name="title"
             control={control}
           />
+          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -80,11 +104,16 @@ const CareerWrite = () => {
                 type="text"
                 style={{ border: "none", background: "white" }}
                 {...field}
+                maxLength={50}
               />
             )}
+            rules={{
+              required: "필수 항목 입니다.",
+            }}
             name="subTitle"
             control={control}
           />
+          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         </Content>
         <MultiContent>
           <Label>
@@ -97,23 +126,20 @@ const CareerWrite = () => {
                 style={{ marginBottom: "20px", height: "40px" }}
                 {...field}
                 ref={content}
+                onKeyPress={onCheckEnter}
               />
             )}
             name="contents"
             control={control}
-          // defaultValue="abc"
           />
-
-          <span onClick={contentsAdd}>+</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
+            <Message onClick={contentsAdd}>직무 내용 추가</Message>
+          </div>
         </MultiContent>
         {contents.map((e, i) => {
           return (
-            <CareerContent
-              key={i}
-              content={e.content}
-              id={e.id}
-              index={i}
-            />
+            <CareerContent key={i} content={e.content} id={e.id} index={i} />
           );
         })}
         <Content>
@@ -132,6 +158,9 @@ const CareerWrite = () => {
                 {...field}
               />
             )}
+            rules={{
+              required: "필수 항목 입니다.",
+            }}
             name="startTime"
             control={control}
           />
@@ -148,9 +177,13 @@ const CareerWrite = () => {
                 {...field}
               />
             )}
+            rules={{
+              required: "필수 항목 입니다.",
+            }}
             name="endTime"
             control={control}
           />
+          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         </Content>
       </form>
       <MakeCenter style={{ marginTop: "20px" }}>
@@ -168,12 +201,16 @@ const InputCustomDate = styled(InputCustom)`
   width: 8vw;
 `;
 
+const Message = styled(ErrorMessage)`
+  color: #000;
+`;
+
 const InputCustomTextarea = styled(InputCustom)``;
 export const MultiContent = styled.div`
-display: flex;
-flex-direction: row;
-margin: 0px 50px;
-  span{
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px;
+  span {
     align-items: center;
     flex-direction: row;
     display: flex;

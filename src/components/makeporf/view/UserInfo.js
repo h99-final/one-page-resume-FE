@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 import {
   Content,
+  ErrorMessage,
   FormText,
   FormTitle,
   InputCustom,
@@ -11,8 +12,8 @@ import {
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
-import { SettingsOverscanOutlined } from "@mui/icons-material";
 import { useSelector } from "react-redux";
+import { urlCheck } from "../../../shared/common";
 
 function UserInfo() {
   const defaultValues = {};
@@ -32,9 +33,7 @@ function UserInfo() {
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {
-      console.log(res);
-    });
+    apis.addInfo(_data).then((res) => {});
   };
 
   useEffect(() => {
@@ -73,10 +72,15 @@ function UserInfo() {
                 defaultValue={data?.name}
               />
             )}
+            rules={{
+              required: "필수 항목 입니다.",
+              maxLength: { value: 50, message: "이름은 50자 제한입니다." },
+            }}
             onChange={onChange}
             name="name"
             control={control}
           />
+          <ErrorMessage>{errors?.name?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -110,11 +114,19 @@ function UserInfo() {
                 style={{ border: "none", background: "white" }}
                 {...field}
                 defaultValue={data?.phoneNum}
+                maxLength={13}
               />
             )}
+            rules={{
+              pattern: {
+                value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
+                message: "전화번호 형식이 아닙니다.",
+              },
+            }}
             name="phoneNum"
             control={control}
           />
+          <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -128,9 +140,17 @@ function UserInfo() {
                 defaultValue={data?.email}
               />
             )}
+            rules={{
+              pattern: {
+                value:
+                  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
+                message: "이메일 형식이 아닙니다.",
+              },
+            }}
             name="email"
             control={control}
           />
+          <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -144,9 +164,17 @@ function UserInfo() {
                 defaultValue={data?.gitUrl}
               />
             )}
+            rules={{
+              pattern: {
+                value:
+                  /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/,
+                message: "url주소 형식이 아닙니다.",
+              },
+            }}
             name="gitUrl"
             control={control}
           />
+          <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -160,9 +188,17 @@ function UserInfo() {
                 defaultValue={data?.blogUrl}
               />
             )}
+            rules={{
+              pattern: {
+                value:
+                  /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/,
+                message: "url주소 형식이 아닙니다.",
+              },
+            }}
             name="blogUrl"
             control={control}
           />
+          <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         </Content>
         <input type="submit" />
       </UserInfoForm>
