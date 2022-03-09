@@ -60,22 +60,18 @@ export const apis = {
       passwordCheck: passwordCheck,
     }),
 
-  addInfo: (name, stack, phoneNum, gitUrl, blogUrl) =>
-    instance.post("/user/info", {
-      name: name,
-      stack: stack,
-      phoneNum: phoneNum,
-      gitUrl: gitUrl,
-      blogUrl: blogUrl,
-    }),
+  addInfo: (data) => instance.post("/user/info", data),
   userInfo: () => instance.get("user/info"),
 
-  introPorf: (data) => instance.post(`porf/intro`, data),
+  putInfo: (data) => instance.put("user/info", data),
+
+  introPorf: (data) => instance.put(`porf/intro`, data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
 
   careerPorf: (data) => instance.post("/porf/career", data),
 
   projectPorf: () => instance.get("/user/project"),
 
-  addImg: (formData) => formInstance.put('user/profile', formData),
+  addImg: (formData) => formInstance.put("user/profile", formData),
+
 };

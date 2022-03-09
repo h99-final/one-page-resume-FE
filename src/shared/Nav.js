@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie, getCookie } from "./cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from 'react-router-dom';
+
 // JS파일
 
 const Nav = (props) => {
   const token = document.cookie;
-  console.log(document.cookie)
-  console.log(token)
-  const history = useHistory();
+  const dispatch = useDispatch();
+
   // props.nav (false or true)
   const navState = props.nav;
 
@@ -23,13 +24,12 @@ const Nav = (props) => {
 
   // SignOut
   const signOut = () => {
+    setNav(false);
+    console.log(getCookie("token"));
     deleteCookie("token");
-    deleteCookie(token);
-    deleteCookie("token");
-    deleteCookie(token);
-    deleteCookie("token");
-    // setNav(false);
-    window.location.reload();
+    dispatch(userActions.logOutDB());
+    console.log(getCookie("token"));
+    window.location.reload("/");
   };
 
   return (

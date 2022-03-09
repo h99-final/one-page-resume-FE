@@ -5,9 +5,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom } from '../shared/_sharedStyle';
-import { actionCreators as userActions } from '../../../redux/modules/user';
-import Template from '../shared/Template';
+import { InputCustom } from "../shared/_sharedStyle";
+import { actionCreators as userActions } from "../../../redux/modules/user";
 function Introduce() {
   const dispatch = useDispatch();
   const defaultValues = {};
@@ -15,29 +14,29 @@ function Introduce() {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm({ defaultValues });
 
   const userInfo = useSelector((state) => state.user.user);
 
   const [data, setData] = useState({});
 
-  const introSubmit = (oldData) => {
-    const { introTitle, introContents } = oldData;
-    const data = {
-      title: introTitle,
-      contents: introContents,
-    };
-    apis.introPorf(data);
+  const introSubmit = (data) => {
+    apis.introPorf(data).then((res) => {
+      setData(res.data.data);
+    });
   };
 
   useEffect(() => {
-    apis
-      .introPorfGet(userInfo.porfId)
-      .then((res) => {
-        console.log(res.data.data)
-        setData(res.data.data)
+    apis.userInfo().then((res) => {
+      const { porfId } = res.data.data;
+      apis.introPorfGet(porfId).then((res) => {
+        const { title, contents } = res.data.data;
+        setData(res.data.data);
+        setValue("title", title);
+        setValue("contents", contents);
       });
-    return handleSubmit(introSubmit);
+    });
   }, []);
 
   console.log(data);
@@ -49,10 +48,11 @@ function Introduce() {
 
       <form onSubmit={handleSubmit(introSubmit)}>
         <FormContents>
-
           <Content>
             <Label>
-              <Font>포트폴리오 제목<br></br>(0/50)</Font>
+              <Font>
+                포트폴리오 제목<br></br>(0/50)
+              </Font>
             </Label>
             <Controller
               render={({ field }) => (
@@ -60,16 +60,18 @@ function Introduce() {
                   type="text"
                   style={{}}
                   {...field}
-                  defaultValue={data.title}
+                  defaultValue={data?.title}
                 />
               )}
-              name="introTitle"
+              name="title"
               control={control}
             />
           </Content>
           <MultiContent>
             <Label>
-              <Font>포트폴리오 소개글 <br></br>(0/2000)</Font>
+              <Font>
+                포트폴리오 소개글 <br></br>(0/2000)
+              </Font>
             </Label>
             <Controller
               render={({ field }) => (
@@ -77,10 +79,10 @@ function Introduce() {
                   type="text"
                   style={{ height: "200px" }}
                   {...field}
-                  defaultValue={data.contents}
+                  defaultValue={data?.contents}
                 />
               )}
-              name="introContents"
+              name="contents"
               control={control}
             />
           </MultiContent>
@@ -90,8 +92,6 @@ function Introduce() {
     </>
   );
 }
-
-
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -123,10 +123,10 @@ export const FormContents = styled.div`
 `;
 
 export const MultiContent = styled.div`
-display: flex;
-flex-direction: row;
-margin: 0px 50px;
 
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px;
 `;
 
 export const Content = styled.div`
@@ -148,7 +148,6 @@ export const Label = styled.div`
 `;
 
 export const Font = styled.div`
-
   /* body1 */
   font-family: Pretendard;
   font-style: normal;
@@ -160,7 +159,7 @@ export const Font = styled.div`
   /* C1 */
 
   color: #333333;
-  
+
   margin: 10px;
 
   /* Inside auto layout */

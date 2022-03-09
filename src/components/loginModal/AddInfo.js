@@ -33,15 +33,28 @@ const AddInfo = (props) => {
       setStack([...stack, id]);
 
       console.log("체크 반영 완료");
-      console.log(checked, id)
+      console.log(checked, id);
     } else {
       setStack(stack.filter((e) => e !== id));
-      console.log("체크 해제 반영 완료",);
-      console.log(checked, id)
+      console.log("체크 해제 반영 완료");
+      console.log(checked, id);
     }
   };
 
-  const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
+  const defaultStack = [
+    "JS",
+    "JAVA",
+    "PYTHON",
+    "C",
+    "C++",
+    "iOS",
+    "Android",
+    "React",
+    "Spring",
+    "Node.js",
+    "Vue.js",
+    "git",
+  ];
 
   const isAllChecked = stack.length === 2;
   const disabled = !isAllChecked;
@@ -62,7 +75,15 @@ const AddInfo = (props) => {
   const addInfo = () => {
     console.log(name, stack, phoneNum, gitUrl, blogUrl);
 
-    dispatch(userActions.addInfoDB(name, stack, phoneNum, gitUrl, blogUrl));
+    const data = {
+      name: name,
+      stack: stack,
+      phoneNum: phoneNum,
+      gitUrl: gitUrl,
+      blogUrl: blogUrl,
+    };
+
+    dispatch(userActions.addInfoDB(data));
     loginClose(false);
   };
 
@@ -157,7 +178,7 @@ const AddInfo = (props) => {
               id="blogurl"
               name="blogurl"
               placeholder="blogURl"
-            // error={blogUrlError !== '' || false}
+              // error={blogUrlError !== '' || false}
             />
             {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
             <TextField
@@ -170,7 +191,7 @@ const AddInfo = (props) => {
               id="phone"
               name="phone"
               placeholder="전화번호"
-            // error={phoneNumError !== "" || false}
+              // error={phoneNumError !== "" || false}
             />
             {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -188,7 +209,7 @@ const AddInfo = (props) => {
               id="job"
               name="job"
               placeholder="직무"
-            // error={jobError !== "" || false}
+              // error={jobError !== "" || false}
             />
             {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -204,17 +225,19 @@ const AddInfo = (props) => {
       )}
       {page === "2" && (
         <>
-          <TextContainer >
+          <TextContainer>
             <h1>
               나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)
             </h1>
             <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
           </TextContainer>
           {stack.length > 3 ? (
-            <p style={{ fontSize: "12px", color: "red" }}>
+            <p style={{ fontSize: "12px", color: "red" }}>3가지만 골라주세요</p>
+          ) : (
+            <p style={{ color: "white", fontSize: "12px" }}>
               3가지만 골라주세요
             </p>
-          ) : <p style={{ color: "white", fontSize: "12px" }}>3가지만 골라주세요</p>}
+          )}
           {defaultStack.map((s, index) => {
             return (
               <StyledBox>
@@ -236,9 +259,8 @@ const AddInfo = (props) => {
                   </span>
                 </label>
               </StyledBox>
-            )
+            );
           })}
-
 
           <div>
             <WriteBtn
@@ -394,4 +416,3 @@ const CloseBtn = styled.button`
     background-color: gray;
   }
 `;
-
