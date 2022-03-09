@@ -10,6 +10,7 @@ import {
   MakeCenter,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
+import { apis } from "../../../../shared/axios";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
@@ -19,6 +20,12 @@ function ProjectSelect() {
   const [selectedProject, setSelectedProject] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const handleClick = () => {
+    apis.projectPorf(selectedProject).then((res) => {
+      console.log(res.data.data);
+    });
+  };
+
   return (
     <>
       <FormTitle>
@@ -27,7 +34,7 @@ function ProjectSelect() {
       <ProjectBox>
         {project.map((e, i) => {
           return (
-            <ProjectCard
+            <ProjectCardSelect
               setSelectedProject={setSelectedProject}
               selectedProject={selectedProject}
               key={i + "e"}
@@ -37,7 +44,7 @@ function ProjectSelect() {
         })}
       </ProjectBox>
       <MakeCenter style={{ marginTop: "20px" }}>
-        <AddButton onClick={() => setModalOpen(true)}>
+        <AddButton onClick={handleClick}>
           <ContentCareer>
             <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
           </ContentCareer>
@@ -50,6 +57,10 @@ function ProjectSelect() {
 // 프로젝트 카드를 반응형으로 배치 하는 것 해야함
 const ProjectBox = styled.div`
   display: flex;
+`;
+
+const ProjectCardSelect = styled.div`
+  border: ${(props) => (props.selectedProject ? "1px #f00" : null)};
 `;
 
 export default ProjectSelect;

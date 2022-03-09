@@ -33,7 +33,6 @@ const formInstance = axios.create({
 
 instance.interceptors.request.use(function (config) {
   const accesstoken = document.cookie.split("=")[1];
-  console.log(accesstoken);
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });
@@ -72,10 +71,10 @@ export const apis = {
   careerPorf: (data) => instance.post("/porf/career", data),
   careerPorfGet: (porfId) => instance.get(`/porf/${porfId}/career`),
 
-  projectPorf: () => instance.get("/user/project"),
+  projectPorf: (data) => instance.post("/porf/project", data),
+  projectPorfGet: () => instance.get("/user/project"),
 
   addImg: (formData) => formInstance.put("user/profile", formData),
 
-  porfStack: (addStack) => instance.put("/porf/stack", addStack)
-
+  porfStack: (addStack) => instance.put("/porf/stack", addStack),
 };

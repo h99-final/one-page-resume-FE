@@ -14,7 +14,7 @@ function Career() {
     dispatch(careerActions.setCareerDB(porfId));
   }, []);
 
-  const careers = useSelector((state) => state.career.careers.careers);
+  const careers = useSelector((state) => state.career.careers);
   console.log(careers);
   return (
     <>
