@@ -6,28 +6,47 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
+import { Content, Label, FormText, FormTitle } from '../shared/_sharedStyle';
+import { Font } from './Introduce'
+import { apis } from '../../../shared/axios';
 
 export const options = [
-  { value: "python", label: "python" },
-  { value: "javascript", label: "javascript" },
-  { value: "spring", label: "spring" },
-  { value: "python", label: "python" },
-  { value: "javascript", label: "javascript" },
-  { value: "spring", label: "spring" },
-  { value: "python", label: "python" },
-  { value: "javascript", label: "javascript" },
-  { value: "spring", label: "spring" },
+  { value: "Python", label: "Python" },
+  { value: "Javascript", label: "Javascript" },
+  { value: "Spring", label: "Spring" },
+  { value: "C", label: "C" },
+  { value: "C++", label: "C++" },
+  { value: "React", label: "React" },
+  { value: "iOS", label: "iOS" },
+  { value: "Android", label: "Android" },
+  { value: "Node.js", label: "Node.js" },
+  { value: "Vue.js", label: "Vue.js" },
+  { value: "Git", label: "Git" },
 ];
 
 function Stack() {
-  const checkedStack = useSelector((state) => (state.user.user.stack))
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      background: "white",
+      // Overwrittes the different states of border
+      border: "1px solid #cccccc",
+      borderRadius: "5px",
+      width: "73.5vw",
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "red" : "blue"
+      }
+    })
+  };
   const animatedComponents = makeAnimated();
-  const [stack, setStack] = useState(checkedStack);
+  const [stack, setStack] = useState(userInfo.stack);
   const [addStack, setAddStack] = useState([]);
 
   const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
   const changeHandler = (checked, id) => {
+
     if (checked) {
       setStack([...stack, id]);
       console.log("체크 반영 완료");
@@ -48,16 +67,47 @@ function Stack() {
   useEffect(() => {
     console.log("axios 스택 보내기");
   }, [addStack]);
+  console.log(addStack)
+
+
+  const submitStack = () => {
+    const data = {
+      name: userInfo.name,
+      stack: stack,
+      phoneNum: userInfo.phoneNum,
+      gitUrl: userInfo.gitUrl,
+      blogUrl: userInfo.blogUrl,
+    };
+    const addS = {
+      stack: addStack
+    }
+    apis.putInfo(data)
+      .then(res => {
+        console.log(res)
+      })
+
+    apis.porfStack(addS)
+      .then(response => {
+        console.log(response)
+      })
+  };
 
   return (
     <>
 
-      <div style={{ width: "98%", margin: "0px 10px 0px 10px" }}>
-        {stack.length > 3 ? (
-          <p style={{ fontSize: "12px", color: "red", textAlign: "center" }}>
-            3가지만 골라주세요
-          </p>
-        ) : <p style={{ color: "inherit", fontSize: "12px", textAlign: "center" }}>3가지만 골라주세요</p>}
+      <FormTitle>
+        <FormText>기술 스택</FormText>
+      </FormTitle>
+      <Font style={{ color: "inherit", textAlign: "left", marginLeft: "205px" }}>
+        나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를 대표하는 명함에 들어가게 됩니다.
+      </Font>
+
+      <MultiContent>
+        <Label>
+          <Font>
+            대표 스택
+          </Font>
+        </Label>
         <StackBox>
           {defaultStack.map((s, index) => {
             return (
@@ -65,7 +115,7 @@ function Stack() {
                 <input
                   type="checkbox"
                   id={s}
-                  checked={stack.includes(`${s}`) ? true : false}
+                  checked={stack?.includes(`${s}`) ? true : false}
                   onChange={(e) => {
                     changeHandler(e.currentTarget.checked, `${s}`);
                   }}
@@ -83,15 +133,35 @@ function Stack() {
             );
           })}
         </StackBox>
-        <SelectBox>
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            options={options}
-            isMulti
-            onChange={handleChange}
-          />
-        </SelectBox>
+      </MultiContent>
+      {stack?.length > 3 ? (
+        <Font style={{ color: "red", textAlign: "center" }}>
+          3가지만 골라주세요
+        </Font>
+      ) : <Font style={{ color: "inherit", textAlign: "center" }}>
+
+      </Font>}
+      <MultiContent>
+        <Label>
+          <Font>
+            기술 스택
+          </Font>
+        </Label>
+        <Select
+          styles={customStyles}
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          options={options}
+          isMulti
+          onChange={handleChange}
+
+        />
+      </MultiContent>
+      <MultiContent>
+        <Label>
+          <Font>
+          </Font>
+        </Label>
         <StackBox>
           {addStack.map((addStack, index) => {
             return (
@@ -107,22 +177,18 @@ function Stack() {
             );
           })}
         </StackBox>
-      </div>
+      </MultiContent>
+      <button onClick={submitStack}>제출하기</button>
     </>
   );
 }
 
 const StackBox = styled.div`
-  margin: 10px 10px 10px 10px;
+  margin: 10px 0px;
   height: auto;
   border-radius: 10px;
   border: 1px solid #cccccc;
   background-color: white;
-`;
-
-const SelectBox = styled.div`
-  margin: 10px 10px 10px 10px;
-  height: auto;
 `;
 
 const SelectStack = styled.button`
@@ -135,7 +201,11 @@ const SelectStack = styled.button`
   border-radius: 100px;
   text-align: center;
 `;
-
+export const MultiContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px 0px 50px;
+`;
 const Wrap = styled.div`
   padding-bottom: 20px;
 `;
