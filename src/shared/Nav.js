@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 const Nav = (props) => {
   const token = document.cookie;
   const dispatch = useDispatch();
-
+  const history = useHistory();
   // props.nav (false or true)
   const navState = props.nav;
 
@@ -40,7 +40,7 @@ const Nav = (props) => {
             <h1>{props.name}</h1>
             <p>{props.email}</p>
           </Profile>
-          <NavPro>프로필</NavPro>
+          <NavPro onClick={() => { history.push('/mypage') }}>프로필</NavPro>
           <NavSet
             onClick={() => {
               alert("@");

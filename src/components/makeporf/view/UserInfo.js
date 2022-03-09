@@ -28,12 +28,12 @@ function UserInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = useSelector((state) => state.user.user);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {});
+    apis.addInfo(_data).then((res) => { });
   };
 
   useEffect(() => {
