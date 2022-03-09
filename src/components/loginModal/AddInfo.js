@@ -22,9 +22,7 @@ const AddInfo = (props) => {
   const [page, setPage] = React.useState("0");
 
   const [nameError, setNameError] = React.useState("");
-  const [phoneNumError, setPhoneNumError] = React.useState("");
   const [gitUrlError, setGitUrlError] = React.useState("");
-  const [jobError, setJobError] = React.useState("");
 
   const [stack, setStack] = useState([]);
 
@@ -108,7 +106,7 @@ const AddInfo = (props) => {
             <span>
               <CloseBtn
                 onClick={() => {
-                  window.location.replace("/");
+                  history.go(0);
                 }}
               >
                 다음에 할게요

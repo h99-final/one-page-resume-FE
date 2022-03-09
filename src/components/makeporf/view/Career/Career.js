@@ -18,9 +18,9 @@ function Career() {
       </FormTitleFlex>
       <CareerWrite />
       <hr />
-      {careers?.map((e, i) => {
+      {/* {careers?.map((e, i) => {
         return <CareerShow key={i} {...e} index={i} />;
-      })}
+      })} */}
       <hr />
     </>
   );

@@ -11,7 +11,6 @@ import ExitModal from "./ExitModal";
 
 const Modal = ({ modalClose }) => {
   const isFirstLogin = useSelector((state) => state.user.isFirstLogin);
-  console.log(isFirstLogin);
   const [modalOpen, setModalOpen] = useState(false);
 
   const exitClose = () => {
@@ -22,12 +21,9 @@ const Modal = ({ modalClose }) => {
     setModalOpen(!modalOpen);
   };
 
-  const dispatch = useDispatch();
-
   const [status, setStatus] = React.useState("aaa");
 
   const [email, setEmail] = React.useState();
-  const [emailError, setEmailError] = useState("");
 
   return (
     <>
