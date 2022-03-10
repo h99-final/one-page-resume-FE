@@ -13,7 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
-import { MultiContent } from './CareerWrite';
+import { MultiContent } from "./CareerWrite";
 
 function CareerShow(props) {
   const dispatch = useDispatch();
@@ -54,13 +54,11 @@ function CareerShow(props) {
           <Label>
             <Font>직무 내용(0/100)</Font>
           </Label>
-
           {contents?.map((e, i) => {
             return <CareerContent key={i} content={e} index={i} />;
           })}
         </MultiContent>
-        <Content
-        >
+        <Content>
           <Label>
             <Font>활동 기간</Font>
           </Label>

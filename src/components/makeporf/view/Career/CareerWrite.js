@@ -37,8 +37,14 @@ const CareerWrite = () => {
   const careerSubmit = (oldData) => {
     let _content = [];
     contents.map((e) => _content.push(e.content));
-    let _data = { ...oldData, contents: _content };
+    let _data = {
+      ...oldData,
+      contents: _content,
+      startTime: oldData.startTime + "-01",
+      endTime: oldData.endTime + "-01",
+    };
     dispatch(careerActions.addCareerDB(_data));
+    dispatch(contentActions.setContent([]));
     setValue("title", "");
     setValue("contents", "");
     setValue("subTitle", "");
@@ -56,6 +62,7 @@ const CareerWrite = () => {
       return;
     }
     dispatch(contentActions.addContent(content.current.value));
+
     setValue("contents", "");
   };
 
@@ -64,6 +71,8 @@ const CareerWrite = () => {
       contentsAdd();
     }
   };
+
+  console.log(contents);
 
   return (
     <>
@@ -87,7 +96,7 @@ const CareerWrite = () => {
             name="title"
             control={control}
           />
-          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
+          <ErrorMessage>{errors?.title?.message}</ErrorMessage>
         </Content>
         <Content>
           <Label>
@@ -155,6 +164,10 @@ const CareerWrite = () => {
             )}
             rules={{
               required: "필수 항목 입니다.",
+              pattern: {
+                value: /^\d{4}-(0[1-9]|1[012])$/,
+                message: "날짜 형식을 맞춰주세요 YYYY-MM",
+              },
             }}
             name="startTime"
             control={control}
@@ -174,11 +187,15 @@ const CareerWrite = () => {
             )}
             rules={{
               required: "필수 항목 입니다.",
+              pattern: {
+                value: /^\d{4}-(0[1-9]|1[012])$/,
+                message: "날짜 형식을 맞춰주세요 YYYY-MM",
+              },
             }}
             name="endTime"
             control={control}
           />
-          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
+          <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
         </Content>
       </form>
       <MakeCenter style={{ marginTop: "20px" }}>

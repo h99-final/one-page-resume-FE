@@ -13,14 +13,7 @@ const deleteCareer = createAction(DELETE_CAREER, (careerIndex) => ({
 }));
 
 const initialState = {
-  careers: [
-    {
-      id: "id",
-      title: "title",
-      subTitle: "title",
-      contents: ["contents0", "contents1"],
-    },
-  ],
+  careers: [],
 };
 
 const setCareerDB = (porfId) => {
@@ -29,7 +22,7 @@ const setCareerDB = (porfId) => {
     await apis
       .careerPorfGet(porfId)
       .then((res) => {
-        dispatch(setCareer(res.data.data));
+        dispatch(setCareer(res.data.data.careers));
       })
       .catch((error) => {
         alert(error);

@@ -14,9 +14,7 @@ const updateContent = createAction(UPDATE_CAREER_CONTENT, (content, index) => ({
   content,
   index,
 }));
-const deleteContent = createAction(DELETE_CAREER_CONTENT, (id) => ({
-  id,
-}));
+const deleteContent = createAction(DELETE_CAREER_CONTENT);
 
 const initialState = {
   contents: [],

@@ -10,6 +10,7 @@ const selectProject = createAction(SELECT_PROJECT, (projectId) => ({
 }));
 
 const initialState = {
+  selectedProjects: [],
   projects: [
     {
       id: "id0",
@@ -34,9 +35,7 @@ export default handleActions(
       }),
     [SELECT_PROJECT]: (state, action) =>
       produce(state, (draft) => {
-        draft.projects = action.payload.projectId.map((e) => {
-          draft.projects.filter((element) => element.id === e);
-        });
+        draft.selectedProjects = action.payload.projectId;
       }),
   },
   initialState
