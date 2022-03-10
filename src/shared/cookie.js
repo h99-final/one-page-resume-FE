@@ -12,7 +12,7 @@ const setCookie = (name, value, exp = 5) => {
     return;
   }
   let date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 10000);
   document.cookie = `${name}=${value}; expires=${date.toUTCString()} + ; path=/`;
 };
 
