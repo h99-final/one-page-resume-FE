@@ -7,20 +7,27 @@ import { Font } from "../makeporf/view/Introduce";
 function ProjectCard(props) {
   const userInfo = useSelector((state) => state.user.user);
   const { id, title, stack, img } = props;
+  const { selectedProjects, setSelectedProjects } = props;
 
-  // useEffect(() => {
-  //   if (selected) {
-  //     setSelectedProject((selectedProject) => [...selectedProject, id]);
-  //   } else {
-  //     setSelectedProject((selectedProject) =>
-  //       selectedProject.filter((e) => e !== id)
-  //     );
-  //   }
-  // }, []);
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = () => {
+    setSelected((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (selected) {
+      setSelectedProjects((selectedProject) => [...selectedProject, id]);
+    } else {
+      setSelectedProjects((selectedProject) =>
+        selectedProject.filter((e) => e !== id)
+      );
+    }
+  }, [selected]);
 
   return (
     <>
-      <ProjectForm>
+      <ProjectForm selected={selected} onClick={handleClick}>
         <InnerCard src="http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg" />
         <ProjectDetail>
           <ProjectStacks>
@@ -29,14 +36,14 @@ function ProjectCard(props) {
               ? stack.slice(0, 3).map((e, i) => {
                   return (
                     <>
-                      <ProjectStack key={i}>{e}</ProjectStack>{" "}
+                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
                     </>
                   );
                 })
               : stack.map((e, i) => {
                   return (
                     <>
-                      <ProjectStack key={i}>{e}</ProjectStack>
+                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
                     </>
                   );
                 })}
@@ -77,7 +84,7 @@ const InnerCard = styled(Inner)`
   border-top-left-radius: 10px;
 `;
 
-const ProjectForm = styled.div`
+export const ProjectForm = styled.div`
   width: 400px;
   height: 313px;
   border-radius: 10px;

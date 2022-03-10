@@ -14,17 +14,23 @@ import { apis } from "../../../../shared/axios";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
-  // 사용자 프로젝트 가져오기 axios
   const project = useSelector((state) => state.project.projects);
 
-  const [selectedProject, setSelectedProject] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
+  // props로 건네줘서 핸들링
+  const [selectedProjects, setSelectedProjects] = useState([]);
 
-  const handleClick = () => {
-    apis.projectPorf(selectedProject).then((res) => {
-      console.log(res.data.data);
+  const submit = () => {
+    // 프로젝트 데이터 보내기
+    const data = {
+      projectId: selectedProjects,
+    };
+    apis.projectPorf(data).then((res) => {
+      // 포트폴리오 화면으로 이동시켜주기
+      console.log(res);
     });
   };
+  // 사용자 프로젝트 가져오기 axios
+  // 프로젝트 작성 페이지 기능 마치고
 
   return (
     <>
@@ -34,17 +40,18 @@ function ProjectSelect() {
       <ProjectBox>
         {project.map((e, i) => {
           return (
-            <ProjectCardSelect
-              setSelectedProject={setSelectedProject}
-              selectedProject={selectedProject}
+            <ProjectCard
+              selectedProjects={selectedProjects}
+              setSelectedProjects={setSelectedProjects}
               key={i + "e"}
               {...e}
             />
           );
         })}
       </ProjectBox>
+      <button onClick={submit}>ToDo</button>
       <MakeCenter style={{ marginTop: "20px" }}>
-        <AddButton onClick={handleClick}>
+        <AddButton>
           <ContentCareer>
             <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
           </ContentCareer>
@@ -59,8 +66,9 @@ const ProjectBox = styled.div`
   display: flex;
 `;
 
-const ProjectCardSelect = styled.div`
-  border: ${(props) => (props.selectedProject ? "1px #f00" : null)};
-`;
+// const ProjectCardSelect = styled(ProjectCard)`
+//   border: ${(props) =>
+//     props.selected ? "1px solid blue;" : "1px solid #999999;"};
+// `;
 
 export default ProjectSelect;

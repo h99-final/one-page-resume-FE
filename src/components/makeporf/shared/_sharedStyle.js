@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormText = styled.div`
-  width: 125px;
+  width: 150px;
   height: 24px;
   left: 0px;
 
@@ -73,9 +73,7 @@ export const Label = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin: 0px 50px 20px 50px;
-  vertical-align: middle;
 `;
 
 export const ContentForm = styled.div`

@@ -1,44 +1,58 @@
-import React, { useState } from 'react'
-import Dropzone from 'react-dropzone'
-import axios from 'axios'
-import { apis } from '../../../shared/axios';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from "react";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import { apis } from "../../../shared/axios";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../../redux/modules/image";
 
-function FileUpload() {
+function ForProjUpload(props) {
+  const dispatch = useDispatch();
 
-  const tokencheck = document.cookie;
-  const token = tokencheck.split("=")[1];
-  const [Images, setImages] = useState([])
+  // 파일 상태 관리
+  const { images, setImages } = props;
 
+  // 프리뷰 상태 관리
+  const [preview, setPreview] = useState(null);
+  const [previews, setPreviews] = useState([]);
 
-  const dropHandler = (files) => {
+  const dropHandler = (file) => {
+    let _images = [...file, ...images];
+    console.log(_images);
+    setImages(_images);
+  };
 
-    //file을 백엔드에 전해줌(1)
+  // function onImageChange(e) {
+  //   const reader = new FileReader();
+  //   const file = images;
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     console.log(reader.result);
+  //     setPreview(reader.result);
+  //   };
+  // }
 
-    let formData = new FormData();
+  // useEffect(() => {
+  //   let _preview = [];
+  //   for (let i = 0; i < images.length; i++) {
+  //     let reader = new FileReader();
 
-    formData.append("profileImage", files[0])
+  //     reader.readAsDataURL(images[i]);
+  //     reader.onloadend = () => {
+  //       _preview.push(reader.result);
+  //     };
+  //   }
+  //   setPreviews(_preview);
+  // }, [images]);
 
-    apis.addImg(formData)
-      // 백엔드가 file저장하고 그 결과가 reponse에 담김
-      // 백엔드는 그 결과를 프론트로 보내줌(3)
-      .then(response => {
-        if (response.data) {
-          setImages([...Images, response.data.data.img])
-        } else {
-          alert('파일 저장 실패')
-        }
-      })
-
-  }
+  // console.log(previews);
 
   return (
-    <ProfileBox style={{ display: "flex", }}>
+    <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
         {({ getRootProps, getInputProps }) => (
           <section>
-            <Inner
-              {...getRootProps()}>
+            <Inner {...getRootProps()}>
               <input {...getInputProps()} />
             </Inner>
           </section>
@@ -47,25 +61,24 @@ function FileUpload() {
 
       {/* Dropzone옆에 올린 파일 보여지는 곳 */}
 
-      {Images.map((image, index) => (
-        <Image>
+      {/* {previews.map((preview, index) => (
+        <Image bgUrl={preview}>
           <img
             style={{ borderRadius: "10px" }}
-            width='250px'
-            alt=''
-            src={image}
+            width="250px"
+            alt=""
+            src={preview}
           />
         </Image>
-      ))}
-
-
+      ))} */}
     </ProfileBox>
-  )
+  );
 }
 
 const ProfileBox = styled.div`
   margin: 10px 0px;
   width: 100%;
+  max-width: 1120px;
   height: auto;
   border-radius: 10px;
   border: 1px solid #cccccc;
@@ -86,5 +99,13 @@ const Image = styled.div`
   margin: 10px;
   border-radius: 10px;
   background: #333333;
+  background-image: ${(props) => (props ? props.bgUrl : null)};
 `;
-export default FileUpload
+
+const portrait = styled.div`
+  background-image: url("/static/images/profile.png");
+  background-size: cover;
+  background-position: center;
+  padding-top: 56.25%;
+`;
+export default ForProjUpload;

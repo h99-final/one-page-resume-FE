@@ -1,20 +1,25 @@
-
-import React, { useState } from 'react'
-import Dropzone from 'react-dropzone'
-import axios from 'axios'
-import { apis } from '../../../shared/axios';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import { apis } from "../../../shared/axios";
+import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 function FileUpload() {
+  const { id } = useParams();
+  const match = useRouteMatch();
   const tokencheck = document.cookie;
   const token = tokencheck.split("=")[1];
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
+    console.log(files);
 
     let formData = new FormData();
+    console.log(files);
 
     formData.append("profileImage", files[0]);
 
@@ -34,7 +39,6 @@ function FileUpload() {
 
   return (
     <>
-
       <Dropzone onDrop={dropHandler}>
         {({ getRootProps, getInputProps, isDragActive }) => (
           <>
@@ -66,15 +70,14 @@ function FileUpload() {
 
 const ProfileBox = styled.div``;
 const Inner = styled.div`
-    width: 250px;
-    height: 250px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid;
-    overflow: hidden;
-    object-fit: cover;
-    
-        `;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid;
+  overflow: hidden;
+  object-fit: cover;
+`;
 
 const Image = styled.div`
   width: 99%;
@@ -96,9 +99,7 @@ const Image = styled.div`
       border: 1px solid white;
       z-index: 1;
     }
-
-    
-}
+  }
 `;
 
 export const Label = styled.div`
@@ -106,7 +107,7 @@ export const Label = styled.div`
   align-items: center;
   text-align: center;
   flex-direction: row;
-  
+
   width: 99%;
   z-index: 0;
   min-width: 250px;

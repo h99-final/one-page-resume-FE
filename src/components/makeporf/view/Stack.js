@@ -4,11 +4,11 @@ import Select from "react-select";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import Grid from '@mui/material/Grid';
-import { useSelector } from 'react-redux';
-import { Content, Label, FormText, FormTitle } from '../shared/_sharedStyle';
-import { Font } from './Introduce'
-import { apis } from '../../../shared/axios';
+import Grid from "@mui/material/Grid";
+import { useSelector } from "react-redux";
+import { Content, Label, FormText, FormTitle } from "../shared/_sharedStyle";
+import { Font } from "./Introduce";
+import { apis } from "../../../shared/axios";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -24,33 +24,45 @@ export const options = [
   { value: "Git", label: "Git" },
 ];
 
-function Stack() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      background: "white",
+export const customStyles = {
+  control: (base, state) => ({
+    ...base,
+    background: "white",
+    // Overwrittes the different states of border
+    border: "1px solid #cccccc",
+    borderRadius: "5px",
+    width: "73.5vw",
+    "&:hover": {
       // Overwrittes the different states of border
-      border: "1px solid #cccccc",
-      borderRadius: "5px",
-      width: "73.5vw",
-      "&:hover": {
-        // Overwrittes the different states of border
-        borderColor: state.isFocused ? "red" : "blue"
-      }
-    })
-  };
+      borderColor: state.isFocused ? "red" : "blue",
+    },
+  }),
+};
+function Stack() {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const animatedComponents = makeAnimated();
   const [stack, setStack] = useState(userInfo.stack);
   const [addStack, setAddStack] = useState([]);
 
-  const defaultStack = ["JS", "JAVA", "PYTHON", "C", "C++", "iOS", "Android", "React", "Spring", "Node.js", "Vue.js", "git"]
+  const defaultStack = [
+    "JS",
+    "JAVA",
+    "PYTHON",
+    "C",
+    "C++",
+    "iOS",
+    "Android",
+    "React",
+    "Spring",
+    "Node.js",
+    "Vue.js",
+    "git",
+  ];
   const changeHandler = (checked, id) => {
-
     if (checked) {
       setStack([...stack, id]);
       console.log("체크 반영 완료");
-      console.log(checked)
+      console.log(checked);
     } else {
       setStack(stack.filter((e) => e !== id));
       console.log("체크 해제 반영 완료");
@@ -67,8 +79,7 @@ function Stack() {
   useEffect(() => {
     console.log("axios 스택 보내기");
   }, [addStack]);
-  console.log(addStack)
-
+  console.log(addStack);
 
   const submitStack = () => {
     const data = {
@@ -79,34 +90,32 @@ function Stack() {
       blogUrl: userInfo.blogUrl,
     };
     const addS = {
-      stack: addStack
-    }
-    apis.putInfo(data)
-      .then(res => {
-        console.log(res)
-      })
+      stack: addStack,
+    };
+    apis.putInfo(data).then((res) => {
+      console.log(res);
+    });
 
-    apis.porfStack(addS)
-      .then(response => {
-        console.log(response)
-      })
+    apis.porfStack(addS).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
     <>
-
       <FormTitle>
         <FormText>기술 스택</FormText>
       </FormTitle>
-      <Font style={{ color: "inherit", textAlign: "left", marginLeft: "205px" }}>
-        나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를 대표하는 명함에 들어가게 됩니다.
+      <Font
+        style={{ color: "inherit", textAlign: "left", marginLeft: "205px" }}
+      >
+        나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
+        대표하는 명함에 들어가게 됩니다.
       </Font>
 
       <MultiContent>
         <Label>
-          <Font>
-            대표 스택
-          </Font>
+          <Font>대표 스택</Font>
         </Label>
         <StackBox>
           {defaultStack.map((s, index) => {
@@ -138,14 +147,12 @@ function Stack() {
         <Font style={{ color: "red", textAlign: "center" }}>
           3가지만 골라주세요
         </Font>
-      ) : <Font style={{ color: "inherit", textAlign: "center" }}>
-
-      </Font>}
+      ) : (
+        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
+      )}
       <MultiContent>
         <Label>
-          <Font>
-            기술 스택
-          </Font>
+          <Font>기술 스택</Font>
         </Label>
         <Select
           styles={customStyles}
@@ -154,13 +161,11 @@ function Stack() {
           options={options}
           isMulti
           onChange={handleChange}
-
         />
       </MultiContent>
       <MultiContent>
         <Label>
-          <Font>
-          </Font>
+          <Font></Font>
         </Label>
         <StackBox>
           {addStack.map((addStack, index) => {
@@ -183,7 +188,7 @@ function Stack() {
   );
 }
 
-const StackBox = styled.div`
+export const StackBox = styled.div`
   margin: 10px 0px;
   height: auto;
   border-radius: 10px;
@@ -191,7 +196,7 @@ const StackBox = styled.div`
   background-color: white;
 `;
 
-const SelectStack = styled.button`
+export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px;
   width: 145px;

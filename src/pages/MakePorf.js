@@ -37,12 +37,12 @@ function MakePorf() {
     </>
   );
 }
-const WriteForm = styled.div`
+export const WriteForm = styled.div`
   width: 95%;
   height: auto;
   min-width: 834px;
   min-height: 80vh;
-  
+
   display: block;
   justify-content: center;
   margin: 0px auto;
@@ -62,7 +62,7 @@ const WriteForm = styled.div`
   }
 `;
 
-const WriteTemplate = styled.div`
+export const WriteTemplate = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
