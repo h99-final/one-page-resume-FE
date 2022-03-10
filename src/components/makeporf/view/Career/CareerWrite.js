@@ -96,8 +96,9 @@ const CareerWrite = () => {
             name="title"
             control={control}
           />
-          <ErrorMessage>{errors?.title?.message}</ErrorMessage>
         </Content>
+
+        <ErrorMessage>{errors?.title?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>직무 경험</Font>
@@ -117,8 +118,8 @@ const CareerWrite = () => {
             name="subTitle"
             control={control}
           />
-          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         <MultiContent>
           <Label>
             <Font>직무 내용(0/100)</Font>
@@ -136,11 +137,13 @@ const CareerWrite = () => {
             name="contents"
             control={control}
           />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
-            <Message onClick={contentsAdd}>직무 내용 추가</Message>
-          </div>
+
+          <Message onClick={contentsAdd}>내용<br />추가</Message>
         </MultiContent>
+
+
+        <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
+
         {contents.map((e, i) => {
           return (
             <CareerContent key={i} content={e.content} id={e.id} index={i} />
@@ -172,7 +175,7 @@ const CareerWrite = () => {
             name="startTime"
             control={control}
           />
-          <div>~</div>
+          <Font>~</Font>
           <Controller
             render={({ field }) => (
               <InputCustomDate
@@ -195,8 +198,8 @@ const CareerWrite = () => {
             name="endTime"
             control={control}
           />
-          <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
       </form>
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={handleSubmit(careerSubmit)}>
@@ -213,7 +216,8 @@ const InputCustomDate = styled(InputCustom)`
   width: 8vw;
 `;
 
-const Message = styled(ErrorMessage)`
+const Message = styled.span`
+  font-size: 10px;
   color: #000;
 `;
 

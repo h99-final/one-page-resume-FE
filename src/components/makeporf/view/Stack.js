@@ -31,7 +31,9 @@ export const customStyles = {
     // Overwrittes the different states of border
     border: "1px solid #cccccc",
     borderRadius: "5px",
-    width: "73.5vw",
+    width: "74.5vw",
+    minWidth: "600px",
+    maxWidth: "1140px",
     "&:hover": {
       // Overwrittes the different states of border
       borderColor: state.isFocused ? "red" : "blue",
@@ -167,7 +169,7 @@ function Stack() {
         <Label>
           <Font></Font>
         </Label>
-        <StackBox>
+        <StackBox style={{ marginBottom: "60px" }}>
           {addStack.map((addStack, index) => {
             return (
               <SelectStack key={index} {...addStack}>

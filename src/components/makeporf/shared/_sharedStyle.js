@@ -73,7 +73,7 @@ export const Label = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 50px 20px 50px;
+  margin: 0px 50px 10px 50px;
 `;
 
 export const ContentForm = styled.div`
@@ -137,12 +137,10 @@ export const ErrorMessage = styled.span`
   font-family: Pretendard;
   font-size: 12px;
   color: #f00;
-
-  padding: 10px 5px;
-
-  display: relative;
-  width: 100%;
-  max-width: 120px;
-  margin-left: auto;
+  text-align: right;
+  display: flex;
+  justify-content: right;
+  padding-bottom: 15px;
+  width: 94%;
   height: 10px;
 `;
