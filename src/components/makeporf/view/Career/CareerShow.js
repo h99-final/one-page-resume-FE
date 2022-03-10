@@ -11,17 +11,17 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Content, Font, FormContents } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
 import CareerContent from "./CareerContent";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import { MultiContent } from "./CareerWrite";
 
 function CareerShow(props) {
   const dispatch = useDispatch();
 
-  const { title, subTitle, contents, startTime, endTime, index } = props;
+  const { title, subTitle, contents, startTime, endTime, id } = props;
 
   function handleDelete() {
-    dispatch(careerActions.deleteCareer(index));
+    dispatch(careerActions.deleteCareerDB(id));
   }
 
   return (
@@ -57,6 +57,15 @@ function CareerShow(props) {
           {contents?.map((e, i) => {
             return <CareerContent key={i} content={e} index={i} />;
           })}
+          {contents?.map((e, i) => {
+            return (
+              <InputCustom
+                type="text"
+                style={{ border: "none", background: "white" }}
+                defaultValue={e}
+              />
+            );
+          })}
         </MultiContent>
         <Content>
           <Label>
@@ -70,7 +79,7 @@ function CareerShow(props) {
               background: "white",
               marginRight: "10px",
             }}
-            defaultValue={startTime}
+            defaultValue={startTime.slice(0, 7)}
           />
 
           <div>~</div>
@@ -82,7 +91,7 @@ function CareerShow(props) {
               background: "white",
               marginLeft: "10px",
             }}
-            defaultValue={endTime}
+            defaultValue={endTime.slice(0, 7)}
           />
         </Content>
       </FormContents>

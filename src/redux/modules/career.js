@@ -16,13 +16,13 @@ const initialState = {
   careers: [],
 };
 
-const setCareerDB = (porfId) => {
+const setCareerDB = () => {
   return async function (dispatch, getState, { history }) {
     const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
     await apis
       .careerPorfGet(porfId)
       .then((res) => {
-        dispatch(setCareer(res.data.data.careers));
+        dispatch(setCareer(res.data.data));
       })
       .catch((error) => {
         alert(error);
@@ -35,6 +35,19 @@ const addCareerDB = (career) => {
     await apis.careerPorf(career).then((res) => {
       console.log(res.data.data);
     });
+  };
+};
+
+const deleteCareerDB = (index) => {
+  return async function (dispatch, getState, { history }) {
+    await apis
+      .careerPorfDelete(index)
+      .then((res) => {
+        dispatch(deleteCareer(index));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
@@ -52,7 +65,7 @@ export default handleActions(
     [DELETE_CAREER]: (state, action) =>
       produce(state, (draft) => {
         draft.careers = draft.careers.filter(
-          (e, i) => i !== action.payload.careerIndex
+          (e, i) => e.id !== action.payload.careerIndex
         );
       }),
   },
@@ -65,6 +78,7 @@ const actionCreators = {
   deleteCareer,
   setCareerDB,
   addCareerDB,
+  deleteCareerDB,
 };
 
 export { actionCreators };

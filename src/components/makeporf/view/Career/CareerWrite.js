@@ -31,12 +31,11 @@ const CareerWrite = () => {
     setError,
   } = useForm({ defaultValues });
 
-  const contents = useSelector((state) => state.careerContent.contents);
   const content = useRef();
 
   const careerSubmit = (oldData) => {
-    let _content = [];
-    contents.map((e) => _content.push(e.content));
+    let _content = content.current.value.split(`\n`);
+    console.log(_content);
     let _data = {
       ...oldData,
       contents: _content,
@@ -51,28 +50,6 @@ const CareerWrite = () => {
     setValue("startTime", "");
     setValue("endTime", "");
   };
-
-  const contentsAdd = () => {
-    if (content.current.value === "") {
-      setError(
-        "contents",
-        { message: "직무 내용을 입력해주세요" },
-        { shouldFocus: true }
-      );
-      return;
-    }
-    dispatch(contentActions.addContent(content.current.value));
-
-    setValue("contents", "");
-  };
-
-  const onCheckEnter = (e) => {
-    if (e.key === "Enter") {
-      contentsAdd();
-    }
-  };
-
-  console.log(contents);
 
   return (
     <>
@@ -130,7 +107,6 @@ const CareerWrite = () => {
                 style={{ marginBottom: "20px", height: "40px" }}
                 {...field}
                 ref={content}
-                onKeyPress={onCheckEnter}
               />
             )}
             name="contents"
@@ -138,14 +114,8 @@ const CareerWrite = () => {
           />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
-            <Message onClick={contentsAdd}>직무 내용 추가</Message>
           </div>
         </MultiContent>
-        {contents.map((e, i) => {
-          return (
-            <CareerContent key={i} content={e.content} id={e.id} index={i} />
-          );
-        })}
         <Content>
           <Label style={{ minWidth: "150px" }}>
             <Font>활동 기간</Font>

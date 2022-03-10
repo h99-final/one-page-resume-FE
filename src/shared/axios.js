@@ -69,6 +69,7 @@ export const apis = {
 
   careerPorf: (data) => instance.post("/porf/career", data),
   careerPorfGet: (porfId) => instance.get(`/porf/${porfId}/career`),
+  careerPorfDelete: (careerId) => instance.delete(`/porf/career/${careerId}`),
 
   projectPorf: (data) => instance.post("/porf/project", data),
   projectPorfGet: () => instance.get("/user/project"),
