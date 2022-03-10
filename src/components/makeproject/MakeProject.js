@@ -66,7 +66,10 @@ function MakeProject() {
     };
     console.log(jsonFrm);
     let frm = new FormData();
-    frm.append("data", jsonFrm);
+    frm.append(
+      "data",
+      new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
+    );
     for (let i = 0; i < images.length; i++) {
       console.log(images[i]);
       frm.append("images", images[i]);
