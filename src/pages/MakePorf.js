@@ -42,7 +42,7 @@ export const WriteForm = styled.div`
   height: auto;
   min-width: 834px;
   min-height: 80vh;
-
+  max-width: 1440px;
   display: block;
   justify-content: center;
   margin: 0px auto;
@@ -51,13 +51,13 @@ export const WriteForm = styled.div`
   @media screen and (min-width: 1194px) {
     & {
       width: 95%;
+      max-width: 1440px;
       justify-content: center;
-      margin: 0px auto;
     }
   }
   @media screen and (min-width: 834px) {
     & {
-      margin: 0px auto;
+      max-width: 1440px;
     }
   }
 `;

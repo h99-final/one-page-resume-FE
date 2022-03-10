@@ -78,7 +78,7 @@ function ForProjUpload(props) {
 const ProfileBox = styled.div`
   margin: 10px 0px;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1000px;
   height: auto;
   border-radius: 10px;
   border: 1px solid #cccccc;

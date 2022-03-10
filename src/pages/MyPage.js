@@ -107,7 +107,7 @@ function MyPage() {
 
         </PortfolioBox>
       </Form>
-      <ProjTitle style={{ marginLeft: "25px", marginTop: "120px" }}>프로젝트</ProjTitle>
+      <ProjTitle style={{ marginTop: "120px" }}>프로젝트</ProjTitle>
       <Project>
         <Portfolio style={{ background: "#ededed", width: "450px", border: "1px solid #ededed" }}>
           <AddProfBox style={{ marginTop: "160px" }}>
@@ -137,18 +137,22 @@ export const Title = styled.div`
   color: #000000;
 `;
 export const ProjTitle = styled.div`
-width: 113px;
-height: 30px;
-left: 0px;
-margin-top: 160px;
-margin-bottom: 10px;
-font-family: Pretendard;
-font-style: normal;
-font-weight: bold;
-font-size: 26px;
-line-height: 24px;
-color: #000000;
+  width: 96%;
+  margin: 0px auto;
+  min-width: 1440px;
+  max-width: 1900px;
+  height: 30px;
+  left: 0px;
+  margin-top: 160px;
+  margin-bottom: 10px;
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 24px;
+  color: #000000;
 `;
+
 export const Font = styled.div`
   /* body1 */
   font-family: Pretendard;
@@ -191,6 +195,7 @@ export const Content = styled.div`
 `;
 const Form = styled.div`
   width: 96%;
+  margin: 0px auto;
   min-width: 1440px;
   height: 600px;
   max-width: 1900px;
@@ -209,7 +214,8 @@ const Form = styled.div`
 
 
 const Project = styled.div`
-  margin: 0px 25px 60px 25px;
+  
+  margin: 0px auto;
   display: flex;
   width: 96%;
   min-width: 1440px;
