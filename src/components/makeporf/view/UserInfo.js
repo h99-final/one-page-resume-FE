@@ -28,12 +28,12 @@ function UserInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = useSelector((state) => state.user.user);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {});
+    apis.addInfo(_data).then((res) => { });
   };
 
   useEffect(() => {
@@ -80,8 +80,8 @@ function UserInfo() {
             name="name"
             control={control}
           />
-          <ErrorMessage>{errors?.name?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.name?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>직무</Font>
@@ -126,8 +126,8 @@ function UserInfo() {
             name="phoneNum"
             control={control}
           />
-          <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>이메일</Font>
@@ -150,8 +150,8 @@ function UserInfo() {
             name="email"
             control={control}
           />
-          <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>GitHub URL</Font>
@@ -174,8 +174,8 @@ function UserInfo() {
             name="gitUrl"
             control={control}
           />
-          <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>Blog URL</Font>
@@ -198,9 +198,9 @@ function UserInfo() {
             name="blogUrl"
             control={control}
           />
-          <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         </Content>
-        <input type="submit" />
+        <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
+        <br /><input type="submit" />
       </UserInfoForm>
     </>
   );

@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom } from "../shared/_sharedStyle";
+import { InputCustom, ErrorMessage } from "../shared/_sharedStyle";
 import { actionCreators as userActions } from "../../../redux/modules/user";
 function Introduce() {
   const dispatch = useDispatch();
@@ -80,9 +80,9 @@ function Introduce() {
               name="title"
               control={control}
             />
-            <ErrorMessage>{errors?.title?.message}</ErrorMessage>
           </Content>
 
+          <ErrorMessage style={{ paddingBottom: "20px" }}>{errors?.title?.message}</ErrorMessage>
           <MultiContent>
             <Label>
               <Font>
@@ -112,8 +112,8 @@ function Introduce() {
               name="contents"
               control={control}
             />
-            <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
           </MultiContent>
+          <ErrorMessage style={{ paddingTop: "10px" }}>{errors?.contents?.message}</ErrorMessage>
         </FormContents>
         <input type="submit" value="ToDo" />
       </form>
@@ -121,18 +121,6 @@ function Introduce() {
   );
 }
 
-const ErrorMessage = styled.span`
-  font-family: Pretendard;
-  font-size: 12px;
-  color: #f00;
-
-  padding: 10px 5px;
-
-  display: relative;
-  width: 100%;
-  max-width: 120px;
-  margin-left: auto;
-`;
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -157,6 +145,7 @@ const FormText = styled.div`
 `;
 
 export const FormContents = styled.div`
+  
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;

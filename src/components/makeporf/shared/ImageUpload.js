@@ -72,7 +72,7 @@ const ProfileBox = styled.div``;
 const Inner = styled.div`
   width: 250px;
   height: 250px;
-  margin-bottom: 20px;
+  margin: 20px 0px;
   border-radius: 10px;
   border: 1px solid;
   overflow: hidden;
@@ -80,8 +80,8 @@ const Inner = styled.div`
 `;
 
 const Image = styled.div`
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  height: 100%;
   margin: 0px;
   border-radius: 10px;
   display: flex;

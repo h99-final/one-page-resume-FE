@@ -73,8 +73,9 @@ const CareerWrite = () => {
             name="title"
             control={control}
           />
-          <ErrorMessage>{errors?.title?.message}</ErrorMessage>
         </Content>
+
+        <ErrorMessage>{errors?.title?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>직무 경험</Font>
@@ -94,8 +95,8 @@ const CareerWrite = () => {
             name="subTitle"
             control={control}
           />
-          <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
         <MultiContent>
           <Label>
             <Font>직무 내용(0/100)</Font>
@@ -142,7 +143,7 @@ const CareerWrite = () => {
             name="startTime"
             control={control}
           />
-          <div>~</div>
+          <Font>~</Font>
           <Controller
             render={({ field }) => (
               <InputCustomDate
@@ -165,8 +166,8 @@ const CareerWrite = () => {
             name="endTime"
             control={control}
           />
-          <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
         </Content>
+        <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
       </form>
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={handleSubmit(careerSubmit)}>
@@ -183,7 +184,8 @@ const InputCustomDate = styled(InputCustom)`
   width: 8vw;
 `;
 
-const Message = styled(ErrorMessage)`
+const Message = styled.span`
+  font-size: 10px;
   color: #000;
 `;
 
