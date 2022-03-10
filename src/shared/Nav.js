@@ -40,13 +40,13 @@ const Nav = (props) => {
             <h1>{props.name}</h1>
             <p>{props.email}</p>
           </Profile>
-          <NavPro onClick={() => { history.push('/mypage') }}>프로필</NavPro>
+          <NavPro onClick={() => { history.push('/mypage') }}>마이페이지</NavPro>
           <NavSet
             onClick={() => {
               alert("@");
             }}
           >
-            설정
+            내 정보 수정
           </NavSet>
           <NavLog>
             <Logout onClick={() => { signOut() }}>로그아웃</Logout>
@@ -103,9 +103,9 @@ const NavPro = styled.div`
   align-items: center;
   text-align: center;
   background-color: white;
-  width: 40px;
+  width: 80px;
   height: 18px;
-  padding: 16px 120px 16px 120px;
+  padding: 16px 100px 16px 100px;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
@@ -122,9 +122,9 @@ const NavSet = styled.div`
   align-items: center;
   text-align: center;
   background-color: white;
-  width: 40px;
+  width: 80px;
   height: 18px;
-  padding: 16px 120px 16px 120px;
+  padding: 16px 100px 16px 100px;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;

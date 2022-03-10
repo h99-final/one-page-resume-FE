@@ -80,16 +80,13 @@ function MyPage() {
             <Portfolio>
               <NnE><h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2></NnE>
               <NnE><h3>{userInfo.job}</h3></NnE>
-              <NnE>
-                <span style={{ position: "realtive" }}>
-                  <h4>
-                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+              <NnE><h4>
+                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
 
-                  </h4>
-                </span>
+              </h4>
               </NnE>
               <Content style={{ margin: "0px 0px 0px 25px" }}>
                 <Stack>{userInfo?.stack[0]}</Stack>
@@ -105,15 +102,24 @@ function MyPage() {
               <AddProfBox>
                 <AddProfText>아직 작성된 포트폴리오가 없어요.<br></br>내 이야기를 담아 개성넘치는 포트폴리오를 만들어 보세요.</AddProfText>
               </AddProfBox>
-
             </Portfolio>
           }
 
         </PortfolioBox>
       </Form>
-      <ProjectBox>
-
-      </ProjectBox>
+      <ProjTitle style={{ marginLeft: "25px", marginTop: "120px" }}>프로젝트</ProjTitle>
+      <Project>
+        <Portfolio style={{ background: "#ededed", width: "450px", border: "1px solid #ededed" }}>
+          <AddProfBox style={{ marginTop: "160px" }}>
+            <AddProfButton style={{ background: "white" }}><Add />프로젝트 추가</AddProfButton>
+          </AddProfBox>
+          <AddProfBox>
+            <AddProfText>프로젝트 목록이 비어있어요.
+              <br></br>프로젝트 추가 버튼을 눌러 내 프로젝트를
+              <br></br>포트폴리오에 등록해 보세요.</AddProfText>
+          </AddProfBox>
+        </Portfolio>
+      </Project>
     </>
   );
 }
@@ -129,6 +135,19 @@ export const Title = styled.div`
   font-size: 26px;
   line-height: 24px;
   color: #000000;
+`;
+export const ProjTitle = styled.div`
+width: 113px;
+height: 30px;
+left: 0px;
+margin-top: 160px;
+margin-bottom: 10px;
+font-family: Pretendard;
+font-style: normal;
+font-weight: bold;
+font-size: 26px;
+line-height: 24px;
+color: #000000;
 `;
 export const Font = styled.div`
   /* body1 */
@@ -172,45 +191,32 @@ export const Content = styled.div`
 `;
 const Form = styled.div`
   width: 96%;
-  border: 1px solid;
-  max-width: 1440px;
-  height: 40vh;
-  min-width: 834px;
+  min-width: 1440px;
+  height: 600px;
+  max-width: 1900px;
   min-height: 40vh;
   background: #ffffff;
   display: flex;
-  @media screen and (min-width: 1194px) {
+  @media screen and (min-width: 1440px) {
     & {
-      width: 96%;
-      margin: 0px auto;
     }
   }
   @media screen and (min-width: 834px) {
     & {
-      margin: 0px auto;
     }
   }
 `;
-const ProjectBox = styled.div`
 
-  width: 96%;
-  border: 1px solid;
-  max-width: 1440px;
-  height: 50vh;
-  min-width: 834px;
-  min-height: 40vh;
-  background: #ffffff;
+
+const Project = styled.div`
+  margin: 0px 25px 60px 25px;
   display: flex;
-  @media screen and (min-width: 1194px) {
-    & {
-      width: 96%;
-      margin: 0px auto;
-    }
-  }
-  @media screen and (min-width: 834px) {
-    & {
-      margin: 0px auto;
-    }
+  width: 96%;
+  min-width: 1440px;
+  max-width: 1900px;
+  height: 602px;
+  border-radius: 10px;
+  @media only screen and (max-width: 1300px) {
   }
 `;
 
@@ -349,17 +355,13 @@ const NnE = styled.div`
     font-weight: 400;
     font-size: 26px;
     margin-left: 25px;
-    margin-bottom: 290px;
     color: #333333;
   }
   h4{
-    position: absolute;
-    left: 50%;
-    top: 82%; 
-    transform: translate(-50%,-50%);
     line-height:25px ;
     width: 85%;
-    height: 220px;
+    margin: 0px 25px;
+    height: 200px;
     padding: 50px 0px;
     font-style: normal;
     font-weight: 400;
