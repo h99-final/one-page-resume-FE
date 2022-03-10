@@ -8,14 +8,13 @@ import { actionCreators as careerActions } from "../../../../redux/modules/caree
 
 function Career() {
   const dispatch = useDispatch();
+  const careers = useSelector((state) => state.career.careers);
 
   useEffect(() => {
     const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));
   }, []);
 
-  const careers = useSelector((state) => state.career.careers);
-  console.log(careers);
   return (
     <>
       <FormTitleFlex>
@@ -26,8 +25,8 @@ function Career() {
       </FormTitleFlex>
       <CareerWrite />
       <hr />
-      {careers?.map((e, i) => {
-        return <CareerShow key={i} {...e} index={i} />;
+      {careers.map((e, i) => {
+        return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <hr />
     </>

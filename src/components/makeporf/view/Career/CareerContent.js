@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../../redux/modules/careerContent";
 import { Content, InputCustom, Label } from "../../shared/_sharedStyle";
-import { Font } from '../Introduce';
+import { Font } from "../Introduce";
 
 function CareerContent(props) {
   const dispatch = useDispatch();
@@ -19,11 +19,6 @@ function CareerContent(props) {
   const handleChange = (e) => {
     setValue(e.target.value);
     dispatch(actionCreators.updateContent(e.target.value, index));
-  };
-
-  const deleteContent = (e) => {
-    console.log(index);
-    dispatch(actionCreators.deleteContent(id));
   };
 
   return (
@@ -43,7 +38,6 @@ function CareerContent(props) {
           value={content}
           onChange={handleChange}
         />
-        <div onClick={deleteContent}>-</div>
       </Content>
     </>
   );
