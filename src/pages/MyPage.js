@@ -7,7 +7,7 @@ import Header from "../shared/Header";
 import styled from 'styled-components';
 import { Avatar } from '@mui/material';
 import { EditSharp } from '@mui/icons-material';
-
+import { Add } from '@mui/icons-material';
 function MyPage() {
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
@@ -75,9 +75,45 @@ function MyPage() {
         </UserInfoBox>
         <PortfolioBox>
           <Title>포트폴리오</Title>
-          <Portfolio></Portfolio>
+          {userInfo.name
+            ?
+            <Portfolio>
+              <NnE><h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2></NnE>
+              <NnE><h3>{userInfo.job}</h3></NnE>
+              <NnE>
+                <span style={{ position: "realtive" }}>
+                  <h4>
+                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                    세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+
+                  </h4>
+                </span>
+              </NnE>
+              <Content style={{ margin: "0px 0px 0px 25px" }}>
+                <Stack>{userInfo?.stack[0]}</Stack>
+                <Stack>{userInfo?.stack[1]}</Stack>
+                <Stack>{userInfo?.stack[2]}</Stack>
+              </Content>
+            </Portfolio>
+            :
+            <Portfolio style={{ background: "white" }}>
+              <AddProfBox style={{ marginTop: "160px" }}>
+                <AddProfButton><Add />포트폴리오 작성하기</AddProfButton>
+              </AddProfBox>
+              <AddProfBox>
+                <AddProfText>아직 작성된 포트폴리오가 없어요.<br></br>내 이야기를 담아 개성넘치는 포트폴리오를 만들어 보세요.</AddProfText>
+              </AddProfBox>
+
+            </Portfolio>
+          }
+
         </PortfolioBox>
       </Form>
+      <ProjectBox>
+
+      </ProjectBox>
     </>
   );
 }
@@ -117,6 +153,7 @@ export const Stack = styled.div`
   width: 90px;
   height: 40px;
 `;
+
 export const Label = styled.div`
   display: flex;
   align-items: center;
@@ -135,6 +172,8 @@ export const Content = styled.div`
 `;
 const Form = styled.div`
   width: 96%;
+  border: 1px solid;
+  max-width: 1440px;
   height: 40vh;
   min-width: 834px;
   min-height: 40vh;
@@ -152,23 +191,29 @@ const Form = styled.div`
     }
   }
 `;
-const NnE = styled.div`
-  text-align: center;
-  min-width: 350px;
-  h1{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    margin-bottom: 20px;
+const ProjectBox = styled.div`
+
+  width: 96%;
+  border: 1px solid;
+  max-width: 1440px;
+  height: 50vh;
+  min-width: 834px;
+  min-height: 40vh;
+  background: #ffffff;
+  display: flex;
+  @media screen and (min-width: 1194px) {
+    & {
+      width: 96%;
+      margin: 0px auto;
+    }
   }
-  p{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 26px;
-    margin-bottom: 20px;
-    color: #555555;
+  @media screen and (min-width: 834px) {
+    & {
+      margin: 0px auto;
+    }
   }
 `;
+
 const UserInfoBox = styled.div`
   width: 68%;
   margin-right: 24px;
@@ -177,7 +222,6 @@ const UserInfoBox = styled.div`
   }
 `;
 const PortfolioBox = styled.div`
-  background-color: white;
   position: relative;
   min-width: 350px;
   width: 32%;
@@ -211,13 +255,53 @@ const EditButton = styled.button`
 `;
 const LeftBox = styled.div`
   margin: 70px;
-  width: 250px;
+  min-width: 250px;
   margin-right: 24px;
   position: relative;
   @media only screen and (max-width: 1300px) {
   }
 `;
 
+const AddProfBox = styled.div`
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  height: 100px;
+  min-width: 45px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 1300px) {
+  }
+`;
+const AddProfButton = styled.button`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
+  background-color: #ededed;
+  border-radius: 43px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  min-width: 350px;
+  height: 80px;
+`;
+const AddProfText = styled.div`
+  width: 482px;
+  height: 48px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #999999;
+`;
 const RightBox = styled.div`
   margin: 70px 30px 50px 70px;
   position: relative;
@@ -227,14 +311,61 @@ const RightBox = styled.div`
   }
 `;
 const Portfolio = styled.div`
-  background-color: #777777;
+  background-color: lightblue;
   width: 99%;
   height: 502px;
   border-radius: 10px;
-  border: 1px solid red;
+  border: 1px solid white;
   @media only screen and (max-width: 1300px) {
   }
 `;
 
+const NnE = styled.div`
+  min-width: 350px;
+  h1{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  p{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #555555;
+    text-align: center;
+  }
+  h2{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    margin : 50px 0px 20px 25px;
+    color: #000000;
+  }
+  h3{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    margin-left: 25px;
+    margin-bottom: 290px;
+    color: #333333;
+  }
+  h4{
+    position: absolute;
+    left: 50%;
+    top: 82%; 
+    transform: translate(-50%,-50%);
+    line-height:25px ;
+    width: 85%;
+    height: 220px;
+    padding: 50px 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #333333;
+  }
+`;
 
 export default MyPage;
