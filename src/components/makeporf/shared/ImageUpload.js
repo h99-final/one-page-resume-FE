@@ -77,8 +77,8 @@ const Inner = styled.div`
         `;
 
 const Image = styled.div`
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  height: 100%;
   margin: 0px;
   border-radius: 10px;
   display: flex;

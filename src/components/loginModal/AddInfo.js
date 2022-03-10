@@ -71,7 +71,7 @@ const AddInfo = (props) => {
     setPage("2");
   };
   const addInfo = () => {
-    console.log(name, stack, phoneNum, gitUrl, blogUrl);
+    console.log(name, stack, phoneNum, gitUrl, blogUrl, job);
 
     const data = {
       name: name,
@@ -79,6 +79,7 @@ const AddInfo = (props) => {
       phoneNum: phoneNum,
       gitUrl: gitUrl,
       blogUrl: blogUrl,
+      job: job,
     };
 
     dispatch(userActions.addInfoDB(data));
@@ -176,7 +177,7 @@ const AddInfo = (props) => {
               id="blogurl"
               name="blogurl"
               placeholder="blogURl"
-              // error={blogUrlError !== '' || false}
+            // error={blogUrlError !== '' || false}
             />
             {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
             <TextField
@@ -189,7 +190,7 @@ const AddInfo = (props) => {
               id="phone"
               name="phone"
               placeholder="전화번호"
-              // error={phoneNumError !== "" || false}
+            // error={phoneNumError !== "" || false}
             />
             {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -207,7 +208,7 @@ const AddInfo = (props) => {
               id="job"
               name="job"
               placeholder="직무"
-              // error={jobError !== "" || false}
+            // error={jobError !== "" || false}
             />
             {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>

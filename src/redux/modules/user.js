@@ -38,7 +38,7 @@ const loginDB = (email, password) => {
         if (res.data.data.isFirstLogin === true) {
           console.log(res.data.data.isFirstLogin);
         } else {
-          history.push("/");
+          window.location.reload();
         }
       })
       .catch((error) => alert("회원정보가 일치하지 않습니다."));
@@ -95,7 +95,7 @@ const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(data)
-      .then((res) => {})
+      .then((res) => { })
       .catch((error) => console.log(error));
   };
 };
@@ -128,7 +128,7 @@ export default handleActions(
         draft.isFirstLogin = action.payload.status;
         console.log(action.payload.status);
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) => produce(state, (draft) => { }),
   },
   initialState
 );
