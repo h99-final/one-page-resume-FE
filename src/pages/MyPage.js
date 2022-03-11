@@ -8,8 +8,10 @@ import styled from 'styled-components';
 import { Avatar } from '@mui/material';
 import { EditSharp } from '@mui/icons-material';
 import { Add } from '@mui/icons-material';
-function MyPage() {
+import { useHistory } from 'react-router-dom';
 
+function MyPage() {
+  const history = useHistory();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
   return (
@@ -26,7 +28,9 @@ function MyPage() {
                 src={userInfo.profileImage ? userInfo.profileImage : null}
                 sx={{ width: "250px", height: "250px" }}
               />
-              <EditButton><EditSharp style={{ marginRight: "10px" }} />내 정보 수정</EditButton>
+              <EditButton onClick={() => {
+                history.push('/editinfo')
+              }}><EditSharp style={{ marginRight: "10px" }} />내 정보 수정</EditButton>
             </LeftBox>
             <RightBox>
               <NnE><h1>{userInfo.name ? userInfo.name : "ㅡ"}</h1></NnE>
