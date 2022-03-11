@@ -13,6 +13,7 @@ function Career() {
   useEffect(() => {
     const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));
+    return;
   }, []);
 
   return (
@@ -25,7 +26,7 @@ function Career() {
       </FormTitleFlex>
       <CareerWrite />
       <hr />
-      {careers.map((e, i) => {
+      {careers?.map((e, i) => {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <hr />

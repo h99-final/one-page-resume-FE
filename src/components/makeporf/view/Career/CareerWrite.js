@@ -17,8 +17,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as contentActions } from "../../../../redux/modules/careerContent";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
-import CareerContent from "./CareerContent";
-import { flexbox } from "@mui/system";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();

@@ -39,7 +39,8 @@ const addCareerDB = (career) => {
   return async function (dispatch, getState, { history }) {
     await apis.careerPorf(career).then((res) => {
       console.log(res.data.data);
-      dispatch(addCareerDB(career));
+      console.log(career);
+      dispatch(addCareer(career));
     });
   };
 };
@@ -61,7 +62,7 @@ const updateCareerDB = (id, career) => {
   return async function (dispatch, getState, { history }) {
     await apis.careerPorfPut(id, career).then((res) => {
       console.log(res.data.data);
-      dispatch(updateCareer(id, career));
+      console.log(career);
     });
   };
 };
