@@ -60,7 +60,13 @@ const Header = (props) => {
             >
               포트폴리오
             </Port>
-            <Proj>프로젝트</Proj>
+            <Proj
+              onClick={() => {
+                history.push("/project/");
+              }}
+            >
+              프로젝트
+            </Proj>
           </LeftMenu>
           <RightMenu>
             <WriteBtn
@@ -93,7 +99,13 @@ const Header = (props) => {
             >
               포트폴리오
             </Port>
-            <Proj>프로젝트</Proj>
+            <Proj
+              onClick={() => {
+                history.push("/project");
+              }}
+            >
+              프로젝트
+            </Proj>
             <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>

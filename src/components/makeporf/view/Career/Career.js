@@ -13,7 +13,6 @@ function Career() {
   useEffect(() => {
     const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));
-    return;
   }, []);
 
   return (
@@ -39,9 +38,9 @@ const FormTitleFlex = styled(FormTitle)`
   justify-content: flex-start;
 `;
 
-const FormTextSpan = styled(FormText)`
+export const FormTextSpan = styled(FormText)`
   font-size: 16px;
-  width: 100%;
+  width: auto;
 `;
 
 export default Career;

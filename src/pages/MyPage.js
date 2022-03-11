@@ -2,15 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import MakeProject from "../components/makeproject/MakeProject";
-import MakeTroubleShooting from "../components/makeproject/MakeTroubleShooting";
+import MakeTroubleShooting from "../components/makeproject/ts/MakeTroubleShooting";
 import Header from "../shared/Header";
-import styled from 'styled-components';
-import { Avatar } from '@mui/material';
-import { EditSharp } from '@mui/icons-material';
-import { Add } from '@mui/icons-material';
+import styled from "styled-components";
+import { Avatar } from "@mui/material";
+import { EditSharp } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 function MyPage() {
-
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   return (
     <>
@@ -26,46 +25,51 @@ function MyPage() {
                 src={userInfo.profileImage ? userInfo.profileImage : null}
                 sx={{ width: "250px", height: "250px" }}
               />
-              <EditButton><EditSharp style={{ marginRight: "10px" }} />내 정보 수정</EditButton>
+              <EditButton>
+                <EditSharp style={{ marginRight: "10px" }} />내 정보 수정
+              </EditButton>
             </LeftBox>
             <RightBox>
-              <NnE><h1>{userInfo.name ? userInfo.name : "ㅡ"}</h1></NnE>
-              <NnE><p>{userInfo.email}</p></NnE>
-              <Content >
-                <Label >
+              <NnE>
+                <h1>{userInfo.name ? userInfo.name : "ㅡ"}</h1>
+              </NnE>
+              <NnE>
+                <p>{userInfo.email}</p>
+              </NnE>
+              <Content>
+                <Label>
                   <Font>대표 스택</Font>
                 </Label>
-                {userInfo.name ?
+                {userInfo.name ? (
                   <>
                     <Stack>{userInfo?.stack[0]}</Stack>
                     <Stack>{userInfo?.stack[1]}</Stack>
                     <Stack>{userInfo?.stack[2]}</Stack>
                   </>
-                  :
+                ) : (
                   <Font>ㅡ</Font>
-                }
-
+                )}
               </Content>
-              <Content >
-                <Label >
+              <Content>
+                <Label>
                   <Font>전화번호</Font>
                 </Label>
                 <Font>{userInfo.phoneNum ? userInfo.phoneNum : "ㅡ"}</Font>
               </Content>
-              <Content >
-                <Label >
+              <Content>
+                <Label>
                   <Font>GitHub URL</Font>
                 </Label>
                 <Font>{userInfo.gitUrl ? userInfo.gitUrl : "ㅡ"}</Font>
               </Content>
-              <Content >
-                <Label >
+              <Content>
+                <Label>
                   <Font>Blog URL</Font>
                 </Label>
                 <Font>{userInfo.blogUrl ? userInfo.blogUrl : "ㅡ"}</Font>
               </Content>
-              <Content >
-                <Label >
+              <Content>
+                <Label>
                   <Font>직무</Font>
                 </Label>
                 <Font>{userInfo.job ? userInfo.job : "ㅡ"}</Font>
@@ -75,18 +79,22 @@ function MyPage() {
         </UserInfoBox>
         <PortfolioBox>
           <Title>포트폴리오</Title>
-          {userInfo.name
-            ?
+          {userInfo.name ? (
             <Portfolio>
-              <NnE><h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2></NnE>
-              <NnE><h3>{userInfo.job}</h3></NnE>
-              <NnE><h4>
-                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                세상을 변화시킬 수  있는 번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-
-              </h4>
+              <NnE>
+                <h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2>
+              </NnE>
+              <NnE>
+                <h3>{userInfo.job}</h3>
+              </NnE>
+              <NnE>
+                <h4>
+                  세상을 변화시킬 수 있는 번쩍이는 아이디어를 쫓는 개발자
+                  김철수입니다. 세상을 변화시킬 수 있는 번쩍이는 아이디어를 쫓는
+                  개발자 김철수입니다. 세상을 변화시킬 수 있는 번쩍이는
+                  아이디어를 쫓는 개발자 김철수입니다. 세상을 변화시킬 수 있는
+                  번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
+                </h4>
               </NnE>
               <Content style={{ margin: "0px 0px 0px 25px" }}>
                 <Stack>{userInfo?.stack[0]}</Stack>
@@ -94,29 +102,45 @@ function MyPage() {
                 <Stack>{userInfo?.stack[2]}</Stack>
               </Content>
             </Portfolio>
-            :
+          ) : (
             <Portfolio style={{ background: "white" }}>
               <AddProfBox style={{ marginTop: "160px" }}>
-                <AddProfButton><Add />포트폴리오 작성하기</AddProfButton>
+                <AddProfButton>
+                  <Add />
+                  포트폴리오 작성하기
+                </AddProfButton>
               </AddProfBox>
               <AddProfBox>
-                <AddProfText>아직 작성된 포트폴리오가 없어요.<br></br>내 이야기를 담아 개성넘치는 포트폴리오를 만들어 보세요.</AddProfText>
+                <AddProfText>
+                  아직 작성된 포트폴리오가 없어요.<br></br>내 이야기를 담아
+                  개성넘치는 포트폴리오를 만들어 보세요.
+                </AddProfText>
               </AddProfBox>
             </Portfolio>
-          }
-
+          )}
         </PortfolioBox>
       </Form>
       <ProjTitle style={{ marginTop: "120px" }}>프로젝트</ProjTitle>
       <Project>
-        <Portfolio style={{ background: "#ededed", width: "450px", border: "1px solid #ededed" }}>
+        <Portfolio
+          style={{
+            background: "#ededed",
+            width: "450px",
+            border: "1px solid #ededed",
+          }}
+        >
           <AddProfBox style={{ marginTop: "160px" }}>
-            <AddProfButton style={{ background: "white" }}><Add />프로젝트 추가</AddProfButton>
+            <AddProfButton style={{ background: "white" }}>
+              <Add />
+              프로젝트 추가
+            </AddProfButton>
           </AddProfBox>
           <AddProfBox>
-            <AddProfText>프로젝트 목록이 비어있어요.
+            <AddProfText>
+              프로젝트 목록이 비어있어요.
               <br></br>프로젝트 추가 버튼을 눌러 내 프로젝트를
-              <br></br>포트폴리오에 등록해 보세요.</AddProfText>
+              <br></br>포트폴리오에 등록해 보세요.
+            </AddProfText>
           </AddProfBox>
         </Portfolio>
       </Project>
@@ -212,9 +236,7 @@ const Form = styled.div`
   }
 `;
 
-
 const Project = styled.div`
-  
   margin: 0px auto;
   display: flex;
   width: 96%;
@@ -241,7 +263,7 @@ const PortfolioBox = styled.div`
   }
 `;
 const UserInfo = styled.div`
-  background-color: #EDEDED;
+  background-color: #ededed;
   width: 99%;
   min-width: 900px;
   height: 502px;
@@ -305,7 +327,7 @@ const AddProfButton = styled.button`
 const AddProfText = styled.div`
   width: 482px;
   height: 48px;
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -334,14 +356,14 @@ const Portfolio = styled.div`
 
 const NnE = styled.div`
   min-width: 350px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 500;
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
   }
-  p{
+  p {
     font-style: normal;
     font-weight: normal;
     font-size: 26px;
@@ -349,22 +371,22 @@ const NnE = styled.div`
     color: #555555;
     text-align: center;
   }
-  h2{
+  h2 {
     font-style: normal;
     font-weight: 500;
     font-size: 26px;
-    margin : 50px 0px 20px 25px;
+    margin: 50px 0px 20px 25px;
     color: #000000;
   }
-  h3{
+  h3 {
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
     margin-left: 25px;
     color: #333333;
   }
-  h4{
-    line-height:25px ;
+  h4 {
+    line-height: 25px;
     width: 85%;
     margin: 0px 25px;
     height: 200px;

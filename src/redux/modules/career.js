@@ -75,8 +75,8 @@ export default handleActions(
       }),
     [ADD_CAREER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state.careers);
         draft.careers.unshift(action.payload.career);
+        console.log(state.careers);
       }),
     [DELETE_CAREER]: (state, action) =>
       produce(state, (draft) => {

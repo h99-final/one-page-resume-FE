@@ -7622,7 +7622,7 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
 
 react-modal@^3.14.4:
   version "3.14.4"
-  resolved "https://registry.npmjs.org/react-modal/-/react-modal-3.14.4.tgz"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.14.4.tgz#2ca7e8e9a180955e5c9508c228b73167c1e6f6a3"
   integrity sha512-8surmulejafYCH9wfUmFyj4UfbSJwjcgbS9gf3oOItu4Hwd6ivJyVBETI0yHRhpJKCLZMUtnhzk76wXTsNL6Qg==
   dependencies:
     exenv "^1.2.0"
