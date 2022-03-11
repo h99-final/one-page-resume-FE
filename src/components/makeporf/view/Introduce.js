@@ -59,7 +59,6 @@ function Introduce() {
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{}}
                   {...field}
                   defaultValue={data?.title}
                   placeholder={errors?.title?.message}

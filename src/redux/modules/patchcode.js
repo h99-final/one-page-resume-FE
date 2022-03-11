@@ -4,6 +4,7 @@ import { apis } from "../../shared/axios";
 
 const SET_PATCH_CODE = "SET_PATCH_CODE";
 const SELECT_PATCH_CODE = "SELECT_PATCH_CODE";
+const SET_COMMIT = "SET_COMMIT";
 
 const setPatchCode = createAction(SET_PATCH_CODE, (patchcode_list) => ({
   patchcode_list,
@@ -11,10 +12,12 @@ const setPatchCode = createAction(SET_PATCH_CODE, (patchcode_list) => ({
 const selectPatchCode = createAction(SELECT_PATCH_CODE, (fileName) => ({
   fileName,
 }));
+const setCommit = createAction(SET_COMMIT, (commit) => ({ commit }));
 
 const initialState = {
   patchcode: [],
   projectId: 0,
+  commit: null,
   selectedPatchCode: [],
 };
 
@@ -38,6 +41,11 @@ export default handleActions(
           (e) => e.name === action.payload.fileName
         );
       }),
+    [SET_COMMIT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.commit = action.payload.commit;
+        console.log(action.payload.commit);
+      }),
   },
   initialState
 );
@@ -46,6 +54,7 @@ const actionCreators = {
   setPatchCodeAPI,
   setPatchCode,
   selectPatchCode,
+  setCommit,
 };
 
 export { actionCreators };

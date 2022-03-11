@@ -51,8 +51,11 @@ function TsModal(props) {
 
   // commit message 고르기
   const handleCommitClick = (e) => {
-    console.log("1");
     setSelectedSha(e.currentTarget.id);
+    let commit = message_list.filter(
+      (commit) => commit.sha === e.currentTarget.id
+    );
+    dispatch(actionCreators.setCommit(commit));
   };
 
   const handleFileClick = (e) => {
@@ -96,8 +99,9 @@ function TsModal(props) {
                         <List
                           selected
                           onClick={handleCommitClick}
-                          key={e.sha + i}
+                          key={e.sha + e.name}
                           id={e.sha}
+                          value={e.message}
                         >
                           <div style={{ display: "flex" }}>
                             <img
@@ -116,7 +120,7 @@ function TsModal(props) {
                       <>
                         <List
                           onClick={handleCommitClick}
-                          key={e.sha + i}
+                          key={e.sha + e.name}
                           id={e.sha}
                         >
                           <Font>{e.message}</Font>
