@@ -1,0 +1,84 @@
+import React, { useEffect, useState } from "react";
+import styled from 'styled-components';
+import { apis } from '../../../shared/axios';
+
+const Introduce = () => {
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
+
+  useEffect(() => {
+    apis.introPorfGet(userInfo.porfId)
+      .then((res) => {
+        setTitle(res.data.data.title)
+        setContents(res.data.data.contents)
+      });
+  }, []);
+
+
+  return (
+    <>
+      <Container>
+        <IntroBox>
+          <TitleBox>
+            <h1>{title}</h1>
+          </TitleBox>
+          <ContentBox>
+            <h1>{contents}</h1>
+          </ContentBox>
+        </IntroBox>
+      </Container>
+      <Hr></Hr>
+    </>
+  );
+}
+
+const Container = styled.div`
+  width: 100%;
+  min-width: 1440px;
+  max-width: 1900px;
+  height: 800px;
+  display: flex;
+`;
+
+const IntroBox = styled.div`
+  margin: 150px auto;
+  width: 80%;
+  height: 500px;
+`;
+
+
+const TitleBox = styled.div`
+  width: 73%;
+  height: 150px;
+  margin-bottom: 80px;
+  text-align: left;
+  h1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 80px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
+`;
+
+const ContentBox = styled.div`
+  width: 100%;
+  height: 250px;
+  h1{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
+`;
+
+const Hr = styled.hr`
+  width: 97%;
+  margin: 0px auto;
+`;
+export default Introduce;

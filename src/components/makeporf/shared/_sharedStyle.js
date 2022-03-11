@@ -59,6 +59,7 @@ export const InputCustom = styled.textarea`
   resize: none;
   border: none;
   background-color: white;
+  
 `;
 
 export const Label = styled.div`
