@@ -16,7 +16,9 @@ const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
+  // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const userInfo = useSelector((state) => state.user.user);
+
   const history = useHistory();
   const user = document.cookie;
   const [modalOpen, setModalOpen] = useState(false);
@@ -52,7 +54,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            Portfolio
+            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -85,7 +87,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            Portfolio
+            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -128,7 +130,7 @@ const Header = (props) => {
               src={userInfo.profileImage}
               sx={{ width: 38, height: 38 }}
             />
-            <Nav nav={nav} name={userInfo.name} email={userInfo.email} />
+            <Nav nav={nav} name={userInfo.name} email={userInfo.email} userId={userInfo.userId} />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>

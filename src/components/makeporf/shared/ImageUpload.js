@@ -89,7 +89,7 @@ const Image = styled.div`
   flex-direction: row;
   z-index: 2;
   img {
-    z-index: 1125;
+    z-index: 115;
     :hover {
       border: 5px solid;
     }

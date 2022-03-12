@@ -43,7 +43,7 @@ const Nav = (props) => {
           <NavPro onClick={() => { history.push('/mypage') }}>마이페이지</NavPro>
           <NavSet
             onClick={() => {
-              alert("@");
+              history.push(`/editinfo/changeinfo/${props.userId}`)
             }}
           >
             내 정보 수정

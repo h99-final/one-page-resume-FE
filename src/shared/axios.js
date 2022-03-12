@@ -7,7 +7,7 @@ const search = localStorage.getItem("search");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://3.34.52.24/",
+  baseURL: "http://3.36.85.128/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -20,7 +20,7 @@ const instance = axios.create({
 
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://3.34.52.24/",
+  baseURL: "http://3.36.85.128/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -79,6 +79,7 @@ export const apis = {
   addImg: (formData) => formInstance.put("user/profile", formData),
 
   porfStack: (addStack) => instance.put("/porf/stack", addStack),
+  porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
 };
