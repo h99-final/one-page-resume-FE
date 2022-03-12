@@ -79,6 +79,7 @@ export const apis = {
   addImg: (formData) => formInstance.put("user/profile", formData),
 
   porfStack: (addStack) => instance.put("/porf/stack", addStack),
+  porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
 

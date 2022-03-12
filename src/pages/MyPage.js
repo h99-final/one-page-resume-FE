@@ -1,15 +1,25 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import MakeProject from "../components/makeproject/MakeProject";
-import MakeTroubleShooting from "../components/makeproject/ts/MakeTroubleShooting";
+import { apis } from '../shared/axios';
 import Header from "../shared/Header";
-import styled from "styled-components";
-import { Avatar } from "@mui/material";
-import { EditSharp } from "@mui/icons-material";
-import { Add } from "@mui/icons-material";
+import styled from 'styled-components';
+import { Avatar } from '@mui/material';
+import { EditSharp } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 function MyPage() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const history = useHistory();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    apis.introPorfGet(userInfo.porfId)
+      .then((res) => {
+        setTitle(res.data.data.title)
+      });
+  }, []);
 
   return (
     <>
@@ -25,9 +35,9 @@ function MyPage() {
                 src={userInfo.profileImage ? userInfo.profileImage : null}
                 sx={{ width: "250px", height: "250px" }}
               />
-              <EditButton>
-                <EditSharp style={{ marginRight: "10px" }} />내 정보 수정
-              </EditButton>
+              <EditButton onClick={() => {
+                history.push(`/editinfo/changeinfo/${userInfo.userId}`)
+              }}><EditSharp style={{ marginRight: "10px" }} />내 정보 수정</EditButton>
             </LeftBox>
             <RightBox>
               <NnE>
@@ -79,22 +89,14 @@ function MyPage() {
         </UserInfoBox>
         <PortfolioBox>
           <Title>포트폴리오</Title>
-          {userInfo.name ? (
+          {title
+            ?
             <Portfolio>
-              <NnE>
-                <h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2>
-              </NnE>
-              <NnE>
-                <h3>{userInfo.job}</h3>
-              </NnE>
-              <NnE>
-                <h4>
-                  세상을 변화시킬 수 있는 번쩍이는 아이디어를 쫓는 개발자
-                  김철수입니다. 세상을 변화시킬 수 있는 번쩍이는 아이디어를 쫓는
-                  개발자 김철수입니다. 세상을 변화시킬 수 있는 번쩍이는
-                  아이디어를 쫓는 개발자 김철수입니다. 세상을 변화시킬 수 있는
-                  번쩍이는 아이디어를 쫓는 개발자 김철수입니다.
-                </h4>
+              <NnE><h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2></NnE>
+              <NnE><h3>{userInfo.job}</h3></NnE>
+              <NnE><h4>
+                {title}
+              </h4>
               </NnE>
               <Content style={{ margin: "0px 0px 0px 25px" }}>
                 <Stack>{userInfo?.stack[0]}</Stack>

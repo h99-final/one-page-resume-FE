@@ -10,6 +10,8 @@ import MyPage from "../pages/MyPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { actionCreators as userActions } from "../redux/modules/user";
+import EditInfo from '../pages/EditInfo';
+import Portfolio from '../pages/Portfolio';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +25,10 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
+
+        <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
+
+        <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/" component={Main} />
         <Route exact path="/portfolio">

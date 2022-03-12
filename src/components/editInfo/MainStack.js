@@ -6,9 +6,16 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
-import { Content, Label, FormText, FormTitle } from "../shared/_sharedStyle";
-import { Font } from "./Introduce";
-import { apis } from "../../../shared/axios";
+import {
+  Content,
+  ErrorMessage,
+  FormText,
+  FormTitle,
+  InputCustom,
+  Label,
+} from "../makeporf/shared/_sharedStyle";
+import { apis } from '../../shared/axios';
+import { Font } from '../makeporf/view/Introduce';
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -40,7 +47,7 @@ export const customStyles = {
     },
   }),
 };
-function Stack() {
+function MainStack() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const animatedComponents = makeAnimated();
   const [stack, setStack] = useState(userInfo.stack);
@@ -92,16 +99,10 @@ function Stack() {
       blogUrl: userInfo.blogUrl,
       job: userInfo.job,
     };
-    const addS = {
-      stack: addStack,
-    };
     apis.putInfo(data).then((res) => {
       console.log(res);
     });
 
-    apis.porfStack(addS).then((response) => {
-      console.log(response);
-    });
   };
 
   return (
@@ -153,40 +154,9 @@ function Stack() {
       ) : (
         <Font style={{ color: "inherit", textAlign: "center" }}></Font>
       )}
-      <MultiContent>
-        <Label>
-          <Font>기술 스택</Font>
-        </Label>
-        <Select
-          styles={customStyles}
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          options={options}
-          isMulti
-          onChange={handleChange}
-        />
-      </MultiContent>
-      <MultiContent>
-        <Label>
-          <Font></Font>
-        </Label>
-        <StackBox style={{ marginBottom: "60px" }}>
-          {addStack.map((addStack, index) => {
-            return (
-              <SelectStack key={index} {...addStack}>
-                {addStack}
-                <ClearIcon
-                  sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
-                  onClick={() => {
-                    alert("@@");
-                  }}
-                ></ClearIcon>
-              </SelectStack>
-            );
-          })}
-        </StackBox>
-      </MultiContent>
-      <button onClick={submitStack}>제출하기</button>
+      <div style={{ width: "96%", textAlign: "right" }}>
+        <Button onClick={submitStack}>변경 내용 저장</Button>
+      </div>
     </>
   );
 }
@@ -202,15 +172,13 @@ export const StackBox = styled.div`
 export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px;
-  width: fit-content;
+  width: 145px;
   height: 40px;
   font-size: 17px;
   border: 1px solid #cccccc;
   border-radius: 100px;
   text-align: center;
 `;
-
-
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;
@@ -219,7 +187,16 @@ export const MultiContent = styled.div`
 const Wrap = styled.div`
   padding-bottom: 20px;
 `;
-
+const Button = styled.button`
+  width: 150px;
+  height: 60px;
+  background-color: #333333;
+  color: white;
+  border-radius: 43px;
+  border: none;
+  position: relative;
+  margin-bottom: 10px;
+`;
 const StyledBox = styled.button`
   border: none;
   background-color: white;
@@ -264,4 +241,4 @@ const StyledBox = styled.button`
     cursor: pointer;
   }
 `;
-export default Stack;
+export default MainStack;
