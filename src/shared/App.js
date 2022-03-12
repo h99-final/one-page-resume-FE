@@ -55,10 +55,11 @@ function App() {
         <Route exact path="/project/:id">
           <div>프로젝트 한개 보여줌</div>
         </Route>
-        <Route exact path="/write/project/:id" component={MakeProj} />
+        <Route path="/write/project/:id/:projectId" component={MakeProj} />
+        <Route path="/write/project/:id" component={MakeProj} />
         <Route
           exact
-          path="/write/project/:id/:projectid"
+          path="/write/project/:id/:projectId"
           component={MakeProj}
         />
         <Route component={NotFound} />

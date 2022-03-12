@@ -25,7 +25,7 @@ function Career() {
       </FormTitleFlex>
       <CareerWrite />
       <hr />
-      {careers.map((e, i) => {
+      {careers?.map((e, i) => {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <hr />
@@ -38,9 +38,9 @@ const FormTitleFlex = styled(FormTitle)`
   justify-content: flex-start;
 `;
 
-const FormTextSpan = styled(FormText)`
+export const FormTextSpan = styled(FormText)`
   font-size: 16px;
-  width: 100%;
+  width: auto;
 `;
 
 export default Career;

@@ -82,4 +82,8 @@ export const apis = {
   porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
+
+  gitCommit: (projectId) => instance.get(`/git/project/${projectId}/commit`),
+  gitCommitFile: (projectId, sha) =>
+    instance.get(`/git/project/${projectId}/commit/${sha}/file`),
 };

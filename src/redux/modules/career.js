@@ -39,7 +39,8 @@ const addCareerDB = (career) => {
   return async function (dispatch, getState, { history }) {
     await apis.careerPorf(career).then((res) => {
       console.log(res.data.data);
-      dispatch(addCareerDB(career));
+      console.log(career);
+      dispatch(addCareer(career));
     });
   };
 };
@@ -61,7 +62,7 @@ const updateCareerDB = (id, career) => {
   return async function (dispatch, getState, { history }) {
     await apis.careerPorfPut(id, career).then((res) => {
       console.log(res.data.data);
-      dispatch(updateCareer(id, career));
+      console.log(career);
     });
   };
 };
@@ -74,8 +75,8 @@ export default handleActions(
       }),
     [ADD_CAREER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state.careers);
         draft.careers.unshift(action.payload.career);
+        console.log(state.careers);
       }),
     [DELETE_CAREER]: (state, action) =>
       produce(state, (draft) => {
