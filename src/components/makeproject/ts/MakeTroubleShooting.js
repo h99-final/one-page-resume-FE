@@ -17,6 +17,7 @@ import styled from "styled-components";
 import TsModal from "./TsModal";
 import { apis } from "../../../shared/axios";
 import { useSelector } from "react-redux";
+import HighlightWithinTextarea from "react-highlight-within-textarea";
 
 function MakeTroubleShooting() {
   const { projectId } = useParams();
@@ -43,13 +44,7 @@ function MakeTroubleShooting() {
     });
   }
 
-  useEffect(() => {
-    // let code = patchcode[0].patchCode;
-    // code.map((e) =>
-    //   e.charAt(0) === "-" ? "red" : e.charAt(0) === "+" ? "yellow" : "black"
-    // );
-    // console.log(code);
-  }, []);
+  console.log(patchcode);
 
   return (
     <>
@@ -62,7 +57,6 @@ function MakeTroubleShooting() {
           </FormSubText>
         </div>
       </FormTitle>
-
       <FormContentsP>
         <MakeCenter style={{ margin: "20px auto" }}>
           <AddButton>
@@ -77,7 +71,7 @@ function MakeTroubleShooting() {
           </AddButton>
         </MakeCenter>
       </FormContentsP>
-      {commit ? (
+      {commit && patchcode ? (
         <>
           <Content>
             <Label>
@@ -86,7 +80,7 @@ function MakeTroubleShooting() {
             <InputCustom
               style={{ overflow: "hidden" }}
               type="text"
-              value={commit[0].message}
+              defaultValue={commit[0].message}
               maxLength={50}
             />
           </Content>
@@ -97,7 +91,7 @@ function MakeTroubleShooting() {
             <InputCustom
               style={{ overflow: "hidden" }}
               type="text"
-              value={patchcode[0]?.name}
+              defaultValue={patchcode[0]?.name}
               maxLength={50}
             />
           </Content>
@@ -112,16 +106,13 @@ function MakeTroubleShooting() {
                 flexDirection: "column",
               }}
             >
-              {patchcode[0]?.patchCode?.map((e, i) => {
-                return (
-                  <InputCustomPatchCode
-                    readOnly
-                    key={"e" + i}
-                    type="text"
-                    value={e}
-                  />
-                );
-              })}
+              <textarea
+                style={{ width: "800px", height: "500px" }}
+                // { highlight: "-", className: "red" },
+                // { highlight: "+", className: "blue" },
+              >
+                icanhighlight
+              </textarea>
             </div>
           </Content>
           <Content>
@@ -152,6 +143,8 @@ function MakeTroubleShooting() {
     </>
   );
 }
+
+const Textarea = styled.div``;
 
 const InputCustomPatchCode = styled.div`
   width: 1120px;

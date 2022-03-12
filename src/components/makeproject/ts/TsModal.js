@@ -11,10 +11,7 @@ import {
 } from "../../makeporf/shared/_sharedStyle";
 import { Font, FormContents } from "../../makeporf/view/Introduce";
 import styled from "styled-components";
-import { FormTextSpan } from "../../makeporf/view/Career/Career";
-import PreviousNext from "../../makeporf/shared/PreviousNext";
 import PreviousNextProject from "../PreviousNextProject";
-import { apis } from "../../../shared/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../redux/modules/patchcode";
 

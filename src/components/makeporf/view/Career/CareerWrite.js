@@ -33,7 +33,7 @@ const CareerWrite = () => {
 
   const careerSubmit = (oldData) => {
     let _content = content.current.value.split(`\n`);
-    console.log(_content);
+
     let _data = {
       ...oldData,
       contents: _content,
@@ -41,7 +41,6 @@ const CareerWrite = () => {
       endTime: oldData.endTime + "-01",
     };
     dispatch(careerActions.addCareerDB(_data));
-    dispatch(contentActions.setContent([]));
     setValue("title", "");
     setValue("contents", "");
     setValue("subTitle", "");

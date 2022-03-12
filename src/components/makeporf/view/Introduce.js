@@ -17,8 +17,6 @@ function Introduce() {
     setValue,
   } = useForm({ defaultValues });
 
-  const userInfo = useSelector((state) => state.user.user);
-
   const [data, setData] = useState({});
 
   const introSubmit = (data) => {
@@ -54,7 +52,6 @@ function Introduce() {
                 포트폴리오 제목<br></br>(0/50)
               </Font>
             </Label>
-
             <Controller
               render={({ field }) => (
                 <InputCustom

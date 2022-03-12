@@ -15,7 +15,6 @@ import styled from "styled-components";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Content, Font, FormContents } from "../Introduce";
 import { useForm, Controller } from "react-hook-form";
-import CareerContent from "./CareerContent";
 import { useDispatch } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import { MultiContent } from "./CareerWrite";
@@ -96,15 +95,6 @@ function CareerShow(props) {
           <Label>
             <Font>직무 내용(0/100)</Font>
           </Label>
-          {/* {contents?.map((e, i) => {
-              return (
-                <InputCustom
-                  type="text"
-                  style={{ border: "none", background: "white" }}
-                  defaultValue={e}
-                />
-              );
-            })} */}
           <InputCustom
             type="text"
             style={{ border: "none", background: "white" }}
