@@ -17,8 +17,6 @@ function Introduce() {
     setValue,
   } = useForm({ defaultValues });
 
-  const userInfo = useSelector((state) => state.user.user);
-
   const [data, setData] = useState({});
 
   const introSubmit = (data) => {
@@ -54,12 +52,10 @@ function Introduce() {
                 포트폴리오 제목<br></br>(0/50)
               </Font>
             </Label>
-
             <Controller
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{}}
                   {...field}
                   defaultValue={data?.title}
                   placeholder={errors?.title?.message}
@@ -82,7 +78,9 @@ function Introduce() {
             />
           </Content>
 
-          <ErrorMessage style={{ paddingBottom: "20px" }}>{errors?.title?.message}</ErrorMessage>
+          <ErrorMessage style={{ paddingBottom: "20px" }}>
+            {errors?.title?.message}
+          </ErrorMessage>
           <MultiContent>
             <Label>
               <Font>
@@ -113,14 +111,15 @@ function Introduce() {
               control={control}
             />
           </MultiContent>
-          <ErrorMessage style={{ paddingTop: "10px" }}>{errors?.contents?.message}</ErrorMessage>
+          <ErrorMessage style={{ paddingTop: "10px" }}>
+            {errors?.contents?.message}
+          </ErrorMessage>
         </FormContents>
         <input type="submit" value="ToDo" />
       </form>
     </>
   );
 }
-
 
 const FormTitle = styled.div`
   margin: 50px 60px;
@@ -145,7 +144,6 @@ const FormText = styled.div`
 `;
 
 export const FormContents = styled.div`
-  
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;

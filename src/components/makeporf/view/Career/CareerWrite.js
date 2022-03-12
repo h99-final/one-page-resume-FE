@@ -15,10 +15,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Font } from "../Introduce";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as contentActions } from "../../../../redux/modules/careerContent";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
-import CareerContent from "./CareerContent";
-import { flexbox } from "@mui/system";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();
@@ -35,7 +32,7 @@ const CareerWrite = () => {
 
   const careerSubmit = (oldData) => {
     let _content = content.current.value.split(`\n`);
-    console.log(_content);
+
     let _data = {
       ...oldData,
       contents: _content,
@@ -43,7 +40,6 @@ const CareerWrite = () => {
       endTime: oldData.endTime + "-01",
     };
     dispatch(careerActions.addCareerDB(_data));
-    dispatch(contentActions.setContent([]));
     setValue("title", "");
     setValue("contents", "");
     setValue("subTitle", "");

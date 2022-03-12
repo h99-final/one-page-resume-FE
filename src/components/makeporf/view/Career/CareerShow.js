@@ -147,7 +147,7 @@ function CareerShow(props) {
               <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
             </div>
           </MultiContent>
-          <Content >
+          <Content>
             <Label style={{ minWidth: "150px" }}>
               <Font>활동 기간</Font>
             </Label>
@@ -248,8 +248,8 @@ function CareerShow(props) {
               );
             })}
           </MultiContent>
-          <Content style={{ marginTop: "30px" }}>
-            <Label >
+          <Content>
+            <Label>
               <Font>활동 기간</Font>
             </Label>
 

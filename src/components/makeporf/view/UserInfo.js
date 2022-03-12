@@ -28,12 +28,12 @@ function UserInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => { });
+    apis.addInfo(_data).then((res) => {});
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function UserInfo() {
         setValue("blogUrl", blogUrl);
       })
       .catch((error) => {
-        setValue(null);
+        setValue("");
       });
   }, []);
 
@@ -200,7 +200,8 @@ function UserInfo() {
           />
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
-        <br /><input type="submit" />
+        <br />
+        <input type="submit" />
       </UserInfoForm>
     </>
   );

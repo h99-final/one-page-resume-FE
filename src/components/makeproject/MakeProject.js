@@ -24,6 +24,7 @@ import { grey } from "@mui/material/colors";
 import { apis } from "../../shared/axios";
 
 function MakeProject() {
+  const history = useHistory();
   //포트폴리오 프로젝트 생성
   const animatedComponents = makeAnimated();
   const {
@@ -77,6 +78,8 @@ function MakeProject() {
 
     apis.createProject(frm).then((res) => {
       console.log(res.data.data);
+      const { id } = res.data.data;
+      history.push(`troubleShooting/${id}`);
     });
   };
 
@@ -84,9 +87,9 @@ function MakeProject() {
   //   history.push("/write/project/troubleshooting/id");
   // };
 
-  // useEffect(() => {
-  //   console.log("유저가 프로젝트를 수정하고 싶을 수도 있으니까");
-  // }, []);
+  useEffect(() => {
+    console.log("유저가 프로젝트를 수정하고 싶을 수도 있으니까");
+  }, []);
 
   return (
     <>
@@ -176,35 +179,21 @@ function MakeProject() {
           </Content>
         </FormContents>
       </form>
-      {/* <form onSubmit={handleSubmit(stackSubmit)}>
-        <input
-          {...register("stack", {
-            required: "your stack",
-          })}
-          placeholder="Stack 작성"
-        />
-        <input type="submit" />
-      </form>
-      <ul>
-        {stacks.map((stack, index) => (
-          <li key={index}>{stack}</li>
-        ))}
-      </ul> */}
       <button onClick={handleSubmit(projectSubmit)}>다음페이지로</button>
     </>
   );
 }
 
-const FormSubText = styled.p`
+export const FormSubText = styled.p`
   font-size: 12px;
   margin-left: 10px;
 `;
 
-const FormMainText = styled(FormText)`
+export const FormMainText = styled(FormText)`
   padding: 10px 0;
 `;
 
-const MultiContentFlex = styled(MultiContent)`
+export const MultiContentFlex = styled(MultiContent)`
   width: 100%;
   display: flex;
 `;
