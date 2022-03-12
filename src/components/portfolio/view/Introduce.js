@@ -36,8 +36,8 @@ const Introduce = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-width: 1440px;
-  max-width: 1900px;
+  min-width: 800px;
+  max-width: 1440px;
   height: 800px;
   display: flex;
 `;
@@ -78,7 +78,7 @@ const ContentBox = styled.div`
 `;
 
 const Hr = styled.hr`
-  width: 97%;
+  width: 96%;
   margin: 0px auto;
 `;
 export default Introduce;

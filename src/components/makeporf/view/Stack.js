@@ -90,6 +90,7 @@ function Stack() {
       phoneNum: userInfo.phoneNum,
       gitUrl: userInfo.gitUrl,
       blogUrl: userInfo.blogUrl,
+      job: userInfo.job,
     };
     const addS = {
       stack: addStack,
@@ -201,13 +202,15 @@ export const StackBox = styled.div`
 export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px;
-  width: 145px;
+  width: fit-content;
   height: 40px;
   font-size: 17px;
   border: 1px solid #cccccc;
   border-radius: 100px;
   text-align: center;
 `;
+
+
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;

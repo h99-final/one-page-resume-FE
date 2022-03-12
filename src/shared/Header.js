@@ -54,7 +54,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            Portfolio
+            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -87,7 +87,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            Portfolio
+            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");

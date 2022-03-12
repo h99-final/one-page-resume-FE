@@ -36,7 +36,7 @@ const UserInfo = () => {
             <h2>{user?.job ? user?.job : "ㅡ"}</h2>
             <p></p>
             <h3>
-              <img width="20px" src={process.env.PUBLIC_URL + "/img/Vector.svg"} />
+              <img width="20px" alt="" src={process.env.PUBLIC_URL + "/img/Vector.svg"} />
               {user?.phoneNum ? user.phoneNum : "ㅡ"}
             </h3>
             <h3>{user?.email ? user?.email : "ㅡ"}</h3>
@@ -55,15 +55,15 @@ const UserInfo = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-width: 1440px;
-  max-width: 1900px;
+  min-width: 800px;
+  max-width: 1440px;
   height: 650px;
   display: flex;
 `;
 
 const UserInfoBox = styled.div`
   margin: 150px auto;
-  width: 60%;
+  width: 65%;
   height: 350px;
   position: relative;
   display: flex;
@@ -85,16 +85,26 @@ const Image = styled.div`
 `;
 
 const ImageBox = styled.div`
-  width: 350px;
+  min-width: 350px;
+  max-width: 700px;
   height: 350px;
   position: relative;
 `;
 
+const JustBox = styled.div`
+width: 15%;
+max-width: 1200px;
+height: 350px;
+position: relative;
+`;
+
+
 const InfoBox = styled.div`
   width: 48%;
   min-width: 170px;
+  max-width: 700px;
   height: 350px;
-  margin-left: 135px;
+  margin-left: 120px;
   position: relative;
   text-align: left;
   h1{
@@ -133,6 +143,7 @@ const InfoBox = styled.div`
   }
   h4{
     width: fit-content;
+    min-width: 200px;
     height: 20px;
     border-radius: 30px;
     background-color: #ededed;
