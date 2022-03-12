@@ -36,16 +36,32 @@ const UserInfo = () => {
             <h2>{user?.job ? user?.job : "ㅡ"}</h2>
             <p></p>
             <h3>
-              <img width="20px" alt="" src={process.env.PUBLIC_URL + "/img/Vector.svg"} />
+              <img
+                style={{ marginRight: "10px" }}
+                width="20" alt="" src={process.env.PUBLIC_URL + "/img/Vector.svg"} />
               {user?.phoneNum ? user.phoneNum : "ㅡ"}
             </h3>
-            <h3>{user?.email ? user?.email : "ㅡ"}</h3>
-            <h4><a href={user?.githubUrl} target="_blank">
-              {user?.githubUrl}
-            </a></h4>
-            <h4><a href={user?.blogUrl} target="_blank">
-              {user?.blogUrl}
-            </a></h4>
+            <h3>
+              <img
+                style={{ marginRight: "10px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/Mail.svg"} />
+              {user?.email ? user?.email : "ㅡ"}
+            </h3>
+            <h4>
+              <img
+                style={{ marginRight: "10px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/link.svg"} />
+              <a href={user?.githubUrl} target="_blank">
+                {user?.githubUrl}
+              </a></h4>
+            <h4>
+
+              <img
+                style={{ marginRight: "10px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/link.svg"} />
+              <a href={user?.blogUrl} target="_blank">
+                {user?.blogUrl}
+              </a></h4>
           </InfoBox>
         </UserInfoBox>
       </Container>
@@ -133,23 +149,28 @@ const InfoBox = styled.div`
   h3{
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    margin: 10px 0px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
+    height: fit-content;
+    font-size: 17px;
     color: #333333;
     margin-left: 5px;
-    
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
   }
+  img{
+    margin-right: 5px;
+    }
   h4{
     width: fit-content;
-    min-width: 200px;
-    height: 20px;
+    min-width: fit-content;
+    height: fit-content;
     border-radius: 30px;
     background-color: #ededed;
     text-align: left;
     padding: 10px 15px;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
     a{
       font-weight: 400;
       font-style: normal;

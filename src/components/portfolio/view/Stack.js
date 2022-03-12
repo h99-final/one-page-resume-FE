@@ -101,6 +101,7 @@ const MainStack = styled.button`
   border-radius: 10px;
   text-align: center;
   margin-right: 15px;
+  align-items: center;
   img {
     border-radius: 5px;
     background-color: gray;
