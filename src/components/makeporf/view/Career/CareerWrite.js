@@ -15,7 +15,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Font } from "../Introduce";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as contentActions } from "../../../../redux/modules/careerContent";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 
 const CareerWrite = () => {
