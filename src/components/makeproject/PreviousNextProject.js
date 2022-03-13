@@ -9,7 +9,7 @@ function PreviousNextProject(props) {
   const { selectedSha, setPage, page, selectedFileName, closeModal } = props;
 
   const handlePreviousClick = () => {
-    if (page > 0) {
+    if (page === 1) {
       setPage((prev) => prev - 1);
     }
   };
