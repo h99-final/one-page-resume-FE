@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import { apis } from '../../../shared/axios';
+import styled from "styled-components";
+import { apis } from "../../../shared/axios";
 
 const Introduce = () => {
-
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId)
-      .then((res) => {
-        setTitle(res.data.data.title)
-        setContents(res.data.data.contents)
-      });
+    apis.introPorfGet(userInfo.porfId).then((res) => {
+      setTitle(res.data.data.title);
+      setContents(res.data.data.contents);
+    });
   }, []);
-
 
   return (
     <>
@@ -32,7 +29,7 @@ const Introduce = () => {
       <Hr></Hr>
     </>
   );
-}
+};
 
 const Container = styled.div`
   width: 100%;
@@ -48,12 +45,11 @@ const IntroBox = styled.div`
   height: 500px;
 `;
 
-
 const TitleBox = styled.div`
   width: 73%;
   margin-bottom: 70px;
   text-align: left;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 56px;
@@ -66,7 +62,7 @@ const TitleBox = styled.div`
 const ContentBox = styled.div`
   width: 100%;
   height: 250px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 300;
     font-size: 20px;

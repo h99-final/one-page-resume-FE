@@ -80,6 +80,8 @@ function CareerShow(props) {
         <form onSubmit={handleSubmit(careerSubmit)}>
           <IconBox>
             <DeleteForeverIcon onClick={handleSubmit(careerSubmit)} />
+          </IconBox>
+          <IconBox>
             <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
           <Content>

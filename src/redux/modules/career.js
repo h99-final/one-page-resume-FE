@@ -36,8 +36,8 @@ const setCareerDB = () => {
 };
 
 const addCareerDB = (career) => {
-  return async function (dispatch, getState, { history }) {
-    await apis.careerPorf(career).then((res) => {
+  return function (dispatch, getState, { history }) {
+    apis.careerPorf(career).then((res) => {
       console.log(res.data.data);
       console.log(career);
       dispatch(addCareer(career));

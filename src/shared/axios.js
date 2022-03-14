@@ -60,7 +60,7 @@ export const apis = {
       passwordCheck: passwordCheck,
     }),
 
-  addInfo: (data) => instance.post("/user/info", data),
+  addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putInfo: (data) => instance.put("user/info", data),
 

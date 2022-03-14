@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom, ErrorMessage } from "../shared/_sharedStyle";
+import { InputCustom, ErrorMessage, StyledInput } from "../shared/_sharedStyle";
 import { actionCreators as userActions } from "../../../redux/modules/user";
 function Introduce() {
   const dispatch = useDispatch();
@@ -54,12 +54,13 @@ function Introduce() {
             </Label>
             <Controller
               render={({ field }) => (
-                <InputCustom
+                <StyledInput
                   type="text"
                   {...field}
                   defaultValue={data?.title}
                   placeholder={errors?.title?.message}
                   maxLength={50}
+                  errors={!!errors.title}
                 />
               )}
               rules={{
@@ -77,10 +78,8 @@ function Introduce() {
               control={control}
             />
           </Content>
-
-          <ErrorMessage style={{ paddingBottom: "20px" }}>
-            {errors?.title?.message}
-          </ErrorMessage>
+          {/* <ErrorMessage style={{ paddingBottom: "20px" }}> */}
+          <ErrorMessage>{errors?.title?.message}</ErrorMessage>
           <MultiContent>
             <Label>
               <Font>
@@ -89,17 +88,20 @@ function Introduce() {
             </Label>
             <Controller
               render={({ field }) => (
-                <InputCustom
+                <StyledInput
                   type="text"
-                  style={{ height: "200px" }}
+                  style={{
+                    height: "200px",
+                  }}
                   {...field}
                   defaultValue={data?.contents}
+                  errors={!!errors.contents}
                 />
               )}
               rules={{
                 required: "소개글을 입력해주세요.",
                 maxLength: {
-                  value: 500,
+                  value: 2000,
                   message: "500자 제한 입니다.",
                 },
                 minLength: {
@@ -111,9 +113,7 @@ function Introduce() {
               control={control}
             />
           </MultiContent>
-          <ErrorMessage style={{ paddingTop: "10px" }}>
-            {errors?.contents?.message}
-          </ErrorMessage>
+          <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
         </FormContents>
         <input type="submit" value="ToDo" />
       </form>
@@ -160,7 +160,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0px 50px 20px 50px;
+  margin: 0px 50px 0px 50px;
   vertical-align: middle;
 `;
 

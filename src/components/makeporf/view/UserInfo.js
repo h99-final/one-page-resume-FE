@@ -14,6 +14,7 @@ import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
 import { useSelector } from "react-redux";
 import { urlCheck } from "../../../shared/common";
+import reactSelect from "react-select";
 
 function UserInfo() {
   const defaultValues = {};
