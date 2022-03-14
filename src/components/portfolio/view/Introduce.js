@@ -51,8 +51,7 @@ const IntroBox = styled.div`
 
 const TitleBox = styled.div`
   width: 73%;
-  height: 150px;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
   text-align: left;
   h1{
     font-style: normal;

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie } from './cookie';
+import { useHistory } from 'react-router-dom';
 // JS파일
 
 const Pnav = (props) => {
-
+  const history = useHistory();
   const user = document.cookie
   // props.nav (false or true)
   const navState = props.pnav
@@ -31,8 +32,8 @@ const Pnav = (props) => {
         ?
         <NavBar >
           <NavLog>
-            <Logout onClick={signOut}>포트폴리오 관리</Logout>
-            <Logout onClick={signOut}>프로젝트 추가</Logout>
+            <Logout onClick={() => { history.push('/porf') }}>포트폴리오 관리</Logout>
+            <Logout onClick={() => { history.push('/proj') }}>프로젝트 추가</Logout>
           </NavLog>
         </NavBar>
         : null
