@@ -16,24 +16,24 @@ import { FormMainText, FormSubText } from "../MakeProject";
 import styled from "styled-components";
 import TsModal from "./TsModal";
 import { apis } from "../../../shared/axios";
-import { useSelector } from "react-redux";
-import HighlightWithinTextarea from "react-highlight-within-textarea";
+import { useDispatch, useSelector } from "react-redux";
+import Highlighted from "./Highlight";
+import { useForm } from "react-hook-form";
+import { actionCreators as tsfileactions } from "../../../redux/modules/patchcode";
+import ShowTroubleShooting from "./ShowTroubleShooting";
 
 function MakeTroubleShooting() {
+  const dispatch = useDispatch();
+  const { register, handleSubmit, setValue } = useForm();
   const { projectId } = useParams();
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [message_list, setMessage_list] = useState([]);
 
-  const [value, setValue] = useState("");
-
-  const handleChange = (e) => {
-    setValue(e.currentTarget.value);
-  };
-
   const commit = useSelector((state) => state.patchcode.commit);
   const patchcode = useSelector((state) => state.patchcode.selectedPatchCode);
+  const tsFile = useSelector((state) => state.patchcode.tsFile);
   // console.log(patchcode[0].patchCode);
 
   function openModal() {
@@ -44,7 +44,21 @@ function MakeTroubleShooting() {
     });
   }
 
-  console.log(patchcode);
+  const onValid = (data) => {
+    const _data = {
+      tsName: data.title,
+      fileName: patchcode[0].name,
+      patchCode: patchcode[0].patchCode,
+      tsContent: data.content,
+    };
+    dispatch(tsfileactions.addFile(_data));
+    dispatch(tsfileactions.resetSelectPatchCode());
+    setValue("content", "");
+  };
+
+  const handleSubmitDB = () => {
+    dispatch(tsfileactions.troubleShootingDB(projectId));
+  };
 
   return (
     <>
@@ -57,6 +71,17 @@ function MakeTroubleShooting() {
           </FormSubText>
         </div>
       </FormTitle>
+      <Content>
+        <Label>
+          <Font>트러블슈팅 제목</Font>
+        </Label>
+        <InputCustom
+          style={{ overflow: "hidden" }}
+          type="text"
+          {...register("title", { required: true })}
+          maxLength={50}
+        />
+      </Content>
       <FormContentsP>
         <MakeCenter style={{ margin: "20px auto" }}>
           <AddButton>
@@ -106,13 +131,7 @@ function MakeTroubleShooting() {
                 flexDirection: "column",
               }}
             >
-              <textarea
-                style={{ width: "800px", height: "500px" }}
-                // { highlight: "-", className: "red" },
-                // { highlight: "+", className: "blue" },
-              >
-                icanhighlight
-              </textarea>
+              <Highlighted text={patchcode[0]?.patchCode} />
             </div>
           </Content>
           <Content>
@@ -124,13 +143,22 @@ function MakeTroubleShooting() {
             <InputCustom
               style={{ overflow: "hidden", height: "20vh" }}
               type="text"
-              value={value}
-              onChange={handleChange}
               maxLength={50}
+              {...register("content", { required: true })}
             />
           </Content>
+          <button onClick={handleSubmit(onValid)}>Submit</button>
         </>
       ) : null}
+
+      {tsFile?.map((e) => {
+        return (
+          <>
+            <ShowTroubleShooting {...e} />
+            <button onClick={handleSubmitDB}>저장하기</button>
+          </>
+        );
+      })}
 
       {modalIsOpen ? (
         <TsModal

@@ -96,7 +96,7 @@ function TsModal(props) {
                         <List
                           selected
                           onClick={handleCommitClick}
-                          key={e.sha + e.name}
+                          key={e.sha + `${i}`}
                           id={e.sha}
                           value={e.message}
                         >
@@ -117,7 +117,7 @@ function TsModal(props) {
                       <>
                         <List
                           onClick={handleCommitClick}
-                          key={e.sha + e.name}
+                          key={e.sha + `${i}`}
                           id={e.sha}
                         >
                           <Font>{e.message}</Font>
@@ -139,14 +139,14 @@ function TsModal(props) {
             </FormTitleFlex>
             <div>
               <Ulist>
-                {file_list.map((e, i) => {
+                {file_list?.map((e, i) => {
                   if (selectedFileName === e.name) {
                     return (
                       <>
                         <List
                           selected
                           onClick={handleFileClick}
-                          key={e.name + i}
+                          key={e.name + `${i}`}
                           id={e.name}
                         >
                           <div style={{ display: "flex" }}>
@@ -166,7 +166,7 @@ function TsModal(props) {
                       <>
                         <List
                           onClick={handleFileClick}
-                          key={e.sha + i}
+                          key={e.sha + `${i}`}
                           id={e.name}
                         >
                           <Font>{e.name}</Font>

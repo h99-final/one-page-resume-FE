@@ -83,6 +83,9 @@ export const apis = {
 
   createProject: (frmData) => formInstance.post("/project", frmData),
 
+  createTroubleShooting: (projectId, data) =>
+    instance.post(`/project/${projectId}/troubleShooting`, data),
+
   gitCommit: (projectId) => instance.get(`/git/project/${projectId}/commit`),
   gitCommitFile: (projectId, sha) =>
     instance.get(`/git/project/${projectId}/commit/${sha}/file`),
