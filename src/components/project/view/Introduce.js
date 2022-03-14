@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { apis } from '../../../shared/axios';
+import { useParams } from 'react-router-dom';
+import { actionCreators } from '../../../redux/modules/setProject';
 
 const Introduce = () => {
-
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-  const [project, setProject] = useState("");
+
   const [contents, setContents] = useState("");
 
   useEffect(() => {
-    apis.projectPorfGet()
-      .then((res) => {
-        setProject(res.data.data)
-      });
+    dispatch(actionCreators.setProjectDB(id))
   }, []);
+
+  const project = useSelector(state => state.setproject.project)
   console.log(project)
 
   return (
@@ -26,24 +29,19 @@ const Introduce = () => {
           <h1>1 2 3 4 5</h1>
         </TitleBox>
         <IntroBox>
-          <h1>오픈 API를 활용한 코로나19 예방접종센터 조회</h1>
+          <h1>{project.title}</h1>
           <ImgBox>
-            <img
-              alt=''
-              src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg'
-            />
-            <img
-              alt=''
-              src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg'
-            />
-            <img
-              alt=''
-              src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg'
-            />
-            <img style={{ marginRight: "0px" }}
-              alt=''
-              src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg'
-            />
+            {project?.imageUrl.map((e, i) => {
+              return (
+                <>
+                  <img
+                    key={e + `${i}`}
+                    alt=''
+                    src={e}
+                  />
+                </>
+              )
+            })}
           </ImgBox>
           <ContentBox>
             <AboutBox>
@@ -73,7 +71,7 @@ const Container = styled.div`
   width: 100%;
   min-width: 800px;
   max-width: 1440px;
-  height: 1000px;
+  min-height: 964px;
 `;
 
 const ContentBox = styled.div`
@@ -162,7 +160,7 @@ const TitleBox = styled.div`
 
 const IntroBox = styled.div`
   width: 95%;
-  height: 630px;
+  min-height: 630px;
   margin: 0px auto;
   h1{
     font-style: normal;

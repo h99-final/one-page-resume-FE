@@ -8,18 +8,33 @@ import { Add } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import ProjectCardShow from '../components/Element/ProjectCardShow';
 
+const defaultprojects = {
+  bookmarkCount: 0,
+  content: "",
+  id: 0,
+  imageUrl: "",
+  stack: [],
+  title: "",
+  userJob: "",
+  username: "",
+}
 function MyPage() {
   const history = useHistory();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
+  const [projects, setProjects] = useState([defaultprojects]);
 
   useEffect(() => {
     apis.introPorfGet(userInfo.porfId).then((res) => {
       setTitle(res.data.data.title);
     });
+    apis.projectPorfGet().then((res) => {
+      setProjects(res.data.data)
+    })
   }, []);
-
+  console.log(projects)
   return (
     <>
       <Header />
@@ -127,17 +142,25 @@ function MyPage() {
           )}
         </PortfolioBox>
       </Form>
-      <ProjTitle style={{ marginTop: "120px" }}>프로젝트</ProjTitle>
+      <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>프로젝트</ProjTitle>
       <Project>
+        {projects.map((e, i) => {
+          return (
+            <>
+              <ProjectCardShow key={`${e.id}`} {...e} />
+            </>
+          )
+        })}
         <Portfolio
           style={{
             background: "#ededed",
-            width: "450px",
+            width: "444px",
             border: "1px solid #ededed",
           }}
         >
           <AddProfBox style={{ marginTop: "160px" }}>
-            <AddProfButton style={{ background: "white" }}>
+            <AddProfButton style={{ background: "white" }}
+              onClick={() => { history.push('/write/project/info') }}>
               <Add />
               프로젝트 추가
             </AddProfButton>
@@ -166,6 +189,11 @@ export const Title = styled.div`
   font-size: 26px;
   line-height: 24px;
   color: #000000;
+`;
+const ForCard = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 `;
 export const ProjTitle = styled.div`
   width: 96%;
@@ -244,7 +272,10 @@ const Form = styled.div`
 `;
 
 const Project = styled.div`
+  justify-content: space-between;
   margin: 0px auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   display: flex;
   width: 96%;
   min-width: 1440px;

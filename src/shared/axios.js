@@ -86,6 +86,9 @@ export const apis = {
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
 
+  projectGet: (projectId) => instance.get(`/project/${projectId}`),
+  projectTSGet: (projectId) => instance.get(`/project/${projectId}/troubleShooting`),
+
   gitCommit: (projectId) => instance.get(`/git/project/${projectId}/commit`),
   gitCommitFile: (projectId, sha) =>
     instance.get(`/git/project/${projectId}/commit/${sha}/file`),
