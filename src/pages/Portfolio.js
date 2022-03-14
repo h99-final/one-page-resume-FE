@@ -4,11 +4,13 @@ import Career from '../components/portfolio/view/Career';
 import Introduce from '../components/portfolio/view/Introduce';
 import Stack from '../components/portfolio/view/Stack';
 import UserInfo from '../components/portfolio/view/UserInfo';
+import Header from '../shared/Header';
 
 const Portfolio = () => {
 
   return (
     <>
+      <Header />
       <Introduce />
       <UserInfo />
       <Stack />

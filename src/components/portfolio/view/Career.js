@@ -1,72 +1,50 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { actionCreators } from '../../../redux/modules/career';
 import { apis } from '../../../shared/axios';
 
 const Career = () => {
+  const dispatch = useDispatch();
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-
-  const [career, setCareer] = useState([]);
+  const careers = useSelector(state => state.career.careers)
 
   useEffect(() => {
-    apis.careerPorfGet(userInfo.porfId)
-      .then((res) => {
-        setCareer(res.data)
-        console.log(career)
-      })
+    dispatch(actionCreators.setCareerDB())
+
   }, []);
 
+  console.log(careers)
 
   return (
     <>
       <Container>
         <TitleBox><h1>Work Experience</h1></TitleBox>
         <Box>
-          <CareerBox>
-            <Label>
-              <h1>부트캠프</h1>
-              <h2>2022/01 ~ 진행중</h2>
-            </Label>
+          {careers.map(e => {
+            return (
+              <CareerBox key={e.id}>
+                <Label>
+                  <h1>{e.title}</h1>
+                  <h2>{e.startTime} ~ {e.endTime}</h2>
+                </Label>
 
-            <CareerContent>
-              <CareerTitle>
-                <h1>항해99</h1>
-              </CareerTitle>
-              <h1>React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-                React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-              </h1>
-            </CareerContent>
-          </CareerBox>
-          <CareerBox>
-            <Label>
-              <h1>부트캠프</h1>
-              <h2>2022/01 ~ 진행중</h2>
-            </Label>
+                <CareerContent>
+                  <CareerTitle>
+                    <h1>{e.subTitle}</h1>
+                  </CareerTitle>
+                  {e.contents.map((c, index) => {
+                    return (
+                      <h1 key={index}>
+                        {c}
+                      </h1>
+                    )
+                  })}
+                </CareerContent>
+              </CareerBox>
+            )
+          })}
 
-            <CareerContent>
-              <CareerTitle>
-                <h1>항해99</h1>
-              </CareerTitle>
-              <h1>React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-                React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-              </h1>
-            </CareerContent>
-          </CareerBox>
-          <CareerBox>
-            <Label>
-              <h1>부트캠프</h1>
-              <h2>2022/01 ~ 진행중</h2>
-            </Label>
-
-            <CareerContent>
-              <CareerTitle>
-                <h1>항해99</h1>
-              </CareerTitle>
-              <h1>React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-                React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획 React를 이용한 프론트엔드 직무 및 Api설계, 서비스 기획
-              </h1>
-            </CareerContent>
-          </CareerBox>
         </Box>
 
       </Container>
