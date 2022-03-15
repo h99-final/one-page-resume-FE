@@ -23,25 +23,19 @@ function PreviousNext() {
     history.push(`/write/portfolio/${paramsId[index - 1]}/${porfId}`);
   };
 
-  const handleSubmit = () => {
-    console.log("axios 포트폴리오 저장하기");
-    // history.push(`/portfolio/:porfId`);
-  };
-
   return (
     <>
       <ButtonBucket>
-        {id === "introduce" ? null : (
-          <Previous onClick={handlePreviousClick}>
-            <span>{`<`}</span>
-          </Previous>
-        )}
+        <Previous id={id} onClick={handlePreviousClick}>
+          <span>{`<`}</span>
+        </Previous>
+
         {id === "project" ? (
-          <Next onClick={handleSubmit}>
+          <Next id={id} onClick={handleNextClick}>
             <span>{`>`}</span>
           </Next>
         ) : (
-          <Next onClick={handleNextClick}>
+          <Next id={id} onClick={handleNextClick}>
             <span>{`>`}</span>
           </Next>
         )}
@@ -51,15 +45,15 @@ function PreviousNext() {
 }
 
 const Next = styled.div`
-  float: right;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   height: 30px;
   width: 30px;
   border: 1px solid #999999;
   border-radius: 5px;
+  margin-left: ${(props) => (props.id === "introduce" ? "auto" : null)};
   & > span {
     font-family: Pretendard;
     font-style: normal;
@@ -72,6 +66,7 @@ const Next = styled.div`
 `;
 const Previous = styled(Next)`
   float: left;
+  display: ${(props) => (props.id === "introduce" ? "none" : null)};
 `;
 
 const ButtonBucket = styled.div`
@@ -79,8 +74,8 @@ const ButtonBucket = styled.div`
   flex-direction: row;
   justify-content: space-between;
   height: 60px;
-  width: 90%;
-  margin: 0px auto;
+  width: 91%;
+  margin: 0px 50px;
 `;
 
 export default PreviousNext;

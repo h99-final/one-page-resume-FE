@@ -213,8 +213,7 @@ function UserInfo() {
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         <br />
-        <PreviousNext />
-        <input type="submit" />
+        <PreviousNext onClick={handleSubmit(onValid)} />
       </UserInfoForm>
     </>
   );

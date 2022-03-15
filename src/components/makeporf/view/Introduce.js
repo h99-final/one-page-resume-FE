@@ -1,15 +1,12 @@
-import { InputUnstyled } from "@mui/base";
-import { autocompleteClasses, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 import { InputCustom, ErrorMessage, StyledInput } from "../shared/_sharedStyle";
-import { actionCreators as userActions } from "../../../redux/modules/user";
 import PreviousNext from "../shared/PreviousNext";
+import Template from "../shared/Template";
 function Introduce() {
-  const dispatch = useDispatch();
   const defaultValues = {};
   const {
     handleSubmit,
@@ -39,7 +36,6 @@ function Introduce() {
     return handleSubmit(introSubmit);
   }, []);
 
-  console.log(data);
   return (
     <>
       <FormTitle>
@@ -118,6 +114,7 @@ function Introduce() {
           <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
         </FormContents>
         <PreviousNext />
+        <Template />
       </form>
     </>
   );

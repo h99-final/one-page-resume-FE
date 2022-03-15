@@ -27,7 +27,7 @@ function Template() {
     setTemplate(null);
   };
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -58,8 +58,9 @@ function Template() {
             <MenuItem onClick={handleClose}>2</MenuItem>
           </Menu>
         </TemplateSelector>
+        <input type="submit" />
         <Save>
-          <FormTextWhite>포트폴리오 저장</FormTextWhite>
+          <FormTextWhite>작성 완료</FormTextWhite>
         </Save>
       </BottomNav>
     </>
@@ -71,6 +72,18 @@ const Save = styled(Next)`
   height: 42px;
   padding: 5px 10px;
   background-color: #cccccc;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+`;
+const TempSave = styled(Next)`
+  width: 125px;
+  height: 42px;
+  padding: 5px 10px;
+  background-color: #cccccc;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
 `;
 
 const TemplateSelector = styled.div`
@@ -80,11 +93,11 @@ const TemplateSelector = styled.div`
 `;
 
 const BottomNav = styled.div`
-  border-bottom: 1px solid black;
   display: fixed;
   position: fixed;
   align-items: center;
   justify-content: space-between;
+  left: 0;
   width: 100%;
   min-width: 768px;
   height: 70px;

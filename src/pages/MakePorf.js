@@ -32,7 +32,6 @@ function MakePorf() {
           </WriteableForm>
         </WriteTemplate>
       </WriteForm>
-      <Template />
     </>
   );
 }
