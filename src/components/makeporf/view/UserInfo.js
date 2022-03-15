@@ -14,6 +14,9 @@ import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
 import { useSelector } from "react-redux";
 import { urlCheck } from "../../../shared/common";
+import reactSelect from "react-select";
+import PreviousNext from "../shared/PreviousNext";
+import Template from "../shared/Template";
 
 function UserInfo() {
   const defaultValues = {};
@@ -33,7 +36,14 @@ function UserInfo() {
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {});
+    apis
+      .addInfo(_data)
+      .then((res) => {
+        console.log(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -52,6 +62,8 @@ function UserInfo() {
       .catch((error) => {
         setValue("");
       });
+
+    return handleSubmit(onValid);
   }, []);
 
   return (
@@ -135,9 +147,10 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ background: "white" }}
+                style={{ background: "#cccccc", color: "#999999" }}
                 {...field}
                 defaultValue={data?.email}
+                readOnly
               />
             )}
             rules={{
@@ -201,7 +214,8 @@ function UserInfo() {
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         <br />
-        <input type="submit" />
+        <PreviousNext onClick={handleSubmit(onValid)} />
+        <Template />
       </UserInfoForm>
     </>
   );

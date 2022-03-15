@@ -166,6 +166,7 @@ function MakeTroubleShooting() {
           message_list={message_list}
           modalIsOpen={modalIsOpen}
           setIsOpen={setIsOpen}
+          setMessage_list={setMessage_list}
         />
       ) : null}
     </>

@@ -14,6 +14,7 @@ import styled from "styled-components";
 import PreviousNextProject from "../PreviousNextProject";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../redux/modules/patchcode";
+import { apis } from "../../../shared/axios";
 
 const customStyles = {
   content: {
@@ -32,7 +33,8 @@ const customStyles = {
 
 function TsModal(props) {
   const dispatch = useDispatch();
-  const { modalIsOpen, setIsOpen, message_list, projectId } = props;
+  const { modalIsOpen, setIsOpen, message_list, projectId, setMessage_list } =
+    props;
   const [selectedSha, setSelectedSha] = useState("");
   const [page, setPage] = useState(0);
 
@@ -57,6 +59,14 @@ function TsModal(props) {
 
   const handleFileClick = (e) => {
     setSelectedFileName(e.currentTarget.id);
+  };
+
+  const handlesync = () => {
+    apis.gitsync(projectId).then((res) => {
+      apis.gitCommit(projectId).then((res) => {
+        setMessage_list(res.data.data);
+      });
+    });
   };
 
   useEffect(() => {
@@ -87,6 +97,7 @@ function TsModal(props) {
                 프로젝트에 첨부할 commit을 선택해 주세요.
               </FormTextLight>
             </FormTitleFlex>
+            <button onClick={handlesync}>새로고침</button>
             <div>
               <Ulist>
                 {message_list.map((e, i) => {

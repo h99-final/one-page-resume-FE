@@ -59,7 +59,21 @@ export const InputCustom = styled.textarea`
   resize: none;
   border: none;
   background-color: white;
-  
+
+  &:focus {
+    outline: none !important;
+    border-color: #719ece !important;
+    box-shadow: 0 0 10px #719ece !important;
+  }
+`;
+
+export const StyledInput = styled(({ errors, ...rest }) => (
+  <InputCustom {...rest} />
+))`
+  &&& {
+    border-color: ${(props) => (props.errors ? "red" : "none")};
+    box-shadow: 0 0 10px ${(props) => (props.errors ? "red" : "none")};
+  }
 `;
 
 export const Label = styled.div`
@@ -74,7 +88,7 @@ export const Label = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 50px 10px 50px;
+  margin: 0px 50px 0px 50px;
 `;
 
 export const ContentForm = styled.div`
@@ -141,7 +155,7 @@ export const ErrorMessage = styled.span`
   text-align: right;
   display: flex;
   justify-content: right;
-  padding-bottom: 15px;
+  padding: 15px 0px;
   width: 94%;
   height: 10px;
 `;
