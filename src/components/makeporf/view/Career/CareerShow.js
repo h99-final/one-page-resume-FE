@@ -84,7 +84,7 @@ function CareerShow(props) {
           <IconBox>
             <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
-          <Content>
+          <MultiContent>
             <Label>
               <Font>직무 카테고리</Font>
             </Label>
@@ -105,8 +105,8 @@ function CareerShow(props) {
               control={control}
             />
             <ErrorMessage>{errors?.title?.message}</ErrorMessage>
-          </Content>
-          <Content>
+          </MultiContent>
+          <MultiContent>
             <Label>
               <Font>직무 경험</Font>
             </Label>
@@ -127,7 +127,7 @@ function CareerShow(props) {
               control={control}
             />
             <ErrorMessage>{errors?.subTitle?.message}</ErrorMessage>
-          </Content>
+          </MultiContent>
           <MultiContent>
             <Label>
               <Font>직무 내용(0/100)</Font>
@@ -139,7 +139,7 @@ function CareerShow(props) {
                   style={{ marginBottom: "20px", height: "40px" }}
                   {...field}
                   ref={content}
-                  defaultValue={contents}
+                  defaultValue={contents?.join("\n")}
                 />
               )}
               name="contents"
@@ -213,7 +213,7 @@ function CareerShow(props) {
             <DeleteForeverIcon onClick={handleUpdate} />
             <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
-          <Content>
+          <Content style={{ marginBottom: "40px" }}>
             <Label>
               <Font>직무 카테고리</Font>
             </Label>
@@ -223,7 +223,7 @@ function CareerShow(props) {
               defaultValue={title}
             />
           </Content>
-          <Content>
+          <Content style={{ marginBottom: "40px" }}>
             <Label>
               <Font>직무 경험</Font>
             </Label>
@@ -233,24 +233,17 @@ function CareerShow(props) {
               defaultValue={subTitle}
             />
           </Content>
-          <MultiContent>
+          <MultiContent style={{ marginBottom: "40px" }}>
             <Label>
               <Font>직무 내용(0/100)</Font>
             </Label>
-            {/* {contents?.map((e, i) => {
-              return <CareerContent key={i} content={e} index={i} />;
-            })} */}
-            {contents?.map((e, i) => {
-              return (
-                <InputCustom
-                  type="text"
-                  style={{ border: "none", background: "white" }}
-                  defaultValue={e}
-                />
-              );
-            })}
+            <InputCustom
+              type="text"
+              style={{ border: "none", background: "white" }}
+              defaultValue={contents?.join("\n")}
+            />
           </MultiContent>
-          <Content style={{ marginTop: "20px" }}>
+          <Content style={{ marginBottom: "40px" }}>
             <Label>
               <Font>활동 기간</Font>
             </Label>

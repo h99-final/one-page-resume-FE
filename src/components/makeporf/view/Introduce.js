@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 import { InputCustom, ErrorMessage, StyledInput } from "../shared/_sharedStyle";
 import { actionCreators as userActions } from "../../../redux/modules/user";
+import PreviousNext from "../shared/PreviousNext";
 function Introduce() {
   const dispatch = useDispatch();
   const defaultValues = {};
@@ -35,6 +36,7 @@ function Introduce() {
         setValue("contents", contents);
       });
     });
+    return handleSubmit(introSubmit);
   }, []);
 
   console.log(data);
@@ -115,7 +117,7 @@ function Introduce() {
           </MultiContent>
           <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
         </FormContents>
-        <input type="submit" value="ToDo" />
+        <PreviousNext />
       </form>
     </>
   );
@@ -161,7 +163,6 @@ export const Content = styled.div`
   flex-direction: row;
   align-items: center;
   margin: 0px 50px 0px 50px;
-  vertical-align: middle;
 `;
 
 export const Label = styled.div`

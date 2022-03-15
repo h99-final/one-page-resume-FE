@@ -31,7 +31,6 @@ function MakePorf() {
             {id === "project" ? <ProjectSelect /> : null}
           </WriteableForm>
         </WriteTemplate>
-        <PreviousNext />
       </WriteForm>
       <Template />
     </>
@@ -68,7 +67,6 @@ export const WriteTemplate = styled.div`
   align-items: flex-start;
   top: 252px;
   border-radius: 10px;
-  margin-bottom: 30px;
 `;
 
 export const WriteableForm = styled.div`
@@ -87,5 +85,6 @@ export const WriteableForm = styled.div`
   flex-grow: 0;
   margin: 0px;
   padding-bottom: 10px;
+  margin-bottom: 100px;
 `;
 export default MakePorf;

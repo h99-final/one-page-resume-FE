@@ -33,16 +33,16 @@ function PreviousNext() {
       <ButtonBucket>
         {id === "introduce" ? null : (
           <Previous onClick={handlePreviousClick}>
-            <span>{`< 이전`}</span>
+            <span>{`<`}</span>
           </Previous>
         )}
         {id === "project" ? (
           <Next onClick={handleSubmit}>
-            <span>{`다음 >`}</span>
+            <span>{`>`}</span>
           </Next>
         ) : (
           <Next onClick={handleNextClick}>
-            <span>{`다음 >`}</span>
+            <span>{`>`}</span>
           </Next>
         )}
       </ButtonBucket>
@@ -56,10 +56,10 @@ const Next = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 62px;
-  width: 115px;
-  background: #333333;
-  border-radius: 43px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #999999;
+  border-radius: 5px;
   & > span {
     font-family: Pretendard;
     font-style: normal;
@@ -67,7 +67,7 @@ const Next = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: #999999;
   }
 `;
 const Previous = styled(Next)`
@@ -75,9 +75,12 @@ const Previous = styled(Next)`
 `;
 
 const ButtonBucket = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   height: 60px;
-  width: 100%;
+  width: 90%;
+  margin: 0px auto;
 `;
 
 export default PreviousNext;
