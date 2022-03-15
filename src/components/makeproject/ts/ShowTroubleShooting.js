@@ -14,7 +14,7 @@ function ShowTroubleShooting(props) {
 
   return (
     <>
-      <Content>
+      <Content style={{ marginBottom: "30px" }}>
         <Label>
           <Font>Commit</Font>
         </Label>
@@ -26,7 +26,7 @@ function ShowTroubleShooting(props) {
           readOnly
         />
       </Content>
-      <Content>
+      <Content style={{ marginBottom: "30px" }}>
         <Label>
           <Font>File Name</Font>
         </Label>
@@ -37,7 +37,7 @@ function ShowTroubleShooting(props) {
           maxLength={50}
         />
       </Content>
-      <Content>
+      <Content style={{ marginBottom: "30px" }}>
         <Label>
           <Font>Patch Code</Font>
         </Label>
@@ -51,7 +51,7 @@ function ShowTroubleShooting(props) {
           <Highlighted text={patchCode} />
         </div>
       </Content>
-      <Content>
+      <Content style={{ marginBottom: "30px" }}>
         <Label>
           <Font>
             *추가 설명<br></br>(0/500)
@@ -64,6 +64,7 @@ function ShowTroubleShooting(props) {
           defaultValue={content}
         />
       </Content>
+      <hr style={{ margin: "50px" }} />
     </>
   );
 }

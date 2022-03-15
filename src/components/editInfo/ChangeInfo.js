@@ -9,10 +9,10 @@ import {
   InputCustom,
   Label,
 } from "../makeporf/shared/_sharedStyle";
-import { apis } from '../../shared/axios';
-import { Font } from '../makeporf/view/Introduce';
-import FileUpload from '../makeporf/shared/ImageUpload';
-import { border } from '@mui/system';
+import { apis } from "../../shared/axios";
+import { Font } from "../makeporf/view/Introduce";
+import FileUpload from "../makeporf/shared/ImageUpload";
+import { border } from "@mui/system";
 
 function ChangeInfo() {
   const defaultValues = {};
@@ -27,12 +27,12 @@ function ChangeInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.putInfo(_data).then((res) => { });
+    apis.addInfo(_data).then((res) => {});
   };
 
   useEffect(() => {
@@ -134,9 +134,12 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "#CCCCCC", color: "#999999" }}
+                style={{
+                  border: "none",
+                  background: "#CCCCCC",
+                  color: "#999999",
+                }}
                 {...field}
-
                 defaultValue={data?.email}
                 readOnly
               />
@@ -148,7 +151,6 @@ function ChangeInfo() {
                 message: "이메일 형식이 아닙니다.",
               },
             }}
-
             name="email"
             control={control}
           />
@@ -160,10 +162,7 @@ function ChangeInfo() {
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom
-                {...field}
-                defaultValue={data?.gitUrl}
-              />
+              <InputCustom {...field} defaultValue={data?.gitUrl} />
             )}
             rules={{
               pattern: {
@@ -202,9 +201,8 @@ function ChangeInfo() {
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         <div style={{ width: "96%", textAlign: "right" }}>
-          <Button type="submit" >변경 내용 저장</Button>
+          <Button type="submit">변경 내용 저장</Button>
         </div>
-
       </UserInfoForm>
     </>
   );
