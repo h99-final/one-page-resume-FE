@@ -1,5 +1,6 @@
 import { produce } from "immer";
 import { createAction, handleActions } from "redux-actions";
+import { apis } from "../../shared/axios";
 
 const SET_PROJECT = "SET_PROJECT";
 const SELECT_PROJECT = "SELECT_PROJECT";
@@ -27,6 +28,28 @@ const initialState = {
   ],
 };
 
+const setProjectDB = () => {
+  return function (dispatch, getState) {
+    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    apis
+      .projectPorfGet()
+      .then((res) => {
+        dispatch(setProject(res.data.data));
+        apis
+          .projectMYPorfGet(porfId)
+          .then((res) => {
+            dispatch(selectProject(res.data.data));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_PROJECT]: (state, action) =>
@@ -44,6 +67,7 @@ export default handleActions(
 const actionCreators = {
   setProject,
   selectProject,
+  setProjectDB,
 };
 
 export { actionCreators };

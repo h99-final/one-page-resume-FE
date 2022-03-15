@@ -17,6 +17,7 @@ import {
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
 import Template from "../shared/Template";
+import PreviousNext from "../shared/PreviousNext";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -199,6 +200,7 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      <PreviousNext />
       <Template />
     </>
   );

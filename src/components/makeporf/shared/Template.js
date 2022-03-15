@@ -5,6 +5,7 @@ import styled from "styled-components";
 import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
 import { Button, Menu, MenuItem, Select } from "@mui/material";
+import { apis } from "../../../shared/axios";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
@@ -21,6 +22,11 @@ function Template() {
 
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
+    // let data = {
+    //   idx: event.currentTarget,
+    // };
+    //ToDO템플릿 리덕스 필요
+    // apis.templatePut(data).then((res) => {});
   };
 
   const handleClose = (event) => {
@@ -44,19 +50,6 @@ function Template() {
             <TableChartRoundedIcon onClick={handleClick} />
             <FormText style={{ color: "white" }}>템플릿 선택</FormText>
           </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={template}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem onClick={handleClose}>0</MenuItem>
-            <MenuItem onClick={handleClose}>1</MenuItem>
-            <MenuItem onClick={handleClose}>2</MenuItem>
-          </Menu>
         </TemplateSelector>
         <div>
           <Save>
@@ -75,15 +68,6 @@ function Template() {
 }
 
 const Save = styled(Next)`
-  width: 125px;
-  height: 42px;
-  padding: 5px 10px;
-  background-color: #cccccc;
-  display: flex;
-  justify-content: center !important;
-  align-items: center;
-`;
-const TempSave = styled(Next)`
   width: 125px;
   height: 42px;
   padding: 5px 10px;

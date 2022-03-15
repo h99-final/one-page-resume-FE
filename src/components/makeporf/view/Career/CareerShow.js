@@ -208,6 +208,7 @@ function CareerShow(props) {
   } else {
     return (
       <>
+        <hr style={{ margin: "50px" }} />
         <FormContents>
           <IconBox>
             <DeleteForeverIcon onClick={handleUpdate} />
@@ -243,7 +244,7 @@ function CareerShow(props) {
               defaultValue={contents?.join("\n")}
             />
           </MultiContent>
-          <Content style={{ marginBottom: "40px" }}>
+          <Content style={{ marginBottom: "30px" }}>
             <Label>
               <Font>활동 기간</Font>
             </Label>

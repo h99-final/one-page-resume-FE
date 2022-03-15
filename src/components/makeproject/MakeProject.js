@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import {
   Content,
+  ErrorMessage,
   FormText,
   FormTitle,
   InputCustom,
@@ -20,8 +21,10 @@ import {
   SelectStack,
   StackBox,
 } from "../makeporf/view/Stack";
+import PreviousNextProject from "./shared/PreviousNextProject";
 import { grey } from "@mui/material/colors";
 import { apis } from "../../shared/axios";
+import TemplateProject from "./shared/TemplateProject";
 
 function MakeProject() {
   const history = useHistory();
@@ -113,6 +116,7 @@ function MakeProject() {
               {...register("projectTitle", { required: "필수 항목 입니다." })}
             ></InputCustom>
           </Content>
+          <ErrorMessage>{errors?.projectTitle?.message}</ErrorMessage>
           <Content>
             <Label>
               <Font>
@@ -124,7 +128,8 @@ function MakeProject() {
               {...register("gitRepoUrl", { required: "필수 항목 입니다." })}
             />
           </Content>
-          <MultiContentFlex>
+          <ErrorMessage>{errors?.gitRepoUrl?.message}</ErrorMessage>
+          <MultiContentFlex style={{ marginBottom: "30px" }}>
             <Label style={{ minWidth: "150px" }}>
               <Font>*프로젝트 이미지</Font>
             </Label>
@@ -144,7 +149,7 @@ function MakeProject() {
               onChange={handleChange}
             />
           </MultiContent>
-          <MultiContent>
+          <MultiContent style={{ marginBottom: "30px" }}>
             <Label>
               <Font></Font>
             </Label>
@@ -177,9 +182,11 @@ function MakeProject() {
               {...register("projectContent", { required: "필수 항목 입니다." })}
             />
           </Content>
+          <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
         </FormContents>
+        <TemplateProject />
       </form>
-      <button onClick={handleSubmit(projectSubmit)}>다음페이지로</button>
+      <PreviousNextProject />
     </>
   );
 }
