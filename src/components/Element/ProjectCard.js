@@ -27,6 +27,8 @@ function ProjectCard(props) {
 
   return (
     <>
+      <img src={process.env.PUBLIC_URL + "/img/message.svg"} />
+      <img src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"} />
       <ProjectForm selected={selected} onClick={handleClick}>
         <InnerCard src="http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg" />
         <ProjectDetail>
@@ -34,19 +36,19 @@ function ProjectCard(props) {
             {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
             {stack.length > 3
               ? stack.slice(0, 3).map((e, i) => {
-                  return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
-                  );
-                })
+                return (
+                  <>
+                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                  </>
+                );
+              })
               : stack.map((e, i) => {
-                  return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
-                  );
-                })}
+                return (
+                  <>
+                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                  </>
+                );
+              })}
             {stack.length > 3 && (
               <ProjectStack>+ {stack.length - 3}</ProjectStack>
             )}

@@ -86,10 +86,15 @@ export const apis = {
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
 
+
+  projectGet: (projectId) => instance.get(`/project/${projectId}`),
+  projectTSGet: (projectId) => instance.get(`/project/${projectId}/troubleShooting`),
+
   //git sync 맞추기 -> github 데이터 새로고침
   gitsync: (projectId) => instance.get(`/project/${projectId}/git/sync`),
   //gitcommit 불러오기
   gitCommit: (projectId) => instance.get(`/project/${projectId}/git/commit`),
+
   gitCommitFile: (projectId, sha) =>
     instance.get(`/git/project/${projectId}/commit/${sha}/file`),
 };

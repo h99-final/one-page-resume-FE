@@ -29,7 +29,6 @@ function App() {
 
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
 
-        <Route exact path="/proj" component={Project} />
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/" component={Main} />
@@ -54,9 +53,8 @@ function App() {
             </Link>
           </>
         </Route>
-        <Route exact path="/project/:id">
-          <div>프로젝트 한개 보여줌</div>
-        </Route>
+        <Route exact path="/project/:id" component={Project} />
+
         <Route path="/write/project/:id/:projectId" component={MakeProj} />
         <Route path="/write/project/:id" component={MakeProj} />
         <Route

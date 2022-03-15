@@ -8,6 +8,7 @@ import image from "./modules/image";
 import career from "./modules/career";
 import project from "./modules/project";
 import patchcode from "./modules/patchcode";
+import setproject from "./modules/setProject"
 
 export const history = createBrowserHistory();
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   career: career,
   project: project,
   patchcode: patchcode,
+  setproject: setproject,
   router: connectRouter(history),
 });
 
