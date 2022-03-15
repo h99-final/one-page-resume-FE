@@ -24,6 +24,7 @@ import {
 import PreviousNextProject from "./shared/PreviousNextProject";
 import { grey } from "@mui/material/colors";
 import { apis } from "../../shared/axios";
+import TemplateProject from "./shared/TemplateProject";
 
 function MakeProject() {
   const history = useHistory();
@@ -183,6 +184,7 @@ function MakeProject() {
           </Content>
           <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
         </FormContents>
+        <TemplateProject />
       </form>
       <PreviousNextProject />
     </>

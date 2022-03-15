@@ -22,15 +22,15 @@ function ForProjUpload(props) {
     setImages(_images);
   };
 
-  // function onImageChange(e) {
-  //   const reader = new FileReader();
-  //   const file = images;
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     console.log(reader.result);
-  //     setPreview(reader.result);
-  //   };
-  // }
+  function onImageChange(e) {
+    const reader = new FileReader();
+    const file = images;
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      console.log(reader.result);
+      setPreview(reader.result);
+    };
+  }
 
   // useEffect(() => {
   //   let _preview = [];
@@ -61,16 +61,16 @@ function ForProjUpload(props) {
 
       {/* Dropzone옆에 올린 파일 보여지는 곳 */}
 
-      {/* {previews.map((preview, index) => (
-        <Image bgUrl={preview}>
-          <img
-            style={{ borderRadius: "10px" }}
-            width="250px"
-            alt=""
-            src={preview}
-          />
-        </Image>
-      ))} */}
+      {/* {previews.map((preview, index) => ( */}
+      <Image onChange={onImageChange} bgUrl={preview}>
+        <img
+          style={{ borderRadius: "10px" }}
+          width="250px"
+          alt=""
+          src={preview}
+        />
+      </Image>
+      {/* ))} */}
     </ProfileBox>
   );
 }
@@ -98,8 +98,8 @@ const Image = styled.div`
   display: flex;
   margin: 10px;
   border-radius: 10px;
-  background: #333333;
   background-image: ${(props) => (props ? props.bgUrl : null)};
+  opacity: 1;
 `;
 
 const portrait = styled.div`
@@ -108,4 +108,5 @@ const portrait = styled.div`
   background-position: center;
   padding-top: 56.25%;
 `;
+
 export default ForProjUpload;
