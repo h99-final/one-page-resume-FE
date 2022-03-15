@@ -5,6 +5,7 @@ import {
   ButtonText,
   Content,
   ContentCareer,
+  ErrorMessage,
   FormText,
   FormTitle,
   InputCustom,
@@ -24,8 +25,13 @@ import ShowTroubleShooting from "./ShowTroubleShooting";
 
 function MakeTroubleShooting() {
   const dispatch = useDispatch();
-  const { register, handleSubmit, setValue } = useForm();
-  const { projectId } = useParams();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
+  const { id, projectId } = useParams();
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -53,7 +59,7 @@ function MakeTroubleShooting() {
     };
     dispatch(tsfileactions.addFile(_data));
     dispatch(tsfileactions.resetSelectPatchCode());
-    setValue("content", "");
+    handleSubmitDB();
   };
 
   const handleSubmitDB = () => {
@@ -71,17 +77,6 @@ function MakeTroubleShooting() {
           </FormSubText>
         </div>
       </FormTitle>
-      <Content>
-        <Label>
-          <Font>트러블슈팅 제목</Font>
-        </Label>
-        <InputCustom
-          style={{ overflow: "hidden" }}
-          type="text"
-          {...register("title", { required: true })}
-          maxLength={50}
-        />
-      </Content>
       <FormContentsP>
         <MakeCenter style={{ margin: "20px auto" }}>
           <AddButton>
@@ -96,69 +91,101 @@ function MakeTroubleShooting() {
           </AddButton>
         </MakeCenter>
       </FormContentsP>
-      {commit && patchcode ? (
-        <>
-          <Content>
-            <Label>
-              <Font>Commit</Font>
-            </Label>
-            <InputCustom
-              style={{ overflow: "hidden" }}
-              type="text"
-              defaultValue={commit[0].message}
-              maxLength={50}
-            />
-          </Content>
-          <Content>
-            <Label>
-              <Font>File Name</Font>
-            </Label>
-            <InputCustom
-              style={{ overflow: "hidden" }}
-              type="text"
-              defaultValue={patchcode[0]?.name}
-              maxLength={50}
-            />
-          </Content>
-          <Content>
-            <Label>
-              <Font>Patch Code</Font>
-            </Label>
-            <div
-              style={{
-                display: "inline-block",
-                width: "100%",
-                flexDirection: "column",
-              }}
-            >
-              <Highlighted text={patchcode[0]?.patchCode} />
-            </div>
-          </Content>
-          <Content>
-            <Label>
-              <Font>
-                *추가 설명<br></br>(0/500)
-              </Font>
-            </Label>
-            <InputCustom
-              style={{ overflow: "hidden", height: "20vh" }}
-              type="text"
-              maxLength={50}
-              {...register("content", { required: true })}
-            />
-          </Content>
-          <button onClick={handleSubmit(onValid)}>Submit</button>
-        </>
-      ) : null}
-
-      {tsFile?.map((e) => {
-        return (
+      <FormContents>
+        <Content>
+          <Label>
+            <Font>트러블슈팅 제목</Font>
+          </Label>
+          <InputCustom
+            style={{ overflow: "hidden" }}
+            type="text"
+            {...register("title", { required: "제목을 입력해주세요." })}
+            maxLength={50}
+          />
+        </Content>
+        <ErrorMessage>{errors?.title?.message}</ErrorMessage>
+        {commit && patchcode ? (
           <>
-            <ShowTroubleShooting {...e} />
-            <button onClick={handleSubmitDB}>저장하기</button>
+            <Content>
+              <Label>
+                <Font>Commit</Font>
+              </Label>
+              <InputCustom
+                style={{ overflow: "hidden" }}
+                type="text"
+                defaultValue={commit[0].message}
+                maxLength={50}
+                {...register("commit", { required: "커밋을 선택해 주세요." })}
+              />
+            </Content>
+            <ErrorMessage>{errors?.commit?.message}</ErrorMessage>
+            <Content>
+              <Label>
+                <Font>File Name</Font>
+              </Label>
+              <InputCustom
+                style={{ overflow: "hidden" }}
+                type="text"
+                defaultValue={patchcode[0]?.name}
+                maxLength={50}
+                {...register("fileName", { required: "커밋을 선택해 주세요." })}
+              />
+            </Content>
+            <ErrorMessage>{errors?.fileName?.message}</ErrorMessage>
+            <Content>
+              <Label>
+                <Font>Patch Code</Font>
+              </Label>
+              <div
+                style={{
+                  display: "inline-block",
+                  width: "100%",
+                  flexDirection: "column",
+                }}
+              >
+                <Highlighted text={patchcode[0]?.patchCode} />
+              </div>
+            </Content>
+            <ErrorMessage>{errors?.fileName?.message}</ErrorMessage>
+            <Content>
+              <Label>
+                <Font>
+                  *추가 설명<br></br>(0/500)
+                </Font>
+              </Label>
+              <InputCustom
+                style={{ overflow: "hidden", height: "20vh" }}
+                type="text"
+                maxLength={50}
+                {...register("content", { required: true })}
+              />
+            </Content>
+            <ErrorMessage>{errors?.content?.message}</ErrorMessage>
+            <FormContentsP>
+              <MakeCenter style={{ margin: "20px auto" }}>
+                <AddButton>
+                  <ContentCareerBottom>
+                    <ButtonText onClick={handleSubmit(onValid)}>
+                      + 트러블 슈팅 파일 저장 하기
+                    </ButtonText>
+                  </ContentCareerBottom>
+                  <FormSubText>
+                    프로젝트의 트러블 슈팅 내역에 저장됩니다.
+                  </FormSubText>
+                </AddButton>
+              </MakeCenter>
+            </FormContentsP>
           </>
-        );
-      })}
+        ) : null}
+
+        {tsFile?.map((e) => {
+          return (
+            <>
+              <ShowTroubleShooting {...e} />
+            </>
+          );
+        })}
+      </FormContents>
 
       {modalIsOpen ? (
         <TsModal

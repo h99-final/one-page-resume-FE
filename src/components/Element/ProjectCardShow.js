@@ -3,15 +3,24 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Inner } from "../makeporf/shared/_sharedStyle";
 import { Font } from "../makeporf/view/Introduce";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 function ProjectCardShow(props) {
   const history = useHistory();
-  const userInfo = useSelector((state) => state.user.user);
-  const { id, title, stack, content, username, userJob, bookmarkCount, imageUrl } = props;
+  const userinfo = useSelector((state) => state.user.user);
+  const {
+    id,
+    title,
+    stack,
+    content,
+    bookmarkCount,
+    imageUrl,
+    username,
+    userJob,
+  } = props;
 
   const handleClick = () => {
-    history.push(`/project/${id}`)
+    history.push(`/project/${id}`);
   };
 
   return (
@@ -23,27 +32,31 @@ function ProjectCardShow(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack.length > 3
             ? stack.slice(0, 3).map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })
+                return (
+                  <>
+                    <ProjectStack key={i}>#{e}</ProjectStack>
+                  </>
+                );
+              })
             : stack.map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })}
+                return (
+                  <>
+                    <ProjectStack key={i}>#{e}</ProjectStack>
+                  </>
+                );
+              })}
           {stack.length > 3 && (
-            <ProjectStack style={{ backgroundColor: "#333333", color: "white" }}>+ {stack.length - 3}</ProjectStack>
+            <ProjectStack
+              style={{ backgroundColor: "#333333", color: "white" }}
+            >
+              + {stack.length - 3}
+            </ProjectStack>
           )}
         </ProjectStacks>
         <ProjectTitle>
           <h1>{title}</h1>
           <h2>
-            {content.length < 68 ? content : content.slice(0, 68) + `...`}
+            {content?.length < 68 ? content : content.slice(0, 68) + `...`}
           </h2>
         </ProjectTitle>
 
@@ -55,13 +68,14 @@ function ProjectCardShow(props) {
         )}
         <Footer>
           <h1>
-
-            <img alt='' src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"} />
+            <img
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+            />
             {bookmarkCount}
           </h1>
           <h1>
-
-            <img alt='' src={process.env.PUBLIC_URL + "/img/message.svg"} />
+            <img alt="" src={process.env.PUBLIC_URL + "/img/message.svg"} />
             9999+
           </h1>
         </Footer>
@@ -76,7 +90,7 @@ const Footer = styled.div`
   border-top: 1px solid #cccccc;
   display: flex;
   justify-content: right;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -87,7 +101,7 @@ const Footer = styled.div`
     letter-spacing: -0.01em;
     color: #333333;
   }
-  img{
+  img {
     margin-right: 5px;
   }
 `;
@@ -97,24 +111,24 @@ const ProjectOwner = styled.div`
   margin: 0px auto;
   display: flex;
   margin-bottom: 20px;
-    h1{
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 19px;
-      letter-spacing: -0.01em;
-      color: #333333;
-    }
+  h1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
 
-    h2{
-      margin-left: 10px;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 19px;
-      letter-spacing: -0.01em;
-      color: #999999;
-    }
+  h2 {
+    margin-left: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #999999;
+  }
 `;
 
 const InnerCard = styled.img`
@@ -161,7 +175,7 @@ const ProjectTitle = styled.div`
   height: 75px;
   margin: 10px auto;
   margin-bottom: 25px;
-  h1{
+  h1 {
     width: 100%;
     font-style: normal;
     font-weight: 500;
@@ -171,7 +185,7 @@ const ProjectTitle = styled.div`
     color: #000000;
     margin-bottom: 10px;
   }
-  h2{
+  h2 {
     width: 100%;
     font-style: normal;
     font-weight: 400;

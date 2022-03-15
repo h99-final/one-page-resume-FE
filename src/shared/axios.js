@@ -73,8 +73,11 @@ export const apis = {
   careerPorfPut: (careerId, data) =>
     instance.put(`/porf/career/${careerId}`, data),
 
+  templatePut: (data) => instance.put("/porf/template", data),
+
   projectPorf: (data) => instance.post("/porf/project", data),
   projectPorfGet: () => instance.get("/user/project"),
+  projectMYPorfGet: (porfId) => instance.get(`/porf/${porfId}/project`),
 
   addImg: (formData) => formInstance.put("user/profile", formData),
 
@@ -86,9 +89,9 @@ export const apis = {
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
 
-
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
-  projectTSGet: (projectId) => instance.get(`/project/${projectId}/troubleShooting`),
+  projectTSGet: (projectId) =>
+    instance.get(`/project/${projectId}/troubleShooting`),
 
   //git sync 맞추기 -> github 데이터 새로고침
   gitsync: (projectId) => instance.get(`/project/${projectId}/git/sync`),
@@ -96,5 +99,5 @@ export const apis = {
   gitCommit: (projectId) => instance.get(`/project/${projectId}/git/commit`),
 
   gitCommitFile: (projectId, sha) =>
-    instance.get(`/git/project/${projectId}/commit/${sha}/file`),
+    instance.get(`/project/${projectId}/git/commit/${sha}/file`),
 };

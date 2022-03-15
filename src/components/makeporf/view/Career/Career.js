@@ -6,6 +6,7 @@ import CareerShow from "./CareerShow";
 import CareerWrite from "./CareerWrite";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import Template from "../../shared/Template";
+import PreviousNext from "../../shared/PreviousNext";
 
 function Career() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function Career() {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <hr />
+      <PreviousNext />
       <Template />
     </>
   );

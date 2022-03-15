@@ -14,6 +14,10 @@ function PreviousNext() {
   const { porfId } = useSelector((state) => state.user.user);
 
   const handleNextClick = () => {
+    if (id === "project") {
+      history.push(`/porf`);
+      return;
+    }
     const index = paramsId.findIndex(isSame);
     history.push(`/write/portfolio/${paramsId[index + 1]}/${porfId}`);
   };

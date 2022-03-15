@@ -14,8 +14,8 @@ import {
   InputCustom,
   Label,
 } from "../makeporf/shared/_sharedStyle";
-import { apis } from '../../shared/axios';
-import { Font } from '../makeporf/view/Introduce';
+import { apis } from "../../shared/axios";
+import { Font } from "../makeporf/view/Introduce";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -99,10 +99,9 @@ function MainStack() {
       blogUrl: userInfo.blogUrl,
       job: userInfo.job,
     };
-    apis.putInfo(data).then((res) => {
+    apis.addInfo(data).then((res) => {
       console.log(res);
     });
-
   };
 
   return (

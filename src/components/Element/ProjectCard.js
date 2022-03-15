@@ -1,3 +1,4 @@
+import { style } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -6,7 +7,7 @@ import { Font } from "../makeporf/view/Introduce";
 
 function ProjectCard(props) {
   const userInfo = useSelector((state) => state.user.user);
-  const { id, title, stack, img } = props;
+  const { id, title, stack, imageUrl } = props;
   const { selectedProjects, setSelectedProjects } = props;
 
   const [selected, setSelected] = useState(false);
@@ -27,28 +28,27 @@ function ProjectCard(props) {
 
   return (
     <>
-      <img src={process.env.PUBLIC_URL + "/img/message.svg"} />
-      <img src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"} />
       <ProjectForm selected={selected} onClick={handleClick}>
-        <InnerCard src="http://www.imgcomfort.com/no/-/media/corporatesite/socialshareimages/img-logo1200x600.jpg" />
+        <InnerCard src={imageUrl} />
+
         <ProjectDetail>
           <ProjectStacks>
             {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
             {stack.length > 3
               ? stack.slice(0, 3).map((e, i) => {
-                return (
-                  <>
-                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                  </>
-                );
-              })
+                  return (
+                    <>
+                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                    </>
+                  );
+                })
               : stack.map((e, i) => {
-                return (
-                  <>
-                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                  </>
-                );
-              })}
+                  return (
+                    <>
+                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                    </>
+                  );
+                })}
             {stack.length > 3 && (
               <ProjectStack>+ {stack.length - 3}</ProjectStack>
             )}
@@ -56,23 +56,18 @@ function ProjectCard(props) {
           <ProjectTitle>
             <FontProject>{title}</FontProject>
           </ProjectTitle>
+          {selected && (
+            <Icon>
+              <img alt="" src={process.env.PUBLIC_URL + "/img/check.svg"} />
+            </Icon>
+          )}
         </ProjectDetail>
-        {id !== "project" && (
-          <ProjectOwner>
-            <FontOwner>{userInfo.name}</FontOwner>
-            <FontJob>{userInfo.job}</FontJob>
-          </ProjectOwner>
-        )}
       </ProjectForm>
     </>
   );
 }
 
 // 프로젝트 보여주는 페이지 추가
-const FontOwner = styled(Font)``;
-const FontJob = styled(Font)``;
-
-const ProjectOwner = styled.div``;
 
 const FontProject = styled(Font)`
   font-weight: 500;
@@ -80,19 +75,27 @@ const FontProject = styled(Font)`
   line-height: 24px;
 `;
 
-const InnerCard = styled(Inner)`
+const InnerCard = styled.img`
   width: 398px;
   height: 180px;
   border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: 1;
 `;
 
 export const ProjectForm = styled.div`
   width: 400px;
   height: 313px;
   border-radius: 10px;
+  margin-bottom: 30px;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #999999;"};
   box-sizing: border-box;
+  position: relative;
+  z-index: 0;
 `;
 
 const ProjectDetail = styled.div``;
@@ -122,6 +125,15 @@ const ProjectTitle = styled.div`
   width: 350px;
   height: 48px;
   margin: 10px 25px;
+`;
+
+const Icon = styled.div`
+  position: relative;
+  width: 24px;
+  height: 24px;
+  left: 350px;
+  top: -280px;
+  z-index: 2;
 `;
 
 export default ProjectCard;

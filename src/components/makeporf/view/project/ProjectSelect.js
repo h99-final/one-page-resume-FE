@@ -5,6 +5,7 @@ import {
   AddButton,
   ButtonText,
   ContentCareer,
+  ErrorMessage,
   FormText,
   FormTitle,
   MakeCenter,
@@ -12,6 +13,9 @@ import {
 import styled from "styled-components";
 import { apis } from "../../../../shared/axios";
 import Template from "../../shared/Template";
+import ProjectCardShow from "../../../Element/ProjectCardShow";
+import { actionCreators as projectActions } from "../../../../redux/modules/project";
+import PreviousNext from "../../shared/PreviousNext";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
@@ -19,19 +23,27 @@ function ProjectSelect() {
 
   // props로 건네줘서 핸들링
   const [selectedProjects, setSelectedProjects] = useState([]);
+  const [error, setError] = useState("");
 
-  const submit = () => {
+  const projectSubmit = () => {
+    if (selectedProjects.length === 0) {
+      setError("프로젝트는 한 개 이상 이어야 합니다.");
+      return;
+    }
     // 프로젝트 데이터 보내기
     const data = {
       projectId: selectedProjects,
     };
     apis.projectPorf(data).then((res) => {
       // 포트폴리오 화면으로 이동시켜주기
-      console.log(res);
+      setError("");
     });
   };
   // 사용자 프로젝트 가져오기 axios
   // 프로젝트 작성 페이지 기능 마치고
+  useEffect(() => {
+    dispatch(projectActions.setProjectDB());
+  }, []);
 
   return (
     <>
@@ -51,22 +63,39 @@ function ProjectSelect() {
             );
           })}
         </ProjectBox>
-        <MakeCenter style={{ marginTop: "20px" }}>
+        <MakeCenter onClick={projectSubmit}>
           <AddButton>
             <ContentCareer>
               <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
             </ContentCareer>
           </AddButton>
         </MakeCenter>
+        {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
+        <PreviousNext />
         <Template />
       </form>
     </>
   );
 }
 
+const ErrorMessageSpan = styled(ErrorMessage)`
+  position: absolute;
+`;
+
 // 프로젝트 카드를 반응형으로 배치 하는 것 해야함
 const ProjectBox = styled.div`
+  justify-content: space-between;
+  margin: 0px auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   display: flex;
+  width: 93%;
+  /* min-width: 1300px; */
+  /* max-width: 1900px; */
+  height: 100%;
+  border-radius: 10px;
+  @media only screen and (max-width: 1300px) {
+  }
 `;
 
 // const ProjectCardSelect = styled(ProjectCard)`

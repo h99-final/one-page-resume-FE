@@ -63,6 +63,7 @@ const updateCareerDB = (id, career) => {
     await apis.careerPorfPut(id, career).then((res) => {
       console.log(res.data.data);
       console.log(career);
+      window.ScrollTo(0, 0);
     });
   };
 };
