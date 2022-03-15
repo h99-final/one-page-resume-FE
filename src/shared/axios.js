@@ -7,7 +7,7 @@ const search = localStorage.getItem("search");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://3.36.85.128/",
+  baseURL: "http://3.35.13.186/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -20,7 +20,7 @@ const instance = axios.create({
 
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://3.36.85.128/",
+  baseURL: "http://3.35.13.186/",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -60,7 +60,7 @@ export const apis = {
       passwordCheck: passwordCheck,
     }),
 
-  addInfo: (data) => instance.post("/user/info", data),
+  addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putInfo: (data) => instance.put("user/info", data),
 
@@ -86,10 +86,15 @@ export const apis = {
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
 
+
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
   projectTSGet: (projectId) => instance.get(`/project/${projectId}/troubleShooting`),
 
-  gitCommit: (projectId) => instance.get(`/git/project/${projectId}/commit`),
+  //git sync 맞추기 -> github 데이터 새로고침
+  gitsync: (projectId) => instance.get(`/project/${projectId}/git/sync`),
+  //gitcommit 불러오기
+  gitCommit: (projectId) => instance.get(`/project/${projectId}/git/commit`),
+
   gitCommitFile: (projectId, sha) =>
     instance.get(`/git/project/${projectId}/commit/${sha}/file`),
 };

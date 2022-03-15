@@ -6,9 +6,17 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
-import { Content, Label, FormText, FormTitle } from "../shared/_sharedStyle";
+import {
+  Content,
+  Label,
+  FormText,
+  FormTitle,
+  ErrorMessage,
+  StyledInput,
+} from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
+import Template from "../shared/Template";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -147,9 +155,9 @@ function Stack() {
         </StackBox>
       </MultiContent>
       {stack?.length > 3 ? (
-        <Font style={{ color: "red", textAlign: "center" }}>
+        <ErrorMessage style={{ color: "red", textAlign: "center" }}>
           3가지만 골라주세요
-        </Font>
+        </ErrorMessage>
       ) : (
         <Font style={{ color: "inherit", textAlign: "center" }}></Font>
       )}
@@ -176,7 +184,12 @@ function Stack() {
               <SelectStack key={index} {...addStack}>
                 {addStack}
                 <ClearIcon
-                  sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
+                  sx={{
+                    fontSize: 14,
+                    color: grey[500],
+                    marginLeft: 1,
+                    borderRadius: 1000,
+                  }}
                   onClick={() => {
                     alert("@@");
                   }}
@@ -186,7 +199,7 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
-      <button onClick={submitStack}>제출하기</button>
+      <Template />
     </>
   );
 }
@@ -209,7 +222,6 @@ export const SelectStack = styled.button`
   border-radius: 100px;
   text-align: center;
 `;
-
 
 export const MultiContent = styled.div`
   display: flex;

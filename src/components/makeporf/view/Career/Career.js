@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CareerShow from "./CareerShow";
 import CareerWrite from "./CareerWrite";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
+import Template from "../../shared/Template";
 
 function Career() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function Career() {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <hr />
+      <Template />
     </>
   );
 }
