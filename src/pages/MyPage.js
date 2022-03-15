@@ -272,7 +272,6 @@ const Form = styled.div`
 `;
 
 const Project = styled.div`
-  justify-content: space-between;
   margin: 0px auto;
   flex-direction: row;
   flex-wrap: wrap;

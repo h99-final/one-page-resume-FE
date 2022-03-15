@@ -32,8 +32,8 @@ const Pnav = (props) => {
         ?
         <NavBar >
           <NavLog>
-            <Logout onClick={() => { history.push('/porf') }}>포트폴리오 관리</Logout>
-            <Logout onClick={() => { history.push('/proj') }}>프로젝트 추가</Logout>
+            <Logout onClick={() => { history.push('/porf') }}>내 포트폴리오</Logout>
+            <Logout onClick={() => { history.push('/project') }}>새 프로젝트</Logout>
           </NavLog>
         </NavBar>
         : null
