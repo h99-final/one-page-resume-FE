@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
@@ -13,7 +13,7 @@ const options = [
 ];
 
 function Template() {
-  const history = useHistory();
+  const { id } = useParams();
   const { porfId } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [template, setTemplate] = useState(0);
@@ -58,10 +58,17 @@ function Template() {
             <MenuItem onClick={handleClose}>2</MenuItem>
           </Menu>
         </TemplateSelector>
-        <input type="submit" />
-        <Save>
-          <FormTextWhite>작성 완료</FormTextWhite>
-        </Save>
+        <div>
+          <Save>
+            <FormTextWhite>작성 완료</FormTextWhite>
+          </Save>
+          <Label id={id} htmlFor="submit">
+            <Save style={{ marginRight: "5px" }}>
+              <input id="submit" type="submit" style={{ display: "none" }} />
+              <FormTextWhite>임시 저장</FormTextWhite>
+            </Save>
+          </Label>
+        </div>
       </BottomNav>
     </>
   );
@@ -84,6 +91,13 @@ const TempSave = styled(Next)`
   display: flex;
   justify-content: center !important;
   align-items: center;
+`;
+
+const Label = styled.label`
+  display: ${(props) =>
+    props.id === "career" || props.id === "stack" || props.id === "project"
+      ? "none"
+      : "flex"};
 `;
 
 const TemplateSelector = styled.div`

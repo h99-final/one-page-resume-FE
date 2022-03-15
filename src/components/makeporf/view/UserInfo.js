@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { urlCheck } from "../../../shared/common";
 import reactSelect from "react-select";
 import PreviousNext from "../shared/PreviousNext";
+import Template from "../shared/Template";
 
 function UserInfo() {
   const defaultValues = {};
@@ -214,6 +215,7 @@ function UserInfo() {
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         <br />
         <PreviousNext onClick={handleSubmit(onValid)} />
+        <Template />
       </UserInfoForm>
     </>
   );

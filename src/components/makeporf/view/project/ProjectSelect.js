@@ -11,6 +11,7 @@ import {
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { apis } from "../../../../shared/axios";
+import Template from "../../shared/Template";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
@@ -34,29 +35,31 @@ function ProjectSelect() {
 
   return (
     <>
-      <FormTitle>
-        <FormText>프로젝트</FormText>
-      </FormTitle>
-      <ProjectBox>
-        {project.map((e, i) => {
-          return (
-            <ProjectCard
-              selectedProjects={selectedProjects}
-              setSelectedProjects={setSelectedProjects}
-              key={i + "e"}
-              {...e}
-            />
-          );
-        })}
-      </ProjectBox>
-      <button onClick={submit}>ToDo</button>
-      <MakeCenter style={{ marginTop: "20px" }}>
-        <AddButton>
-          <ContentCareer>
-            <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
-          </ContentCareer>
-        </AddButton>
-      </MakeCenter>
+      <form>
+        <FormTitle>
+          <FormText>프로젝트</FormText>
+        </FormTitle>
+        <ProjectBox>
+          {project.map((e, i) => {
+            return (
+              <ProjectCard
+                selectedProjects={selectedProjects}
+                setSelectedProjects={setSelectedProjects}
+                key={i + "e"}
+                {...e}
+              />
+            );
+          })}
+        </ProjectBox>
+        <MakeCenter style={{ marginTop: "20px" }}>
+          <AddButton>
+            <ContentCareer>
+              <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
+            </ContentCareer>
+          </AddButton>
+        </MakeCenter>
+        <Template />
+      </form>
     </>
   );
 }

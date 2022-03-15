@@ -16,6 +16,7 @@ import {
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
+import Template from "../shared/Template";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -183,7 +184,12 @@ function Stack() {
               <SelectStack key={index} {...addStack}>
                 {addStack}
                 <ClearIcon
-                  sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
+                  sx={{
+                    fontSize: 14,
+                    color: grey[500],
+                    marginLeft: 1,
+                    borderRadius: 1000,
+                  }}
                   onClick={() => {
                     alert("@@");
                   }}
@@ -193,7 +199,7 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
-      <button onClick={submitStack}>제출하기</button>
+      <Template />
     </>
   );
 }
