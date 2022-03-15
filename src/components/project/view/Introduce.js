@@ -29,9 +29,9 @@ const Introduce = () => {
           <h1>1 2 3 4 5</h1>
         </TitleBox>
         <IntroBox>
-          <h1>{project.title}</h1>
+          <h1>{project?.title}</h1>
           <ImgBox>
-            {project?.imageUrl.map((e, i) => {
+            {project?.imageUrl?.map((e, i) => {
               return (
                 <>
                   <img
@@ -46,19 +46,18 @@ const Introduce = () => {
           <ContentBox>
             <AboutBox>
               <ContentTitle>ABOUT</ContentTitle>
-              <h2>대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 대통령의 임기연장 또는 중임변경을 위한 헌법개정은 그 헌법개정 제안 당시의 대통령에 대하여는 효력이 없다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다. 대법원에 대법관을 둔다. 다만, 법률이 정하는 바에 의하여 대법관이 아닌 법관을 둘 수 있다. 국군은 국가의 안전보장과 국토방위의 신성한 의무를 수행함을 사명으로 하며, 그 정치적 중립성은 준수된다. 모든 국민은</h2>
+              <h2>{project?.content}</h2>
             </AboutBox>
             <StackBox>
               <ContentTitle>TECH STACK</ContentTitle>
-              <SubStack><span>Javscrt</span></SubStack>
-              <SubStack><span>Javcript</span></SubStack>
-              <SubStack><span>Javaipt</span></SubStack>
-              <SubStack><span>ript</span></SubStack>
-              <SubStack><span>Jascript</span></SubStack>
-              <SubStack><span>Javascript</span></SubStack>
-              <SubStack><span>Javascript</span></SubStack>
-              <SubStack><span>Javascript</span></SubStack>
-              <SubStack><span>Javasct</span></SubStack>
+              {project?.stack?.map((e, i) => {
+                return (
+                  <SubStack key={i}>
+                    <span>{e}</span>
+                  </SubStack>
+                )
+              })}
+
             </StackBox>
           </ContentBox>
         </IntroBox>
@@ -75,12 +74,13 @@ const Container = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: 100%;
+  width: fit-content;
   display: flex;
+  margin: 0px auto;
 `;
 
 const AboutBox = styled.div`
-  width: 66%;
+  width: fit-content;
   min-width: 550px;
   margin-right: 50px;
     h2{
@@ -176,11 +176,15 @@ const IntroBox = styled.div`
 const ImgBox = styled.div`
   width: 100%;
   margin-bottom: 50px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
   img{
-    width: 327px;
-    height: 327px;
-    margin-right: 20px;
+    width: 322px;
+    height: 322px;
+    margin:0px 10px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
 `;
 

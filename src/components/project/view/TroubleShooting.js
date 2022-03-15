@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { apis } from '../../../shared/axios';
-import { actionCreators } from '../../../redux/modules/patchcode';
+import { useParams } from 'react-router-dom';
+import { actionCreators } from '../../../redux/modules/setProject';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const TroubleShooting = () => {
-
+  const { id } = useParams();
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-  const [project, setProject] = useState("");
+
   const [ts, setTS] = useState("");
 
   useEffect(() => {
-    dispatch(actionCreators)
-    // apis.projectPorfGet()
-    //   .then((res) => {
-    //     setProject(res.data.data)
-    //     apis.projectTSGet(res.data.data?.[3]?.id)
-    //       .then((res) => {
-    //         setTS(res.data.data)
-    //       });
-    //   });
+    dispatch(actionCreators.setTroubleShootingDB(id))
+    apis.projectTSGet(id)
+      .then((res) => {
+        setTS(res.data.data)
+      });
   }, []);
+  console.log(ts)
+
+  // const project = useSelector(state => state.setproject.project.troubleShootings)
+  // console.log(project)
 
   return (
     <>
@@ -29,51 +31,24 @@ const TroubleShooting = () => {
         <Box>
           <Left>
             <Number>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
-              <Square>
-
-              </Square>
+              {ts.map((e, i) => {
+                return (
+                  <>
+                    <Square>
+                      <h1>{i + 1}</h1>
+                    </Square>
+                  </>
+                )
+              })}
             </Number>
             <Commit>
-
+              <h1>{ts[0]?.tsName}</h1>
             </Commit>
             <File>
-
+              <h1>{ts[0]?.tsFiles[0]?.fileName}</h1>
             </File>
             <Content>
-              대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 대통령의 임기연장 또는 중임변경을 위한 헌법개정은 그 헌법개정 제안 당시의 대통령에 대하여는 효력이 없다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다. 대법원에 대법관을 둔다. 다만, 법률이 정하는 바에 의하여 대법관이 아닌 법관을 둘 수 있다.
+              <h1>{ts[0]?.tsFiles[0]?.tsContent}</h1>
             </Content>
           </Left>
           <Right>
@@ -101,13 +76,20 @@ const Box = styled.div`
   padding-bottom: 32px;
   display: flex;
 `;
-const Square = styled.button`
+const Square = styled.div`
   width: 65px;
   height: 65px;
   background-color: white;
   border: 1px solid black;
-  margin: 10px;
-  padding: -10px;
+  text-align: center;
+  h1{
+    padding: 18px 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 31px;
+    letter-spacing: -0.01em;
+  }
 `;
 const Left = styled.div`
   width: 27%;
@@ -118,25 +100,57 @@ const Left = styled.div`
 const Number = styled.div`
   width: 100%;
   border: 1px solid black;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
 `;
 const Commit = styled.div`
   width: 100%;
-  height: 64px;
   border: 1px solid black;
   flex-direction: row;
+  h1{
+    padding: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
 `;
+
 const File = styled.div`
   width: 100%;
-  height: 64px;
   border: 1px solid black;
   margin-bottom: 25px;
+  flex-direction: row;
+  word-wrap: break-word; 
+  white-space: -moz-pre-wrap; 
+  white-space: pre-wrap; 
+  h1{
+    padding: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
 `;
 
 const Content = styled.div`
-
   width: 100%;
   height: 520px;
   border: 1px solid black;
+  h1{
+    padding:20px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
 `;
 
 
