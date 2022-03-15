@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Content,
   ErrorMessage,
@@ -28,6 +28,7 @@ import TemplateProject from "./shared/TemplateProject";
 
 function MakeProject() {
   const history = useHistory();
+  const { id, projectId } = useParams();
   //포트폴리오 프로젝트 생성
   const animatedComponents = makeAnimated();
   const {
@@ -35,6 +36,7 @@ function MakeProject() {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm();
 
   // const [stacks, setStacks] = useState([]);
@@ -91,7 +93,17 @@ function MakeProject() {
   // };
 
   useEffect(() => {
-    console.log("유저가 프로젝트를 수정하고 싶을 수도 있으니까");
+    if (projectId) {
+      apis.projectGet(projectId).then((res) => {
+        const { title, githubUrl, imageUrl, content, stack } = res.data.data;
+        setValue("projectTitle", title);
+        setValue("githubUrl", githubUrl);
+        setValue("imageUrl", imageUrl);
+        setValue("projectContent", content);
+        setAddStack(stack);
+      });
+    }
+    return handleSubmit(projectSubmit);
   }, []);
 
   return (

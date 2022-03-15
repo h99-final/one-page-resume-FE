@@ -9,8 +9,9 @@ import { Font } from "../../makeporf/view/Introduce";
 import Highlighted from "./Highlight";
 
 function ShowTroubleShooting(props) {
+  console.log(props);
   const commit = useSelector((state) => state.patchcode.commit);
-  const { fileName, patchCode, content } = props;
+  const { fileName, patchCode, tsContent } = props;
 
   return (
     <>
@@ -61,7 +62,7 @@ function ShowTroubleShooting(props) {
           style={{ overflow: "hidden", height: "20vh" }}
           type="text"
           maxLength={50}
-          defaultValue={content}
+          defaultValue={tsContent}
         />
       </Content>
       <hr style={{ margin: "50px" }} />

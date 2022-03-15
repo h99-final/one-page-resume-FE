@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   AddButton,
@@ -32,6 +32,8 @@ function MakeTroubleShooting() {
     formState: { errors },
   } = useForm();
   const { id, projectId } = useParams();
+
+  const ref = useRef(null);
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -115,11 +117,9 @@ function MakeTroubleShooting() {
                 type="text"
                 defaultValue={commit[0].message}
                 maxLength={50}
-                {...register("commit", { required: "커밋을 선택해 주세요." })}
               />
             </Content>
-            <ErrorMessage>{errors?.commit?.message}</ErrorMessage>
-            <Content>
+            <Content style={{ marginBottom: "30px" }}>
               <Label>
                 <Font>File Name</Font>
               </Label>
@@ -128,11 +128,9 @@ function MakeTroubleShooting() {
                 type="text"
                 defaultValue={patchcode[0]?.name}
                 maxLength={50}
-                {...register("fileName", { required: "커밋을 선택해 주세요." })}
               />
             </Content>
-            <ErrorMessage>{errors?.fileName?.message}</ErrorMessage>
-            <Content>
+            <Content style={{ marginBottom: "30px" }}>
               <Label>
                 <Font>Patch Code</Font>
               </Label>
