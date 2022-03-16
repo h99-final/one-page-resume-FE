@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
-
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import { InputCustom, StyledInput } from "../../makeporf/shared/_sharedStyle";
-import HighlightWithinTextarea from "react-highlight-within-textarea";
 
 function Highlighted({ text = [] }) {
   // const [value, setValue] = useState(text.join("\n\n"));
@@ -43,9 +32,10 @@ function Highlighted({ text = [] }) {
   // };
   const [value, setValue] = useState([]);
 
-  console.log(value);
-
   useEffect(() => {
+    if (text.length === 0) {
+      return;
+    }
     let _text = [];
     text.map((e) => {
       return e.charAt(0) === "-"
@@ -76,23 +66,47 @@ function Highlighted({ text = [] }) {
 
   return (
     <>
-      <Table>
-        <Tbody>
-          {value.map((e) => {
-            return e;
-          })}
-        </Tbody>
-      </Table>
+      <InputSize>
+        <table>
+          <Tbody>
+            {value.map((e) => {
+              return e;
+            })}
+          </Tbody>
+        </table>
+      </InputSize>
     </>
   );
 }
 
-const Table = styled.table``;
+const InputSize = styled.div`
+  height: 300px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15px;
+  resize: none;
+  border: none;
+  background-color: #ededed;
+  overflow: auto;
+  &:focus {
+    outline: none !important;
+    border-color: #719ece !important;
+    box-shadow: 0 0 10px #719ece !important;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #ededed; /*스크롤바의 색상*/
+  }
+`;
 
 const Tbody = styled.tbody`
+  height: 300px;
   tr {
     padding: 15px;
     text-align: left;
+    pre {
+      letter-spacing: 0.03em;
+    }
   }
 `;
 

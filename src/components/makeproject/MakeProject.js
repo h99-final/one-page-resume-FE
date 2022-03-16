@@ -72,6 +72,8 @@ function MakeProject() {
   //이미지 파일 prop으로 넘겨줌
   const [images, setImages] = useState([]);
 
+  const [isModify, setIsModify] = useState(false);
+
   // form 제출
   const projectSubmit = (data) => {
     const { projectTitle, projectContent, gitRepoUrl } = data;
@@ -101,6 +103,18 @@ function MakeProject() {
       frm.append("images", images[i]);
     }
 
+    if (isModify) {
+      apis
+        .modifyProject(frm, projectId)
+        .then((res) => {
+          history.push(`troubleShooting/${projectId}`);
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+      return;
+    }
+
     apis.createProject(frm).then((res) => {
       console.log(res.data.data);
       const { id } = res.data.data;
@@ -115,12 +129,14 @@ function MakeProject() {
   useEffect(() => {
     if (projectId) {
       apis.projectGet(projectId).then((res) => {
-        const { title, githubUrl, imageUrl, content, stack } = res.data.data;
+        console.log(res.data.data);
+        const { title, gitRepoUrl, imageUrl, content, stack } = res.data.data;
         setValue("projectTitle", title);
-        setValue("githubUrl", githubUrl);
+        setValue("gitRepoUrl", gitRepoUrl);
         setValue("imageUrl", imageUrl);
         setValue("projectContent", content);
         setAddStack(stack);
+        setIsModify(true);
       });
     }
     return handleSubmit(projectSubmit);

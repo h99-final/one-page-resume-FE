@@ -20,7 +20,7 @@ const selectPatchCode = createAction(SELECT_PATCH_CODE, (fileName) => ({
 }));
 const resetSelectPatchCode = createAction(RESET_SELECT_PATCH_CODE);
 const setCommit = createAction(SET_COMMIT, (commit) => ({ commit }));
-const setFile = createAction(SET_FILE, (tsFile) => ({ tsFile }));
+const setFile = createAction(SET_FILE, (tsFile_list) => ({ tsFile_list }));
 const addFile = createAction(ADD_FILE, (tsFile) => ({ tsFile }));
 
 const initialState = {
@@ -33,29 +33,59 @@ const initialState = {
 const setPatchCodeAPI = (projectId, sha) => {
   return function (dispatch) {
     apis.gitCommitFile(projectId, sha).then((res) => {
+      console.log(res.data.data);
       dispatch(setPatchCode(res.data.data));
     });
   };
 };
 
-const troubleShootingDB = (projectId) => {
-  return async function (dispatch, getState) {
+const troubleShootingDB = (projectId, data) => {
+  return function (dispatch, getState) {
+    console.log(data);
     let commit = getState().patchcode.commit;
-    let ts = getState().patchcode.tsFile;
-    let tsFile = ts.map((e) => {
-      let { tsName, ...obj } = e;
-      return obj;
-    });
-    console.log(commit);
+    let { tsName, ...obj } = data;
     let _data = {
-      sha: commit[0].sha,
-      commitMessage: commit[0].message,
-      tsName: ts[0].tsName,
-      tsFile: tsFile,
+      sha: commit.sha,
+      commitMessage: commit.message,
+      tsName: tsName,
+      tsFile: obj,
     };
-    await apis.createTroubleShooting(projectId, _data).then((res) => {
+    //ToDo
+    apis.createTroubleShooting(projectId, _data).then((res) => {
       console.log(res.data.data);
+      let { patchCode, fileName, tsContent } = obj;
+      let _data = {
+        fileId: res.data.data.fileId,
+        tsPatchCodes: patchCode,
+        tsContent: tsContent,
+        fileName: fileName,
+      };
+      dispatch(addFile(_data));
     });
+  };
+};
+
+//ToDo
+// 선택된 프로젝트에 귀속된 파일들 불러오기(트러블슈팅)
+const getTroubleShootingDB = (projectId) => {
+  return async function (dispatch, getState) {
+    apis
+      .projectTSGet(projectId)
+      .then((res) => {
+        //ToDo
+        const commit = getState().patchcode.commit;
+        const _tsFiles = res.data.data;
+        let files = [];
+        // _tsFiles.filter(e => e.commitId === commit.)
+        console.log(files);
+        dispatch(setFile(files));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   };
 };
 
@@ -78,11 +108,11 @@ export default handleActions(
     [SET_COMMIT]: (state, action) =>
       produce(state, (draft) => {
         draft.commit = action.payload.commit;
-        console.log(action.payload.commit);
       }),
     [SET_FILE]: (state, action) =>
       produce(state, (draft) => {
-        draft.tsFile = action.payload.tsFile;
+        draft.tsFile = action.payload.tsFile_list;
+        console.log(state.tsFile);
       }),
     [ADD_FILE]: (state, action) =>
       produce(state, (draft) => {
@@ -102,6 +132,7 @@ const actionCreators = {
   setFile,
   addFile,
   troubleShootingDB,
+  getTroubleShootingDB,
 };
 
 export { actionCreators };

@@ -102,6 +102,7 @@ const BottomNav = styled.div`
   margin-top: 50px;
   bottom: 0px;
   background: #999999;
+  padding: 0px 5px;
 `;
 
 const FormTextWhite = styled(FormText)`
