@@ -58,7 +58,7 @@ function Stack() {
   const defaultStack = [
     "JS",
     "JAVA",
-    "PYTHON",
+    "Python",
     "C",
     "C++",
     "iOS",

@@ -10,9 +10,12 @@ import MyPage from "../pages/MyPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { actionCreators as userActions } from "../redux/modules/user";
-import EditInfo from "../pages/EditInfo";
-import Portfolio from "../pages/Portfolio";
-import Project from "../pages/Project";
+import EditInfo from '../pages/EditInfo';
+import Portfolio from '../pages/Portfolio';
+import Project from '../pages/Project';
+import PorfList from '../pages/PorfList';
+import ProjList from '../pages/ProjList';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +57,12 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-        <PrivateRoute exact path="/editinfo/:id/:userId" component={EditInfo} />
+
+
+        <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
+        <Route exact path="/porflist" component={PorfList} />
+        <Route exact path="/projlist" component={ProjList} />
+
 
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
@@ -67,14 +75,9 @@ function App() {
             </Link>
           </>
         </Route>
-        <Route exact path="/portfolio/:id">
-          <div>개인 포트폴리오 보여줌</div>
-        </Route>
-        <PrivateRoute
-          exact
-          path="/write/portfolio/:id/:profid"
-          component={MakePorf}
-        />
+        <Route exact path="/portfolio/:id" component={Portfolio} />
+        <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
+
 
         <Route exact path="/project">
           <>

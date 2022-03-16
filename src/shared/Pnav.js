@@ -10,7 +10,7 @@ const Pnav = (props) => {
   const user = document.cookie
   // props.nav (false or true)
   const navState = props.pnav
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   // NavBar 설정
   const [pnav, setPnav] = useState(false)
 
@@ -32,7 +32,7 @@ const Pnav = (props) => {
         ?
         <NavBar >
           <NavLog>
-            <Logout onClick={() => { history.push('/porf') }}>내 포트폴리오</Logout>
+            <Logout onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>내 포트폴리오</Logout>
             <Logout onClick={() => { history.push('/project') }}>새 프로젝트</Logout>
           </NavLog>
         </NavBar>

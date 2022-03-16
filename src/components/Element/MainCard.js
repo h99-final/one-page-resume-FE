@@ -5,7 +5,7 @@ import { Inner } from "../makeporf/shared/_sharedStyle";
 import { Font } from "../makeporf/view/Introduce";
 import { useHistory } from "react-router-dom";
 
-function ProjectCardShow(props) {
+function MainCard(props) {
   const history = useHistory();
   const userinfo = useSelector((state) => state.user.user);
   const {
@@ -90,7 +90,6 @@ const Footer = styled.div`
   border-top: 1px solid #666982;
   display: flex;
   justify-content: right;
-  color: #CFD3E2;
   h1 {
     font-style: normal;
     font-weight: 400;
@@ -101,10 +100,9 @@ const Footer = styled.div`
     margin-right: 20px;
     letter-spacing: -0.01em;
     color: #CFD3E2;
+  }
   img {
     margin-right: 5px;
-    color: #CFD3E2;
-  }
   }
 `;
 
@@ -142,11 +140,11 @@ const InnerCard = styled.img`
 
 export const ProjectForm = styled.div`
   width: 444px;
+  margin: 0px auto;
   min-width: 444px;
+  background-color: #393A47;
   max-height: 515px;
   border-radius: 10px;
-  background-color: #393A47;
-  margin: 0px auto;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #393A47;"};
   box-sizing: border-box;
@@ -170,8 +168,8 @@ const ProjectStack = styled.div`
   width: fit-content;
   height: 25px;
   border-radius: 5px;
-  background-color: #666982;
   color: white;
+  background-color: #666982;
 `;
 
 const ProjectTitle = styled.div`
@@ -201,4 +199,4 @@ const ProjectTitle = styled.div`
   }
 `;
 
-export default ProjectCardShow;
+export default MainCard;

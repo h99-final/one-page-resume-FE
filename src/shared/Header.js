@@ -16,8 +16,8 @@ const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
-  // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const userInfo = useSelector((state) => state.user.user);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
   const user = document.cookie;
@@ -54,7 +54,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
+            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -93,7 +93,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
+            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -116,7 +116,7 @@ const Header = (props) => {
                 PnavBtn();
               }}
             >
-              작업 공유하기
+              작업 작성하기
             </SharedBtn>
             <BookmarkIcon
               style={{
@@ -154,8 +154,7 @@ const Header = (props) => {
 export default Header;
 
 const StyledHeader = styled.div`
-  background-color: #828282;
-  border-bottom: 1px solid black;
+  background-color: #13131B;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -169,6 +168,7 @@ const StyledHeader = styled.div`
 
 const LeftMenu = styled.div`
   display: flex;
+  color: white;
   align-items: center;
   font-size: 25px;
   font-weight: bold;
@@ -184,15 +184,14 @@ const Circle = styled.div`
   margin-right: 10px;
 `;
 const Port = styled.div`
+  
   font-size: 20px;
   width: 90px;
-  height: 24px;
   margin-left: 50px;
 `;
 const Proj = styled.div`
   font-size: 20px;
   width: 70px;
-  height: 24px;
   margin-left: 40px;
 `;
 
@@ -206,7 +205,7 @@ const RightMenu = styled.div`
 
 const SharedBtn = styled.button`
   cursor: pointer;
-  background-color: #333333;
+  background-color: #00B3A6;
   width: 120px;
   height: 40px;
   color: white;

@@ -34,45 +34,59 @@ const Banner = () => {
           slot="container-start"
           className="parallax-bg"
           style={{
-
-            "backgroundImage":
-
-              "url(https://swiperjs.com/demos/images/nature-3.jpg)",
+            backgroundColor: "#000000"
           }}
           data-swiper-parallax="-23%"
         ></div>
         <SwiperSlide>
-          <button>지금 시작하기</button>
+          <TextBox>
+            <h1>개발자 포트폴리오 만들기,<br />
+              어디까지 해보셨나요?</h1>
+            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+          </TextBox>
+          <BtnBox>
+            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+          </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="title" data-swiper-parallax="-300">
-            Slide 1
-          </div>
-          <div className="subtitle" data-swiper-parallax="-200">
-            Subtitle
-          </div>
-          <div className="text" data-swiper-parallax="-100">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-              laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-              Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-              Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-              ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-              tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide></SwiperSlide>
-        <SwiperSlide>
-          <H1>
-            <Btn>지금 시작하기</Btn>
-          </H1>
+          <TextBox>
+            <h1>개발자 포트폴리오 만들기,<br />
+              어디까지 해보셨나요?</h1>
+            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+          </TextBox>
+          <BtnBox>
+            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+          </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
-          <H1></H1>
-
-          <Btn>지금 시작하기</Btn>
+          <TextBox>
+            <h1>개발자 포트폴리오 만들기,<br />
+              어디까지 해보셨나요?</h1>
+            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+          </TextBox>
+          <BtnBox>
+            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+          </BtnBox>
+        </SwiperSlide>
+        <SwiperSlide>
+          <TextBox>
+            <h1>개발자 포트폴리오 만들기,<br />
+              어디까지 해보셨나요?</h1>
+            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+          </TextBox>
+          <BtnBox>
+            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+          </BtnBox>
+        </SwiperSlide>
+        <SwiperSlide>
+          <TextBox>
+            <h1>개발자 포트폴리오 만들기,<br />
+              어디까지 해보셨나요?</h1>
+            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+          </TextBox>
+          <BtnBox>
+            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+          </BtnBox>
         </SwiperSlide>
       </Swiper>
     </>
@@ -84,13 +98,43 @@ const H1 = styled.div`
   height: 100vh;
 `;
 
-const Btn = styled.button`
-  font-size: 18px;
-  background: black;
-  border: none;
-  border-radius: 43px;
-  width: 211px;
-  height: 62px;
-  color: white;
+const BtnBox = styled.div`
+  width: 100%;
+  text-align: center;
+  display: flex;
+  height: fit-content;
+    button{
+    margin: 0px auto;
+    padding: 20px 30px;
+    font-size: 18px;
+    background: #00C4B4;
+    border: none;
+    border-radius: 43px;
+    color: white;
+  }
+`;
+const TextBox = styled.div`
+  width: 100%;
+  min-width: 600px;
+  h1{
+    margin: 138px 0px 45px 120px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 56px;
+    line-height: 65px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+  }
+  h2{
+    margin: 0px 0px 135px 120px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+  }
 `;
 export default Banner;
