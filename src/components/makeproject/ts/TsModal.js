@@ -51,16 +51,20 @@ function TsModal(props) {
   // commit message 고르기
   const handleCommitClick = (e) => {
     setSelectedSha(e.currentTarget.id);
+    console.log(e.currentTarget.id);
     let commit = message_list.filter(
       (commit) => commit.sha === e.currentTarget.id
     );
-    dispatch(actionCreators.setCommit(commit));
+    console.log(commit);
+    dispatch(actionCreators.setCommit(commit[0]));
   };
 
+  // file 고르기
   const handleFileClick = (e) => {
     setSelectedFileName(e.currentTarget.id);
   };
 
+  // 싱크 맞추기
   const handlesync = () => {
     apis.gitsync(projectId).then((res) => {
       apis.gitCommit(projectId).then((res) => {

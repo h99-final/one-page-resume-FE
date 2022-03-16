@@ -1,13 +1,24 @@
 import React from "react";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FormText, Next } from "../../makeporf/shared/_sharedStyle";
 
 function TemplateProject() {
+  const { id, projectId } = useParams();
+  const history = useHistory();
+
+  const handlePreviousClick = () => {
+    if (id === "troubleShooting") {
+      history.push(`/write/project/info/${projectId}`);
+      return;
+    }
+  };
+
   return (
     <>
-      <BottomNav>
-        <Save>
-          <h2>이전으로</h2>
+      <BottomNav id={id}>
+        <Save id={id}>
+          <h2 onClick={handlePreviousClick}>이전으로</h2>
         </Save>
         <Label htmlFor="submit">
           <Save style={{ marginRight: "5px" }}>
@@ -28,6 +39,7 @@ const Save = styled(Next)`
   display: flex;
   justify-content: center !important;
   align-items: center;
+  display: ${(props) => (props.id === "info" ? "none" : null)};
   & > h2 {
     color: white;
   }
@@ -44,7 +56,9 @@ const BottomNav = styled.div`
   display: fixed;
   position: fixed;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: ${(props) =>
+    props.id === "info" ? "flex-end" : "space-between"};
   left: 0;
   width: 100%;
   min-width: 768px;
@@ -52,6 +66,7 @@ const BottomNav = styled.div`
   margin-top: 50px;
   bottom: 0px;
   background: #999999;
+  padding: 0px 5px;
 `;
 
 export default TemplateProject;

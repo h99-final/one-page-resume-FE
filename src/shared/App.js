@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
 
 import NotFound from "../pages/NotFound";
@@ -16,6 +16,7 @@ import Project from '../pages/Project';
 import PorfList from '../pages/PorfList';
 import ProjList from '../pages/ProjList';
 
+
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
@@ -24,14 +25,44 @@ function App() {
     dispatch(userActions.userInfoDB());
   }, []);
 
+  const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          userInfo && restricted ? (
+            <Redirect to="/" />
+          ) : (
+            <Component {...props} />
+          )
+        }
+      />
+    );
+  };
+
+  const PrivateRoute = ({ component: Component, ...rest }) => {
+    return (
+      // Show the component only when the user is logged in
+      // Otherwise, redirect the user to /login page
+      <Route
+        {...rest}
+        render={(props) =>
+          !!userInfo ? <Component {...props} /> : <Redirect to="/" />
+        }
+      />
+    );
+  };
+
   return (
     <>
       <GlobalStyle />
       <Switch>
 
+
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />
+
 
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
@@ -47,6 +78,7 @@ function App() {
         <Route exact path="/portfolio/:id" component={Portfolio} />
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
 
+
         <Route exact path="/project">
           <>
             <div>프로젝트 총 집합</div>
@@ -57,9 +89,12 @@ function App() {
         </Route>
         <Route exact path="/project/:id" component={Project} />
 
-        <Route path="/write/project/:id/:projectId" component={MakeProj} />
-        <Route path="/write/project/:id" component={MakeProj} />
-        <Route
+        <PrivateRoute
+          path="/write/project/:id/:projectId"
+          component={MakeProj}
+        />
+        <PrivateRoute path="/write/project/:id" component={MakeProj} />
+        <PrivateRoute
           exact
           path="/write/project/:id/:projectId"
           component={MakeProj}

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Content,
   ErrorMessage,
@@ -28,6 +28,7 @@ import TemplateProject from "./shared/TemplateProject";
 
 function MakeProject() {
   const history = useHistory();
+  const { id, projectId } = useParams();
   //포트폴리오 프로젝트 생성
   const animatedComponents = makeAnimated();
   const {
@@ -35,7 +36,28 @@ function MakeProject() {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm();
+
+  const content = useRef(null);
+
+  useEffect(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "20px";
+    content.current.style.height = content.current.scrollHeight + "px";
+
+    return handleSubmit(projectSubmit);
+  }, []);
+
+  const handleResizeHeight = useCallback(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "20px";
+    content.current.style.height = content.current.scrollHeight + "px";
+  }, []);
 
   // const [stacks, setStacks] = useState([]);
   const [addStack, setAddStack] = useState([]);
@@ -49,6 +71,8 @@ function MakeProject() {
 
   //이미지 파일 prop으로 넘겨줌
   const [images, setImages] = useState([]);
+
+  const [isModify, setIsModify] = useState(false);
 
   // form 제출
   const projectSubmit = (data) => {
@@ -79,6 +103,18 @@ function MakeProject() {
       frm.append("images", images[i]);
     }
 
+    if (isModify) {
+      apis
+        .modifyProject(frm, projectId)
+        .then((res) => {
+          history.push(`troubleShooting/${projectId}`);
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+      return;
+    }
+
     apis.createProject(frm).then((res) => {
       console.log(res.data.data);
       const { id } = res.data.data;
@@ -91,7 +127,19 @@ function MakeProject() {
   // };
 
   useEffect(() => {
-    console.log("유저가 프로젝트를 수정하고 싶을 수도 있으니까");
+    if (projectId) {
+      apis.projectGet(projectId).then((res) => {
+        console.log(res.data.data);
+        const { title, gitRepoUrl, imageUrl, content, stack } = res.data.data;
+        setValue("projectTitle", title);
+        setValue("gitRepoUrl", gitRepoUrl);
+        setValue("imageUrl", imageUrl);
+        setValue("projectContent", content);
+        setAddStack(stack);
+        setIsModify(true);
+      });
+    }
+    return handleSubmit(projectSubmit);
   }, []);
 
   return (
@@ -173,13 +221,21 @@ function MakeProject() {
             <Label style={{ minWidth: "150px" }}>
               <Font>
                 *프로젝트 내용 <br />
-                (0/2000)
+                (0/1200)
               </Font>
             </Label>
             <InputCustom
               style={{ height: "174px" }}
               type="text"
-              {...register("projectContent", { required: "필수 항목 입니다." })}
+              ref={content}
+              onInput={handleResizeHeight}
+              {...register("projectContent", {
+                required: "필수 항목 입니다.",
+                maxLength: {
+                  value: 1200,
+                  message: "1200자 제한 입니다.",
+                },
+              })}
             />
           </Content>
           <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
