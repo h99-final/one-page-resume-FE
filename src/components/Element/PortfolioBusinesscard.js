@@ -40,11 +40,11 @@ const Stack = styled.div`
   font-weight: normal;
   font-size: 20px;
   text-align: center;
-  color: #333333;
-  border: 1px solid #999999;
+  color: #CFD3E2;
+  border: 1px solid #CFD3E2;
   box-sizing: border-box;
   border-radius: 30px;
-  padding: 10px 10px;
+  padding: 10px 20px;
   width: fit-content;
   height: 40px;
 `;
@@ -58,11 +58,11 @@ const Content = styled.div`
 `;
 const Portfolio = styled.div`
   margin: 0px auto;
-  background-color: lightblue;
+  background-color: #414457;
   width: 327px;
   height: 410px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid #414457;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -77,7 +77,7 @@ const NnE = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: white;
   }
   h3 {
     margin-top: 10px;
@@ -86,7 +86,7 @@ const NnE = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #999999;
+    color: #CFD3E2;
   }
   h4 {
     margin-top: 50px;
@@ -97,7 +97,7 @@ const NnE = styled.div`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: white;
   }
 `;
 export default PortfolioBuisnesscard;

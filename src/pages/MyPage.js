@@ -40,7 +40,10 @@ function MyPage() {
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data)
     })
-  }, []);
+    apis.porfShow(values.show).then((res) => {
+      console.log(res)
+    })
+  }, [values]);
 
   const handleClickShow = () => {
     setValues({
@@ -48,14 +51,14 @@ function MyPage() {
       show: !values.show,
     });
   };
-  console.log(values)
+  console.log(values.show)
 
   return (
-    <>
+    <Container>
       <Header />
       <Form>
         <UserInfoBox>
-          <Title>기본 정보</Title>
+          <Title><h1>기본 정보</h1></Title>
           <UserInfo>
             <LeftBox>
               <Avatar
@@ -85,9 +88,9 @@ function MyPage() {
                 </Label>
                 {userInfo.name ? (
                   <>
-                    <Stack>{userInfo?.stack[0]}</Stack>
-                    <Stack>{userInfo?.stack[1]}</Stack>
-                    <Stack>{userInfo?.stack[2]}</Stack>
+                    <MainStack>{userInfo?.stack[0]}</MainStack>
+                    <MainStack>{userInfo?.stack[1]}</MainStack>
+                    <MainStack>{userInfo?.stack[2]}</MainStack>
                   </>
                 ) : (
                   <Font>ㅡ</Font>
@@ -126,7 +129,7 @@ function MyPage() {
             width: "100%",
             justifyContent: "space-between"
           }}>
-            포트폴리오
+            <h1>포트폴리오</h1>
             <button onClick={handleClickShow}>
               {values.show ? <Visibility /> : <VisibilityOff />}
             </button>
@@ -176,14 +179,14 @@ function MyPage() {
             </>
           )
         })}
-        <Portfolio
+        <AddProject
           style={{
-            background: "#ededed",
+            backgroundColor: "#666982",
             width: "444px",
-            border: "1px solid #ededed",
+            border: "1px solid #666982",
           }}
         >
-          <AddProfBox style={{ marginTop: "160px" }}>
+          <AddProfBox style={{ marginTop: "160px", }}>
             <AddProfButton style={{ background: "white" }}
               onClick={() => { history.push('/write/project/info') }}>
               <Add />
@@ -197,28 +200,42 @@ function MyPage() {
               <br></br>포트폴리오에 등록해 보세요.
             </AddProfText>
           </AddProfBox>
-        </Portfolio>
+        </AddProject>
       </Project>
-    </>
+    </Container>
   );
 }
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #1F2029;
+`;
 export const Title = styled.div`
   width: 113px;
-  height: 30px;
   left: 0px;
+  height: 40px;
   margin-top: 60px;
   margin-bottom: 10px;
-  font-family: Pretendard;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 24px;
-  color: #000000;
+  h1{
+    height: fit-content;
+    padding: 10px 0px;
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 24px;
+    color: white;
+  }
   button{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 40px;
     margin-right: 5px;
-    background-color: white;
+    padding-top: 3px;
+    color: white;
+    background-color: #393A47;
     border: none;
-    border-radius: 20px;
   }
 `;
 export const ProjTitle = styled.div`
@@ -231,7 +248,7 @@ export const ProjTitle = styled.div`
   font-weight: bold;
   font-size: 26px;
   line-height: 24px;
-  color: #000000;
+  color: white;
 `;
 
 export const Font = styled.div`
@@ -240,7 +257,7 @@ export const Font = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
-  color: #333333;
+  color: #CFD3E2;
 `;
 export const Stack = styled.div`
   font-family: Pretendard;
@@ -248,16 +265,31 @@ export const Stack = styled.div`
   font-weight: normal;
   font-size: 20px;
   text-align: center;
-  color: #333333;
-  border: 1px solid #999999;
+  color: white;
+  border: 1px solid white;
   box-sizing: border-box;
   border-radius: 30px;
   margin-right: 10px;
-  padding: 10px 0px;
-  width: 90px;
+  padding: 10px 20px;
+  width: fit-content;
   height: 40px;
 `;
 
+export const MainStack = styled.div`
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  color: #00B3A6;
+  border: 1px solid #00B3A6;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  width: fit-content;
+  height: 40px;
+`;
 export const Label = styled.div`
   display: flex;
   align-items: center;
@@ -275,13 +307,12 @@ export const Content = styled.div`
   vertical-align: middle;
 `;
 const Form = styled.div`
-  width: 96%;
   margin: 0px auto;
   min-width: 1440px;
   height: 600px;
   max-width: 1900px;
   min-height: 40vh;
-  background: #ffffff;
+  background: #1F2029;
   display: flex;
   @media screen and (min-width: 1440px) {
     & {
@@ -299,6 +330,7 @@ const Project = styled.div`
   flex-wrap: wrap;
   display: flex;
   width: 96%;
+  justify-content: space-around;
   min-width: 1440px;
   max-width: 1900px;
   border-radius: 10px;
@@ -323,7 +355,8 @@ const PortfolioBox = styled.div`
   }
 `;
 const UserInfo = styled.div`
-  background-color: #ededed;
+  background-color: #2C2E39;
+  margin: 0px auto;
   width: 99%;
   min-width: 600px;
   height: 502px;
@@ -337,13 +370,13 @@ const EditButton = styled.button`
   font-weight: 500;
   font-size: 20px;
   color: white;
-  background-color: #333333;
+  background-color: #00B3A6;
   border-radius: 43px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid;
+  border: 1px solid #00B3A6;
   width: 249px;
   height: 60px;
 `;
@@ -409,7 +442,21 @@ const Portfolio = styled.div`
   width: 99%;
   height: 502px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid lightblue;
+  @media only screen and (max-width: 1300px) {
+  }
+`;
+
+const AddProject = styled.div`
+  background-color: lightblue;
+  justify-content: space-around;
+  width: 444px;
+  height: 515px;
+  border-radius: 10px;
+  background-color: #393A47;
+  margin: 0px auto;
+  box-sizing: border-box;
+  margin-bottom: 40px;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -422,13 +469,14 @@ const NnE = styled.div`
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
+    color: white;
   }
   p {
     font-style: normal;
     font-weight: normal;
     font-size: 26px;
     margin-bottom: 20px;
-    color: #555555;
+    color: #CFD3E2;
     text-align: center;
   }
   h2 {
@@ -436,14 +484,14 @@ const NnE = styled.div`
     font-weight: 500;
     font-size: 26px;
     margin: 50px 0px 20px 25px;
-    color: #000000;
+    color: white;
   }
   h3 {
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
     margin-left: 25px;
-    color: #333333;
+    color: white;
   }
   h4 {
     line-height: 25px;
@@ -454,7 +502,7 @@ const NnE = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    color: #333333;
+    color: white;
   }
 `;
 

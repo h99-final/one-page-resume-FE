@@ -83,10 +83,10 @@ const Main = () => {
   );
 };
 const Container = styled.div`
-  background-color: white;
+  background-color: #1F2029;
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Project = styled.div`
@@ -125,7 +125,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: white;
   }
   h2{
     
@@ -135,9 +135,10 @@ const TitleBox = styled.div`
       height: 30px;
       text-align: center;
       font-weight: bolder;
-      border: 1px solid #999999;
+      color: white;
+      border: 1px solid #393A47;
       border-radius: 25px;
-      background-color: white;
+      background-color: #393A47;
       font-size: 20px;
       :hover{
         background-color: #000000;
@@ -157,6 +158,5 @@ const PortfolioBox = styled.div`
 const ProjectBox = styled.div`
   width: 1440px;
   margin: 0px auto;
-  height: 1700px;
 `;
 export default Main;

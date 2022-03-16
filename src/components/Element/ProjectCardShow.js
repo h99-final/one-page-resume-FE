@@ -47,7 +47,7 @@ function ProjectCardShow(props) {
             })}
           {stack.length > 3 && (
             <ProjectStack
-              style={{ backgroundColor: "#333333", color: "white" }}
+              style={{ backgroundColor: "#393A47", color: "#666982", border: "1px solid #666982" }}
             >
               + {stack.length - 3}
             </ProjectStack>
@@ -87,9 +87,10 @@ function ProjectCardShow(props) {
 const Footer = styled.div`
   width: 100%;
   height: 59px;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #666982;
   display: flex;
   justify-content: right;
+  color: #CFD3E2;
   h1 {
     font-style: normal;
     font-weight: 400;
@@ -99,10 +100,11 @@ const Footer = styled.div`
     align-items: center;
     margin-right: 20px;
     letter-spacing: -0.01em;
-    color: #333333;
-  }
+    color: #CFD3E2;
   img {
     margin-right: 5px;
+    color: #CFD3E2;
+  }
   }
 `;
 
@@ -117,7 +119,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #CFD3E2;
   }
 
   h2 {
@@ -127,7 +129,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #999999;
+    color: #CFD3E2;
   }
 `;
 
@@ -143,9 +145,10 @@ export const ProjectForm = styled.div`
   min-width: 444px;
   max-height: 515px;
   border-radius: 10px;
+  background-color: #393A47;
   margin: 0px auto;
   border: ${(props) =>
-    props.selected ? "1px solid blue;" : "1px solid #999999;"};
+    props.selected ? "1px solid blue;" : "1px solid #393A47;"};
   box-sizing: border-box;
   margin-bottom: 40px;
 `;
@@ -167,7 +170,8 @@ const ProjectStack = styled.div`
   width: fit-content;
   height: 25px;
   border-radius: 5px;
-  background-color: #ededed;
+  background-color: #666982;
+  color: white;
 `;
 
 const ProjectTitle = styled.div`
@@ -183,7 +187,7 @@ const ProjectTitle = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: white;
     margin-bottom: 10px;
   }
   h2 {
@@ -193,7 +197,7 @@ const ProjectTitle = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #999999;
+    color: white;
   }
 `;
 
