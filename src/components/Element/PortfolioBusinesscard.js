@@ -57,7 +57,7 @@ const Content = styled.div`
   margin: 0px auto;
 `;
 const Portfolio = styled.div`
-  margin: 0px auto;
+  margin: 10px auto;
   background-color: #414457;
   width: 327px;
   height: 410px;

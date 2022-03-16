@@ -13,6 +13,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import EditInfo from '../pages/EditInfo';
 import Portfolio from '../pages/Portfolio';
 import Project from '../pages/Project';
+import PorfList from '../pages/PorfList';
+import ProjList from '../pages/ProjList';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ function App() {
       <Switch>
 
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
+        <Route exact path="/porflist" component={PorfList} />
+        <Route exact path="/projlist" component={ProjList} />
 
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
