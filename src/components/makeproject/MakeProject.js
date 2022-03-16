@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
 import {
@@ -38,6 +38,26 @@ function MakeProject() {
     setError,
     setValue,
   } = useForm();
+
+  const content = useRef(null);
+
+  useEffect(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "20px";
+    content.current.style.height = content.current.scrollHeight + "px";
+
+    return handleSubmit(projectSubmit);
+  }, []);
+
+  const handleResizeHeight = useCallback(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "20px";
+    content.current.style.height = content.current.scrollHeight + "px";
+  }, []);
 
   // const [stacks, setStacks] = useState([]);
   const [addStack, setAddStack] = useState([]);
@@ -185,13 +205,21 @@ function MakeProject() {
             <Label style={{ minWidth: "150px" }}>
               <Font>
                 *프로젝트 내용 <br />
-                (0/2000)
+                (0/1200)
               </Font>
             </Label>
             <InputCustom
               style={{ height: "174px" }}
               type="text"
-              {...register("projectContent", { required: "필수 항목 입니다." })}
+              ref={content}
+              onInput={handleResizeHeight}
+              {...register("projectContent", {
+                required: "필수 항목 입니다.",
+                maxLength: {
+                  value: 1200,
+                  message: "1200자 제한 입니다.",
+                },
+              })}
             />
           </Content>
           <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
