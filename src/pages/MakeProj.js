@@ -8,14 +8,7 @@ import Header from "../shared/Header";
 import { WriteableForm, WriteForm, WriteTemplate } from "./MakePorf";
 
 function MakeProj() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
   const { id } = useParams();
-  console.log(id);
 
   return (
     <>

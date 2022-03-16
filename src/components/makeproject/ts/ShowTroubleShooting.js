@@ -9,8 +9,7 @@ import { Font } from "../../makeporf/view/Introduce";
 import Highlighted from "./Highlight";
 
 function ShowTroubleShooting(props) {
-  const commit = useSelector((state) => state.patchcode.commit);
-  const { fileName, patchCode, content } = props;
+  const { fileId, fileName, tsPatchCodes, tsContent } = props;
 
   return (
     <>
@@ -21,7 +20,8 @@ function ShowTroubleShooting(props) {
         <InputCustom
           style={{ overflow: "hidden" }}
           type="text"
-          defaultValue={commit[0]?.message}
+          //Todo
+          // defaultValue={commit?.message}
           maxLength={50}
           readOnly
         />
@@ -48,7 +48,7 @@ function ShowTroubleShooting(props) {
             flexDirection: "column",
           }}
         >
-          <Highlighted text={patchCode} />
+          <Highlighted text={tsPatchCodes} />
         </div>
       </Content>
       <Content style={{ marginBottom: "30px" }}>
@@ -61,7 +61,7 @@ function ShowTroubleShooting(props) {
           style={{ overflow: "hidden", height: "20vh" }}
           type="text"
           maxLength={50}
-          defaultValue={content}
+          defaultValue={tsContent}
         />
       </Content>
       <hr style={{ margin: "50px" }} />

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
 
 import NotFound from "../pages/NotFound";
@@ -10,9 +10,9 @@ import MyPage from "../pages/MyPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { actionCreators as userActions } from "../redux/modules/user";
-import EditInfo from '../pages/EditInfo';
-import Portfolio from '../pages/Portfolio';
-import Project from '../pages/Project';
+import EditInfo from "../pages/EditInfo";
+import Portfolio from "../pages/Portfolio";
+import Project from "../pages/Project";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,12 +22,39 @@ function App() {
     dispatch(userActions.userInfoDB());
   }, []);
 
+  const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          userInfo && restricted ? (
+            <Redirect to="/" />
+          ) : (
+            <Component {...props} />
+          )
+        }
+      />
+    );
+  };
+
+  const PrivateRoute = ({ component: Component, ...rest }) => {
+    return (
+      // Show the component only when the user is logged in
+      // Otherwise, redirect the user to /login page
+      <Route
+        {...rest}
+        render={(props) =>
+          !!userInfo ? <Component {...props} /> : <Redirect to="/" />
+        }
+      />
+    );
+  };
+
   return (
     <>
       <GlobalStyle />
       <Switch>
-
-        <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
+        <PrivateRoute exact path="/editinfo/:id/:userId" component={EditInfo} />
 
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
@@ -43,7 +70,11 @@ function App() {
         <Route exact path="/portfolio/:id">
           <div>개인 포트폴리오 보여줌</div>
         </Route>
-        <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
+        <PrivateRoute
+          exact
+          path="/write/portfolio/:id/:profid"
+          component={MakePorf}
+        />
 
         <Route exact path="/project">
           <>
@@ -55,9 +86,12 @@ function App() {
         </Route>
         <Route exact path="/project/:id" component={Project} />
 
-        <Route path="/write/project/:id/:projectId" component={MakeProj} />
-        <Route path="/write/project/:id" component={MakeProj} />
-        <Route
+        <PrivateRoute
+          path="/write/project/:id/:projectId"
+          component={MakeProj}
+        />
+        <PrivateRoute path="/write/project/:id" component={MakeProj} />
+        <PrivateRoute
           exact
           path="/write/project/:id/:projectId"
           component={MakeProj}

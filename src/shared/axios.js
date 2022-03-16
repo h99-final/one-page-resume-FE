@@ -85,6 +85,9 @@ export const apis = {
   porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
+  // ToDo api 설계
+  modifyProject: (frmData, projectId) =>
+    formInstance.put(`/project/${projectId}`, frmData),
 
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
@@ -97,7 +100,7 @@ export const apis = {
   gitsync: (projectId) => instance.get(`/project/${projectId}/git/sync`),
   //gitcommit 불러오기
   gitCommit: (projectId) => instance.get(`/project/${projectId}/git/commit`),
-
+  //git file 불러오기
   gitCommitFile: (projectId, sha) =>
     instance.get(`/project/${projectId}/git/commit/${sha}/file`),
 };

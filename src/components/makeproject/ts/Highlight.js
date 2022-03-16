@@ -1,65 +1,127 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import { InputCustom } from "../../makeporf/shared/_sharedStyle";
-
 function Highlighted({ text = [] }) {
+  // const [value, setValue] = useState(text.join("\n\n"));
+
+  // const handleChange = (value) => setValue(value);
+
+  // let highlightRed = [];
+  // let highlightBlue = [];
+
+  // let highlight = [
+  //   {
+  //     highlight: highlightRed,
+  //     className: "red",
+  //   },
+  //   {
+  //     highlight: highlightBlue,
+  //     className: "blue",
+  //   },
+  // ];
+
+  // const highlightText = () => {
+  //   text.map((e) => {
+  //     return e.charAt(0) === "-"
+  //       ? highlightRed.push(e + "\n")
+  //       : e.charAt(0) === "+"
+  //       ? highlightBlue.push(e + "\n")
+  //       : e;
+  //   });
+  //   return highlight;
+  // };
+  const [value, setValue] = useState([]);
+
+  useEffect(() => {
+    if (text.length === 0) {
+      return;
+    }
+    let _text = [];
+    text.map((e) => {
+      return e.charAt(0) === "-"
+        ? _text.push(
+            <tr style={{ backgroundColor: "#ffc9c9" }}>
+              <pre>{e}</pre>
+            </tr>
+          )
+        : e.charAt(0) === "+"
+        ? _text.push(
+            <tr style={{ backgroundColor: "#a3daff" }}>
+              <pre>{e}</pre>
+            </tr>
+          )
+        : e.charAt(0) === "@"
+        ? _text.push(
+            <>
+              <br />
+              <br />
+              <pre>{e}</pre>
+              <hr />
+            </>
+          )
+        : _text.push(<pre>{e}</pre>);
+    });
+    setValue(_text);
+  }, [text]);
+
   return (
     <>
-      <DivTextarea>
-        {text.map((e) => {
-          if (e.charAt(0) === "-") {
-            return (
-              <div>
-                <MarkRed>{e}</MarkRed>
-              </div>
-            );
-          }
-          if (e.charAt(0) === "+") {
-            return (
-              <div>
-                <MarkBlue>{e}</MarkBlue>
-              </div>
-            );
-          } else {
-            return <div>{e}</div>;
-          }
-        })}
-      </DivTextarea>
+      <InputSize>
+        <table>
+          <Tbody>
+            {value.map((e) => {
+              return e;
+            })}
+          </Tbody>
+        </table>
+      </InputSize>
     </>
   );
 }
 
-const DivTextarea = styled.div`
-  width: 1120px;
-  height: 500px;
+const InputSize = styled.div`
+  height: 300px;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  padding: 15px 15px;
+  padding: 0px 15px;
   resize: none;
   border: none;
-  background-color: white;
+  background-color: #ededed;
   overflow: auto;
+  &:focus {
+    outline: none !important;
+    border-color: #719ece !important;
+    box-shadow: 0 0 10px #719ece !important;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #ededed; /*스크롤바의 색상*/
+  }
 `;
 
-const MarkRed = styled.mark`
-  background-color: #ffff00;
-  color: black;
-  z-index: 99;
+const Tbody = styled.tbody`
+  height: 300px;
+  tr {
+    padding: 15px;
+    text-align: left;
+    pre {
+      letter-spacing: 0.03em;
+    }
+  }
 `;
 
-const MarkBlue = styled.mark`
-  background-color: #fff5b1;
-  color: black;
+const Area = styled.div`
+  height: 400px;
+  border: 1px solid black;
+  text-align: left;
+  padding: 5px;
+  overflow: scroll;
+  .red {
+    background-color: #ffc9c9 !important;
+  }
+  .blue {
+    background-color: #a3daff !important;
+  }
 `;
 
 export default Highlighted;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   AddButton,
   ButtonText,
@@ -28,7 +28,25 @@ const CareerWrite = () => {
     setError,
   } = useForm({ defaultValues });
 
-  const content = useRef();
+  const content = useRef(null);
+
+  useEffect(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "20px";
+    content.current.style.height = content.current.scrollHeight + "px";
+
+    return handleSubmit(careerSubmit);
+  }, []);
+
+  const handleResizeHeight = useCallback(() => {
+    if (content === null || content.current === null) {
+      return;
+    }
+    content.current.style.height = "38px";
+    content.current.style.height = content.current.scrollHeight + "px";
+  }, []);
 
   const [open, setOpen] = useState(false);
   const [checkDate, setCheckDate] = useState(false);
@@ -130,6 +148,7 @@ const CareerWrite = () => {
                   style={{ height: "40px" }}
                   {...field}
                   ref={content}
+                  onInput={handleResizeHeight}
                 />
               )}
               rules={{
