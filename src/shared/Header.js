@@ -16,8 +16,8 @@ const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
-  // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const userInfo = useSelector((state) => state.user.user);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
   const user = document.cookie;
@@ -54,7 +54,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
+            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -93,7 +93,7 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-            <div onClick={() => { history.push('/porf') }}>Portfolio</div>
+            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
             <Port
               onClick={() => {
                 history.push("/portfolio");

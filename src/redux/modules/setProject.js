@@ -1,13 +1,10 @@
-
 import { createAction, handleActions } from "redux-actions"
 import { produce } from "immer"
 import { apis } from "../../shared/axios"
 import project from './project'
 
-
-const SET_PROJECT = "SET_PROJECT";
-const SET_TROUBLE_SHOOTING = "SET_TROUBLE_SHOOTING";
-
+const SET_PROJECT = "SET_PROJECT"
+const SET_TROUBLE_SHOOTING = "SET_TROUBLE_SHOOTING"
 
 const setProject = createAction(SET_PROJECT, (project) => ({ project }))
 const setTroubleShooting = createAction(SET_TROUBLE_SHOOTING, (troubleShootings) => ({ troubleShootings }))
@@ -16,19 +13,15 @@ const initialState = {
   project: { imageUrl: [], troubleShootings: [] }
 }
 
-
 const setProjectDB = (projectId) => {
   return function (dispatch) {
-    apis
-      .projectGet(projectId)
-      .then((res) => {
-        dispatch(setProject(res.data.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-};
+    apis.projectGet(projectId).then(res => {
+      dispatch(setProject(res.data.data))
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+}
 
 const setTroubleShootingDB = (projectId) => {
   return function (dispatch, getState) {
@@ -39,6 +32,7 @@ const setTroubleShootingDB = (projectId) => {
     });
   };
 };
+
 
 
 export default handleActions(
@@ -58,6 +52,6 @@ export default handleActions(
 const actionCreators = {
   setProjectDB,
   setTroubleShootingDB,
-};
+}
 
-export { actionCreators };
+export { actionCreators }

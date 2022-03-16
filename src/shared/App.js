@@ -40,9 +40,7 @@ function App() {
             </Link>
           </>
         </Route>
-        <Route exact path="/portfolio/:id">
-          <div>개인 포트폴리오 보여줌</div>
-        </Route>
+        <Route exact path="/portfolio/:id" component={Portfolio} />
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
 
         <Route exact path="/project">

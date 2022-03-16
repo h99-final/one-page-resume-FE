@@ -11,8 +11,9 @@ const TroubleShooting = () => {
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
-  const [ts, setTS] = useState("");
-
+  const [ts, setTS] = useState([]);
+  const [num, setNum] = useState(0);
+  console.log(num)
   useEffect(() => {
     dispatch(actionCreators.setTroubleShootingDB(id))
     apis.projectTSGet(id)
@@ -30,11 +31,11 @@ const TroubleShooting = () => {
       <Container>
         <Box>
           <Left>
-            <Number>
-              {ts.map((e, i) => {
+            <Number >
+              {ts?.map((e, i) => {
                 return (
                   <>
-                    <Square>
+                    <Square onClick={() => { setNum(i) }}>
                       <h1>{i + 1}</h1>
                     </Square>
                   </>
@@ -42,17 +43,17 @@ const TroubleShooting = () => {
               })}
             </Number>
             <Commit>
-              <h1>{ts[0]?.tsName}</h1>
+              <h1>{ts[num]?.tsName}</h1>
             </Commit>
             <File>
-              <h1>{ts[0]?.tsFiles[0]?.fileName}</h1>
+              <h1>{ts[num]?.tsFiles[0]?.fileName}</h1>
             </File>
             <Content>
-              <h1>{ts[0]?.tsFiles[0]?.tsContent}</h1>
+              <h1>{ts[num]?.tsFiles[0]?.tsContent}</h1>
             </Content>
           </Left>
           <Right>
-
+            {ts[num]?.tsFiles[0]?.tsPatchCodes}
           </Right>
         </Box>
       </Container>

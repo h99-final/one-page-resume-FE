@@ -9,6 +9,9 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import ProjectCardShow from '../components/Element/ProjectCardShow';
+import PortfolioBuisnesscard from '../components/Element/PortfolioBusinesscard';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -20,12 +23,16 @@ const defaultprojects = {
   userJob: "",
   username: "",
 }
+
 function MyPage() {
   const history = useHistory();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
 
+  const [values, setValues] = React.useState({
+    show: false,
+  });
   useEffect(() => {
     apis.introPorfGet(userInfo.porfId).then((res) => {
       setTitle(res.data.data.title);
@@ -34,7 +41,15 @@ function MyPage() {
       setProjects(res.data.data)
     })
   }, []);
-  console.log(projects)
+
+  const handleClickShow = () => {
+    setValues({
+      ...values,
+      show: !values.show,
+    });
+  };
+  console.log(values)
+
   return (
     <>
       <Header />
@@ -106,7 +121,16 @@ function MyPage() {
           </UserInfo>
         </UserInfoBox>
         <PortfolioBox>
-          <Title>포트폴리오</Title>
+          <Title style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between"
+          }}>
+            포트폴리오
+            <button onClick={handleClickShow}>
+              {values.show ? <Visibility /> : <VisibilityOff />}
+            </button>
+          </Title>
           {title ? (
             <Portfolio>
               <NnE>
@@ -142,8 +166,9 @@ function MyPage() {
           )}
         </PortfolioBox>
       </Form>
-      <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>프로젝트</ProjTitle>
       <Project>
+        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>프로젝트</ProjTitle>
+
         {projects.map((e, i) => {
           return (
             <>
@@ -189,22 +214,19 @@ export const Title = styled.div`
   font-size: 26px;
   line-height: 24px;
   color: #000000;
-`;
-const ForCard = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  button{
+    margin-right: 5px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+  }
 `;
 export const ProjTitle = styled.div`
   width: 96%;
   margin: 0px auto;
-  min-width: 1440px;
-  max-width: 1900px;
   height: 30px;
-  left: 0px;
   margin-top: 160px;
   margin-bottom: 10px;
-  font-family: Pretendard;
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
@@ -279,14 +301,14 @@ const Project = styled.div`
   width: 96%;
   min-width: 1440px;
   max-width: 1900px;
-  height: 602px;
   border-radius: 10px;
   @media only screen and (max-width: 1300px) {
   }
 `;
 
 const UserInfoBox = styled.div`
-  width: 68%;
+  width: 64%;
+  margin: 0px auto;
   margin-right: 24px;
   position: relative;
   @media only screen and (max-width: 1300px) {
@@ -294,6 +316,7 @@ const UserInfoBox = styled.div`
 `;
 const PortfolioBox = styled.div`
   position: relative;
+  margin: 0px auto;
   min-width: 350px;
   width: 32%;
   @media only screen and (max-width: 1300px) {
@@ -302,7 +325,7 @@ const PortfolioBox = styled.div`
 const UserInfo = styled.div`
   background-color: #ededed;
   width: 99%;
-  min-width: 900px;
+  min-width: 600px;
   height: 502px;
   border-radius: 10px;
   display: flex;

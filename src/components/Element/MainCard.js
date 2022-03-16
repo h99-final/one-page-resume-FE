@@ -5,7 +5,7 @@ import { Inner } from "../makeporf/shared/_sharedStyle";
 import { Font } from "../makeporf/view/Introduce";
 import { useHistory } from "react-router-dom";
 
-function ProjectCardShow(props) {
+function MainCard(props) {
   const history = useHistory();
   const userinfo = useSelector((state) => state.user.user);
   const {
@@ -140,10 +140,10 @@ const InnerCard = styled.img`
 
 export const ProjectForm = styled.div`
   width: 444px;
+  margin: 0px auto;
   min-width: 444px;
   max-height: 515px;
   border-radius: 10px;
-  margin: 0px auto;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #999999;"};
   box-sizing: border-box;
@@ -197,4 +197,4 @@ const ProjectTitle = styled.div`
   }
 `;
 
-export default ProjectCardShow;
+export default MainCard;

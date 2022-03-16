@@ -42,7 +42,7 @@ const AddInfo = (props) => {
   const defaultStack = [
     "JS",
     "JAVA",
-    "PYTHON",
+    "Python",
     "C",
     "C++",
     "iOS",

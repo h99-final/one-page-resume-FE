@@ -56,7 +56,7 @@ function MainStack() {
   const defaultStack = [
     "JS",
     "JAVA",
-    "PYTHON",
+    "Python",
     "C",
     "C++",
     "iOS",
@@ -91,15 +91,7 @@ function MainStack() {
   console.log(addStack);
 
   const submitStack = () => {
-    const data = {
-      name: userInfo.name,
-      stack: stack,
-      phoneNum: userInfo.phoneNum,
-      gitUrl: userInfo.gitUrl,
-      blogUrl: userInfo.blogUrl,
-      job: userInfo.job,
-    };
-    apis.addInfo(data).then((res) => {
+    apis.putStack(stack).then((res) => {
       console.log(res);
     });
   };
