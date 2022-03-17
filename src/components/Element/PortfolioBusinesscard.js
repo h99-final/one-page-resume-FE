@@ -47,12 +47,13 @@ const Stack = styled.div`
   padding: 10px 20px;
   width: fit-content;
   height: 40px;
+  margin: 0px 3px;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 84%;
   margin: 0px auto;
 `;

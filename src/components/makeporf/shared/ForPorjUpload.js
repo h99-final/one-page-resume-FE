@@ -59,27 +59,12 @@ function ForProjUpload(props) {
           </section>
         )}
       </Dropzone>
-
-      {/* Dropzone옆에 올린 파일 보여지는 곳 */}
-
-      {/* {previews.map((preview, index) => ( */}
       {files.map((file) => (
         <Image>
           <img width="250px" alt="selected" src={file.preview} />
         </Image>
       ))
       }
-      {/* <Image onChange={onImageChange} bgUrl={preview}>
-        <img
-          style={{ borderRadius: "10px" }}
-          width="250px"
-          height="250px"
-          alt=""
-          src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/1330259.png"
-        />
-      </Image> */}
-      {/* ))} */}
-      {/* <Upload /> */}
     </ProfileBox>
   );
 }
