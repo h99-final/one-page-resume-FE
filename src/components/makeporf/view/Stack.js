@@ -18,6 +18,7 @@ import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
 import Template from "../shared/Template";
 import PreviousNext from "../shared/PreviousNext";
+import { useForm } from "react-hook-form";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -39,8 +40,9 @@ export const customStyles = {
     background: "white",
     // Overwrittes the different states of border
     border: "1px solid #cccccc",
-    borderRadius: "5px",
-    width: "74.5vw",
+    borderRadius: "10px",
+    width: "70vw",
+    height: "40px",
     minWidth: "600px",
     maxWidth: "1140px",
     "&:hover": {
@@ -50,9 +52,8 @@ export const customStyles = {
   }),
 };
 function Stack() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const animatedComponents = makeAnimated();
-  const [stack, setStack] = useState(userInfo.stack);
+  const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
 
   const defaultStack = [
@@ -69,16 +70,16 @@ function Stack() {
     "Vue.js",
     "git",
   ];
+
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
-      console.log("체크 반영 완료");
-      console.log(checked);
     } else {
       setStack(stack.filter((e) => e !== id));
       console.log("체크 해제 반영 완료");
     }
   };
+
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -88,29 +89,26 @@ function Stack() {
   };
 
   useEffect(() => {
-    console.log("axios 스택 보내기");
-  }, [addStack]);
-  console.log(addStack);
+    apis.userInfo().then((res) => {
+      let mainStack = res.data.data.stack;
+      setStack(mainStack);
+    });
+    return submitStack;
+  }, []);
 
   const submitStack = () => {
-    const data = {
-      name: userInfo.name,
-      stack: stack,
-      phoneNum: userInfo.phoneNum,
-      gitUrl: userInfo.gitUrl,
-      blogUrl: userInfo.blogUrl,
-      job: userInfo.job,
-    };
     const addS = {
       stack: addStack,
     };
-    apis.putInfo(data).then((res) => {
+    const data = {
+      stack: stack,
+    };
+    apis.putStack(data).then((res) => {
       console.log(res);
     });
-
-    apis.porfStack(addS).then((response) => {
-      console.log(response);
-    });
+    // apis.porfStack(addS).then((response) => {
+    //   console.log(response);
+    // });
   };
 
   return (
@@ -140,7 +138,7 @@ function Stack() {
                   onChange={(e) => {
                     changeHandler(e.currentTarget.checked, `${s}`);
                   }}
-                ></input>
+                />
                 <label id={s} htmlFor={s}>
                   <span>
                     <img
@@ -201,7 +199,7 @@ function Stack() {
         </StackBox>
       </MultiContent>
       <PreviousNext />
-      <Template />
+      <Template submitStack={submitStack} />
     </>
   );
 }

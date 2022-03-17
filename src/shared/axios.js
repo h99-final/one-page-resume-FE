@@ -63,7 +63,7 @@ export const apis = {
   addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putInfo: (data) => instance.put("user/info", data),
-  putStack: (stack) => instance.put("user/stack", { stack: stack }),
+  putStack: (data) => instance.put("user/stack", data),
 
   introPorf: (data) => instance.put("porf/intro", data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
@@ -106,11 +106,13 @@ export const apis = {
   gitCommitFile: (projectId, sha) =>
     instance.get(`/project/${projectId}/git/commit/${sha}/file`),
 
-  mainPorf: (stack) => instance.post("/porf/intro/recommend", {
-    stack: stack
-  }),
+  mainPorf: (stack) =>
+    instance.post("/porf/intro/recommend", {
+      stack: stack,
+    }),
 
-  mainProj: (stack) => instance.post("/project/stack?page=0", {
-    stack: stack
-  }),
+  mainProj: (stack) =>
+    instance.post("/project/stack?page=0", {
+      stack: stack,
+    }),
 };

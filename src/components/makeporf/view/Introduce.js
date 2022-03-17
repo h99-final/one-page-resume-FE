@@ -56,7 +56,7 @@ function Introduce() {
                 <StyledInput
                   type="text"
                   {...field}
-                  defaultValue={data?.title}
+                  // defaultValue={data?.title}
                   placeholder={errors?.title?.message}
                   maxLength={50}
                   errors={!!errors.title}
@@ -93,7 +93,7 @@ function Introduce() {
                     height: "200px",
                   }}
                   {...field}
-                  defaultValue={data?.contents}
+                  // defaultValue={data?.contents}
                   errors={!!errors.contents}
                 />
               )}
