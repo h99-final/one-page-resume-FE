@@ -75,6 +75,9 @@ export const apis = {
   careerPorfPut: (careerId, data) =>
     instance.put(`/porf/career/${careerId}`, data),
 
+  //포트폴리오 스택 조회
+  stackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
+
   templatePut: (data) => instance.put("/porf/template", data),
 
   projectPorf: (data) => instance.post("/porf/project", data),

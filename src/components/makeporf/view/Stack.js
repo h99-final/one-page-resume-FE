@@ -13,6 +13,10 @@ import {
   FormTitle,
   ErrorMessage,
   StyledInput,
+  MakeCenter,
+  ContentCareer,
+  AddButton,
+  ButtonText,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
@@ -52,6 +56,8 @@ export const customStyles = {
   }),
 };
 function Stack() {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const animatedComponents = makeAnimated();
   const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
@@ -80,6 +86,10 @@ function Stack() {
     }
   };
 
+  useEffect(() => {
+    return submitStack();
+  }, [stack, addStack]);
+
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -93,22 +103,38 @@ function Stack() {
       let mainStack = res.data.data.stack;
       setStack(mainStack);
     });
-    return submitStack;
+    apis.stackGet(userInfo.porfId).then((res) => {
+      setAddStack(res.data.data.subStack);
+    });
+    // return submitStack;
   }, []);
 
-  const submitStack = () => {
-    const addS = {
-      stack: addStack,
-    };
+  const submitStack = async () => {
     const data = {
       stack: stack,
     };
-    apis.putStack(data).then((res) => {
-      console.log(res);
-    });
-    // apis.porfStack(addS).then((response) => {
-    //   console.log(response);
-    // });
+    console.log(data);
+    const addS = {
+      stack: addStack,
+    };
+    await apis
+      .putStack(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+    if (addStack.length > 2) {
+      await apis
+        .porfStack(addS)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((res) => {
+          window.alert(res.error.message);
+        });
+    }
   };
 
   return (
@@ -198,8 +224,15 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      <MakeCenter style={{ marginTop: "20px" }}>
+        <AddButton onClick={submitStack}>
+          <ContentCareer>
+            <ButtonText>+ 직무 경험 추가 하기</ButtonText>
+          </ContentCareer>
+        </AddButton>
+      </MakeCenter>
       <PreviousNext />
-      <Template submitStack={submitStack} />
+      <Template />
     </>
   );
 }
@@ -216,7 +249,7 @@ export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px;
   width: fit-content;
-  height: 40px;
+  height: 50px;
   font-size: 17px;
   border: 1px solid #cccccc;
   border-radius: 100px;
