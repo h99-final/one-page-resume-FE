@@ -1,5 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { actionCreators } from "../../../redux/modules/patchcode";
+import { apis } from "../../../shared/axios";
 import {
   Content,
   InputCustom,
@@ -18,9 +22,21 @@ function ShowTroubleShooting(props) {
     tsFiles,
     tsName,
     commitMsg,
+    commitId,
   } = props;
+
+  const { projectId } = useParams();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(actionCreators.deleteTsDB(projectId, commitId));
+  };
+
   return (
     <>
+      <IconBox onClick={handleDelete}>
+        <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+      </IconBox>
       <Content style={{ marginBottom: "30px" }}>
         <Label>
           <Font>트러블 슈팅 제목</Font>
@@ -95,5 +111,18 @@ function ShowTroubleShooting(props) {
     </>
   );
 }
+
+export const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #393a47;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: 50px;
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+`;
 
 export default ShowTroubleShooting;

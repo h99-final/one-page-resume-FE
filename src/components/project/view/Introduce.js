@@ -1,46 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { apis } from '../../../shared/axios';
-import { useParams } from 'react-router-dom';
-import { actionCreators } from '../../../redux/modules/setProject';
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { apis } from "../../../shared/axios";
+import { useParams } from "react-router-dom";
+import { actionCreators } from "../../../redux/modules/setProject";
 
 const Introduce = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [contents, setContents] = useState("");
 
   useEffect(() => {
-    dispatch(actionCreators.setProjectDB(id))
+    dispatch(actionCreators.setProjectDB(id));
   }, []);
 
-  const project = useSelector(state => state.setproject.project)
-  console.log(project)
+  const project = useSelector((state) => state.setproject.project);
+  console.log(project);
 
   return (
     <>
       <Container>
         <TitleBox>
-          <h1>
-            Project
-          </h1>
+          <h1>Project</h1>
           <h1>1 2 3 4 5</h1>
         </TitleBox>
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
-            {project?.imageUrl?.map((e, i) => {
+            {project?.img?.map((e, i) => {
               return (
                 <>
-                  <img
-                    key={e + `${i}`}
-                    alt=''
-                    src={e}
-                  />
+                  <img key={e + `${i}`} alt="" src={e.url} />
                 </>
-              )
+              );
             })}
           </ImgBox>
           <ContentBox>
@@ -55,16 +49,15 @@ const Introduce = () => {
                   <SubStack key={i}>
                     <span>{e}</span>
                   </SubStack>
-                )
+                );
               })}
-
             </StackBox>
           </ContentBox>
         </IntroBox>
       </Container>
     </>
   );
-}
+};
 
 const Container = styled.div`
   width: 100%;
@@ -83,14 +76,14 @@ const AboutBox = styled.div`
   width: fit-content;
   min-width: 550px;
   margin-right: 50px;
-    h2{
-      font-style: normal;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -0.01em;
-      color: #333333;
-    }
+  h2 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #333333;
+  }
 `;
 const SubStack = styled.button`
   width: fit-content;
@@ -116,14 +109,14 @@ const SubStack = styled.button`
   }
 `;
 const ContentTitle = styled.div`
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #555555;
-`
+`;
 
 const StackBox = styled.div`
   width: 33%;
@@ -139,7 +132,7 @@ const RightMenu = styled.div`
 `;
 
 const TitleBox = styled.div`
-  width: 95%;
+  width: 100%;
   height: 30px;
   margin: 10px auto;
   border-bottom: 1px solid black;
@@ -147,8 +140,8 @@ const TitleBox = styled.div`
   justify-content: space-between;
   display: flex;
   text-align: left;
-  padding: 0px 0px 20px 0px ;
-  h1{
+  padding: 0px 0px 20px 0px;
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 26px;
@@ -162,7 +155,7 @@ const IntroBox = styled.div`
   width: 95%;
   min-height: 630px;
   margin: 0px auto;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 26px;
@@ -179,10 +172,10 @@ const ImgBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  img{
+  img {
     width: 322px;
     height: 322px;
-    margin:0px 10px;
+    margin: 0px 10px;
     border-radius: 10px;
     margin-bottom: 10px;
   }

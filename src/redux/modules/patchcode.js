@@ -8,6 +8,7 @@ const SELECT_PATCH_CODE = "SELECT_PATCH_CODE";
 const RESET_SELECT_PATCH_CODE = "RESET_SELECT_PATCH_CODE";
 
 const SET_COMMIT = "SET_COMMIT";
+const DELETE_TS = "DELETE_TS";
 
 const SET_FILE = "SET_FILE";
 const ADD_FILE = "ADD_FILE";
@@ -28,6 +29,10 @@ const addFile = createAction(ADD_FILE, (tsFile) => ({ tsFile }));
 const addTsFile = createAction(ADD_TS_FILE, (tsFile, commitIndex) => ({
   tsFile,
   commitIndex,
+}));
+const deleteTs = createAction(DELETE_TS, (projectId, commitId) => ({
+  projectId,
+  commitId,
 }));
 
 const initialState = {
@@ -97,6 +102,14 @@ const getTroubleShootingDB = (projectId) => {
   };
 };
 
+const deleteTsDB = (projectId, commitId) => {
+  return function (dispatch) {
+    apis.deleteTroubleShooting(projectId, commitId).then((res) => {
+      dispatch(deleteTs(projectId, commitId));
+    });
+  };
+};
+
 export default handleActions(
   {
     [SET_PATCH_CODE]: (state, action) =>
@@ -116,6 +129,12 @@ export default handleActions(
     [SET_COMMIT]: (state, action) =>
       produce(state, (draft) => {
         draft.commit = action.payload.commit;
+      }),
+    [DELETE_TS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.tsFile = draft.tsFile.filter(
+          (ts) => ts.commitId !== action.payload.commitId
+        );
       }),
     [SET_FILE]: (state, action) =>
       produce(state, (draft) => {
@@ -148,6 +167,7 @@ const actionCreators = {
   addFile,
   troubleShootingDB,
   getTroubleShootingDB,
+  deleteTsDB,
 };
 
 export { actionCreators };
