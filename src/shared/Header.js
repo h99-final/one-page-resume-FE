@@ -49,12 +49,15 @@ const Header = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
-            <Circle
-              onClick={() => {
-                history.push("/");
-              }}
-            />
-            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
+            <img
+              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              style={{ marginRight: "5px" }}
+              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+            <img
+              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              style={{ marginRight: "5px" }}
+              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -88,12 +91,15 @@ const Header = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
-            <Circle
-              onClick={() => {
-                history.push("/");
-              }}
-            />
-            <div onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}>Portfolio</div>
+            <img
+              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              style={{ marginRight: "5px" }}
+              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+            <img
+              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              style={{ marginRight: "5px" }}
+              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -218,7 +224,7 @@ const SharedBtn = styled.button`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  background-color: black;
+  background-color: #00C4B4;
   width: 130px;
   height: 40px;
   color: white;

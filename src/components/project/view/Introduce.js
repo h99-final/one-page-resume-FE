@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { apis } from '../../../shared/axios';
 import { useParams } from 'react-router-dom';
 import { actionCreators } from '../../../redux/modules/setProject';
+import ProjHeader from '../../../shared/ProjHeader';
 
 const Introduce = () => {
   const dispatch = useDispatch();
@@ -31,13 +32,13 @@ const Introduce = () => {
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
-            {project?.imageUrl?.map((e, i) => {
+            {project?.img?.map((e, i) => {
               return (
                 <>
                   <img
-                    key={e + `${i}`}
+                    key={e.url + `${i}`}
                     alt=''
-                    src={e}
+                    src={e.url}
                   />
                 </>
               )
@@ -67,10 +68,9 @@ const Introduce = () => {
 }
 
 const Container = styled.div`
-  width: 100%;
-  min-width: 800px;
-  max-width: 1440px;
-  min-height: 964px;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 `;
 
 const ContentBox = styled.div`
@@ -130,18 +130,9 @@ const StackBox = styled.div`
   min-width: 400px;
 `;
 
-const RightMenu = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 25px;
-  font-weight: bold;
-  font-weight: 500;
-`;
-
 const TitleBox = styled.div`
   width: 95%;
-  height: 30px;
-  margin: 10px auto;
+  margin: 60px auto;
   border-bottom: 1px solid black;
   margin-bottom: 50px;
   justify-content: space-between;
@@ -177,7 +168,7 @@ const ImgBox = styled.div`
   width: 100%;
   margin-bottom: 50px;
   flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: space-around;
   display: flex;
   img{
     width: 322px;
