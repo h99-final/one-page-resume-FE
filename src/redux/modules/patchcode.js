@@ -11,6 +11,7 @@ const SET_COMMIT = "SET_COMMIT";
 
 const SET_FILE = "SET_FILE";
 const ADD_FILE = "ADD_FILE";
+const ADD_TS_FILE = "ADD_TS_FILE";
 
 const setPatchCode = createAction(SET_PATCH_CODE, (patchcode_list) => ({
   patchcode_list,
@@ -21,13 +22,19 @@ const selectPatchCode = createAction(SELECT_PATCH_CODE, (fileName) => ({
 const resetSelectPatchCode = createAction(RESET_SELECT_PATCH_CODE);
 const setCommit = createAction(SET_COMMIT, (commit) => ({ commit }));
 const setFile = createAction(SET_FILE, (tsFile_list) => ({ tsFile_list }));
+// 최초 커밋, 트러블 슈팅일때
 const addFile = createAction(ADD_FILE, (tsFile) => ({ tsFile }));
+// 트러블 슈팅 파일만 추가할때
+const addTsFile = createAction(ADD_TS_FILE, (tsFile, commitIndex) => ({
+  tsFile,
+  commitIndex,
+}));
 
 const initialState = {
   patchcode: [],
   commit: null,
   selectedPatchCode: [],
-  tsFile: [],
+  tsFile: [{ commit: { message: "abc" } }],
 };
 
 const setPatchCodeAPI = (projectId, sha) => {
@@ -41,7 +48,6 @@ const setPatchCodeAPI = (projectId, sha) => {
 
 const troubleShootingDB = (projectId, data) => {
   return function (dispatch, getState) {
-    console.log(data);
     let commit = getState().patchcode.commit;
     let { tsName, ...obj } = data;
     let _data = {
@@ -52,15 +58,15 @@ const troubleShootingDB = (projectId, data) => {
     };
     //ToDo
     apis.createTroubleShooting(projectId, _data).then((res) => {
-      console.log(res.data.data);
-      let { patchCode, fileName, tsContent } = obj;
-      let _data = {
-        fileId: res.data.data.fileId,
-        tsPatchCodes: patchCode,
-        tsContent: tsContent,
-        fileName: fileName,
-      };
-      dispatch(addFile(_data));
+      let { commitId } = res.data.data;
+      let tsFiles = getState().patchcode.tsFile;
+      let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
+      console.log(_index);
+      if (_index === -1) {
+        dispatch(addFile(_data));
+      } else {
+        dispatch(addTsFile(obj, _index));
+      }
     });
   };
 };
@@ -72,13 +78,8 @@ const getTroubleShootingDB = (projectId) => {
     apis
       .projectTSGet(projectId)
       .then((res) => {
-        //ToDo
-        const commit = getState().patchcode.commit;
         const _tsFiles = res.data.data;
-        let files = [];
-        // _tsFiles.filter(e => e.commitId === commit.)
-        console.log(files);
-        dispatch(setFile(files));
+        dispatch(setFile(_tsFiles));
       })
       .catch((error) => {
         console.log(error);
@@ -118,6 +119,12 @@ export default handleActions(
       produce(state, (draft) => {
         draft.tsFile.unshift(action.payload.tsFile);
         draft.patchcode = null;
+      }),
+    [ADD_TS_FILE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.tsFile[action.payload.commitIndex].tsFiles.unshift(
+          action.payload.tsFile
+        );
       }),
   },
   initialState
