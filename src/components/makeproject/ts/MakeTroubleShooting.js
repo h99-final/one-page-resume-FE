@@ -50,11 +50,10 @@ function MakeTroubleShooting() {
   // 프로젝트에 속해있는 모든 파일
   const tsFile = useSelector((state) => state.patchcode.tsFile);
 
+  console.log(tsFile);
   // setIsOpen(true);
   const onValid = (data) => {
     // 모달창에서 커밋 목록 조회
-    dispatch(tsfileactions.resetSelectPatchCode());
-
     const _data = {
       tsName: data.title,
       fileName: patchcode[0].name,
@@ -63,10 +62,11 @@ function MakeTroubleShooting() {
     };
     // 트러블 슈팅 redux에만 추가
     console.log(_data);
-    dispatch(tsfileactions.addFile(_data));
+    dispatch(tsfileactions.resetSelectPatchCode());
     // 트러블 슈팅 선택된 패치 코드 지우기
     // DB에 저장하기
-    handleSubmitDB(_data);
+    const { commit, ..._obj } = _data;
+    handleSubmitDB(_obj);
     setValue("title", "");
     setValue("content", "");
   };
@@ -172,7 +172,7 @@ function MakeTroubleShooting() {
               <AddButton>
                 <ContentCareerBottom>
                   {/* <ButtonText onClick={handleSubmit(onValid)}> */}
-                  {patchcode ? (
+                  {patchcode && commit ? (
                     <ButtonText onClick={handleSubmit(onValid)}>
                       + 트러블 슈팅 파일 저장 하기
                     </ButtonText>
@@ -197,6 +197,7 @@ function MakeTroubleShooting() {
                   <>
                     <ShowTroubleShooting
                       key={tsFile.fileName + `${i}`}
+                      commit={commit}
                       {...e}
                     />
                   </>

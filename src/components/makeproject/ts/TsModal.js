@@ -48,6 +48,11 @@ function TsModal(props) {
     setIsOpen(false);
   }
 
+  function closeModalWithoutPatchcode() {
+    dispatch(actionCreators.resetSelectPatchCode());
+    setIsOpen(false);
+  }
+
   // commit message 고르기
   const handleCommitClick = (e) => {
     setSelectedSha(e.currentTarget.id);
@@ -95,7 +100,7 @@ function TsModal(props) {
       contentLabel="Example Modal"
     >
       <IconBoxLeft>
-        <button onClick={closeModal}>x</button>
+        <button onClick={closeModalWithoutPatchcode}>x</button>
       </IconBoxLeft>
       <FormContentsModal>
         {page === 0 ? (

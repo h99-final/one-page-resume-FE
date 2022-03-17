@@ -14,13 +14,20 @@ function TemplateProject() {
     }
   };
 
+  const handleComplete = () => {
+    if (id === "info") {
+      return;
+    }
+    history.push(`/project/${projectId}`);
+  };
+
   return (
     <>
       <BottomNav id={id}>
         <Save id={id}>
           <h2 onClick={handlePreviousClick}>이전으로</h2>
         </Save>
-        <Label htmlFor="submit">
+        <Label htmlFor="submit" onClick={handleComplete}>
           <Save style={{ marginRight: "5px" }}>
             <input id="submit" type="submit" style={{ display: "none" }} />
             <h2>작성 완료</h2>
