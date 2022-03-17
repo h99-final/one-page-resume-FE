@@ -45,20 +45,32 @@ function ForProjUpload(props) {
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
-        {({ getRootProps, getInputProps }) => (
+        {({ getRootProps, getInputProps, isFocused, isDragActive }) => (
           <section>
             <Inner {...getRootProps()}>
               <input {...getInputProps()} />
-              <img
-                style={{ borderRadius: "10px" }}
-                width="250px"
-                alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/1330259.png"
-              />
+              {isFocused || isDragActive
+                ? (<>
+                  <img
+                    style={{ borderRadius: "10px" }}
+                    width="100%"
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/eximghover.svg"}
+                  />
+                </>)
+                : (<>
+                  <img
+                    style={{ borderRadius: "10px" }}
+                    width="100%"
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/eximg.svg"}
+                  />
+                </>)}
             </Inner>
           </section>
         )}
       </Dropzone>
+
       {files.map((file) => (
         <Image>
           <img width="250px" alt="selected" src={file.preview} />

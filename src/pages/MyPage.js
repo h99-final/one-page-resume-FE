@@ -164,7 +164,7 @@ function MyPage() {
           ) : (
             <Portfolio style={{ background: "white" }}>
               <AddProfBox style={{ marginTop: "160px" }}>
-                <AddProfButton>
+                <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo.porfId}`) }}>
                   <Add />
                   포트폴리오 작성하기
                 </AddProfButton>

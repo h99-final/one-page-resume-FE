@@ -118,14 +118,17 @@ function Stack() {
     const addS = {
       stack: addStack,
     };
-    await apis
-      .putStack(data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+    if (stack.length === 3) {
+      await apis
+        .putStack(data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          window.alert(error.message);
+        });
+    }
+
     if (addStack.length > 2) {
       await apis
         .porfStack(addS)
