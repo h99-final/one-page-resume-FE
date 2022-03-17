@@ -6,9 +6,9 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import image from "./modules/image";
 import career from "./modules/career";
-import project from "./modules/project";
+import myproject from "./modules/myproject";
 import patchcode from "./modules/patchcode";
-import setproject from "./modules/setProject"
+import setproject from "./modules/setProject";
 
 export const history = createBrowserHistory();
 
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   user: User,
   image: image,
   career: career,
-  project: project,
+  myproject: myproject,
   patchcode: patchcode,
   setproject: setproject,
   router: connectRouter(history),

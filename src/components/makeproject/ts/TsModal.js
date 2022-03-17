@@ -74,6 +74,11 @@ function TsModal(props) {
   };
 
   useEffect(() => {
+    if (page === 0) {
+      apis.gitCommit(projectId).then((res) => {
+        setMessage_list(res.data.data);
+      });
+    }
     if (page === 1) {
       dispatch(actionCreators.setPatchCodeAPI(projectId, selectedSha));
     }

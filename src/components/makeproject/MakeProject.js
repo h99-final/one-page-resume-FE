@@ -103,22 +103,10 @@ function MakeProject() {
       frm.append("images", images[i]);
     }
 
-    if (isModify) {
-      apis
-        .modifyProject(frm, projectId)
-        .then((res) => {
-          history.push(`troubleShooting/${projectId}`);
-        })
-        .catch((error) => {
-          window.alert(error);
-        });
-      return;
-    }
-
     apis.createProject(frm).then((res) => {
       console.log(res.data.data);
-      const { id } = res.data.data;
-      history.push(`troubleShooting/${id}`);
+      const { projectId } = res.data.data;
+      history.push(`/write/project/troubleShooting/${projectId}`);
     });
   };
 
@@ -242,7 +230,7 @@ function MakeProject() {
         </FormContents>
         <TemplateProject />
       </form>
-      <PreviousNextProject />
+      {/* <PreviousNextProject /> */}
     </>
   );
 }
