@@ -133,13 +133,14 @@ export const MakeCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  cursor: pointer;
   /* flex-direction: row; */
   /* vertical-align: middle; */
 `;
 
 export const IconBox = styled.div`
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   margin-left: auto;

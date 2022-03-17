@@ -92,7 +92,7 @@ const ErrorMessageSpan = styled(ErrorMessage)`
 
 // 프로젝트 카드를 반응형으로 배치 하는 것 해야함
 const ProjectBox = styled.div`
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0px auto;
   flex-direction: row;
   flex-wrap: wrap;

@@ -88,9 +88,13 @@ function Stack() {
     }
   };
 
+  function handleDelete(e) {
+    setAddStack(addStack.filter((e) => e !== e.target));
+  }
+
   useEffect(() => {
     return submitStack();
-  }, [stack, addStack]);
+  }, []);
 
   const handleChange = (e) => {
     let stackArray = [];
@@ -213,15 +217,14 @@ function Stack() {
               <SelectStack key={index} {...addStack}>
                 {addStack}
                 <ClearIcon
+                  id={addStack}
                   sx={{
                     fontSize: 14,
                     color: grey[500],
                     marginLeft: 1,
-                    borderRadius: 1000,
+                    borderRadius: 10,
                   }}
-                  onClick={() => {
-                    alert("@@");
-                  }}
+                  onClick={handleDelete}
                 ></ClearIcon>
               </SelectStack>
             );

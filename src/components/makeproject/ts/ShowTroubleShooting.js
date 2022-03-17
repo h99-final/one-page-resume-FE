@@ -32,6 +32,12 @@ function ShowTroubleShooting(props) {
     dispatch(actionCreators.deleteTsDB(projectId, commitId));
   };
 
+  const handleFileDelete = (e) => {
+    dispatch(
+      actionCreators.deleteTsFileDB(projectId, commitId, e.currentTarget.id)
+    );
+  };
+
   return (
     <>
       <IconBox onClick={handleDelete}>
@@ -65,6 +71,9 @@ function ShowTroubleShooting(props) {
       {tsFiles?.map((ts) => {
         return (
           <div>
+            <IconBox id={ts.fileId} onClick={handleFileDelete}>
+              <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+            </IconBox>
             <Content style={{ marginBottom: "30px" }}>
               <Label>
                 <Font>File Name</Font>

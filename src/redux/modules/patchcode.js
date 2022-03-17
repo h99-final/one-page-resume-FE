@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { apis } from "../../shared/axios";
+import { create } from "@mui/material/styles/createTransitions";
 
 const SET_PATCH_CODE = "SET_PATCH_CODE";
 
@@ -13,6 +14,7 @@ const DELETE_TS = "DELETE_TS";
 const SET_FILE = "SET_FILE";
 const ADD_FILE = "ADD_FILE";
 const ADD_TS_FILE = "ADD_TS_FILE";
+const DELETE_TS_FILE = "DELETE_TS_FILE";
 
 const setPatchCode = createAction(SET_PATCH_CODE, (patchcode_list) => ({
   patchcode_list,
@@ -33,6 +35,10 @@ const addTsFile = createAction(ADD_TS_FILE, (tsFile, commitIndex) => ({
 const deleteTs = createAction(DELETE_TS, (projectId, commitId) => ({
   projectId,
   commitId,
+}));
+const deleteTsFile = createAction(DELETE_TS_FILE, (commitId, fileId) => ({
+  commitId,
+  fileId,
 }));
 
 const initialState = {
@@ -66,13 +72,13 @@ const troubleShootingDB = (projectId, data) => {
       let { commitId } = res.data.data;
       let tsFiles = getState().patchcode.tsFile;
       console.log(obj);
-      console.log(_data);
       let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
-      console.log(_index);
       let { commitMessage, tsFile, ..._obj } = _data;
+      let { __obj, patchCode } = obj;
+
       let __data = {
         ..._obj,
-        tsFiles: tsFile,
+        tsFiles: [{ ...__obj, tsPatchCode: patchCode }],
         commitMsg: commitMessage,
       };
       if (_index === -1) {
@@ -107,6 +113,20 @@ const deleteTsDB = (projectId, commitId) => {
     apis.deleteTroubleShooting(projectId, commitId).then((res) => {
       dispatch(deleteTs(projectId, commitId));
     });
+  };
+};
+
+const deleteTsFileDB = (projectId, commitId, fileId) => {
+  return function (dispatch) {
+    apis
+      .deleteTroubleShootingFile(projectId, commitId, fileId)
+      .then((res) => {
+        dispatch(deleteTsFile(commitId, fileId));
+      })
+      .catch((res) => {
+        console.log(res.errors);
+        // window.alert(res.errors.message);
+      });
   };
 };
 
@@ -153,6 +173,15 @@ export default handleActions(
         );
         console.log(state.tsFile);
       }),
+    [DELETE_TS_FILE]: (state, action) =>
+      produce(state, (draft) => {
+        let _index = draft.tsFile.findIndex(
+          (ts) => ts.commitId === action.payload.commitId
+        );
+        draft.tsFile[_index].tsFiles = draft.tsFile[_index].tsFiles.filter(
+          (ts) => ts.fileId !== action.payload.fileId
+        );
+      }),
   },
   initialState
 );
@@ -168,6 +197,7 @@ const actionCreators = {
   troubleShootingDB,
   getTroubleShootingDB,
   deleteTsDB,
+  deleteTsFileDB,
 };
 
 export { actionCreators };

@@ -23,6 +23,7 @@ function Template() {
 
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
+    window.alert("준비중입니다.");
     // let data = {
     //   idx: event.currentTarget,
     // };
@@ -81,11 +82,13 @@ const Save = styled(Next)`
 `;
 
 const Label = styled.label`
+  cursor: pointer;
   display: ${(props) =>
     props.id === "career" || props.id === "project" ? "none" : "flex"};
 `;
 
 const TemplateSelector = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +110,9 @@ const BottomNav = styled.div`
 `;
 
 const FormTextWhite = styled(FormText)`
+  cursor: pointer;
   color: #ffffff;
+  width: auto !important;
 `;
 
 export default Template;
