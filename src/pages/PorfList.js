@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
-import { useSelector } from 'react-redux';
-import { apis } from '../shared/axios';
+import { useSelector } from "react-redux";
+import { apis } from "../shared/axios";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import Select from "react-select";
-import PortfolioBuisnesscard from '../components/Element/PortfolioBusinesscard';
+import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
+import { Link, useHistory } from "react-router-dom";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -28,20 +29,20 @@ export const customStyles = {
     background: "white",
     // Overwrittes the different states of border
     border: "1px solid #cccccc",
-    borderRadius: "5px",
-    width: "74.5vw",
+    width: "70vw",
     minWidth: "600px",
     maxWidth: "1140px",
     margin: "0px auto",
+    borderRadius: "10px",
     "&:hover": {
       // Overwrittes the different states of border
-      borderColor: state.isFocused ? "red" : "blue",
+      borderColor: state.isFocused ? "blue" : "blue",
     },
   }),
 };
+
 const PorfList = () => {
-  const userInfo = useSelector(state => state.user.user)
-  // console.log(userInfo)
+  const history = useHistory();
 
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
@@ -53,23 +54,22 @@ const PorfList = () => {
     });
   }, []);
   const handleChange = (e) => {
-    let stackArray = [
-    ];
+    let stackArray = [];
     e.map((addStack) => {
       return stackArray.push(addStack.value);
     });
     setAddStack(stackArray);
   };
+  console.log(porf);
   return (
     <>
       <Container>
         <Header />
         <Title>
-          <h1>
-            프로젝트 둘러보기
-          </h1>
+          <h1>포트폴리오 둘러보기</h1>
           <h2>
-            다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는 프로젝트를 북마크 해보세요.
+            다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
+            프로젝트를 북마크 해보세요.
           </h2>
         </Title>
         <Select
@@ -104,10 +104,11 @@ const PorfList = () => {
             {porf?.map((e, i) => {
               return (
                 <>
-                  <PortfolioBuisnesscard key={`${e.id}`} {...e} />
-                  <PortfolioBuisnesscard key={`${e.id}`} {...e} />
+                  <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
+                    <PortfolioBuisnesscard key={`${e.id}`} {...e} />
+                  </div>
                 </>
-              )
+              );
             })}
           </Portfolio>
         </PortfolioBox>
@@ -116,7 +117,7 @@ const PorfList = () => {
   );
 };
 const Container = styled.div`
-  background-color: #1F2029;
+  background-color: #1f2029;
   position: relative;
   width: 100%;
   height: 100%;
@@ -130,20 +131,21 @@ const Portfolio = styled.div`
   min-width: 940px;
   max-width: 1440px;
   border-radius: 10px;
+  justify-content: space-around;
   @media only screen and (max-width: 1300px) {
   }
 `;
 
 const PortfolioBox = styled.div`
-width: 100%;
-margin: 0px auto;
+  width: 100%;
+  margin: 0px auto;
 `;
 
 const Title = styled.div`
   width: 100%;
   margin-top: 120px;
   margin-bottom: 60px;
-  h1{
+  h1 {
     width: 100%;
     text-align: center;
     font-style: normal;
@@ -154,7 +156,7 @@ const Title = styled.div`
     color: white;
     margin-bottom: 20px;
   }
-  h2{
+  h2 {
     width: 100%;
     text-align: center;
     font-style: normal;
@@ -167,9 +169,9 @@ const Title = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 76%;
+  width: 70%;
   margin: 10px auto;
-  height: auto;
+  height: 50px;
   border-radius: 10px;
 `;
 
@@ -181,7 +183,7 @@ const SelectStack = styled.button`
   font-size: 17px;
   color: white;
   border: 1px solid white;
-  background-color: #1F2029;
+  background-color: #1f2029;
   border-radius: 100px;
   text-align: center;
 `;

@@ -12,8 +12,12 @@ import "./banner.css";
 // import required modules
 import { Parallax, Pagination, Navigation } from "swiper";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Banner = () => {
+  const history = useHistory();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   return (
     <>
       <Swiper
@@ -34,58 +38,121 @@ const Banner = () => {
           slot="container-start"
           className="parallax-bg"
           style={{
-            backgroundColor: "#000000"
+            backgroundColor: "#000000",
           }}
           data-swiper-parallax="-23%"
         ></div>
         <SwiperSlide>
           <TextBox>
-            <h1>개발자 포트폴리오 만들기,<br />
-              어디까지 해보셨나요?</h1>
-            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+            <h1>
+              개발자 포트폴리오 만들기,
+              <br />
+              어디까지 해보셨나요?
+            </h1>
+            <h2>
+              개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
+            </h2>
           </TextBox>
           <BtnBox>
-            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+            <button
+              onClick={() => {
+                history.replace(
+                  `/write/portfolio/introduce/${userInfo.porfId}`
+                );
+              }}
+            >
+              지금 시작하기
+            </button>
           </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
           <TextBox>
-            <h1>개발자 포트폴리오 만들기,<br />
-              어디까지 해보셨나요?</h1>
-            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+            <h1>
+              개발자 포트폴리오 만들기,
+              <br />
+              어디까지 해보셨나요?
+            </h1>
+            <h2>
+              개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
+            </h2>
           </TextBox>
           <BtnBox>
-            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+            <button
+              onClick={() => {
+                history.replace(
+                  `/write/portfolio/introduce/${userInfo.porfId}`
+                );
+              }}
+            >
+              지금 시작하기
+            </button>
           </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
           <TextBox>
-            <h1>개발자 포트폴리오 만들기,<br />
-              어디까지 해보셨나요?</h1>
-            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+            <h1>
+              개발자 포트폴리오 만들기,
+              <br />
+              어디까지 해보셨나요?
+            </h1>
+            <h2>
+              개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
+            </h2>
           </TextBox>
           <BtnBox>
-            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+            <button
+              onClick={() => {
+                history.replace(
+                  `/write/portfolio/introduce/${userInfo.porfId}`
+                );
+              }}
+            >
+              지금 시작하기
+            </button>
           </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
           <TextBox>
-            <h1>개발자 포트폴리오 만들기,<br />
-              어디까지 해보셨나요?</h1>
-            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+            <h1>
+              개발자 포트폴리오 만들기,
+              <br />
+              어디까지 해보셨나요?
+            </h1>
+            <h2>
+              개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
+            </h2>
           </TextBox>
           <BtnBox>
-            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+            <button
+              onClick={() => {
+                history.replace(
+                  `/write/portfolio/introduce/${userInfo.porfId}`
+                );
+              }}
+            >
+              지금 시작하기
+            </button>
           </BtnBox>
         </SwiperSlide>
         <SwiperSlide>
           <TextBox>
-            <h1>개발자 포트폴리오 만들기,<br />
-              어디까지 해보셨나요?</h1>
-            <h2>개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.</h2>
+            <h1>
+              개발자 포트폴리오 만들기,
+              <br />
+              어디까지 해보셨나요?
+            </h1>
+            <h2>
+              개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
+            </h2>
           </TextBox>
           <BtnBox>
-            <button onClick={() => { alert("@@") }}>지금 시작하기</button>
+            <button
+              onClick={() => {
+                alert("@@");
+              }}
+            >
+              지금 시작하기
+            </button>
           </BtnBox>
         </SwiperSlide>
       </Swiper>
@@ -103,11 +170,11 @@ const BtnBox = styled.div`
   text-align: center;
   display: flex;
   height: fit-content;
-    button{
+  button {
     margin: 0px auto;
     padding: 20px 30px;
     font-size: 18px;
-    background: #00C4B4;
+    background: #00c4b4;
     border: none;
     border-radius: 43px;
     color: white;
@@ -116,25 +183,25 @@ const BtnBox = styled.div`
 const TextBox = styled.div`
   width: 100%;
   min-width: 600px;
-  h1{
+  h1 {
     margin: 138px 0px 45px 120px;
-    font-family: 'Pretendard';
+    font-family: "Pretendard";
     font-style: normal;
     font-weight: normal;
     font-size: 56px;
     line-height: 65px;
     letter-spacing: -0.01em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
-  h2{
+  h2 {
     margin: 0px 0px 135px 120px;
-    font-family: 'Pretendard';
+    font-family: "Pretendard";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: -0.01em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 `;
 export default Banner;

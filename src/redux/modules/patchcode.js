@@ -48,7 +48,7 @@ const troubleShootingDB = (projectId, data) => {
       sha: commit.sha,
       commitMessage: commit.message,
       tsName: tsName,
-      tsFile: obj,
+      tsFile: [obj],
     };
     //ToDo
     apis.createTroubleShooting(projectId, _data).then((res) => {

@@ -13,11 +13,16 @@ import {
   FormTitle,
   ErrorMessage,
   StyledInput,
+  MakeCenter,
+  ContentCareer,
+  AddButton,
+  ButtonText,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
 import Template from "../shared/Template";
 import PreviousNext from "../shared/PreviousNext";
+import { useForm } from "react-hook-form";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -39,8 +44,9 @@ export const customStyles = {
     background: "white",
     // Overwrittes the different states of border
     border: "1px solid #cccccc",
-    borderRadius: "5px",
-    width: "74.5vw",
+    borderRadius: "10px",
+    width: "70vw",
+    height: "40px",
     minWidth: "600px",
     maxWidth: "1140px",
     "&:hover": {
@@ -51,8 +57,9 @@ export const customStyles = {
 };
 function Stack() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const animatedComponents = makeAnimated();
-  const [stack, setStack] = useState(userInfo.stack);
+  const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
 
   const defaultStack = [
@@ -69,16 +76,20 @@ function Stack() {
     "Vue.js",
     "git",
   ];
+
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
-      console.log("체크 반영 완료");
-      console.log(checked);
     } else {
       setStack(stack.filter((e) => e !== id));
       console.log("체크 해제 반영 완료");
     }
   };
+
+  useEffect(() => {
+    return submitStack();
+  }, [stack, addStack]);
+
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -88,29 +99,42 @@ function Stack() {
   };
 
   useEffect(() => {
-    console.log("axios 스택 보내기");
-  }, [addStack]);
-  console.log(addStack);
+    apis.userInfo().then((res) => {
+      let mainStack = res.data.data.stack;
+      setStack(mainStack);
+    });
+    apis.stackGet(userInfo.porfId).then((res) => {
+      setAddStack(res.data.data.subStack);
+    });
+    // return submitStack;
+  }, []);
 
-  const submitStack = () => {
+  const submitStack = async () => {
     const data = {
-      name: userInfo.name,
       stack: stack,
-      phoneNum: userInfo.phoneNum,
-      gitUrl: userInfo.gitUrl,
-      blogUrl: userInfo.blogUrl,
-      job: userInfo.job,
     };
+    console.log(data);
     const addS = {
       stack: addStack,
     };
-    apis.putInfo(data).then((res) => {
-      console.log(res);
-    });
-
-    apis.porfStack(addS).then((response) => {
-      console.log(response);
-    });
+    await apis
+      .putStack(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+    if (addStack.length > 2) {
+      await apis
+        .porfStack(addS)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((res) => {
+          window.alert(res.error.message);
+        });
+    }
   };
 
   return (
@@ -140,7 +164,7 @@ function Stack() {
                   onChange={(e) => {
                     changeHandler(e.currentTarget.checked, `${s}`);
                   }}
-                ></input>
+                />
                 <label id={s} htmlFor={s}>
                   <span>
                     <img
@@ -200,6 +224,13 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      <MakeCenter style={{ marginTop: "20px" }}>
+        <AddButton onClick={submitStack}>
+          <ContentCareer>
+            <ButtonText>+ 직무 경험 추가 하기</ButtonText>
+          </ContentCareer>
+        </AddButton>
+      </MakeCenter>
       <PreviousNext />
       <Template />
     </>
@@ -218,7 +249,7 @@ export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px;
   width: fit-content;
-  height: 40px;
+  height: 50px;
   font-size: 17px;
   border: 1px solid #cccccc;
   border-radius: 100px;

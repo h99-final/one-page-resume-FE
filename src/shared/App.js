@@ -10,12 +10,11 @@ import MyPage from "../pages/MyPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { actionCreators as userActions } from "../redux/modules/user";
-import EditInfo from '../pages/EditInfo';
-import Portfolio from '../pages/Portfolio';
-import Project from '../pages/Project';
-import PorfList from '../pages/PorfList';
-import ProjList from '../pages/ProjList';
-
+import EditInfo from "../pages/EditInfo";
+import Portfolio from "../pages/Portfolio";
+import Project from "../pages/Project";
+import PorfList from "../pages/PorfList";
+import ProjList from "../pages/ProjList";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,36 +56,18 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-
-
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />
 
-
         <Route exact path="/porf" component={Portfolio} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/" component={Main} />
-        <Route exact path="/portfolio">
-          <>
-            <div>포트폴리오 총 집합</div>
-            <Link to={`/write/portfolio/introduce/${userInfo.porfId}`}>
-              포트폴리오 작성하기 임시 버튼입니다.
-            </Link>
-          </>
-        </Route>
+        <Route exact path="/portfolio" component={PorfList} />
         <Route exact path="/portfolio/:id" component={Portfolio} />
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
 
-
-        <Route exact path="/project">
-          <>
-            <div>프로젝트 총 집합</div>
-            <Link to="/write/project/info">
-              프로젝트 작성하기 임시 버튼입니다.
-            </Link>
-          </>
-        </Route>
+        <Route exact path="/project" component={ProjList} />
         <Route exact path="/project/:id" component={Project} />
 
         <PrivateRoute
@@ -108,7 +89,6 @@ function App() {
 const GlobalStyle = createGlobalStyle`
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -122,6 +102,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
+
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -136,6 +117,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  /* background-color: #1F2029; */
 }
 ol, ul {
 	list-style: none;

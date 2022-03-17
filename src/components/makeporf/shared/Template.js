@@ -15,6 +15,7 @@ const options = [
 
 function Template() {
   const { id } = useParams();
+  const history = useHistory();
   const { porfId } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [template, setTemplate] = useState(0);
@@ -53,7 +54,9 @@ function Template() {
         </TemplateSelector>
         <div>
           <Save>
-            <FormTextWhite>작성 완료</FormTextWhite>
+            <FormTextWhite onClick={() => history.push(`/portfolio/${porfId}`)}>
+              작성 완료
+            </FormTextWhite>
           </Save>
           <Label id={id} htmlFor="submit">
             <Save style={{ marginRight: "5px" }}>
@@ -79,9 +82,7 @@ const Save = styled(Next)`
 
 const Label = styled.label`
   display: ${(props) =>
-    props.id === "career" || props.id === "stack" || props.id === "project"
-      ? "none"
-      : "flex"};
+    props.id === "career" || props.id === "project" ? "none" : "flex"};
 `;
 
 const TemplateSelector = styled.div`
