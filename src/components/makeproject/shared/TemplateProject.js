@@ -15,6 +15,9 @@ function TemplateProject() {
   };
 
   const handleComplete = () => {
+    if (id === "info") {
+      return;
+    }
     history.push(`/project/${projectId}`);
   };
 

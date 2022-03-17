@@ -94,6 +94,7 @@ function MakeProject() {
     };
     console.log(jsonFrm);
     let frm = new FormData();
+    let modifyPic = new FormData();
     frm.append(
       "data",
       new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
@@ -101,15 +102,21 @@ function MakeProject() {
     for (let i = 0; i < images.length; i++) {
       console.log(images[i]);
       frm.append("images", images[i]);
+      modifyPic.append("images", images[i]);
     }
 
-    apis.createProject(frm).then((res) => {
-      console.log(res.data.data);
-      const { projectId } = res.data.data;
-      history.push(`/write/project/troubleShooting/${projectId}`);
-    });
+    if (projectId) {
+      apis.modifyInfoProject(jsonFrm, projectId).then((res) => {
+        history.push(`/write/project/troubleShooting/${projectId}`);
+      });
+    } else {
+      apis.createProject(frm).then((res) => {
+        console.log(res.data.data);
+        const { id } = res.data.data;
+        history.push(`/write/project/troubleShooting/${id}`);
+      });
+    }
   };
-
   // const handleClick = () => {
   //   history.push("/write/project/troubleshooting/id");
   // };
@@ -230,7 +237,7 @@ function MakeProject() {
         </FormContents>
         <TemplateProject />
       </form>
-      {/* <PreviousNextProject /> */}
+      {projectId && <PreviousNextProject />}
     </>
   );
 }

@@ -60,10 +60,18 @@ const troubleShootingDB = (projectId, data) => {
     apis.createTroubleShooting(projectId, _data).then((res) => {
       let { commitId } = res.data.data;
       let tsFiles = getState().patchcode.tsFile;
+      console.log(obj);
+      console.log(_data);
       let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
       console.log(_index);
+      let { commitMessage, tsFile, ..._obj } = _data;
+      let __data = {
+        ..._obj,
+        tsFiles: tsFile,
+        commitMsg: commitMessage,
+      };
       if (_index === -1) {
-        dispatch(addFile(_data));
+        dispatch(addFile(__data));
       } else {
         dispatch(addTsFile(obj, _index));
       }
@@ -71,7 +79,6 @@ const troubleShootingDB = (projectId, data) => {
   };
 };
 
-//ToDo
 // 선택된 프로젝트에 귀속된 파일들 불러오기(트러블슈팅)
 const getTroubleShootingDB = (projectId) => {
   return async function (dispatch, getState) {
@@ -113,11 +120,11 @@ export default handleActions(
     [SET_FILE]: (state, action) =>
       produce(state, (draft) => {
         draft.tsFile = action.payload.tsFile_list;
-        console.log(state.tsFile);
       }),
     [ADD_FILE]: (state, action) =>
       produce(state, (draft) => {
         draft.tsFile.unshift(action.payload.tsFile);
+        console.log(state.tsFile);
         draft.patchcode = null;
       }),
     [ADD_TS_FILE]: (state, action) =>
@@ -125,6 +132,7 @@ export default handleActions(
         draft.tsFile[action.payload.commitIndex].tsFiles.unshift(
           action.payload.tsFile
         );
+        console.log(state.tsFile);
       }),
   },
   initialState

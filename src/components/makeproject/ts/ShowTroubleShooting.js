@@ -46,7 +46,7 @@ function ShowTroubleShooting(props) {
           readOnly
         />
       </Content>
-      {tsFiles.map((ts) => {
+      {tsFiles?.map((ts) => {
         return (
           <div>
             <Content style={{ marginBottom: "30px" }}>
@@ -83,7 +83,7 @@ function ShowTroubleShooting(props) {
               <InputCustom
                 style={{ overflow: "hidden", height: "20vh" }}
                 type="text"
-                maxLength={50}
+                maxLength={500}
                 defaultValue={ts.tsContent}
               />
             </Content>

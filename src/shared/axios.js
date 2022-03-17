@@ -90,12 +90,15 @@ export const apis = {
   porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
-  // ToDo api 설계
-  modifyProject: (frmData, projectId) =>
-    formInstance.put(`/project/${projectId}`, frmData),
+  modifyInfoProject: (data, projectId) =>
+    instance.put(`/project/${projectId}`, data),
+  modifyPictureProject: (frmData, projectId) =>
+    formInstance.post(`/project/${projectId}/image`, frmData),
 
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
+  deleteTroubleShooting: (projectId, commitId) =>
+    instance.delete(`/project/${projectId}/troubleShooting/${commitId}`),
 
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
   projectTSGet: (projectId) =>
