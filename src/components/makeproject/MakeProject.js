@@ -257,7 +257,6 @@ export const FormMainText = styled(FormText)`
 `;
 
 export const MultiContentFlex = styled(MultiContent)`
-  width: 100%;
   display: flex;
 `;
 

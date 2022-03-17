@@ -14,13 +14,23 @@ function ForProjUpload(props) {
 
   // 프리뷰 상태 관리
   const [preview, setPreview] = useState(null);
-  const [previews, setPreviews] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const dropHandler = (file) => {
     let _images = [...file, ...images];
     console.log(_images);
     setImages(_images);
+    setFiles(
+      file.map((e) =>
+        Object.assign(e, {
+          preview: URL.createObjectURL(e)
+        })
+      )
+    );
   };
+
+  console.log(files.preview)
+
 
   function onImageChange(e) {
     const reader = new FileReader();
@@ -32,21 +42,6 @@ function ForProjUpload(props) {
     };
   }
 
-  // useEffect(() => {
-  //   let _preview = [];
-  //   for (let i = 0; i < images.length; i++) {
-  //     let reader = new FileReader();
-
-  //     reader.readAsDataURL(images[i]);
-  //     reader.onloadend = () => {
-  //       _preview.push(reader.result);
-  //     };
-  //   }
-  //   setPreviews(_preview);
-  // }, [images]);
-
-  // console.log(previews);
-
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -54,6 +49,12 @@ function ForProjUpload(props) {
           <section>
             <Inner {...getRootProps()}>
               <input {...getInputProps()} />
+              <img
+                style={{ borderRadius: "10px" }}
+                width="250px"
+                alt=""
+                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/1330259.png"
+              />
             </Inner>
           </section>
         )}
@@ -62,24 +63,33 @@ function ForProjUpload(props) {
       {/* Dropzone옆에 올린 파일 보여지는 곳 */}
 
       {/* {previews.map((preview, index) => ( */}
-      <Image onChange={onImageChange} bgUrl={preview}>
+      {files.map((file) => (
+        <Image>
+          <img width="250px" alt="selected" src={file.preview} />
+        </Image>
+      ))
+      }
+      {/* <Image onChange={onImageChange} bgUrl={preview}>
         <img
           style={{ borderRadius: "10px" }}
           width="250px"
+          height="250px"
           alt=""
-          src={preview}
+          src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/1330259.png"
         />
-      </Image>
+      </Image> */}
       {/* ))} */}
+      {/* <Upload /> */}
     </ProfileBox>
   );
 }
 
 const ProfileBox = styled.div`
-  margin: 10px 0px;
+  margin: 10px auto;
   width: 100%;
-  /* max-width: 1000px; */
   height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   border-radius: 10px;
   border: 1px solid #cccccc;
   background-color: white;
@@ -87,15 +97,16 @@ const ProfileBox = styled.div`
 const Inner = styled.div`
   width: 250px;
   height: 250px;
+  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
-  background-color: #555555;
 `;
 
 const Image = styled.div`
   display: flex;
+  height: 250px;
   margin: 10px;
   border-radius: 10px;
   background-image: ${(props) => (props ? props.bgUrl : null)};
