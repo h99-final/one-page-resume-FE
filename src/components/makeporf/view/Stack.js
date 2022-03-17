@@ -55,6 +55,8 @@ export const customStyles = {
     },
   }),
 };
+
+//ToDO 왜인지 모르게 API가 너무 많이감
 function Stack() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -106,7 +108,6 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
-    // return submitStack;
   }, []);
 
   const submitStack = async () => {

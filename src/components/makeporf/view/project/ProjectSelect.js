@@ -13,14 +13,14 @@ import {
 import styled from "styled-components";
 import { apis } from "../../../../shared/axios";
 import Template from "../../shared/Template";
-import ProjectCardShow from "../../../Element/ProjectCardShow";
-import { actionCreators as projectActions } from "../../../../redux/modules/project";
+import { actionCreators as projectActions } from "../../../../redux/modules/myproject";
 import PreviousNext from "../../shared/PreviousNext";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
-  const project = useSelector((state) => state.project.projects);
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const project = useSelector((state) => state.myproject.projects);
+  console.log(project);
   // props로 건네줘서 핸들링
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [error, setError] = useState("");
@@ -43,6 +43,14 @@ function ProjectSelect() {
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
+    let porfProject = [];
+    apis.projectMYPorfGet(userInfo.porfId).then((res) => {
+      res.data.data.map((e) => {
+        console.log(res.data.data);
+        return porfProject.push(e.id);
+      });
+    });
+    setSelectedProjects(porfProject);
   }, []);
 
   return (

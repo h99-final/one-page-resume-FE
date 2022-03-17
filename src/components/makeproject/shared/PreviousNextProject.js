@@ -7,7 +7,7 @@ function PreviousNextProject() {
   const { id, projectId } = useParams();
 
   const handleNextClick = () => {
-    history.push(`troubleshooting/${projectId}`);
+    history.push(`/write/project/troubleshooting/${projectId}`);
   };
 
   return (
