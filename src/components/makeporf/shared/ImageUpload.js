@@ -40,24 +40,26 @@ function FileUpload() {
   return (
     <>
       <Dropzone onDrop={dropHandler}>
-        {({ getRootProps, getInputProps, isDragActive }) => (
+        {({ getRootProps, getInputProps, isFocused, isDragActive }) => (
           <>
             <Inner {...getRootProps()}>
               <Image>
-                <img
-                  style={{ borderRadius: "10px" }}
-                  width="100%"
-                  alt=""
-                  src={img ? img : `${userInfo?.profileImage}`}
-                />
-                {isDragActive ? (
-                  <Label>여기에 올려놓으세요</Label>
-                ) : (
-                  <Label>
-                    여기에 파일을 드래그하거나 <br />
-                    클릭하여 이미지를 등록해주세요
-                  </Label>
-                )}
+                {isFocused || isDragActive
+                  ? (<><img
+                    style={{ borderRadius: "10px" }}
+                    width="100%"
+                    alt=""
+                    src={img ? img : process.env.PUBLIC_URL + "/img/eximghover.svg"}
+
+                  /></>)
+                  : (<><img
+                    style={{ borderRadius: "10px" }}
+                    width="100%"
+                    alt=""
+                    src={img ? img : process.env.PUBLIC_URL + "/img/eximg.svg"}
+                  /></>)}
+
+
               </Image>
               <input {...getInputProps()} />
             </Inner>
@@ -68,7 +70,6 @@ function FileUpload() {
   );
 }
 
-const ProfileBox = styled.div``;
 const Inner = styled.div`
   width: 250px;
   height: 250px;
@@ -91,7 +92,6 @@ const Image = styled.div`
   img {
     z-index: 115;
     :hover {
-      border: 5px solid;
     }
     span {
       width: 99%;

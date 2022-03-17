@@ -31,27 +31,9 @@ export const options = [
   { value: "Git", label: "Git" },
 ];
 
-export const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: "white",
-    // Overwrittes the different states of border
-    border: "1px solid #cccccc",
-    borderRadius: "5px",
-    width: "74.5vw",
-    minWidth: "600px",
-    maxWidth: "1140px",
-    "&:hover": {
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "red" : "blue",
-    },
-  }),
-};
 function MainStack() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const animatedComponents = makeAnimated();
   const [stack, setStack] = useState(userInfo.stack);
-  const [addStack, setAddStack] = useState([]);
 
   const defaultStack = [
     "JS",
@@ -77,23 +59,29 @@ function MainStack() {
       console.log("체크 해제 반영 완료");
     }
   };
-  const handleChange = (e) => {
-    let stackArray = [];
-    e.map((addStack) => {
-      return stackArray.push(addStack.value);
-    });
-    setAddStack(stackArray);
-  };
 
   useEffect(() => {
-    console.log("axios 스택 보내기");
-  }, [addStack]);
-  console.log(addStack);
-
-  const submitStack = () => {
-    apis.putStack(stack).then((res) => {
-      console.log(res);
+    apis.userInfo().then((res) => {
+      let mainStack = res.data.data.stack;
+      setStack(mainStack);
     });
+  }, []);
+
+  const submitStack = async () => {
+    const data = {
+      stack: stack,
+    };
+    console.log(data);
+    if (stack.length === 3) {
+      await apis
+        .putStack(data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          window.alert(error.message);
+        });
+    }
   };
 
   return (

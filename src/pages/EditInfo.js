@@ -1,17 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import ChangeInfo from '../components/editInfo/ChangeInfo';
-import PorfWriteHeader from "../components/makeporf/shared/PorfWriteHeader";
 import SideBar from '../components/editInfo/SideBar';
-import Stack from "../components/makeporf/view/Stack";
-import Template from "../components/makeporf/shared/Template";
 import Header from "../shared/Header";
 
 import styled from "styled-components";
-import UserInfo from "../components/makeporf/view/UserInfo";
-import PreviousNext from "../components/makeporf/shared/PreviousNext";
 import MainStack from '../components/editInfo/MainStack';
 import EditPwd from '../components/editInfo/EditPwd';
+import EditInfoHeader from '../components/Element/EditInfoHeader';
 
 function EditInfo() {
   const { id } = useParams();
@@ -20,7 +16,7 @@ function EditInfo() {
     <>
       <Header />
       <WriteForm>
-        <PorfWriteHeader />
+        <EditInfoHeader />
         <WriteTemplate>
           <SideBar />
           <WriteableForm>

@@ -29,10 +29,12 @@ function MyPage() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
-
   const [values, setValues] = React.useState({
-    show: false,
+    show: userInfo.porfShow,
   });
+  const [show, setShow] = useState(false);
+  const [timer, setTimer] = useState(null);
+
   useEffect(() => {
     apis.introPorfGet(userInfo.porfId).then((res) => {
       setTitle(res.data.data.title);
@@ -43,6 +45,7 @@ function MyPage() {
     apis.porfShow(values.show).then((res) => {
       console.log(res)
     })
+
   }, [values]);
 
   const handleClickShow = () => {
@@ -50,6 +53,10 @@ function MyPage() {
       ...values,
       show: !values.show,
     });
+    let timer;
+    if (timer) {
+      timer = setTimeout(() => { setShow(true) }, 2000);
+    }
   };
   console.log(values.show)
 
@@ -130,9 +137,12 @@ function MyPage() {
             justifyContent: "space-between"
           }}>
             <h1>포트폴리오</h1>
-            <button onClick={handleClickShow}>
-              {values.show ? <Visibility /> : <VisibilityOff />}
-            </button>
+            <div style={{ display: "flex" }}>
+              {values.show ? <h2>포트폴리오가 공개되었습니다.</h2> : <h2>포트폴리오가 비공개되었습니다.</h2>}
+              <button onClick={handleClickShow}>
+                {values.show ? <Visibility /> : <VisibilityOff />}
+              </button>
+            </div>
           </Title>
           {title ? (
             <Portfolio>
@@ -154,7 +164,7 @@ function MyPage() {
           ) : (
             <Portfolio style={{ background: "white" }}>
               <AddProfBox style={{ marginTop: "160px" }}>
-                <AddProfButton>
+                <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo.porfId}`) }}>
                   <Add />
                   포트폴리오 작성하기
                 </AddProfButton>
@@ -225,6 +235,19 @@ export const Title = styled.div`
     font-size: 26px;
     line-height: 24px;
     color: white;
+  }
+  h2{
+    background-color: #393A47;
+    color: #CFD3E2;
+    padding: 10px 10px;
+    height: fit-content;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    margin-right: 3px;
+    border-radius: 5px;
   }
   button{
     width: 40px;
