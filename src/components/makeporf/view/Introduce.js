@@ -174,21 +174,14 @@ export const Label = styled.div`
 `;
 
 export const Font = styled.div`
-  /* body1 */
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-
-  /* C1 */
-
   color: #333333;
-
   margin: 10px;
-
-  /* Inside auto layout */
 `;
 
 export default Introduce;

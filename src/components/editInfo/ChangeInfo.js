@@ -8,11 +8,10 @@ import {
   FormTitle,
   InputCustom,
   Label,
+  Font,
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
-import { Font } from "../makeporf/view/Introduce";
 import FileUpload from "../makeporf/shared/ImageUpload";
-import { border } from "@mui/system";
 
 function ChangeInfo() {
   const defaultValues = {};
@@ -32,7 +31,7 @@ function ChangeInfo() {
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {});
+    apis.addInfo(_data).then((res) => { });
   };
 
   useEffect(() => {
@@ -66,7 +65,7 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.name}
               />
@@ -88,7 +87,7 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.job}
               />
@@ -99,7 +98,7 @@ function ChangeInfo() {
         </Content>
         <MultiContent>
           <Label style={{ minWidth: "150px" }}>
-            <Font>프로필 이미지</Font>
+            <Font style={{ marginTop: "55px" }}>프로필 이미지</Font>
           </Label>
           <FileUpload />
         </MultiContent>
@@ -110,7 +109,7 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.phoneNum}
                 maxLength={13}
@@ -136,7 +135,7 @@ function ChangeInfo() {
               <InputCustom
                 style={{
                   border: "none",
-                  background: "#CCCCCC",
+                  background: "#282933",
                   color: "#999999",
                 }}
                 {...field}
@@ -183,7 +182,7 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.blogUrl}
               />
@@ -210,7 +209,7 @@ function ChangeInfo() {
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 50px 0px 50px;
+  margin: 10px 50px 10px 50px;
 `;
 
 const UserInfoForm = styled.form`
@@ -223,7 +222,7 @@ const UserInfoForm = styled.form`
 const Button = styled.button`
   width: 150px;
   height: 60px;
-  background-color: #333333;
+  background-color: #00C4B4;
   color: white;
   border-radius: 43px;
   border: none;
