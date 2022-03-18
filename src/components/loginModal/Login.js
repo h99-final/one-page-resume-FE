@@ -13,7 +13,43 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useHistory } from "react-router-dom";
+import { orange } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    error: orange,
+  },
+});
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  },
+  '& .MuiInputBase-input': {
+    position: 'relative',
+    color: "white",
+    width: '100%',
+    borderBottom: '1px solid white',
+  },
+}));
 const Login = (props) => {
   const dispatch = useDispatch();
   const email = props.email;
@@ -23,10 +59,6 @@ const Login = (props) => {
 
   const [passwordError, setPasswordError] = useState("");
   const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false,
   });
 
@@ -54,58 +86,72 @@ const Login = (props) => {
     <>
       <TextContainer>
         <h1>비밀번호 입력하기</h1>
-        <p>Portfolio를 이용하시려면 비밀먼호를 입력해 주세요.</p>
+        <p>포그를 이용하시려면 비밀번호를 입력해 주세요.</p>
       </TextContainer>
-      <InputBox>
-        <TextField
-          id="standard-read-only-input"
-          defaultValue={props.email}
-          fullWidth
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="standard"
-        />
-        <TextField
-          style={{ marginTop: "35px" }}
-          onChange={(e) => {
-            loginPw(e.target.value);
-          }}
-          required
-          variant="standard"
-          fullWidth
-          type={values.showPassword ? "text" : "password"}
-          id="password"
-          name="password"
-          placeholder="비밀번호*"
-          error={passwordError !== "" || false}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        {passwordError && (
-          <span style={{ fontSize: "12px", color: "red" }}>
-            {passwordError}
-          </span>
-        )}
+      <ThemeProvider theme={theme}>
 
-        <WriteBtn disabled={!password ? true : false} onClick={login}>
-          로그인
-        </WriteBtn>
-      </InputBox>
+
+        <InputBox>
+          <CssTextField
+            id="standard-read-only-input"
+            defaultValue={props.email}
+            fullWidth
+            focusColor="#00C4B4"
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
+          <CssTextField
+            style={{ marginTop: "35px" }}
+            onChange={(e) => {
+              loginPw(e.target.value);
+            }}
+            autoComplete="off"
+            focusColor="#00C4B4"
+            required
+            variant="standard"
+            fullWidth
+            type={values.showPassword ? "text" : "password"}
+            id="password"
+            name="password"
+            placeholder="비밀번호*"
+            error={passwordError !== "" || false}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="absolute" >
+                  <IconButton
+                    style={{ color: "white", borderBottom: "1px solid white", borderRadius: "0", height: "33px", }}
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          {passwordError && (
+            <span style={{ fontSize: "12px", color: "orange" }}>
+              {passwordError}
+            </span>
+          )}
+
+          <WriteBtn disabled={!password ? true : false} onClick={login}>
+            로그인
+          </WriteBtn>
+        </InputBox>
+      </ThemeProvider>
       <OrBox>
         <Line />
         <Or>또는</Or>
-        <KakaoBtn>카카오계정으로 로그인하기</KakaoBtn>
+        <KakaoBtn>
+          <img
+            style={{ marginRight: "10px" }}
+            alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
+          카카오계정으로 로그인하기
+        </KakaoBtn>
       </OrBox>
     </>
   );
@@ -118,6 +164,7 @@ const TextContainer = styled.div`
     text-align: left;
     font-size: 36px;
     font-weight: 600;
+    color: #FFFFFF;
   }
   p {
     text-align: left;
@@ -125,6 +172,7 @@ const TextContainer = styled.div`
     margin-bottom: 60px;
     font-size: 16px;
     font-weight: normal;
+    color: #CFD3E2CC;
   }
 `;
 
@@ -144,22 +192,23 @@ const WriteBtn = styled.button`
   margin: 25px 0px 0px 262px;
   padding: 5px 18px 5px 18px;
   color: white;
-  background-color: #333333;
+  background-color: #00C4B4;
   :disabled {
     border: none;
-    background-color: gray;
+    background-color: #424453;
   }
 `;
 const OrBox = styled.div`
   width: 350px;
   height: 118px;
   margin: 0px 115px 0px 115px;
+  border: 1px solid #2C2E39;
 `;
 
 const Line = styled.div`
   position: absolute;
   border-top: 1px solid;
-  color: #999999;
+  color: #696B7B;
   width: 350px;
   height: 138px;
   margin-top: 14px;
@@ -167,7 +216,7 @@ const Line = styled.div`
 
 const Or = styled.div`
   position: absolute;
-  background-color: white;
+  background-color: #2C2E39;
   width: 25px;
   height: 17px;
   margin: 0px 152px 0px 152px;
@@ -181,16 +230,18 @@ const KakaoBtn = styled.button`
   width: 350px;
   height: 62px;
   border-radius: 43px;
-  border: 1px solid #3c1e1e;
+  border: 1px solid #424453;
+  display: flex;
+  align-items: center;
   font-size: 16px;
   margin-top: 37px;
-  padding: 20px 73px 20px 73px;
-
-  color: black;
-  background-color: white;
+  padding: 0px 73px 0px 73px;
+  color: #FFFFFF;
+  background-color: #424453;
   :disabled {
     border: none;
     background-color: gray;
   }
 `;
+
 export default Login;

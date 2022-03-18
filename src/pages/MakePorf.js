@@ -44,8 +44,7 @@ export const WriteForm = styled.div`
   display: block;
   justify-content: center;
   margin: 0px auto;
-
-  background: #ffffff;
+  background: #1F2029;
   @media screen and (min-width: 1194px) {
     & {
       width: 95%;
@@ -72,13 +71,10 @@ export const WriteableForm = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px 0px;
-
   width: 100%;
   height: 100%;
-  background-color: #2c2e39;
+  background-color: #2C2E39;
   border-radius: 10px;
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;

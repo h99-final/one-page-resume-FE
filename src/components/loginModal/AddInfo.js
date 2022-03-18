@@ -8,7 +8,49 @@ import { TextField } from "@mui/material";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { orange } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    error: orange,
+  },
+});
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  },
+  '& .MuiInputBase-input': {
+    position: 'relative',
+    color: "white",
+    width: '100%',
+    borderBottom: '1px solid white',
+  },
+  '& input:valid + fieldset': {
+  },
+  '& input:invalid + fieldset': {
+  },
+  '& input:valid:focus + fieldset': { // override inline-style
+  },
+}));
 const AddInfo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -71,18 +113,22 @@ const AddInfo = (props) => {
     setPage("2");
   };
   const addInfo = () => {
-    console.log(name, stack, phoneNum, gitUrl, blogUrl, job);
+    console.log(name, phoneNum, gitUrl, blogUrl, job);
 
     const data = {
       name: name,
-      stack: stack,
       phoneNum: phoneNum,
       gitUrl: gitUrl,
       blogUrl: blogUrl,
       job: job,
     };
-
+    const _data = {
+      stack: stack
+    }
     dispatch(userActions.addInfoDB(data));
+    apis.putStack(_data).then((res) => {
+      console.log(res)
+    })
     loginClose(false);
   };
 
@@ -100,7 +146,8 @@ const AddInfo = (props) => {
             />
             <p>회원가입을 완료했어요👏👏</p>
             <p>추가정보를 3가지만 입력하면</p>
-            <p>Portfolio의 다양한 기능을 이용할 수 있어요.</p>
+            <p>포그를 제대로 이용할 수 있어요.</p>
+            <p>포트폴리오 제작은 물론</p>
             <p>최신 프로젝트까지 추천드릴께요.</p>
           </ImgInputBox>
           <div>
@@ -129,97 +176,109 @@ const AddInfo = (props) => {
             <h1>추가정보 입력하기 (1/2)</h1>
             <p>몇가지 정보만 더 기입하면 돼요!</p>
           </TextContainer>
-          <InputBox>
-            <TextField
-              style={{ marginTop: "55px" }}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              required
-              variant="standard"
-              fullWidth
-              id="name"
-              name="name"
-              placeholder="이름*"
-              error={nameError !== "" || false}
-            />
-            {nameError && (
-              <span style={{ fontSize: "12px", color: "red" }}>
-                {nameError}
-              </span>
-            )}
+          <ThemeProvider theme={theme}>
+            <InputBox>
+              <CssTextField
+                autoComplete="off"
+                focusColor="#00C4B4"
+                style={{ marginTop: "55px" }}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                required
+                variant="standard"
+                fullWidth
+                id="name"
+                name="name"
+                placeholder="이름*"
+                error={nameError !== "" || false}
+              />
+              {nameError && (
+                <span style={{ fontSize: "12px", color: "orange" }}>
+                  {nameError}
+                </span>
+              )}
 
-            <TextField
-              onChange={(e) => {
-                setGitUrl(e.target.value);
-              }}
-              style={{ marginTop: "35px" }}
-              required
-              variant="standard"
-              fullWidth
-              id="gitURL"
-              name="gitURL"
-              placeholder="gitURL*"
-              error={gitUrlError !== "" || false}
-            />
-            {gitUrlError && (
-              <span style={{ fontSize: "12px", color: "red" }}>
-                {gitUrlError}
-              </span>
-            )}
-            <TextField
-              onChange={(e) => {
-                setBlogUrl(e.target.value);
-              }}
-              style={{ marginTop: "35px" }}
-              variant="standard"
-              fullWidth
-              id="blogurl"
-              name="blogurl"
-              placeholder="blogURl"
-            // error={blogUrlError !== '' || false}
-            />
-            {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
-            <TextField
-              onChange={(e) => {
-                setPhoneNum(e.target.value);
-              }}
-              style={{ marginTop: "35px" }}
-              variant="standard"
-              fullWidth
-              id="phone"
-              name="phone"
-              placeholder="전화번호"
-            // error={phoneNumError !== "" || false}
-            />
-            {/* {phoneNumError && (
+              <CssTextField
+                autoComplete="off"
+                focusColor="#00C4B4"
+                onChange={(e) => {
+                  setGitUrl(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                required
+                variant="standard"
+                fullWidth
+                id="gitURL"
+                name="gitURL"
+                placeholder="gitURL*"
+                error={gitUrlError !== "" || false}
+              />
+              {gitUrlError && (
+                <span style={{ fontSize: "12px", color: "orange" }}>
+                  {gitUrlError}
+                </span>
+              )}
+              <CssTextField
+                autoComplete="off"
+                focusColor="#00C4B4"
+                onChange={(e) => {
+                  setBlogUrl(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="blogurl"
+                name="blogurl"
+                placeholder="blogURl"
+              // error={blogUrlError !== '' || false}
+              />
+              {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
+              <CssTextField
+                autoComplete="off"
+                focusColor="#00C4B4"
+                onChange={(e) => {
+                  setPhoneNum(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="phone"
+                name="phone"
+                placeholder="전화번호"
+              // error={phoneNumError !== "" || false}
+              />
+              {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
               {phoneNumError}
             </span>
           )} */}
 
-            <TextField
-              onChange={(e) => {
-                setJob(e.target.value);
-              }}
-              style={{ marginTop: "35px" }}
-              variant="standard"
-              fullWidth
-              id="job"
-              name="job"
-              placeholder="직무"
-            // error={jobError !== "" || false}
-            />
-            {/* {jobError && (
+              <CssTextField
+                autoComplete="off"
+                focusColor="#00C4B4"
+                onChange={(e) => {
+                  setJob(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="job"
+                name="job"
+                placeholder="직무"
+              // error={jobError !== "" || false}
+              />
+              {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
           )} */}
-            <WriteBtn
-              disabled={!name || !gitUrl ? true : false}
-              onClick={goNext}
-            >
-              다음{">"}
-            </WriteBtn>
-          </InputBox>
+              <WriteBtn
+                disabled={!name || !gitUrl ? true : false}
+                onClick={goNext}
+              >
+                다음{">"}
+              </WriteBtn>
+            </InputBox>
+          </ThemeProvider>
         </>
       )}
       {page === "2" && (
@@ -228,10 +287,10 @@ const AddInfo = (props) => {
             <h1>
               나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)
             </h1>
-            <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
+            <p style={{ color: "#CFD3E2" }}>선택하신 프레임워크와 관련된 프로젝트를 추천해드릴게요.</p>
           </TextContainer>
           {stack.length > 3 ? (
-            <p style={{ fontSize: "12px", color: "red" }}>3가지만 골라주세요</p>
+            <p style={{ fontSize: "12px", color: "orange" }}>3가지만 골라주세요</p>
           ) : (
             <p style={{ color: "white", fontSize: "12px" }}>
               3가지만 골라주세요
@@ -286,11 +345,13 @@ const TextContainer = styled.div`
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 30px;
+    color: white;
   }
   p {
     text-align: center;
     font-size: 16px;
     font-weight: normal;
+    color: white;
   }
 `;
 const ImgInputBox = styled.div`
@@ -306,6 +367,7 @@ const ImgInputBox = styled.div`
     text-align: center;
     font-size: 16px;
     font-weight: normal;
+    color: white;
   }
 `;
 
@@ -322,18 +384,18 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 156px 0px 0px 262px;
+  margin:100px 0px 0px 300px;
   padding: 5px 18px 5px 18px;
   color: white;
-  background-color: #333333;
+  background-color: #00C4B4;
   :disabled {
     border: none;
-    background-color: gray;
+    background-color: #424453;
   }
 `;
 const StyledBox = styled.button`
   border: none;
-  background-color: white;
+  background-color: #2C2E39;
   padding: 10px 15px 10px 15px;
   margin-top: 10px;
   img {
@@ -360,7 +422,9 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #333333;
+    border: 2px solid #393A47;
+    background-color: #393A47;
+    color: white;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -369,13 +433,10 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #333333;
-    border: 2px solid #333333;
+    background-color: #00C4B4;
+    border: 2px solid #00C4B4;
     cursor: pointer;
   }
-`;
-const Grid = styled.div`
-  padding-bottom: 20px;
 `;
 const ContinueBtn = styled.button`
   cursor: pointer;
@@ -390,7 +451,7 @@ const ContinueBtn = styled.button`
   border-radius: 30px;
   border: none;
   color: white;
-  background-color: #333333;
+  background-color: #00C4B4;
   :disabled {
     border: none;
     background-color: gray;
@@ -409,7 +470,7 @@ const CloseBtn = styled.button`
   padding: 10px 20px;
   border: none;
   color: white;
-  background-color: #999999;
+  background-color: #424453;
   :disabled {
     border: none;
     background-color: gray;

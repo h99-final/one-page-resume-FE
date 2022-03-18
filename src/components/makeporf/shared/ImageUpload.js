@@ -45,19 +45,22 @@ function FileUpload() {
             <Inner {...getRootProps()}>
               <Image>
                 {isFocused || isDragActive
-                  ? (<><img
-                    style={{ borderRadius: "10px" }}
-                    width="100%"
-                    alt=""
-                    src={img ? img : process.env.PUBLIC_URL + "/img/eximghover.svg"}
-
-                  /></>)
-                  : (<><img
-                    style={{ borderRadius: "10px" }}
-                    width="100%"
-                    alt=""
-                    src={img ? img : process.env.PUBLIC_URL + "/img/eximg.svg"}
-                  /></>)}
+                  ? (<>
+                    <img
+                      style={{ borderRadius: "10px" }}
+                      width="100%"
+                      alt={process.env.PUBLIC_URL + "/img/eximghover.svg"}
+                      src={img ? img : userInfo.profileImage}
+                    />
+                  </>)
+                  : (<>
+                    <img
+                      style={{ borderRadius: "10px" }}
+                      width="100%"
+                      alt={process.env.PUBLIC_URL + "/img/eximg.svg"}
+                      src={img ? img : userInfo.profileImage}
+                    />
+                  </>)}
 
 
               </Image>
@@ -75,7 +78,6 @@ const Inner = styled.div`
   height: 250px;
   margin: 20px 0px;
   border-radius: 10px;
-  border: 1px solid;
   overflow: hidden;
   object-fit: cover;
 `;
@@ -96,7 +98,6 @@ const Image = styled.div`
     span {
       width: 99%;
       color: white;
-      border: 1px solid white;
       z-index: 1;
     }
   }

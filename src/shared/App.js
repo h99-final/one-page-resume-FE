@@ -117,7 +117,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  /* background-color: #1F2029; */
+  background-color: #1F2029;
 }
 ol, ul {
 	list-style: none;
