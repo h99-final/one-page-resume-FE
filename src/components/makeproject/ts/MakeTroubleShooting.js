@@ -152,13 +152,13 @@ function MakeTroubleShooting() {
               <Content>
                 <Label>
                   <Font>
-                    *추가 설명<br></br>(0/500)
+                    *추가 설명<br></br>(0/1500)
                   </Font>
                 </Label>
                 <InputCustom
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
-                  maxLength={50}
+                  maxLength={1500}
                   {...register("content", { required: true })}
                 />
               </Content>
