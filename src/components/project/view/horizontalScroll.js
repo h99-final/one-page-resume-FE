@@ -58,7 +58,7 @@ export default ({ children }) => {
     handleDynamicHeight(objectRef, setDynamicHeight);
     window.addEventListener("resize", resizeHandler);
     applyScrollListener(containerRef, setTranslateX);
-  }, []);
+  }, [objectRef]);
 
   return (
     <TallOuterContainer dynamicHeight={dynamicHeight}>

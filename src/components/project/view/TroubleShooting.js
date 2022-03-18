@@ -9,7 +9,8 @@ import ProjHeader from "../../../shared/ProjHeader";
 import { Title } from "../../../pages/MyPage";
 import Highlighted from "../../makeproject/ts/Highlight";
 
-const TroubleShooting = () => {
+const TroubleShooting = (props) => {
+  const { fileId, fileName, tsContent, tsPatchCodes } = props;
   const { id } = useParams();
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -19,13 +20,7 @@ const TroubleShooting = () => {
 
   const handleNumClick = (e) => {
     setSelected(e.target.id);
-    console.log(e.target.id);
   };
-
-  useEffect(() => {
-    dispatch(actionCreators.setTroubleShootingDB(id));
-  }, []);
-
   const troubleShootings = useSelector(
     (state) => state.setproject.project.troubleShootings
   );
@@ -33,8 +28,18 @@ const TroubleShooting = () => {
   const is_loading = useSelector((state) => state.setproject.is_loading);
   console.log(troubleShootings, ts);
 
+  function filter() {
+    if (troubleShootings) {
+      let _troubleShooting = troubleShootings.filter((e) =>
+        e.tsFiles.map((ts) => (ts.fileId === fileId ? true : false))
+      );
+      return _troubleShooting;
+    }
+  }
+
+  console.log(troubleShootings);
   const NumBoxs = () =>
-    ts.length <= 5
+    ts.slice(0, 10).length <= 5
       ? Array(ts?.length)
           .fill(0)
           .map((_e, i) => (
@@ -83,13 +88,17 @@ const TroubleShooting = () => {
                   </div>
                 )}
               </Num>
-              <Font>{troubleShootings[0]?.commitMsg}</Font>
-              <Font>{troubleShootings[0]?.tsName}</Font>
+              {filter() && (
+                <>
+                  <Font>{filter()[0]?.commitMsg}</Font>
+                  <Font>{filter()[0]?.tsName}</Font>
+                </>
+              )}
             </LeftTopBox>
-            <LeftBottomBox>{ts[0]?.tsContent}</LeftBottomBox>
+            <LeftBottomBox>{tsContent}</LeftBottomBox>
           </LeftBox>
           <RightBox>
-            <Highlighted text={ts[0].tsPatchCodes} />
+            <Highlighted text={tsPatchCodes} />
           </RightBox>
         </SampleCard>
       )}
