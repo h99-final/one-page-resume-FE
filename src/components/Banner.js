@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "./banner.css";
 
 // import required modules
-import { Parallax, Pagination, Navigation } from "swiper";
+import { Parallax, Pagination, Navigation, Autoplay } from "swiper";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
@@ -31,8 +31,12 @@ const Banner = () => {
         spaceBetween={30}
         loop={true}
         navigation={true}
-        modules={[Parallax, Pagination, Navigation]}
+        modules={[Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
       >
         <div
           slot="container-start"
