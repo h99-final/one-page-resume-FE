@@ -4,17 +4,13 @@ export const FormText = styled.div`
   width: 150px;
   height: 24px;
   left: 0px;
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height */
-
   letter-spacing: -0.01em;
-
-  color: #000000;
+  color: white;
 `;
 
 export const ButtonBucket = styled.div`
@@ -58,7 +54,8 @@ export const InputCustom = styled.textarea`
   padding: 15px 15px;
   resize: none;
   border: none;
-  background-color: white;
+  color: white;
+  background-color: #393A47;
 
   &:focus {
     outline: none !important;
@@ -160,4 +157,16 @@ export const ErrorMessage = styled.span`
   padding: 15px 0px;
   width: 94%;
   height: 10px;
+`;
+
+export const Font = styled.div`
+  /* body1 */
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+  color: white;
+  margin: 10px;
 `;
