@@ -23,10 +23,6 @@ const Introduce = () => {
   return (
     <>
       <Container>
-        <TitleBox>
-          <h1>Project</h1>
-          <h1>1 2 3 4 5</h1>
-        </TitleBox>
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
@@ -71,13 +67,14 @@ const Container = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: fit-content;
+  width: 100%;
   display: flex;
   margin: 0px auto;
 `;
 
 const AboutBox = styled.div`
-  width: fit-content;
+  width: 65%;
+  margin: 0px auto;
   min-width: 550px;
   margin-right: 50px;
   h2 {
@@ -86,12 +83,12 @@ const AboutBox = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: white;
+  background-color: #1F2029;
   height: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -102,13 +99,13 @@ const SubStack = styled.button`
   font-size: 16px;
   color: #333333;
   margin-right: 15px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   span {
     padding: 0px 20px;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    color: #333333;
+    color: #ffffff;
     position: relative;
   }
 `;
@@ -123,7 +120,7 @@ const ContentTitle = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 33%;
+  width: 35%;
   min-width: 400px;
 `;
 
@@ -148,15 +145,16 @@ const TitleBox = styled.div`
 
 const IntroBox = styled.div`
   width: 95%;
-  min-height: 630px;
   margin: 0px auto;
+  margin-top: 110px;
   h1 {
+    width: fit-content;
     font-style: normal;
     font-weight: 600;
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #191919;
+    color: #ffffff;
     margin-bottom: 50px;
   }
 `;
