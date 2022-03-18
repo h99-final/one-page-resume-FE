@@ -142,15 +142,15 @@ const Header = (props) => {
               onClick={() => {
                 navBtn();
               }}
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38 }}
             />
             <Nav
               nav={nav}
-              name={userInfo.name}
-              email={userInfo.email}
-              userId={userInfo.userId}
+              name={userInfo?.name}
+              email={userInfo?.email}
+              userId={userInfo?.userId}
             />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>

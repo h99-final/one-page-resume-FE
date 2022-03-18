@@ -31,7 +31,9 @@ const setProjectDB = (projectId) => {
         dispatch(setProject(res.data.data));
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
@@ -57,7 +59,9 @@ const setTroubleShootingDB = (projectId) => {
         dispatch(setIs_loading());
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
