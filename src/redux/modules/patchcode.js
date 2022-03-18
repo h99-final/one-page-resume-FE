@@ -10,6 +10,7 @@ const RESET_SELECT_PATCH_CODE = "RESET_SELECT_PATCH_CODE";
 
 const SET_COMMIT = "SET_COMMIT";
 const DELETE_TS = "DELETE_TS";
+const UPDATE_TS = "UPDATE_TS";
 
 const SET_FILE = "SET_FILE";
 const ADD_FILE = "ADD_FILE";
@@ -36,9 +37,16 @@ const deleteTs = createAction(DELETE_TS, (projectId, commitId) => ({
   projectId,
   commitId,
 }));
+//ToDo
 const deleteTsFile = createAction(DELETE_TS_FILE, (commitId, fileId) => ({
   commitId,
   fileId,
+}));
+
+const updateTs = createAction(UPDATE_TS, (projectId, commitId, data) => ({
+  projectId,
+  commitId,
+  data,
 }));
 
 const initialState = {
@@ -90,6 +98,20 @@ const troubleShootingDB = (projectId, data) => {
         dispatch(addTsFile(...__data.tsFiles, _index));
       }
     });
+  };
+};
+
+//트러블 슈팅 업데이트
+const updateTsDB = (projectId, commitId, data) => {
+  return function (dispatch) {
+    apis
+      .updateTroubleShooting(projectId, commitId, data)
+      .then((res) => {
+        dispatch(getTroubleShootingDB(projectId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
@@ -200,6 +222,7 @@ const actionCreators = {
   getTroubleShootingDB,
   deleteTsDB,
   deleteTsFileDB,
+  updateTsDB,
 };
 
 export { actionCreators };

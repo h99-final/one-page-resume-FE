@@ -57,7 +57,7 @@ const WritePorf = styled.div`
   line-height: 43px;
   letter-spacing: -0.01em;
 
-  color: #000000;
+  color: #ffffff;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -91,7 +91,7 @@ const Detail = styled.div`
   line-height: 19px;
   letter-spacing: -0.01em;
 
-  color: #000000;
+  color: #ffffff;
 
   /* Inside auto layout */
 `;
