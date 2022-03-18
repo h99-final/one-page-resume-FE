@@ -50,7 +50,7 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => { history.push(`/`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
             <img
@@ -91,7 +91,7 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => { history.push(`/`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
             <img
