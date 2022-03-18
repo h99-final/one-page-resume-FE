@@ -55,7 +55,7 @@ const TitleBox = styled.div`
     font-size: 56px;
     line-height: 80px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 
@@ -68,7 +68,7 @@ const ContentBox = styled.div`
     font-size: 20px;
     line-height: 32px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 

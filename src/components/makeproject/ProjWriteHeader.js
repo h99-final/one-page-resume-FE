@@ -20,9 +20,8 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 400px;
-  height: 102px;
-  margin-left: 30px;
+  width: fit-content;
+  height: fit-content;
   margin-top: 40px;
 `;
 
@@ -30,14 +29,10 @@ const LayoutHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
   width: 400px;
   height: 63px;
   left: 0px;
   top: 0px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -49,14 +44,12 @@ const WritePorf = styled.div`
   height: 43px;
   left: 10px;
   top: 10px;
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
   line-height: 43px;
   letter-spacing: -0.01em;
-
   color: #ffffff;
   flex: none;
   order: 0;
@@ -66,13 +59,9 @@ const WritePorf = styled.div`
 const LayoutDetail = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-
+  align-items: flex-start;  
   width: 400px;
   height: 39px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -81,17 +70,13 @@ const LayoutDetail = styled.div`
 const Detail = styled.div`
   width: 400px;
   height: 19px;
-
-  /* body1 */
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-
-  color: #ffffff;
+  color: #CFD3E2;
 
   /* Inside auto layout */
 `;

@@ -24,7 +24,6 @@ const Header = styled.div`
   align-items: flex-start;
   width: 400px;
   height: 102px;
-  margin-left: 30px;
   margin-top: 40px;
 `;
 

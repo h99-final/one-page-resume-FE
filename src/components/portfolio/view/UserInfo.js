@@ -129,7 +129,7 @@ const InfoBox = styled.div`
     font-size: 36px;
     line-height: 43px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
     margin-top: 10px;
     margin-bottom: 20px;
   }
@@ -139,19 +139,19 @@ const InfoBox = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
   p{
     margin: 25px 0px 25px 0px;
     width: 16px;
-    border: 1px solid #c4c4c4;
+    border: 1px solid #ffffff;
   }
   h3{
     font-style: normal;
     font-weight: 400;
     height: fit-content;
     font-size: 17px;
-    color: #333333;
+    color: #ffffff;
     margin-left: 5px;
     margin-bottom: 10px;
     display: flex;

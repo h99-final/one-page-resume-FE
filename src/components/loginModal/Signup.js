@@ -130,7 +130,6 @@ const Signup = (props) => {
       <ThemeProvider theme={theme}>
         <InputBox>
           <CssTextField
-            autoComplete="off"
             focusColor="#00C4B4"
             id="standard-read-only-input"
             defaultValue={props.email}
@@ -141,7 +140,6 @@ const Signup = (props) => {
             variant="standard"
           />
           <CssTextField
-            autoComplete="off"
             focusColor="#00C4B4"
             style={{ marginTop: "35px" }}
             onChange={(e) => {
@@ -180,7 +178,6 @@ const Signup = (props) => {
             onChange={(e) => {
               setPwCheck(e.target.value);
             }}
-            autoComplete="off"
             focusColor="#00C4B4"
             required
             variant="standard"

@@ -38,14 +38,22 @@ const Pnav = (props) => {
                 );
               }}
             >
-              내 포트폴리오
+
+              <img
+                style={{ marginRight: "8px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/porf.svg"} />
+              <h1>내 포트폴리오</h1>
             </Logout>
             <Logout
               onClick={() => {
                 history.replace("/write/project/info");
               }}
             >
-              새 프로젝트
+
+              <img
+                style={{ marginRight: "8px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/proj.svg"} />
+              <h1>새 프로젝트</h1>
             </Logout>
           </NavLog>
         </NavBar>
@@ -55,13 +63,14 @@ const Pnav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
-  z-index: 99999;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color: #2C2E39;
   position: absolute;
+  border-radius: 5px;
   width: auto;
   top: 75px;
   margin-right: 30px;
@@ -69,14 +78,13 @@ const NavBar = styled.nav`
 `;
 // NavList component
 const NavLog = styled.div`
-  border: 1px solid #999999;
+  border: 1px solid #2C2E39;
   border-radius: 5px;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding: 16px 16px 16px 16px;
-  background-color: white;
+  padding: 16px;
   width: 250px;
   height: 120px;
   cursor: pointer;
@@ -93,13 +101,20 @@ const Logout = styled.button`
   height: 50px;
   margin-top: 5px;
   margin-bottom: 10px;
-  /* C6 */
-  background: #ffffff;
-  /* C4 */
-  color: #999999;
-  border: 1px solid #999999;
+  background: #424453;
+  color: #FFFFFF;
+  border: 1px solid #424453;
   box-sizing: border-box;
   border-radius: 30px;
+  h1{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    margin-top: 3px;
+  }
   :hover {
     color: white;
     background-color: #999999;

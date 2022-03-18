@@ -40,12 +40,23 @@ const Nav = (props) => {
             <h1>{props.name}</h1>
             <p>{props.email}</p>
           </Profile>
-          <NavPro onClick={() => { history.push('/mypage') }}>마이페이지</NavPro>
+          <NavPro onClick={() => { history.push('/mypage') }}>
+            <img
+              style={{ marginRight: "15px" }}
+              alt="" src={process.env.PUBLIC_URL + "/img/mypage.svg"} />
+            마이페이지
+          </NavPro>
           <NavSet
             onClick={() => {
               history.push(`/editinfo/changeinfo/${props.userId}`)
             }}
           >
+            <img
+              style={{
+                marginLeft: "4px",
+                marginRight: "15px"
+              }}
+              alt="" src={process.env.PUBLIC_URL + "/img/navpencil.svg"} />
             내 정보 수정
           </NavSet>
           <NavLog>
@@ -58,17 +69,18 @@ const Nav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
-  z-index: 99999;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   width: auto;
   top: 75px;
   margin-right: 30px;
   right: 0;
+  background-color: #2C2E39;
+  border-radius: 5px;
 `;
 // NavList component
 const Profile = styled.div`
@@ -76,10 +88,8 @@ const Profile = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: white;
   width: 160px;
   height: 70px;
-  border: 1px solid #999999;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 25px 60px 7px 60px;
@@ -87,27 +97,25 @@ const Profile = styled.div`
   h1 {
     font-weight: 600;
     font-size: 26px;
+    color: white;
   }
   p {
     margin-top: 15px;
     font-size: 14px;
-    color: #5f5f5f;
+    color: #696B7B;
   }
 `;
 const NavPro = styled.div`
-  border: 1px solid #999999;
   border-top: none;
   border-bottom: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  width: 80px;
-  height: 18px;
-  padding: 16px 100px 16px 100px;
+  color: #CFD3E2;
+  width: 100px;
+  height: 50px;
+  padding: 5px 90px;
   font-size: 14px;
   font-weight: normal;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   &:hover {
     background-color: #999999;
@@ -115,16 +123,14 @@ const NavPro = styled.div`
 `;
 
 const NavSet = styled.div`
-  border: 1px solid #999999;
   border-bottom: none;
-  flex-direction: column;
-  justify-content: center;
+  display: flex;
   align-items: center;
   text-align: center;
-  background-color: white;
-  width: 80px;
-  height: 18px;
-  padding: 16px 100px 16px 100px;
+  color: #CFD3E2;
+  width: 112px;
+  height: 50px;
+  padding: 5px 84px;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
@@ -133,7 +139,7 @@ const NavSet = styled.div`
   }
 `;
 const NavLog = styled.div`
-  border: 1px solid #999999;
+  border-top: 1px solid #999999;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   flex-direction: column;
@@ -141,7 +147,6 @@ const NavLog = styled.div`
   text-align: center;
   align-items: center;
   padding: 17px 96px 17px 96px;
-  background-color: white;
   width: 88px;
   height: 40px;
   cursor: pointer;
@@ -155,11 +160,9 @@ const Logout = styled.button`
   align-items: center;
   width: 88px;
   height: 40px;
-  /* C6 */
-  background: #ffffff;
-  /* C4 */
-  color: #999999;
-  border: 1px solid #999999;
+  background: #393A47;
+  color: #ffffff;
+  border: 1px solid #393A47;
   box-sizing: border-box;
   border-radius: 30px;
   :hover {

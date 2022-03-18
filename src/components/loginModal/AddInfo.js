@@ -179,7 +179,6 @@ const AddInfo = (props) => {
           <ThemeProvider theme={theme}>
             <InputBox>
               <CssTextField
-                autoComplete="off"
                 focusColor="#00C4B4"
                 style={{ marginTop: "55px" }}
                 onChange={(e) => {
@@ -200,7 +199,6 @@ const AddInfo = (props) => {
               )}
 
               <CssTextField
-                autoComplete="off"
                 focusColor="#00C4B4"
                 onChange={(e) => {
                   setGitUrl(e.target.value);
@@ -220,7 +218,6 @@ const AddInfo = (props) => {
                 </span>
               )}
               <CssTextField
-                autoComplete="off"
                 focusColor="#00C4B4"
                 onChange={(e) => {
                   setBlogUrl(e.target.value);
@@ -255,7 +252,6 @@ const AddInfo = (props) => {
           )} */}
 
               <CssTextField
-                autoComplete="off"
                 focusColor="#00C4B4"
                 onChange={(e) => {
                   setJob(e.target.value);

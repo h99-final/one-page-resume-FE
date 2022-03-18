@@ -22,6 +22,7 @@ const Introduce = () => {
 
   return (
     <>
+
       <SampleCard>
         {/* <TitleBox>
           <h1>Project</h1>
@@ -34,7 +35,6 @@ const Introduce = () => {
             {project?.img?.map((e, i) => {
               return (
                 <>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
                   <img key={e.url + `${i}`} alt="" src={e.url} />
                 </>
               );
@@ -77,7 +77,7 @@ const Container = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: fit-content;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   /* padding-bottom: 60px; */
@@ -98,7 +98,7 @@ const AboutBox = styled.div`
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: #1f2029;
+  background-color: #1F2029;
   height: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -109,7 +109,7 @@ const SubStack = styled.button`
   font-size: 16px;
   color: #ffffff;
   margin-right: 15px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   span {
     padding: 0px 20px;
     font-style: normal;
@@ -131,7 +131,7 @@ const ContentTitle = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 33%;
+  width: 35%;
   min-width: 400px;
 `;
 
@@ -158,6 +158,7 @@ const IntroBox = styled.div`
   min-height: 630px;
   margin: 0px 30px;
   h1 {
+    width: fit-content;
     font-style: normal;
     font-weight: 600;
     font-size: 26px;

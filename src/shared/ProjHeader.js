@@ -40,7 +40,7 @@ const ProjHeader = (props) => {
             <Avatar
               alt={userInfo.name}
               src={userInfo.profileImage}
-              sx={{ width: 38, height: 38 }}
+              sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
@@ -68,7 +68,7 @@ const ProjHeader = (props) => {
             />
 
             <img
-              style={{ marginRight: "0px" }}
+              style={{ marginRight: "25px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
             />
@@ -87,7 +87,7 @@ const ProjHeader = (props) => {
               }}
               alt={userInfo.name}
               src={userInfo.profileImage}
-              sx={{ width: 38, height: 38 }}
+              sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
@@ -118,7 +118,7 @@ const ProjHeader = (props) => {
 
             <div onClick={handleDelete}>
               <img
-                style={{ marginRight: "0px" }}
+                style={{ marginRight: "25px" }}
                 alt=""
                 src={process.env.PUBLIC_URL + "/img/Trash.svg"}
               />
@@ -140,8 +140,6 @@ const StyledHeader = styled.div`
   height: 60px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
   position: fixed;
   display: flex;
   top: 0;
