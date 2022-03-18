@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { apis } from '../../../shared/axios';
-import { useParams } from 'react-router-dom';
-import { actionCreators } from '../../../redux/modules/setProject';
-import ProjHeader from '../../../shared/ProjHeader';
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { apis } from "../../../shared/axios";
+import { useParams } from "react-router-dom";
+import { actionCreators } from "../../../redux/modules/setProject";
+import ProjHeader from "../../../shared/ProjHeader";
 
 const Introduce = () => {
   const dispatch = useDispatch();
@@ -22,18 +22,20 @@ const Introduce = () => {
 
   return (
     <>
-      <Container>
+
+      <SampleCard>
+        {/* <TitleBox>
+          <h1>Project</h1>
+          <h1>1 2 3 4 5</h1>
+        </TitleBox> */}
+
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
             {project?.img?.map((e, i) => {
               return (
                 <>
-                  <img
-                    key={e.url + `${i}`}
-                    alt=''
-                    src={e.url}
-                  />
+                  <img key={e.url + `${i}`} alt="" src={e.url} />
                 </>
               );
             })}
@@ -55,26 +57,34 @@ const Introduce = () => {
             </StackBox>
           </ContentBox>
         </IntroBox>
-      </Container>
+      </SampleCard>
     </>
   );
 };
 
+const SampleCard = styled.div`
+  position: relative;
+  width: 1440px;
+  height: 90vh;
+  margin-right: 75px;
+  flex-shrink: 0;
+`;
+
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  margin-right: 10em;
   position: relative;
 `;
 
 const ContentBox = styled.div`
   width: 100%;
   display: flex;
-  margin: 0px auto;
+  justify-content: flex-start;
+  /* padding-bottom: 60px; */
 `;
 
 const AboutBox = styled.div`
-  width: 65%;
-  margin: 0px auto;
+  max-width: 66%;
   min-width: 550px;
   margin-right: 50px;
   h2 {
@@ -93,11 +103,11 @@ const SubStack = styled.button`
   box-sizing: border-box;
   text-align: center;
   border-radius: 100px;
-  border: 1px solid #999999;
+  border: 1px solid #ffffff;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  color: #333333;
+  color: #ffffff;
   margin-right: 15px;
   margin-top: 10px;
   span {
@@ -117,6 +127,7 @@ const ContentTitle = styled.div`
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #555555;
+  margin-bottom: 5px;
 `;
 
 const StackBox = styled.div`
@@ -126,9 +137,8 @@ const StackBox = styled.div`
 
 const TitleBox = styled.div`
   width: 95%;
-  margin: 60px auto;
+  margin: 0px auto;
   border-bottom: 1px solid black;
-  margin-bottom: 50px;
   justify-content: space-between;
   display: flex;
   text-align: left;
@@ -139,14 +149,14 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 
 const IntroBox = styled.div`
-  width: 95%;
-  margin: 0px auto;
-  margin-top: 110px;
+  width: 100%;
+  min-height: 630px;
+  margin: 0px 30px;
   h1 {
     width: fit-content;
     font-style: normal;
@@ -163,12 +173,12 @@ const ImgBox = styled.div`
   width: 100%;
   margin-bottom: 50px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   display: flex;
   img {
     width: 322px;
     height: 322px;
-    margin: 0px 10px;
+    margin-right: 24px;
     border-radius: 10px;
     margin-bottom: 10px;
   }

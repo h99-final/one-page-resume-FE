@@ -35,7 +35,7 @@ function Template() {
     setTemplate(null);
   };
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -57,11 +57,13 @@ function Template() {
           <Save
             style={{
               marginRight: "20px",
-              background: "#00C4B4"
-            }}>
+              background: "#00C4B4",
+            }}
+          >
             <FormTextWhite
-              style={{ color: "white", }}
-              onClick={() => history.push(`/portfolio/${porfId}`)}>
+              style={{ color: "white" }}
+              onClick={() => history.push(`/portfolio/${porfId}`)}
+            >
               작성 완료
             </FormTextWhite>
           </Save>
@@ -108,10 +110,10 @@ const BottomNav = styled.div`
   left: 0;
   width: 100%;
   min-width: 768px;
-  height: 70px;
+  height: 80px;
   margin-top: 50px;
   bottom: 0px;
-  background: #2C2E39;
+  background: #2c2e39;
   padding: 0px 5px;
 `;
 

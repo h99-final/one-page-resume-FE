@@ -46,7 +46,6 @@ function MakeTroubleShooting() {
   const commit = useSelector((state) => state.patchcode.commit);
   // 선택된 패치코드, 파일명
   const patchcode = useSelector((state) => state.patchcode.selectedPatchCode);
-  console.log(patchcode);
   // 프로젝트에 속해있는 모든 파일
   const tsFile = useSelector((state) => state.patchcode.tsFile);
 
@@ -154,14 +153,14 @@ function MakeTroubleShooting() {
               <Content>
                 <Label>
                   <Font>
-                    *추가 설명<br></br>(0/500)
+                    *추가 설명<br></br>(0/1500)
                   </Font>
                 </Label>
                 <InputCustom
                   placeholder='문제를 해결한 구체적인 방법, 과정 등을 적어주세요.'
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
-                  maxLength={50}
+                  maxLength={1500}
                   {...register("content", { required: true })}
                 />
               </Content>

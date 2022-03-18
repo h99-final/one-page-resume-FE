@@ -104,6 +104,8 @@ export const apis = {
     instance.delete(
       `/project/${projectId}/troubleShooting/${commitId}/file/${fileId}`
     ),
+  updateTroubleShooting: (projectId, commitId, data) =>
+    instance.put(`/project/${projectId}/troubleShooting/${commitId}`, data),
 
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
   projectTSGet: (projectId) =>

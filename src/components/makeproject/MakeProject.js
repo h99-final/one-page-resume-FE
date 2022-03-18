@@ -256,6 +256,7 @@ export const FormSubText = styled.p`
 
 export const FormMainText = styled(FormText)`
   padding: 10px 0;
+  color: #ffffff;
 `;
 
 export const MultiContentFlex = styled(MultiContent)`

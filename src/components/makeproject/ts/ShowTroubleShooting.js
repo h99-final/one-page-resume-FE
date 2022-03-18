@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -51,7 +51,7 @@ function ShowTroubleShooting(props) {
     }
   };
 
-  console.log(modify);
+  useEffect(() => {}, [commitId]);
 
   return (
     <>
@@ -87,7 +87,7 @@ function ShowTroubleShooting(props) {
             <InputCustom
               style={{ overflow: "hidden" }}
               type="text"
-              defaultValue={tsName}
+              value={tsName}
               maxLength={50}
               readOnly
             />

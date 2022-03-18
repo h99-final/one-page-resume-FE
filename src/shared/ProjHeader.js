@@ -136,7 +136,7 @@ const StyledHeader = styled.div`
   background-color: #13131b;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 97vw;
   height: 60px;
   margin-left: auto;
   margin-right: auto;
@@ -171,7 +171,7 @@ const SharedBtn = styled.button`
   display: flex;
   padding: 10px 20px;
   text-align: center;
-  color: white;
+  color: #ffffff;
   border-radius: 24px;
   font-size: 17px;
   border: none;
