@@ -10,7 +10,49 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
+import { orange } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    error: orange,
+  },
+});
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  },
+  '& .MuiInputBase-input': {
+    position: 'relative',
+    color: "white",
+    width: '100%',
+    borderBottom: '1px solid white',
+  },
+  '& input:valid + fieldset': {
+  },
+  '& input:invalid + fieldset': {
+  },
+  '& input:valid:focus + fieldset': { // override inline-style
+  },
+}));
 const Signup = (props) => {
   const dispatch = useDispatch();
 
@@ -85,87 +127,97 @@ const Signup = (props) => {
         <h2>회원가입하기</h2>
         <p>Portfolio와 함께 멋진 포트폴리오를 만들어 보세요.</p>
       </TextContainer>
-      <InputBox>
-        <TextField
-          id="standard-read-only-input"
-          defaultValue={props.email}
-          fullWidth
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="standard"
-        />
-        <TextField
-          style={{ marginTop: "35px" }}
-          onChange={(e) => {
-            setPw(e.target.value);
-          }}
-          required
-          variant="standard"
-          fullWidth
-          type={values.showPassword ? "text" : "password"}
-          id="password"
-          name="password"
-          placeholder="비밀번호(4글자 이상)*"
-          error={passwordError !== "" || false}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        {passwordError && (
-          <span style={{ fontSize: "12px", color: "red" }}>
-            {passwordError}
-          </span>
-        )}
+      <ThemeProvider theme={theme}>
+        <InputBox>
+          <CssTextField
+            autoComplete="off"
+            focusColor="#00C4B4"
+            id="standard-read-only-input"
+            defaultValue={props.email}
+            fullWidth
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
+          <CssTextField
+            autoComplete="off"
+            focusColor="#00C4B4"
+            style={{ marginTop: "35px" }}
+            onChange={(e) => {
+              setPw(e.target.value);
+            }}
+            required
+            variant="standard"
+            fullWidth
+            type={values.showPassword ? "text" : "password"}
+            id="password"
+            name="password"
+            placeholder="비밀번호(4글자 이상)*"
+            error={passwordError !== "" || false}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="absolute">
+                  <IconButton
+                    style={{ color: "white", borderBottom: "1px solid white", borderRadius: "0", height: "33px", }}
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          {passwordError && (
+            <span style={{ fontSize: "12px", color: "orange" }}>
+              {passwordError}
+            </span>
+          )}
 
-        <TextField
-          style={{ marginTop: "35px" }}
-          onChange={(e) => {
-            setPwCheck(e.target.value);
-          }}
-          required
-          variant="standard"
-          fullWidth
-          type={values.showPassword ? "text" : "password"}
-          id="passwordcheck"
-          name="passwordcheck"
-          placeholder="비밀번호 재입력*"
-          error={passwordCheckError !== "" || false}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        {passwordCheckError && (
-          <span style={{ fontSize: "12px", color: "red" }}>
-            {passwordCheckError}
-          </span>
-        )}
+          <CssTextField
+            style={{ marginTop: "35px" }}
+            onChange={(e) => {
+              setPwCheck(e.target.value);
+            }}
+            autoComplete="off"
+            focusColor="#00C4B4"
+            required
+            variant="standard"
+            fullWidth
+            type={values.showPassword ? "text" : "password"}
+            id="passwordcheck"
+            name="passwordcheck"
+            placeholder="비밀번호 재입력*"
+            error={passwordCheckError !== "" || false}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="absolute">
+                  <IconButton
+                    style={{ color: "white", borderBottom: "1px solid white", borderRadius: "0", height: "33px", }}
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          {passwordCheckError && (
+            <span style={{ fontSize: "12px", color: "orange" }}>
+              {passwordCheckError}
+            </span>
+          )}
 
-        <WriteBtn
-          disabled={!passwordCheck || !password ? true : false}
-          onClick={signup}
-        >
-          다음 {">"}{" "}
-        </WriteBtn>
-      </InputBox>
+          <WriteBtn
+            disabled={!passwordCheck || !password ? true : false}
+            onClick={signup}
+          >
+            다음 {">"}{" "}
+          </WriteBtn>
+        </InputBox>
+      </ThemeProvider>
     </>
   );
 };
@@ -176,17 +228,19 @@ const TextContainer = styled.div`
   width: 350px;
   height: 102px;
   margin: 80px 115px 125px 115px;
-  h1 {
-    text-align: left;
+  h2 {
+    text-align: center;
     font-size: 36px;
     font-weight: 600;
+    color: #FFFFFF;
   }
   p {
-    text-align: left;
+    text-align: center;
     margin-top: 34px;
     margin-bottom: 60px;
     font-size: 16px;
     font-weight: normal;
+    color: #FFFFFF;
   }
 `;
 
@@ -203,12 +257,12 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 156px 0px 0px 262px;
+  margin: 25px 0px 0px 262px;
   padding: 5px 18px 5px 18px;
   color: white;
-  background-color: #333333;
+  background-color: #00C4B4;
   :disabled {
     border: none;
-    background-color: gray;
+    background-color: #424453;
   }
 `;

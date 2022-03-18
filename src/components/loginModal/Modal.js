@@ -66,7 +66,8 @@ const Modal = ({ modalClose }) => {
                       modalClose();
                     }}
                   >
-                    ❌
+                    <img
+                      alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
                   </button>
                 </div>
                 {status === "aaa" && (
@@ -102,7 +103,8 @@ const Modal = ({ modalClose }) => {
                       exitClose();
                     }}
                   >
-                    ❌
+                    <img
+                      alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
                   </button>
                 </div>
                 {isFirstLogin === true && (
@@ -191,7 +193,7 @@ const TextBox = styled.div`
 `;
 
 const UserBox = styled.div`
-  background-color: white;
+  background-color: #2C2E39;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 
