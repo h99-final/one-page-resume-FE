@@ -24,7 +24,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     width: "90vw",
-    height: "85%",
+    height: "90%",
     transform: "translate(-50%, -50%)",
     position: "fixed",
     // overflow: "hidden",
@@ -111,9 +111,24 @@ function TsModal(props) {
                 프로젝트에 첨부할 commit을 선택해 주세요.
               </FormTextLight>
             </FormTitleFlex>
-            <button onClick={handlesync}>새로고침</button>
             <div>
               <Ulist>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginLeft: "auto",
+                    marginRight: "30px",
+                  }}
+                  onClick={handlesync}
+                >
+                  <img
+                    width="30px"
+                    alt="새로고침"
+                    height="auto"
+                    src={process.env.PUBLIC_URL + "/img/rotate.svg"}
+                  />
+                </div>
                 {message_list.map((e, i) => {
                   if (selectedSha === e.sha) {
                     return (
@@ -159,7 +174,7 @@ function TsModal(props) {
             <FormTitleFlex>
               <FormTextCenter>파일 조회 하기</FormTextCenter>
               <FormTextLight>
-                트러블 슈팅한 파일을 골라서 조회하세요.(중복 선택 가능)
+                트러블 슈팅한 파일을 골라서 조회하세요.
               </FormTextLight>
             </FormTitleFlex>
             <div>

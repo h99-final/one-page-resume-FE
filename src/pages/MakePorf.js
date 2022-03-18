@@ -75,7 +75,7 @@ export const WriteableForm = styled.div`
 
   width: 100%;
   height: 100%;
-  background-color: #ededed;
+  background-color: #2c2e39;
   border-radius: 10px;
   /* Inside auto layout */
 

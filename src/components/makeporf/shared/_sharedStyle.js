@@ -14,7 +14,7 @@ export const FormText = styled.div`
 
   letter-spacing: -0.01em;
 
-  color: #000000;
+  color: #ffffff;
 `;
 
 export const ButtonBucket = styled.div`
@@ -58,8 +58,8 @@ export const InputCustom = styled.textarea`
   padding: 15px 15px;
   resize: none;
   border: none;
-  background-color: white;
-
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
   &:focus {
     outline: none !important;
     border-color: #719ece !important;

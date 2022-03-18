@@ -184,7 +184,7 @@ export const Font = styled.div`
 
   /* C1 */
 
-  color: #333333;
+  color: #ffffff;
 
   margin: 10px;
 

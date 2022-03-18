@@ -81,10 +81,11 @@ function Highlighted({ text = [] }) {
 
 const InputSize = styled.div`
   height: 300px;
+  max-width: 73vw;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  padding: 0px 15px;
+  padding: 0px 0px;
   resize: none;
   border: none;
   background-color: #ededed;
