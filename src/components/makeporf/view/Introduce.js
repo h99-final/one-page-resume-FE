@@ -177,7 +177,10 @@ export const Font = styled.div`
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-  color: white;
+
+  /* C1 */
+
+  color: #ffffff;
   margin: 10px;
 `;
 

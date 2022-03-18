@@ -67,24 +67,27 @@ const troubleShootingDB = (projectId, data) => {
       tsName: tsName,
       tsFile: [obj],
     };
-    //ToDo
     apis.createTroubleShooting(projectId, _data).then((res) => {
       let { commitId } = res.data.data;
+      console.log(commitId);
       let tsFiles = getState().patchcode.tsFile;
       console.log(obj);
       let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
+      console.log(_index);
       let { commitMessage, tsFile, ..._obj } = _data;
-      let { __obj, patchCode } = obj;
+      let { patchCode, ...__obj } = obj;
 
       let __data = {
+        commitId: commitId,
         ..._obj,
-        tsFiles: [{ ...__obj, tsPatchCode: patchCode }],
+        tsFiles: [{ ...__obj, tsPatchCodes: patchCode }],
         commitMsg: commitMessage,
       };
+      console.log(__data);
       if (_index === -1) {
         dispatch(addFile(__data));
       } else {
-        dispatch(addTsFile(obj, _index));
+        dispatch(addTsFile(...__data.tsFiles, _index));
       }
     });
   };
@@ -171,7 +174,6 @@ export default handleActions(
         draft.tsFile[action.payload.commitIndex].tsFiles.unshift(
           action.payload.tsFile
         );
-        console.log(state.tsFile);
       }),
     [DELETE_TS_FILE]: (state, action) =>
       produce(state, (draft) => {
