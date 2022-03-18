@@ -80,7 +80,7 @@ export const apis = {
 
   templatePut: (data) => instance.put("/porf/template", data),
 
-  projectPorf: (data) => instance.post("/porf/project", data),
+  projectPorf: (data) => instance.put("/porf/project", data),
   projectPorfGet: () => instance.get("/user/project"),
   projectMYPorfGet: (porfId) => instance.get(`/porf/${porfId}/project`),
 
@@ -99,6 +99,10 @@ export const apis = {
     instance.post(`/project/${projectId}/troubleShooting`, data),
   deleteTroubleShooting: (projectId, commitId) =>
     instance.delete(`/project/${projectId}/troubleShooting/${commitId}`),
+  deleteTroubleShootingFile: (projectId, commitId, fileId) =>
+    instance.delete(
+      `/project/${projectId}/troubleShooting/${commitId}/file/${fileId}`
+    ),
 
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
   projectTSGet: (projectId) =>

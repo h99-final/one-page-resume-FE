@@ -87,6 +87,7 @@ const ListItemButton = styled.div`
   & > span {
     color: ${(props) => (props.selected ? "white" : "#333333")};
   }
+  cursor: pointer;
 `;
 
 const ListItemText = styled.span`

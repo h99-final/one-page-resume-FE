@@ -42,6 +42,7 @@ const Save = styled(Next)`
   width: 125px;
   height: 42px;
   padding: 5px 10px;
+  cursor: pointer;
   background-color: #333333;
   display: flex;
   justify-content: center !important;
@@ -53,6 +54,7 @@ const Save = styled(Next)`
 `;
 
 const Label = styled.label`
+  cursor: pointer;
   display: ${(props) =>
     props.id === "career" || props.id === "stack" || props.id === "project"
       ? "none"

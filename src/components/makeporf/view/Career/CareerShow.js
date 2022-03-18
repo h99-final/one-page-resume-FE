@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   AddButton,
   ButtonText,
@@ -134,9 +134,9 @@ function CareerShow(props) {
             </Label>
             <Controller
               render={({ field }) => (
-                <InputCustom
+                <InputCustomCareer
                   type="text"
-                  style={{ marginBottom: "20px", height: "40px" }}
+                  style={{ marginBottom: "20px" }}
                   {...field}
                   ref={content}
                   defaultValue={contents?.join("\n")}
@@ -238,7 +238,7 @@ function CareerShow(props) {
             <Label>
               <Font>직무 내용(0/100)</Font>
             </Label>
-            <InputCustom
+            <InputCustomCareer
               type="text"
               style={{ border: "none", background: "white" }}
               defaultValue={contents?.join("\n")}
@@ -276,6 +276,10 @@ function CareerShow(props) {
     );
   }
 }
+
+const InputCustomCareer = styled(InputCustom)`
+  height: 200px !important;
+`;
 
 const InputCustomDate = styled(InputCustom)`
   width: 8vh;

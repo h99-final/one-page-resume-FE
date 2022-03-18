@@ -57,7 +57,6 @@ const Header = (props) => {
               onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
-
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -99,7 +98,6 @@ const Header = (props) => {
               onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
-
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -148,7 +146,12 @@ const Header = (props) => {
               src={userInfo.profileImage}
               sx={{ width: 38, height: 38 }}
             />
-            <Nav nav={nav} name={userInfo.name} email={userInfo.email} userId={userInfo.userId} />
+            <Nav
+              nav={nav}
+              name={userInfo.name}
+              email={userInfo.email}
+              userId={userInfo.userId}
+            />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
@@ -160,7 +163,7 @@ const Header = (props) => {
 export default Header;
 
 const StyledHeader = styled.div`
-  background-color: #13131B;
+  background-color: #13131b;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,6 +182,7 @@ const LeftMenu = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-weight: 500;
+  cursor: pointer;
 `;
 
 const Circle = styled.div`
@@ -188,17 +192,19 @@ const Circle = styled.div`
   height: 35px;
   border-radius: 35px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 const Port = styled.div`
-  
   font-size: 20px;
   width: 90px;
   margin-left: 50px;
+  cursor: pointer;
 `;
 const Proj = styled.div`
   font-size: 20px;
   width: 70px;
   margin-left: 40px;
+  cursor: pointer;
 `;
 
 const RightMenu = styled.div`
@@ -207,11 +213,12 @@ const RightMenu = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-weight: 500;
+  cursor: pointer;
 `;
 
 const SharedBtn = styled.button`
   cursor: pointer;
-  background-color: #00B3A6;
+  background-color: #00b3a6;
   width: 120px;
   height: 40px;
   color: white;
