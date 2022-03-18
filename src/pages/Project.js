@@ -41,6 +41,8 @@ const Project = () => {
   );
 };
 
+const Main = styled.div``;
+
 const HorizontalSection = styled.section`
   position: relative;
   width: 100%;

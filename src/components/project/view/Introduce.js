@@ -22,7 +22,6 @@ const Introduce = () => {
 
   return (
     <>
-
       <SampleCard>
         {/* <TitleBox>
           <h1>Project</h1>
@@ -32,7 +31,7 @@ const Introduce = () => {
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
-            {project?.img?.map((e, i) => {
+            {project?.img?.slice(0, 4).map((e, i) => {
               return (
                 <>
                   <img key={e.url + `${i}`} alt="" src={e.url} />
@@ -98,7 +97,7 @@ const AboutBox = styled.div`
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: #1F2029;
+  background-color: #1f2029;
   height: 40px;
   box-sizing: border-box;
   text-align: center;

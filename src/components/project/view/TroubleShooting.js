@@ -98,7 +98,7 @@ const TroubleShooting = (props) => {
             <LeftBottomBox>{tsContent}</LeftBottomBox>
           </LeftBox>
           <RightBox>
-            <Highlighted text={tsPatchCodes} />
+            <Highlighted show text={tsPatchCodes} />
           </RightBox>
         </SampleCard>
       )}
@@ -123,7 +123,7 @@ const SampleCard = styled.div`
 const LeftBox = styled.div`
   border: 1px solid;
   //ToDo
-  width: 338px;
+  min-width: 500px;
   display: flex;
   flex-direction: column;
   margin: 0px 26px;

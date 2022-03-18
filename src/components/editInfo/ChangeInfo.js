@@ -31,13 +31,22 @@ function ChangeInfo() {
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => { });
+    apis.addInfo(_data).then((res) => {
+      if (res.data.errors.message) {
+        window.alert(res.data.errors.message);
+        return;
+      }
+    });
   };
 
   useEffect(() => {
     apis
       .userInfo()
       .then((res) => {
+        if (res.data.errors.message) {
+          window.alert(res.data.errors.message);
+          return;
+        }
         const { name, job, phoneNum, gitUrl, email, blogUrl } = res.data.data;
         setData(res.data.data);
         setValue("name", name);
@@ -222,7 +231,7 @@ const UserInfoForm = styled.form`
 const Button = styled.button`
   width: 150px;
   height: 60px;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   color: white;
   border-radius: 43px;
   border: none;
