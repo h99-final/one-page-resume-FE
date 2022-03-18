@@ -46,6 +46,11 @@ const CssTextField = styled(TextField, {
     width: '100%',
     borderBottom: '1px solid white',
   },
+  "& input: internal+autofill+selected": {
+    backgroundImage: "none",
+    backgroundColor: "black",
+    color: "none",
+  },
   '& input:valid + fieldset': {
   },
   '& input:invalid + fieldset': {
@@ -95,7 +100,6 @@ const Start = (props) => {
       <ThemeProvider theme={theme}>
         <InputBox>
           <CssTextField
-            autoComplete="off"
             focusColor="#00C4B4"
             onChange={inputEmail}
             variant="standard"
