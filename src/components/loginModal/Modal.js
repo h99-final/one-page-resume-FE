@@ -27,97 +27,112 @@ const Modal = ({ modalClose }) => {
 
   return (
     <>
-      <ModalBox>
-        <WelcomeBox>
-          <TextContainer>
-            <h1>Portfolio</h1>
+      <ModalBG>
+        <ModalBox>
+          <WelcomeBox>
+            <TextContainer>
+              <h1>Portfolio</h1>
 
-            <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
+              <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
 
-            <TextBox style={{ margin: "0px 33.5px 0px 33.5px" }}>
-              내 프로젝트에 도움이 되는 다양한 영감을 얻어요!
-            </TextBox>
-            <TextBox style={{ margin: "15px 73px 0px 73px" }}>
-              예쁜 포트폴리오를 빠르게 만들어요.
-            </TextBox>
-            <TextBox style={{ margin: "15px 0px" }}>
-              내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.
-            </TextBox>
-          </TextContainer>
-        </WelcomeBox>
-        <UserBox>
-          {isFirstLogin === false ? (
-            <>
-              <div
-                style={{
-                  position: "fixed",
-                  top: "2%",
-                  right: "2%",
-                }}
-              >
-                <button
+              <TextBox style={{ margin: "0px 33.5px 0px 33.5px" }}>
+                내 프로젝트에 도움이 되는 다양한 영감을 얻어요!
+              </TextBox>
+              <TextBox style={{ margin: "15px 73px 0px 73px" }}>
+                예쁜 포트폴리오를 빠르게 만들어요.
+              </TextBox>
+              <TextBox style={{ margin: "15px 0px" }}>
+                내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.
+              </TextBox>
+            </TextContainer>
+          </WelcomeBox>
+          <UserBox>
+            {isFirstLogin === false ? (
+              <>
+                <div
                   style={{
-                    float: "right",
-                    backgroundColor: "inherit",
-                    border: "none",
-                  }}
-                  onClick={() => {
-                    modalClose();
+                    position: "fixed",
+                    top: "2%",
+                    right: "2%",
                   }}
                 >
-                  ❌
-                </button>
-              </div>
-              {status === "aaa" && (
-                <Start status={setStatus} email={setEmail} />
-              )}
-              {status === true && (
-                <Login
-                  email={email}
-                  isFirstLogin={isFirstLogin}
-                  loginClose={modalClose}
-                />
-              )}
-              {status === false && (
-                <Signup email={email} loginClose={modalClose} />
-              )}
-            </>
-          ) : (
-            <>
-              <div
-                style={{
-                  position: "fixed",
-                  top: "2%",
-                  right: "2%",
-                }}
-              >
-                <button
+                  <button
+                    style={{
+                      float: "right",
+                      backgroundColor: "inherit",
+                      border: "none",
+                    }}
+                    onClick={() => {
+                      modalClose();
+                    }}
+                  >
+                    ❌
+                  </button>
+                </div>
+                {status === "aaa" && (
+                  <Start status={setStatus} email={setEmail} />
+                )}
+                {status === true && (
+                  <Login
+                    email={email}
+                    isFirstLogin={isFirstLogin}
+                    loginClose={modalClose}
+                  />
+                )}
+                {status === false && (
+                  <Signup email={email} loginClose={modalClose} />
+                )}
+              </>
+            ) : (
+              <>
+                <div
                   style={{
-                    float: "right",
-                    backgroundColor: "inherit",
-                    border: "none",
-                  }}
-                  onClick={() => {
-                    exitClose();
+                    position: "fixed",
+                    top: "2%",
+                    right: "2%",
                   }}
                 >
-                  ❌
-                </button>
-              </div>
-              {isFirstLogin === true && (
-                <AddInfo loginClose={modalClose} isFirstLogin={isFirstLogin} />
-              )}
-            </>
-          )}
-        </UserBox>
+                  <button
+                    style={{
+                      float: "right",
+                      backgroundColor: "inherit",
+                      border: "none",
+                    }}
+                    onClick={() => {
+                      exitClose();
+                    }}
+                  >
+                    ❌
+                  </button>
+                </div>
+                {isFirstLogin === true && (
+                  <AddInfo
+                    loginClose={modalClose}
+                    isFirstLogin={isFirstLogin}
+                  />
+                )}
+              </>
+            )}
+          </UserBox>
 
-        {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
-      </ModalBox>
+          {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
+        </ModalBox>
+      </ModalBG>
     </>
   );
 };
 
 export default Modal;
+
+const ModalBG = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+`;
 
 const ModalBox = styled.div`
   text-align: center;
@@ -130,7 +145,6 @@ const ModalBox = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 100;
 
   @media only screen and (max-width: 1300px) {
     width: 580px;

@@ -117,10 +117,10 @@ const Area = styled.div`
   padding: 5px;
   overflow: scroll;
   .red {
-    background-color: #ffc9c9 !important;
+    background-color: #fcedeb !important;
   }
   .blue {
-    background-color: #a3daff !important;
+    background-color: #ebfeed !important;
   }
 `;
 
