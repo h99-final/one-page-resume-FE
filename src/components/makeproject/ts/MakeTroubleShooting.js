@@ -94,7 +94,7 @@ function MakeTroubleShooting() {
           <div style={{ display: "flex", alignItems: "center" }}>
             <FormText>트러블 슈팅</FormText>
             <FormSubText>
-              커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수 있어요.
+              Patch Code 파일을 불러와 프로젝트에서 해결한 문제들을 설명해보세요.
             </FormSubText>
           </div>
         </FormTitle>
@@ -106,6 +106,7 @@ function MakeTroubleShooting() {
                   <Font>트러블슈팅 제목</Font>
                 </Label>
                 <InputCustom
+                  placeholder='제목을 적어주세요.'
                   style={{ overflow: "hidden" }}
                   type="text"
                   {...register("title", { required: "제목을 입력해주세요." })}
@@ -157,6 +158,7 @@ function MakeTroubleShooting() {
                   </Font>
                 </Label>
                 <InputCustom
+                  placeholder='문제를 해결한 구체적인 방법, 과정 등을 적어주세요.'
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
                   maxLength={50}
@@ -169,7 +171,7 @@ function MakeTroubleShooting() {
 
           <FormContentsP>
             <MakeCenter style={{ margin: "20px auto" }}>
-              <AddButton>
+              <AddButton >
                 <ContentCareerBottom>
                   {/* <ButtonText onClick={handleSubmit(onValid)}> */}
                   {patchcode && commit ? (
@@ -182,27 +184,26 @@ function MakeTroubleShooting() {
                     </ButtonText>
                   )}
                 </ContentCareerBottom>
-                <FormSubText>
-                  커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수
-                  있어요.
-                </FormSubText>
               </AddButton>
             </MakeCenter>
+            <FormSubText style={{ width: "100%", textAlign: "center" }}>
+              커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수 있어요.
+            </FormSubText>
           </FormContentsP>
           <hr style={{ margin: "50px" }} />
 
           {tsFile
             ? tsFile.map((e, i) => {
-                return (
-                  <>
-                    <ShowTroubleShooting
-                      key={tsFile.fileName + `${i}`}
-                      commit={commit}
-                      {...e}
-                    />
-                  </>
-                );
-              })
+              return (
+                <>
+                  <ShowTroubleShooting
+                    key={tsFile.fileName + `${i}`}
+                    commit={commit}
+                    {...e}
+                  />
+                </>
+              );
+            })
             : null}
 
           <TemplateProject />

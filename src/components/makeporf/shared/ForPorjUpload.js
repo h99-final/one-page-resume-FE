@@ -73,7 +73,8 @@ function ForProjUpload(props) {
 
       {files.map((file) => (
         <Image>
-          <img width="250px" alt="selected" src={file.preview} />
+          <img style={{ borderRadius: "10px" }}
+            width="250px" alt="selected" src={file.preview} />
         </Image>
       ))
       }
@@ -89,12 +90,10 @@ const ProfileBox = styled.div`
   flex-wrap: wrap;
   border-radius: 10px;
   border: 1px solid #cccccc;
-  background-color: white;
 `;
 const Inner = styled.div`
   width: 250px;
   height: 250px;
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
   overflow: hidden;

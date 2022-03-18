@@ -28,7 +28,7 @@ function TemplateProject() {
           <h2 onClick={handlePreviousClick}>이전으로</h2>
         </Save>
         <Label htmlFor="submit" onClick={handleComplete}>
-          <Save style={{ marginRight: "5px" }}>
+          <Save style={{ marginRight: "25px" }}>
             <input id="submit" type="submit" style={{ display: "none" }} />
             <h2>작성 완료</h2>
           </Save>
@@ -43,7 +43,7 @@ const Save = styled(Next)`
   height: 42px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #333333;
+  background-color: #00C4B4;
   display: flex;
   justify-content: center !important;
   align-items: center;
@@ -74,7 +74,7 @@ const BottomNav = styled.div`
   height: 70px;
   margin-top: 50px;
   bottom: 0px;
-  background: #999999;
+  background: #13131BCC;
   padding: 0px 5px;
 `;
 
