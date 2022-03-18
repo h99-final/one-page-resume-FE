@@ -56,7 +56,6 @@ function TsModal(props) {
   // commit message 고르기
   const handleCommitClick = (e) => {
     setSelectedSha(e.currentTarget.id);
-    console.log(e.currentTarget.id);
     let commit = message_list.filter(
       (commit) => commit.sha === e.currentTarget.id
     );

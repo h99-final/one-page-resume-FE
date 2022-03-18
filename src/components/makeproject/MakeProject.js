@@ -245,10 +245,12 @@ function MakeProject() {
 export const FormSubText = styled.p`
   font-size: 12px;
   margin-left: 10px;
+  color: #ffffff;
 `;
 
 export const FormMainText = styled(FormText)`
   padding: 10px 0;
+  color: #ffffff;
 `;
 
 export const MultiContentFlex = styled(MultiContent)`

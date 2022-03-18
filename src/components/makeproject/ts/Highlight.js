@@ -40,13 +40,13 @@ function Highlighted({ text = [] }) {
     text.map((e) => {
       return e.charAt(0) === "-"
         ? _text.push(
-            <tr style={{ backgroundColor: "#ffc9c9" }}>
+            <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
               <pre>{e}</pre>
             </tr>
           )
         : e.charAt(0) === "+"
         ? _text.push(
-            <tr style={{ backgroundColor: "#a3daff" }}>
+            <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
               <pre>{e}</pre>
             </tr>
           )
@@ -81,15 +81,17 @@ function Highlighted({ text = [] }) {
 
 const InputSize = styled.div`
   height: 300px;
-  max-width: 73vw;
+  max-width: 70vw;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  padding: 0px 0px;
+  padding: 5px 10px;
   resize: none;
   border: none;
-  background-color: #ededed;
+  background-color: #2c2e39;
   overflow: auto;
+  overflow-x: hidden;
+  color: #ffffff;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -105,7 +107,9 @@ const Tbody = styled.tbody`
   tr {
     padding: 15px;
     text-align: left;
+    color: #ffffff;
     pre {
+      text-decoration-color: #ffffff;
       letter-spacing: 0.03em;
     }
   }

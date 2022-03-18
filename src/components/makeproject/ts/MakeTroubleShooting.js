@@ -46,7 +46,6 @@ function MakeTroubleShooting() {
   const commit = useSelector((state) => state.patchcode.commit);
   // 선택된 패치코드, 파일명
   const patchcode = useSelector((state) => state.patchcode.selectedPatchCode);
-  console.log(patchcode);
   // 프로젝트에 속해있는 모든 파일
   const tsFile = useSelector((state) => state.patchcode.tsFile);
 

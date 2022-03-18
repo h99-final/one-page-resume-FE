@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { actionCreators } from "../../../redux/modules/patchcode";
 import {
   Content,
   ErrorMessage,
@@ -16,6 +15,7 @@ import { FormMainText, FormSubText } from "../MakeProject";
 import TemplateProject from "../shared/TemplateProject";
 import Highlighted from "./Highlight";
 import { IconBox } from "./ShowTroubleShooting";
+import { actionCreators as tsFileActions } from "../../../redux/modules/patchcode";
 
 function ModifyTroubleShooting(props) {
   const dispatch = useDispatch();
@@ -39,28 +39,41 @@ function ModifyTroubleShooting(props) {
     commitId,
     setModify,
     handleModify,
+    sha,
   } = props;
+
+  console.log(props);
 
   const tsFile = useSelector((state) => state.patchcode.tsFile);
 
+  console.log(commit);
+
   const handleDelete = () => {
-    dispatch(actionCreators.deleteTsDB(projectId, commitId));
+    dispatch(tsFileActions.deleteTsDB(projectId, commitId));
   };
 
   const onValid = (data) => {
-    let _tsFile = tsFile.filter((e) => e.commitId === commitId);
     // commitId state 에 추가
     let _data = {
       commitMessage: commitMsg,
-      sha: tsFile[0].sha,
+      sha: sha,
       tsName: data.tsName,
-      tsFiles: [tsFile[0].tsFiles],
     };
+    let __data = [];
     for (let i = 0; i < tsFiles.length; i++) {
-      console.log(data);
-      tsFiles[i].tsContent = data;
-      console.log(tsFiles[i]);
+      let key = "tsContent";
+      let cur_key = key + String(i);
+      let { tsContent, tsPatchCodes, ...obj } = tsFiles[i];
+      let _tsFiles = {
+        tsContent: data[cur_key],
+        patchCode: tsPatchCodes,
+        ...obj,
+      };
+      console.log(_tsFiles);
+      __data.push(_tsFiles);
     }
+    _data = { tsFile: __data, ..._data };
+    dispatch(tsFileActions.updateTsDB(projectId, commitId, _data));
     handleModify();
   };
 
