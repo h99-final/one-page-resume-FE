@@ -36,21 +36,21 @@ function ProjectCard(props) {
             {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
             {stack.length > 3
               ? stack.slice(0, 3).map((e, i) => {
-                  return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
-                  );
-                })
+                return (
+                  <>
+                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                  </>
+                );
+              })
               : stack.map((e, i) => {
-                  return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
-                  );
-                })}
+                return (
+                  <>
+                    <ProjectStack key={i + "e"}>{e}</ProjectStack>
+                  </>
+                );
+              })}
             {stack.length > 3 && (
-              <ProjectStack>+ {stack.length - 3}</ProjectStack>
+              <ProjectStack style={{ background: "none", color: "#696B7B" }}>+{stack.length - 3}</ProjectStack>
             )}
           </ProjectStacks>
           <ProjectTitle>
@@ -76,7 +76,7 @@ const FontProject = styled(Font)`
 `;
 
 const InnerCard = styled.img`
-  width: 398px;
+  width: 100%;
   height: 180px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -91,8 +91,9 @@ export const ProjectForm = styled.div`
   height: 313px;
   border-radius: 10px;
   margin-bottom: 30px;
+  background-color: #393A47;
   border: ${(props) =>
-    props.selected ? "1px solid blue;" : "1px solid #999999;"};
+    props.selected ? "2px solid #00C4B4;" : "1px solid none;"};
   box-sizing: border-box;
   position: relative;
   z-index: 0;
@@ -112,11 +113,12 @@ const ProjectStack = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto 3px;
-  padding: 5px 15px;
-  width: 61px;
-  height: 25px;
+  padding: 10px 20px;
+  width: fit-content;
   border-radius: 5px;
-  border: 1px solid;
+  color: white;
+  border: 1px solid #696B7B;
+  background-color: #696B7B;
 `;
 
 const ProjectTitle = styled.div`

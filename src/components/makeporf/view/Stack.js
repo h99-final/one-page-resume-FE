@@ -151,7 +151,7 @@ function Stack() {
         <FormText>기술 스택</FormText>
       </FormTitle>
       <Font
-        style={{ color: "inherit", textAlign: "left", marginLeft: "205px" }}
+        style={{ textAlign: "left", marginLeft: "225px" }}
       >
         나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
         대표하는 명함에 들어가게 됩니다.
@@ -211,7 +211,13 @@ function Stack() {
         <Label>
           <Font></Font>
         </Label>
-        <StackBox style={{ marginBottom: "60px" }}>
+        <StackBox style={{
+          marginBottom: "60px",
+          border: " 1px solid #393A47",
+          height: "160px",
+          width: "100%",
+          background: '#393A47',
+        }}>
           {addStack.map((addStack, index) => {
             return (
               <SelectStack key={index} {...addStack}>
@@ -246,19 +252,20 @@ function Stack() {
 
 export const StackBox = styled.div`
   margin: 10px 0px;
-  height: auto;
   border-radius: 10px;
-  border: 1px solid #cccccc;
-  background-color: white;
+  border: 1px solid #2C2E39;
+  background-color: #2C2E39;
 `;
 
 export const SelectStack = styled.button`
   margin: 15px 15px;
-  padding: 10px;
+  padding: 10px 20px;
   width: fit-content;
   height: 50px;
   font-size: 17px;
-  border: 1px solid #cccccc;
+  color: white;
+  background-color: #393A47;
+  border: 1px solid white;
   border-radius: 100px;
   text-align: center;
 `;
@@ -268,16 +275,14 @@ export const MultiContent = styled.div`
   flex-direction: row;
   margin: 0px 50px 0px 50px;
 `;
-const Wrap = styled.div`
-  padding-bottom: 20px;
-`;
 
 const StyledBox = styled.button`
   border: none;
-  background-color: white;
+  background-color: #2C2E39;
   padding: 10px 15px 10px 15px;
   margin-top: 5px;
   border-radius: 10px;
+  color: white;
   img {
     border-radius: 5px;
     background-color: gray;
@@ -302,7 +307,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #cccccc;
+    background-color: #393A47;
+    border: 2px solid #393A47;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -311,8 +317,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #333333;
-    border: 2px solid #333333;
+    background-color: #00C4B4;
+    border: 2px solid #00C4B4;
     cursor: pointer;
   }
 `;

@@ -113,10 +113,9 @@ export const ButtonText = styled(FormText)`
 `;
 
 export const AddButton = styled.div`
-  border: 1px solid;
   width: 350px;
   height: 80px;
-  background: #ffffff;
+  background: #696B7B;
   border-radius: 50px;
 `;
 
