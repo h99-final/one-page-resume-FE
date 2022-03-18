@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { actionCreators } from '../../../redux/modules/setProject';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import ProjHeader from '../../../shared/ProjHeader';
 
 const TroubleShooting = () => {
   const { id } = useParams();
@@ -62,19 +63,19 @@ const TroubleShooting = () => {
 }
 
 const Container = styled.div`
-  width: 100%;
-  min-width: 800px;
-  max-width: 1440px;
-  height: 964px;
+  width: 100vw;
+  position: relative;
   background-color: white;
+  border: 1px solid;
 `;
 
+
 const Box = styled.div`
-  width: 95%;
-  height: 900px;
+  border: 1px solid;
+  width: 95vw;
   margin: 0px auto;
+  margin-top: 60px;
   padding-top: 32px;
-  padding-bottom: 32px;
   display: flex;
 `;
 const Square = styled.div`
@@ -157,7 +158,6 @@ const Content = styled.div`
 
 const Right = styled.div`
   width: 73%;
-  height: 100%;
   border: 1px solid ;
 `;
 

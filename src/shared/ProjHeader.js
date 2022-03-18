@@ -116,16 +116,19 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background-color: #13131b;
-  display: flex;
+  background-color: #13131B;
   align-items: center;
   justify-content: space-between;
-  width: auto;
+  width: 100vw;
   height: 60px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
+  position: fixed;
+  display: flex;
+  top: 0;
+  z-index: 9;
 `;
 
 const LeftMenu = styled.div`
