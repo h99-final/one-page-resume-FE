@@ -1,13 +1,22 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import HorizontalScroll from "../components/project/view/horizontalScroll";
 import Introduce from "../components/project/view/Introduce";
 import TroubleShooting from "../components/project/view/TroubleShooting";
+import { actionCreators } from "../redux/modules/setProject";
 import ProjHeader from "../shared/ProjHeader";
 
 const Project = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const ts = useSelector((state) => state.setproject.troubleShootings);
+
+  useEffect(() => {
+    dispatch(actionCreators.setProjectDB(id));
+    dispatch(actionCreators.setTroubleShootingDB(id));
+  }, []);
 
   return (
     <>
@@ -18,10 +27,10 @@ const Project = () => {
             <IntroduceContainer>
               <Introduce />
             </IntroduceContainer>
-            {ts.map((e, i) => {
+            {ts?.map((e, i) => {
               return (
                 <TroubleShootingContainer>
-                  <TroubleShooting />
+                  <TroubleShooting {...e} />
                 </TroubleShootingContainer>
               );
             })}
@@ -31,6 +40,8 @@ const Project = () => {
     </>
   );
 };
+
+const Main = styled.div``;
 
 const HorizontalSection = styled.section`
   position: relative;
@@ -49,7 +60,7 @@ const IntroduceContainer = styled.div`
   position: relative;
   height: 80vh;
   width: 100vw;
-  background-color: #111f30;
+  /* background-color: #111f30; */
   margin-right: 25em;
   flex-shrink: 0;
 `;
@@ -58,7 +69,7 @@ const TroubleShootingContainer = styled.div`
   position: relative;
   height: 80vh;
   width: 100vw;
-  background-color: #111f30;
+  /* background-color: #111f30; */
   margin-right: 25em;
   flex-shrink: 0;
 `;

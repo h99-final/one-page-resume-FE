@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Highlighted({ text = [] }) {
+function Highlighted({ text = [], show }) {
   // const [value, setValue] = useState(text.join("\n\n"));
 
   // const handleChange = (value) => setValue(value);
@@ -66,23 +66,30 @@ function Highlighted({ text = [] }) {
 
   return (
     <>
-      <InputSize>
-        <table>
+      <InputSize show={show}>
+        <Table style={{ width: "80%" }}>
           <Tbody>
             {value.map((e) => {
               return e;
             })}
           </Tbody>
-        </table>
+        </Table>
       </InputSize>
     </>
   );
 }
 
+const Table = styled.table`
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 80%;
+`;
+
 const InputSize = styled.div`
-  border: 1px solid #696B7B;
-  height: 350px;
-  width: 98%;
+  height: ${(props) => (props.show ? "100%" : "400px")};
+
+  /* max-width: 60vw; */
+  min-width: ${(props) => (props.show ? "70vw" : "60vw")};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -92,6 +99,7 @@ const InputSize = styled.div`
   overflow: auto;
   overflow-x: hidden;
   color: #ffffff;
+  word-wrap: break-word;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -103,15 +111,19 @@ const InputSize = styled.div`
 `;
 
 const Tbody = styled.tbody`
-  height: 300px;
-  border: 1px solid white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   tr {
+    align-items: center;
     padding: 15px;
     text-align: left;
     color: #ffffff;
+    word-wrap: break-word;
     pre {
       text-decoration-color: #ffffff;
       letter-spacing: 0.03em;
+      word-wrap: break-word;
     }
   }
 `;

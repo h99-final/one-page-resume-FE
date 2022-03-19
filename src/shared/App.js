@@ -16,6 +16,9 @@ import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 
+import horizontalScroll from "../components/project/view/horizontalScroll";
+import HorizontalScroll from "../components/project/view/horizontalScroll";
+
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
@@ -68,7 +71,7 @@ function App() {
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
 
         <Route exact path="/project" component={ProjList} />
-        <Route exact path="/project/:id" component={Project} />
+        <Route exact path="/project/:id" component={Project}></Route>
 
         <PrivateRoute
           path="/write/project/:id/:projectId"

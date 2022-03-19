@@ -13,7 +13,6 @@ import { useHistory, useParams } from "react-router-dom";
 const ProjHeader = (props) => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { id } = useParams();
-  console.log(id);
   // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
