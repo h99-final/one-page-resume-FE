@@ -51,7 +51,7 @@ function ShowTroubleShooting(props) {
     }
   };
 
-  useEffect(() => {}, [commitId]);
+  useEffect(() => { }, [commitId]);
 
   return (
     <>
