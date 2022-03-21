@@ -63,6 +63,8 @@ export const apis = {
   addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putStack: (data) => instance.put("user/stack", data),
+  putPwd: (data) => instance.put("user/password", data),
+
 
   introPorf: (data) => instance.put("porf/intro", data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
@@ -128,5 +130,5 @@ export const apis = {
       stack: stack,
     }),
 
-  gitToken: (token) => instance.post('/user/git/token', { token: token }),
+  gitToken: (token) => instance.put('/user/git/token', { token: token }),
 };

@@ -13,7 +13,11 @@ import {
 import { apis } from "../../shared/axios";
 import FileUpload from "../makeporf/shared/ImageUpload";
 
-function ChangeInfo() {
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+function EditPwd() {
   const defaultValues = {};
   const {
     register,
@@ -29,20 +33,14 @@ function ChangeInfo() {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const onValid = (data) => {
-    const stack = userInfo.stack;
-    const _data = { ...data, stack };
+    const _data = { ...data };
     apis.addInfo(_data).then((res) => { });
   };
 
-  useEffect(() => {
-    apis
-      .userInfo()
-      .then((res) => {
+  const [passwordShow, setPasswordShow] = React.useState(false);
 
-      })
-      .catch((error) => {
-      });
-  }, []);
+  const togglePasswordVisibility = () => setPasswordShow(!passwordShow);
+
 
   return (
     <>
@@ -56,16 +54,29 @@ function ChangeInfo() {
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom {...field} />
+              <InputCustom {...field}
+              />
             )}
             rules={{
-
+              required: "필수 항목 입니다.",
+              minLength: { value: 4, message: "비밀번호는 4자 이상입니다." },
             }}
-            name="password"
+            name="curPassword"
             control={control}
+            type={passwordShow ? "text" : "password"}
           />
+          <InputAdornment position="end">
+            <IconButton
+              edge="end"
+              aria-label='toggle password visibility'
+              style={{ color: "white", borderBottom: "1px solid white", borderRadius: "0", height: "33px", }}
+              onClick={togglePasswordVisibility}
+            >
+              {passwordShow ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
         </Content>
-        <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
+        <ErrorMessage>{errors?.curPassword?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>*새 비밀번호</Font>
@@ -75,29 +86,33 @@ function ChangeInfo() {
               <InputCustom {...field} />
             )}
             rules={{
-
+              required: "필수 항목 입니다.",
+              minLength: { value: 4, message: "비밀번호는 4자 이상입니다." },
             }}
             name="password"
             control={control}
           />
         </Content>
-        <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
+        <ErrorMessage>{errors?.password?.message}</ErrorMessage>
         <Content>
           <Label>
             <Font>*새 비밀번호 확인</Font>
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom {...field} />
+              <InputCustom {...field}
+              />
             )}
-            rules={{
 
+            rules={{
+              required: "필수 항목 입니다.",
+              minLength: { value: 4, message: "비밀번호 확인이 일치하지 않습니다." },
             }}
-            name="password"
+            name="passwordCheck"
             control={control}
           />
         </Content>
-        <ErrorMessage>{errors?.gitUrl?.message}</ErrorMessage>
+        <ErrorMessage>{errors?.passwordCheck?.message}</ErrorMessage>
         <div style={{ width: "96%", textAlign: "right" }}>
           <Button type="submit">변경 내용 저장</Button>
         </div>
@@ -128,4 +143,4 @@ const Button = styled.button`
   position: relative;
   margin-bottom: 10px;
 `;
-export default ChangeInfo;
+export default EditPwd;

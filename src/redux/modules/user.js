@@ -35,6 +35,7 @@ const loginDB = (email, password) => {
         console.log(res);
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         if (res.data.data.isFirstLogin === true) {
           console.log(res.data.data.isFirstLogin);
         } else {

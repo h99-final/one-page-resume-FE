@@ -155,7 +155,6 @@ const ModalBox = styled.div`
 `;
 
 const WelcomeBox = styled.div`
-  /* background-color: #777777; */
   background: url('https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/bgimg.png');
   width: 50%;
   position: relative;
