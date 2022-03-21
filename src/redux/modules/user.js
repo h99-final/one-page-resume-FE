@@ -41,7 +41,11 @@ const loginDB = (email, password) => {
           window.location.reload();
         }
       })
-      .catch((error) => alert("회원정보가 일치하지 않습니다."));
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
   };
 };
 
@@ -53,7 +57,9 @@ const SignUpDB = (email, password, passwordcheck) => {
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
-        alert("회원가입에 실패했습니다.");
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
@@ -65,7 +71,7 @@ const userInfoDB = () => {
       .then(function (res) {
         console.log(res.data.data);
         dispatch(setUser(res.data.data));
-        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -86,7 +92,9 @@ const emailCheckDB = (email) => {
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
-        alert("회원가입에 실패했습니다.");
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
@@ -96,7 +104,11 @@ const addInfoDB = (data) => {
     apis
       .addInfo(data)
       .then((res) => { })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
   };
 };
 

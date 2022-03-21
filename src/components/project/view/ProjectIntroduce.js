@@ -123,6 +123,12 @@ const ContentTitle = styled.div`
   margin-bottom: 5px;
 `;
 
+const Container = styled.div`
+  width: 100vw;
+  margin-right: 10em;
+  position: relative;
+`;
+
 const StackBox = styled.div`
   width: 35%;
   min-width: 400px;

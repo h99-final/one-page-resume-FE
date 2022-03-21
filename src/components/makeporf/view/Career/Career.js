@@ -13,7 +13,7 @@ function Career() {
   const careers = useSelector((state) => state.career.careers);
 
   useEffect(() => {
-    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));
   }, []);
 

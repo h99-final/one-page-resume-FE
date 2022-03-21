@@ -136,6 +136,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
 }
 * {
   font-family: Pretendard;

@@ -32,7 +32,7 @@ export const options = [
 ];
 
 function MainStack() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [stack, setStack] = useState(userInfo.stack);
 
   const defaultStack = [

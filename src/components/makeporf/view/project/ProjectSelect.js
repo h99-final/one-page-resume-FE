@@ -18,7 +18,7 @@ import PreviousNext from "../../shared/PreviousNext";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const project = useSelector((state) => state.myproject.projects);
   const is_loading = useSelector((state) => state.myproject.is_loading);
   // props로 건네줘서 핸들링

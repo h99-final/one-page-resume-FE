@@ -16,11 +16,10 @@ const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
-  const user = document.cookie;
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
     setModalOpen(!modalOpen);
@@ -44,7 +43,7 @@ const Header = (props) => {
     }
   };
 
-  if (!user) {
+  if (!userInfo) {
     return (
       <>
         <StyledHeader>

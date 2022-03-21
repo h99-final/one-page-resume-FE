@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 
 const Banner = () => {
   const history = useHistory();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
     <>

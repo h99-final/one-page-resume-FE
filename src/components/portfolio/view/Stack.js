@@ -4,7 +4,7 @@ import { apis } from '../../../shared/axios';
 
 const Stack = () => {
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
 
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);

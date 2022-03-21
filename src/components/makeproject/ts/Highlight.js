@@ -40,26 +40,26 @@ function Highlighted({ text = [], show }) {
     text.map((e) => {
       return e.charAt(0) === "-"
         ? _text.push(
-            <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
-              <pre>{e}</pre>
-            </tr>
-          )
+          <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
+            <pre>{e}</pre>
+          </tr>
+        )
         : e.charAt(0) === "+"
-        ? _text.push(
+          ? _text.push(
             <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
               <pre>{e}</pre>
             </tr>
           )
-        : e.charAt(0) === "@"
-        ? _text.push(
-            <>
-              <br />
-              <br />
-              <pre>{e}</pre>
-              <hr />
-            </>
-          )
-        : _text.push(<pre>{e}</pre>);
+          : e.charAt(0) === "@"
+            ? _text.push(
+              <>
+                <br />
+                <br />
+                <pre>{e}</pre>
+                <hr />
+              </>
+            )
+            : _text.push(<pre>{e}</pre>);
     });
     setValue(_text);
   }, [text]);
@@ -95,7 +95,6 @@ const InputSize = styled.div`
   align-items: center;
   padding: 5px 10px;
   resize: none;
-  border: none;
   background-color: #2c2e39;
   overflow: auto;
   overflow-x: hidden;

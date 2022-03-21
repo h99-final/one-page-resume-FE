@@ -11,7 +11,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory, useParams } from "react-router-dom";
 
 const ProjHeader = (props) => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { id } = useParams();
   // const userInfo = useSelector((state) => state.user.user);
 

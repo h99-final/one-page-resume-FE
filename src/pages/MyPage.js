@@ -26,7 +26,7 @@ const defaultprojects = {
 
 function MyPage() {
   const history = useHistory();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
   const [values, setValues] = React.useState({

@@ -26,7 +26,7 @@ function ChangeInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const onValid = (data) => {
     const stack = userInfo.stack;

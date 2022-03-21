@@ -7,7 +7,7 @@ import styled from "styled-components";
 function SideBar() {
   const history = useHistory();
   const { id } = useParams();
-  const { userId } = JSON.parse(localStorage.getItem("userInfo"));
+  const { userId } = JSON.parse(sessionStorage.getItem("userInfo"));
 
   console.log(userId)
   return (
