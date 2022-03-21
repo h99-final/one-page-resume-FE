@@ -71,7 +71,7 @@ const userInfoDB = () => {
       .then(function (res) {
         console.log(res.data.data);
         dispatch(setUser(res.data.data));
-        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
       .catch(function (error) {
         console.log(error);

@@ -9,7 +9,7 @@ import ProjHeader from "../../../shared/ProjHeader";
 const Introduce = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const [contents, setContents] = useState("");
 

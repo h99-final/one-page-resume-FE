@@ -10,7 +10,7 @@ const Pnav = (props) => {
   const user = document.cookie;
   // props.nav (false or true)
   const navState = props.pnav;
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // NavBar 설정
   const [pnav, setPnav] = useState(false);
 

@@ -23,7 +23,7 @@ const initialState = {
 
 const setCareerDB = () => {
   return async function (dispatch, getState, { history }) {
-    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     await apis
       .careerPorfGet(porfId)
       .then((res) => {

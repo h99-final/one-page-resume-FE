@@ -20,24 +20,24 @@ const theme = createTheme({
 });
 
 const CssTextField = styled(TextField, {
-  shouldForwardProp: (props) => props !== "focusColor"
+  shouldForwardProp: (props) => props !== "focuscolor"
 })((p) => ({
   // input label when focused
   "& label.Mui-focused": {
-    color: p.focusColor
+    color: p.focuscolor
   },
   // focused color for input with variant='standard'
   "& .MuiInput-underline:after": {
-    borderBottomColor: p.focusColor
+    borderBottomColor: p.focuscolor
   },
   // focused color for input with variant='filled'
   "& .MuiFilledInput-underline:after": {
-    borderBottomColor: p.focusColor
+    borderBottomColor: p.focuscolor
   },
   // focused color for input with variant='outlined'
   "& .MuiOutlinedInput-root": {
     "&.Mui-focused fieldset": {
-      borderColor: p.focusColor
+      borderColor: p.focuscolor
     }
   },
   '& .MuiInputBase-input': {
@@ -100,7 +100,7 @@ const Start = (props) => {
       <ThemeProvider theme={theme}>
         <InputBox>
           <CssTextField
-            focusColor="#00C4B4"
+            focuscolor="#00C4B4"
             onChange={inputEmail}
             variant="standard"
             required

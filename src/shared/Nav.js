@@ -29,6 +29,7 @@ const Nav = (props) => {
     deleteCookie("token");
     dispatch(userActions.logOutDB());
     console.log(getCookie("token"));
+    sessionStorage.clear()
     window.location.reload("/");
   };
 

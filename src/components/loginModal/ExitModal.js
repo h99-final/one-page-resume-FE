@@ -50,8 +50,6 @@ const ExitModal = ({ exitClose }) => {
             입력할게요
           </Btn2>
         </div>
-        {/* <Btn onClick={() => { window.location.reload('/') }}>다음에 할게요</Btn>
-        <Btn onClick={() => { exitClose(false) }}>입력할게요</Btn> */}
       </ModalBox>
     </ModalBG>
   );

@@ -4,7 +4,7 @@ import { apis } from '../../../shared/axios';
 
 const UserInfo = () => {
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
   const [user, setUser] = useState();
   const [img, setImg] = useState();
 
@@ -27,7 +27,7 @@ const UserInfo = () => {
               <img
                 width="350px"
                 alt="ㅡ"
-                src={user?.bgImage}
+                src={user?.profileImage}
               />
             </Image>
           </ImageBox>

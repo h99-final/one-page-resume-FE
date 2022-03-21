@@ -13,7 +13,7 @@ function FileUpload() {
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
     console.log(files);

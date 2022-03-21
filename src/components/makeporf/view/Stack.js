@@ -58,7 +58,7 @@ export const customStyles = {
 
 //ToDO 왜인지 모르게 API가 너무 많이감
 function Stack() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const animatedComponents = makeAnimated();
   const [stack, setStack] = useState([]);

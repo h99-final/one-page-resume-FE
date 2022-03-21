@@ -13,7 +13,7 @@ const TroubleShooting = (props) => {
   const { fileId, fileName, tsContent, tsPatchCodes } = props;
   const { id } = useParams();
   const dispatch = useDispatch();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   // const [ts, setTS] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -41,19 +41,19 @@ const TroubleShooting = (props) => {
   const NumBoxs = () =>
     ts.slice(0, 10).length <= 5
       ? Array(ts?.length)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ))
+        .fill(0)
+        .map((_e, i) => (
+          <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            {i + 1}
+          </NumberBox>
+        ))
       : Array(5)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ));
+        .fill(0)
+        .map((_e, i) => (
+          <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            {i + 1}
+          </NumberBox>
+        ));
 
   const NumBoxs2 = () =>
     Array(ts?.length - 5)

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
 const Introduce = () => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
