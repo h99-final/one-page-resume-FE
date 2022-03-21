@@ -127,4 +127,6 @@ export const apis = {
     instance.post("/project/stack?page=0", {
       stack: stack,
     }),
+
+  gitToken: (token) => instance.post('/user/git/token', { token: token }),
 };

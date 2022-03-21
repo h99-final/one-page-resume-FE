@@ -117,7 +117,7 @@ const ProjHeader = (props) => {
 
             <div onClick={handleDelete}>
               <img
-                style={{ marginRight: "25px" }}
+                style={{ marginRight: "35px" }}
                 alt=""
                 src={process.env.PUBLIC_URL + "/img/Trash.svg"}
               />
@@ -135,7 +135,7 @@ const StyledHeader = styled.div`
   background-color: #13131b;
   align-items: center;
   justify-content: space-between;
-  width: 97vw;
+  width: 100vw;
   height: 60px;
   margin-left: auto;
   margin-right: auto;
