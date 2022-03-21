@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { apis } from "../../../shared/axios";
 import { useParams } from "react-router-dom";
 import { actionCreators } from "../../../redux/modules/setProject";
+
+import { apis } from "../../../shared/axios";
 import ProjHeader from "../../../shared/ProjHeader";
 
-const Introduce = () => {
+const ProjectIntroduce = (props) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id } = props;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
-  const [contents, setContents] = useState("");
+  const [project, setProject] = useState({});
 
   useEffect(() => {
-    dispatch(actionCreators.setProjectDB(id));
+    // dispatch(actionCreators.setProjectDB(id));
+    apis
+      .projectGet(id)
+      .then((res) => {
+        setProject(res.data.data);
+      })
+      .catch((error) => {
+        window.alert(error.response.data.data.errors[0].message);
+      });
   }, []);
-
-  const project = useSelector((state) => state.setproject.project);
-  console.log(project);
 
   return (
     <>
       <SampleCard>
-        {/* <TitleBox>
-          <h1>Project</h1>
-          <h1>1 2 3 4 5</h1>
-        </TitleBox> */}
-
         <IntroBox>
           <h1>{project?.title}</h1>
           <ImgBox>
@@ -67,12 +67,6 @@ const SampleCard = styled.div`
   height: 90vh;
   margin-right: 75px;
   flex-shrink: 0;
-`;
-
-const Container = styled.div`
-  width: 100vw;
-  margin-right: 10em;
-  position: relative;
 `;
 
 const ContentBox = styled.div`
@@ -183,4 +177,4 @@ const ImgBox = styled.div`
   }
 `;
 
-export default Introduce;
+export default ProjectIntroduce;

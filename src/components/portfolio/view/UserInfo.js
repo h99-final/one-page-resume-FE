@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import { apis } from '../../../shared/axios';
+import styled from "styled-components";
+import { apis } from "../../../shared/axios";
 
 const UserInfo = () => {
-
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [user, setUser] = useState();
   const [img, setImg] = useState();
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId)
-      .then((res) => {
-        setUser(res.data.data)
-
-      });
+    apis.introPorfGet(userInfo.porfId).then((res) => {
+      setUser(res.data.data);
+    });
   }, []);
 
-  console.log(user)
+  console.log(user);
 
   return (
     <>
@@ -24,11 +21,7 @@ const UserInfo = () => {
         <UserInfoBox>
           <ImageBox>
             <Image>
-              <img
-                width="350px"
-                alt="ㅡ"
-                src={user?.bgImage}
-              />
+              <img width="350px" alt="ㅡ" src={user?.profileImage} />
             </Image>
           </ImageBox>
           <InfoBox>
@@ -38,36 +31,46 @@ const UserInfo = () => {
             <h3>
               <img
                 style={{ marginRight: "10px" }}
-                width="20" alt="" src={process.env.PUBLIC_URL + "/img/Vector.svg"} />
+                width="20"
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/Vector.svg"}
+              />
               {user?.phoneNum ? user.phoneNum : "ㅡ"}
             </h3>
             <h3>
               <img
                 style={{ marginRight: "10px" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/Mail.svg"} />
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/Mail.svg"}
+              />
               {user?.email ? user?.email : "ㅡ"}
             </h3>
             <h4>
               <img
                 style={{ marginRight: "10px" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/link.svg"} />
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/link.svg"}
+              />
               <a href={user?.githubUrl} target="_blank">
                 {user?.githubUrl}
-              </a></h4>
+              </a>
+            </h4>
             <h4>
-
               <img
                 style={{ marginRight: "10px" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/link.svg"} />
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/link.svg"}
+              />
               <a href={user?.blogUrl} target="_blank">
                 {user?.blogUrl}
-              </a></h4>
+              </a>
+            </h4>
           </InfoBox>
         </UserInfoBox>
       </Container>
     </>
   );
-}
+};
 
 const Container = styled.div`
   width: 100%;
@@ -108,12 +111,11 @@ const ImageBox = styled.div`
 `;
 
 const JustBox = styled.div`
-width: 15%;
-max-width: 1200px;
-height: 350px;
-position: relative;
+  width: 15%;
+  max-width: 1200px;
+  height: 350px;
+  position: relative;
 `;
-
 
 const InfoBox = styled.div`
   width: 48%;
@@ -123,7 +125,7 @@ const InfoBox = styled.div`
   margin-left: 120px;
   position: relative;
   text-align: left;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -133,7 +135,7 @@ const InfoBox = styled.div`
     margin-top: 10px;
     margin-bottom: 20px;
   }
-  h2{
+  h2 {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -141,12 +143,12 @@ const InfoBox = styled.div`
     letter-spacing: -0.01em;
     color: #ffffff;
   }
-  p{
+  p {
     margin: 25px 0px 25px 0px;
     width: 16px;
     border: 1px solid #ffffff;
   }
-  h3{
+  h3 {
     font-style: normal;
     font-weight: 400;
     height: fit-content;
@@ -157,10 +159,10 @@ const InfoBox = styled.div`
     display: flex;
     align-items: center;
   }
-  img{
+  img {
     margin-right: 5px;
-    }
-  h4{
+  }
+  h4 {
     width: fit-content;
     min-width: fit-content;
     height: fit-content;
@@ -171,17 +173,17 @@ const InfoBox = styled.div`
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    a{
+    a {
       font-weight: 400;
       font-style: normal;
       font-size: 16px;
       line-height: 19px;
       text-decoration: none;
-      :visited{
-        color:#555555;
+      :visited {
+        color: #555555;
       }
-      :link{
-        color:#555555;
+      :link {
+        color: #555555;
       }
     }
   }

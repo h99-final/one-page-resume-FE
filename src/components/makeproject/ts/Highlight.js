@@ -86,7 +86,7 @@ const Table = styled.table`
 `;
 
 const InputSize = styled.div`
-  height: ${(props) => (props.show ? "100%" : "400px")};
+  height: ${(props) => (props.show ? "98%" : "400px")};
 
   /* max-width: 60vw; */
   min-width: ${(props) => (props.show ? "70vw" : "60vw")};
@@ -116,14 +116,15 @@ const Tbody = styled.tbody`
   display: flex;
   flex-direction: column;
   tr {
-    align-items: center;
-    padding: 15px;
+    /* align-items: center; */
     text-align: left;
     color: #ffffff;
+    letter-spacing: 0.1em;
     word-wrap: break-word;
     pre {
+      /* padding: 3px; */
       text-decoration-color: #ffffff;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.1em;
       word-wrap: break-word;
     }
   }

@@ -9,100 +9,63 @@ import ProjHeader from "../../../shared/ProjHeader";
 import { Title } from "../../../pages/MyPage";
 import Highlighted from "../../makeproject/ts/Highlight";
 
-const TroubleShooting = (props) => {
-  const { fileId, fileName, tsContent, tsPatchCodes } = props;
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+const TroubleShootingView = (props) => {
+  const { commitId, commitMsg, sha, tsFiles, tsName } = props;
 
-  // const [ts, setTS] = useState([]);
-  const [selected, setSelected] = useState(0);
-
-  const handleNumClick = (e) => {
-    setSelected(e.target.id);
-  };
-  const troubleShootings = useSelector(
-    (state) => state.setproject.project.troubleShootings
-  );
-  const ts = useSelector((state) => state.setproject.troubleShootings);
-  const is_loading = useSelector((state) => state.setproject.is_loading);
-  console.log(troubleShootings, ts);
-
-  function filter() {
-    if (troubleShootings) {
-      let _troubleShooting = troubleShootings.filter((e) =>
-        e.tsFiles.map((ts) => (ts.fileId === fileId ? true : false))
-      );
-      return _troubleShooting;
-    }
-  }
-
-  console.log(troubleShootings);
   const NumBoxs = () =>
-    ts.slice(0, 10).length <= 5
-      ? Array(ts?.length)
+    tsFiles.slice(0, 10).length <= 5
+      ? Array(tsFiles?.length)
           .fill(0)
           .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            <NumberBox id={i} key={`sampleCard-${i}`}>
               {i + 1}
             </NumberBox>
           ))
       : Array(5)
           .fill(0)
           .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            <NumberBox id={i} key={`sampleCard-${i}`}>
               {i + 1}
             </NumberBox>
           ));
 
   const NumBoxs2 = () =>
-    Array(ts?.length - 5)
+    Array(tsFiles?.length - 5)
       .fill(0)
       .map((_e, i) => (
-        <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+        <NumberBox id={i} key={`sampleCard-${i}`}>
           {i + 6}
         </NumberBox>
       ));
 
   return (
     <>
-      {is_loading ? (
-        <>로딩중</>
-      ) : (
-        <SampleCard>
-          <LeftBox>
-            <LeftTopBox style={{ marginBottom: "24px" }}>
-              <Num>
-                {ts?.length > 6 ? (
-                  <>
-                    <div style={{ display: "flex" }}>
-                      <NumBoxs />
-                    </div>
-                    <div style={{ display: "flex" }}>
-                      <NumBoxs2 />
-                    </div>
-                  </>
-                ) : (
+      <SampleCard>
+        <LeftBox>
+          <LeftTopBox style={{ marginBottom: "24px" }}>
+            <Num>
+              {tsFiles?.length > 6 ? (
+                <>
                   <div style={{ display: "flex" }}>
                     <NumBoxs />
                   </div>
-                )}
-              </Num>
-              {filter() && (
-                <>
-                  <Font>{filter()[0]?.commitMsg}</Font>
-                  <Font>{filter()[0]?.tsName}</Font>
+                  <div style={{ display: "flex" }}>
+                    <NumBoxs2 />
+                  </div>
                 </>
+              ) : (
+                <div style={{ display: "flex" }}>
+                  <NumBoxs />
+                </div>
               )}
-            </LeftTopBox>
-            <LeftBottomBox>{tsContent}</LeftBottomBox>
-          </LeftBox>
-          <RightBox>
-            <Highlighted show text={tsPatchCodes} />
-          </RightBox>
-        </SampleCard>
-      )}
-      )
+            </Num>
+            <Font>{commitMsg}</Font>
+            <Font>{tsName}</Font>
+          </LeftTopBox>
+          {/* <LeftBottomBox>{tsContent}</LeftBottomBox> */}
+        </LeftBox>
+        <RightBox>{/* <Highlighted show text={tsPatchCodes} /> */}</RightBox>
+      </SampleCard>
     </>
   );
 };
@@ -111,8 +74,9 @@ const Num = styled.div``;
 
 const SampleCard = styled.div`
   position: relative;
-  width: 1440px;
   height: 80vh;
+  width: 1440px;
+
   margin-right: 75px;
   flex-shrink: 0;
   display: flex;
@@ -243,4 +207,4 @@ const Right = styled.div`
   border: 1px solid;
 `;
 
-export default TroubleShooting;
+export default TroubleShootingView;

@@ -50,13 +50,21 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/`) }}
+              onClick={() => {
+                history.push(`/`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => {
+                history.push(`/portfolio/${userInfo.porfId}`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -91,13 +99,21 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/`) }}
+              onClick={() => {
+                history.push(`/`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => {
+                history.push(`/portfolio/${userInfo.porfId}`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -142,15 +158,15 @@ const Header = (props) => {
               onClick={() => {
                 navBtn();
               }}
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38 }}
             />
             <Nav
               nav={nav}
-              name={userInfo.name}
-              email={userInfo.email}
-              userId={userInfo.userId}
+              name={userInfo?.name}
+              email={userInfo?.email}
+              userId={userInfo?.userId}
             />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
@@ -231,7 +247,7 @@ const SharedBtn = styled.button`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   width: 130px;
   height: 40px;
   color: white;

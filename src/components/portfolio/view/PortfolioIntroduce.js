@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
-const Introduce = () => {
+const PortfolioIntroduce = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
@@ -76,4 +76,4 @@ const Hr = styled.hr`
   width: 96%;
   margin: 0px auto;
 `;
-export default Introduce;
+export default PortfolioIntroduce;

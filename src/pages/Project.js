@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import HorizontalScroll from "../components/project/view/horizontalScroll";
-import Introduce from "../components/project/view/Introduce";
-import TroubleShooting from "../components/project/view/TroubleShooting";
 import { actionCreators } from "../redux/modules/setProject";
+
 import ProjHeader from "../shared/ProjHeader";
+import Introduce from "../components/project/view/ProjectIntroduce";
+import TroubleShooting from "../components/project/view/TroubleShooting";
 
 const Project = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Project = () => {
         <HorizontalScroll>
           <CardsContainer>
             <IntroduceContainer>
-              <Introduce />
+              <Introduce id={id} />
             </IntroduceContainer>
             {ts?.map((e, i) => {
               return (
@@ -55,22 +56,23 @@ const CardsContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  overflow-x: hidden;
 `;
-const IntroduceContainer = styled.div`
+export const IntroduceContainer = styled.div`
   position: relative;
   height: 80vh;
-  width: 100vw;
+  width: 95vw;
   /* background-color: #111f30; */
-  margin-right: 25em;
+  margin-right: 5em;
   flex-shrink: 0;
 `;
 
-const TroubleShootingContainer = styled.div`
+export const TroubleShootingContainer = styled.div`
   position: relative;
   height: 80vh;
-  width: 100vw;
+  width: 95vw;
   /* background-color: #111f30; */
-  margin-right: 25em;
+  margin-right: 5em;
   flex-shrink: 0;
 `;
 
