@@ -3,7 +3,7 @@ import axios from "axios";
 const tokencheck = document.cookie;
 const token = tokencheck.split(";")[1];
 
-const search = localStorage.getItem("search");
+const search = sessionStorage.getItem("search");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
@@ -62,7 +62,6 @@ export const apis = {
 
   addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
-  putInfo: (data) => instance.put("user/info", data),
   putStack: (data) => instance.put("user/stack", data),
 
   introPorf: (data) => instance.put("porf/intro", data),
@@ -94,6 +93,7 @@ export const apis = {
     instance.put(`/project/${projectId}`, data),
   modifyPictureProject: (frmData, projectId) =>
     formInstance.post(`/project/${projectId}/image`, frmData),
+  deleteProject: (projectId) => instance.delete(`/project/${projectId}`),
 
   createTroubleShooting: (projectId, data) =>
     instance.post(`/project/${projectId}/troubleShooting`, data),
@@ -103,6 +103,8 @@ export const apis = {
     instance.delete(
       `/project/${projectId}/troubleShooting/${commitId}/file/${fileId}`
     ),
+  updateTroubleShooting: (projectId, commitId, data) =>
+    instance.put(`/project/${projectId}/troubleShooting/${commitId}`, data),
 
   projectGet: (projectId) => instance.get(`/project/${projectId}`),
   projectTSGet: (projectId) =>

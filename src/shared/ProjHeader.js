@@ -8,16 +8,28 @@ import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const ProjHeader = (props) => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const { id } = useParams();
   // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
-  const user = document.cookie;
   const project = useSelector((state) => state.setproject.project);
-  console.log(project);
+
+  const handleDelete = () => {
+    apis
+      .deleteProject(id)
+      .then((res) => {
+        console.log(res.data.data);
+        history.push(`/project`);
+      })
+      .catch((errors) => {
+        console.log(errors);
+        history.push(`/mypage`);
+      });
+  };
 
   if (!project.isMyProject) {
     return (
@@ -27,7 +39,7 @@ const ProjHeader = (props) => {
             <Avatar
               alt={userInfo.name}
               src={userInfo.profileImage}
-              sx={{ width: 38, height: 38 }}
+              sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
@@ -55,7 +67,7 @@ const ProjHeader = (props) => {
             />
 
             <img
-              style={{ marginRight: "0px" }}
+              style={{ marginRight: "25px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
             />
@@ -74,7 +86,7 @@ const ProjHeader = (props) => {
               }}
               alt={userInfo.name}
               src={userInfo.profileImage}
-              sx={{ width: 38, height: 38 }}
+              sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
@@ -95,17 +107,21 @@ const ProjHeader = (props) => {
               GitHub
             </SharedBtn>
 
-            <img
-              style={{ marginRight: "16px" }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/pencil.svg"}
-            />
+            <div onClick={() => history.push(`/write/project/info/${id}`)}>
+              <img
+                style={{ marginRight: "16px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/pencil.svg"}
+              />
+            </div>
 
-            <img
-              style={{ marginRight: "0px" }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/Trash.svg"}
-            />
+            <div onClick={handleDelete}>
+              <img
+                style={{ marginRight: "25px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/Trash.svg"}
+              />
+            </div>
           </RightMenu>
         </StyledHeader>
       </>
@@ -116,15 +132,13 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background-color: #13131B;
+  background-color: #13131b;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 97vw;
   height: 60px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
   position: fixed;
   display: flex;
   top: 0;
@@ -156,7 +170,7 @@ const SharedBtn = styled.button`
   display: flex;
   padding: 10px 20px;
   text-align: center;
-  color: white;
+  color: #ffffff;
   border-radius: 24px;
   font-size: 17px;
   border: none;

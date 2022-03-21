@@ -220,7 +220,7 @@ function CareerShow(props) {
             </Label>
             <InputCustom
               type="text"
-              style={{ border: "none", background: "white" }}
+              style={{ border: "none" }}
               defaultValue={title}
             />
           </Content>
@@ -230,7 +230,7 @@ function CareerShow(props) {
             </Label>
             <InputCustom
               type="text"
-              style={{ border: "none", background: "white" }}
+              style={{ border: "none" }}
               defaultValue={subTitle}
             />
           </Content>
@@ -240,7 +240,7 @@ function CareerShow(props) {
             </Label>
             <InputCustomCareer
               type="text"
-              style={{ border: "none", background: "white" }}
+              style={{ border: "none" }}
               defaultValue={contents?.join("\n")}
             />
           </MultiContent>
@@ -253,7 +253,6 @@ function CareerShow(props) {
               type="text"
               style={{
                 border: "none",
-                background: "white",
                 marginRight: "10px",
               }}
               defaultValue={startTime?.slice(0, 7)}
@@ -265,7 +264,6 @@ function CareerShow(props) {
               type="text"
               style={{
                 border: "none",
-                background: "white",
                 marginLeft: "10px",
               }}
               defaultValue={endTime?.slice(0, 7)}

@@ -4,17 +4,14 @@ export const FormText = styled.div`
   width: 150px;
   height: 24px;
   left: 0px;
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height */
-
   letter-spacing: -0.01em;
+  color: #ffffff;
 
-  color: #000000;
 `;
 
 export const ButtonBucket = styled.div`
@@ -58,8 +55,8 @@ export const InputCustom = styled.textarea`
   padding: 15px 15px;
   resize: none;
   border: none;
-  background-color: white;
-
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -116,10 +113,9 @@ export const ButtonText = styled(FormText)`
 `;
 
 export const AddButton = styled.div`
-  border: 1px solid;
   width: 350px;
   height: 80px;
-  background: #ffffff;
+  background: #696B7B;
   border-radius: 50px;
 `;
 
@@ -160,4 +156,16 @@ export const ErrorMessage = styled.span`
   padding: 15px 0px;
   width: 94%;
   height: 10px;
+`;
+
+export const Font = styled.div`
+  /* body1 */
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+  color: white;
+  margin: 10px;
 `;

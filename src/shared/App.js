@@ -16,6 +16,9 @@ import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 
+import horizontalScroll from "../components/project/view/horizontalScroll";
+import HorizontalScroll from "../components/project/view/horizontalScroll";
+
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
@@ -68,7 +71,7 @@ function App() {
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
 
         <Route exact path="/project" component={ProjList} />
-        <Route exact path="/project/:id" component={Project} />
+        <Route exact path="/project/:id" component={Project}></Route>
 
         <PrivateRoute
           path="/write/project/:id/:projectId"
@@ -101,7 +104,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, input {
 
 	margin: 0;
 	padding: 0;
@@ -117,7 +120,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  /* background-color: #1F2029; */
+  background-color: #1F2029;
 }
 ol, ul {
 	list-style: none;
@@ -133,6 +136,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
 }
 * {
   font-family: Pretendard;
@@ -142,6 +148,10 @@ table {
   line-height: 19px;
   letter-spacing: -0.01em;
 }
+input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
 `;
 
 export default App;

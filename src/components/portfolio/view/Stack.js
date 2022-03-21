@@ -4,7 +4,7 @@ import { apis } from '../../../shared/axios';
 
 const Stack = () => {
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
 
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
@@ -70,7 +70,7 @@ const Container = styled.div`
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: white;
+  background-color: #1F2029;
   height: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -79,7 +79,7 @@ const SubStack = styled.button`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  color: #333333;
+  color: #ffffff;
   margin-right: 15px;
   margin-bottom: 10px;
   span {
@@ -87,13 +87,13 @@ const SubStack = styled.button`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    color: #333333;
+    color: #ffffff;
     position: relative;
   }
 `;
 
 const MainStack = styled.button`
-  background-color: white;
+  background-color: #1F2029;
   width: 120px;
   height: 50px;
   border: 1px solid #999999;
@@ -116,6 +116,7 @@ const MainStack = styled.button`
   span {
     font-size: 20px;
     position: relative;
+    color: #ffffff;
   }
 `;
 
@@ -137,7 +138,7 @@ const Main = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
     margin-right: 190px;
   }
 `;
@@ -153,7 +154,7 @@ const Sub = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
     margin-right: 190px;
   }
 `;
@@ -170,7 +171,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 

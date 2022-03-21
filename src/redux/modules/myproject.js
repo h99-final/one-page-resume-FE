@@ -30,7 +30,7 @@ const initialState = {
 
 const setProjectDB = () => {
   return function (dispatch, getState) {
-    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     apis
       .projectPorfGet()
       .then((res) => {
@@ -41,11 +41,15 @@ const setProjectDB = () => {
             dispatch(selectProject(res.data.data));
           })
           .catch((error) => {
-            console.log(error);
+            if (error.response) {
+              alert(error.response.data.data.errors[0].message);
+            }
           });
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };

@@ -25,7 +25,7 @@ const ExitModal = ({ exitClose }) => {
   console.log(email);
 
   return (
-    <>
+    <ModalBG>
       <ModalBox>
         <TextContainer>
           <h1>정말 나가시겠어요?</h1>
@@ -50,15 +50,22 @@ const ExitModal = ({ exitClose }) => {
             입력할게요
           </Btn2>
         </div>
-        {/* <Btn onClick={() => { window.location.reload('/') }}>다음에 할게요</Btn>
-        <Btn onClick={() => { exitClose(false) }}>입력할게요</Btn> */}
       </ModalBox>
-    </>
+    </ModalBG>
   );
 };
 
 export default ExitModal;
 
+const ModalBG = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+`;
 const ModalBox = styled.div`
   border-radius: 10px;
   display: flex;
@@ -70,7 +77,7 @@ const ModalBox = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  background-color: #333333;
+  background-color: #2C2E39;
   color: white;
 `;
 
@@ -86,7 +93,7 @@ const Btn = styled.button`
   padding: 12.5px 20px;
   border: none;
   color: white;
-  background-color: #555555;
+  background-color: #424453;
 `;
 const Btn2 = styled.button`
   cursor: pointer;
@@ -101,32 +108,25 @@ const Btn2 = styled.button`
   border-radius: 30px;
   border: none;
   color: white;
-  background-color: #999999;
-`;
-const UserBox = styled.div`
-  border-radius: 10px;
-  padding: 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 22vh;
+  background-color: #00C4B4;
 `;
 
 const TextContainer = styled.div`
   width: 408px;
-  height: 126px;
+  height: 100px;
   margin: 40px 135px 0px 135px;
   h1 {
     text-align: center;
     font-size: 36px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
   }
   p {
     text-align: center;
     font-size: 16px;
     font-weight: normal;
+    color:#CFD3E2;
+    line-height: 24px;
+    font-weight: 400;
   }
 `;

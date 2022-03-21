@@ -155,6 +155,7 @@ function MakeProject() {
               </Font>
             </Label>
             <InputCustom
+              placeholder='프로젝트의 제목을 입력해주세요.'
               type="text"
               {...register("projectTitle", { required: "필수 항목 입니다." })}
             ></InputCustom>
@@ -167,6 +168,7 @@ function MakeProject() {
               </Font>
             </Label>
             <InputCustom
+              placeholder='프로젝트에서 설명할 Github repository의 URL을 입력해주세요.'
               type="text"
               {...register("gitRepoUrl", { required: "필수 항목 입니다." })}
             />
@@ -220,6 +222,7 @@ function MakeProject() {
               </Font>
             </Label>
             <InputCustom
+              placeholder='프로젝트의 주제, 개발 목적, 계획 등 프로젝트에 대한 설명을 다양하게 작성해주세요.'
               style={{ height: "174px" }}
               type="text"
               ref={content}
@@ -243,12 +246,17 @@ function MakeProject() {
 }
 
 export const FormSubText = styled.p`
-  font-size: 12px;
-  margin-left: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #CFD3E2;
 `;
 
 export const FormMainText = styled(FormText)`
   padding: 10px 0;
+  color: #ffffff;
 `;
 
 export const MultiContentFlex = styled(MultiContent)`

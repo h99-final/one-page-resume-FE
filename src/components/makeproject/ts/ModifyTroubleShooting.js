@@ -1,21 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { actionCreators } from "../../../redux/modules/patchcode";
-import { apis } from "../../../shared/axios";
 import {
   Content,
+  ErrorMessage,
+  FormText,
+  FormTitle,
   InputCustom,
   Label,
 } from "../../makeporf/shared/_sharedStyle";
-import { Font } from "../../makeporf/view/Introduce";
+import { Font, FormContents } from "../../makeporf/view/Introduce";
+import { FormMainText, FormSubText } from "../MakeProject";
+import TemplateProject from "../shared/TemplateProject";
 import Highlighted from "./Highlight";
-import ModifyTroubleShooting from "./ModifyTroubleShooting";
+import { IconBox } from "./ShowTroubleShooting";
+import { actionCreators as tsFileActions } from "../../../redux/modules/patchcode";
 
-function ShowTroubleShooting(props) {
-  const { handleSubmit } = useForm();
+function ModifyTroubleShooting(props) {
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
+  const { id, projectId } = useParams();
+
   const {
     fileId,
     commit,
@@ -26,60 +37,74 @@ function ShowTroubleShooting(props) {
     tsName,
     commitMsg,
     commitId,
+    setModify,
+    handleModify,
+    sha,
   } = props;
 
-  const { projectId } = useParams();
-  const dispatch = useDispatch();
+  console.log(props);
 
-  const [modify, setModify] = useState(false);
+  const tsFile = useSelector((state) => state.patchcode.tsFile);
+
+  console.log(commit);
 
   const handleDelete = () => {
-    dispatch(actionCreators.deleteTsDB(projectId, commitId));
+    dispatch(tsFileActions.deleteTsDB(projectId, commitId));
   };
 
-  const handleFileDelete = (e) => {
-    dispatch(
-      actionCreators.deleteTsFileDB(projectId, commitId, e.currentTarget.id)
-    );
-  };
-
-  const handleModify = (e) => {
-    if (modify === false) {
-      setModify(true);
-    } else {
-      setModify(false);
+  const onValid = (data) => {
+    // commitId state 에 추가
+    let _data = {
+      commitMessage: commitMsg,
+      sha: sha,
+      tsName: data.tsName,
+    };
+    let __data = [];
+    for (let i = 0; i < tsFiles.length; i++) {
+      let key = "tsContent";
+      let cur_key = key + String(i);
+      let { tsContent, tsPatchCodes, ...obj } = tsFiles[i];
+      let _tsFiles = {
+        tsContent: data[cur_key],
+        patchCode: tsPatchCodes,
+        ...obj,
+      };
+      console.log(_tsFiles);
+      __data.push(_tsFiles);
     }
+    _data = { tsFile: __data, ..._data };
+    dispatch(tsFileActions.updateTsDB(projectId, commitId, _data));
+    handleModify();
   };
 
-  useEffect(() => { }, [commitId]);
+  useEffect(() => {
+    setValue("tsName", tsName);
+    for (let i = 0; i < tsFiles.length; i++) {
+      setValue(`tsContent${i}`, tsFiles[i].tsContent);
+    }
+  }, []);
 
   return (
     <>
-      {modify ? (
-        <ModifyTroubleShooting
-          {...props}
-          setModify={setModify}
-          handleModify={handleModify}
-        />
-      ) : (
-        <>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginLeft: "auto",
-              marginRight: "50px",
-              width: "100px",
-            }}
-          >
-            <IconBox id={commitId} onClick={handleModify}>
-              <img alt="" src={process.env.PUBLIC_URL + "/img/pencil.svg"} />
-            </IconBox>
-            <IconBox onClick={handleDelete}>
-              <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
-            </IconBox>
-          </div>
+      <>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginLeft: "auto",
+            marginRight: "50px",
+            width: "100px",
+          }}
+        >
+          <IconBox id={commitId} onClick={handleSubmit(onValid)}>
+            <img alt="" src={process.env.PUBLIC_URL + "/img/pencil.svg"} />
+          </IconBox>
+          <IconBox onClick={handleDelete}>
+            <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+          </IconBox>
+        </div>
+        <form>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
               <Font>트러블 슈팅 제목</Font>
@@ -87,9 +112,9 @@ function ShowTroubleShooting(props) {
             <InputCustom
               style={{ overflow: "hidden" }}
               type="text"
-              value={tsName}
+              defaultValue={tsName}
+              {...register("tsName", { required: true })}
               maxLength={50}
-              readOnly
             />
           </Content>
           <Content style={{ marginBottom: "30px" }}>
@@ -105,12 +130,12 @@ function ShowTroubleShooting(props) {
               readOnly
             />
           </Content>
-          {tsFiles?.map((ts) => {
+          {tsFiles?.map((ts, i) => {
             return (
               <div>
                 {/* <IconBox id={ts.fileId} onClick={handleFileDelete}>
-          <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
-        </IconBox> */}
+    <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+  </IconBox> */}
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
                     <Font>File Name</Font>
@@ -120,7 +145,6 @@ function ShowTroubleShooting(props) {
                     type="text"
                     defaultValue={ts.fileName}
                     maxLength={50}
-                    readOnly
                   />
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
@@ -147,32 +171,18 @@ function ShowTroubleShooting(props) {
                     style={{ overflow: "hidden", height: "20vh" }}
                     type="text"
                     maxLength={500}
-                    value={ts.tsContent}
-                    readOnly
+                    {...register(`tsContent${i}`)}
+                    defaultValue={ts.tsContent}
                   />
                 </Content>
               </div>
             );
           })}
-        </>
-      )}
-
+        </form>
+      </>
       <hr style={{ margin: "50px" }} />
     </>
   );
 }
 
-export const IconBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #393a47;
-  border-radius: 5px;
-  /* margin-left: auto; */
-  /* margin-right: 50px; */
-  margin-bottom: 10px;
-  width: 40px;
-  height: 40px;
-`;
-
-export default ShowTroubleShooting;
+export default ModifyTroubleShooting;

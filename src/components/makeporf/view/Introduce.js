@@ -57,7 +57,7 @@ function Introduce() {
                   type="text"
                   {...field}
                   // defaultValue={data?.title}
-                  placeholder={errors?.title?.message}
+                  placeholder="유저님을 가장 잘 표현할 수 있는 포트폴리오 제목을 만들어 보세요. 나만의 명함의 소개글이 됩니다."
                   maxLength={50}
                   errors={!!errors.title}
                 />
@@ -94,6 +94,7 @@ function Introduce() {
                   }}
                   {...field}
                   // defaultValue={data?.contents}
+                  placeholder="포트폴리오에서 어떤 매력을 보여주실 건가요? 유저님의 개발 가치관, 개발에 대한 관심도, 장점 등을 작성해 보세요."
                   errors={!!errors.contents}
                 />
               )}
@@ -130,17 +131,13 @@ const FormText = styled.div`
   width: 125px;
   height: 24px;
   left: 0px;
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height */
-
   letter-spacing: -0.01em;
-
-  color: #000000;
+  color: white;
 `;
 
 export const FormContents = styled.div`
@@ -174,7 +171,6 @@ export const Label = styled.div`
 `;
 
 export const Font = styled.div`
-  /* body1 */
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
@@ -184,11 +180,8 @@ export const Font = styled.div`
 
   /* C1 */
 
-  color: #333333;
-
+  color: #ffffff;
   margin: 10px;
-
-  /* Inside auto layout */
 `;
 
 export default Introduce;

@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 
 const Banner = () => {
   const history = useHistory();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
     <>
@@ -79,7 +79,8 @@ const Banner = () => {
               개발자를 위한 서비스
             </h1>
             <h2>
-              Portfolio는 내가 보여주고 싶은 프로젝트, 코드, 트러블 슈팅을 한눈에 효과적으로 보여주는 유일한 이력서입니다.
+              Portfolio는 내가 보여주고 싶은 프로젝트, 코드, 트러블 슈팅을
+              한눈에 효과적으로 보여주는 유일한 이력서입니다.
             </h2>
           </TextBox>
           <BtnBox>
@@ -120,7 +121,7 @@ const Banner = () => {
         <SwiperSlide>
           <TextBox>
             <h1>
-              POUG와 함께라면,
+              P()UG와 함께라면,
               <br />
               개발자 취업, 너도 할 수 있어.
             </h1>

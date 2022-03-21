@@ -16,11 +16,10 @@ const Header = (props) => {
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // const userInfo = useSelector((state) => state.user.user);
 
   const history = useHistory();
-  const user = document.cookie;
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
     setModalOpen(!modalOpen);
@@ -44,13 +43,13 @@ const Header = (props) => {
     }
   };
 
-  if (!user) {
+  if (!userInfo) {
     return (
       <>
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => { history.push(`/`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
             <img
@@ -91,7 +90,7 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => { history.push(`/`) }}
               style={{ marginRight: "5px" }}
               alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
             <img
@@ -142,15 +141,15 @@ const Header = (props) => {
               onClick={() => {
                 navBtn();
               }}
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38 }}
             />
             <Nav
               nav={nav}
-              name={userInfo.name}
-              email={userInfo.email}
-              userId={userInfo.userId}
+              name={userInfo?.name}
+              email={userInfo?.email}
+              userId={userInfo?.userId}
             />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>

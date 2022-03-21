@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
 const Introduce = () => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
@@ -55,7 +55,7 @@ const TitleBox = styled.div`
     font-size: 56px;
     line-height: 80px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 
@@ -68,7 +68,7 @@ const ContentBox = styled.div`
     font-size: 20px;
     line-height: 32px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 

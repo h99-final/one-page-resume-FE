@@ -30,11 +30,11 @@ function PreviousNextProject(props) {
   };
 
   return (
-    <>
+    <BottomNav>
       <ButtonBucket>
         {page === 1 ? (
           <Previous onClick={handlePreviousClick}>
-            <span>{`< 이전`}</span>
+            <span>이전으로</span>
           </Previous>
         ) : null}
         {page === 1 ? (
@@ -43,14 +43,27 @@ function PreviousNextProject(props) {
           </Next>
         ) : (
           <Next onClick={handleNextClick}>
-            <span>{`다음 >`}</span>
+            <span>다음으로</span>
           </Next>
         )}
       </ButtonBucket>
-    </>
+    </BottomNav>
   );
 }
-
+const BottomNav = styled.div`
+  display: fixed;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  justify-content: ${(props) =>
+    props.id === "info" ? "flex-end" : "space-between"};
+  left: 0;
+  width: 100%;
+  height: 70px;
+  margin-top: 50px;
+  bottom: 0px;
+  background: #393A47;
+`;
 const Next = styled.div`
   float: right;
   display: flex;
@@ -59,7 +72,8 @@ const Next = styled.div`
   align-items: center;
   height: 62px;
   width: 115px;
-  background: #333333;
+  padding: 0px 10px;
+  background: #00C4B4;
   border-radius: 43px;
   & > span {
     font-family: Pretendard;
@@ -76,10 +90,10 @@ const Previous = styled(Next)`
 `;
 
 const ButtonBucket = styled.div`
-  margin-top: 50px;
   position: block;
   height: 60px;
-  width: 100%;
+  width: 98%;
+  margin: 0px auto;
 `;
 
 export default PreviousNextProject;

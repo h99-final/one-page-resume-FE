@@ -13,9 +13,9 @@ import {
   FormTitle,
   InputCustom,
   Label,
+  Font
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
-import { Font } from "../makeporf/view/Introduce";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -32,7 +32,7 @@ export const options = [
 ];
 
 function MainStack() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [stack, setStack] = useState(userInfo.stack);
 
   const defaultStack = [
@@ -90,7 +90,7 @@ function MainStack() {
         <FormText>기술 스택</FormText>
       </FormTitle>
       <Font
-        style={{ color: "inherit", textAlign: "left", marginLeft: "205px" }}
+        style={{ color: "#CFD3E2", textAlign: "left", marginLeft: "205px" }}
       >
         나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
         대표하는 명함에 들어가게 됩니다.
@@ -144,32 +144,19 @@ export const StackBox = styled.div`
   margin: 10px 0px;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #cccccc;
-  background-color: white;
+  border: 1px solid #2C2E39;
+  background-color: #2C2E39;
 `;
 
-export const SelectStack = styled.button`
-  margin: 15px 15px;
-  padding: 10px;
-  width: 145px;
-  height: 40px;
-  font-size: 17px;
-  border: 1px solid #cccccc;
-  border-radius: 100px;
-  text-align: center;
-`;
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0px 50px 0px 50px;
 `;
-const Wrap = styled.div`
-  padding-bottom: 20px;
-`;
 const Button = styled.button`
   width: 150px;
   height: 60px;
-  background-color: #333333;
+  background-color: #00C4B4;
   color: white;
   border-radius: 43px;
   border: none;
@@ -178,10 +165,11 @@ const Button = styled.button`
 `;
 const StyledBox = styled.button`
   border: none;
-  background-color: white;
+  background-color: #2C2E39;
   padding: 10px 15px 10px 15px;
   margin-top: 5px;
   border-radius: 10px;
+  color: white;
   img {
     border-radius: 5px;
     background-color: gray;
@@ -206,7 +194,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #cccccc;
+    background-color: #393A47;
+    border: 2px solid #393A47;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -215,8 +204,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #333333;
-    border: 2px solid #333333;
+    background-color: #00C4B4;
+    border: 2px solid #00C4B4;
     cursor: pointer;
   }
 `;

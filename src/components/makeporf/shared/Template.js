@@ -54,8 +54,16 @@ function Template() {
           </Button>
         </TemplateSelector>
         <div>
-          <Save>
-            <FormTextWhite onClick={() => history.push(`/portfolio/${porfId}`)}>
+          <Save
+            style={{
+              marginRight: "20px",
+              background: "#00C4B4",
+            }}
+          >
+            <FormTextWhite
+              style={{ color: "white" }}
+              onClick={() => history.push(`/portfolio/${porfId}`)}
+            >
               작성 완료
             </FormTextWhite>
           </Save>
@@ -75,7 +83,7 @@ const Save = styled(Next)`
   width: 125px;
   height: 42px;
   padding: 5px 10px;
-  background-color: #cccccc;
+  background-color: white;
   display: flex;
   justify-content: center !important;
   align-items: center;
@@ -102,16 +110,16 @@ const BottomNav = styled.div`
   left: 0;
   width: 100%;
   min-width: 768px;
-  height: 70px;
+  height: 80px;
   margin-top: 50px;
   bottom: 0px;
-  background: #999999;
+  background: #2c2e39;
   padding: 0px 5px;
 `;
 
 const FormTextWhite = styled(FormText)`
   cursor: pointer;
-  color: #ffffff;
+  color: black;
   width: auto !important;
 `;
 

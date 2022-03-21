@@ -24,9 +24,10 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     width: "90vw",
-    height: "85%",
+    height: "90%",
     transform: "translate(-50%, -50%)",
     position: "fixed",
+    background: "#2C2E39",
     // overflow: "hidden",
   },
 };
@@ -56,7 +57,6 @@ function TsModal(props) {
   // commit message 고르기
   const handleCommitClick = (e) => {
     setSelectedSha(e.currentTarget.id);
-    console.log(e.currentTarget.id);
     let commit = message_list.filter(
       (commit) => commit.sha === e.currentTarget.id
     );
@@ -99,21 +99,41 @@ function TsModal(props) {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <IconBoxLeft>
-        <button onClick={closeModalWithoutPatchcode}>x</button>
+      <IconBoxLeft onClick={closeModalWithoutPatchcode}>
+        <img
+          alt=''
+          src={process.env.PUBLIC_URL + "/img/close.svg"}
+        />
       </IconBoxLeft>
       <FormContentsModal>
         {page === 0 ? (
           <>
             <FormTitleFlex>
-              <FormTextCenter>커밋 조회 하기</FormTextCenter>
+              <FormTextCenter>Commit 선택하기</FormTextCenter>
               <FormTextLight>
                 프로젝트에 첨부할 commit을 선택해 주세요.
               </FormTextLight>
             </FormTitleFlex>
-            <button onClick={handlesync}>새로고침</button>
             <div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginLeft: "auto",
+                  marginRight: "100px",
+                  marginBottom: "10px",
+                }}
+                onClick={handlesync}
+              >
+                <img
+                  width="30px"
+                  alt="새로고침"
+                  height="auto"
+                  src={process.env.PUBLIC_URL + "/img/rotate.svg"}
+                />
+              </div>
               <Ulist>
+
                 {message_list.map((e, i) => {
                   if (selectedSha === e.sha) {
                     return (
@@ -157,9 +177,9 @@ function TsModal(props) {
         ) : (
           <>
             <FormTitleFlex>
-              <FormTextCenter>파일 조회 하기</FormTextCenter>
+              <FormTextCenter>파일 선택 하기</FormTextCenter>
               <FormTextLight>
-                트러블 슈팅한 파일을 골라서 조회하세요.(중복 선택 가능)
+                트러블슈팅을 설명할 Patch Code 파일을 모두 골라주세요.
               </FormTextLight>
             </FormTitleFlex>
             <div>
@@ -220,12 +240,15 @@ const List = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 75px;
-  margin: 20px 30px 20px 40px;
+  height: 78px;
+  margin: 0px 30px 0px 40px;
   border-bottom: solid 1px #cccccc;
   ${Font} {
-    color: ${(props) => (props.selected ? "blue" : "black")};
+    color: ${(props) => (props.selected ? "#00C4B4" : "white")};
   }
+`;
+const Footer = styled.div`
+
 `;
 
 const FormContentsModal = styled(FormContents)`
@@ -237,7 +260,6 @@ const Ulist = styled.ul`
   margin: auto 100px;
   height: 50vh;
   overflow: auto;
-  padding-top: 10px;
   border: 1px solid #cccccc;
   border-radius: 10px;
 `;
@@ -271,6 +293,7 @@ export const FormTextLight = styled(FormText)`
 const IconBoxLeft = styled(IconBox)`
   width: 50px;
   margin-left: auto;
+  background-color: #2C2E39;
 `;
 
 export default TsModal;

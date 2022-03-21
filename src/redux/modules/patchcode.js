@@ -10,6 +10,7 @@ const RESET_SELECT_PATCH_CODE = "RESET_SELECT_PATCH_CODE";
 
 const SET_COMMIT = "SET_COMMIT";
 const DELETE_TS = "DELETE_TS";
+const UPDATE_TS = "UPDATE_TS";
 
 const SET_FILE = "SET_FILE";
 const ADD_FILE = "ADD_FILE";
@@ -36,9 +37,16 @@ const deleteTs = createAction(DELETE_TS, (projectId, commitId) => ({
   projectId,
   commitId,
 }));
+//ToDo
 const deleteTsFile = createAction(DELETE_TS_FILE, (commitId, fileId) => ({
   commitId,
   fileId,
+}));
+
+const updateTs = createAction(UPDATE_TS, (projectId, commitId, data) => ({
+  projectId,
+  commitId,
+  data,
 }));
 
 const initialState = {
@@ -67,26 +75,43 @@ const troubleShootingDB = (projectId, data) => {
       tsName: tsName,
       tsFile: [obj],
     };
-    //ToDo
     apis.createTroubleShooting(projectId, _data).then((res) => {
       let { commitId } = res.data.data;
+      console.log(commitId);
       let tsFiles = getState().patchcode.tsFile;
       console.log(obj);
       let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
+      console.log(_index);
       let { commitMessage, tsFile, ..._obj } = _data;
-      let { __obj, patchCode } = obj;
+      let { patchCode, ...__obj } = obj;
 
       let __data = {
+        commitId: commitId,
         ..._obj,
-        tsFiles: [{ ...__obj, tsPatchCode: patchCode }],
+        tsFiles: [{ ...__obj, tsPatchCodes: patchCode }],
         commitMsg: commitMessage,
       };
+      console.log(__data);
       if (_index === -1) {
         dispatch(addFile(__data));
       } else {
-        dispatch(addTsFile(obj, _index));
+        dispatch(addTsFile(...__data.tsFiles, _index));
       }
     });
+  };
+};
+
+//트러블 슈팅 업데이트
+const updateTsDB = (projectId, commitId, data) => {
+  return function (dispatch) {
+    apis
+      .updateTroubleShooting(projectId, commitId, data)
+      .then((res) => {
+        dispatch(getTroubleShootingDB(projectId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
@@ -171,7 +196,6 @@ export default handleActions(
         draft.tsFile[action.payload.commitIndex].tsFiles.unshift(
           action.payload.tsFile
         );
-        console.log(state.tsFile);
       }),
     [DELETE_TS_FILE]: (state, action) =>
       produce(state, (draft) => {
@@ -198,6 +222,7 @@ const actionCreators = {
   getTroubleShootingDB,
   deleteTsDB,
   deleteTsFileDB,
+  updateTsDB,
 };
 
 export { actionCreators };

@@ -23,14 +23,16 @@ const initialState = {
 
 const setCareerDB = () => {
   return async function (dispatch, getState, { history }) {
-    const porfId = JSON.parse(localStorage.getItem("userInfo")).porfId;
+    const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     await apis
       .careerPorfGet(porfId)
       .then((res) => {
         dispatch(setCareer(res.data.data));
       })
       .catch((error) => {
-        alert(error);
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
@@ -41,7 +43,12 @@ const addCareerDB = (career) => {
       console.log(res.data.data);
       console.log(career);
       dispatch(addCareer(career));
-    });
+    })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
   };
 };
 
@@ -64,7 +71,12 @@ const updateCareerDB = (id, career) => {
       console.log(res.data.data);
       console.log(career);
       window.ScrollTo(0, 0);
-    });
+    })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
   };
 };
 

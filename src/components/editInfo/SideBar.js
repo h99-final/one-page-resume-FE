@@ -7,7 +7,7 @@ import styled from "styled-components";
 function SideBar() {
   const history = useHistory();
   const { id } = useParams();
-  const { userId } = JSON.parse(localStorage.getItem("userInfo"));
+  const { userId } = JSON.parse(sessionStorage.getItem("userInfo"));
 
   console.log(userId)
   return (
@@ -40,15 +40,12 @@ function SideBar() {
 
 const List = styled.div`
   display: flex;
-  /* position: relative; */
   width: 100%;
   height: 70px;
   left: 0px;
   top: 0px;
-
-  background: #ededed;
+  background: #2C2E39;
   border-radius: 10px;
-
   flex: none;
   margin: 15px 0px;
 `;
@@ -57,7 +54,6 @@ const ListInside = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
   width: 100%;
   height: 50px;
   margin: auto 10px;
@@ -67,15 +63,13 @@ const ListItemButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 180px;
   height: 50px;
-
   background: ${(props) =>
-    props.selected ? "#333333" : "rgba(255, 255, 255, 0)"};
+    props.selected ? "#424453" : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
-    color: ${(props) => (props.selected ? "white" : "#333333")};
+    color: ${(props) => (props.selected ? "white" : "white")};
   }
 `;
 

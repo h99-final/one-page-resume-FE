@@ -94,9 +94,9 @@ const Project = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
+  width: 98%;
   min-width: 1440px;
   max-width: 1900px;
-  border-radius: 10px;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -105,6 +105,7 @@ const Portfolio = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
+  width: 98%;
   min-width: 1440px;
   max-width: 1900px;
   border-radius: 10px;
@@ -150,13 +151,13 @@ const TitleBox = styled.div`
 `;
 
 const PortfolioBox = styled.div`
-  width: 1440px;
+  width: 100%;
   margin: 30px auto;
   height: 500px;
 `;
 
 const ProjectBox = styled.div`
-  width: 1440px;
+  width: 100%;
   margin: 0px auto;
 `;
 export default Main;

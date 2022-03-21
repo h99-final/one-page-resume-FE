@@ -26,7 +26,7 @@ const defaultprojects = {
 
 function MyPage() {
   const history = useHistory();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
   const [values, setValues] = React.useState({
@@ -162,7 +162,7 @@ function MyPage() {
               </Content>
             </Portfolio>
           ) : (
-            <Portfolio style={{ background: "white" }}>
+            <Portfolio style={{ background: "#1F2029", border: "1px solid #1F2029" }}>
               <AddProfBox style={{ marginTop: "160px" }}>
                 <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo.porfId}`) }}>
                   <Add />
@@ -191,13 +191,13 @@ function MyPage() {
         })}
         <AddProject
           style={{
-            backgroundColor: "#666982",
+            backgroundColor: "#393A47",
             width: "444px",
-            border: "1px solid #666982",
+            border: "1px solid #393A47",
           }}
         >
           <AddProfBox style={{ marginTop: "160px", }}>
-            <AddProfButton style={{ background: "white" }}
+            <AddProfButton style={{ background: "#696B7B" }}
               onClick={() => { history.push('/write/project/info') }}>
               <Add />
               프로젝트 추가
@@ -429,8 +429,8 @@ const AddProfButton = styled.button`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  color: black;
-  background-color: #ededed;
+  color: white;
+  background-color: #696B7B;
   border-radius: 43px;
   display: flex;
   flex-direction: row;

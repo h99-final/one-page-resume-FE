@@ -24,7 +24,6 @@ const Header = styled.div`
   align-items: flex-start;
   width: 400px;
   height: 102px;
-  margin-left: 30px;
   margin-top: 40px;
 `;
 
@@ -51,15 +50,13 @@ const WritePorf = styled.div`
   height: 43px;
   left: 10px;
   top: 10px;
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
   line-height: 43px;
   letter-spacing: -0.01em;
-
-  color: #000000;
+  color: white;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -69,12 +66,8 @@ const LayoutDetail = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
   width: 400px;
   height: 39px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -83,19 +76,13 @@ const LayoutDetail = styled.div`
 const Detail = styled.div`
   width: 400px;
   height: 19px;
-
-  /* body1 */
-
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-
-  color: #000000;
-
-  /* Inside auto layout */
+  color: #CFD3E2;
 `;
 
 export default PorfWriteHeader;

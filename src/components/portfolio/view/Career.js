@@ -70,15 +70,15 @@ const CareerBox = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   h1{
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
     margin-right: 190px;
   }
 `;
@@ -96,7 +96,7 @@ const Label = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
   h2{
     margin: auto;
@@ -105,13 +105,13 @@ const Label = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #999999;
+    color: #ffffff;
   }
 `;
 const CareerContent = styled.div`
   width: 70%;
   height: 100%;
-  border-left: 1px solid black;
+  border-left: 1px solid #ffffff;
   h1{
     padding: 10px 20px;
     width: 80%;
@@ -121,13 +121,13 @@ const CareerContent = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 const CareerTitle = styled.div`
   width: 100%;
   height: 65px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #ffffff;
   align-items: center;
   h1{
     padding: 20px;
@@ -138,7 +138,7 @@ const CareerTitle = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 const TitleBox = styled.div`
@@ -153,7 +153,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #333333;
+    color: #ffffff;
   }
 `;
 

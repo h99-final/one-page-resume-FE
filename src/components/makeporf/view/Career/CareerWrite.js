@@ -102,9 +102,10 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{ border: "none", background: "white" }}
+                  style={{ border: "none" }}
                   {...field}
                   maxLength={50}
+                  placeholder="학교, 회사, 부트캠프, 교육, 자격증, 공모전 등 활동 종류를 적어주세요."
                 />
               )}
               rules={{
@@ -124,9 +125,10 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{ border: "none", background: "white" }}
+                  style={{ border: "none" }}
                   {...field}
                   maxLength={50}
+                  placeholder="학교/회사 이름, 부트캠프 기업명, 자격증명, 공모전 이름 등 활동의 이름을 적어주세요. (ex: 한국대학교 컴퓨터공학과, 항해99)"
                 />
               )}
               rules={{
@@ -149,6 +151,7 @@ const CareerWrite = () => {
                   {...field}
                   ref={content}
                   onInput={handleResizeHeight}
+                  placeholder="활동에서 담당한 역할, 프로젝트 등 직무 내용을 작성해주세요."
                 />
               )}
               rules={{
@@ -169,10 +172,10 @@ const CareerWrite = () => {
                   type="text"
                   style={{
                     border: "none",
-                    background: "white",
                     marginRight: "10px",
                   }}
                   {...field}
+                  placeholder="YYYY-MM"
                 />
               )}
               rules={{
@@ -192,10 +195,10 @@ const CareerWrite = () => {
                   type="text"
                   style={{
                     border: "none",
-                    background: "white",
                     marginLeft: "10px",
                   }}
                   {...field}
+                  placeholder="YYYY-MM"
                 />
               )}
               rules={{
@@ -213,7 +216,7 @@ const CareerWrite = () => {
               id="current"
               onClick={handleCheckClick}
             />
-            <Label htmlFor="current">활동을 진행하고 있어요</Label>
+            <Label htmlFor="current" style={{ color: "white" }}>활동을 진행하고 있어요</Label>
           </Content>
           <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
         </form>
@@ -234,12 +237,6 @@ const InputCustomDate = styled(InputCustom)`
   width: 8vw;
 `;
 
-const Message = styled.span`
-  font-size: 10px;
-  color: #000;
-`;
-
-const InputCustomTextarea = styled(InputCustom)``;
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;

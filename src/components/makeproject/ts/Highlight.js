@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Highlighted({ text = [] }) {
+function Highlighted({ text = [], show }) {
   // const [value, setValue] = useState(text.join("\n\n"));
 
   // const handleChange = (value) => setValue(value);
@@ -40,55 +40,66 @@ function Highlighted({ text = [] }) {
     text.map((e) => {
       return e.charAt(0) === "-"
         ? _text.push(
-            <tr style={{ backgroundColor: "#ffc9c9" }}>
-              <pre>{e}</pre>
-            </tr>
-          )
+          <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
+            <pre>{e}</pre>
+          </tr>
+        )
         : e.charAt(0) === "+"
-        ? _text.push(
-            <tr style={{ backgroundColor: "#a3daff" }}>
+          ? _text.push(
+            <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
               <pre>{e}</pre>
             </tr>
           )
-        : e.charAt(0) === "@"
-        ? _text.push(
-            <>
-              <br />
-              <br />
-              <pre>{e}</pre>
-              <hr />
-            </>
-          )
-        : _text.push(<pre>{e}</pre>);
+          : e.charAt(0) === "@"
+            ? _text.push(
+              <>
+                <br />
+                <br />
+                <pre>{e}</pre>
+                <hr />
+              </>
+            )
+            : _text.push(<pre>{e}</pre>);
     });
     setValue(_text);
   }, [text]);
 
   return (
     <>
-      <InputSize>
-        <table>
+      <InputSize show={show}>
+        <Table style={{ width: "80%" }}>
           <Tbody>
             {value.map((e) => {
               return e;
             })}
           </Tbody>
-        </table>
+        </Table>
       </InputSize>
     </>
   );
 }
 
+const Table = styled.table`
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 80%;
+`;
+
 const InputSize = styled.div`
-  height: 300px;
+  height: ${(props) => (props.show ? "100%" : "400px")};
+
+  /* max-width: 60vw; */
+  min-width: ${(props) => (props.show ? "70vw" : "60vw")};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  padding: 0px 15px;
+  padding: 5px 10px;
   resize: none;
-  border: none;
-  background-color: #ededed;
+  background-color: #2c2e39;
   overflow: auto;
+  overflow-x: hidden;
+  color: #ffffff;
+  word-wrap: break-word;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -100,12 +111,19 @@ const InputSize = styled.div`
 `;
 
 const Tbody = styled.tbody`
-  height: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   tr {
+    align-items: center;
     padding: 15px;
     text-align: left;
+    color: #ffffff;
+    word-wrap: break-word;
     pre {
+      text-decoration-color: #ffffff;
       letter-spacing: 0.03em;
+      word-wrap: break-word;
     }
   }
 `;

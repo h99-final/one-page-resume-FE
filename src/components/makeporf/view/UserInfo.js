@@ -31,7 +31,7 @@ function UserInfo() {
 
   const [data, setData] = useState({});
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const onValid = (data) => {
     const stack = userInfo.stack;
@@ -79,7 +79,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.name}
               />
@@ -101,7 +101,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.job}
               />
@@ -112,7 +112,7 @@ function UserInfo() {
         </Content>
         <MultiContent>
           <Label style={{ minWidth: "150px" }}>
-            <Font>프로필 이미지</Font>
+            <Font style={{ marginTop: "55px" }}>프로필 이미지</Font>
           </Label>
           <FileUpload />
         </MultiContent>
@@ -123,7 +123,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.phoneNum}
                 maxLength={13}
@@ -147,7 +147,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ background: "#cccccc", color: "#999999" }}
+                style={{ background: "#282933", color: "#424453" }}
                 {...field}
                 defaultValue={data?.email}
                 readOnly
@@ -172,7 +172,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.gitUrl}
               />
@@ -196,7 +196,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none", background: "white" }}
+                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.blogUrl}
               />
@@ -223,7 +223,7 @@ function UserInfo() {
 export const MultiContent = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 50px 0px 50px;
+  margin: 10px 50px 10px 50px;
 `;
 
 const UserInfoForm = styled.form`
