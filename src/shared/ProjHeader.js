@@ -31,23 +31,23 @@ const ProjHeader = (props) => {
       });
   };
 
-  if (!project?.isMyProject) {
+  if (!project.isMyProject) {
     return (
       <>
         <StyledHeader>
           <LeftMenu>
             <Avatar
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
               onClick={() => {
-                history.push(`/portfolio/${userInfo.porfId}`);
+                history.push(`/portfolio/${userInfo?.porfId}`);
               }}
             >
-              {userInfo.name}
+              {userInfo?.name}
             </div>
           </LeftMenu>
           <RightMenu>
@@ -84,8 +84,8 @@ const ProjHeader = (props) => {
               onClick={() => {
                 history.push("/");
               }}
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div

@@ -16,7 +16,8 @@ import {
   MakeCenter,
   ContentCareer,
   AddButton,
-  ButtonText, Star,
+  ButtonText,
+  Star,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
@@ -150,16 +151,16 @@ function Stack() {
       <FormTitle>
         <FormText>기술 스택</FormText>
       </FormTitle>
-      <Font
-        style={{ textAlign: "left", marginLeft: "225px" }}
-      >
+      <Font style={{ textAlign: "left", marginLeft: "225px" }}>
         나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
         대표하는 명함에 들어가게 됩니다.
       </Font>
 
       <MultiContent>
         <Label>
-          <Font>대표 스택<Star>*</Star></Font>
+          <Font>
+            대표 스택<Star>*</Star>
+          </Font>
         </Label>
         <StackBox>
           {defaultStack.map((s, index) => {
@@ -211,13 +212,15 @@ function Stack() {
         <Label>
           <Font></Font>
         </Label>
-        <StackBox style={{
-          marginBottom: "60px",
-          border: " 1px solid #393A47",
-          height: "160px",
-          width: "100%",
-          background: '#393A47',
-        }}>
+        <StackBox
+          style={{
+            marginBottom: "60px",
+            border: " 1px solid #393A47",
+            height: "160px",
+            width: "100%",
+            background: "#393A47",
+          }}
+        >
           {addStack.map((addStack, index) => {
             return (
               <SelectStack key={index} {...addStack}>
@@ -240,7 +243,7 @@ function Stack() {
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={submitStack}>
           <ContentCareer>
-            <ButtonText>+ 직무 경험 추가 하기</ButtonText>
+            <ButtonText>+ 스택 저장 하기</ButtonText>
           </ContentCareer>
         </AddButton>
       </MakeCenter>
@@ -253,8 +256,8 @@ function Stack() {
 export const StackBox = styled.div`
   margin: 10px 0px;
   border-radius: 10px;
-  border: 1px solid #2C2E39;
-  background-color: #2C2E39;
+  border: 1px solid #2c2e39;
+  background-color: #2c2e39;
 `;
 
 export const SelectStack = styled.button`
@@ -264,7 +267,7 @@ export const SelectStack = styled.button`
   height: 50px;
   font-size: 17px;
   color: white;
-  background-color: #393A47;
+  background-color: #393a47;
   border: 1px solid white;
   border-radius: 100px;
   text-align: center;
@@ -278,7 +281,7 @@ export const MultiContent = styled.div`
 
 const StyledBox = styled.button`
   border: none;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   padding: 10px 15px 10px 15px;
   margin-top: 5px;
   border-radius: 10px;
@@ -307,8 +310,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #393A47;
-    border: 2px solid #393A47;
+    background-color: #393a47;
+    border: 2px solid #393a47;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -317,8 +320,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #00C4B4;
-    border: 2px solid #00C4B4;
+    background-color: #00c4b4;
+    border: 2px solid #00c4b4;
     cursor: pointer;
   }
 `;

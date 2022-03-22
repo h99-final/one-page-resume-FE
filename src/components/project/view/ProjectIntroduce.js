@@ -71,7 +71,7 @@ const ProjectIntroduce = (props) => {
           </ContentBox>
         </IntroBox>
       </SampleCard>
-      {troubleShootings.tsFiles?.map((e, i) => {
+      {troubleShootings?.tsFiles?.map((e, i) => {
         return (
           <SampleCard style={{ color: "white", zIndex: "90" }} key={e.id}>
             <TSPortfolio {...e} {...troubleShootings} />;

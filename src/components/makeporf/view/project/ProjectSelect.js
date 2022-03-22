@@ -15,9 +15,11 @@ import { apis } from "../../../../shared/axios";
 import Template from "../../shared/Template";
 import { actionCreators as projectActions } from "../../../../redux/modules/myproject";
 import PreviousNext from "../../shared/PreviousNext";
+import { useHistory } from "react-router-dom";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const project = useSelector((state) => state.myproject.projects);
   const is_loading = useSelector((state) => state.myproject.is_loading);
@@ -28,6 +30,7 @@ function ProjectSelect() {
   const projectSubmit = () => {
     if (selectedProjects.length === 0) {
       setError("프로젝트는 한 개 이상 이어야 합니다.");
+      history.push("/write/project/info");
       return;
     }
     // 프로젝트 데이터 보내기
