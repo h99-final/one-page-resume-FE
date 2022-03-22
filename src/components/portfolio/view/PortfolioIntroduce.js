@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
 const PortfolioIntroduce = () => {
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId).then((res) => {
+    apis.introPorfGet(id).then((res) => {
       setTitle(res.data.data.title);
       setContents(res.data.data.contents);
     });

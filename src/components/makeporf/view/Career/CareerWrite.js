@@ -19,14 +19,13 @@ import { Checkbox } from "@mui/material";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();
-  const defaultValues = {};
   const {
     handleSubmit,
     formState: { errors },
     control,
     setValue,
     setError,
-  } = useForm({ defaultValues });
+  } = useForm();
 
   const content = useRef(null);
 
@@ -216,7 +215,9 @@ const CareerWrite = () => {
               id="current"
               onClick={handleCheckClick}
             />
-            <Label htmlFor="current" style={{ color: "white" }}>활동을 진행하고 있어요</Label>
+            <Label htmlFor="current" style={{ color: "white" }}>
+              활동을 진행하고 있어요
+            </Label>
           </Content>
           <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
         </form>

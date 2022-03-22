@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import Highlighted from "../../makeproject/ts/Highlight";
 
 const TroubleShooting = (props) => {
-  const { fileId, fileName, tsContent, tsPatchCodes } = props;
+  const { fileId, fileName, tsContent, tsPatchCodes, father } = props;
   const { id } = props;
 
   // const [ts, setTS] = useState([]);
@@ -81,12 +81,9 @@ const TroubleShooting = (props) => {
                   </div>
                 )}
               </Num>
-              {filter() && (
-                <>
-                  <Font>{filter()[0]?.commitMsg}</Font>
-                  <Font>{filter()[0]?.tsName}</Font>
-                </>
-              )}
+
+              <Font>{father.commitMsg}</Font>
+              <Font>{father.tsName}</Font>
             </LeftTopBox>
             <LeftBottomBox>{tsContent}</LeftBottomBox>
           </LeftBox>
