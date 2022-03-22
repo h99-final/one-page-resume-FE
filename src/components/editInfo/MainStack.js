@@ -13,7 +13,8 @@ import {
   FormTitle,
   InputCustom,
   Label,
-  Font
+  Font,
+  Star
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
 
@@ -98,7 +99,7 @@ function MainStack() {
 
       <MultiContent>
         <Label>
-          <Font>대표 스택</Font>
+          <Font>대표 스택<Star>*</Star></Font>
         </Label>
         <StackBox>
           {defaultStack.map((s, index) => {
@@ -127,7 +128,7 @@ function MainStack() {
         </StackBox>
       </MultiContent>
       {stack?.length > 3 ? (
-        <Font style={{ color: "red", textAlign: "center" }}>
+        <Font style={{ color: "orange", textAlign: "center" }}>
           3가지만 골라주세요
         </Font>
       ) : (

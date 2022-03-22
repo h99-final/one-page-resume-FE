@@ -8,6 +8,7 @@ import {
   FormTitle,
   InputCustom,
   Label,
+  Star,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
@@ -74,7 +75,7 @@ function UserInfo() {
       <UserInfoForm onSubmit={handleSubmit(onValid)}>
         <Content>
           <Label>
-            <Font>*이름(실명)</Font>
+            <Font>이름(실명)<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (
@@ -142,12 +143,12 @@ function UserInfo() {
         <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>이메일</Font>
+            <Font>이메일<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ background: "#282933", color: "#424453" }}
+                style={{ background: "#282933", color: "#424453", border: "none" }}
                 {...field}
                 defaultValue={data?.email}
                 readOnly
@@ -167,7 +168,7 @@ function UserInfo() {
         <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>GitHub URL</Font>
+            <Font>GitHub URL<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (

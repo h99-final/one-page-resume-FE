@@ -8,6 +8,7 @@ import {
   FormTitle,
   InputCustom,
   Label,
+  Star,
 } from "../makeporf/shared/_sharedStyle";
 import ClearIcon from "@mui/icons-material/Clear";
 import styled from "styled-components";
@@ -151,7 +152,7 @@ function MakeProject() {
           <Content>
             <Label>
               <Font>
-                *프로젝트 제목<br></br>(0/50)
+                프로젝트 제목<Star>*</Star><br></br>(0/50)
               </Font>
             </Label>
             <InputCustom
@@ -164,7 +165,7 @@ function MakeProject() {
           <Content>
             <Label>
               <Font>
-                *Github<br></br>repository URL
+                Github<br></br>repository URL<Star>*</Star>
               </Font>
             </Label>
             <InputCustom
@@ -176,14 +177,14 @@ function MakeProject() {
           <ErrorMessage>{errors?.gitRepoUrl?.message}</ErrorMessage>
           <MultiContentFlex style={{ marginBottom: "30px" }}>
             <Label style={{ minWidth: "150px" }}>
-              <Font>*프로젝트 이미지</Font>
+              <Font>프로젝트 이미지<Star>*</Star></Font>
             </Label>
             <ForProjUpload images={images} setImages={setImages} />
           </MultiContentFlex>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>
             <Label>
-              <Font>기술 스택</Font>
+              <Font>기술 스택<Star>*</Star></Font>
             </Label>
             <Select
               styles={customStyles}
@@ -217,7 +218,7 @@ function MakeProject() {
           <Content>
             <Label style={{ minWidth: "150px" }}>
               <Font>
-                *프로젝트 내용 <br />
+                프로젝트 내용 <Star>*</Star><br />
                 (0/1200)
               </Font>
             </Label>

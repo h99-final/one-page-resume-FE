@@ -54,13 +54,12 @@ export const InputCustom = styled.textarea`
   align-items: center;
   padding: 15px 15px;
   resize: none;
-  border: none;
+  border: 1px solid #393a47;
   background-color: #393a47;
   color: ${(props) => (props.readOnly ? "white" : "white")};
   &:focus {
-    outline: none !important;
-    border-color: #719ece !important;
-    box-shadow: 0 0 10px #719ece !important;
+    outline: #00C4B4 !important;
+    border:1px solid #00C4B4 !important;
   }
 `;
 
@@ -68,8 +67,7 @@ export const StyledInput = styled(({ errors, ...rest }) => (
   <InputCustom {...rest} />
 ))`
   &&& {
-    border-color: ${(props) => (props.errors ? "red" : "none")};
-    box-shadow: 0 0 10px ${(props) => (props.errors ? "red" : "none")};
+    border: ${(props) => (props.errors ? "1px solid orange" : "none")};
   }
 `;
 
@@ -80,6 +78,12 @@ export const Label = styled.div`
   min-width: 150px;
   height: 49px;
   left: 0px;
+`;
+export const Star = styled.span`
+  margin-left: 2px;
+  font-size: 20px;
+  color: #00C4B4;
+
 `;
 
 export const Content = styled.div`
@@ -149,7 +153,7 @@ export const IconBox = styled.div`
 export const ErrorMessage = styled.span`
   font-family: Pretendard;
   font-size: 12px;
-  color: #f00;
+  color: orange;
   text-align: right;
   display: flex;
   justify-content: right;

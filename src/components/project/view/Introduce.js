@@ -22,58 +22,38 @@ const Introduce = () => {
 
   return (
     <>
-      <SampleCard>
-        {/* <TitleBox>
-          <h1>Project</h1>
-          <h1>1 2 3 4 5</h1>
-        </TitleBox> */}
 
-        <IntroBox>
-          <h1>{project?.title}</h1>
-          <ImgBox>
-            {project?.img?.slice(0, 4).map((e, i) => {
+      <IntroBox>
+        <h1>{project?.title}</h1>
+        <ImgBox>
+          {project?.img?.slice(0, 4).map((e, i) => {
+            return (
+              <>
+                <img key={e.url + `${i}`} alt="" src={e.url} />
+              </>
+            );
+          })}
+        </ImgBox>
+        <ContentBox>
+          <AboutBox>
+            <ContentTitle>ABOUT</ContentTitle>
+            <h2>{project?.content}</h2>
+          </AboutBox>
+          <StackBox>
+            <ContentTitle>TECH STACK</ContentTitle>
+            {project?.stack?.map((e, i) => {
               return (
-                <>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
-                </>
+                <SubStack key={i}>
+                  <span>{e}</span>
+                </SubStack>
               );
             })}
-          </ImgBox>
-          <ContentBox>
-            <AboutBox>
-              <ContentTitle>ABOUT</ContentTitle>
-              <h2>{project?.content}</h2>
-            </AboutBox>
-            <StackBox>
-              <ContentTitle>TECH STACK</ContentTitle>
-              {project?.stack?.map((e, i) => {
-                return (
-                  <SubStack key={i}>
-                    <span>{e}</span>
-                  </SubStack>
-                );
-              })}
-            </StackBox>
-          </ContentBox>
-        </IntroBox>
-      </SampleCard>
+          </StackBox>
+        </ContentBox>
+      </IntroBox>
     </>
   );
 };
-
-const SampleCard = styled.div`
-  position: relative;
-  width: 1440px;
-  height: 90vh;
-  margin-right: 75px;
-  flex-shrink: 0;
-`;
-
-const Container = styled.div`
-  width: 100vw;
-  margin-right: 10em;
-  position: relative;
-`;
 
 const ContentBox = styled.div`
   width: 100%;
@@ -134,28 +114,9 @@ const StackBox = styled.div`
   min-width: 400px;
 `;
 
-const TitleBox = styled.div`
-  width: 95%;
-  margin: 0px auto;
-  border-bottom: 1px solid black;
-  justify-content: space-between;
-  display: flex;
-  text-align: left;
-  padding: 0px 0px 20px 0px;
-  h1 {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 31px;
-    letter-spacing: -0.01em;
-    color: #ffffff;
-  }
-`;
-
 const IntroBox = styled.div`
-  width: 100%;
-  min-height: 630px;
-  margin: 0px 30px;
+  width: 100vw;
+  margin: auto 30px;
   h1 {
     width: fit-content;
     font-style: normal;
@@ -172,7 +133,7 @@ const ImgBox = styled.div`
   width: 100%;
   margin-bottom: 50px;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   display: flex;
   img {
     width: 322px;

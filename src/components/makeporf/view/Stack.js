@@ -16,7 +16,7 @@ import {
   MakeCenter,
   ContentCareer,
   AddButton,
-  ButtonText,
+  ButtonText, Star,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
@@ -159,7 +159,7 @@ function Stack() {
 
       <MultiContent>
         <Label>
-          <Font>대표 스택</Font>
+          <Font>대표 스택<Star>*</Star></Font>
         </Label>
         <StackBox>
           {defaultStack.map((s, index) => {

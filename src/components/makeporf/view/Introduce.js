@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom, ErrorMessage, StyledInput } from "../shared/_sharedStyle";
+import { InputCustom, ErrorMessage, StyledInput, Star } from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
 
@@ -48,7 +48,8 @@ function Introduce() {
           <Content>
             <Label>
               <Font>
-                포트폴리오 제목<br></br>(0/50)
+                포트폴리오 제목
+                <Star>*</Star><br></br>(0/50)
               </Font>
             </Label>
             <Controller
@@ -82,7 +83,8 @@ function Introduce() {
           <MultiContent>
             <Label>
               <Font>
-                포트폴리오 소개글 <br></br>(0/2000)
+                포트폴리오 소개글
+                <Star>*</Star> <br></br>(0/2000)
               </Font>
             </Label>
             <Controller

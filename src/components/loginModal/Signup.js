@@ -66,10 +66,6 @@ const Signup = (props) => {
   const [passwordCheckError, setPasswordCheckError] = useState("");
 
   const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false,
   });
 
