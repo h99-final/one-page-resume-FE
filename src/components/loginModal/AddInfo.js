@@ -130,7 +130,7 @@ const AddInfo = (props) => {
     apis.putStack(_data).then((res) => {
       console.log(res)
     })
-    loginClose(false);
+    window.location.reload();
   };
 
   return (

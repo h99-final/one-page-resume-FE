@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useRef } from 'react';
+
 
 function Highlighted({ text = [], show }) {
+
   // const [value, setValue] = useState(text.join("\n\n"));
 
   // const handleChange = (value) => setValue(value);
@@ -31,6 +34,27 @@ function Highlighted({ text = [], show }) {
   //   return highlight;
   // };
   const [value, setValue] = useState([]);
+
+  const [ScrollY, setScrollY] = useState(0);
+
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    // window 스크롤 값을 ScrollY에 저장 
+  };
+  useEffect(() => {
+    console.log("ScrollY is ", ScrollY);
+    // ScrollY가 변화할때마다 값을 콘솔에 출력 
+  }, [ScrollY]);
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    }; watch();
+    // addEventListener 함수를 실행 
+    return () => {
+      window.removeEventListener("scroll", handleFollow);
+      // addEventListener 함수를 삭제 
+    };
+  });
 
   useEffect(() => {
     if (text.length === 0) {
@@ -66,8 +90,8 @@ function Highlighted({ text = [], show }) {
 
   return (
     <>
-      <InputSize show={show}>
-        <Table style={{ width: "80%" }}>
+      <InputSize show={show} >
+        <Table style={{ width: "100%" }} >
           <Tbody>
             {value.map((e) => {
               return e;
@@ -86,17 +110,16 @@ const Table = styled.table`
 `;
 
 const InputSize = styled.div`
-  height: ${(props) => (props.show ? "100%" : "400px")};
+  /* height: ${(props) => (props.show ? "100%" : "400px")}; */
 
   /* max-width: 60vw; */
-  min-width: ${(props) => (props.show ? "70vw" : "60vw")};
+  min-width: ${(props) => (props.show ? "100%" : "100%")};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
-  resize: none;
   background-color: #2c2e39;
-  overflow: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   color: #ffffff;
   word-wrap: break-word;

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import ChangeInfo from '../components/editInfo/ChangeInfo';
 import SideBar from '../components/editInfo/SideBar';
 import Header from "../shared/Header";
-
 import styled from "styled-components";
 import MainStack from '../components/editInfo/MainStack';
 import EditPwd from '../components/editInfo/EditPwd';
@@ -32,7 +31,6 @@ function EditInfo() {
 export const WriteForm = styled.div`
   width: 95%;
   height: auto;
-  min-width: 834px;
   min-height: 80vh;
   max-width: 1440px;
   display: block;

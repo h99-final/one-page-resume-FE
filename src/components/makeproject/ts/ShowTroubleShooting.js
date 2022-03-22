@@ -9,6 +9,7 @@ import {
   Content,
   InputCustom,
   Label,
+  Star,
 } from "../../makeporf/shared/_sharedStyle";
 import { Font } from "../../makeporf/view/Introduce";
 import Highlighted from "./Highlight";
@@ -82,7 +83,7 @@ function ShowTroubleShooting(props) {
           </div>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>트러블 슈팅 제목</Font>
+              <Font>트러블 슈팅 제목<Star>*</Star></Font>
             </Label>
             <InputCustom
               style={{ overflow: "hidden" }}
@@ -94,7 +95,7 @@ function ShowTroubleShooting(props) {
           </Content>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>Commit</Font>
+              <Font>Commit<Star>*</Star></Font>
             </Label>
             <InputCustom
               style={{ overflow: "hidden" }}
@@ -113,7 +114,7 @@ function ShowTroubleShooting(props) {
         </IconBox> */}
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>File Name</Font>
+                    <Font>File Name<Star>*</Star></Font>
                   </Label>
                   <InputCustom
                     style={{ overflow: "hidden" }}
@@ -125,7 +126,7 @@ function ShowTroubleShooting(props) {
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>Patch Code</Font>
+                    <Font>Patch Code<Star>*</Star></Font>
                   </Label>
                   <div
                     style={{
@@ -140,7 +141,7 @@ function ShowTroubleShooting(props) {
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
                     <Font>
-                      *추가 설명<br></br>(0/500)
+                      추가 설명<Star>*</Star><br></br>(0/500)
                     </Font>
                   </Label>
                   <InputCustom

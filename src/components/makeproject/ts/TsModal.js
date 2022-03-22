@@ -37,11 +37,11 @@ function TsModal(props) {
   const { modalIsOpen, setIsOpen, message_list, projectId, setMessage_list } =
     props;
   const [selectedSha, setSelectedSha] = useState("");
-  const [page, setPage] = useState(0);
-
+  const [page, setPage] = useState(2);
+  const [token, setToken] = React.useState("");
   const file_list = useSelector((state) => state.patchcode.patchcode);
   const [selectedFileName, setSelectedFileName] = useState("");
-
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   //file 중복 선택이 가능하게 만들기 위해
   // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
 
@@ -89,6 +89,14 @@ function TsModal(props) {
     }
   }, [page]);
 
+  const submitToken = () => {
+    apis.gitToken(token).then((res) => {
+    })
+
+    setPage(0);
+  }
+
+  console.log(token)
   Modal.setAppElement("#root");
 
   return (
@@ -106,124 +114,154 @@ function TsModal(props) {
         />
       </IconBoxLeft>
       <FormContentsModal>
-        {page === 0 ? (
+        {page === 2 ? (
           <>
             <FormTitleFlex>
-              <FormTextCenter>Commit 선택하기</FormTextCenter>
-              <FormTextLight>
-                프로젝트에 첨부할 commit을 선택해 주세요.
+              <FormTextCenter>토큰 가져오기</FormTextCenter>
+              <FormTextLight >
+                github에서 토큰을 가져와서 입력해주세요.
               </FormTextLight>
             </FormTitleFlex>
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  marginLeft: "auto",
-                  marginRight: "100px",
-                  marginBottom: "10px",
-                }}
-                onClick={handlesync}
-              >
-                <img
-                  width="30px"
-                  alt="새로고침"
-                  height="auto"
-                  src={process.env.PUBLIC_URL + "/img/rotate.svg"}
-                />
-              </div>
-              <Ulist>
+            <GetTokenBox>
+              <InputBox>
+                <InputCustom style={{ width: "90%", margin: "30px 0px" }}
+                  placeholder="여기에 토큰을 입력해주세요"
+                  onChange={(e) => {
+                    setToken(e.target.value);
+                  }} />
 
-                {message_list.map((e, i) => {
-                  if (selectedSha === e.sha) {
-                    return (
-                      <>
-                        <List
-                          selected
-                          onClick={handleCommitClick}
-                          key={e.sha + `${i}`}
-                          id={e.sha}
-                          value={e.message}
-                        >
-                          <div style={{ display: "flex" }}>
-                            <img
-                              width="30"
-                              height="auto"
-                              src={process.env.PUBLIC_URL + "/img/check.svg"}
-                              alt="checked"
-                            />
-                            <Font>{e.message}</Font>
-                          </div>
-                        </List>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <>
-                        <List
-                          onClick={handleCommitClick}
-                          key={e.sha + `${i}`}
-                          id={e.sha}
-                        >
-                          <Font>{e.message}</Font>
-                        </List>
-                      </>
-                    );
-                  }
-                })}
-              </Ulist>
-            </div>
+                <button onClick={() => { submitToken() }}>토큰 불러오기</button>
+              </InputBox>
+
+            </GetTokenBox>
+
           </>
-        ) : (
-          <>
-            <FormTitleFlex>
-              <FormTextCenter>파일 선택 하기</FormTextCenter>
-              <FormTextLight>
-                트러블슈팅을 설명할 Patch Code 파일을 모두 골라주세요.
-              </FormTextLight>
-            </FormTitleFlex>
-            <div>
-              <Ulist>
-                {file_list?.map((e, i) => {
-                  if (selectedFileName === e.name) {
-                    return (
-                      <>
-                        <List
-                          selected
-                          onClick={handleFileClick}
-                          key={e.name + `${i}`}
-                          id={e.name}
-                        >
-                          <div style={{ display: "flex" }}>
-                            <img
-                              width="30"
-                              height="auto"
-                              src={process.env.PUBLIC_URL + "/img/check.svg"}
-                              alt="checked"
-                            />
-                            <Font>{e.name}</Font>
-                          </div>
-                        </List>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <>
-                        <List
-                          onClick={handleFileClick}
-                          key={e.sha + `${i}`}
-                          id={e.name}
-                        >
-                          <Font>{e.name}</Font>
-                        </List>
-                      </>
-                    );
-                  }
-                })}
-              </Ulist>
-            </div>
-          </>
-        )}
+        )
+          :
+          (
+            <>
+              {page === 0 ? (
+                <>
+                  <FormTitleFlex>
+                    <FormTextCenter>Commit 선택하기</FormTextCenter>
+                    <FormTextLight>
+                      프로젝트에 첨부할 commit을 선택해 주세요.
+                    </FormTextLight>
+                  </FormTitleFlex>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginLeft: "auto",
+                        marginRight: "100px",
+                        marginBottom: "10px",
+                      }}
+                      onClick={handlesync}
+                    >
+                      <img
+                        width="30px"
+                        alt="새로고침"
+                        height="auto"
+                        src={process.env.PUBLIC_URL + "/img/rotate.svg"}
+                      />
+                    </div>
+                    <Ulist>
+
+                      {message_list.map((e, i) => {
+                        if (selectedSha === e.sha) {
+                          return (
+                            <>
+                              <List
+                                selected
+                                onClick={handleCommitClick}
+                                key={e.sha + `${i}`}
+                                id={e.sha}
+                                value={e.message}
+                              >
+                                <div style={{ display: "flex" }}>
+                                  <img
+                                    width="30"
+                                    height="auto"
+                                    src={process.env.PUBLIC_URL + "/img/check.svg"}
+                                    alt="checked"
+                                  />
+                                  <Font>{e.message}</Font>
+                                </div>
+                              </List>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <List
+                                onClick={handleCommitClick}
+                                key={e.sha + `${i}`}
+                                id={e.sha}
+                              >
+                                <Font>{e.message}</Font>
+                              </List>
+                            </>
+                          );
+                        }
+                      })}
+                    </Ulist>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <FormTitleFlex>
+                    <FormTextCenter>파일 선택 하기</FormTextCenter>
+                    <FormTextLight>
+                      트러블슈팅을 설명할 Patch Code 파일을 모두 골라주세요.
+                    </FormTextLight>
+                  </FormTitleFlex>
+                  <div>
+                    <Ulist>
+                      {file_list?.map((e, i) => {
+                        if (selectedFileName === e.name) {
+                          return (
+                            <>
+                              <List
+                                selected
+                                onClick={handleFileClick}
+                                key={e.name + `${i}`}
+                                id={e.name}
+                              >
+                                <div style={{ display: "flex" }}>
+                                  <img
+                                    width="30"
+                                    height="auto"
+                                    src={process.env.PUBLIC_URL + "/img/check.svg"}
+                                    alt="checked"
+                                  />
+                                  <Font>{e.name}</Font>
+                                </div>
+                              </List>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <List
+                                onClick={handleFileClick}
+                                key={e.sha + `${i}`}
+                                id={e.name}
+                              >
+                                <Font>{e.name}</Font>
+                              </List>
+                            </>
+                          );
+                        }
+                      })}
+                    </Ulist>
+                  </div>
+                </>
+              )}
+            </>
+          )
+        }
+
         <PreviousNextProject
           closeModal={closeModal}
           selectedFileName={selectedFileName}
@@ -264,6 +302,27 @@ const Ulist = styled.ul`
   border-radius: 10px;
 `;
 
+const GetTokenBox = styled.div`
+  margin: auto 100px;
+  height: 50vh;
+  overflow: auto;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+`;
+
+const InputBox = styled.div`
+  width: 70%;
+  margin: 150px auto;
+  align-items: center;
+  text-align: center;
+  button{
+    background-color: black;
+    color:white;
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+`;
 const FormTextCenter = styled(FormText)`
   width: auto;
   height: 63px;

@@ -9,6 +9,7 @@ import {
   InputCustom,
   Label,
   Font,
+  Star,
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
 import FileUpload from "../makeporf/shared/ImageUpload";
@@ -39,28 +40,6 @@ function ChangeInfo() {
     });
   };
 
-  useEffect(() => {
-    apis
-      .userInfo()
-      .then((res) => {
-        if (res.data.errors.message) {
-          window.alert(res.data.errors.message);
-          return;
-        }
-        const { name, job, phoneNum, gitUrl, email, blogUrl } = res.data.data;
-        setData(res.data.data);
-        setValue("name", name);
-        setValue("job", job);
-        setValue("phoneNum", phoneNum);
-        setValue("gitUrl", gitUrl);
-        setValue("email", email);
-        setValue("blogUrl", blogUrl);
-      })
-      .catch((error) => {
-        setValue(null);
-      });
-  }, []);
-
   return (
     <>
       <FormTitle>
@@ -69,14 +48,14 @@ function ChangeInfo() {
       <UserInfoForm onSubmit={handleSubmit(onValid)}>
         <Content>
           <Label>
-            <Font>*이름(실명)</Font>
+            <Font>이름(실명)<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.name}
+                defaultValue={userInfo?.name}
               />
             )}
             rules={{
@@ -98,7 +77,7 @@ function ChangeInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.job}
+                defaultValue={userInfo?.job}
               />
             )}
             name="job"
@@ -120,7 +99,7 @@ function ChangeInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.phoneNum}
+                defaultValue={userInfo?.phoneNum}
                 maxLength={13}
               />
             )}
@@ -137,7 +116,7 @@ function ChangeInfo() {
         <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>이메일</Font>
+            <Font>이메일<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (
@@ -148,7 +127,7 @@ function ChangeInfo() {
                   color: "#999999",
                 }}
                 {...field}
-                defaultValue={data?.email}
+                defaultValue={userInfo?.email}
                 readOnly
               />
             )}
@@ -166,11 +145,11 @@ function ChangeInfo() {
         <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>*GitHub URL</Font>
+            <Font>GitHub URL<Star>*</Star></Font>
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom {...field} defaultValue={data?.gitUrl} />
+              <InputCustom {...field} defaultValue={userInfo?.gitUrl} />
             )}
             rules={{
               pattern: {
@@ -193,7 +172,7 @@ function ChangeInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.blogUrl}
+                defaultValue={userInfo?.blogUrl}
               />
             )}
             rules={{

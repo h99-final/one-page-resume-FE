@@ -65,12 +65,7 @@ const Signup = (props) => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordCheckError, setPasswordCheckError] = useState("");
 
-  const [stack, setStack] = useState([]);
   const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false,
   });
 
@@ -83,18 +78,6 @@ const Signup = (props) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  const changeHandler = (checked, id) => {
-    if (checked) {
-      setStack([...stack, id]);
-      console.log("체크 반영 완료", stack);
-    } else {
-      setStack(stack.filter((el) => el !== id));
-      console.log("체크 해제 반영 완료", stack);
-    }
-  };
-  const isAllChecked = stack.length === 2;
-  const disabled = !isAllChecked;
 
   const signup = () => {
     if (!password || password.length < 4) {
