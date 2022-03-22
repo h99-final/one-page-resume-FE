@@ -15,8 +15,6 @@ const UserInfo = () => {
     });
   }, []);
 
-  console.log(user);
-
   return (
     <>
       <Container>

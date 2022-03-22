@@ -33,27 +33,27 @@ function Highlighted({ text = [], show }) {
   // };
   const [value, setValue] = useState([]);
 
-  const [ScrollY, setScrollY] = useState(0);
+  // const [ScrollY, setScrollY] = useState(0);
 
-  const handleFollow = () => {
-    setScrollY(window.pageYOffset);
-    // window 스크롤 값을 ScrollY에 저장
-  };
-  useEffect(() => {
-    console.log("ScrollY is ", ScrollY);
-    // ScrollY가 변화할때마다 값을 콘솔에 출력
-  }, [ScrollY]);
-  useEffect(() => {
-    const watch = () => {
-      window.addEventListener("scroll", handleFollow);
-    };
-    watch();
-    // addEventListener 함수를 실행
-    return () => {
-      window.removeEventListener("scroll", handleFollow);
-      // addEventListener 함수를 삭제
-    };
-  });
+  // const handleFollow = () => {
+  //   setScrollY(window.pageYOffset);
+  //   // window 스크롤 값을 ScrollY에 저장
+  // };
+  // useEffect(() => {
+  //   console.log("ScrollY is ", ScrollY);
+  //   // ScrollY가 변화할때마다 값을 콘솔에 출력
+  // }, [ScrollY]);
+  // useEffect(() => {
+  //   const watch = () => {
+  //     window.addEventListener("scroll", handleFollow);
+  //   };
+  //   watch();
+  //   // addEventListener 함수를 실행
+  //   return () => {
+  //     window.removeEventListener("scroll", handleFollow);
+  //     // addEventListener 함수를 삭제
+  //   };
+  // });
 
   useEffect(() => {
     if (text.length === 0) {
@@ -118,6 +118,7 @@ const InputSize = styled.div`
   padding: 5px 10px;
   background-color: #2c2e39;
   color: #ffffff;
+  overflow: auto;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -130,14 +131,14 @@ const InputSize = styled.div`
 
 const Tbody = styled.tbody`
   height: 100%;
-  display: flex;
+  display: inline;
   flex-direction: column;
   tr {
     /* align-items: center; */
     text-align: left;
     color: #ffffff;
     letter-spacing: 0.1em;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
     pre {
       /* padding: 3px; */
       text-decoration-color: #ffffff;

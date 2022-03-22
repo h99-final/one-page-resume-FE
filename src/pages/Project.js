@@ -15,7 +15,6 @@ import { Spinner } from "react-bootstrap";
 const Project = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const ts = useSelector((state) => state.setproject.troubleShootings);
   const [is_loading, setIs_loading] = useState(true);
 
   const [troubleShootings, setTroubleShootings] = useState();
@@ -30,8 +29,6 @@ const Project = () => {
     dispatch(actionCreators.setTroubleShootingDB(id));
     return setIs_loading(true);
   }, []);
-
-  console.log(is_loading, troubleShootings, ts);
 
   return (
     <>
@@ -48,7 +45,14 @@ const Project = () => {
             return (
               <TroubleShootingContainer key={i}>
                 {e.tsFiles.map((t, i) => {
-                  return <TroubleShooting key={t.fileId} {...e} {...t} />;
+                  return (
+                    <TroubleShooting
+                      key={t.fileId}
+                      {...e}
+                      {...t}
+                      tsLength={e.tsFiles.length}
+                    />
+                  );
                 })}
               </TroubleShootingContainer>
             );

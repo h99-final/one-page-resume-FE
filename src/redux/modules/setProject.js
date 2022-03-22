@@ -58,26 +58,39 @@ const addProjectDB = (projectId) => {
   };
 };
 
+// const setTroubleShootingDB = (projectId) => {
+//   return function (dispatch, getState) {
+//     apis
+//       .projectTSGet(projectId)
+//       .then((res) => {
+//         let _troubleShootings = res.data.data;
+//         let __troubleShootings = [];
+//         let __tsProject = [];
+//         _troubleShootings.map((e) => __tsProject.push(e));
+//         dispatch(setProjectTS(__tsProject));
+//         for (let i = 0; i < _troubleShootings.length; i++) {
+//           _troubleShootings[i].tsFiles.map((tsFile) => {
+//             return __troubleShootings.push(tsFile);
+//           });
+//         }
+//         dispatch(setTroubleShooting(__troubleShootings));
+//       })
+//       .then(() => {
+//         dispatch(setIs_loading());
+//       })
+//       .catch((error) => {
+//         if (error.response) {
+//           alert(error.response.data.data.errors[0].message);
+//         }
+//       });
+//   };
+// };
+
 const setTroubleShootingDB = (projectId) => {
   return function (dispatch, getState) {
     apis
       .projectTSGet(projectId)
-      .then((res) => {
-        let _troubleShootings = res.data.data;
-        let __troubleShootings = [];
-        let __tsProject = [];
-        _troubleShootings.map((e) => __tsProject.push(e));
-        dispatch(setProjectTS(__tsProject));
-        for (let i = 0; i < _troubleShootings.length; i++) {
-          _troubleShootings[i].tsFiles.map((tsFile) => {
-            return __troubleShootings.push(tsFile);
-          });
-        }
-        dispatch(setTroubleShooting(__troubleShootings));
-      })
-      .then(() => {
-        dispatch(setIs_loading());
-      })
+      .then((res) => dispatch(setTroubleShooting(res.data.data)))
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);

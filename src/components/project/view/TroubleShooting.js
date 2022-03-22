@@ -6,8 +6,15 @@ import { useSelector } from "react-redux";
 import Highlighted from "../../makeproject/ts/Highlight";
 
 const TroubleShooting = (props) => {
-  const { fileId, fileName, tsContent, tsPatchCodes, tsName, commitMsg } =
-    props;
+  const {
+    fileId,
+    fileName,
+    tsContent,
+    tsPatchCodes,
+    tsName,
+    commitMsg,
+    tsLength,
+  } = props;
   console.log(props);
   const { id } = props;
 
@@ -18,36 +25,9 @@ const TroubleShooting = (props) => {
     setSelected(e.target.id);
   };
 
-  // const NumBoxs = () =>
-  //   ts.slice(0, 10).length <= 5
-  //     ? Array(ts?.length)
-  //         .fill(0)
-  //         .map((_e, i) => (
-  //           <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-  //             {i + 1}
-  //           </NumberBox>
-  //         ))
-  //     : Array(5)
-  //         .fill(0)
-  //         .map((_e, i) => (
-  //           <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-  //             {i + 1}
-  //           </NumberBox>
-  //         ));
-
-  // const NumBoxs2 = () =>
-  //   Array(ts?.length - 5)
-  //     .fill(0)
-  //     .map((_e, i) => (
-  //       <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-  //         {i + 6}
-  //       </NumberBox>
-  //     ));
-
   // 번호칸 만들기
   const NumBoxs = () =>
-    // Array(ts?.length)
-    Array(10)
+    Array(tsLength)
       .fill(0)
       .map((_e, i) => (
         <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
@@ -88,7 +68,7 @@ const SampleCard = styled.div`
   /* position: relative; */
   width: 100%;
   height: calc(100vh - 120px);
-  margin: auto;
+  margin: 60px auto;
   /* flex-shrink: 0; */
   display: flex;
   flex-direction: row;
@@ -132,6 +112,7 @@ const RightBox = styled.div`
   /* margin: 0px auto; */
   display: flex;
   width: calc(95vw - 650px);
+  max-width: 800px;
   border: 1px solid #ffffff;
 `;
 

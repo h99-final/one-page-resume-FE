@@ -12,16 +12,9 @@ import Career from "../components/portfolio/view/Career";
 import Stack from "../components/portfolio/view/Stack";
 import UserInfo from "../components/portfolio/view/UserInfo";
 import Header from "../shared/Header";
-import ProjHeader from "../shared/ProjHeader";
-import ProjectIntroduce from "../components/project/view/ProjectIntroduce";
 import PortfolioIntroduce from "../components/portfolio/view/PortfolioIntroduce";
-import TSPortfolio from "../components/portfolio/view/TSPortfolio";
-
-//swipe
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
+import Project, { IntroduceContainer } from "./Project";
+import ProjectViewIntro from "../components/portfolio/view/ProjectView";
 import ShowMore from "../components/portfolio/ShowMore";
 
 const Portfolio = () => {
@@ -32,9 +25,9 @@ const Portfolio = () => {
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
   }, []);
+
   const projectId = useSelector((state) => state.myproject.selectedProjects);
-  const is_loading = useSelector((state) => state.setproject.is_loading);
-  console.log(projectId, is_loading);
+  console.log(projectId);
 
   // const [ScrollY, setScrollY] = useState(0);
 
@@ -65,11 +58,12 @@ const Portfolio = () => {
       <Career />
       {/* <ProjHeader /> */}
       <CardsContainer>
-        {projectId?.map((e) => {
+        {projectId.map((e) => {
           return (
             <>
-              <ProjectIntroduce key={`${e.id}` + e.title} id={e} />
-              <ShowMore />
+              <IntroduceContainer>
+                <ProjectViewIntro id={e} />
+              </IntroduceContainer>
             </>
           );
         })}
@@ -78,27 +72,14 @@ const Portfolio = () => {
   );
 };
 
-const SwiperContent = styled(SwiperSlide)``;
-
 const CardsContainer = styled.div`
   /* position: relative; */
-  width: 80vw;
-  height: 90vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  flex-flow: row nowrap;
-  justify-content: center;
+  /* flex-flow: row nowrap; */
+  justify-content: flex-start;
   align-items: center;
-  overflow-x: hidden;
-  & > .swiper {
-    background-color: #1f2029;
-    height: 85vh;
-  }
-  & > .swiper-slide {
-  }
-  & > .pagination {
-    color: #fff;
-  }
 `;
 
 export default Portfolio;
