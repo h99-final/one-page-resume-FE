@@ -15,7 +15,6 @@ import ProjectSelect from "../components/makeporf/view/project/ProjectSelect";
 
 function MakePorf() {
   const { id } = useParams();
-  console.log(id);
   return (
     <>
       <Header />
@@ -44,7 +43,7 @@ export const WriteForm = styled.div`
   display: block;
   justify-content: center;
   margin: 0px auto;
-  background: #1F2029;
+  background: #1f2029;
   @media screen and (min-width: 1194px) {
     & {
       width: 95%;
@@ -73,7 +72,7 @@ export const WriteableForm = styled.div`
   padding: 10px 0px;
   width: 100%;
   height: 100%;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   border-radius: 10px;
   flex: none;
   order: 1;

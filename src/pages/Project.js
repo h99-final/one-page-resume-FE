@@ -24,8 +24,6 @@ const Project = () => {
     dispatch(actionCreators.setTroubleShootingDB(id));
   }, []);
 
-  console.log(troubleShootings);
-
   return (
     <>
       <ProjHeader />
@@ -37,7 +35,7 @@ const Project = () => {
         {ts.map((e, i) => {
           return (
             <TroubleShootingContainer key={i}>
-              <TroubleShooting {...e} />
+              <TroubleShooting {...e} {...troubleShootings} />
             </TroubleShootingContainer>
           );
         })}
