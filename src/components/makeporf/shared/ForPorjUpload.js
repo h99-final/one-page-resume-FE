@@ -23,14 +23,11 @@ function ForProjUpload(props) {
     setFiles(
       file.map((e) =>
         Object.assign(e, {
-          preview: URL.createObjectURL(e)
+          preview: URL.createObjectURL(e),
         })
       )
     );
   };
-
-  console.log(files.preview)
-
 
   function onImageChange(e) {
     const reader = new FileReader();
@@ -49,23 +46,25 @@ function ForProjUpload(props) {
           <section>
             <Inner {...getRootProps()}>
               <input {...getInputProps()} />
-              {isFocused || isDragActive
-                ? (<>
+              {isFocused || isDragActive ? (
+                <>
                   <img
                     style={{ borderRadius: "10px" }}
                     width="100%"
                     alt=""
                     src={process.env.PUBLIC_URL + "/img/eximghover.svg"}
                   />
-                </>)
-                : (<>
+                </>
+              ) : (
+                <>
                   <img
                     style={{ borderRadius: "10px" }}
                     width="100%"
                     alt=""
                     src={process.env.PUBLIC_URL + "/img/eximg.svg"}
                   />
-                </>)}
+                </>
+              )}
             </Inner>
           </section>
         )}
@@ -73,11 +72,14 @@ function ForProjUpload(props) {
 
       {files.map((file) => (
         <Image>
-          <img style={{ borderRadius: "10px" }}
-            width="250px" alt="selected" src={file.preview} />
+          <img
+            style={{ borderRadius: "10px" }}
+            width="250px"
+            alt="selected"
+            src={file.preview}
+          />
         </Image>
-      ))
-      }
+      ))}
     </ProfileBox>
   );
 }

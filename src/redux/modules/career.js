@@ -8,7 +8,7 @@ const DELETE_CAREER = "DELETE_CAREER";
 const UPDATE_CAREER = "UPDATE_CAREER";
 
 const setCareer = createAction(SET_CAREER, (careers) => ({ careers }));
-const addCareer = createAction(ADD_CAREER, (career) => ({ career }));
+const addCareer = createAction(ADD_CAREER, (newcareer) => ({ newcareer }));
 const updateCareer = createAction(UPDATE_CAREER, (id, career) => ({
   id,
   career,
@@ -41,9 +41,11 @@ const addCareerDB = (career) => {
     apis
       .careerPorf(career)
       .then((res) => {
-        console.log(res.data.data);
-        console.log(career);
-        dispatch(addCareer(career));
+        let _career = {
+          ...career,
+          id: res.data.data,
+        };
+        dispatch(addCareer(_career));
       })
       .catch((error) => {
         if (error.response) {
@@ -73,7 +75,7 @@ const updateCareerDB = (id, career) => {
       .then((res) => {
         console.log(res.data.data);
         console.log(career);
-        window.ScrollTo(0, 0);
+        window.scrollTo(0, 0);
       })
       .catch((error) => {
         if (error.response) {
@@ -91,8 +93,7 @@ export default handleActions(
       }),
     [ADD_CAREER]: (state, action) =>
       produce(state, (draft) => {
-        draft.careers.unshift(action.payload.career);
-        console.log(state.careers);
+        draft.careers.unshift(action.payload.newcareer);
       }),
     [DELETE_CAREER]: (state, action) =>
       produce(state, (draft) => {

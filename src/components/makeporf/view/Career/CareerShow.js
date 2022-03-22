@@ -66,21 +66,22 @@ function CareerShow(props) {
     }
   };
 
-  useEffect(() => {
-    setValue("title", title);
-    setValue("contents", contents);
-    setValue("subTitle", subTitle);
-    setValue("startTime", startTime);
-    setValue("endTime", endTime);
-  }, [update]);
+  // useEffect(() => {
+  //   setValue("title", title);
+  //   setValue("contents", contents);
+  //   setValue("subTitle", subTitle);
+  //   setValue("startTime", startTime);
+  //   setValue("endTime", endTime);
+  // }, [update]);
 
   if (update) {
     return (
       <>
-        <form onSubmit={handleSubmit(careerSubmit)}>
-          <IconBox>
+        <form>
+          {/* <form onSubmit={handleSubmit(careerSubmit)}> */}
+          {/* <IconBox>
             <DeleteForeverIcon onClick={handleSubmit(careerSubmit)} />
-          </IconBox>
+          </IconBox> */}
           <IconBox>
             <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
@@ -211,7 +212,6 @@ function CareerShow(props) {
         <hr style={{ margin: "50px" }} />
         <FormContents>
           <IconBox>
-            <DeleteForeverIcon onClick={handleUpdate} />
             <DeleteForeverIcon onClick={handleDelete} />
           </IconBox>
           <Content style={{ marginBottom: "40px" }}>
@@ -292,6 +292,8 @@ const IconBox = styled.div`
   height: 45px;
   background-color: #ffffff;
   border-radius: 50px;
+  margin-right: 50px;
+  margin-bottom: 10px;
 `;
 
 const Message = styled(ErrorMessage)`

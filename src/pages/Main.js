@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
-import { useSelector } from 'react-redux';
-import { apis } from '../shared/axios';
-import MainCard from '../components/Element/MainCard';
-import PortfolioBuisnesscard from '../components/Element/PortfolioBusinesscard';
+import { useSelector } from "react-redux";
+import { apis } from "../shared/axios";
+import MainCard from "../components/Element/MainCard";
+import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -15,26 +15,26 @@ const defaultprojects = {
   title: "",
   userJob: "",
   username: "",
-}
+};
 const Main = () => {
-  const userInfo = useSelector(state => state.user.user)
+  const userInfo = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    const stack = []
+    const stack = [];
     apis.mainPorf(stack).then((res) => {
       setPorf(res.data.data.slice(index, index + 4));
     });
     apis.mainProj(stack).then((res) => {
-      setProj(res.data.data)
-    })
+      setProj(res.data.data);
+    });
   }, [index]);
 
-  console.log(porf)
-  console.log(index)
+  console.log(porf);
+  console.log(index);
   return (
     <>
       <Container>
@@ -42,12 +42,22 @@ const Main = () => {
         <Banner />
         <PortfolioBox>
           <TitleBox>
-            <h1>
-              실시간 베스트 포트폴리오
-            </h1>
+            <h1>실시간 베스트 포트폴리오</h1>
             <h2>
-              <button onClick={() => { setIndex(prev => (prev - 4) % 12) }}>{"<"}</button>
-              <button onClick={() => { setIndex(prev => (prev + 4) % 12) }}>{">"}</button>
+              <button
+                onClick={() => {
+                  setIndex((prev) => (prev - 4) % 12);
+                }}
+              >
+                {"<"}
+              </button>
+              <button
+                onClick={() => {
+                  setIndex((prev) => (prev + 4) % 12);
+                }}
+              >
+                {">"}
+              </button>
             </h2>
           </TitleBox>
           <Portfolio>
@@ -56,25 +66,21 @@ const Main = () => {
                 <>
                   <PortfolioBuisnesscard key={`${e.id}`} {...e} />
                 </>
-              )
+              );
             })}
           </Portfolio>
         </PortfolioBox>
         <ProjectBox>
           <TitleBox>
-            <h1>
-              프로젝트 둘러보기
-            </h1>
+            <h1>프로젝트 둘러보기</h1>
           </TitleBox>
           <Project>
-
-
             {proj?.map((e, i) => {
               return (
                 <>
                   <MainCard key={`${e.id}`} {...e} />
                 </>
-              )
+              );
             })}
           </Project>
         </ProjectBox>
@@ -82,8 +88,9 @@ const Main = () => {
     </>
   );
 };
+
 const Container = styled.div`
-  background-color: #1F2029;
+  background-color: #1f2029;
   position: relative;
   width: 100%;
   height: 100%;
@@ -118,8 +125,8 @@ const TitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
-  
-  h1{
+
+  h1 {
     margin-left: 20px;
     font-style: normal;
     font-weight: 400;
@@ -128,20 +135,19 @@ const TitleBox = styled.div`
     letter-spacing: -0.01em;
     color: white;
   }
-  h2{
-    
-    button{
+  h2 {
+    button {
       margin-right: 10px;
       width: 30px;
       height: 30px;
       text-align: center;
       font-weight: bolder;
       color: white;
-      border: 1px solid #393A47;
+      border: 1px solid #393a47;
       border-radius: 25px;
-      background-color: #393A47;
+      background-color: #393a47;
       font-size: 20px;
-      :hover{
+      :hover {
         background-color: #000000;
         color: white;
         border: none;

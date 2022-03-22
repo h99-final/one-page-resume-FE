@@ -31,7 +31,7 @@ const ProjHeader = (props) => {
       });
   };
 
-  if (!project?.isMyProject) {
+  if (!project.isMyProject) {
     return (
       <>
         <StyledHeader>
@@ -84,8 +84,8 @@ const ProjHeader = (props) => {
               onClick={() => {
                 history.push("/");
               }}
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
