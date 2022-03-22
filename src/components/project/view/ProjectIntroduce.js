@@ -47,7 +47,7 @@ const ProjectIntroduce = (props) => {
   // 트러블 슈팅 api
 
   console.log(troubleShootings);
-
+  console.log(project?.img?.length)
   return (
     <>
       <TitleBox><h1>{project?.title}</h1></TitleBox>
@@ -66,7 +66,7 @@ const ProjectIntroduce = (props) => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2"
           >
-            {project?.img?.slice(0, 4).map((e, i) => {
+            {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide>
                   <img key={e.url + `${i}`} alt="" src={e.url} />
@@ -76,15 +76,15 @@ const ProjectIntroduce = (props) => {
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
-            loop={true}
+            // loop={true}
             spaceBetween={10}
-            slidesPerView={4}
+            slidesPerView={project?.img?.length}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper"
           >
-            {project?.img?.slice(0, 4).map((e, i) => {
+            {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide>
                   <img key={e.url + `${i}`} alt="" src={e.url} />
