@@ -4,6 +4,7 @@ import Header from "../shared/Header";
 import Banner from "../components/Banner";
 import { useSelector } from "react-redux";
 import { apis } from "../shared/axios";
+import { useHistory } from "react-router-dom";
 import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 const defaultprojects = {
@@ -16,7 +17,10 @@ const defaultprojects = {
   userJob: "",
   username: "",
 };
+
 const Main = () => {
+  const history = useHistory();
+
   const userInfo = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
@@ -64,7 +68,9 @@ const Main = () => {
             {porf?.map((e, i) => {
               return (
                 <>
-                  <PortfolioBuisnesscard key={`${e.id}`} {...e} />
+                  <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
+                    <PortfolioBuisnesscard key={`${e.id}`} {...e} />
+                  </div>
                 </>
               );
             })}
@@ -116,6 +122,7 @@ const Portfolio = styled.div`
   min-width: 1440px;
   max-width: 1900px;
   border-radius: 10px;
+  justify-content: space-around;
   @media only screen and (max-width: 1300px) {
   }
 `;

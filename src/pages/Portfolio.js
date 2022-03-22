@@ -63,7 +63,7 @@ const Portfolio = () => {
       <UserInfo />
       <Stack />
       <Career />
-      <ProjHeader />
+      {/* <ProjHeader /> */}
       <CardsContainer>
         <Swiper
           direction={"vertical"}
