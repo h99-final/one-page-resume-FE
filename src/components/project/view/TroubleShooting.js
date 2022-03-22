@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import Highlighted from "../../makeproject/ts/Highlight";
 
 const TroubleShooting = (props) => {
-  const { fileId, fileName, tsContent, tsPatchCodes, father } = props;
+  const { fileId, fileName, tsContent, tsPatchCodes, tsName, commitMsg } =
+    props;
+  console.log(props);
   const { id } = props;
 
   // const [ts, setTS] = useState([]);
@@ -15,92 +17,76 @@ const TroubleShooting = (props) => {
   const handleNumClick = (e) => {
     setSelected(e.target.id);
   };
-  const troubleShootings = useSelector(
-    (state) => state.setproject.project.troubleShootings
-  );
-  const ts = useSelector((state) => state.setproject.troubleShootings);
-  const is_loading = useSelector((state) => state.setproject.is_loading);
 
-  function filter() {
-    if (troubleShootings) {
-      let _troubleShooting = troubleShootings.filter((e) =>
-        e.tsFiles.map((ts) => (ts.fileId === fileId ? true : false))
-      );
-      return _troubleShooting;
-    }
-  }
+  // const NumBoxs = () =>
+  //   ts.slice(0, 10).length <= 5
+  //     ? Array(ts?.length)
+  //         .fill(0)
+  //         .map((_e, i) => (
+  //           <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+  //             {i + 1}
+  //           </NumberBox>
+  //         ))
+  //     : Array(5)
+  //         .fill(0)
+  //         .map((_e, i) => (
+  //           <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+  //             {i + 1}
+  //           </NumberBox>
+  //         ));
 
-  console.log(troubleShootings);
+  // const NumBoxs2 = () =>
+  //   Array(ts?.length - 5)
+  //     .fill(0)
+  //     .map((_e, i) => (
+  //       <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+  //         {i + 6}
+  //       </NumberBox>
+  //     ));
+
+  // 번호칸 만들기
   const NumBoxs = () =>
-    ts.slice(0, 10).length <= 5
-      ? Array(ts?.length)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ))
-      : Array(5)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ));
-
-  const NumBoxs2 = () =>
-    Array(ts?.length - 5)
+    // Array(ts?.length)
+    Array(10)
       .fill(0)
       .map((_e, i) => (
         <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-          {i + 6}
+          {i + 1}
         </NumberBox>
       ));
 
   return (
     <>
-      {is_loading ? (
-        <>로딩중</>
-      ) : (
-        <SampleCard>
-          <LeftBox>
-            <LeftTopBox style={{ marginBottom: "24px" }}>
-              <Num>
-                {ts?.length > 6 ? (
-                  <>
-                    <div style={{ display: "flex" }}>
-                      <NumBoxs />
-                    </div>
-                    <div style={{ display: "flex" }}>
-                      <NumBoxs2 />
-                    </div>
-                  </>
-                ) : (
-                  <div style={{ display: "flex" }}>
-                    <NumBoxs />
-                  </div>
-                )}
-              </Num>
+      <SampleCard>
+        <LeftBox>
+          <LeftTopBox style={{ marginBottom: "24px" }}>
+            <Num>
+              <NumBoxs />
+            </Num>
 
-              <Font>{father.commitMsg}</Font>
-              <Font>{father.tsName}</Font>
-            </LeftTopBox>
-            <LeftBottomBox>{tsContent}</LeftBottomBox>
-          </LeftBox>
-          <RightBox>
-            <Highlighted show text={tsPatchCodes} />
-          </RightBox>
-        </SampleCard>
-      )}
+            <Font>{commitMsg}</Font>
+            <Font>{tsName}</Font>
+          </LeftTopBox>
+          <LeftBottomBox>{tsContent}</LeftBottomBox>
+        </LeftBox>
+        <RightBox>
+          <Highlighted show text={tsPatchCodes} />
+        </RightBox>
+      </SampleCard>
     </>
   );
 };
 
-const Num = styled.div``;
+const Num = styled.div`
+  display: flex;
+  flex-direction: row;
+  max-width: 650px;
+  justify-content: space-between;
+`;
 
 const SampleCard = styled.div`
   /* position: relative; */
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 120px);
   margin: auto;
   /* flex-shrink: 0; */
@@ -110,17 +96,18 @@ const SampleCard = styled.div`
 
 const LeftBox = styled.div`
   border: 1px solid;
-  //ToDo
-  min-width: 450px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
-  margin: 0px 26px;
+  margin-right: 70px;
   /* border: 1px solid #ffffff; */
 `;
+
 const LeftTopBox = styled.div`
   max-height: calc(35% - 20px);
   border: 1px solid #ffffff;
 `;
+
 const LeftBottomBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -144,9 +131,10 @@ const RightBox = styled.div`
 
   /* margin: 0px auto; */
   display: flex;
-  width: calc(100vw - 40vw);
+  width: calc(95vw - 650px);
   border: 1px solid #ffffff;
 `;
+
 const NumberBox = styled.div`
   width: 65px;
   height: 65px;

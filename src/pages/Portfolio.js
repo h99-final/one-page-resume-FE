@@ -65,27 +65,14 @@ const Portfolio = () => {
       <Career />
       {/* <ProjHeader /> */}
       <CardsContainer>
-        <Swiper
-          direction={"vertical"}
-          spaceBetween={1000}
-          slidesPerView={1}
-          loop={true}
-          pagination={true}
-          modules={[Pagination, Mousewheel]}
-          className="mySwiper"
-          mousewheel={true}
-        >
-          {projectId?.map((e) => {
-            return (
-              <>
-                <SwiperSlide>
-                  <ProjectIntroduce key={`${e.id}` + e.title} id={e} />
-                  <ShowMore />
-                </SwiperSlide>
-              </>
-            );
-          })}
-        </Swiper>
+        {projectId?.map((e) => {
+          return (
+            <>
+              <ProjectIntroduce key={`${e.id}` + e.title} id={e} />
+              <ShowMore />
+            </>
+          );
+        })}
       </CardsContainer>
     </>
   );
