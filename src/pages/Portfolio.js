@@ -12,15 +12,17 @@ import Career from "../components/portfolio/view/Career";
 import Stack from "../components/portfolio/view/Stack";
 import UserInfo from "../components/portfolio/view/UserInfo";
 import Header from "../shared/Header";
-import ProjectView from "../components/portfolio/view/ProjectView";
 import ProjHeader from "../shared/ProjHeader";
-import TroubleShooting from "../components/project/view/TroubleShooting";
-import Project, {
-  IntroduceContainer,
-  TroubleShootingContainer,
-} from "./Project";
 import ProjectIntroduce from "../components/project/view/ProjectIntroduce";
 import PortfolioIntroduce from "../components/portfolio/view/PortfolioIntroduce";
+import TSPortfolio from "../components/portfolio/view/TSPortfolio";
+
+//swipe
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Mousewheel } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import ShowMore from "../components/portfolio/ShowMore";
 
 const Portfolio = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const Portfolio = () => {
   const projectId = useSelector((state) => state.myproject.selectedProjects);
   const is_loading = useSelector((state) => state.setproject.is_loading);
   console.log(projectId, is_loading);
+
   // const [ScrollY, setScrollY] = useState(0);
 
   // const handleFollow = () => {
@@ -61,50 +64,54 @@ const Portfolio = () => {
       <Stack />
       <Career />
       <ProjHeader />
-
-      {projectId?.map((e) => {
-        return (
-          <>
-            <IntroduceContainer>
-              <ProjectIntroduce id={e} />
-            </IntroduceContainer>
-            {/* {ts?.map((t, i) => {
-                return (
-                  <TroubleShootingContainer>
-                    <TroubleShooting id={e} {...t} />
-                  </TroubleShootingContainer>
-                );
-              })} */}
-          </>
-        );
-      })}
+      <CardsContainer>
+        <Swiper
+          direction={"vertical"}
+          spaceBetween={1000}
+          slidesPerView={1}
+          loop={true}
+          pagination={true}
+          modules={[Pagination, Mousewheel]}
+          className="mySwiper"
+          mousewheel={true}
+        >
+          {projectId?.map((e) => {
+            return (
+              <>
+                <SwiperSlide>
+                  <ProjectIntroduce key={`${e.id}` + e.title} id={e} />
+                  <ShowMore />
+                </SwiperSlide>
+              </>
+            );
+          })}
+        </Swiper>
+      </CardsContainer>
     </>
   );
 };
 
-// const Container = styled.div`
-//   width: 100%;
-// `;
+const SwiperContent = styled(SwiperSlide)``;
 
-// const BumperSection = styled.section`
-//   text-align: center;
-//   padding: 128px 16px;
-// `;
-
-// const HorizontalSection = styled.section`
-//   position: relative;
-//   width: 100%;
-//   min-height: 100vh;
-// `;
-
-// const CardsContainer = styled.div`
-//   position: relative;
-//   height: 100%;
-//   padding: 0 0 0 150px;
-//   display: flex;
-//   flex-flow: row nowrap;
-//   justify-content: flex-start;
-//   align-items: center;
-// `;
+const CardsContainer = styled.div`
+  /* position: relative; */
+  width: 80vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  & > .swiper {
+    background-color: #1f2029;
+    height: 85vh;
+  }
+  & > .swiper-slide {
+  }
+  & > .pagination {
+    color: #fff;
+  }
+`;
 
 export default Portfolio;

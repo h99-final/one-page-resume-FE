@@ -21,9 +21,8 @@ const initialState = {
   careers: [],
 };
 
-const setCareerDB = () => {
+const setCareerDB = (porfId) => {
   return async function (dispatch, getState, { history }) {
-    const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     await apis
       .careerPorfGet(porfId)
       .then((res) => {
@@ -39,11 +38,13 @@ const setCareerDB = () => {
 
 const addCareerDB = (career) => {
   return function (dispatch, getState, { history }) {
-    apis.careerPorf(career).then((res) => {
-      console.log(res.data.data);
-      console.log(career);
-      dispatch(addCareer(career));
-    })
+    apis
+      .careerPorf(career)
+      .then((res) => {
+        console.log(res.data.data);
+        console.log(career);
+        dispatch(addCareer(career));
+      })
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
@@ -67,11 +68,13 @@ const deleteCareerDB = (index) => {
 
 const updateCareerDB = (id, career) => {
   return async function (dispatch, getState, { history }) {
-    await apis.careerPorfPut(id, career).then((res) => {
-      console.log(res.data.data);
-      console.log(career);
-      window.ScrollTo(0, 0);
-    })
+    await apis
+      .careerPorfPut(id, career)
+      .then((res) => {
+        console.log(res.data.data);
+        console.log(career);
+        window.ScrollTo(0, 0);
+      })
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);

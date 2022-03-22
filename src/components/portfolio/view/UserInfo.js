@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
 const UserInfo = () => {
+  const { id } = useParams();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [user, setUser] = useState();
   const [img, setImg] = useState();
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId).then((res) => {
+    apis.introPorfGet(id).then((res) => {
       setUser(res.data.data);
     });
   }, []);

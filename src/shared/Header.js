@@ -180,9 +180,11 @@ export default Header;
 const StyledHeader = styled.div`
   background-color: #13131b;
   display: flex;
+  /* position: fixed;
+  top: 0px; */
+  width: 100vw;
   align-items: center;
   justify-content: space-between;
-  width: auto;
   height: 60px;
   margin-left: auto;
   margin-right: auto;

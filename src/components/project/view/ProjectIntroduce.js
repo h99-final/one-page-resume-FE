@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+// route
 import { useParams } from "react-router-dom";
+//redux
 import { actionCreators } from "../../../redux/modules/setProject";
-
+//apis
 import { apis } from "../../../shared/axios";
+// components
 import ProjHeader from "../../../shared/ProjHeader";
+import TroubleShooting from "./TroubleShooting";
+import TSPortfolio from "../../portfolio/view/TSPortfolio";
 
 const ProjectIntroduce = (props) => {
-  const dispatch = useDispatch();
   const { id } = props;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const [project, setProject] = useState({});
+
+  const [troubleShootings, setTroubleShootings] = useState([]);
+  const [is_loading, setIs_loading] = useState(true);
 
   useEffect(() => {
     // dispatch(actionCreators.setProjectDB(id));
@@ -23,7 +31,13 @@ const ProjectIntroduce = (props) => {
       .catch((error) => {
         window.alert(error.response.data.data.errors[0].message);
       });
+    return () => setIs_loading(true);
   }, []);
+
+  // 트러블 슈팅 토글 버튼
+  // 트러블 슈팅 api
+
+  console.log(troubleShootings);
 
   return (
     <>
@@ -48,7 +62,7 @@ const ProjectIntroduce = (props) => {
               <ContentTitle>TECH STACK</ContentTitle>
               {project?.stack?.map((e, i) => {
                 return (
-                  <SubStack key={i}>
+                  <SubStack key={e}>
                     <span>{e}</span>
                   </SubStack>
                 );
@@ -57,16 +71,23 @@ const ProjectIntroduce = (props) => {
           </ContentBox>
         </IntroBox>
       </SampleCard>
+      {troubleShootings.tsFiles?.map((e, i) => {
+        return (
+          <SampleCard style={{ color: "white", zIndex: "90" }} key={e.id}>
+            <TSPortfolio {...e} {...troubleShootings} />;
+          </SampleCard>
+        );
+      })}
     </>
   );
 };
 
 const SampleCard = styled.div`
-  position: relative;
-  width: 1440px;
-  height: 90vh;
-  margin-right: 75px;
-  flex-shrink: 0;
+  /* position: relative; */
+  width: 100vw;
+  height: calc(100vh - 120px);
+  padding: 120px 0px;
+  /* flex-shrink: 0; */
 `;
 
 const ContentBox = styled.div`
