@@ -15,8 +15,6 @@ const Career = () => {
     dispatch(actionCreators.setCareerDB(id));
   }, []);
 
-  console.log(careers);
-
   return (
     <>
       <Container>

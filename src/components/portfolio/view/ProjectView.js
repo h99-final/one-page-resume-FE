@@ -1,73 +1,145 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { apis } from "../../../shared/axios";
+// route
 import { useParams } from "react-router-dom";
+//redux
 import { actionCreators } from "../../../redux/modules/setProject";
-import ProjHeader from "../../../shared/ProjHeader";
+//apis
+import { apis } from "../../../shared/axios";
+// components
+// import TSPortfolio from "../../portfolio/view/TSPortfolio";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import ShowMore from "../ShowMore";
+import TroubleShooting from "../../project/view/TroubleShooting";
+import { TroubleShootingContainer } from "../../../pages/Project";
 
-const ProjectView = (props) => {
-  const { title, img, content, stack } = props;
-
+const ProjectViewIntro = (props) => {
+  const { id } = props;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const [contents, setContents] = useState("");
+  const [project, setProject] = useState({});
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const troubleShootings = useSelector(
+    (state) => state.setproject.troubleShootings
+  );
+  const [is_loading, setIs_loading] = useState(true);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    // dispatch(actionCreators.setProjectDB(id));
+    apis
+      .projectGet(id)
+      .then((res) => {
+        setProject(res.data.data);
+      })
+      .catch((error) => {
+        window.alert(error.response.data.data.errors[0].message);
+      });
+    return () => setIs_loading(true);
+  }, []);
+
+  console.log(troubleShootings);
+  // 트러블 슈팅 토글 버튼
+  // 트러블 슈팅 api
   return (
     <>
-      <SampleCard>
-        <IntroBox>
-          <h1>{title}</h1>
-          <ImgBox>
-            {img?.slice(0, 4).map((e, i) => {
+      <TitleBox>
+        <h1>{project?.title}</h1>
+      </TitleBox>
+      <IntroBox>
+        <ImgBox>
+          <Swiper
+            style={{
+              "--swiper-navigation-color": "#fff",
+              "--swiper-pagination-color": "#fff",
+            }}
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            thumbs={{ swiper: thumbsSwiper }}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper2"
+          >
+            {project?.img?.map((e, i) => {
               return (
-                <SubStack key={i}>
+                <SwiperSlide>
+                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            // loop={true}
+            spaceBetween={10}
+            slidesPerView={project?.img?.length}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper"
+          >
+            {project?.img?.map((e, i) => {
+              return (
+                <SwiperSlide>
+                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </ImgBox>
+        <ContentBox>
+          <StackBox>
+            <ContentTitle>TECH STACK</ContentTitle>
+            {project?.stack?.map((e, i) => {
+              return (
+                <SubStack key={e}>
                   <span>{e}</span>
                 </SubStack>
               );
             })}
-          </ImgBox>
-          <ContentBox>
-            <AboutBox>
-              <ContentTitle>ABOUT</ContentTitle>
-              <h2>{content}</h2>
-            </AboutBox>
-            <StackBox>
-              <ContentTitle>TECH STACK</ContentTitle>
-              {stack?.map((e, i) => {
-                return (
-                  <SubStack key={i}>
-                    <span>{e}</span>
-                  </SubStack>
-                );
-              })}
-            </StackBox>
-          </ContentBox>
-        </IntroBox>
-      </SampleCard>
+          </StackBox>
+          <AboutBox>
+            <ContentTitle>ABOUT</ContentTitle>
+            <h2>{project?.content}</h2>
+          </AboutBox>
+        </ContentBox>
+      </IntroBox>
+      <ShowMore show={show} setShow={setShow} id={id} />
+      {show
+        ? troubleShootings.map((e, i) => {
+            return (
+              <TroubleShootingContainer key={i}>
+                {e.tsFiles.map((t, i) => {
+                  return (
+                    <TroubleShooting
+                      key={t.fileId}
+                      {...e}
+                      {...t}
+                      tsLength={e.tsFiles.length}
+                    />
+                  );
+                })}
+              </TroubleShootingContainer>
+            );
+          })
+        : null}
     </>
   );
 };
 
-const SampleCard = styled.div`
-  position: relative;
-  width: 1440px;
-  height: 90vh;
-  margin-right: 75px;
-  flex-shrink: 0;
-`;
-
 const ContentBox = styled.div`
-  width: 100%;
-  display: flex;
+  width: 55%;
+  height: 100%;
   justify-content: flex-start;
   /* padding-bottom: 60px; */
 `;
 
 const AboutBox = styled.div`
-  max-width: 66%;
-  min-width: 550px;
-  margin-right: 50px;
+  width: 100%;
+  min-height: 120px;
   h2 {
     font-style: normal;
     font-weight: 300;
@@ -112,13 +184,19 @@ const ContentTitle = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 35%;
-  min-width: 400px;
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 40px;
 `;
 
-const IntroBox = styled.div`
-  width: 100vw;
-  margin: auto 30px;
+const TitleBox = styled.div`
+  width: 100%;
+  margin: 0px auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  justify-content: space-between;
+  display: flex;
+  text-align: left;
   h1 {
     width: fit-content;
     font-style: normal;
@@ -127,23 +205,20 @@ const IntroBox = styled.div`
     line-height: 31px;
     letter-spacing: -0.01em;
     color: #ffffff;
-    margin-bottom: 50px;
   }
+`;
+
+const IntroBox = styled.div`
+  width: 100%;
+  height: 80vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const ImgBox = styled.div`
-  width: 100%;
-  margin-bottom: 50px;
-  flex-direction: row;
-  justify-content: space-around;
-  display: flex;
-  img {
-    width: 322px;
-    height: 322px;
-    margin-right: 24px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
+  width: 40%;
+  height: 100%;
 `;
 
-export default ProjectView;
+export default ProjectViewIntro;
