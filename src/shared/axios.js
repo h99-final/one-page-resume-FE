@@ -130,5 +130,6 @@ export const apis = {
       stack: stack,
     }),
 
-  gitToken: (token) => instance.put('/user/git/token', { token: token }),
+  gitToken: (token) => instance.put('/user/git/token', token),
+  delGitToken: () => instance.delete('/user/git/token'),
 };

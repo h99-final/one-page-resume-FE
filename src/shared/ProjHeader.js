@@ -37,17 +37,17 @@ const ProjHeader = (props) => {
         <StyledHeader>
           <LeftMenu>
             <Avatar
-              alt={userInfo.name}
-              src={userInfo.profileImage}
+              alt={userInfo?.name}
+              src={userInfo?.profileImage}
               sx={{ width: 38, height: 38, marginLeft: "25px" }}
             />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
               onClick={() => {
-                history.push(`/portfolio/${userInfo.porfId}`);
+                history.push(`/portfolio/${userInfo?.porfId}`);
               }}
             >
-              {userInfo.name}
+              {userInfo?.name}
             </div>
           </LeftMenu>
           <RightMenu>
@@ -132,7 +132,7 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background-color: #13131b;
+  background:none;
   align-items: center;
   justify-content: space-between;
   width: 100vw;
