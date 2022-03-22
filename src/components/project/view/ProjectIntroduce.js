@@ -11,12 +11,21 @@ import { apis } from "../../../shared/axios";
 import ProjHeader from "../../../shared/ProjHeader";
 import TroubleShooting from "./TroubleShooting";
 import TSPortfolio from "../../portfolio/view/TSPortfolio";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import "../../banner.css"
 
 const ProjectIntroduce = (props) => {
   const { id } = props;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [project, setProject] = useState({});
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [troubleShootings, setTroubleShootings] = useState([]);
   const [is_loading, setIs_loading] = useState(true);
@@ -41,36 +50,67 @@ const ProjectIntroduce = (props) => {
 
   return (
     <>
-      <SampleCard>
-        <IntroBox>
-          <h1>{project?.title}</h1>
-          <ImgBox>
+      <TitleBox><h1>{project?.title}</h1></TitleBox>
+      <IntroBox>
+
+        <ImgBox>
+          <Swiper
+            style={{
+              "--swiper-navigation-color": "#fff",
+              "--swiper-pagination-color": "#fff",
+            }}
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            thumbs={{ swiper: thumbsSwiper }}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper2"
+          >
             {project?.img?.slice(0, 4).map((e, i) => {
               return (
-                <>
+                <SwiperSlide>
                   <img key={e.url + `${i}`} alt="" src={e.url} />
-                </>
+                </SwiperSlide>
               );
             })}
-          </ImgBox>
-          <ContentBox>
-            <AboutBox>
-              <ContentTitle>ABOUT</ContentTitle>
-              <h2>{project?.content}</h2>
-            </AboutBox>
-            <StackBox>
-              <ContentTitle>TECH STACK</ContentTitle>
-              {project?.stack?.map((e, i) => {
-                return (
-                  <SubStack key={e}>
-                    <span>{e}</span>
-                  </SubStack>
-                );
-              })}
-            </StackBox>
-          </ContentBox>
-        </IntroBox>
-      </SampleCard>
+          </Swiper>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper"
+          >
+            {project?.img?.slice(0, 4).map((e, i) => {
+              return (
+                <SwiperSlide>
+                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </ImgBox>
+        <ContentBox>
+
+          <StackBox>
+            <ContentTitle>TECH STACK</ContentTitle>
+            {project?.stack?.map((e, i) => {
+              return (
+                <SubStack key={e}>
+                  <span>{e}</span>
+                </SubStack>
+              );
+            })}
+          </StackBox>
+          <AboutBox>
+            <ContentTitle>ABOUT</ContentTitle>
+            <h2>{project?.content}</h2>
+          </AboutBox>
+        </ContentBox>
+      </IntroBox>
       {troubleShootings.tsFiles?.map((e, i) => {
         return (
           <SampleCard style={{ color: "white", zIndex: "90" }} key={e.id}>
@@ -82,6 +122,7 @@ const ProjectIntroduce = (props) => {
   );
 };
 
+
 const SampleCard = styled.div`
   /* position: relative; */
   width: 100vw;
@@ -91,16 +132,15 @@ const SampleCard = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: 100%;
-  display: flex;
+  width: 55%;
+  height: 100%;
   justify-content: flex-start;
   /* padding-bottom: 60px; */
 `;
 
 const AboutBox = styled.div`
-  max-width: 66%;
-  min-width: 550px;
-  margin-right: 50px;
+  width: 100%;
+  min-height: 120px;
   h2 {
     font-style: normal;
     font-weight: 300;
@@ -144,39 +184,21 @@ const ContentTitle = styled.div`
   margin-bottom: 5px;
 `;
 
-const Container = styled.div`
-  width: 100vw;
-  margin-right: 10em;
-  position: relative;
-`;
 
 const StackBox = styled.div`
-  width: 35%;
-  min-width: 400px;
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 40px;
 `;
 
 const TitleBox = styled.div`
-  width: 95%;
+  width: 100%;
   margin: 0px auto;
-  border-bottom: 1px solid black;
+  margin-top: 100px;
+  margin-bottom: 50px;
   justify-content: space-between;
   display: flex;
   text-align: left;
-  padding: 0px 0px 20px 0px;
-  h1 {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 31px;
-    letter-spacing: -0.01em;
-    color: #ffffff;
-  }
-`;
-
-const IntroBox = styled.div`
-  width: 100%;
-  min-height: 630px;
-  margin: 0px 30px;
   h1 {
     width: fit-content;
     font-style: normal;
@@ -185,23 +207,21 @@ const IntroBox = styled.div`
     line-height: 31px;
     letter-spacing: -0.01em;
     color: #ffffff;
-    margin-bottom: 50px;
+    
   }
 `;
 
-const ImgBox = styled.div`
+const IntroBox = styled.div`
   width: 100%;
-  margin-bottom: 50px;
-  flex-direction: row;
-  justify-content: flex-start;
+  height: 80vh;
+  margin: auto;
   display: flex;
-  img {
-    width: 322px;
-    height: 322px;
-    margin-right: 24px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
+  justify-content: space-between;
+`;
+
+const ImgBox = styled.div`
+  width: 40%;
+  height: 100%;
 `;
 
 export default ProjectIntroduce;

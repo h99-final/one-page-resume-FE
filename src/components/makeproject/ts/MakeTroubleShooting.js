@@ -11,6 +11,7 @@ import {
   InputCustom,
   Label,
   MakeCenter,
+  Star,
 } from "../../makeporf/shared/_sharedStyle";
 import { Font, FormContents } from "../../makeporf/view/Introduce";
 import { FormMainText, FormSubText } from "../MakeProject";
@@ -104,7 +105,7 @@ function MakeTroubleShooting() {
             <>
               <Content>
                 <Label>
-                  <Font>트러블슈팅 제목</Font>
+                  <Font>트러블슈팅 제목<Star>*</Star></Font>
                 </Label>
                 <InputCustom
                   placeholder='제목을 적어주세요.'
@@ -117,7 +118,7 @@ function MakeTroubleShooting() {
               <ErrorMessage>{errors?.title?.message}</ErrorMessage>
               <Content>
                 <Label>
-                  <Font>Commit</Font>
+                  <Font>Commit<Star>*</Star></Font>
                 </Label>
                 <InputCustom
                   style={{ overflow: "hidden" }}
@@ -129,7 +130,7 @@ function MakeTroubleShooting() {
               <ErrorMessage>{errors?.fileName?.message}</ErrorMessage>
               <Content style={{ marginBottom: "30px" }}>
                 <Label>
-                  <Font>File Name</Font>
+                  <Font>File Name<Star>*</Star></Font>
                 </Label>
                 <InputCustom
                   style={{ overflow: "hidden" }}
@@ -140,7 +141,7 @@ function MakeTroubleShooting() {
               </Content>
               <Content style={{ marginBottom: "30px" }}>
                 <Label>
-                  <Font>Patch Code</Font>
+                  <Font>Patch Code<Star>*</Star></Font>
                 </Label>
                 <div
                   style={{

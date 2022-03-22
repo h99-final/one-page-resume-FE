@@ -19,7 +19,14 @@ body {
 .swiper {
   width: 100%;
   height: 600px;
-  background: white;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .swiper-slide {
@@ -64,4 +71,26 @@ body {
   font-variant: initial;
   line-height: 1;
   color: #999999;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 1;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  border: 1px solid white;
+  border-radius: 10px;
 }
