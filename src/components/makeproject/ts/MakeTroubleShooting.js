@@ -70,8 +70,8 @@ function MakeTroubleShooting() {
     setValue("content", "");
   };
   const delGitToken = () => {
-    apis.delGitToken()
-  }
+    apis.delGitToken();
+  };
   const modalOpen = () => {
     setIsOpen(true);
     // apis.gitCommit(projectId).then((res) => {
@@ -95,7 +95,8 @@ function MakeTroubleShooting() {
           <div style={{ display: "flex", alignItems: "center" }}>
             <FormText>트러블 슈팅</FormText>
             <FormSubText>
-              Patch Code 파일을 불러와 프로젝트에서 해결한 문제들을 설명해보세요.
+              Patch Code 파일을 불러와 프로젝트에서 해결한 문제들을
+              설명해보세요.
             </FormSubText>
           </div>
         </FormTitle>
@@ -107,7 +108,7 @@ function MakeTroubleShooting() {
                   <Font>트러블슈팅 제목</Font>
                 </Label>
                 <InputCustom
-                  placeholder='제목을 적어주세요.'
+                  placeholder="제목을 적어주세요."
                   style={{ overflow: "hidden" }}
                   type="text"
                   {...register("title", { required: "제목을 입력해주세요." })}
@@ -159,7 +160,7 @@ function MakeTroubleShooting() {
                   </Font>
                 </Label>
                 <InputCustom
-                  placeholder='문제를 해결한 구체적인 방법, 과정 등을 적어주세요.'
+                  placeholder="문제를 해결한 구체적인 방법, 과정 등을 적어주세요."
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
                   maxLength={1500}
@@ -172,7 +173,7 @@ function MakeTroubleShooting() {
 
           <FormContentsP>
             <MakeCenter style={{ margin: "20px auto" }}>
-              <AddButton >
+              <AddButton>
                 <ContentCareerBottom>
                   {/* <ButtonText onClick={handleSubmit(onValid)}> */}
                   {patchcode && commit ? (
@@ -187,29 +188,33 @@ function MakeTroubleShooting() {
                     </>
                   )}
                 </ContentCareerBottom>
-
               </AddButton>
-
             </MakeCenter>
             <FormSubText style={{ width: "100%", textAlign: "center" }}>
               커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수 있어요.
             </FormSubText>
           </FormContentsP>
-          <ButtonText onClick={() => { delGitToken() }}>토큰삭제</ButtonText>
+          <ButtonText
+            onClick={() => {
+              delGitToken();
+            }}
+          >
+            토큰삭제
+          </ButtonText>
           <hr style={{ margin: "50px" }} />
 
           {tsFile
             ? tsFile.map((e, i) => {
-              return (
-                <>
-                  <ShowTroubleShooting
-                    key={tsFile.fileName + `${i}`}
-                    commit={commit}
-                    {...e}
-                  />
-                </>
-              );
-            })
+                return (
+                  <>
+                    <ShowTroubleShooting
+                      key={tsFile.fileName + `${i}`}
+                      commit={commit}
+                      {...e}
+                    />
+                  </>
+                );
+              })
             : null}
 
           <TemplateProject />
@@ -228,20 +233,6 @@ function MakeTroubleShooting() {
     </>
   );
 }
-
-const Textarea = styled.div``;
-
-const InputCustomPatchCode = styled.div`
-  width: 1120px;
-  height: 19px;
-  padding: 20px;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  resize: none;
-  border: none;
-  background-color: white;
-`;
 
 const ContentCareerBottom = styled(ContentCareer)`
   margin-bottom: 50px;
