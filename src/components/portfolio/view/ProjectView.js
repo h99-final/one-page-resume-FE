@@ -6,54 +6,56 @@ import { useParams } from "react-router-dom";
 import { actionCreators } from "../../../redux/modules/setProject";
 import ProjHeader from "../../../shared/ProjHeader";
 
-const Introduce = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+const ProjectView = (props) => {
+  const { title, img, content, stack } = props;
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [contents, setContents] = useState("");
 
-  useEffect(() => {
-    dispatch(actionCreators.setProjectDB(id));
-  }, []);
-
-  const project = useSelector((state) => state.setproject.project);
-  console.log(project);
-
   return (
     <>
-
-      <IntroBox>
-        <h1>{project?.title}</h1>
-        <ImgBox>
-          {project?.img?.slice(0, 4).map((e, i) => {
-            return (
-              <>
-                <img key={e.url + `${i}`} alt="" src={e.url} />
-              </>
-            );
-          })}
-        </ImgBox>
-        <ContentBox>
-          <AboutBox>
-            <ContentTitle>ABOUT</ContentTitle>
-            <h2>{project?.content}</h2>
-          </AboutBox>
-          <StackBox>
-            <ContentTitle>TECH STACK</ContentTitle>
-            {project?.stack?.map((e, i) => {
+      <SampleCard>
+        <IntroBox>
+          <h1>{title}</h1>
+          <ImgBox>
+            {img?.slice(0, 4).map((e, i) => {
               return (
                 <SubStack key={i}>
                   <span>{e}</span>
                 </SubStack>
               );
             })}
-          </StackBox>
-        </ContentBox>
-      </IntroBox>
+          </ImgBox>
+          <ContentBox>
+            <AboutBox>
+              <ContentTitle>ABOUT</ContentTitle>
+              <h2>{content}</h2>
+            </AboutBox>
+            <StackBox>
+              <ContentTitle>TECH STACK</ContentTitle>
+              {stack?.map((e, i) => {
+                return (
+                  <SubStack key={i}>
+                    <span>{e}</span>
+                  </SubStack>
+                );
+              })}
+            </StackBox>
+          </ContentBox>
+        </IntroBox>
+      </SampleCard>
     </>
   );
 };
+
+const SampleCard = styled.div`
+  position: relative;
+  width: 1440px;
+  height: 90vh;
+  margin-right: 75px;
+  flex-shrink: 0;
+`;
 
 const ContentBox = styled.div`
   width: 100%;
@@ -144,4 +146,4 @@ const ImgBox = styled.div`
   }
 `;
 
-export default Introduce;
+export default ProjectView;

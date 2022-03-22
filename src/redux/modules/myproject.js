@@ -54,11 +54,28 @@ const setProjectDB = () => {
   };
 };
 
+const selectedProjectDB = (porfId) => {
+  return function (dispatch) {
+    apis
+      .projectMYPorfGet(porfId)
+      .then((res) => {
+        let projectsInPorf = [];
+        res.data.data.map((e) => projectsInPorf.push(e.id));
+        console.log(projectsInPorf);
+        return projectsInPorf;
+      })
+      .then((projectsInPorf) => {
+        dispatch(selectProject(projectsInPorf));
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_PROJECT]: (state, action) =>
       produce(state, (draft) => {
         draft.projects = action.payload.projects;
+        draft.is_loading = false;
       }),
     [SELECT_PROJECT]: (state, action) =>
       produce(state, (draft) => {
@@ -72,6 +89,7 @@ const actionCreators = {
   setProject,
   selectProject,
   setProjectDB,
+  selectedProjectDB,
 };
 
 export { actionCreators };

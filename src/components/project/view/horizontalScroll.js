@@ -5,22 +5,23 @@ const TallOuterContainer = styled.div.attrs(({ dynamicHeight }) => ({
   style: { height: `${dynamicHeight}px` },
 }))`
   position: relative;
-  width: 110;
+  width: 95vw;
 `;
 
-function setScreenSize() {
-  let vw = window.innerWidth * 0.01;
+// function setScreenSize() {
+//   let vw = window.innerWidth * 0.01;
 
-  document.documentElement.style.setProperty("--vw", `${vw}px`);
-}
+//   document.documentElement.style.setProperty("--vw", `${vw}px`);
+// }
 
-setScreenSize();
+// setScreenSize();
 
 const StickyInnerContainer = styled.div`
   position: sticky;
   top: 0;
   height: 100vh;
-  width: calc(var(--vw, 1vw) * 100);
+  width: 95vw;
+  overflow-x: hidden;
 `;
 
 const HorizontalTranslateContainer = styled.div.attrs(({ translateX }) => ({

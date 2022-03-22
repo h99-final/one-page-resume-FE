@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { actionCreators } from '../../../redux/modules/career';
-import { apis } from '../../../shared/axios';
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { actionCreators } from "../../../redux/modules/career";
+import { apis } from "../../../shared/axios";
 
 const Career = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const careers = useSelector(state => state.career.careers)
+  const careers = useSelector((state) => state.career.careers);
 
   useEffect(() => {
-    dispatch(actionCreators.setCareerDB())
-
+    dispatch(actionCreators.setCareerDB(id));
   }, []);
 
-  console.log(careers)
+  console.log(careers);
 
   return (
     <>
       <Container>
-        <TitleBox><h1>Work Experience</h1></TitleBox>
+        <TitleBox>
+          <h1>Work Experience</h1>
+        </TitleBox>
         <Box>
-          {careers.map(e => {
+          {careers.map((e) => {
             return (
               <CareerBox key={e.id}>
                 <Label>
                   <h1>{e.title}</h1>
-                  <h2>{e.startTime} ~ {e.endTime}</h2>
+                  <h2>
+                    {e.startTime} ~ {e.endTime}
+                  </h2>
                 </Label>
 
                 <CareerContent>
@@ -34,23 +39,17 @@ const Career = () => {
                     <h1>{e.subTitle}</h1>
                   </CareerTitle>
                   {e.contents.map((c, index) => {
-                    return (
-                      <h1 key={index}>
-                        {c}
-                      </h1>
-                    )
+                    return <h1 key={index}>{c}</h1>;
                   })}
                 </CareerContent>
               </CareerBox>
-            )
+            );
           })}
-
         </Box>
-
       </Container>
     </>
   );
-}
+};
 
 const Container = styled.div`
   width: 100%;
@@ -63,7 +62,6 @@ const Box = styled.div`
   width: 96%;
   height: 600px;
   margin: 31px auto;
-
 `;
 
 const CareerBox = styled.div`
@@ -72,7 +70,7 @@ const CareerBox = styled.div`
   width: 100%;
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -87,7 +85,7 @@ const Label = styled.div`
   height: 100%;
   text-align: center;
   align-items: center;
-  h1{
+  h1 {
     margin: auto;
     margin-top: 35px;
     margin-bottom: 16px;
@@ -98,7 +96,7 @@ const Label = styled.div`
     letter-spacing: -0.01em;
     color: #ffffff;
   }
-  h2{
+  h2 {
     margin: auto;
     font-style: normal;
     font-weight: 400;
@@ -112,7 +110,7 @@ const CareerContent = styled.div`
   width: 70%;
   height: 100%;
   border-left: 1px solid #ffffff;
-  h1{
+  h1 {
     padding: 10px 20px;
     width: 80%;
     text-align: left;
@@ -129,7 +127,7 @@ const CareerTitle = styled.div`
   height: 65px;
   border-bottom: 1px solid #ffffff;
   align-items: center;
-  h1{
+  h1 {
     padding: 20px;
     width: 80%;
     text-align: left;
@@ -147,7 +145,7 @@ const TitleBox = styled.div`
   margin-bottom: 30px;
   text-align: left;
   padding-left: 30px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 26px;

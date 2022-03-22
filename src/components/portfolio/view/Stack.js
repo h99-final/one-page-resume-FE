@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import { apis } from '../../../shared/axios';
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { apis } from "../../../shared/axios";
 
 const Stack = () => {
-
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+  const { id } = useParams();
 
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
 
   useEffect(() => {
-    apis.porfStackGet(userInfo.porfId)
-      .then((res) => {
-        setMainStack(res.data.data.mainStack)
-        setSubStack(res.data.data.subStack)
-        console.log(subStack)
-      });
+    apis.porfStackGet(id).then((res) => {
+      setMainStack(res.data.data.mainStack);
+      setSubStack(res.data.data.subStack);
+      console.log(subStack);
+    });
   }, []);
-
 
   return (
     <>
       <Container>
-        <TitleBox><h1>Tech Stack</h1></TitleBox>
+        <TitleBox>
+          <h1>Tech Stack</h1>
+        </TitleBox>
         <Hr></Hr>
         <StackBox>
           <Main>
@@ -41,7 +41,6 @@ const Stack = () => {
                   </MainStack>
                 );
               })}
-
             </ForStack>
           </Main>
           <Sub>
@@ -60,7 +59,7 @@ const Stack = () => {
       </Container>
     </>
   );
-}
+};
 
 const Container = styled.div`
   width: 100%;
@@ -70,7 +69,7 @@ const Container = styled.div`
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: #1F2029;
+  background-color: #1f2029;
   height: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -93,7 +92,7 @@ const SubStack = styled.button`
 `;
 
 const MainStack = styled.button`
-  background-color: #1F2029;
+  background-color: #1f2029;
   width: 120px;
   height: 50px;
   border: 1px solid #999999;
@@ -124,15 +123,14 @@ const ForStack = styled.div`
   height: 50px;
   width: 100%;
   min-width: 600px;
-  
-`
+`;
 
 const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0px 150px 70px 150px;
   height: 50px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -148,7 +146,7 @@ const Sub = styled.div`
   flex-direction: row;
   margin: 0px 150px 0px 150px;
   height: 88px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -165,7 +163,7 @@ const TitleBox = styled.div`
   margin-bottom: 30px;
   text-align: left;
   padding-left: 30px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 26px;

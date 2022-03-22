@@ -31,7 +31,7 @@ const ProjHeader = (props) => {
       });
   };
 
-  if (!project.isMyProject) {
+  if (!project?.isMyProject) {
     return (
       <>
         <StyledHeader>

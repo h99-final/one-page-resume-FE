@@ -64,26 +64,26 @@ function Highlighted({ text = [], show }) {
     text.map((e) => {
       return e.charAt(0) === "-"
         ? _text.push(
-          <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
-            <pre>{e}</pre>
-          </tr>
-        )
+            <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
+              <pre>{e}</pre>
+            </tr>
+          )
         : e.charAt(0) === "+"
-          ? _text.push(
+        ? _text.push(
             <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
               <pre>{e}</pre>
             </tr>
           )
-          : e.charAt(0) === "@"
-            ? _text.push(
-              <>
-                <br />
-                <br />
-                <pre>{e}</pre>
-                <hr />
-              </>
-            )
-            : _text.push(<pre>{e}</pre>);
+        : e.charAt(0) === "@"
+        ? _text.push(
+            <>
+              <br />
+              <br />
+              <pre>{e}</pre>
+              <hr />
+            </>
+          )
+        : _text.push(<pre>{e}</pre>);
     });
     setValue(_text);
   }, [text]);
@@ -110,19 +110,20 @@ const Table = styled.table`
 `;
 
 const InputSize = styled.div`
-  /* height: ${(props) => (props.show ? "100%" : "400px")}; */
-
-  /* max-width: 60vw; */
-  min-width: ${(props) => (props.show ? "100%" : "100%")};
+  /* height: ${(props) => (props.show ? "98%" : "400px")}; */
+  position: relative;
+  height: auto;
+  width: 100%;
+  max-width: 60vw;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
   background-color: #2c2e39;
-  overflow-y: scroll;
+  /* overflow: auto; */
   overflow-x: hidden;
   color: #ffffff;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
@@ -138,14 +139,15 @@ const Tbody = styled.tbody`
   display: flex;
   flex-direction: column;
   tr {
-    align-items: center;
-    padding: 15px;
+    /* align-items: center; */
     text-align: left;
     color: #ffffff;
+    letter-spacing: 0.1em;
     word-wrap: break-word;
     pre {
+      /* padding: 3px; */
       text-decoration-color: #ffffff;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.1em;
       word-wrap: break-word;
     }
   }

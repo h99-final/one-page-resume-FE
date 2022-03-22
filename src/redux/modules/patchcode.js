@@ -117,7 +117,7 @@ const updateTsDB = (projectId, commitId, data) => {
 
 // 선택된 프로젝트에 귀속된 파일들 불러오기(트러블슈팅)
 const getTroubleShootingDB = (projectId) => {
-  return async function (dispatch, getState) {
+  return function (dispatch, getState) {
     apis
       .projectTSGet(projectId)
       .then((res) => {

@@ -20,7 +20,7 @@ function ProjectSelect() {
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const project = useSelector((state) => state.myproject.projects);
-  console.log(project);
+  const is_loading = useSelector((state) => state.myproject.is_loading);
   // props로 건네줘서 핸들링
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [error, setError] = useState("");
@@ -31,9 +31,7 @@ function ProjectSelect() {
       return;
     }
     // 프로젝트 데이터 보내기
-    const data = {
-      projectId: selectedProjects,
-    };
+    const data = { projectId: selectedProjects };
     apis.projectPorf(data).then((res) => {
       // 포트폴리오 화면으로 이동시켜주기
       setError("");
@@ -43,45 +41,54 @@ function ProjectSelect() {
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
-    let porfProject = [];
-    apis.projectMYPorfGet(userInfo.porfId).then((res) => {
-      res.data.data.map((e) => {
-        console.log(res.data.data);
-        return porfProject.push(e.id);
-      });
-    });
-    setSelectedProjects(porfProject);
+    // let porfProject = [];
+    // apis
+    //   .projectMYPorfGet(userInfo.porfId)
+    //   .then((res) => {
+    //     res.data.data.map((e) => {
+    //       return porfProject.push(e.id);
+    //     });
+    //   })
+    //   .then(() => setIs_loading(false));
+    // setSelectedProjects(porfProject);
+    return projectSubmit;
   }, []);
+
+  console.log(selectedProjects);
 
   return (
     <>
-      <form>
-        <FormTitle>
-          <FormText>프로젝트</FormText>
-        </FormTitle>
-        <ProjectBox>
-          {project.map((e, i) => {
-            return (
-              <ProjectCard
-                selectedProjects={selectedProjects}
-                setSelectedProjects={setSelectedProjects}
-                key={i + "e"}
-                {...e}
-              />
-            );
-          })}
-        </ProjectBox>
-        <MakeCenter onClick={projectSubmit}>
-          <AddButton>
-            <ContentCareer>
-              <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
-            </ContentCareer>
-          </AddButton>
-        </MakeCenter>
-        {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
-        <PreviousNext />
-        <Template />
-      </form>
+      {!is_loading ? (
+        <form>
+          <FormTitle>
+            <FormText>프로젝트</FormText>
+          </FormTitle>
+          <ProjectBox>
+            {project?.map((e, i) => {
+              return (
+                <ProjectCard
+                  selectedProjects={selectedProjects}
+                  setSelectedProjects={setSelectedProjects}
+                  key={i + "e"}
+                  {...e}
+                />
+              );
+            })}
+          </ProjectBox>
+          <MakeCenter onClick={projectSubmit}>
+            <AddButton>
+              <ContentCareer>
+                <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
+              </ContentCareer>
+            </AddButton>
+          </MakeCenter>
+          {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
+          <PreviousNext />
+          <Template />
+        </form>
+      ) : (
+        <div>로딩중</div>
+      )}
     </>
   );
 }

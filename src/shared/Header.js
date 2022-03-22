@@ -49,13 +49,21 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/`) }}
+              onClick={() => {
+                history.push(`/`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => {
+                history.push(`/portfolio/${userInfo.porfId}`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -90,13 +98,21 @@ const Header = (props) => {
         <StyledHeader>
           <LeftMenu>
             <img
-              onClick={() => { history.push(`/`) }}
+              onClick={() => {
+                history.push(`/`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
             <img
-              onClick={() => { history.push(`/portfolio/${userInfo.porfId}`) }}
+              onClick={() => {
+                history.push(`/portfolio/${userInfo.porfId}`);
+              }}
               style={{ marginRight: "5px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
             <Port
               onClick={() => {
                 history.push("/portfolio");
@@ -164,9 +180,11 @@ export default Header;
 const StyledHeader = styled.div`
   background-color: #13131b;
   display: flex;
+  /* position: fixed;
+  top: 0px; */
+  width: 100vw;
   align-items: center;
   justify-content: space-between;
-  width: auto;
   height: 60px;
   margin-left: auto;
   margin-right: auto;
@@ -230,7 +248,7 @@ const SharedBtn = styled.button`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   width: 130px;
   height: 40px;
   color: white;

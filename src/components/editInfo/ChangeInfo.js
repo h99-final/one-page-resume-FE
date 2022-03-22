@@ -32,13 +32,33 @@ function ChangeInfo() {
   const onValid = (data) => {
     const stack = userInfo.stack;
     const _data = { ...data, stack };
-    apis.addInfo(_data).then((res) => {
-      if (res.data.errors.message) {
-        window.alert(res.data.errors.message);
-        return;
-      }
-    });
+    apis
+      .addInfo(_data)
+      .then((res) => {
+        // window.alert(res.data.data.message);
+      })
+      .catch((error) => {
+        window.alert(error.response.data.data.errors[0].message);
+      });
   };
+
+  useEffect(() => {
+    apis
+      .userInfo()
+      .then((res) => {
+        const { name, job, phoneNum, gitUrl, email, blogUrl } = res.data.data;
+        setData(res.data.data);
+        setValue("name", name);
+        setValue("job", job);
+        setValue("phoneNum", phoneNum);
+        setValue("gitUrl", gitUrl);
+        setValue("email", email);
+        setValue("blogUrl", blogUrl);
+      })
+      .catch((error) => {
+        setValue(null);
+      });
+  }, []);
 
   return (
     <>
