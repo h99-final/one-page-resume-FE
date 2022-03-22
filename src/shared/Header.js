@@ -182,17 +182,14 @@ const StyledHeader = styled.div`
   display: flex;
   /* position: fixed;
   top: 0px; */
-  width: 100vw;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
 `;
 
 const LeftMenu = styled.div`
+  margin-left: 30px;
   display: flex;
   color: white;
   align-items: center;
@@ -226,6 +223,7 @@ const Proj = styled.div`
 
 const RightMenu = styled.div`
   display: flex;
+  margin-right: 30px;
   align-items: center;
   font-size: 25px;
   font-weight: bold;

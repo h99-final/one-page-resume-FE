@@ -132,7 +132,7 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background-color: #13131b;
+  background:none;
   align-items: center;
   justify-content: space-between;
   width: 100vw;

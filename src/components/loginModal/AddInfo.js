@@ -96,8 +96,6 @@ const AddInfo = (props) => {
     "git",
   ];
 
-  const isAllChecked = stack.length === 2;
-  const disabled = !isAllChecked;
 
   const goNext = () => {
     if (!nameCheck(name) || name.length < 2) {
@@ -113,7 +111,6 @@ const AddInfo = (props) => {
     setPage("2");
   };
   const addInfo = () => {
-    console.log(name, phoneNum, gitUrl, blogUrl, job);
 
     const data = {
       name: name,
@@ -129,8 +126,8 @@ const AddInfo = (props) => {
     dispatch(userActions.addInfoDB(data));
     apis.putStack(_data).then((res) => {
       console.log(res)
+      window.location.reload();
     })
-    window.location.reload();
   };
 
   return (

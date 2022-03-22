@@ -34,6 +34,7 @@ const customStyles = {
 
 function TsModal(props) {
   const dispatch = useDispatch();
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { modalIsOpen, setIsOpen, message_list, projectId, setMessage_list } =
     props;
   const [selectedSha, setSelectedSha] = useState("");
@@ -41,7 +42,6 @@ function TsModal(props) {
   const [token, setToken] = React.useState("");
   const file_list = useSelector((state) => state.patchcode.patchcode);
   const [selectedFileName, setSelectedFileName] = useState("");
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   //file 중복 선택이 가능하게 만들기 위해
   // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
 
@@ -89,11 +89,21 @@ function TsModal(props) {
     }
   }, [page]);
 
-  const submitToken = () => {
-    apis.gitToken(token).then((res) => {
-    })
+  useEffect(() => {
+    if (userInfo.isToken) {
+      setPage(0);
+    }
+  }, [userInfo.isToken]);
 
-    setPage(0);
+
+  const submitToken = () => {
+    const _token = { token: token }
+    apis.gitToken(_token).then((res) => {
+      setPage(0);
+      apis.userInfo().then((res) => {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+      })
+    })
   }
 
   console.log(token)

@@ -69,12 +69,14 @@ function MakeTroubleShooting() {
     setValue("title", "");
     setValue("content", "");
   };
-
+  const delGitToken = () => {
+    apis.delGitToken()
+  }
   const modalOpen = () => {
     setIsOpen(true);
-    apis.gitCommit(projectId).then((res) => {
-      setMessage_list(res.data.data);
-    });
+    // apis.gitCommit(projectId).then((res) => {
+    //   setMessage_list(res.data.data);
+    // });
   };
 
   const handleSubmitDB = (_data) => {
@@ -178,17 +180,22 @@ function MakeTroubleShooting() {
                       + 트러블 슈팅 파일 저장 하기
                     </ButtonText>
                   ) : (
-                    <ButtonText onClick={modalOpen}>
-                      + 트러블 슈팅 파일 추가 하기
-                    </ButtonText>
+                    <>
+                      <ButtonText onClick={modalOpen}>
+                        + 트러블 슈팅 파일 추가 하기
+                      </ButtonText>
+                    </>
                   )}
                 </ContentCareerBottom>
+
               </AddButton>
+
             </MakeCenter>
             <FormSubText style={{ width: "100%", textAlign: "center" }}>
               커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수 있어요.
             </FormSubText>
           </FormContentsP>
+          <ButtonText onClick={() => { delGitToken() }}>토큰삭제</ButtonText>
           <hr style={{ margin: "50px" }} />
 
           {tsFile
