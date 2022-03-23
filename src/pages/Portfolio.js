@@ -20,75 +20,54 @@ import PortfolioBaseHeader from "../components/portfolio/PortfolioBaseHeader";
 import { actionCreators } from "../redux/modules/scroll";
 
 const Portfolio = () => {
-  const scrollOption = {};
+  const intro = useRef(null);
+  const user = useRef(null);
+  const stack = useRef(null);
+  const career = useRef(null);
+  const project = useRef(null);
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const introduceScroll = useRef();
-  const userInfoScroll = useRef();
-  const stackScroll = useRef();
-  const careerScroll = useRef();
-  const projectScroll = useRef();
-
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
-    // const scrollData = {
-    //   introduce: 0,
-    //   userInfo: userInfoScroll.current,
-    // };
-    // dispatch(actionCreators.setScroll(scrollData));
-    console.log(introduceScroll);
     return dispatch(projectActions.resetTroubleShooting());
   }, []);
 
   const projectId = useSelector((state) => state.myproject.selectedProjects);
   console.log(projectId);
 
-  // const [ScrollY, setScrollY] = useState(0);
-
-  // const handleFollow = () => {
-  //   setScrollY(window.pageYOffset); // window 스크롤 값을 ScrollY에 저장
-  // };
-
-  // useEffect(() => {
-  //   console.log("ScrollY is ", ScrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
-  // }, [ScrollY]);
-
-  // useEffect(() => {
-  //   const watch = () => {
-  //     window.addEventListener("scroll", handleFollow);
-  //   };
-  //   watch(); // addEventListener 함수를 실행
-  //   return () => {
-  //     window.removeEventListener("scroll", handleFollow); // addEventListener 함수를 삭제
-  //   };
-  // });
-
   return (
     <>
       <section>
-        <PortfolioBaseHeader />
-        <div id="1">
-          <PortfolioIntroduce ref={introduceScroll} />
+        <PortfolioBaseHeader
+          projectId={projectId}
+          intro={intro}
+          user={user}
+          stack={stack}
+          career={career}
+          project={project}
+        />
+        <div id="1" ref={intro}>
+          <PortfolioIntroduce />
         </div>
-        <div id="2">
-          <UserInfo ref={userInfoScroll} />
+        <div id="2" ref={user}>
+          <UserInfo />
         </div>
-        <div id="3">
-          <Stack ref={stackScroll} />
+        <div id="3" ref={stack}>
+          <Stack />
         </div>
-        <div id="4">
-          <Career ref={careerScroll} />
+        <div id="4" ref={career}>
+          <Career x />
         </div>
 
         {/* <ProjHeader /> */}
-        <div id="5">
-          <CardsContainer ref={projectScroll}>
-            {projectId.map((e) => {
+        <div id="5" ref={project}>
+          <CardsContainer>
+            {projectId.map((e, i) => {
               return (
                 <>
                   <IntroduceContainer key={e}>
-                    <ProjectViewIntro id={e} />
+                    <ProjectViewIntro key={e} id={e} />
                   </IntroduceContainer>
                 </>
               );

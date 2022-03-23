@@ -116,7 +116,7 @@ const RightBox = styled.div`
   border: 1px solid #ffffff;
 `;
 
-const NumberBox = styled.div`
+export const NumberBox = styled.div`
   width: 65px;
   height: 65px;
   background-color: white;
