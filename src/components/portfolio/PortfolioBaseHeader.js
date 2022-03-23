@@ -175,6 +175,9 @@ const ProjectHeaderFix = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  /* background: rgba(19, 19, 27, 0.5); */
 `;
 
 const NumberBox = styled.div`
