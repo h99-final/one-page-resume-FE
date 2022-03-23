@@ -9,6 +9,7 @@ import career from "./modules/career";
 import myproject from "./modules/myproject";
 import patchcode from "./modules/patchcode";
 import setproject from "./modules/setProject";
+import scroll from "./modules/scroll";
 
 export const history = createBrowserHistory();
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   myproject: myproject,
   patchcode: patchcode,
   setproject: setproject,
+  scroll: scroll,
   router: connectRouter(history),
 });
 

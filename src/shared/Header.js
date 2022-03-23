@@ -177,7 +177,7 @@ const Header = (props) => {
 
 export default Header;
 
-const StyledHeader = styled.div`
+export const StyledHeader = styled.div`
   background-color: #13131b;
   display: flex;
   /* position: fixed;
@@ -188,7 +188,7 @@ const StyledHeader = styled.div`
   height: 60px;
 `;
 
-const LeftMenu = styled.div`
+export const LeftMenu = styled.div`
   margin-left: 30px;
   display: flex;
   color: white;
@@ -221,7 +221,7 @@ const Proj = styled.div`
   cursor: pointer;
 `;
 
-const RightMenu = styled.div`
+export const RightMenu = styled.div`
   display: flex;
   margin-right: 30px;
   align-items: center;

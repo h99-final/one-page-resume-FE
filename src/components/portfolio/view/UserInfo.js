@@ -86,13 +86,13 @@ const UserInfoBox = styled.div`
 const Image = styled.div`
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
   img {
     width: 100%;
     height: 100%;
     border-radius: 160px;
-    z-index: 115;
-    :hover {
+    z-index: 1;
+    &:hover {
     }
   }
 `;
@@ -127,7 +127,7 @@ const InfoBox = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #9F9F9F;
+    color: #9f9f9f;
   }
   h3 {
     width: fit-content;
@@ -151,22 +151,22 @@ const InfoBox = styled.div`
     min-width: fit-content;
     height: fit-content;
     border-radius: 30px;
-    background-color: #393A47;
+    background-color: #393a47;
     padding: 10px 15px;
     margin-bottom: 10px;
     align-items: center;
     a {
-      color: #CFD3E2;
+      color: #cfd3e2;
       font-weight: 400;
       font-style: normal;
       font-size: 16px;
       line-height: 19px;
       text-decoration: none;
       :visited {
-        color: #CFD3E2;
+        color: #cfd3e2;
       }
       :link {
-        color: #CFD3E2;
+        color: #cfd3e2;
       }
     }
   }

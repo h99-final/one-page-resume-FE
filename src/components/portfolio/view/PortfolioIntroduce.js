@@ -27,8 +27,7 @@ const PortfolioIntroduce = () => {
           </ContentBox>
         </IntroBox>
         <ScrollBox>
-          <img
-            alt="" src={process.env.PUBLIC_URL + "/img/scroll.svg"} />
+          <img alt="" src={process.env.PUBLIC_URL + "/img/scroll.svg"} />
           <h1>Scroll Down</h1>
         </ScrollBox>
       </Container>
@@ -79,14 +78,14 @@ const ScrollBox = styled.div`
   width: 150px;
   margin: 0px auto;
   height: 60px;
-  h1{
+  h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
     letter-spacing: -0.01em;
-    color: #696B7B;
+    color: #696b7b;
   }
 `;
 
