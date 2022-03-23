@@ -19,7 +19,9 @@ function PortfolioBaseHeader(props) {
   const history = useHistory();
 
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
-  const { projectId, ...scrolldata } = props;
+  const { projectId, refs, ...scrolldata } = props;
+
+  //   console.log(refs);
 
   const url = useRef();
   const copyUrl = (e) => {
@@ -71,7 +73,11 @@ function PortfolioBaseHeader(props) {
   const NumBox = () =>
     Array(projectId?.length)
       .fill(0)
-      .map((e, i) => <NumberBox>{i + 1}</NumberBox>);
+      .map((e, i) => (
+        <Link to={`${i + 5}`} spy={true} smooth={true} offset={-50}>
+          <NumberBox>{i + 1}</NumberBox>
+        </Link>
+      ));
 
   return (
     <>
@@ -142,14 +148,18 @@ function PortfolioBaseHeader(props) {
         </RightMenu>
       </StyledHeaderFix>
       {scroll - defaultScroll.project > -50 ? (
-        <ProjectHeaderFix>
-          <ListItemButtonPorf>
-            <ProjectText>Project</ProjectText>
-          </ListItemButtonPorf>
-          <div style={{ display: "flex" }}>
-            <NumBox />
-          </div>
-        </ProjectHeaderFix>
+        <>
+          <ProjectHeaderFix>
+            <ListItemButtonPorf>
+              <ProjectText>Project</ProjectText>
+            </ListItemButtonPorf>
+
+            <div style={{ display: "flex" }}>
+              <NumBox />
+            </div>
+          </ProjectHeaderFix>
+          <hr style={{ margin: "50px" }} />
+        </>
       ) : null}
     </>
   );
@@ -157,7 +167,7 @@ function PortfolioBaseHeader(props) {
 
 const ProjectHeaderFix = styled.div`
   position: fixed;
-  background-color: #000;
+  background-color: transparent;
   top: 60px;
   width: 100%;
   height: 60px;
@@ -174,6 +184,7 @@ const NumberBox = styled.div`
   width: 60px;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
 `;
 
 const ProjectText = styled.div`

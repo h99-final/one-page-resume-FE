@@ -34,7 +34,6 @@ const Portfolio = () => {
   }, []);
 
   const projectId = useSelector((state) => state.myproject.selectedProjects);
-  console.log(projectId);
 
   return (
     <>
@@ -46,6 +45,7 @@ const Portfolio = () => {
           stack={stack}
           career={career}
           project={project}
+          // refs={refs}
         />
         <div id="1" ref={intro}>
           <PortfolioIntroduce />
@@ -66,7 +66,7 @@ const Portfolio = () => {
             {projectId.map((e, i) => {
               return (
                 <>
-                  <IntroduceContainer key={e}>
+                  <IntroduceContainer id={`${i + 5}`} key={e}>
                     <ProjectViewIntro key={e} id={e} />
                   </IntroduceContainer>
                 </>
