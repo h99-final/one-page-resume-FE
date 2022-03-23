@@ -40,6 +40,8 @@ function ShowMore(props) {
     // return setShow(false);
   }, [show]);
 
+  console.log(troubleShootings);
+
   return (
     <>
       <SampleButton ref={scrollTS} onClick={handleShow}>
@@ -51,12 +53,16 @@ function ShowMore(props) {
               <TroubleShootingContainer key={i}>
                 {e.tsFiles.map((t, i) => {
                   return (
-                    <TroubleShooting
-                      key={t.fileId}
-                      {...e}
-                      {...t}
-                      tsLength={e.tsFiles.length}
-                    />
+                    <div
+                      id={`troubleShooting-${t.fileId}-${i}`}
+                      key={`t.fileId=${i}`}
+                    >
+                      <TroubleShooting
+                        tsLength={troubleShootings[i].tsFiles?.length}
+                        {...e}
+                        {...t}
+                      />
+                    </div>
                   );
                 })}
               </TroubleShootingContainer>
