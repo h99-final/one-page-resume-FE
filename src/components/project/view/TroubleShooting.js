@@ -34,19 +34,19 @@ const TroubleShooting = (props) => {
   const NumBoxs = () =>
     ts.slice(0, 10).length <= 5
       ? Array(ts?.length)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ))
+        .fill(0)
+        .map((_e, i) => (
+          <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            {i + 1}
+          </NumberBox>
+        ))
       : Array(5)
-          .fill(0)
-          .map((_e, i) => (
-            <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-              {i + 1}
-            </NumberBox>
-          ));
+        .fill(0)
+        .map((_e, i) => (
+          <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
+            {i + 1}
+          </NumberBox>
+        ));
 
   const NumBoxs2 = () =>
     Array(ts?.length - 5)
@@ -82,8 +82,8 @@ const TroubleShooting = (props) => {
                 )}
               </Num>
 
-              <Font>{father.commitMsg}</Font>
-              <Font>{father.tsName}</Font>
+              <Font>{father?.commitMsg}</Font>
+              <Font>{father?.tsName}</Font>
             </LeftTopBox>
             <LeftBottomBox>{tsContent}</LeftBottomBox>
           </LeftBox>
