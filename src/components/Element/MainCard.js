@@ -189,6 +189,7 @@ const ProjectTitle = styled.div`
     margin-bottom: 10px;
   }
   h2 {
+    word-wrap: break-word;
     width: 100%;
     font-style: normal;
     font-weight: 400;

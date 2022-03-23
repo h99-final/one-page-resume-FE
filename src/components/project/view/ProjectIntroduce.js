@@ -111,6 +111,7 @@ const ProjectIntroduce = (props) => {
 const AboutBox = styled.div`
   width: 100%;
   min-height: 120px;
+  word-wrap: break-word;
   h2 {
     font-style: normal;
     font-weight: 300;
