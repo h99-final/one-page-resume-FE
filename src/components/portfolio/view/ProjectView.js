@@ -79,7 +79,7 @@ const ProjectViewIntro = (props) => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper"
+            className="mySwiper3"
           >
             {project?.img?.map((e, i) => {
               return (
@@ -110,21 +110,21 @@ const ProjectViewIntro = (props) => {
       <ShowMore show={show} setShow={setShow} id={id} />
       {show
         ? troubleShootings.map((e, i) => {
-            return (
-              <TroubleShootingContainer key={i}>
-                {e.tsFiles.map((t, i) => {
-                  return (
-                    <TroubleShooting
-                      key={t.fileId}
-                      {...e}
-                      {...t}
-                      tsLength={e.tsFiles.length}
-                    />
-                  );
-                })}
-              </TroubleShootingContainer>
-            );
-          })
+          return (
+            <TroubleShootingContainer key={i}>
+              {e.tsFiles.map((t, i) => {
+                return (
+                  <TroubleShooting
+                    key={t.fileId}
+                    {...e}
+                    {...t}
+                    tsLength={e.tsFiles.length}
+                  />
+                );
+              })}
+            </TroubleShootingContainer>
+          );
+        })
         : null}
     </>
   );
