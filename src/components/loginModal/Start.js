@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import AddInfo from "./AddInfo";
 import { orange } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -58,8 +60,13 @@ const CssTextField = styled(TextField, {
   '& input:valid:focus + fieldset': { // override inline-style
   },
 }));
-
+// const { Kakao } = window;
 const Start = (props) => {
+  const history = useHistory();
+  const REST_API_KEY = "4c32bacbc9ab5815cc4d4c6b47e81b79";
+  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
   const userInfo = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
@@ -69,6 +76,22 @@ const Start = (props) => {
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState("");
+
+  // function loginWithKakao() {
+  //   Kakao.Auth.login({
+  //     success: function (authObj) {
+  //       const code = JSON.stringify({
+  //         code: authObj.access_token
+  //       })
+  //       apis.kakaoLogin(code).then((res) => {
+  //         console.log(res)
+  //       })
+  //     },
+  //     fail: function (err) {
+  //       alert(JSON.stringify(err))
+  //     },
+  //   })
+  // }
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -126,7 +149,11 @@ const Start = (props) => {
       <OrBox>
         <Line />
         <Or>또는</Or>
-        <KakaoBtn>
+        <KakaoBtn onClick={() => {
+          // loginWithKakao()
+          window.location.href = `${KAKAO_AUTH_URL}`;
+
+        }}>
           <img
             style={{ marginRight: "10px" }}
             alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
@@ -193,7 +220,6 @@ const Line = styled.div`
   border-top: 1px solid;
   color: #696B7B;
   width: 350px;
-  height: 138px;
   margin-top: 14px;
 `;
 

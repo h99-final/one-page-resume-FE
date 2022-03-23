@@ -17,10 +17,6 @@ const Modal = ({ modalClose }) => {
     setModalOpen(!modalOpen);
   };
 
-  const loginClose = () => {
-    setModalOpen(!modalOpen);
-  };
-
   const [status, setStatus] = React.useState("aaa");
 
   const [email, setEmail] = React.useState();

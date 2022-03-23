@@ -17,7 +17,18 @@ const instance = axios.create({
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
   },
 });
-
+const testinstance = axios.create({
+  // 기본적으로 우리가 바라볼 서버의 주소
+  baseURL: "http://3.38.251.248/",
+  headers: {
+    // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    // accept: "*/*",
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json",
+    token: token,
+    //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
+  },
+});
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: "http://3.35.13.186/",
@@ -59,7 +70,7 @@ export const apis = {
       password: password,
       passwordCheck: passwordCheck,
     }),
-
+  kakaoLogin: (code) => testinstance.post("api/login/kakao", code),
   addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putStack: (data) => instance.put("user/stack", data),
