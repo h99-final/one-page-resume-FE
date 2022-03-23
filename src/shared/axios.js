@@ -70,7 +70,16 @@ export const apis = {
       password: password,
       passwordCheck: passwordCheck,
     }),
-  kakaoLogin: (code) => testinstance.post("api/login/kakao", code),
+  //카카오 소셜로그인
+  kakaoLogin1: (
+    code // 닉네임
+  ) => testinstance.get(`/user/kakao/callback?code=${code}`),
+
+  kakaoLogin2: (
+    code,
+    userId // 성별, 연령대
+  ) => testinstance.get(`/user/kakao/callback/${userId}?code=${code}`),
+
   addInfo: (data) => instance.put("/user/info", data),
   userInfo: () => instance.get("user/info"),
   putStack: (data) => instance.put("user/stack", data),
