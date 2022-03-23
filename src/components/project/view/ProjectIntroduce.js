@@ -75,7 +75,7 @@ const ProjectIntroduce = (props) => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper"
+            className="mySwiper3"
           >
             {project?.img?.map((e, i) => {
               return (
@@ -107,12 +107,6 @@ const ProjectIntroduce = (props) => {
   );
 };
 
-const ContentBox = styled.div`
-  width: 55%;
-  height: 100%;
-  justify-content: flex-start;
-  /* padding-bottom: 60px; */
-`;
 
 const AboutBox = styled.div`
   width: 100%;
@@ -198,4 +192,9 @@ const ImgBox = styled.div`
   height: 100%;
 `;
 
+const ContentBox = styled.div`
+  width: 55%;
+  height: 100%;
+  justify-content: flex-start;
+`;
 export default ProjectIntroduce;
