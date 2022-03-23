@@ -1,7 +1,7 @@
 import React from "react";
 
 function Spinner() {
-  return <></>;
+  return <>로딩중</>;
 }
 
 export default Spinner;

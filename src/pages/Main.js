@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
@@ -7,6 +7,8 @@ import { apis } from "../shared/axios";
 import { useHistory } from "react-router-dom";
 import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
+import { Spinner } from "react-bootstrap";
+import { FetchMore } from "../shared/FetchMore";
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -37,8 +39,22 @@ const Main = () => {
     });
   }, [index]);
 
+  //무한 스크롤
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  let stack = [];
+
+  useEffect(async () => {
+    setLoading(true);
+    const proj = await apis.mainProj(stack, page).then((res) => {
+      setProj((prev) => [...prev, ...res.data.data]);
+    });
+    setLoading(false);
+  }, [page]);
+
   console.log(porf);
-  console.log(index);
+
   return (
     <>
       <Container>
@@ -68,8 +84,11 @@ const Main = () => {
             {porf?.map((e, i) => {
               return (
                 <>
-                  <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
-                    <PortfolioBuisnesscard key={`${e.id}`} {...e} />
+                  <div
+                    key={`porf-${e.porfId}`}
+                    onClick={() => history.push(`/portfolio/${e.porfId}`)}
+                  >
+                    <PortfolioBuisnesscard {...e} />
                   </div>
                 </>
               );
@@ -84,13 +103,16 @@ const Main = () => {
             {proj?.map((e, i) => {
               return (
                 <>
-                  <MainCard key={`${e.id}`} {...e} />
+                  <MainCard key={`porj-${i}`} {...e} />
                 </>
               );
             })}
           </Project>
         </ProjectBox>
+        {/* <div ref={loader} style={{ marginBottom: "50px" }}></div> */}
       </Container>
+      {loading ? <Spinner /> : null}
+      <FetchMore loading={page !== 0 && loading} setPage={setPage} />
     </>
   );
 };
