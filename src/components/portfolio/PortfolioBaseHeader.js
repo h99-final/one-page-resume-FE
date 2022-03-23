@@ -74,9 +74,11 @@ function PortfolioBaseHeader(props) {
     Array(projectId?.length)
       .fill(0)
       .map((e, i) => (
-        <Link to={`${i + 5}`} spy={true} smooth={true} offset={-50}>
-          <NumberBox>{i + 1}</NumberBox>
-        </Link>
+        <div key={`numberBox-${i}`}>
+          <Link to={`${i + 5}`} spy={true} smooth={true} offset={-50}>
+            <NumberBox>{i + 1}</NumberBox>
+          </Link>
+        </div>
       ));
 
   return (

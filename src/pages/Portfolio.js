@@ -66,9 +66,11 @@ const Portfolio = () => {
             {projectId.map((e, i) => {
               return (
                 <>
-                  <IntroduceContainer id={`${i + 5}`} key={e}>
-                    <ProjectViewIntro key={e} id={e} />
-                  </IntroduceContainer>
+                  <div key={`trouble-${i}`}>
+                    <IntroduceContainer id={`${i + 5}`}>
+                      <ProjectViewIntro id={e} />
+                    </IntroduceContainer>
+                  </div>
                 </>
               );
             })}
@@ -78,10 +80,6 @@ const Portfolio = () => {
     </>
   );
 };
-
-const Container = styled.div`
-  width: 100vw;
-`;
 
 const CardsContainer = styled.div`
   /* position: relative; */
