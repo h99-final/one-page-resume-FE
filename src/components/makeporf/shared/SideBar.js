@@ -55,7 +55,7 @@ const List = styled.div`
   height: 70px;
   left: 0px;
   top: 0px;
-  background: #2C2E39;
+  background: #2c2e39;
   border-radius: 10px;
   flex: none;
   margin: 15px 0px;
@@ -70,7 +70,7 @@ const ListInside = styled.div`
   margin: auto 10px;
 `;
 
-const ListItemButton = styled.div`
+export const ListItemButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,7 +86,7 @@ const ListItemButton = styled.div`
   cursor: pointer;
 `;
 
-const ListItemText = styled.span`
+export const ListItemText = styled.span`
   width: auto;
   height: 19px;
   font-family: Pretendard;
