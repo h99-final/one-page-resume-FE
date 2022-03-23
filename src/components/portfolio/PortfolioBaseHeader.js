@@ -109,13 +109,15 @@ const TextArea = styled.textarea`
   opacity: 0;
   z-index: 2;
   backdrop-filter: blur(20px);
-
   background: rgba(19, 19, 27, 0.8);
 `;
 
 const StyledHeaderFix = styled(StyledHeader)`
   position: fixed;
   top: 0;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+  background: rgba(19, 19, 27, 0.5);
 `;
 
 const ListItemButtonPorf = styled(ListItemButton)`
