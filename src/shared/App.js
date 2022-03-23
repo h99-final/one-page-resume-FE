@@ -18,6 +18,7 @@ import ProjList from "../pages/ProjList";
 
 import horizontalScroll from "../components/project/view/horizontalScroll";
 import HorizontalScroll from "../components/project/view/horizontalScroll";
+import test from '../pages/test';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
+        <Route exact path="/test" component={test} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />

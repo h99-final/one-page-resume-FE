@@ -51,14 +51,11 @@ const Career = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-width: 800px;
-  max-width: 1440px;
-  height: 810px;
+  display: inline;
 `;
 
 const Box = styled.div`
   width: 96%;
-  height: 600px;
   margin: 31px auto;
 `;
 
@@ -101,7 +98,7 @@ const Label = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: #CFD3E2;
   }
 `;
 const CareerContent = styled.div`
@@ -138,11 +135,10 @@ const CareerTitle = styled.div`
   }
 `;
 const TitleBox = styled.div`
-  width: 100%;
+  margin: 0px auto;
+  width: 96%;
   height: 30px;
-  margin-bottom: 30px;
   text-align: left;
-  padding-left: 30px;
   h1 {
     font-style: normal;
     font-weight: 600;

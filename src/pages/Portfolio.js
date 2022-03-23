@@ -52,10 +52,12 @@ const Portfolio = () => {
   return (
     <>
       <Header />
+
       <PortfolioIntroduce />
       <UserInfo />
       <Stack />
       <Career />
+
       {/* <ProjHeader /> */}
       <CardsContainer>
         {projectId.map((e) => {
@@ -71,6 +73,10 @@ const Portfolio = () => {
     </>
   );
 };
+
+const Container = styled.div`
+  width: 100vw;
+`;
 
 const CardsContainer = styled.div`
   /* position: relative; */
