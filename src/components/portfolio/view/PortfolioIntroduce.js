@@ -26,21 +26,24 @@ const PortfolioIntroduce = () => {
             <h1>{contents}</h1>
           </ContentBox>
         </IntroBox>
+        <ScrollBox>
+          <img
+            alt="" src={process.env.PUBLIC_URL + "/img/scroll.svg"} />
+          <h1>Scroll Down</h1>
+        </ScrollBox>
       </Container>
-      <Hr></Hr>
     </>
   );
 };
 
 const Container = styled.div`
   width: 100%;
-  min-width: 800px;
-  height: 800px;
-  display: flex;
+  height: 1000px;
+  display: inline;
 `;
 
 const IntroBox = styled.div`
-  margin: 150px auto;
+  margin: 200px auto;
   width: 80%;
   height: 500px;
 `;
@@ -71,9 +74,20 @@ const ContentBox = styled.div`
     color: #ffffff;
   }
 `;
-
-const Hr = styled.hr`
-  width: 96%;
+const ScrollBox = styled.div`
+  text-align: center;
+  width: 150px;
   margin: 0px auto;
+  height: 60px;
+  h1{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #696B7B;
+  }
 `;
+
 export default PortfolioIntroduce;

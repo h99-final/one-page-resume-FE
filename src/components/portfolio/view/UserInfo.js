@@ -21,13 +21,12 @@ const UserInfo = () => {
         <UserInfoBox>
           <ImageBox>
             <Image>
-              <img width="350px" alt="ㅡ" src={user?.profileImage} />
+              <img alt="ㅡ" src={user?.profileImage} />
             </Image>
           </ImageBox>
           <InfoBox>
             <h1>{user?.username ? user?.username : "ㅡ"}</h1>
             <h2>{user?.job ? user?.job : "ㅡ"}</h2>
-            <p></p>
             <h3>
               <img
                 style={{ marginRight: "10px" }}
@@ -37,7 +36,7 @@ const UserInfo = () => {
               />
               {user?.phoneNum ? user.phoneNum : "ㅡ"}
             </h3>
-            <h3>
+            <h3 style={{ marginBottom: "35px" }}>
               <img
                 style={{ marginRight: "10px" }}
                 alt=""
@@ -74,29 +73,24 @@ const UserInfo = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-width: 800px;
-  max-width: 1440px;
-  height: 650px;
-  display: flex;
+  height: 1050px;
+  display: inline;
 `;
 
 const UserInfoBox = styled.div`
   margin: 150px auto;
-  width: 65%;
-  height: 350px;
-  position: relative;
-  display: flex;
+  width: 100%;
+  height: 750px;
 `;
 
 const Image = styled.div`
   width: 100%;
   height: 100%;
-  margin: 0px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   z-index: 2;
   img {
+    width: 100%;
+    height: 100%;
+    border-radius: 160px;
     z-index: 115;
     :hover {
     }
@@ -104,27 +98,18 @@ const Image = styled.div`
 `;
 
 const ImageBox = styled.div`
-  min-width: 350px;
-  max-width: 700px;
-  height: 350px;
-  position: relative;
-`;
-
-const JustBox = styled.div`
-  width: 15%;
-  max-width: 1200px;
-  height: 350px;
-  position: relative;
+  width: 380px;
+  height: 380px;
+  margin: 0px auto;
 `;
 
 const InfoBox = styled.div`
   width: 48%;
-  min-width: 170px;
-  max-width: 700px;
-  height: 350px;
-  margin-left: 120px;
+  margin: 0px auto;
+  height: 330px;
   position: relative;
-  text-align: left;
+  text-align: center;
+  margin-top: 37px;
   h1 {
     font-style: normal;
     font-weight: 600;
@@ -136,54 +121,52 @@ const InfoBox = styled.div`
     margin-bottom: 20px;
   }
   h2 {
+    margin-bottom: 35px;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #ffffff;
-  }
-  p {
-    margin: 25px 0px 25px 0px;
-    width: 16px;
-    border: 1px solid #ffffff;
+    color: #9F9F9F;
   }
   h3 {
+    width: fit-content;
+    display: flex;
+    margin: 0px auto;
     font-style: normal;
     font-weight: 400;
     height: fit-content;
     font-size: 17px;
     color: #ffffff;
-    margin-left: 5px;
     margin-bottom: 10px;
-    display: flex;
     align-items: center;
   }
   img {
     margin-right: 5px;
   }
   h4 {
+    display: flex;
+    margin: 0px auto;
     width: fit-content;
     min-width: fit-content;
     height: fit-content;
     border-radius: 30px;
-    background-color: #ededed;
-    text-align: left;
+    background-color: #393A47;
     padding: 10px 15px;
     margin-bottom: 10px;
-    display: flex;
     align-items: center;
     a {
+      color: #CFD3E2;
       font-weight: 400;
       font-style: normal;
       font-size: 16px;
       line-height: 19px;
       text-decoration: none;
       :visited {
-        color: #555555;
+        color: #CFD3E2;
       }
       :link {
-        color: #555555;
+        color: #CFD3E2;
       }
     }
   }

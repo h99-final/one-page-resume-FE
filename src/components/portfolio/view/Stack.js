@@ -23,7 +23,6 @@ const Stack = () => {
         <TitleBox>
           <h1>Tech Stack</h1>
         </TitleBox>
-        <Hr></Hr>
         <StackBox>
           <Main>
             <h1>Main</h1>
@@ -63,9 +62,8 @@ const Stack = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-width: 800px;
-  max-width: 1440px;
-  height: 500px;
+  height: 570px;
+  border: 1px solid white;
 `;
 const SubStack = styled.button`
   width: fit-content;
@@ -158,11 +156,11 @@ const Sub = styled.div`
 `;
 
 const TitleBox = styled.div`
-  width: 100%;
-  height: 30px;
-  margin-bottom: 30px;
+  border: 1px solid red;
+  margin: 0px auto;
+  width: 96%;
+  height: 60px;
   text-align: left;
-  padding-left: 30px;
   h1 {
     font-style: normal;
     font-weight: 600;
