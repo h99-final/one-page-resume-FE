@@ -1,28 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { apis } from "../../shared/axios";
+//redux
+import { useDispatch } from "react-redux";
 import { actionCreators as troubleShootingActions } from "../../redux/modules/setProject";
+//style
+import styled from "styled-components";
+import { TroubleShootingContainer } from "../../pages/Project";
+//component
+import TroubleShooting from "../project/view/TroubleShooting";
 
 function ShowMore(props) {
-  const { show, setShow, id } = props;
+  const { id } = props;
   const dispatch = useDispatch();
 
   const scrollTS = useRef(null);
 
   const handleShow = () => {
     setShow((prev) => !prev);
-    console.log(show);
   };
+
+  const [show, setShow] = useState(false);
+  const [troubleShootings, setTroubleShootings] = useState([]);
 
   useEffect(() => {
     if (show) {
-      dispatch(troubleShootingActions.setTroubleShootingDB(id));
+      apis
+        .projectTSGet(id)
+        .then((res) => setTroubleShootings(res.data.data))
+        .catch((error) => {
+          if (error.response) {
+            alert(error.response.data.data.errors[0].message);
+          }
+        });
       scrollTS.current.scrollIntoView();
     }
     if (!show) {
-      dispatch(troubleShootingActions.resetTroubleShooting(id));
+      setTroubleShootings([]);
     }
+    // return setShow(false);
   }, [show]);
 
   return (
@@ -30,6 +45,24 @@ function ShowMore(props) {
       <SampleButton ref={scrollTS} onClick={handleShow}>
         Show
       </SampleButton>
+      {!!show
+        ? troubleShootings.map((e, i) => {
+            return (
+              <TroubleShootingContainer key={i}>
+                {e.tsFiles.map((t, i) => {
+                  return (
+                    <TroubleShooting
+                      key={t.fileId}
+                      {...e}
+                      {...t}
+                      tsLength={e.tsFiles.length}
+                    />
+                  );
+                })}
+              </TroubleShootingContainer>
+            );
+          })
+        : null}
     </>
   );
 }
@@ -48,6 +81,7 @@ const SampleButton = styled.div`
     background: #00c4b4;
     transition: all 1s ease;
   }
+  cursor: pointer;
 
   /* flex-shrink: 0; */
 `;

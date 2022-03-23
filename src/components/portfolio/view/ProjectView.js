@@ -21,11 +21,11 @@ const ProjectViewIntro = (props) => {
   const [project, setProject] = useState({});
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const troubleShootings = useSelector(
-    (state) => state.setproject.troubleShootings
-  );
+  // const troubleShootings = useSelector(
+  //   (state) => state.setproject.troubleShootings
+  // );
   const [is_loading, setIs_loading] = useState(true);
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
   useEffect(() => {
     // dispatch(actionCreators.setProjectDB(id));
@@ -44,7 +44,6 @@ const ProjectViewIntro = (props) => {
     };
   }, []);
 
-  console.log(troubleShootings);
   // 트러블 슈팅 토글 버튼
   // 트러블 슈팅 api
   return (
@@ -110,25 +109,7 @@ const ProjectViewIntro = (props) => {
           </AboutBox>
         </ContentBox>
       </IntroBox>
-      <ShowMore show={show} setShow={setShow} id={id} />
-      {show
-        ? troubleShootings.map((e, i) => {
-          return (
-            <TroubleShootingContainer key={i}>
-              {e.tsFiles.map((t, i) => {
-                return (
-                  <TroubleShooting
-                    key={t.fileId}
-                    {...e}
-                    {...t}
-                    tsLength={e.tsFiles.length}
-                  />
-                );
-              })}
-            </TroubleShootingContainer>
-          );
-        })
-        : null}
+      <ShowMore id={id} />
     </>
   );
 };
