@@ -63,7 +63,7 @@ const Stack = () => {
 const Container = styled.div`
   width: 100%;
   height: 570px;
-  border: 1px solid white;
+  display: inline;
 `;
 const SubStack = styled.button`
   width: fit-content;
@@ -90,7 +90,7 @@ const SubStack = styled.button`
 `;
 
 const MainStack = styled.button`
-  background-color: #1f2029;
+  background-color: #999999;
   width: 120px;
   height: 50px;
   border: 1px solid #999999;
@@ -120,13 +120,14 @@ const MainStack = styled.button`
 const ForStack = styled.div`
   height: 50px;
   width: 100%;
-  min-width: 600px;
 `;
 
 const Main = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 150px 70px 150px;
+  width: 100%;
+  margin: 0px auto;
+  margin-bottom: 70px;
   height: 50px;
   h1 {
     font-style: normal;
@@ -142,7 +143,8 @@ const Main = styled.div`
 const Sub = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0px 150px 0px 150px;
+  width: 100%;
+  margin: 0px auto;
   height: 88px;
   h1 {
     font-style: normal;
@@ -156,7 +158,7 @@ const Sub = styled.div`
 `;
 
 const TitleBox = styled.div`
-  border: 1px solid red;
+  border-bottom: 1px solid white;
   margin: 0px auto;
   width: 96%;
   height: 60px;
@@ -172,9 +174,9 @@ const TitleBox = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 100%;
+  width: 70%;
   height: 210px;
-  margin-top: 70px;
+  margin: 150px auto;
 `;
 
 const Hr = styled.hr`
