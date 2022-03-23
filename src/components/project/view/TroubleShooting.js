@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Highlighted from "../../makeproject/ts/Highlight";
+import { Link } from "react-scroll";
 
 const TroubleShooting = (props) => {
   const {
@@ -30,9 +31,17 @@ const TroubleShooting = (props) => {
     Array(tsLength)
       .fill(0)
       .map((_e, i) => (
-        <NumberBox onClick={handleNumClick} id={i} key={`sampleCard-${i}`}>
-          {i + 1}
-        </NumberBox>
+        <Link
+          key={`number-${i}`}
+          to={`troubleShooting-${fileId}-${i}`}
+          spy={true}
+          smooth={true}
+          offset={-50}
+        >
+          <NumberBox onClick={handleNumClick} id={i}>
+            {i + 1}
+          </NumberBox>
+        </Link>
       ));
 
   return (
@@ -61,7 +70,6 @@ const Num = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 650px;
-  justify-content: space-between;
 `;
 
 const SampleCard = styled.div`
@@ -116,7 +124,7 @@ const RightBox = styled.div`
   border: 1px solid #ffffff;
 `;
 
-const NumberBox = styled.div`
+export const NumberBox = styled.div`
   width: 65px;
   height: 65px;
   background-color: white;

@@ -67,8 +67,8 @@ const ProjectViewIntro = (props) => {
           >
             {project?.img?.map((e, i) => {
               return (
-                <SwiperSlide>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                <SwiperSlide key={`img-${i}`}>
+                  <img alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
@@ -85,8 +85,8 @@ const ProjectViewIntro = (props) => {
           >
             {project?.img?.map((e, i) => {
               return (
-                <SwiperSlide>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                <SwiperSlide key={`e.url-${i}`}>
+                  <img alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
@@ -97,7 +97,7 @@ const ProjectViewIntro = (props) => {
             <ContentTitle>TECH STACK</ContentTitle>
             {project?.stack?.map((e, i) => {
               return (
-                <SubStack key={e}>
+                <SubStack key={`e.stack-${i}`}>
                   <span>{e}</span>
                 </SubStack>
               );
