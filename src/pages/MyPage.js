@@ -29,11 +29,11 @@ function MyPage() {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
-  const [values, setValues] = React.useState({
+  const [alert, setAlert] = useState(true);
+  const [values, setValues] = useState({
     show: userInfo.porfShow,
   });
   const [show, setShow] = useState(false);
-  const [timer, setTimer] = useState(null);
 
   useEffect(() => {
     apis.introPorfGet(userInfo.porfId).then((res) => {
