@@ -1,38 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { apis } from "../../shared/axios";
-import TSPortfolio from "./view/TSPortfolio";
+import { actionCreators as troubleShootingActions } from "../../redux/modules/setProject";
 
-function ShowMore() {
-  const [show, setShow] = useState(false);
+function ShowMore(props) {
+  const { show, setShow, id } = props;
+  const dispatch = useDispatch();
   const [is_loading, setIs_loading] = useState(true);
   const [troubleShootings, setTroubleShootings] = useState([]);
 
-  const handleTroubleShootingsClick = () => {
+  const scrollTS = useRef(null);
+
+  const handleShow = () => {
     setShow((prev) => !prev);
+    console.log(show);
   };
 
   useEffect(() => {
-    apis
-      .projectTSGet(1)
-      .then((res) => setTroubleShootings(res.data.data))
-      .then(setIs_loading(false));
+    if (show) {
+      dispatch(troubleShootingActions.setTroubleShootingDB(id));
+      scrollTS.current.scrollIntoView();
+    }
   }, [show]);
 
   return (
     <>
-      <div>
-        <button onClick={handleTroubleShootingsClick}>Show</button>
-      </div>
+      <SampleButton ref={scrollTS} onClick={handleShow}>
+        Show
+      </SampleButton>
     </>
   );
 }
 
-const SampleCard = styled.div`
+const SampleButton = styled.div`
   /* position: relative; */
-  width: 100vw;
-  height: 100%;
-  margin-right: 75px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 50px;
+  width: 100%;
+  height: 50px;
+  background: #424453;
+  border-radius: 10px;
+  &:hover {
+    background: #00c4b4;
+    transition: all 1s ease;
+  }
+
   /* flex-shrink: 0; */
 `;
 

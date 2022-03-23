@@ -8,17 +8,9 @@ import { actionCreators } from "../../../redux/modules/setProject";
 //apis
 import { apis } from "../../../shared/axios";
 // components
-import ProjHeader from "../../../shared/ProjHeader";
-import TroubleShooting from "./TroubleShooting";
-import TSPortfolio from "../../portfolio/view/TSPortfolio";
+// import TSPortfolio from "../../portfolio/view/TSPortfolio";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "../../banner.css"
 
 const ProjectIntroduce = (props) => {
   const { id } = props;
@@ -47,12 +39,13 @@ const ProjectIntroduce = (props) => {
   // 트러블 슈팅 api
 
   console.log(troubleShootings);
-  console.log(project?.img?.length)
+  console.log(project?.img?.length);
   return (
     <>
-      <TitleBox><h1>{project?.title}</h1></TitleBox>
+      <TitleBox>
+        <h1>{project?.title}</h1>
+      </TitleBox>
       <IntroBox>
-
         <ImgBox>
           <Swiper
             style={{
@@ -82,7 +75,7 @@ const ProjectIntroduce = (props) => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper3"
+            className="mySwiper"
           >
             {project?.img?.map((e, i) => {
               return (
@@ -94,7 +87,6 @@ const ProjectIntroduce = (props) => {
           </Swiper>
         </ImgBox>
         <ContentBox>
-
           <StackBox>
             <ContentTitle>TECH STACK</ContentTitle>
             {project?.stack?.map((e, i) => {
@@ -111,26 +103,16 @@ const ProjectIntroduce = (props) => {
           </AboutBox>
         </ContentBox>
       </IntroBox>
-      {troubleShootings.tsFiles?.map((e, i) => {
-        return (
-          <SampleCard style={{ color: "white", zIndex: "90" }} key={e.id}>
-            <TSPortfolio {...e} {...troubleShootings} />;
-          </SampleCard>
-        );
-      })}
     </>
   );
 };
 
-const SampleCard = styled.div`
-  /* position: relative; */
-  width: 100vw;
-  height: calc(100vh - 120px);
-  padding: 120px 0px;
-  /* flex-shrink: 0; */
+const ContentBox = styled.div`
+  width: 55%;
+  height: 100%;
+  justify-content: flex-start;
+  /* padding-bottom: 60px; */
 `;
-
-
 
 const AboutBox = styled.div`
   width: 100%;
@@ -178,7 +160,6 @@ const ContentTitle = styled.div`
   margin-bottom: 5px;
 `;
 
-
 const StackBox = styled.div`
   width: 100%;
   min-height: 100px;
@@ -201,7 +182,6 @@ const TitleBox = styled.div`
     line-height: 31px;
     letter-spacing: -0.01em;
     color: #ffffff;
-    
   }
 `;
 
@@ -218,9 +198,4 @@ const ImgBox = styled.div`
   height: 100%;
 `;
 
-const ContentBox = styled.div`
-  width: 55%;
-  height: 100%;
-  justify-content: flex-start;
-`;
 export default ProjectIntroduce;

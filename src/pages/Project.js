@@ -10,18 +10,24 @@ import Introduce from "../components/project/view/ProjectIntroduce";
 import TroubleShooting from "../components/project/view/TroubleShooting";
 import ProjHeader from "../shared/ProjHeader";
 import { apis } from "../shared/axios";
+import { Spinner } from "react-bootstrap";
 
 const Project = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const ts = useSelector((state) => state.setproject.troubleShootings);
+  const [is_loading, setIs_loading] = useState(true);
 
   const [troubleShootings, setTroubleShootings] = useState();
 
   useEffect(() => {
     dispatch(actionCreators.setProjectDB(id));
-    apis.projectTSGet(id).then((res) => setTroubleShootings(res.data.data));
+    apis
+      .projectTSGet(id)
+      .then((res) => setTroubleShootings(res.data.data))
+      .then(() => setIs_loading(false))
+      .catch((error) => console.log(error));
     dispatch(actionCreators.setTroubleShootingDB(id));
+    return setIs_loading(true);
   }, []);
 
   return (
@@ -32,13 +38,26 @@ const Project = () => {
         <IntroduceContainer>
           <Introduce id={id} />
         </IntroduceContainer>
-        {ts.map((e, i) => {
-          return (
-            <TroubleShootingContainer key={i}>
-              <TroubleShooting {...e} {...troubleShootings} />
-            </TroubleShootingContainer>
-          );
-        })}
+        {is_loading ? (
+          <Spinner />
+        ) : (
+          troubleShootings.map((e, i) => {
+            return (
+              <TroubleShootingContainer key={i}>
+                {e.tsFiles.map((t, i) => {
+                  return (
+                    <TroubleShooting
+                      key={t.fileId}
+                      {...e}
+                      {...t}
+                      tsLength={e.tsFiles.length}
+                    />
+                  );
+                })}
+              </TroubleShootingContainer>
+            );
+          })
+        )}
       </CardsContainer>
     </>
   );
@@ -64,6 +83,7 @@ export const TroubleShootingContainer = styled.div`
   position: relative;
   height: 100%;
   width: 95vw;
+  justify-content: space-between;
   /* background-color: #111f30; */
   flex-shrink: 1;
 `;
