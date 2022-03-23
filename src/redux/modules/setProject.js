@@ -7,6 +7,7 @@ const SET_PROJECTS = "SET_PROJECTS";
 const ADD_PROJECT = "ADD_PROJECT";
 
 const SET_TROUBLE_SHOOTING = "SET_TROUBLE_SHOOTING";
+const RESET_TROUBLE_SHOOTING = "RESET_TROUBLE_SHOOTING";
 const SET_PROJECT_TS = "SET_PROJECT_TS";
 
 const SET_IS_LOADING = "SET_IS_LOADING";
@@ -19,6 +20,7 @@ const setTroubleShooting = createAction(
   SET_TROUBLE_SHOOTING,
   (troubleShootings) => ({ troubleShootings })
 );
+const resetTroubleShooting = createAction(RESET_TROUBLE_SHOOTING);
 const setProjectTS = createAction(SET_PROJECT_TS, (tsFiles) => ({ tsFiles }));
 
 const setIs_loading = createAction(SET_IS_LOADING);
@@ -122,6 +124,11 @@ export default handleActions(
         draft.troubleShootings = action.payload.troubleShootings;
         draft.is_loading = false;
       }),
+    [RESET_TROUBLE_SHOOTING]: (state, action) =>
+      produce(state, (draft) => {
+        draft.troubleShootings = [];
+        draft.is_loading = true;
+      }),
     [SET_PROJECT_TS]: (state, action) =>
       produce(state, (draft) => {
         draft.project.troubleShootings = action.payload.tsFiles;
@@ -140,6 +147,7 @@ const actionCreators = {
   setTroubleShootingDB,
   setProjects,
   addProjectDB,
+  resetTroubleShooting,
 };
 
 export { actionCreators };
