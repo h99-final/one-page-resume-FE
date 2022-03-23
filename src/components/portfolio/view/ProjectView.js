@@ -8,7 +8,6 @@ import { actionCreators } from "../../../redux/modules/setProject";
 //apis
 import { apis } from "../../../shared/axios";
 // components
-// import TSPortfolio from "../../portfolio/view/TSPortfolio";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import ShowMore from "../ShowMore";
@@ -17,7 +16,7 @@ import { TroubleShootingContainer } from "../../../pages/Project";
 
 const ProjectViewIntro = (props) => {
   const { id } = props;
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const dispatch = useDispatch();
 
   const [project, setProject] = useState({});
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -38,7 +37,11 @@ const ProjectViewIntro = (props) => {
       .catch((error) => {
         window.alert(error.response.data.data.errors[0].message);
       });
-    return () => setIs_loading(true);
+    return () => {
+      setIs_loading(true);
+      setProject({});
+      dispatch(actionCreators.resetTroubleShooting());
+    };
   }, []);
 
   console.log(troubleShootings);

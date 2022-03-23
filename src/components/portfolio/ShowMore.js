@@ -7,8 +7,6 @@ import { actionCreators as troubleShootingActions } from "../../redux/modules/se
 function ShowMore(props) {
   const { show, setShow, id } = props;
   const dispatch = useDispatch();
-  const [is_loading, setIs_loading] = useState(true);
-  const [troubleShootings, setTroubleShootings] = useState([]);
 
   const scrollTS = useRef(null);
 
@@ -21,6 +19,9 @@ function ShowMore(props) {
     if (show) {
       dispatch(troubleShootingActions.setTroubleShootingDB(id));
       scrollTS.current.scrollIntoView();
+    }
+    if (!show) {
+      dispatch(troubleShootingActions.resetTroubleShooting(id));
     }
   }, [show]);
 

@@ -24,6 +24,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
+    return dispatch(projectActions.resetTroubleShooting());
   }, []);
 
   const projectId = useSelector((state) => state.myproject.selectedProjects);
@@ -63,7 +64,7 @@ const Portfolio = () => {
         {projectId.map((e) => {
           return (
             <>
-              <IntroduceContainer>
+              <IntroduceContainer key={e}>
                 <ProjectViewIntro id={e} />
               </IntroduceContainer>
             </>
