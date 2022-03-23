@@ -28,8 +28,20 @@ const Portfolio = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const introduceScroll = useRef();
+  const userInfoScroll = useRef();
+  const stackScroll = useRef();
+  const careerScroll = useRef();
+  const projectScroll = useRef();
+
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
+    // const scrollData = {
+    //   introduce: 0,
+    //   userInfo: userInfoScroll.current,
+    // };
+    // dispatch(actionCreators.setScroll(scrollData));
+    console.log(introduceScroll);
     return dispatch(projectActions.resetTroubleShooting());
   }, []);
 

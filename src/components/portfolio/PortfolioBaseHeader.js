@@ -22,7 +22,6 @@ function PortfolioBaseHeader(props) {
   const { projectId, refs, ...scrolldata } = props;
 
   //   console.log(refs);
-
   const url = useRef();
   const copyUrl = (e) => {
     url.current.select();
