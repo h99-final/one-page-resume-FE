@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { apis } from "../shared/axios";
 import { useParams } from "react-router-dom";
 
@@ -16,14 +16,28 @@ import PortfolioIntroduce from "../components/portfolio/view/PortfolioIntroduce"
 import Project, { IntroduceContainer } from "./Project";
 import ProjectViewIntro from "../components/portfolio/view/ProjectView";
 import ShowMore from "../components/portfolio/ShowMore";
+import PortfolioBaseHeader from "../components/portfolio/PortfolioBaseHeader";
+import { actionCreators } from "../redux/modules/scroll";
 
 const Portfolio = () => {
+  const scrollOption = {};
   const dispatch = useDispatch();
-
   const { id } = useParams();
+
+  const introduceScroll = useRef();
+  const userInfoScroll = useRef();
+  const stackScroll = useRef();
+  const careerScroll = useRef();
+  const projectScroll = useRef();
 
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
+    // const scrollData = {
+    //   introduce: 0,
+    //   userInfo: userInfoScroll.current,
+    // };
+    // dispatch(actionCreators.setScroll(scrollData));
+    console.log(introduceScroll);
     return dispatch(projectActions.resetTroubleShooting());
   }, []);
 
@@ -52,25 +66,36 @@ const Portfolio = () => {
 
   return (
     <>
-      <Header />
+      <section>
+        <PortfolioBaseHeader />
+        <div id="1">
+          <PortfolioIntroduce ref={introduceScroll} />
+        </div>
+        <div id="2">
+          <UserInfo ref={userInfoScroll} />
+        </div>
+        <div id="3">
+          <Stack ref={stackScroll} />
+        </div>
+        <div id="4">
+          <Career ref={careerScroll} />
+        </div>
 
-      <PortfolioIntroduce />
-      <UserInfo />
-      <Stack />
-      <Career />
-
-      {/* <ProjHeader /> */}
-      <CardsContainer>
-        {projectId.map((e) => {
-          return (
-            <>
-              <IntroduceContainer key={e}>
-                <ProjectViewIntro id={e} />
-              </IntroduceContainer>
-            </>
-          );
-        })}
-      </CardsContainer>
+        {/* <ProjHeader /> */}
+        <div id="5">
+          <CardsContainer ref={projectScroll}>
+            {projectId.map((e) => {
+              return (
+                <>
+                  <IntroduceContainer key={e}>
+                    <ProjectViewIntro id={e} />
+                  </IntroduceContainer>
+                </>
+              );
+            })}
+          </CardsContainer>
+        </div>
+      </section>
     </>
   );
 };
