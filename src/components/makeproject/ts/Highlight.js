@@ -62,6 +62,7 @@ const InputSize = styled.div`
   /* position: relative; */
   height: ${(props) => (props.show ? "700px" : "350px")};
   width: ${(props) => (props.show ? "" : "auto")};
+  min-width: auto;
   justify-content: center;
   align-items: center;
   padding: 5px 10px;

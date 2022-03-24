@@ -53,7 +53,6 @@ function MakeTroubleShooting() {
   // 프로젝트에 속해있는 모든 파일
   const tsFile = useSelector((state) => state.patchcode.tsFile);
 
-  console.log(tsFile);
   // setIsOpen(true);
   const onValid = (data) => {
     // 모달창에서 커밋 목록 조회
@@ -171,12 +170,12 @@ function MakeTroubleShooting() {
                     *추가 설명<br></br>(0/1500)
                   </Font>
                 </Label>
-                <InputCustom
+                {/* <InputCustom
                   placeholder="문제를 해결한 구체적인 방법, 과정 등을 적어주세요."
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
                   {...register("content", { required: true })}
-                />
+                /> */}
                 <MarkDown setValue={setMDValue} value={mdValue} />
               </Content>
               <ErrorMessage>{errors?.content?.message}</ErrorMessage>
