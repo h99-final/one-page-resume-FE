@@ -31,12 +31,12 @@ function MyPage() {
   const [projects, setProjects] = useState([defaultprojects]);
   const [alert, setAlert] = useState(true);
   const [values, setValues] = useState({
-    show: userInfo.porfShow,
+    show: userInfo?.porfShow,
   });
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    apis.introPorfGet(userInfo.porfId).then((res) => {
+    apis.introPorfGet(userInfo?.porfId).then((res) => {
       setTitle(res.data.data.title);
     });
     apis.projectPorfGet().then((res) => {
@@ -71,12 +71,12 @@ function MyPage() {
               <Avatar
                 style={{ marginBottom: "50px" }}
                 alt="사진을 등록해주세요"
-                src={userInfo.profileImage ? userInfo.profileImage : null}
+                src={userInfo?.profileImage ? userInfo?.profileImage : null}
                 sx={{ width: "250px", height: "250px" }}
               />
               <EditButton
                 onClick={() => {
-                  history.push(`/editinfo/changeinfo/${userInfo.userId}`);
+                  history.push(`/editinfo/changeinfo/${userInfo?.userId}`);
                 }}
               >
                 <EditSharp style={{ marginRight: "10px" }} />내 정보 수정
@@ -84,16 +84,16 @@ function MyPage() {
             </LeftBox>
             <RightBox>
               <NnE>
-                <h1>{userInfo.name ? userInfo.name : "ㅡ"}</h1>
+                <h1>{userInfo?.name ? userInfo?.name : "ㅡ"}</h1>
               </NnE>
               <NnE>
-                <p>{userInfo.email}</p>
+                <p>{userInfo?.email}</p>
               </NnE>
               <Content>
                 <Label>
                   <Font>대표 스택</Font>
                 </Label>
-                {userInfo.name ? (
+                {userInfo?.name ? (
                   <>
                     <MainStack>{userInfo?.stack[0]}</MainStack>
                     <MainStack>{userInfo?.stack[1]}</MainStack>
@@ -107,25 +107,25 @@ function MyPage() {
                 <Label>
                   <Font>전화번호</Font>
                 </Label>
-                <Font>{userInfo.phoneNum ? userInfo.phoneNum : "ㅡ"}</Font>
+                <Font>{userInfo?.phoneNum ? userInfo?.phoneNum : "ㅡ"}</Font>
               </Content>
               <Content>
                 <Label>
                   <Font>GitHub URL</Font>
                 </Label>
-                <Font>{userInfo.gitUrl ? userInfo.gitUrl : "ㅡ"}</Font>
+                <Font>{userInfo?.gitUrl ? userInfo?.gitUrl : "ㅡ"}</Font>
               </Content>
               <Content>
                 <Label>
                   <Font>Blog URL</Font>
                 </Label>
-                <Font>{userInfo.blogUrl ? userInfo.blogUrl : "ㅡ"}</Font>
+                <Font>{userInfo?.blogUrl ? userInfo?.blogUrl : "ㅡ"}</Font>
               </Content>
               <Content>
                 <Label>
                   <Font>직무</Font>
                 </Label>
-                <Font>{userInfo.job ? userInfo.job : "ㅡ"}</Font>
+                <Font>{userInfo?.job ? userInfo?.job : "ㅡ"}</Font>
               </Content>
             </RightBox>
           </UserInfo>
@@ -147,10 +147,10 @@ function MyPage() {
           {title ? (
             <Portfolio>
               <NnE>
-                <h2>{userInfo.name ? userInfo.name : "ㅡ"}</h2>
+                <h2>{userInfo?.name ? userInfo?.name : "ㅡ"}</h2>
               </NnE>
               <NnE>
-                <h3>{userInfo.job}</h3>
+                <h3>{userInfo?.job}</h3>
               </NnE>
               <NnE>
                 <h4>{title}</h4>
@@ -164,7 +164,7 @@ function MyPage() {
           ) : (
             <Portfolio style={{ background: "#1F2029", border: "1px solid #1F2029" }}>
               <AddProfBox style={{ marginTop: "160px" }}>
-                <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo.porfId}`) }}>
+                <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo?.porfId}`) }}>
                   <Add />
                   포트폴리오 작성하기
                 </AddProfButton>
