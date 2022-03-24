@@ -60,15 +60,15 @@ function Highlighted({ text = [], show }) {
 
 const InputSize = styled.div`
   position: relative;
-  height: ${(props) => (props.show ? "98%" : "350px")};
-  width: 70vw;
-  border-radius: 10px;
+  height: ${(props) => (props.show ? "700px" : "350px")};
+  width: ${(props) => (props.show ? "" : "1120px")};
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
-  background-color: #2c2e39;
+  background-color: "#2c2e39";
   color: #ffffff;
-  border: 1px solid #696b7b;
+  border-radius: ${(props) => (props.show ? "0px" : "10px")};
+  border: 1px solid ${(props) => (props.show ? "#fff" : "#696b7b")};
   overflow: auto;
   &:focus {
     outline: none !important;
@@ -80,7 +80,7 @@ const InputSize = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: #ccc;
+    background: #696b7b;
   }
 `;
 

@@ -172,7 +172,6 @@ function MakeTroubleShooting() {
                   placeholder="문제를 해결한 구체적인 방법, 과정 등을 적어주세요."
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
-                  maxLength={1500}
                   {...register("content", { required: true })}
                 />
               </Content>

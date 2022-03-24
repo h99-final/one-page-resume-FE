@@ -307,6 +307,13 @@ const Footer = styled.div``;
 const FormContentsModal = styled(FormContents)`
   height: 50vh;
   padding-bottom: 0px;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
 `;
 
 const Ulist = styled.ul`

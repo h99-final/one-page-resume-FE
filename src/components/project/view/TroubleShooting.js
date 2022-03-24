@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import Highlighted from "../../makeproject/ts/Highlight";
 import { Link } from "react-scroll";
+//component
+import Highlighted from "../../makeproject/ts/Highlight";
 
 const TroubleShooting = (props) => {
   const {
@@ -44,22 +42,31 @@ const TroubleShooting = (props) => {
         </Link>
       ));
 
+  // 자동 영역 조절
+  const leftBox = useRef(null);
+  const rightBox = useRef(null);
+
+  useEffect(() => {
+    console.log(rightBox.current.clientHeight);
+  });
+
   return (
     <>
       <SampleCard>
-        <LeftBox>
-          <LeftTopBox style={{ marginBottom: "24px" }}>
-            <Num>
-              <NumBoxs />
-            </Num>
-
-            <Font>{commitMsg}</Font>
-            <Font>{tsName}</Font>
+        <LeftBox ref={leftBox}>
+          <LeftTopBox>
+            <FontTitle>{tsName}</FontTitle>
           </LeftTopBox>
           <LeftBottomBox>{tsContent}</LeftBottomBox>
         </LeftBox>
-        <RightBox>
-          <Highlighted show text={tsPatchCodes} />
+        <RightBox ref={rightBox}>
+          <Num>
+            <NumBoxs />
+          </Num>
+          <Font>{commitMsg}</Font>
+          <div>
+            <Highlighted show={true} text={tsPatchCodes} />
+          </div>
         </RightBox>
       </SampleCard>
     </>
@@ -67,42 +74,39 @@ const TroubleShooting = (props) => {
 };
 
 const Num = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
+  grid-gap: 0;
   flex-direction: row;
-  max-width: 650px;
+  width: calc(45vw);
+  border: 1px solid #000;
 `;
 
 const SampleCard = styled.div`
-  /* position: relative; */
   width: 100%;
-  height: calc(100vh - 120px);
-  margin: 60px auto;
-  /* flex-shrink: 0; */
+  height: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 `;
 
 const LeftBox = styled.div`
-  border: 1px solid;
-  max-width: 650px;
+  width: 45vw;
   display: flex;
   flex-direction: column;
-  margin-right: 40px;
-  /* border: 1px solid #ffffff; */
+  margin-right: 5vw;
 `;
 
 const LeftTopBox = styled.div`
-  max-height: calc(35% - 20px);
-  border: 1px solid #ffffff;
+  height: 5vw;
+  width: 50vw;
 `;
 
 const LeftBottomBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px;
+  /* padding: 20px; */
   min-height: calc(65% - 25px);
-  border: 1px solid #ffffff;
   font-weight: 400;
   font-size: 16px;
   line-height: 28px;
@@ -115,20 +119,18 @@ const LeftBottomBox = styled.div`
   color: #ffffff;
 `;
 const RightBox = styled.div`
-  border: 1px solid;
-
   /* margin: 0px auto; */
-  display: flex;
-  width: calc(95vw - 650px);
-  max-width: 800px;
-  border: 1px solid #ffffff;
+  display: inline-block;
+  flex-direction: column;
+  height: 100%;
+  width: 50vw;
+  /* max-width: 800px; */
 `;
 
 export const NumberBox = styled.div`
-  width: 65px;
-  height: 65px;
+  width: calc(45vw / 10);
+  height: calc(45vw / 10);
   background-color: white;
-  border: 1px solid black;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -151,7 +153,6 @@ export const NumberBox = styled.div`
 
 // const Number = styled.div`
 //   width: 100%;
-//   border: 1px solid black;
 //   flex-direction: row;
 //   flex-wrap: wrap;
 //   display: flex;
@@ -160,7 +161,7 @@ export const Font = styled.div`
   padding: 20px;
   position: relative;
   top: 0;
-
+  border: 1px solid #fff;
   /* position: relative; */
   /* flex-direction: row; */
   font-style: normal;
@@ -169,46 +170,18 @@ export const Font = styled.div`
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #ffffff;
-  border: 1px solid #ffffff;
 `;
+export const FontTitle = styled.div`
+  /* padding: 20px; */
+  position: relative;
 
-const File = styled.div`
-  width: 100%;
-  border: 1px solid black;
-  margin-bottom: 25px;
-  flex-direction: row;
-  word-wrap: break-word;
-  white-space: -moz-pre-wrap;
-  white-space: pre-wrap;
-  h1 {
-    padding: 20px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    color: #333333;
-  }
-`;
-
-const Content = styled.div`
-  width: 100%;
-  height: 520px;
-  border: 1px solid black;
-  h1 {
-    padding: 20px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    color: #333333;
-  }
-`;
-
-const Right = styled.div`
-  width: 73%;
-  border: 1px solid;
+  top: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #ffffff;
 `;
 
 export default TroubleShooting;

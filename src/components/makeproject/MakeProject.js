@@ -152,11 +152,12 @@ function MakeProject() {
           <Content>
             <Label>
               <Font>
-                프로젝트 제목<Star>*</Star><br></br>(0/50)
+                프로젝트 제목<Star>*</Star>
+                <br></br>(0/50)
               </Font>
             </Label>
             <InputCustom
-              placeholder='프로젝트의 제목을 입력해주세요.'
+              placeholder="프로젝트의 제목을 입력해주세요."
               type="text"
               {...register("projectTitle", { required: "필수 항목 입니다." })}
             ></InputCustom>
@@ -169,7 +170,7 @@ function MakeProject() {
               </Font>
             </Label>
             <InputCustom
-              placeholder='프로젝트에서 설명할 Github repository의 URL을 입력해주세요.'
+              placeholder="프로젝트에서 설명할 Github repository의 URL을 입력해주세요."
               type="text"
               {...register("gitRepoUrl", { required: "필수 항목 입니다." })}
             />
@@ -177,14 +178,18 @@ function MakeProject() {
           <ErrorMessage>{errors?.gitRepoUrl?.message}</ErrorMessage>
           <MultiContentFlex style={{ marginBottom: "30px" }}>
             <Label style={{ minWidth: "150px" }}>
-              <Font>프로젝트 이미지<Star>*</Star></Font>
+              <Font>
+                프로젝트 이미지<Star>*</Star>
+              </Font>
             </Label>
             <ForProjUpload images={images} setImages={setImages} />
           </MultiContentFlex>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>
             <Label>
-              <Font>기술 스택<Star>*</Star></Font>
+              <Font>
+                기술 스택<Star>*</Star>
+              </Font>
             </Label>
             <Select
               styles={customStyles}
@@ -218,15 +223,17 @@ function MakeProject() {
           <Content>
             <Label style={{ minWidth: "150px" }}>
               <Font>
-                프로젝트 내용 <Star>*</Star><br />
+                프로젝트 내용 <Star>*</Star>
+                <br />
                 (0/1200)
               </Font>
             </Label>
             <InputCustom
-              placeholder='프로젝트의 주제, 개발 목적, 계획 등 프로젝트에 대한 설명을 다양하게 작성해주세요.'
+              placeholder="프로젝트의 주제, 개발 목적, 계획 등 프로젝트에 대한 설명을 다양하게 작성해주세요."
               style={{ height: "174px" }}
               type="text"
               ref={content}
+              maxLength={1200}
               onInput={handleResizeHeight}
               {...register("projectContent", {
                 required: "필수 항목 입니다.",
@@ -252,7 +259,7 @@ export const FormSubText = styled.p`
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  color: #CFD3E2;
+  color: #cfd3e2;
 `;
 
 export const FormMainText = styled(FormText)`
