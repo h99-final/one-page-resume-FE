@@ -103,13 +103,14 @@ const Main = () => {
             {proj?.map((e, i) => {
               return (
                 <>
-                  <MainCard key={`project-${e.id}-${i}`} {...e} />;
+                  <MainCard key={`project-${e.id}-${i}`} {...e} />
                 </>
               );
             })}
           </Project>
         </ProjectBox>
       </Container>
+      {/* <Spinner /> */}
       <FetchMore loading={page !== 0 && loading} setPage={setPage} />
     </>
   );
