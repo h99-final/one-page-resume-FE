@@ -10,35 +10,39 @@ function Highlighted({ text = [], show }) {
       return;
     }
     let _text = [];
-    text.map((e) => {
+    text.map((e, i) => {
       return e.charAt(0) === "-"
         ? _text.push(
-            <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
-              <pre>{e}</pre>
-            </tr>
+            <TextBody
+              key={`text-${i}`}
+              style={{
+                background: "rgba(255, 155, 0, 0.7)",
+              }}
+            >
+              {e}
+            </TextBody>
           )
         : e.charAt(0) === "+"
         ? _text.push(
-            <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
-              <td>
-                <pre>{e}</pre>
-              </td>
-            </tr>
+            <TextBody
+              key={`text-${i}`}
+              style={{
+                background: "rgba(3, 218, 197, 0.7)",
+              }}
+            >
+              {e}
+            </TextBody>
           )
         : e.charAt(0) === "@"
         ? _text.push(
-            <>
-              <td>
-                <pre>{e}</pre>
-              </td>
+            <TextBody key={`text-${i}`}>
+              {e}
               <hr />
-            </>
+            </TextBody>
           )
-        : _text.push(
-            <td>
-              <pre>{e}</pre>
-            </td>
-          );
+        : e.charAt(0) === " "
+        ? _text.push(<br />)
+        : _text.push(<TextBody key={`text-${i}`}>{e}</TextBody>);
     });
     setValue(_text);
   }, [text]);
@@ -46,75 +50,48 @@ function Highlighted({ text = [], show }) {
   return (
     <>
       <InputSize show={show}>
-        <Table style={{ width: "100%" }}>
-          <Tbody>
-            {value.map((e) => {
-              return e;
-            })}
-          </Tbody>
-        </Table>
+        {value.map((e) => {
+          return e;
+        })}
       </InputSize>
     </>
   );
 }
 
-const Table = styled.table`
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 80%;
-`;
-
 const InputSize = styled.div`
   position: relative;
-  height: auto;
-  width: 100%;
+  height: ${(props) => (props.show ? "98%" : "350px")};
+  width: 70vw;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
   background-color: #2c2e39;
   color: #ffffff;
+  border: 1px solid #696b7b;
   overflow: auto;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
     box-shadow: 0 0 10px #719ece !important;
   }
-  &::-webkit-scrollbar-track {
-    background-color: #ededed; /*스크롤바의 색상*/
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #ccc;
   }
 `;
 
-const Tbody = styled.tbody`
-  height: 100%;
-  display: inline;
-  flex-direction: column;
-  tr {
-    text-align: left;
-    color: #ffffff;
-    letter-spacing: 0.1em;
-    word-wrap: break-word;
-    pre {
-      /* padding: 3px; */
-      text-decoration-color: #ffffff;
-      letter-spacing: 0.1em;
-      word-wrap: break-word;
-    }
-  }
-`;
-
-const Area = styled.div`
-  height: 400px;
-  border: 1px solid black;
-  text-align: left;
-  padding: 5px;
-  overflow: scroll;
-  .red {
-    background-color: #fcedeb !important;
-  }
-  .blue {
-    background-color: #ebfeed !important;
-  }
+const TextBody = styled.div`
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  word-break: break-all;
+  // 코드가 너무 길면 개행하기 위해서 씀
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 
 export default Highlighted;

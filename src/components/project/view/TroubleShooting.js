@@ -87,7 +87,7 @@ const LeftBox = styled.div`
   max-width: 650px;
   display: flex;
   flex-direction: column;
-  margin-right: 70px;
+  margin-right: 40px;
   /* border: 1px solid #ffffff; */
 `;
 
@@ -133,6 +133,7 @@ export const NumberBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   h1 {
     padding: 18px 0px;
     font-style: normal;
