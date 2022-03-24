@@ -85,7 +85,6 @@ export const apis = {
   putStack: (data) => instance.put("user/stack", data),
   putPwd: (data) => instance.put("user/password", data),
 
-
   introPorf: (data) => instance.put("porf/intro", data),
   introPorfGet: (porfId) => instance.get(`/porf/${porfId}/intro`),
   porfShow: (show) => instance.post("porf/show", { show: show }),
@@ -145,11 +144,11 @@ export const apis = {
       stack: stack,
     }),
 
-  mainProj: (stack) =>
-    instance.post("/project/stack?page=0", {
+  mainProj: (stack, page) =>
+    instance.post(`/project/stack?page=${page}`, {
       stack: stack,
     }),
 
-  gitToken: (token) => instance.put('/user/git/token', token),
-  delGitToken: () => instance.delete('/user/git/token'),
+  gitToken: (token) => instance.put("/user/git/token", token),
+  delGitToken: () => instance.delete("/user/git/token"),
 };

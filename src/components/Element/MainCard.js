@@ -32,22 +32,18 @@ function MainCard(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack.length > 3
             ? stack.slice(0, 3).map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })
             : stack.map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })}
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })}
           {stack.length > 3 && (
             <ProjectStack
-              style={{ backgroundColor: "#393A47", color: "#666982", border: "1px solid #666982" }}
+              style={{
+                backgroundColor: "#393A47",
+                color: "#666982",
+                border: "1px solid #666982",
+              }}
             >
               + {stack.length - 3}
             </ProjectStack>
@@ -99,7 +95,7 @@ const Footer = styled.div`
     align-items: center;
     margin-right: 20px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
   img {
     margin-right: 5px;
@@ -117,7 +113,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 
   h2 {
@@ -127,7 +123,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 `;
 
@@ -142,7 +138,7 @@ export const ProjectForm = styled.div`
   width: 444px;
   margin: 0px auto;
   min-width: 444px;
-  background-color: #393A47;
+  background-color: #393a47;
   max-height: 515px;
   border-radius: 10px;
   border: ${(props) =>

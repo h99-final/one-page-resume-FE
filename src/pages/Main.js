@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
@@ -7,6 +7,8 @@ import { apis } from "../shared/axios";
 import { useHistory } from "react-router-dom";
 import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
+import { FetchMore } from "../shared/FetchMore";
+import Spinner from "../shared/Spinner";
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -21,7 +23,6 @@ const defaultprojects = {
 const Main = () => {
   const history = useHistory();
 
-  const userInfo = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
   const [porf, setPorf] = useState([]);
@@ -37,11 +38,31 @@ const Main = () => {
     });
   }, [index]);
 
-  console.log(porf);
-  console.log(index);
+  //무한 스크롤
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  let stack = [];
+
+  useEffect(() => {
+    setLoading(true);
+    if (hasMore) {
+      apis.mainProj(stack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setProj((prev) => [...prev, ...res.data.data]);
+      });
+    }
+    setLoading(false);
+  }, [page]);
+
   return (
     <>
-      <Container>
+      <Container key={"main"}>
         <Header />
         <Banner />
         <PortfolioBox>
@@ -67,11 +88,9 @@ const Main = () => {
           <Portfolio>
             {porf?.map((e, i) => {
               return (
-                <>
-                  <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
-                    <PortfolioBuisnesscard key={`${e.id}`} {...e} />
-                  </div>
-                </>
+                <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
+                  <PortfolioBuisnesscard key={`porf-${e.porfId}-${i}`} {...e} />
+                </div>
               );
             })}
           </Portfolio>
@@ -84,13 +103,15 @@ const Main = () => {
             {proj?.map((e, i) => {
               return (
                 <>
-                  <MainCard key={`${e.id}`} {...e} />
+                  <MainCard key={`project-${e.id}-${i}`} {...e} />
                 </>
               );
             })}
           </Project>
         </ProjectBox>
       </Container>
+      {/* <Spinner /> */}
+      <FetchMore loading={page !== 0 && loading} setPage={setPage} />
     </>
   );
 };
