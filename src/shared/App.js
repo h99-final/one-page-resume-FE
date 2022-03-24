@@ -63,14 +63,14 @@ function App() {
         <Route exact path="/login" component={SocialLogin} />
         <Route
           exact
-          path="/oauth/kakao/callback"
+          path="/user/kakao/callback"
           component={KakaoAuthHandle}
         />
-        <Route
+        {/* <Route
           exact
           path="/oauth/kakao/callback/properties"
           component={KakaoAuthHandle2}
-        />
+        /> */}
 
         <Route exact path="/test" component={test} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />

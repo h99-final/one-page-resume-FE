@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../shared/kakaoAuth";
 
 const Login = (props) => {
-  const history = props.history;
 
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
@@ -12,9 +11,9 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <button bg="#FFF" color="#474D56" onClick={kakaoLogin}>
+      <a bg="#FFF" color="#474D56" href={KAKAO_AUTH_URL}>
         카카오톡
-      </button>
+      </a>
     </React.Fragment>
   );
 };

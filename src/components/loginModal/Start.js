@@ -14,6 +14,7 @@ import { orange } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { KAKAO_AUTH_URL } from '../../shared/kakaoAuth';
 
 const theme = createTheme({
   palette: {
@@ -60,7 +61,8 @@ const CssTextField = styled(TextField, {
   '& input:valid:focus + fieldset': { // override inline-style
   },
 }));
-const { Kakao } = window;
+// const { Kakao } = window;
+
 const Start = (props) => {
   const history = useHistory();
   // const REST_API_KEY = "4c32bacbc9ab5815cc4d4c6b47e81b79";
@@ -77,36 +79,36 @@ const Start = (props) => {
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState("");
 
-  function loginWithKakao() {
-    Kakao.Auth.login({
-      success: function (res) {
-        console.log(res)
-        Kakao.Auth.setAccessToken(res.access_token);
-        getInfo();
-      },
-      fail: function (err) {
-        alert(JSON.stringify(err))
-      },
-    })
-  }
-  function getInfo() {
-    Kakao.API.request({
-      url: '/v2/user/me',
-      success: function (res) {
-        console.log(res);
-        // 이메일, 성별, 닉네임, 프로필이미지
-        var email = res.kakao_account.email;
-        // var gender = res.kakao_account.gender;
-        // var nickname = res.kakao_account.profile.nickname;
-        // var profile_image = res.kakao_account.profile.thumbnail_image_url;
+  // function loginWithKakao() {
+  //   Kakao.Auth.login({
+  //     success: function (res) {
+  //       console.log(res)
+  //       Kakao.Auth.setAccessToken(res.access_token);
+  //       getInfo();
+  //     },
+  //     fail: function (err) {
+  //       alert(JSON.stringify(err))
+  //     },
+  //   })
+  // }
+  // function getInfo() {
+  //   Kakao.API.request({
+  //     url: '/v2/user/me',
+  //     success: function (res) {
+  //       console.log(res);
+  //       // 이메일, 성별, 닉네임, 프로필이미지
+  //       var email = res.kakao_account.email;
+  //       // var gender = res.kakao_account.gender;
+  //       // var nickname = res.kakao_account.profile.nickname;
+  //       // var profile_image = res.kakao_account.profile.thumbnail_image_url;
 
-        console.log(email);
-      },
-      fail: function (error) {
-        alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
-      }
-    });
-  }
+  //       console.log(email);
+  //     },
+  //     fail: function (error) {
+  //       alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
+  //     }
+  //   });
+  // }
   const inputEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -164,8 +166,8 @@ const Start = (props) => {
         <Line />
         <Or>또는</Or>
         <KakaoBtn onClick={() => {
-          loginWithKakao()
-          // window.location.href = `${KAKAO_AUTH_URL}`;
+          // loginWithKakao()
+          window.location.href = `${KAKAO_AUTH_URL}`;
 
         }}>
           <img
