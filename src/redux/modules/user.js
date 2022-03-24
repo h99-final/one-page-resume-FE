@@ -58,6 +58,7 @@ const kakaoLoginDB = (code) => {
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        history.push('/')
         if (res.data.data.isFirstLogin === true) {
           console.log(res.data.data.isFirstLogin);
         } else {
