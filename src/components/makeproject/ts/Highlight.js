@@ -3,57 +3,7 @@ import styled from "styled-components";
 import { useRef } from "react";
 
 function Highlighted({ text = [], show }) {
-  // const [value, setValue] = useState(text.join("\n\n"));
-
-  // const handleChange = (value) => setValue(value);
-
-  // let highlightRed = [];
-  // let highlightBlue = [];
-
-  // let highlight = [
-  //   {
-  //     highlight: highlightRed,
-  //     className: "red",
-  //   },
-  //   {
-  //     highlight: highlightBlue,
-  //     className: "blue",
-  //   },
-  // ];
-
-  // const highlightText = () => {
-  //   text.map((e) => {
-  //     return e.charAt(0) === "-"
-  //       ? highlightRed.push(e + "\n")
-  //       : e.charAt(0) === "+"
-  //       ? highlightBlue.push(e + "\n")
-  //       : e;
-  //   });
-  //   return highlight;
-  // };
   const [value, setValue] = useState([]);
-
-  // const [ScrollY, setScrollY] = useState(0);
-
-  // const handleFollow = () => {
-  //   setScrollY(window.pageYOffset);
-  //   // window 스크롤 값을 ScrollY에 저장
-  // };
-  // useEffect(() => {
-  //   console.log("ScrollY is ", ScrollY);
-  //   // ScrollY가 변화할때마다 값을 콘솔에 출력
-  // }, [ScrollY]);
-  // useEffect(() => {
-  //   const watch = () => {
-  //     window.addEventListener("scroll", handleFollow);
-  //   };
-  //   watch();
-  //   // addEventListener 함수를 실행
-  //   return () => {
-  //     window.removeEventListener("scroll", handleFollow);
-  //     // addEventListener 함수를 삭제
-  //   };
-  // });
 
   useEffect(() => {
     if (text.length === 0) {
@@ -70,19 +20,25 @@ function Highlighted({ text = [], show }) {
         : e.charAt(0) === "+"
         ? _text.push(
             <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
-              <pre>{e}</pre>
+              <td>
+                <pre>{e}</pre>
+              </td>
             </tr>
           )
         : e.charAt(0) === "@"
         ? _text.push(
             <>
-              <br />
-              <br />
-              <pre>{e}</pre>
+              <td>
+                <pre>{e}</pre>
+              </td>
               <hr />
             </>
           )
-        : _text.push(<pre>{e}</pre>);
+        : _text.push(
+            <td>
+              <pre>{e}</pre>
+            </td>
+          );
     });
     setValue(_text);
   }, [text]);
@@ -134,11 +90,10 @@ const Tbody = styled.tbody`
   display: inline;
   flex-direction: column;
   tr {
-    /* align-items: center; */
     text-align: left;
     color: #ffffff;
     letter-spacing: 0.1em;
-    /* word-wrap: break-word; */
+    word-wrap: break-word;
     pre {
       /* padding: 3px; */
       text-decoration-color: #ffffff;
