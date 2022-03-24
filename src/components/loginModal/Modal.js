@@ -10,6 +10,7 @@ import Start from "./Start";
 import ExitModal from "./ExitModal";
 
 const Modal = ({ modalClose }) => {
+
   const isFirstLogin = useSelector((state) => state.user.isFirstLogin);
   const [modalOpen, setModalOpen] = useState(false);
 

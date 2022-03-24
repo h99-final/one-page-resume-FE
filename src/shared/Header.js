@@ -18,12 +18,18 @@ const Header = (props) => {
 
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // const userInfo = useSelector((state) => state.user.user);
-
+  const isFirstLogin = useSelector((state) => state.user.isFirstLogin);
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
   const modalClose = () => {
     setModalOpen(!modalOpen);
   };
+
+  useEffect(() => {
+    if (isFirstLogin) {
+      setModalOpen(true)
+    }
+  }, []);
 
   const navBtn = () => {
     if (nav) {
@@ -168,6 +174,7 @@ const Header = (props) => {
               userId={userInfo?.userId}
             />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
+
           </RightMenu>
         </StyledHeader>
       </>
