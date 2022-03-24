@@ -60,7 +60,6 @@ const PorfList = () => {
     });
     setAddStack(stackArray);
   };
-  console.log(porf);
   return (
     <>
       <Container>
@@ -82,7 +81,7 @@ const PorfList = () => {
         <StackBox style={{ marginBottom: "60px" }}>
           {addStack.map((addStack, index) => {
             return (
-              <SelectStack key={index} {...addStack}>
+              <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
                 <ClearIcon
                   sx={{
@@ -103,11 +102,12 @@ const PorfList = () => {
           <Portfolio>
             {porf?.map((e, i) => {
               return (
-                <>
-                  <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
-                    <PortfolioBuisnesscard key={`${e.id}`} {...e} />
-                  </div>
-                </>
+                <div
+                  key={`porf-${e.porfId}`}
+                  onClick={() => history.push(`/portfolio/${e.porfId}`)}
+                >
+                  <PortfolioBuisnesscard {...e} />
+                </div>
               );
             })}
           </Portfolio>

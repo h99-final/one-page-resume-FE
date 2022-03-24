@@ -11,13 +11,11 @@ import styled from "styled-components";
 import Career from "../components/portfolio/view/Career";
 import Stack from "../components/portfolio/view/Stack";
 import UserInfo from "../components/portfolio/view/UserInfo";
-import Header from "../shared/Header";
 import PortfolioIntroduce from "../components/portfolio/view/PortfolioIntroduce";
 import Project, { IntroduceContainer } from "./Project";
 import ProjectViewIntro from "../components/portfolio/view/ProjectView";
-import ShowMore from "../components/portfolio/ShowMore";
 import PortfolioBaseHeader from "../components/portfolio/PortfolioBaseHeader";
-import { actionCreators } from "../redux/modules/scroll";
+import TopDown from "../shared/TopDown";
 
 const Portfolio = () => {
   const intro = useRef(null);
@@ -28,20 +26,8 @@ const Portfolio = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const introduceScroll = useRef();
-  const userInfoScroll = useRef();
-  const stackScroll = useRef();
-  const careerScroll = useRef();
-  const projectScroll = useRef();
-
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
-    // const scrollData = {
-    //   introduce: 0,
-    //   userInfo: userInfoScroll.current,
-    // };
-    // dispatch(actionCreators.setScroll(scrollData));
-    console.log(introduceScroll);
     return dispatch(projectActions.resetTroubleShooting());
   }, []);
 
@@ -49,6 +35,7 @@ const Portfolio = () => {
 
   return (
     <>
+      <TopDown />
       <section>
         <PortfolioBaseHeader
           projectId={projectId}
@@ -72,7 +59,6 @@ const Portfolio = () => {
           <Career x />
         </div>
 
-        {/* <ProjHeader /> */}
         <div id="5" ref={project}>
           <CardsContainer>
             {projectId.map((e, i) => {
@@ -94,11 +80,9 @@ const Portfolio = () => {
 };
 
 const CardsContainer = styled.div`
-  /* position: relative; */
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* flex-flow: row nowrap; */
   justify-content: flex-start;
   align-items: center;
 `;

@@ -1,6 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 function PortfolioBuisnesscard(props) {
   const {
@@ -24,9 +23,7 @@ function PortfolioBuisnesscard(props) {
         </NnE>
         <Content>
           {userStack?.map((e, i) => {
-            return (
-              <Stack>{e}</Stack>
-            )
+            return <Stack key={`stack-${i}`}>{e}</Stack>;
           })}
         </Content>
       </Portfolio>
@@ -40,8 +37,8 @@ const Stack = styled.div`
   font-weight: normal;
   font-size: 20px;
   text-align: center;
-  color: #CFD3E2;
-  border: 1px solid #CFD3E2;
+  color: #cfd3e2;
+  border: 1px solid #cfd3e2;
   box-sizing: border-box;
   border-radius: 30px;
   padding: 10px 20px;
@@ -87,7 +84,7 @@ const NnE = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
   h4 {
     margin-top: 50px;
