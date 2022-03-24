@@ -49,7 +49,28 @@ const loginDB = (email, password) => {
       });
   };
 };
-
+const kakaoLoginDB = (code) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .kakaoLogin1(code)
+      .then((res) => {
+        console.log(res);
+        setCookie("token", res.headers.authorization, 5);
+        dispatch(setFirstLogin(res.data.data.isFirstLogin));
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        if (res.data.data.isFirstLogin === true) {
+          console.log(res.data.data.isFirstLogin);
+        } else {
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
+  };
+};
 const SignUpDB = (email, password, passwordcheck) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -158,6 +179,7 @@ const actionCreators = {
   addInfoDB,
   userInfoDB,
   logOutDB,
+  kakaoLoginDB,
 };
 
 export { actionCreators };
