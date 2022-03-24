@@ -136,15 +136,7 @@ function ShowTroubleShooting(props) {
                       Patch Code<Star>*</Star>
                     </Font>
                   </Label>
-                  <div
-                    style={{
-                      display: "inline-block",
-                      width: "100%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Highlighted text={ts.tsPatchCodes} />
-                  </div>
+                  <Highlighted text={ts.tsPatchCodes} />
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
@@ -154,7 +146,7 @@ function ShowTroubleShooting(props) {
                     </Font>
                   </Label>
                   <InputCustom
-                    style={{ overflow: "hidden", height: "20vh" }}
+                    style={{ overflow: "auto", height: "20vh" }}
                     type="text"
                     maxLength={500}
                     value={ts.tsContent}
