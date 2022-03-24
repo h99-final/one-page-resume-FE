@@ -10,6 +10,7 @@ import { Link } from "react-scroll";
 // redux
 import { useSelector } from "react-redux";
 import { flexbox } from "@mui/system";
+import { debounce } from "../../shared/common";
 
 function PortfolioBaseHeader(props) {
   // 포트폴리오 제작 사이드바에서 불러옴
@@ -43,7 +44,7 @@ function PortfolioBaseHeader(props) {
   const [selected, setSelected] = useState(1);
   //useEffect를 사용하여 scrollTop의 상태가 변할 때마다 스크롤 이벤트, 함수 실행
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", debounce(handleScroll, 200));
     if (scroll < defaultScroll.user && scroll >= 0) {
       setSelected(1);
     }
@@ -66,7 +67,7 @@ function PortfolioBaseHeader(props) {
 
   const handleScroll = () => {
     setScroll(window.scrollY);
-    console.log();
+    console.log(window.scrollY);
   };
 
   const NumBox = () =>

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import styled from "styled-components";
 import Spinner from "./Spinner";
 
 export const FetchMore = ({ loading, setPage }) => {
@@ -13,9 +14,17 @@ export const FetchMore = ({ loading, setPage }) => {
     };
   }, []);
 
-  return (
-    <div loading={loading ? "loading" : null} ref={fetchMoreTrigger}>
-      <Spinner />
-    </div>
-  );
+  if (loading) {
+    return (
+      <div ref={fetchMoreTrigger}>
+        <Spinner />
+      </div>
+    );
+  } else {
+    return <div ref={fetchMoreTrigger}></div>;
+  }
 };
+
+export const Fetch = styled.div`
+  display: ${(props) => (props.loading ? "fix" : "none")};
+`;

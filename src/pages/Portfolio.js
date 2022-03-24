@@ -26,12 +26,6 @@ const Portfolio = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const introduceScroll = useRef();
-  const userInfoScroll = useRef();
-  const stackScroll = useRef();
-  const careerScroll = useRef();
-  const projectScroll = useRef();
-
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
     return dispatch(projectActions.resetTroubleShooting());
