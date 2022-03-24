@@ -8,6 +8,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import Select from "react-select";
 import MainCard from "../components/Element/MainCard";
+import FetchMore from "../shared/FetchMore";
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -54,18 +55,18 @@ const ProjList = () => {
   const userInfo = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
-  const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
   const [index, setIndex] = useState(0);
 
   const [addStack, setAddStack] = useState([]);
-  useEffect(() => {
-    const stack = [];
+  // useEffect(() => {
+  //   const stack = [];
 
-    apis.mainProj(stack).then((res) => {
-      setProj(res.data.data);
-    });
-  }, [index]);
+  //   apis.mainProj(stack).then((res) => {
+  //     setProj(res.data.data);
+  //   });
+  // }, [index]);
+
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -73,6 +74,29 @@ const ProjList = () => {
     });
     setAddStack(stackArray);
   };
+
+  // 무한 스크롤
+  const [page, setPage] = useState(0);
+  const [is_loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  let stack = [];
+
+  useEffect(() => {
+    setLoading(true);
+    if (hasMore) {
+      apis.mainProj(stack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setProj((prev) => [...prev, ...res.data.data]);
+      });
+    }
+    setLoading(false);
+  }, [page]);
+
   return (
     <>
       <Container>
@@ -122,6 +146,7 @@ const ProjList = () => {
             })}
           </Project>
         </ProjectBox>
+        <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
       </Container>
     </>
   );

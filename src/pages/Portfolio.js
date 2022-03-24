@@ -64,7 +64,7 @@ const Portfolio = () => {
             {projectId.map((e, i) => {
               return (
                 <>
-                  <div key={`trouble-${i}`}>
+                  <div key={`troubleshow-${i}-${e.id}`}>
                     <IntroduceContainer id={`${i + 5}`}>
                       <ProjectViewIntro id={e} />
                     </IntroduceContainer>

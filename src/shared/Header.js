@@ -43,6 +43,11 @@ const Header = (props) => {
     }
   };
 
+  const toLogin = () => {
+    window.alert("내 포트폴리오를 보려면 로그인이 필요합니다.");
+    setModalOpen(true);
+  };
+
   if (!userInfo) {
     return (
       <>
@@ -57,9 +62,7 @@ const Header = (props) => {
               src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
             />
             <img
-              onClick={() => {
-                history.push(`/portfolio/${userInfo.porfId}`);
-              }}
+              onClick={toLogin}
               style={{ marginRight: "5px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}

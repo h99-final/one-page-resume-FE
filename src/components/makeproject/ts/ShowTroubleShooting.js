@@ -52,7 +52,7 @@ function ShowTroubleShooting(props) {
     }
   };
 
-  useEffect(() => { }, [commitId]);
+  useEffect(() => {}, [commitId]);
 
   return (
     <>
@@ -83,7 +83,9 @@ function ShowTroubleShooting(props) {
           </div>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>트러블 슈팅 제목<Star>*</Star></Font>
+              <Font>
+                트러블 슈팅 제목<Star>*</Star>
+              </Font>
             </Label>
             <InputCustom
               style={{ overflow: "hidden" }}
@@ -95,7 +97,9 @@ function ShowTroubleShooting(props) {
           </Content>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>Commit<Star>*</Star></Font>
+              <Font>
+                Commit<Star>*</Star>
+              </Font>
             </Label>
             <InputCustom
               style={{ overflow: "hidden" }}
@@ -106,15 +110,17 @@ function ShowTroubleShooting(props) {
               readOnly
             />
           </Content>
-          {tsFiles?.map((ts) => {
+          {tsFiles?.map((ts, i) => {
             return (
-              <div>
+              <div key={`ts-${i}`}>
                 {/* <IconBox id={ts.fileId} onClick={handleFileDelete}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
         </IconBox> */}
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>File Name<Star>*</Star></Font>
+                    <Font>
+                      File Name<Star>*</Star>
+                    </Font>
                   </Label>
                   <InputCustom
                     style={{ overflow: "hidden" }}
@@ -126,7 +132,9 @@ function ShowTroubleShooting(props) {
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>Patch Code<Star>*</Star></Font>
+                    <Font>
+                      Patch Code<Star>*</Star>
+                    </Font>
                   </Label>
                   <div
                     style={{
@@ -141,7 +149,8 @@ function ShowTroubleShooting(props) {
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
                     <Font>
-                      추가 설명<Star>*</Star><br></br>(0/500)
+                      추가 설명<Star>*</Star>
+                      <br></br>(0/500)
                     </Font>
                   </Label>
                   <InputCustom

@@ -3,86 +3,46 @@ import styled from "styled-components";
 import { useRef } from "react";
 
 function Highlighted({ text = [], show }) {
-  // const [value, setValue] = useState(text.join("\n\n"));
-
-  // const handleChange = (value) => setValue(value);
-
-  // let highlightRed = [];
-  // let highlightBlue = [];
-
-  // let highlight = [
-  //   {
-  //     highlight: highlightRed,
-  //     className: "red",
-  //   },
-  //   {
-  //     highlight: highlightBlue,
-  //     className: "blue",
-  //   },
-  // ];
-
-  // const highlightText = () => {
-  //   text.map((e) => {
-  //     return e.charAt(0) === "-"
-  //       ? highlightRed.push(e + "\n")
-  //       : e.charAt(0) === "+"
-  //       ? highlightBlue.push(e + "\n")
-  //       : e;
-  //   });
-  //   return highlight;
-  // };
   const [value, setValue] = useState([]);
-
-  // const [ScrollY, setScrollY] = useState(0);
-
-  // const handleFollow = () => {
-  //   setScrollY(window.pageYOffset);
-  //   // window 스크롤 값을 ScrollY에 저장
-  // };
-  // useEffect(() => {
-  //   console.log("ScrollY is ", ScrollY);
-  //   // ScrollY가 변화할때마다 값을 콘솔에 출력
-  // }, [ScrollY]);
-  // useEffect(() => {
-  //   const watch = () => {
-  //     window.addEventListener("scroll", handleFollow);
-  //   };
-  //   watch();
-  //   // addEventListener 함수를 실행
-  //   return () => {
-  //     window.removeEventListener("scroll", handleFollow);
-  //     // addEventListener 함수를 삭제
-  //   };
-  // });
 
   useEffect(() => {
     if (text.length === 0) {
       return;
     }
     let _text = [];
-    text.map((e) => {
+    text.map((e, i) => {
       return e.charAt(0) === "-"
         ? _text.push(
-            <tr style={{ background: "rgba(255, 155, 0, 0.5)" }}>
-              <pre>{e}</pre>
-            </tr>
+            <TextBody
+              key={`text-${i}`}
+              style={{
+                background: "rgba(255, 155, 0, 0.7)",
+              }}
+            >
+              {e}
+            </TextBody>
           )
         : e.charAt(0) === "+"
         ? _text.push(
-            <tr style={{ background: "rgba(3, 218, 197, 0.5)" }}>
-              <pre>{e}</pre>
-            </tr>
+            <TextBody
+              key={`text-${i}`}
+              style={{
+                background: "rgba(3, 218, 197, 0.7)",
+              }}
+            >
+              {e}
+            </TextBody>
           )
         : e.charAt(0) === "@"
         ? _text.push(
-            <>
-              <br />
-              <br />
-              <pre>{e}</pre>
+            <TextBody key={`text-${i}`}>
+              {e}
               <hr />
-            </>
+            </TextBody>
           )
-        : _text.push(<pre>{e}</pre>);
+        : e.charAt(0) === " "
+        ? _text.push(<br />)
+        : _text.push(<TextBody key={`text-${i}`}>{e}</TextBody>);
     });
     setValue(_text);
   }, [text]);
@@ -90,76 +50,48 @@ function Highlighted({ text = [], show }) {
   return (
     <>
       <InputSize show={show}>
-        <Table style={{ width: "100%" }}>
-          <Tbody>
-            {value.map((e) => {
-              return e;
-            })}
-          </Tbody>
-        </Table>
+        {value.map((e) => {
+          return e;
+        })}
       </InputSize>
     </>
   );
 }
 
-const Table = styled.table`
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 80%;
-`;
-
 const InputSize = styled.div`
   position: relative;
-  height: auto;
-  width: 100%;
-  border-radius: 10px;
+  height: ${(props) => (props.show ? "700px" : "350px")};
+  width: ${(props) => (props.show ? "" : "1120px")};
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
-  background-color: #2c2e39;
+  background-color: "#2c2e39";
   color: #ffffff;
+  border-radius: ${(props) => (props.show ? "0px" : "10px")};
+  border: 1px solid ${(props) => (props.show ? "#fff" : "#696b7b")};
   overflow: auto;
   &:focus {
     outline: none !important;
     border-color: #719ece !important;
     box-shadow: 0 0 10px #719ece !important;
   }
-  &::-webkit-scrollbar-track {
-    background-color: #ededed; /*스크롤바의 색상*/
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
   }
 `;
 
-const Tbody = styled.tbody`
-  height: 100%;
-  display: inline;
-  flex-direction: column;
-  tr {
-    /* align-items: center; */
-    text-align: left;
-    color: #ffffff;
-    letter-spacing: 0.1em;
-    /* word-wrap: break-word; */
-    pre {
-      /* padding: 3px; */
-      text-decoration-color: #ffffff;
-      letter-spacing: 0.1em;
-      word-wrap: break-word;
-    }
-  }
-`;
-
-const Area = styled.div`
-  height: 400px;
-  border: 1px solid black;
-  text-align: left;
-  padding: 5px;
-  overflow: scroll;
-  .red {
-    background-color: #fcedeb !important;
-  }
-  .blue {
-    background-color: #ebfeed !important;
-  }
+const TextBody = styled.div`
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  word-break: break-all;
+  // 코드가 너무 길면 개행하기 위해서 씀
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 
 export default Highlighted;

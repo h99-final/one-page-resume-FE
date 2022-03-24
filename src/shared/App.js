@@ -70,25 +70,27 @@ function App() {
         <Route exact path="/projlist" component={ProjList} />
 
         <Route exact path="/porf" component={Portfolio} />
+        {/* 마이페이지 */}
         <Route exact path="/mypage" component={MyPage} />
+        {/* 메인페이지 */}
         <Route exact path="/" component={Main} />
+        {/* 포트폴리오 페이지 */}
         <Route exact path="/portfolio" component={PorfList} />
         <Route exact path="/portfolio/:id" component={Portfolio} />
         <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
-
+        {/* 프로젝트 페이지 */}
         <Route exact path="/project" component={ProjList} />
-        <Route exact path="/project/:id" component={Project}></Route>
-
+        <Route exact path="/project/:id" component={Project} />
         <PrivateRoute
           path="/write/project/:id/:projectId"
           component={MakeProj}
         />
-        <PrivateRoute path="/write/project/:id" component={MakeProj} />
         <PrivateRoute
           exact
           path="/write/project/:id/:projectId"
           component={MakeProj}
         />
+        <PrivateRoute path="/write/project/:id" component={MakeProj} />
         <Route component={NotFound} />
       </Switch>
     </>

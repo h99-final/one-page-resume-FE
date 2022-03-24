@@ -67,7 +67,6 @@ function PortfolioBaseHeader(props) {
 
   const handleScroll = () => {
     setScroll(window.scrollY);
-    console.log(window.scrollY);
   };
 
   const NumBox = () =>

@@ -2,25 +2,41 @@ import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Spinner from "./Spinner";
 
-export const FetchMore = ({ is_loading, setPage }) => {
+const FetchMore = ({ is_loading, setPage }) => {
   const fetchMoreTrigger = useRef(null);
   const fetchMoreObserver = new IntersectionObserver(([{ isIntersecting }]) => {
     if (isIntersecting) setPage((page) => page + 1);
   });
   useEffect(() => {
-    fetchMoreObserver.observe(fetchMoreTrigger.current);
+    let observerRefValue = null;
+    if (fetchMoreTrigger.current) {
+      fetchMoreObserver.observe(fetchMoreTrigger.current);
+      observerRefValue = fetchMoreTrigger.current;
+    }
     return () => {
-      fetchMoreObserver.unobserve();
+      if (observerRefValue) fetchMoreObserver.unobserve(observerRefValue);
     };
-  }, []);
+  }, [fetchMoreTrigger]);
 
   return (
-    <Fetch loading={is_loading ? "loading" : null} ref={fetchMoreTrigger}>
-      <Spinner />
+    <Fetch
+      onClick={() => {
+        window.scrollTo(0, 0);
+      }}
+      ref={fetchMoreTrigger}
+    >
+      Top
     </Fetch>
   );
 };
 
 export const Fetch = styled.div`
-  display: ${(props) => (props.is_loading ? "block" : "none")};
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin: 30px;
+  cursor: pointer;
 `;
+
+export default FetchMore;

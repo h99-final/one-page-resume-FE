@@ -7,7 +7,7 @@ import { apis } from "../shared/axios";
 import { useHistory } from "react-router-dom";
 import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
-import { FetchMore } from "../shared/FetchMore";
+import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { debounce } from '../shared/common';
 const defaultprojects = {
@@ -84,7 +84,7 @@ const Main = () => {
 
   //무한 스크롤
   const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
   let stack = [];
@@ -132,8 +132,11 @@ const Main = () => {
           <Portfolio>
             {porf?.map((e, i) => {
               return (
-                <div onClick={() => history.push(`/portfolio/${e.porfId}`)}>
-                  <PortfolioBuisnesscard key={`porf-${e.porfId}-${i}`} {...e} />
+                <div
+                  key={`porf-${e.porfId}-${i}`}
+                  onClick={() => history.push(`/portfolio/${e.porfId}`)}
+                >
+                  <PortfolioBuisnesscard {...e} />
                 </div>
               );
             })}
@@ -155,7 +158,7 @@ const Main = () => {
         </ProjectBox>
       </Container>
       {/* <Spinner /> */}
-      <FetchMore loading={page !== 0 && loading} setPage={setPage} />
+      <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
     </>
   );
 };

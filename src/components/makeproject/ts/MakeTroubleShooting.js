@@ -106,7 +106,9 @@ function MakeTroubleShooting() {
             <>
               <Content>
                 <Label>
-                  <Font>트러블슈팅 제목<Star>*</Star></Font>
+                  <Font>
+                    트러블슈팅 제목<Star>*</Star>
+                  </Font>
                 </Label>
                 <InputCustom
                   placeholder="제목을 적어주세요."
@@ -119,7 +121,9 @@ function MakeTroubleShooting() {
               <ErrorMessage>{errors?.title?.message}</ErrorMessage>
               <Content>
                 <Label>
-                  <Font>Commit<Star>*</Star></Font>
+                  <Font>
+                    Commit<Star>*</Star>
+                  </Font>
                 </Label>
                 <InputCustom
                   style={{ overflow: "hidden" }}
@@ -131,7 +135,9 @@ function MakeTroubleShooting() {
               <ErrorMessage>{errors?.fileName?.message}</ErrorMessage>
               <Content style={{ marginBottom: "30px" }}>
                 <Label>
-                  <Font>File Name<Star>*</Star></Font>
+                  <Font>
+                    File Name<Star>*</Star>
+                  </Font>
                 </Label>
                 <InputCustom
                   style={{ overflow: "hidden" }}
@@ -142,7 +148,9 @@ function MakeTroubleShooting() {
               </Content>
               <Content style={{ marginBottom: "30px" }}>
                 <Label>
-                  <Font>Patch Code<Star>*</Star></Font>
+                  <Font>
+                    Patch Code<Star>*</Star>
+                  </Font>
                 </Label>
                 <div
                   style={{
@@ -164,7 +172,6 @@ function MakeTroubleShooting() {
                   placeholder="문제를 해결한 구체적인 방법, 과정 등을 적어주세요."
                   style={{ overflow: "hidden", height: "20vh" }}
                   type="text"
-                  maxLength={1500}
                   {...register("content", { required: true })}
                 />
               </Content>
@@ -207,13 +214,11 @@ function MakeTroubleShooting() {
           {tsFile
             ? tsFile.map((e, i) => {
                 return (
-                  <>
-                    <ShowTroubleShooting
-                      key={tsFile.fileName + `${i}`}
-                      commit={commit}
-                      {...e}
-                    />
-                  </>
+                  <ShowTroubleShooting
+                    key={`tsFile.fileName-${i}`}
+                    commit={commit}
+                    {...e}
+                  />
                 );
               })
             : null}

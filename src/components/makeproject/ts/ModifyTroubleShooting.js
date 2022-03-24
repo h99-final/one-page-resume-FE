@@ -163,14 +163,11 @@ function ModifyTroubleShooting(props) {
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>
-                      *추가 설명<br></br>(0/500)
-                    </Font>
+                    <Font>*추가 설명</Font>
                   </Label>
                   <InputCustom
-                    style={{ overflow: "hidden", height: "20vh" }}
+                    style={{ overflow: "auto", height: "20vh" }}
                     type="text"
-                    maxLength={500}
                     {...register(`tsContent${i}`)}
                     defaultValue={ts.tsContent}
                   />
