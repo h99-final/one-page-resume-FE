@@ -73,7 +73,7 @@ export const apis = {
   //카카오 소셜로그인
   kakaoLogin1: (
     code // 닉네임
-  ) => testinstance.get(`/user/kakao/callback?code=${code}`),
+  ) => instance.get(`/user/kakao/callback?code=${code}`),
 
   kakaoLogin2: (
     code,

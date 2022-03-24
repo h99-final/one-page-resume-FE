@@ -32,11 +32,11 @@ function MainCard(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack.length > 3
             ? stack.slice(0, 3).map((e, i) => {
-                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-              })
+              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+            })
             : stack.map((e, i) => {
-                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-              })}
+              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+            })}
           {stack.length > 3 && (
             <ProjectStack
               style={{
@@ -130,21 +130,37 @@ const ProjectOwner = styled.div`
 const InnerCard = styled.img`
   width: 100%;
   height: 235px;
+  object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  background: url("{imageUrl}");
+  @media only screen and (max-width: 1377px) {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 1037px) {
+    
+  }
 `;
 
 export const ProjectForm = styled.div`
-  width: 444px;
-  margin: 0px auto;
-  min-width: 444px;
+  width: 31.9%;
+
+  margin: 0% 0.7%;
   background-color: #393a47;
   max-height: 515px;
   border-radius: 10px;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #393A47;"};
   box-sizing: border-box;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  @media only screen and (max-width: 1377px) {
+    width: 48%
+  }
+
+  @media only screen and (max-width: 1039px) {
+    width: 99%
+  }
 `;
 
 const ProjectStacks = styled.div`

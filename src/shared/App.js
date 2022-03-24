@@ -16,10 +16,8 @@ import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 import test from '../pages/test';
-
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
-import KakaoAuthHandle2 from "../components/KakaoAuthHandle2";
-import SocialLogin from "../pages/SocialLogin";
+
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
@@ -60,17 +58,11 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/login" component={SocialLogin} />
         <Route
           exact
           path="/user/kakao/callback"
           component={KakaoAuthHandle}
         />
-        {/* <Route
-          exact
-          path="/oauth/kakao/callback/properties"
-          component={KakaoAuthHandle2}
-        /> */}
 
         <Route exact path="/test" component={test} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />

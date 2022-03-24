@@ -4,28 +4,27 @@ import { KAKAO_AUTH_URL } from "../shared/kakaoAuth";
 import { setCookie } from "../shared/cookie";
 import styled from "styled-components";
 import { useHistory } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 //닉네임
 const KakaoAuthHandle = (props) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
-    const kakaoLogin = async () => {
-      await apis.kakaoLogin1(code)
-        .then((res) => {
-          // setCookie("token", res.headers.authorization);
-          console.log(res)
-          alert(res)
-          window.location.href = KAKAO_AUTH_URL;
-        })
-        .catch((err) => {
-
-          console.log(err)
-          history.push('/')
-
-        })
-    };
-    kakaoLogin();
+    dispatch(userActions.kakaoLoginDB(code))
+    // const kakaoLogin = async () => {
+    //   await apis.kakaoLogin1(code)
+    //     .then((res) => {
+    //       // setCookie("token", res.headers.authorization);
+    //       console.log(res)
+    //       alert(res)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //       history.push('/')
+    //     })
+    // };
   }, []);
 
   return <Container alt="로딩 이미지" />;

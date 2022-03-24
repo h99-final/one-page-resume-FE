@@ -61,7 +61,7 @@ const Portfolio = styled.div`
   height: 410px;
   border-radius: 10px;
   border: 1px solid #414457;
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (min-width: 1900px) {
   }
 `;
 

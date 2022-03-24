@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import { actionCreators as userActions } from '../redux/modules/user';
-import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -12,9 +10,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import { useHistory } from "react-router-dom";
 import { orange } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { KAKAO_AUTH_URL } from '../../shared/kakaoAuth';
 
 const theme = createTheme({
   palette: {
@@ -145,11 +143,13 @@ const Login = (props) => {
       <OrBox>
         <Line />
         <Or>또는</Or>
-        <KakaoBtn>
+        <KakaoBtn onClick={() => {
+          window.location.href = `${KAKAO_AUTH_URL}`;
+        }}>
           <img
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "75px" }}
             alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
-          카카오계정으로 로그인하기
+          카카오로 시작하기
         </KakaoBtn>
       </OrBox>
     </>
@@ -227,20 +227,15 @@ const Or = styled.div`
 const KakaoBtn = styled.button`
   cursor: pointer;
   width: 350px;
-  height: 62px;
-  border-radius: 43px;
+  border-radius: 12px;
   border: 1px solid #424453;
   display: flex;
   align-items: center;
   font-size: 16px;
   margin-top: 37px;
-  padding: 0px 73px 0px 73px;
-  color: #FFFFFF;
-  background-color: #424453;
-  :disabled {
-    border: none;
-    background-color: gray;
-  }
+  padding: 15px 20px;
+  color: #191919;
+  background-color: #FEE500;
 `;
 
 export default Login;
