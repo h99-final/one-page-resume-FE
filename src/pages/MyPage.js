@@ -136,9 +136,9 @@ function MyPage() {
             width: "100%",
             justifyContent: "space-between"
           }}>
-            <h1>포트폴리오</h1>
+            <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
-              {values.show ? <h2>포트폴리오가 공개되었습니다.</h2> : <h2>포트폴리오가 비공개되었습니다.</h2>}
+              {values.show ? <h2 style={{ minWidth: "180px" }}>포트폴리오가 공개되었습니다.</h2> : <h2 style={{ minWidth: "200px" }}>포트폴리오가 비공개되었습니다.</h2>}
               <button onClick={handleClickShow}>
                 {values.show ? <Visibility /> : <VisibilityOff />}
               </button>
@@ -222,14 +222,13 @@ const Container = styled.div`
 `;
 export const Title = styled.div`
   width: 113px;
-  left: 0px;
+  margin: 3px;
   height: 40px;
   margin-top: 60px;
   margin-bottom: 10px;
   h1{
     height: fit-content;
     padding: 10px 0px;
-    font-family: Pretendard;
     font-style: normal;
     font-weight: bold;
     font-size: 26px;
@@ -262,11 +261,9 @@ export const Title = styled.div`
   }
 `;
 export const ProjTitle = styled.div`
-  width: 96%;
+  width: 100%;
   margin: 0px auto;
   height: 30px;
-  margin-top: 160px;
-  margin-bottom: 10px;
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
@@ -317,7 +314,7 @@ export const Label = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  min-width: 150px;
+  min-width: 120px;
   height: 44px;
   left: 0px;
 `;
@@ -331,9 +328,9 @@ export const Content = styled.div`
 `;
 const Form = styled.div`
   margin: 0px auto;
-  min-width: 1440px;
+  width: 100%;
   height: 600px;
-  max-width: 1900px;
+  max-width: 1440px;
   min-height: 40vh;
   background: #1F2029;
   display: flex;
@@ -352,10 +349,9 @@ const Project = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  width: 96%;
+  width: 100%;
   justify-content: space-around;
-  min-width: 1440px;
-  max-width: 1900px;
+  max-width: 1400px;
   border-radius: 10px;
   @media only screen and (max-width: 1300px) {
   }
@@ -363,6 +359,7 @@ const Project = styled.div`
 
 const UserInfoBox = styled.div`
   width: 64%;
+  min-width: 800px;
   margin: 0px auto;
   margin-right: 24px;
   position: relative;
@@ -372,8 +369,7 @@ const UserInfoBox = styled.div`
 const PortfolioBox = styled.div`
   position: relative;
   margin: 0px auto;
-  min-width: 350px;
-  width: 32%;
+  width: 450px;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -381,7 +377,7 @@ const UserInfo = styled.div`
   background-color: #2C2E39;
   margin: 0px auto;
   width: 99%;
-  min-width: 600px;
+  min-width: 500px;
   height: 502px;
   border-radius: 10px;
   display: flex;
@@ -404,9 +400,8 @@ const EditButton = styled.button`
   height: 60px;
 `;
 const LeftBox = styled.div`
-  margin: 70px;
+  margin: 70px 25px;
   min-width: 250px;
-  margin-right: 24px;
   position: relative;
   @media only screen and (max-width: 1300px) {
   }
@@ -453,7 +448,7 @@ const AddProfText = styled.div`
   color: #999999;
 `;
 const RightBox = styled.div`
-  margin: 70px 30px 50px 70px;
+  margin: 70px 30px 50px 40px;
   position: relative;
   min-width: 450px;
   width: 68%;
@@ -461,6 +456,7 @@ const RightBox = styled.div`
   }
 `;
 const Portfolio = styled.div`
+  border: 1px solid white;
   background-color: lightblue;
   width: 99%;
   height: 502px;

@@ -13,18 +13,7 @@ const KakaoAuthHandle = (props) => {
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
     dispatch(userActions.kakaoLoginDB(code))
-    // const kakaoLogin = async () => {
-    //   await apis.kakaoLogin1(code)
-    //     .then((res) => {
-    //       // setCookie("token", res.headers.authorization);
-    //       console.log(res)
-    //       alert(res)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //       history.push('/')
-    //     })
-    // };
+
   }, []);
 
   return <Container alt="로딩 이미지" />;
