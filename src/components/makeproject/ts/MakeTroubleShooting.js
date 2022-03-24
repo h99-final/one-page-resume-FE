@@ -26,6 +26,7 @@ import ShowTroubleShooting from "./ShowTroubleShooting";
 import PreviousNextProject from "../PreviousNextProject";
 import TemplateProject from "../shared/TemplateProject";
 import { actionCreators as tsActions } from "../../../redux/modules/setProject";
+import MarkDown from "./MarkDown";
 
 function MakeTroubleShooting() {
   const dispatch = useDispatch();
@@ -40,6 +41,8 @@ function MakeTroubleShooting() {
   const ref = useRef(null);
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  // markdown value
+  const [mdValue, setMDValue] = useState("");
 
   const [message_list, setMessage_list] = useState([]);
 
@@ -174,6 +177,7 @@ function MakeTroubleShooting() {
                   type="text"
                   {...register("content", { required: true })}
                 />
+                <MarkDown setValue={setMDValue} value={mdValue} />
               </Content>
               <ErrorMessage>{errors?.content?.message}</ErrorMessage>
             </>
