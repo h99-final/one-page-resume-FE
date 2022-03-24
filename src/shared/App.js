@@ -16,15 +16,11 @@ import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 import test from '../pages/test';
-
-import Auth from "./Auth";
+import KakaoAuthHandle from "../components/KakaoAuthHandle";
 
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
-  const REST_API_KEY = "4c32bacbc9ab5815cc4d4c6b47e81b79";
-  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   useEffect(() => {
     dispatch(userActions.userInfoDB());
@@ -62,12 +58,11 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/kakao">
-          <h1><a href={KAKAO_AUTH_URL}>Kakao Login</a></h1>
-        </Route>
-        <Route path="/oauth/kakao/callback">
-          <Auth />
-        </Route>
+        <Route
+          exact
+          path="/user/kakao/callback"
+          component={KakaoAuthHandle}
+        />
 
         <Route exact path="/test" component={test} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />

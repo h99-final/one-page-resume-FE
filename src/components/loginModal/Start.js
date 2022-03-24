@@ -1,19 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import Login from "./Login";
-import Signup from "./Signup";
 import { apis } from "../../shared/axios";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { emailCheck } from "../../shared/common";
 import { useSelector } from "react-redux";
-import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
-import AddInfo from "./AddInfo";
 import { orange } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { KAKAO_AUTH_URL } from '../../shared/kakaoAuth';
 
 const theme = createTheme({
   palette: {
@@ -60,12 +56,9 @@ const CssTextField = styled(TextField, {
   '& input:valid:focus + fieldset': { // override inline-style
   },
 }));
-// const { Kakao } = window;
+
 const Start = (props) => {
   const history = useHistory();
-  const REST_API_KEY = "4c32bacbc9ab5815cc4d4c6b47e81b79";
-  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const userInfo = useSelector((state) => state.user.user);
 
@@ -76,22 +69,6 @@ const Start = (props) => {
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState("");
-
-  // function loginWithKakao() {
-  //   Kakao.Auth.login({
-  //     success: function (authObj) {
-  //       const code = JSON.stringify({
-  //         code: authObj.access_token
-  //       })
-  //       apis.kakaoLogin(code).then((res) => {
-  //         console.log(res)
-  //       })
-  //     },
-  //     fail: function (err) {
-  //       alert(JSON.stringify(err))
-  //     },
-  //   })
-  // }
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -150,14 +127,12 @@ const Start = (props) => {
         <Line />
         <Or>또는</Or>
         <KakaoBtn onClick={() => {
-          // loginWithKakao()
           window.location.href = `${KAKAO_AUTH_URL}`;
-
         }}>
           <img
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "75px" }}
             alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
-          카카오계정으로 로그인하기
+          카카오로 시작하기
         </KakaoBtn>
       </OrBox>
     </>
@@ -237,18 +212,16 @@ const Or = styled.div`
 const KakaoBtn = styled.button`
   cursor: pointer;
   width: 350px;
-  height: 62px;
-  border-radius: 43px;
+  border-radius: 12px;
   border: 1px solid #424453;
   display: flex;
   align-items: center;
   font-size: 16px;
   margin-top: 37px;
-  padding: 0px 73px 0px 73px;
-  color: #FFFFFF;
-  background-color: #424453;
-  :disabled {
-    border: none;
-    background-color: gray;
+  padding: 15px 20px;
+  color: #191919;
+  background-color: #FEE500;
+  h1{
+    
   }
 `;

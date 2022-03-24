@@ -9,6 +9,7 @@ import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import { FetchMore } from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
+import { debounce } from '../shared/common';
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -19,24 +20,67 @@ const defaultprojects = {
   userJob: "",
   username: "",
 };
+// 사이즈 불러와줌
+export function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", debounce(handleResize, 50));
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
 
 const Main = () => {
-  const history = useHistory();
 
+  const size = useWindowSize();
+
+  const history = useHistory();
   // console.log(userInfo)
 
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
   const [index, setIndex] = useState(0);
+  const [num, setNum] = useState(4);
+
+  useEffect(() => {
+
+    if (size.width < 1040 && size.width > 700) {
+      setNum(2)
+    }
+    if (size.width <= 1378 && size.width > 1040) {
+      setNum(3)
+    }
+    if (size.width > 1378) {
+      setNum(4)
+    }
+  }, [size.width]);
+
   useEffect(() => {
     const stack = [];
     apis.mainPorf(stack).then((res) => {
-      setPorf(res.data.data.slice(index, index + 4));
+      setPorf(res.data.data.slice(index, index + num));
     });
     apis.mainProj(stack).then((res) => {
       setProj(res.data.data);
     });
-  }, [index]);
+  }, [index, num]);
 
   //무한 스크롤
   const [page, setPage] = useState(0);
@@ -71,14 +115,14 @@ const Main = () => {
             <h2>
               <button
                 onClick={() => {
-                  setIndex((prev) => (prev - 4) % 12);
+                  setIndex((prev) => (prev - num) % 12);
                 }}
               >
                 {"<"}
               </button>
               <button
                 onClick={() => {
-                  setIndex((prev) => (prev + 4) % 12);
+                  setIndex((prev) => (prev + num) % 12);
                 }}
               >
                 {">"}
@@ -121,16 +165,14 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  min-width: 730px;
 `;
 
 const Project = styled.div`
   margin: 0px auto;
-  flex-direction: row;
   flex-wrap: wrap;
   display: flex;
   width: 98%;
-  min-width: 1440px;
-  max-width: 1900px;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -140,11 +182,12 @@ const Portfolio = styled.div`
   flex-wrap: wrap;
   display: flex;
   width: 98%;
-  min-width: 1440px;
-  max-width: 1900px;
+  height: 430px;
+  overflow: hidden;
   border-radius: 10px;
   justify-content: space-around;
   @media only screen and (max-width: 1300px) {
+    
   }
 `;
 
@@ -188,10 +231,12 @@ const PortfolioBox = styled.div`
   width: 100%;
   margin: 30px auto;
   height: 500px;
+  max-width: 1440px;
 `;
 
 const ProjectBox = styled.div`
   width: 100%;
   margin: 0px auto;
+  max-width: 1440px;
 `;
 export default Main;
