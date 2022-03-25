@@ -20,6 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { orange } from '@mui/material/colors';
 import { TextField } from "@mui/material";
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -61,7 +62,7 @@ const CssTextField = styled(TextField, {
   },
 }));
 function EditPwd() {
-
+  const history = useHistory();
   const [curPassword, setCurPw] = React.useState("");
   const [password, setPw] = React.useState("");
   const [passwordCheck, setPwCheck] = React.useState("");
@@ -113,9 +114,12 @@ function EditPwd() {
     apis
       .putPwd(data)
       .then((res) => {
+        alert("비밀번호 변경 완료")
+        history.push('/mypage')
+
       })
       .catch((error) => {
-        alert("회원가입에 실패했습니다.");
+        alert("비밀번호가 맞지 않습니다. 다시 확인해 주세요");
       });
   };
 

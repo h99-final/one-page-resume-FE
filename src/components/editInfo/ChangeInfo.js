@@ -13,8 +13,10 @@ import {
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
 import FileUpload from "../makeporf/shared/ImageUpload";
+import { useHistory } from 'react-router-dom';
 
 function ChangeInfo() {
+  const history = useHistory()
   const defaultValues = {};
   const {
     register,
@@ -35,7 +37,8 @@ function ChangeInfo() {
     apis
       .addInfo(_data)
       .then((res) => {
-        // window.alert(res.data.data.message);
+        window.alert("변경 완료");
+        history.push('/mypage')
       })
       .catch((error) => {
         window.alert(error.response.data.data.errors[0].message);
@@ -208,7 +211,7 @@ function ChangeInfo() {
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
         <div style={{ width: "96%", textAlign: "right" }}>
-          <Button type="submit">변경 내용 저장</Button>
+          <Button type="submit" >변경 내용 저장</Button>
         </div>
       </UserInfoForm>
     </>

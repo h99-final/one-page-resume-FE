@@ -134,6 +134,7 @@ const ModalBG = styled.div`
 `;
 
 const ModalBox = styled.div`
+
   text-align: center;
   border-radius: 10px;
   display: flex;
