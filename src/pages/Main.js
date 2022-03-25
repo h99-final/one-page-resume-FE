@@ -9,7 +9,7 @@ import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
-import { debounce } from '../shared/common';
+import { debounce } from "../shared/common";
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -48,7 +48,6 @@ export function useWindowSize() {
 }
 
 const Main = () => {
-
   const size = useWindowSize();
 
   const history = useHistory();
@@ -60,15 +59,14 @@ const Main = () => {
   const [num, setNum] = useState(4);
 
   useEffect(() => {
-
     if (size.width < 1040 && size.width > 700) {
-      setNum(2)
+      setNum(2);
     }
     if (size.width <= 1378 && size.width > 1040) {
-      setNum(3)
+      setNum(3);
     }
     if (size.width > 1378) {
-      setNum(4)
+      setNum(4);
     }
   }, [size.width]);
 
@@ -102,6 +100,9 @@ const Main = () => {
       });
     }
     setLoading(false);
+    return () => {
+      setLoading(false);
+    };
   }, [page]);
 
   return (
@@ -190,7 +191,6 @@ const Portfolio = styled.div`
   border-radius: 10px;
   justify-content: space-around;
   @media only screen and (max-width: 1300px) {
-    
   }
 `;
 

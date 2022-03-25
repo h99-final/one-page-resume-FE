@@ -31,7 +31,7 @@ const ProjHeader = (props) => {
       });
   };
 
-  if (!project.isMyProject) {
+  if (!project?.isMyProject) {
     return (
       <>
         <StyledHeader>
@@ -132,7 +132,7 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background:none;
+  background: none;
   align-items: center;
   justify-content: space-between;
   width: 100vw;

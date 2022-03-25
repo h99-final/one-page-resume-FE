@@ -3,6 +3,14 @@ import styled from "styled-components";
 import { Link } from "react-scroll";
 //component
 import Highlighted from "../../makeproject/ts/Highlight";
+//마크다운
+import MDEditor, {
+  commands,
+  ICommand,
+  TextState,
+  TextAreaTextApi,
+} from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 const TroubleShooting = (props) => {
   const {
@@ -44,10 +52,9 @@ const TroubleShooting = (props) => {
 
   // 자동 영역 조절
   const leftBox = useRef(null);
-  const rightBox = useRef(null);
 
   useEffect(() => {
-    console.log(rightBox.current.clientHeight);
+    console.log(leftBox?.current?.getBoundingClientRect().height);
   });
 
   return (
@@ -57,16 +64,34 @@ const TroubleShooting = (props) => {
           <LeftTopBox>
             <FontTitle>{tsName}</FontTitle>
           </LeftTopBox>
-          <LeftBottomBox>{tsContent}</LeftBottomBox>
+          {/* <>{tsContent}</> */}
+          <MDEditor.Markdown
+            style={{
+              backgroundColor: "#393a47",
+              borderRadius: "10px",
+              padding: "14px 14px",
+              border: "1px solid #393a47",
+              color: "#fff",
+              height: "100%",
+              minHeight: "600px",
+              maxWidth: "100%",
+              width: "100%",
+              boxSizing: "border-box",
+            }}
+            source={tsContent}
+            rehypePlugins={[[rehypeSanitize]]}
+          />
         </LeftBox>
-        <RightBox ref={rightBox}>
+        <RightBox>
           <Num>
             <NumBoxs />
           </Num>
           <Font>{commitMsg}</Font>
-          <div>
-            <Highlighted show={true} text={tsPatchCodes} />
-          </div>
+          <Highlighted
+            height={leftBox?.current?.getBoundingClientRect().height}
+            show={true}
+            text={tsPatchCodes}
+          />
         </RightBox>
       </SampleCard>
     </>
@@ -74,17 +99,17 @@ const TroubleShooting = (props) => {
 };
 
 const Num = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, auto);
+  display: flex;
   grid-gap: 0;
   flex-direction: row;
-  width: calc(45vw);
+  width: 45vw;
   border: 1px solid #000;
 `;
 
 const SampleCard = styled.div`
   width: 100%;
   height: 100%;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
 `;
@@ -122,7 +147,7 @@ const RightBox = styled.div`
   /* margin: 0px auto; */
   display: inline-block;
   flex-direction: column;
-  height: 100%;
+  height: ${(props) => `${props.height}px`};
   width: 50vw;
   /* max-width: 800px; */
 `;
