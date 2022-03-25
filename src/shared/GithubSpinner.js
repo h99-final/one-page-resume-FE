@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../components/banner.css";
+import Spinner from './Spinner';
 
 const customStyles = {
   content: {
@@ -52,7 +53,9 @@ function GithubSpinner(props) {
     // contentLabel="Example Modal"
     >
       <InfoBox>
-        <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} />
+        {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
+
+        <div style={{ width: "350px", margin: "0px auto" }}><Spinner /></div>
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
       </InfoBox>
