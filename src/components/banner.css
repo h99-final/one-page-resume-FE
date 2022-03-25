@@ -106,3 +106,21 @@ body {
   height: 70%;
   box-sizing: border-box;
 }
+
+.mySwiper4 .swiper-pagination {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0px auto;
+  width: 50%;
+  height: fit-content;
+}
+.swiper-pagination-bullet {
+  color: #000;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.5);
+}
+.swiper-pagination-bullet-active {
+  color: #fff;
+  background: #00c4b4;
+}

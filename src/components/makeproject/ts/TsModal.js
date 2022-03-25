@@ -31,8 +31,8 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#2C2E39",
-
-    // overflow: "hidden",
+    padding: "0px",
+    overflow: "hidden",
   },
 };
 
@@ -383,7 +383,6 @@ const InputBox = styled.div`
 `;
 
 const FormTextCenter = styled(FormText)`
-  border: 1px solid;
   width: auto;
   height: 63px;
   padding: 10px;

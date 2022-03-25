@@ -64,12 +64,15 @@ function TokenHelp(props) {
         <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
       </IconBoxLeft>
       <Swiper
-        cssMode={true}
+        slidesPerView={1}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
         navigation={true}
-        pagination={true}
         mousewheel={true}
         keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Navigation, Pagination]}
         className="mySwiper4"
       >
         <SwiperSlide>
@@ -130,7 +133,7 @@ function TokenHelp(props) {
               <img alt="" src={process.env.PUBLIC_URL + "/img/TH3.svg"} />
             </SvgBox>
             <GoButton>
-              <button>
+              <button onClick={() => { }}>
                 Git token 인증하러 가기
               </button>
             </GoButton>
