@@ -17,6 +17,7 @@ import {
   Star
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
+import { useHistory } from 'react-router-dom';
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -33,6 +34,7 @@ export const options = [
 ];
 
 function MainStack() {
+  const history = useHistory();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [stack, setStack] = useState(userInfo.stack);
 
@@ -77,7 +79,8 @@ function MainStack() {
       await apis
         .putStack(data)
         .then((res) => {
-          console.log(res);
+          alert("변경 완료")
+          history.push('/mypage')
         })
         .catch((error) => {
           window.alert(error.message);
