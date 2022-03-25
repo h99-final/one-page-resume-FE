@@ -91,7 +91,7 @@ function TokenHelp(props) {
         <SwiperSlide>
           <Box>
             <InfoBox>
-              <h1>Step 1. Github에서 새 토큰 발급하기</h1>
+              <h1>STEP 1. Github에서 새 토큰 발급하기</h1>
               <h2>
                 Github 바로가기를 클릭해 Github의 개발자 환경설정에 접속한 후,<br />
                 <span>Generate new token</span>을 클릭합니다.<br />
@@ -106,7 +106,7 @@ function TokenHelp(props) {
         <SwiperSlide>
           <Box>
             <InfoBox>
-              <h1>Step 2. 토큰 정보 설정</h1>
+              <h1>STEP 2. 토큰 정보 설정</h1>
               <h2>
                 토큰의 사용기한을 설정한 후, 토큰 사용 범위를 Select scope에서 선택합니다. <br />
                 <span>Scope에서 repo를 반드시 선택해주세요!</span>
@@ -120,7 +120,7 @@ function TokenHelp(props) {
         <SwiperSlide>
           <Box>
             <InfoBox>
-              <h1>Step 3. 포그에 Git token 붙여넣기</h1>
+              <h1>STEP 3. 포그에 Git token 붙여넣기</h1>
               <h2>
                 토큰 생성이 완료되었습니다. <br />
                 토큰을 복사한 후 포그의 Git token 인증창에 붙여넣기 해주세요.

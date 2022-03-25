@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import {
-  Content,
   FormText,
-  FormTitle,
   IconBox,
-  Inner,
-  InputCustom,
-  Label,
-} from "../../makeporf/shared/_sharedStyle";
-import { Font, FormContents } from "../../makeporf/view/Introduce";
+} from "../components/makeporf/shared/_sharedStyle";
 import styled from "styled-components";
-import PreviousNextProject from "../PreviousNextProject";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../../../redux/modules/patchcode";
-import { apis } from "../../../shared/axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../banner.css";
+import "../components/banner.css";
 
 const customStyles = {
   content: {
@@ -40,7 +31,7 @@ const customStyles = {
   },
 };
 
-function Loading(props) {
+function GithubSpinner(props) {
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { helpModalOpen, setHelpModalOpen } = props;
@@ -50,20 +41,17 @@ function Loading(props) {
   }
 
 
-  Modal.setAppElement("#root");
+  // Modal.setAppElement("#root");
 
   return (
-    <Modal
-      ariaHideApp={false}
-      isOpen={helpModalOpen}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Example Modal"
+    <Container
+    // ariaHideApp={false}
+    // isOpen={helpModalOpen}
+    // onRequestClose={closeModal}
+    // style={customStyles}
+    // contentLabel="Example Modal"
     >
       <InfoBox>
-        <IconBoxLeft onClick={closeModal}>
-          <img alt="" src={process.env.PUBLIC_URL + "/img/whiteClose.svg"} />
-        </IconBoxLeft>
         <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} />
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
@@ -131,29 +119,19 @@ function Loading(props) {
           </Box>
         </SwiperSlide>
       </Swiper>
-    </Modal>
+    </Container>
   );
 }
-
-
-export const FormTextLight = styled(FormText)`
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 100;
-  width: auto;
-`;
-
-const IconBoxLeft = styled(IconBox)`
-  width: 50px;
-  margin-left: auto;
-  background-color: #2C2E39;
-  margin-bottom: 50px;
+const Container = styled.div`
+  background-color: #1F2029;
+  width: 100%;
+  height: calc(100%-45px);
 `;
 
 const Box = styled.div`
   display: flex;
   margin: 0px auto;
-  width: 80%;
+  width: 90%;
   height: 90%;
 `;
 
@@ -225,18 +203,4 @@ const SvgBox = styled.div`
   margin: 70px auto;
 `;
 
-const GoButton = styled.div`
-  width: fit-content;
-  margin: 0px auto;
-  text-align: center;
-  margin-top: 70px;
-  button{
-    color: white;
-    text-align: center;
-    padding: 15px 20px;
-    border: 1px solid #00C4B4;
-    background: #00C4B4;
-    border-radius: 30px;
-  }
-`;
-export default Loading;
+export default GithubSpinner;

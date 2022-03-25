@@ -18,6 +18,7 @@ import ProjList from "../pages/ProjList";
 import test from '../pages/test';
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
 import Loading from '../components/makeproject/ts/Loading';
+import GithubSpinner from './GithubSpinner';
 
 function App() {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ function App() {
           component={KakaoAuthHandle}
         />
 
-        <Route exact path="/test" component={Loading} />
+        <Route exact path="/test" component={GithubSpinner} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />
