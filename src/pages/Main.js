@@ -157,9 +157,10 @@ const Main = () => {
             })}
           </Project>
         </ProjectBox>
+
+        <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
       </Container>
       {/* <Spinner /> */}
-      <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
     </>
   );
 };

@@ -26,12 +26,13 @@ function TopDown() {
 }
 
 const FontCute = styled.div`
-  margin: auto;
+  /* margin: auto; */
   font-size: 14px;
   color: #fff;
 `;
 
 const TopDownButton = styled.div`
+  border: 1px solid white;
   flex-direction: column;
   align-content: center;
   position: fixed;
@@ -56,7 +57,6 @@ const Down = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 10px;
   overflow-block: true;
   cursor: pointer;
