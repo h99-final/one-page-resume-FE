@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
 
 import NotFound from "../pages/NotFound";
@@ -22,10 +22,15 @@ import GithubSpinner from './GithubSpinner';
 function App() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.user);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(userActions.userInfoDB());
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const PublicRoute = ({ component: Component, restricted, ...rest }) => {
     return (
@@ -59,11 +64,7 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-        <Route
-          exact
-          path="/user/kakao/callback"
-          component={KakaoAuthHandle}
-        />
+        <Route exact path="/user/kakao/callback" component={KakaoAuthHandle} />
 
         <Route exact path="/test" component={GithubSpinner} />
         <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
