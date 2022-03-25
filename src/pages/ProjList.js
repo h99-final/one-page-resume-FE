@@ -52,7 +52,7 @@ export const customStyles = {
   }),
 };
 const ProjList = () => {
-  const userInfo = useSelector((state) => state.user.user);
+  const { stack } = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
   const [proj, setProj] = useState([]);
@@ -80,11 +80,18 @@ const ProjList = () => {
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  let stack = [];
-
   useEffect(() => {
     setLoading(true);
-    if (hasMore) {
+    if (hasMore && addStack.length > 0) {
+      apis.mainProj(addStack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setProj((prev) => [...prev, ...res.data.data]);
+      });
+    } else {
       apis.mainProj(stack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
@@ -95,7 +102,10 @@ const ProjList = () => {
       });
     }
     setLoading(false);
-  }, [page]);
+    return () => {
+      setLoading(false);
+    };
+  }, [page, addStack]);
 
   return (
     <>
@@ -146,8 +156,8 @@ const ProjList = () => {
             })}
           </Project>
         </ProjectBox>
-        <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
       </Container>
+      <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
     </>
   );
 };

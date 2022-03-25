@@ -89,7 +89,10 @@ const Main = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (hasMore) {
+    if (!page) {
+      return;
+    }
+    if (hasMore && !!page) {
       apis.mainProj(stack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
@@ -107,7 +110,7 @@ const Main = () => {
 
   return (
     <>
-      <Container key={"main"}>
+      <Container key={`main`}>
         <Header />
         <Banner />
         <PortfolioBox>
@@ -157,9 +160,9 @@ const Main = () => {
             })}
           </Project>
         </ProjectBox>
+        {is_loading ? <Spinner /> : null}
       </Container>
-      {/* <Spinner /> */}
-      <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
+      <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
     </>
   );
 };

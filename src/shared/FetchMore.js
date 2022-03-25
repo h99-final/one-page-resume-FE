@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
-import Spinner from "./Spinner";
 
 const FetchMore = ({ is_loading, setPage }) => {
   const fetchMoreTrigger = useRef(null);

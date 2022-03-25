@@ -95,7 +95,6 @@ function MakeProject() {
       gitRepoUrl: gitRepoUrl,
       gitRepoName: gitRepoName,
     };
-    console.log(jsonFrm);
     let frm = new FormData();
     let modifyPic = new FormData();
     frm.append(
@@ -230,21 +229,6 @@ function MakeProject() {
                 (0/1200)
               </Font>
             </Label>
-            {/* <InputCustom
-              placeholder="프로젝트의 주제, 개발 목적, 계획 등 프로젝트에 대한 설명을 다양하게 작성해주세요."
-              style={{ height: "174px" }}
-              type="text"
-              ref={content}
-              maxLength={1200}
-              onInput={handleResizeHeight}
-              {...register("projectContent", {
-                required: "필수 항목 입니다.",
-                maxLength: {
-                  value: 1200,
-                  message: "1200자 제한 입니다.",
-                },
-              })}
-            /> */}
             <MarkDown setValue={setMDValue} value={mdValue} />
           </Content>
           <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
