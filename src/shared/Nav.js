@@ -30,7 +30,7 @@ const Nav = (props) => {
     dispatch(userActions.logOutDB());
     console.log(getCookie("token"));
     sessionStorage.clear()
-    window.location.reload("/");
+    window.location.replace("/");
   };
 
   return (

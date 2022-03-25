@@ -221,7 +221,4 @@ const KakaoBtn = styled.button`
   padding: 15px 20px;
   color: #191919;
   background-color: #FEE500;
-  h1{
-    
-  }
 `;
