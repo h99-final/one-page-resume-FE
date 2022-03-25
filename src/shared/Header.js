@@ -238,7 +238,6 @@ export const RightMenu = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-weight: 500;
-  cursor: pointer;
 `;
 
 const SharedBtn = styled.button`
