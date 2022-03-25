@@ -26,6 +26,7 @@ import PreviousNextProject from "./shared/PreviousNextProject";
 import { grey } from "@mui/material/colors";
 import { apis } from "../../shared/axios";
 import TemplateProject from "./shared/TemplateProject";
+import MarkDown from "./ts/MarkDown";
 
 function MakeProject() {
   const history = useHistory();
@@ -52,13 +53,13 @@ function MakeProject() {
     return handleSubmit(projectSubmit);
   }, []);
 
-  const handleResizeHeight = useCallback(() => {
-    if (content === null || content.current === null) {
-      return;
-    }
-    content.current.style.height = "20px";
-    content.current.style.height = content.current.scrollHeight + "px";
-  }, []);
+  // const handleResizeHeight = useCallback(() => {
+  //   if (content === null || content.current === null) {
+  //     return;
+  //   }
+  //   content.current.style.height = "20px";
+  //   content.current.style.height = content.current.scrollHeight + "px";
+  // }, []);
 
   // const [stacks, setStacks] = useState([]);
   const [addStack, setAddStack] = useState([]);
@@ -75,6 +76,7 @@ function MakeProject() {
 
   const [isModify, setIsModify] = useState(false);
 
+  const [mdValue, setMDValue] = useState();
   // form 제출
   const projectSubmit = (data) => {
     const { projectTitle, projectContent, gitRepoUrl } = data;
@@ -88,7 +90,7 @@ function MakeProject() {
 
     const jsonFrm = {
       title: projectTitle,
-      content: projectContent,
+      content: mdValue,
       stack: addStack,
       gitRepoUrl: gitRepoUrl,
       gitRepoName: gitRepoName,
@@ -130,7 +132,7 @@ function MakeProject() {
         setValue("projectTitle", title);
         setValue("gitRepoUrl", gitRepoUrl);
         setValue("imageUrl", imageUrl);
-        setValue("projectContent", content);
+        setMDValue(content);
         setAddStack(stack);
         setIsModify(true);
       });
@@ -228,7 +230,7 @@ function MakeProject() {
                 (0/1200)
               </Font>
             </Label>
-            <InputCustom
+            {/* <InputCustom
               placeholder="프로젝트의 주제, 개발 목적, 계획 등 프로젝트에 대한 설명을 다양하게 작성해주세요."
               style={{ height: "174px" }}
               type="text"
@@ -242,7 +244,8 @@ function MakeProject() {
                   message: "1200자 제한 입니다.",
                 },
               })}
-            />
+            /> */}
+            <MarkDown setValue={setMDValue} value={mdValue} />
           </Content>
           <ErrorMessage>{errors?.projectContent?.message}</ErrorMessage>
         </FormContents>

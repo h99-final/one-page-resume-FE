@@ -14,6 +14,14 @@ import {
 import { Font } from "../../makeporf/view/Introduce";
 import Highlighted from "./Highlight";
 import ModifyTroubleShooting from "./ModifyTroubleShooting";
+//마크다운
+import MDEditor, {
+  commands,
+  ICommand,
+  TextState,
+  TextAreaTextApi,
+} from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 function ShowTroubleShooting(props) {
   const { handleSubmit } = useForm();
@@ -145,12 +153,29 @@ function ShowTroubleShooting(props) {
                       <br></br>(0/500)
                     </Font>
                   </Label>
-                  <InputCustom
+                  {/* <InputCustom
                     style={{ overflow: "auto", height: "20vh" }}
                     type="text"
                     maxLength={500}
                     value={ts.tsContent}
                     readOnly
+                  /> */}
+                  <MDEditor.Markdown
+                    style={{
+                      backgroundColor: "#393a47",
+                      borderRadius: "10px",
+                      padding: "14px 14px",
+                      border: "1px solid #393a47",
+                      color: "#fff",
+                      height: "auto",
+                      overflowY: "auto",
+                      maxWidth: "100%",
+                      width: "100%",
+                      boxSizing: "border-box",
+                      height: "20vh",
+                    }}
+                    source={ts.tsContent}
+                    rehypePlugins={[[rehypeSanitize]]}
                   />
                 </Content>
               </div>

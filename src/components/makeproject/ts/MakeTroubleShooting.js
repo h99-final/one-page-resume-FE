@@ -60,7 +60,7 @@ function MakeTroubleShooting() {
       tsName: data.title,
       fileName: patchcode[0].name,
       patchCode: patchcode[0].patchCode,
-      tsContent: data.content,
+      tsContent: mdValue,
     };
     // 트러블 슈팅 redux에만 추가
     console.log(_data);
@@ -70,7 +70,7 @@ function MakeTroubleShooting() {
     handleSubmitDB(_obj);
     dispatch(tsfileactions.resetSelectPatchCode());
     setValue("title", "");
-    setValue("content", "");
+    // setValue("content", "");
   };
   const delGitToken = () => {
     apis.delGitToken();
