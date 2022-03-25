@@ -109,8 +109,8 @@ const ProjList = () => {
 
   return (
     <>
+      <Header />
       <Container>
-        <Header />
         <Title>
           <h1>프로젝트 둘러보기</h1>
           <h2>
@@ -166,6 +166,8 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  max-width: 1440px;
+  margin: 0px auto;
 `;
 const ProjectBox = styled.div`
   width: 100%;
@@ -176,8 +178,6 @@ const Project = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  min-width: 1440px;
-  max-width: 1900px;
   border-radius: 10px;
   @media only screen and (max-width: 1300px) {
   }

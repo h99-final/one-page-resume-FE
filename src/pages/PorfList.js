@@ -44,15 +44,19 @@ export const customStyles = {
 const PorfList = () => {
   const history = useHistory();
 
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
 
   const [addStack, setAddStack] = useState([]);
+
   useEffect(() => {
     apis.mainPorf(addStack).then((res) => {
       setPorf(res.data.data);
     });
-  }, []);
+  }, [addStack]);
+
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -60,6 +64,7 @@ const PorfList = () => {
     });
     setAddStack(stackArray);
   };
+
   return (
     <>
       <Container>

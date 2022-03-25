@@ -24,7 +24,8 @@ const FetchMore = ({ is_loading, setPage }) => {
       }}
       ref={fetchMoreTrigger}
     >
-      Top
+
+      <img alt="" src={process.env.PUBLIC_URL + "/img/top.svg"} />
     </Fetch>
   );
 };
@@ -33,8 +34,8 @@ export const Fetch = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
-  margin: 30px;
+  width: 90%;
+  margin: 30px auto;
   cursor: pointer;
 `;
 
