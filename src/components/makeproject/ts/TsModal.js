@@ -33,6 +33,7 @@ const customStyles = {
     background: "#2C2E39",
     padding: "0px",
     overflow: "hidden",
+    minWidth: "1000px",
   },
 };
 
@@ -81,19 +82,16 @@ function TsModal(props) {
     apis.gitsync(projectId).then((res) => {
       apis.gitCommit(projectId).then((res) => {
         setMessage_list(res.data.data);
-      }).then((res) => {
-        setIsLoading(false)
-      });
+      })
+    }).then((res) => {
+      setIsLoading(false)
     });
   };
 
   useEffect(() => {
     if (page === 0) {
-      setIsLoading(true)
       apis.gitCommit(projectId).then((res) => {
         setMessage_list(res.data.data);
-      }).then(() => {
-        setIsLoading(false)
       })
     }
     if (page === 1) {

@@ -15,7 +15,6 @@ import Portfolio from "../pages/Portfolio";
 import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
-import test from '../pages/test';
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
 import Loading from '../components/makeproject/ts/Loading';
 import GithubSpinner from './GithubSpinner';

@@ -130,7 +130,7 @@ function TokenHelp(props) {
               </h2>
             </InfoBox>
             <SvgBox>
-              <img alt="" src={process.env.PUBLIC_URL + "/img/TH3.svg"} />
+              <img alt="" src={process.env.PUBLIC_URL + "/img/TH4.svg"} />
             </SvgBox>
             <GoButton>
               <button onClick={() => { }}>
