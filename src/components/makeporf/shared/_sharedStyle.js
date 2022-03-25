@@ -11,7 +11,6 @@ export const FormText = styled.div`
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #ffffff;
-
 `;
 
 export const ButtonBucket = styled.div`
@@ -47,6 +46,13 @@ export const FormTitle = styled.div`
 `;
 
 export const InputCustom = styled.textarea`
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
   width: 1120px;
   height: 19px;
   border-radius: 10px;
@@ -58,8 +64,8 @@ export const InputCustom = styled.textarea`
   background-color: #393a47;
   color: ${(props) => (props.readOnly ? "white" : "white")};
   &:focus {
-    outline: #00C4B4 !important;
-    border:1px solid #00C4B4 !important;
+    outline: #00c4b4 !important;
+    border: 1px solid #00c4b4 !important;
   }
 `;
 
@@ -82,8 +88,7 @@ export const Label = styled.div`
 export const Star = styled.span`
   margin-left: 2px;
   font-size: 20px;
-  color: #00C4B4;
-
+  color: #00c4b4;
 `;
 
 export const Content = styled.div`
@@ -119,7 +124,7 @@ export const ButtonText = styled(FormText)`
 export const AddButton = styled.div`
   width: 350px;
   height: 80px;
-  background: #696B7B;
+  background: #696b7b;
   border-radius: 50px;
 `;
 

@@ -59,9 +59,10 @@ function Highlighted({ text = [], show }) {
 }
 
 const InputSize = styled.div`
-  position: relative;
+  /* position: relative; */
   height: ${(props) => (props.show ? "700px" : "350px")};
-  width: ${(props) => (props.show ? "" : "1120px")};
+  width: ${(props) => (props.show ? "" : "auto")};
+  min-width: auto;
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
@@ -87,6 +88,8 @@ const InputSize = styled.div`
 const TextBody = styled.div`
   width: 100%;
   display: block;
+  padding: 2px 0px;
+  align-items: center;
   overflow: hidden;
   word-break: break-all;
   // 코드가 너무 길면 개행하기 위해서 씀
