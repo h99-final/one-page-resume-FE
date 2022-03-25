@@ -82,13 +82,23 @@ const TroubleShooting = (props) => {
             rehypePlugins={[[rehypeSanitize]]}
           />
         </LeftBox>
-        <RightBox>
+        <RightBox
+          height={
+            leftBox?.current?.getBoundingClientRect().height > 600
+              ? leftBox?.current?.getBoundingClientRect().height
+              : 600
+          }
+        >
           <Num>
             <NumBoxs />
           </Num>
           <Font>{commitMsg}</Font>
           <Highlighted
-            height={leftBox?.current?.getBoundingClientRect().height}
+            height={
+              leftBox?.current?.getBoundingClientRect().height > 600
+                ? leftBox?.current?.getBoundingClientRect().height
+                : 600
+            }
             show={true}
             text={tsPatchCodes}
           />
@@ -117,6 +127,7 @@ const SampleCard = styled.div`
 const LeftBox = styled.div`
   width: 45vw;
   display: flex;
+  height: 100%;
   flex-direction: column;
   margin-right: 5vw;
 `;
@@ -147,7 +158,7 @@ const RightBox = styled.div`
   /* margin: 0px auto; */
   display: inline-block;
   flex-direction: column;
-  height: ${(props) => `${props.height}px`};
+  height: ${(props) => (props.height > 600 ? `${props.height}px` : 600)};
   width: 50vw;
   /* max-width: 800px; */
 `;

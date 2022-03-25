@@ -79,7 +79,7 @@ function MakeProject() {
   const [mdValue, setMDValue] = useState();
   // form 제출
   const projectSubmit = (data) => {
-    const { projectTitle, projectContent, gitRepoUrl } = data;
+    const { projectTitle, gitRepoUrl } = data;
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
 

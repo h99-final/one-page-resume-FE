@@ -133,6 +133,7 @@ export default ProjHeader;
 
 const StyledHeader = styled.div`
   background: none;
+  backdrop-filter: blur(2px);
   align-items: center;
   justify-content: space-between;
   width: 100vw;

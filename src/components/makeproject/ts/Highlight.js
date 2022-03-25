@@ -4,7 +4,9 @@ import { useRef } from "react";
 
 function Highlighted({ text = [], show, height }) {
   const [value, setValue] = useState([]);
-  console.log(height);
+  const [elementHeight, setElementHeight] = useState();
+
+  useEffect(() => {});
 
   useEffect(() => {
     if (text.length === 0) {
@@ -61,7 +63,8 @@ function Highlighted({ text = [], show, height }) {
 
 const InputSize = styled.div`
   /* position: relative; */
-  height: ${(props) => (props.show ? `${props.height}px` : "350px")};
+  height: ${(props) =>
+    props.show ? (props.height > 600 ? `${props.height}` : "600px") : "350px"};
   width: ${(props) => (props.show ? "" : "auto")};
   min-width: auto;
   justify-content: center;
