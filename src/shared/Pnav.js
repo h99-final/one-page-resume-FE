@@ -68,7 +68,7 @@ const NavBar = styled.nav`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #2C2E39;
+  background-color: #424453;
   position: absolute;
   border-radius: 5px;
   width: auto;
@@ -101,9 +101,9 @@ const Logout = styled.button`
   height: 50px;
   margin-top: 5px;
   margin-bottom: 10px;
-  background: #424453;
+  background: #696B7B;
   color: #FFFFFF;
-  border: 1px solid #424453;
+  border: 1px solid #696B7B;
   box-sizing: border-box;
   border-radius: 30px;
   h1{
@@ -117,7 +117,8 @@ const Logout = styled.button`
   }
   :hover {
     color: white;
-    background-color: #999999;
+    border: 1px solid #9C9EAE;
+    background-color: #9C9EAE;
   }
 `;
 export default Pnav;

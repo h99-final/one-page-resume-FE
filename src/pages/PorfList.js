@@ -9,6 +9,8 @@ import Select from "react-select";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import { Link, useHistory } from "react-router-dom";
 import FetchMore from "../shared/FetchMore";
+import { InputStack } from '../components/makeporf/shared/_sharedStyle';
+
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -99,14 +101,12 @@ const PorfList = () => {
             다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
             프로젝트를 북마크 해보세요.
           </h2>
+
         </Title>
-        <Select
-          styles={customStyles}
-          closeMenuOnSelect={false}
-          options={options}
-          isMulti
-          onChange={handleChange}
-        />
+        <InputBox>
+          <InputStack style={{ width: "100%" }} />
+        </InputBox>
+
         <StackBox style={{ marginBottom: "60px" }}>
           {addStack.map((addStack, index) => {
             return (
@@ -164,6 +164,12 @@ const Portfolio = styled.div`
   justify-content: space-around;
   @media only screen and (max-width: 1300px) {
   }
+`;
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0px auto;
 `;
 
 const PortfolioBox = styled.div`

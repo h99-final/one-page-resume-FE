@@ -134,13 +134,13 @@ const AddInfo = (props) => {
     <>
       {page === "0" && (
         <>
-          <TextContainer>
+          <TextContainer style={{ marginBottom: "70px" }}>
             <h1>추가정보를 입력하시겠어요?</h1>
           </TextContainer>
           <ImgInputBox>
             <img
               alt=""
-              src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.jpeg"
+              src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.png"
             />
             <p>회원가입을 완료했어요👏👏</p>
             <p>추가정보를 3가지만 입력하면</p>
@@ -349,12 +349,10 @@ const TextContainer = styled.div`
   }
 `;
 const ImgInputBox = styled.div`
-  width: 350px;
-  height: 240px;
-  margin: 70px 115px 193px 115px;
+  margin: 0px 115px 123px 115px;
   img {
-    width: 200px;
-    margin-bottom: 17px;
+    width: 150px;
+    margin-bottom: 40px;
   }
   p {
     margin-top: 8px;

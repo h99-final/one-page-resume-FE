@@ -28,17 +28,19 @@ const Modal = ({ modalClose }) => {
         <ModalBox>
           <WelcomeBox>
             <TextContainer>
-              <h1>Portfolio</h1>
+              <h1>
+                <img style={{ width: "200px" }} alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/POUG.gif' />
+              </h1>
 
               <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
 
-              <TextBox style={{ margin: "0px 33.5px 0px 33.5px" }}>
+              <TextBox style={{ margin: "0px 33.5px 0px 33.5px", color: "#FF9B00" }}>
                 내 프로젝트에 도움이 되는 다양한 영감을 얻어요!
               </TextBox>
-              <TextBox style={{ margin: "15px 73px 0px 73px" }}>
+              <TextBox style={{ margin: "15px 73px 0px 73px", color: "#8EEE4E" }}>
                 예쁜 포트폴리오를 빠르게 만들어요.
               </TextBox>
-              <TextBox style={{ margin: "15px 0px" }}>
+              <TextBox style={{ margin: "15px 0px", color: "#E498FF" }}>
                 내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.
               </TextBox>
             </TextContainer>
@@ -140,7 +142,6 @@ const ModalBox = styled.div`
   display: flex;
   width: 1160px;
   height: 800px;
-  // Modal 창 브라우저 가운데로 조정
   position: absolute;
   left: 50%;
   top: 50%;
@@ -153,7 +154,7 @@ const ModalBox = styled.div`
 `;
 
 const WelcomeBox = styled.div`
-  background: url('https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/bgimg.png');
+  background: url('https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/welcome.png');
   width: 50%;
   position: relative;
   border-bottom-left-radius: 10px;
@@ -166,21 +167,22 @@ const WelcomeBox = styled.div`
 const TextContainer = styled.div`
   width: 408px;
   height: 323px;
-  margin: 240px 85px 240px 85px;
+  margin: 200px 85px 240px 85px;
   h1 {
     font-size: 48px;
     font-weight: bold;
   }
   p {
-    margin-top: 34px;
-    margin-bottom: 60px;
+    margin-top: 95px;
+    margin-bottom: 25px;
     font-size: 16px;
     font-weight: normal;
+    color: #ffffff;
   }
 `;
 
 const TextBox = styled.div`
-  background-color: white;
+  background-color: rgba(66, 68, 83, 0.7);
   border-radius: 15px;
   align-items: center;
   text-align: center;

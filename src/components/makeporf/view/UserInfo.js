@@ -13,9 +13,6 @@ import {
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
-import { useSelector } from "react-redux";
-import { urlCheck } from "../../../shared/common";
-import reactSelect from "react-select";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
 
