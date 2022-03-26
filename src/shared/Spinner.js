@@ -6,12 +6,13 @@ function Spinner() {
   const [isIncrease, setIsIncrease] = useState(false);
   useEffect(() => {
     function tick() {
-      return setTimeout(() => setTime((time + 1) % 5), 300);
+      return setTimeout(() => setTime((time + 1) % 5), 500);
     }
     // if (!isIncrease) return undefined;
     tick();
-    console.log(time);
-    return () => clearTimeout(tick);
+    return () => {
+      clearTimeout(tick);
+    };
     // }, [time, isIncrease]);
   }, [time]);
 

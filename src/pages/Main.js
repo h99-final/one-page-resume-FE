@@ -92,7 +92,7 @@ const Main = () => {
     if (!page) {
       return;
     }
-    if (hasMore && !!page) {
+    if (hasMore) {
       apis.mainProj(stack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);

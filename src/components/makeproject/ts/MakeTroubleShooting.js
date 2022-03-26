@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Highlighted from "./Highlight";
 import { useForm } from "react-hook-form";
 import { actionCreators as tsfileactions } from "../../../redux/modules/patchcode";
-import ShowTroubleShooting from "./ShowTroubleShooting";
+import ShowTroubleShooting, { IconBox } from "./ShowTroubleShooting";
 import PreviousNextProject from "../PreviousNextProject";
 import TemplateProject from "../shared/TemplateProject";
 import { actionCreators as tsActions } from "../../../redux/modules/setProject";
@@ -82,6 +82,10 @@ function MakeTroubleShooting() {
     // });
   };
 
+  const handleDelete = () => {
+    dispatch(tsfileactions.resetSelectPatchCode());
+  };
+
   const handleSubmitDB = (_data) => {
     dispatch(tsfileactions.troubleShootingDB(projectId, _data));
   };
@@ -106,6 +110,9 @@ function MakeTroubleShooting() {
         <FormContents>
           {!!commit && !!patchcode ? (
             <>
+              <IconBox onClick={handleDelete}>
+                <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+              </IconBox>
               <Content>
                 <Label>
                   <Font>
@@ -170,12 +177,6 @@ function MakeTroubleShooting() {
                     *추가 설명<br></br>(0/1500)
                   </Font>
                 </Label>
-                {/* <InputCustom
-                  placeholder="문제를 해결한 구체적인 방법, 과정 등을 적어주세요."
-                  style={{ overflow: "hidden", height: "20vh" }}
-                  type="text"
-                  {...register("content", { required: true })}
-                /> */}
                 <MarkDown setValue={setMDValue} value={mdValue} />
               </Content>
               <ErrorMessage>{errors?.content?.message}</ErrorMessage>

@@ -65,7 +65,6 @@ function PortfolioBaseHeader(props) {
       setScroll(0);
       setSelected(1);
       document.body.removeEventListener("scroll", handleScroll);
-      console.log("작동하니?");
     };
   }, [scroll]);
 
