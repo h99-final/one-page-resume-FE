@@ -192,14 +192,7 @@ function MakeProject() {
                 기술 스택<Star>*</Star>
               </Font>
             </Label>
-            <Select
-              styles={customStyles}
-              closeMenuOnSelect={false}
-              components={animatedComponents}
-              options={options}
-              isMulti
-              onChange={handleChange}
-            />
+            <InputCustom></InputCustom>
           </MultiContent>
           <MultiContent style={{ marginBottom: "30px" }}>
             <Label>

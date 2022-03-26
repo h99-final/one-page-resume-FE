@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
 import styled from "styled-components";
-import ClearIcon from "@mui/icons-material/Clear";
-import { grey } from "@mui/material/colors";
-import Grid from "@mui/material/Grid";
-import { useSelector } from "react-redux";
+
 import {
   Content,
   ErrorMessage,

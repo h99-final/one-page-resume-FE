@@ -68,7 +68,29 @@ export const InputCustom = styled.textarea`
     border: 1px solid #00c4b4 !important;
   }
 `;
-
+export const InputStack = styled.input`
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
+  width: 1120px;
+  height: 19px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  resize: none;
+  border: 1px solid #393a47;
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
+  &:focus {
+    outline: #00c4b4 !important;
+    border: 1px solid #00c4b4 !important;
+  }
+`;
 export const StyledInput = styled(({ errors, ...rest }) => (
   <InputCustom {...rest} />
 ))`
