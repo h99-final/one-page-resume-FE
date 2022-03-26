@@ -19,7 +19,11 @@ function Spinner() {
   return (
     <>
       <SpinnerContainer>
-        <Font>loading..</Font>
+        <img
+          alt="로딩중"
+          src={process.env.PUBLIC_URL + "/img/loadingFont.svg"}
+        />
+        <></>
         {time >= 1 ? (
           <>
             <img alt="" src={process.env.PUBLIC_URL + "/img/andoperator.svg"} />

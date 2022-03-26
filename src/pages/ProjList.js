@@ -8,6 +8,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import MainCard from "../components/Element/MainCard";
 import FetchMore from "../shared/FetchMore";
+import Spinner from "../shared/Spinner";
 import { InputCustom, InputStack } from '../components/makeporf/shared/_sharedStyle';
 
 export const options = [
@@ -25,20 +26,12 @@ export const options = [
 ];
 
 const ProjList = () => {
-  const { stack } = useSelector((state) => state.user.user);
-  // console.log(userInfo)
+  const userInfo = useSelector((state) => state.user.user);
 
   const [proj, setProj] = useState([]);
   const [newStack, setNewStack] = useState("");
 
   const [addStack, setAddStack] = useState([]);
-  // useEffect(() => {
-  //   const stack = [];
-
-  //   apis.mainProj(stack).then((res) => {
-  //     setProj(res.data.data);
-  //   });
-  // }, [index]);
 
   const handleChange = (e) => {
     if (e.keycode === 13) {
@@ -58,9 +51,35 @@ const ProjList = () => {
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   // if (!page) {
+  //   //   return;
+  //   // }
+  //   if (hasMore) {
+  //     apis.mainProj(stack, page).then((res) => {
+  //       if (res.data.data.length === 0) {
+  //         console.log(res.data.data.length);
+  //         setHasMore(false);
+  //         setLoading(false);
+  //         return;
+  //       }
+  //       setProj((prev) => [...prev, ...res.data.data]);
+  //     });
+  //   } else {
+  //     setLoading(false);
+  //     return;
+  //   }
+  //   setLoading(false);
+  //   return () => {
+  //     setLoading(false);
+  //     setHasMore(true);
+  //   };
+  // }, [page]);
+
   useEffect(() => {
     setLoading(true);
-    if (hasMore && addStack.length > 0) {
+    if (hasMore) {
       apis.mainProj(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
@@ -70,20 +89,15 @@ const ProjList = () => {
         setProj((prev) => [...prev, ...res.data.data]);
       });
     } else {
-      apis.mainProj(stack, page).then((res) => {
-        if (res.data.data.length === 0) {
-          setHasMore(false);
-          setLoading(false);
-          return;
-        }
-        setProj((prev) => [...prev, ...res.data.data]);
-      });
+      setLoading(false);
+      return;
     }
     setLoading(false);
     return () => {
       setLoading(false);
+      setHasMore(true);
     };
-  }, [page, addStack]);
+  }, [page]);
 
   return (
     <>
@@ -105,7 +119,7 @@ const ProjList = () => {
             style={{ width: "100%" }} />
         </InputBox>
         <StackBox style={{ marginBottom: "60px" }}>
-          {addStack.map((addStack, index) => {
+          {addStack?.map((addStack, index) => {
             return (
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
@@ -135,6 +149,7 @@ const ProjList = () => {
             })}
           </Project>
         </ProjectBox>
+        {!!is_loading && <Spinner />}
       </Container>
       <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
     </>

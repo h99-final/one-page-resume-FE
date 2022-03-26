@@ -8,7 +8,9 @@ import { grey } from "@mui/material/colors";
 import Select from "react-select";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import { Link, useHistory } from "react-router-dom";
+import FetchMore from "../shared/FetchMore";
 import { InputStack } from '../components/makeporf/shared/_sharedStyle';
+
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -52,11 +54,34 @@ const PorfList = () => {
 
   const [addStack, setAddStack] = useState([]);
 
+  //무한 스크롤
+  const [page, setPage] = useState(0);
+  const [is_loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  let stack = [];
+
   useEffect(() => {
-    apis.mainPorf(addStack).then((res) => {
-      setPorf(res.data.data);
-    });
-  }, [addStack]);
+    setLoading(true);
+    if (hasMore) {
+      apis.mainPorf(stack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setPorf((prev) => [...prev, ...res.data.data]);
+      });
+    } else {
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+    return () => {
+      setLoading(false);
+      setHasMore(true);
+    };
+  }, [page]);
 
   const handleChange = (e) => {
     let stackArray = [];
@@ -107,7 +132,7 @@ const PorfList = () => {
             {porf?.map((e, i) => {
               return (
                 <div
-                  key={`porf-${e.porfId}`}
+                  key={`porf-${e.porfId}-${i}`}
                   onClick={() => history.push(`/portfolio/${e.porfId}`)}
                 >
                   <PortfolioBuisnesscard {...e} />
@@ -117,6 +142,7 @@ const PorfList = () => {
           </Portfolio>
         </PortfolioBox>
       </Container>
+      <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
     </>
   );
 };
