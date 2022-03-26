@@ -64,7 +64,8 @@ function MakeProject() {
   // }, []);
 
   // const [stacks, setStacks] = useState([]);
-  const [addStack, setAddStack] = useState([]);
+  //ToDO
+  const [addStack, setAddStack] = useState(["Python", "React", "Java"]);
   const handleChange = (e) => {
     let stackArray = [];
     e.map((addStack) => {
@@ -141,7 +142,7 @@ function MakeProject() {
         setIsModify(true);
       });
     }
-    return handleSubmit(projectSubmit);
+    return () => handleSubmit(projectSubmit);
   }, []);
 
   return (
@@ -234,7 +235,7 @@ function MakeProject() {
         <TemplateProject />
       </form>
       {projectId && <PreviousNextProject />}
-      {is_loading && <Spinner />}
+      {/* {is_loading && <Spinner />} */}
     </>
   );
 }

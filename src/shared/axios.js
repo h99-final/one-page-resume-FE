@@ -137,7 +137,8 @@ export const apis = {
   //git file 불러오기
   gitCommitFile: (projectId, sha) =>
     instance.get(`/project/${projectId}/git/commit/${sha}/file`),
-  checkSync: (projectId) => instance.get(`/project/${projectId}/git/sync`),
+  checkSync: (projectId) =>
+    instance.get(`/project/${projectId}/git/completion`),
 
   mainPorf: (stack, page) =>
     instance.post(`/porf/intro/recommend?page=${page}`, {
