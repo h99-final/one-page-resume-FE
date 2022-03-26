@@ -95,12 +95,16 @@ function TsModal(props) {
       1500
     );
     setIsLoading(true);
-    await apis
-      .gitsync(projectId)
-      .then((res) => {
-        timeout();
-      })
-      .catch((error) => console.log("워험"));
+    if (projectId) {
+      await apis
+        .gitsync(projectId)
+        .then((res) => {
+          timeout();
+        })
+        .catch((error) => console.log("워험"));
+    } else {
+      setIsLoading(false);
+    }
 
     // .catch((error) => {
     //   alert("깃헙 불러오기는 20초에 1번 가능합니다.");
