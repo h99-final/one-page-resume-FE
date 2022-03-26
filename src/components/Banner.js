@@ -49,7 +49,8 @@ const Banner = () => {
         <SwiperSlide>
           <Box style={{
             backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG1.png")`,
-          }}>
+          }}
+          >
             <GifBox style={{ top: "114px", left: "731px" }}>
               <img
                 alt=''
@@ -71,6 +72,7 @@ const Banner = () => {
                 src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%B5%E1%84%87%E1%85%A9%E1%84%89%E1%85%AE.gif' />
             </GifBox>
             <TextBox>
+
               <h1>
                 개발자 포트폴리오 만들기,
                 <br />
@@ -125,7 +127,8 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Box style={{
-            backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG3.png")`,
+            background: "linear-gradient(180deg, #8BFF9E -71%, #00A497 91.67%)"
+            // backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG3.png")`,
           }}>
             <GifBox style={{ top: "71px", left: "863px", width: "420px", height: "500px" }}>
               <img
@@ -162,6 +165,7 @@ const Banner = () => {
             <SvgBox>
               <img alt="" src={process.env.PUBLIC_URL + "/img/BG5.svg"} />
             </SvgBox>
+
             <BtnBox style={{ textAlign: "center" }}>
               <button
                 style={{ marginLeft: "0px" }}

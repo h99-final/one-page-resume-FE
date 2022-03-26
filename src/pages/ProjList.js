@@ -6,20 +6,10 @@ import { useSelector } from "react-redux";
 import { apis } from "../shared/axios";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import Select from "react-select";
 import MainCard from "../components/Element/MainCard";
 import FetchMore from "../shared/FetchMore";
+import { InputCustom, InputStack } from '../components/makeporf/shared/_sharedStyle';
 
-const defaultprojects = {
-  bookmarkCount: 0,
-  content: "",
-  id: 0,
-  imageUrl: "",
-  stack: [],
-  title: "",
-  userJob: "",
-  username: "",
-};
 export const options = [
   { value: "Python", label: "Python" },
   { value: "Javascript", label: "Javascript" },
@@ -34,29 +24,12 @@ export const options = [
   { value: "Git", label: "Git" },
 ];
 
-export const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: "white",
-    // Overwrittes the different states of border
-    border: "1px solid #cccccc",
-    borderRadius: "5px",
-    width: "74.5vw",
-    minWidth: "600px",
-    maxWidth: "1140px",
-    margin: "0px auto",
-    "&:hover": {
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "red" : "blue",
-    },
-  }),
-};
 const ProjList = () => {
   const { stack } = useSelector((state) => state.user.user);
   // console.log(userInfo)
 
   const [proj, setProj] = useState([]);
-  const [index, setIndex] = useState(0);
+  const [newStack, setNewStack] = useState("");
 
   const [addStack, setAddStack] = useState([]);
   // useEffect(() => {
@@ -68,11 +41,16 @@ const ProjList = () => {
   // }, [index]);
 
   const handleChange = (e) => {
-    let stackArray = [];
-    e.map((addStack) => {
-      return stackArray.push(addStack.value);
-    });
-    setAddStack(stackArray);
+    if (e.keycode === 13) {
+      console.log(newStack)
+    }
+    // console.log(newStack)
+    // let stackArray = [];
+    // e.map((addStack) => {
+    //   return stackArray.push(addStack.value);
+    // });
+    // setAddStack(stackArray);
+
   };
 
   // 무한 스크롤
@@ -118,13 +96,14 @@ const ProjList = () => {
             프로젝트를 북마크 해보세요.
           </h2>
         </Title>
-        <Select
-          styles={customStyles}
-          closeMenuOnSelect={false}
-          options={options}
-          isMulti
-          onChange={handleChange}
-        />
+        <InputBox>
+          <InputStack
+            value={newStack}
+            onChange={(e) => { setNewStack(e.target.value) }}
+            // onSubmit={handleChange}
+            onKeyPress={handleChange}
+            style={{ width: "100%" }} />
+        </InputBox>
         <StackBox style={{ marginBottom: "60px" }}>
           {addStack.map((addStack, index) => {
             return (
@@ -182,6 +161,14 @@ const Project = styled.div`
   @media only screen and (max-width: 1300px) {
   }
 `;
+
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0px auto;
+`;
+
 const Title = styled.div`
   width: 100%;
   margin-top: 120px;
