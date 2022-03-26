@@ -98,7 +98,7 @@ const TroubleShooting = (props) => {
           leftBox?.current?.getBoundingClientRect().height ? (
             <Highlighted
               height={
-                leftBox?.current?.getBoundingClientRect().height > 600
+                leftBox.current.getBoundingClientRect().height > 600
                   ? leftBox.current.getBoundingClientRect().height
                   : 600
               }

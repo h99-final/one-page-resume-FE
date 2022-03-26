@@ -77,26 +77,35 @@ function TsModal(props) {
   };
 
   // 싱크 맞추기
-  const handlesync = () => {
+  const handlesync = async () => {
+    let timeout = setInterval(
+      () =>
+        apis
+          .checkSync(projectId)
+          .then((res) => {
+            if (res.data.data.isDone) {
+              apis.gitCommit(projectId).then((res) => {
+                setMessage_list(res.data.data);
+                clearTimeout(timeout);
+                setIsLoading(false);
+              });
+            }
+          })
+          .catch((res) => console.log(res.data.data)),
+      1500
+    );
     setIsLoading(true);
-    apis
+    await apis
       .gitsync(projectId)
       .then((res) => {
-        setTimeout(apis.checkSync(projectId), 1000).then((res) => {
-          if (res.data.data.isDone) {
-            apis.gitCommit(projectId).then((res) => {
-              setMessage_list(res.data.data);
-            });
-          }
-        });
+        timeout();
       })
-      .then((res) => {
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        alert("깃헙 불러오기는 20초에 1번 가능합니다.");
-        setIsLoading(false);
-      });
+      .catch((error) => console.log("워험"));
+
+    // .catch((error) => {
+    //   alert("깃헙 불러오기는 20초에 1번 가능합니다.");
+    //   setIsLoading(false);
+    // });
   };
 
   useEffect(() => {
