@@ -80,7 +80,7 @@ const NavBar = styled.nav`
   top: 75px;
   margin-right: 30px;
   right: 0;
-  background-color: #2C2E39;
+  background-color: #424453;
   border-radius: 5px;
 `;
 // NavList component
@@ -161,14 +161,14 @@ const Logout = styled.button`
   align-items: center;
   width: 88px;
   height: 40px;
-  background: #393A47;
+  background: inherit;
   color: #ffffff;
-  border: 1px solid #393A47;
+  border: 1px solid #ffffff;
   box-sizing: border-box;
   border-radius: 30px;
   :hover {
-    color: white;
-    background-color: #999999;
+    color: #000000;
+    background-color: #FFFFFF;
   }
 `;
 export default Nav;
