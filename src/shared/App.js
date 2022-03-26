@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
 import { Link, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
-
+import { Helmet } from 'react-helmet';
 import NotFound from "../pages/NotFound";
 import MakeProj from "../pages/MakeProj";
 import MyPage from "../pages/MyPage";
@@ -62,6 +62,11 @@ function App() {
 
   return (
     <>
+      <Helmet>
+        <title>POUG</title>
+        <link rel="icon" type="image/png" href={process.env.PUBLIC_URL + "/img/favicon.svg"} sizes="16x16" />
+        {/* <link rel="icon" type="image/png" href={process.env.PUBLIC_URL + "/img/favicon2.svg"} sizes="16x16" /> */}
+      </Helmet>
       <GlobalStyle />
       <Switch>
         <Route exact path="/user/kakao/callback" component={KakaoAuthHandle} />

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const tokencheck = document.cookie;
 const token = tokencheck.split(";")[1];
 

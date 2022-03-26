@@ -50,11 +50,25 @@ const Banner = () => {
           <Box style={{
             backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG1.png")`,
           }}>
-            <GifBox>
+            <GifBox style={{ top: "114px", left: "731px" }}>
               <img
-                style={{}}
+                alt=''
+                src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%80%E1%85%AE%E1%84%89%E1%85%A5%E1%86%BC.gif' />
+            </GifBox>
+            <GifBox style={{ top: "22px", left: "881px" }}>
+              <img
+                alt=''
+                src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB.gif' />
+            </GifBox>
+            <GifBox style={{ top: "44px", left: "1077px" }}>
+              <img
                 alt=''
                 src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%91%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%84%89%E1%85%B5%E1%86%BC.gif' />
+            </GifBox>
+            <GifBox style={{ top: "134px", left: "1205px" }}>
+              <img
+                alt=''
+                src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%B5%E1%84%87%E1%85%A9%E1%84%89%E1%85%AE.gif' />
             </GifBox>
             <TextBox>
               <h1>
@@ -113,6 +127,11 @@ const Banner = () => {
           <Box style={{
             backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG3.png")`,
           }}>
+            <GifBox style={{ top: "71px", left: "863px", width: "420px", height: "500px" }}>
+              <img
+                alt=''
+                src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A1%E1%86%B7.gif' />
+            </GifBox>
             <TextBox>
               <h1>
                 10분으로 만드는
@@ -171,7 +190,9 @@ const BtnBox = styled.div`
   width: 100%;
   text-align: left;
   height: fit-content;
+  
   button {
+    &:hover { background: #00c4b4; transition: all 1s ease; } cursor: pointer;
     margin: 0px auto;
     margin-left: 120px;
     padding: 15px 30px;
@@ -213,14 +234,13 @@ const SvgBox = styled.div`
   width: fit-content;
   margin: 0px auto;
   margin-bottom: 100px;
-  padding-top: 100px;
+  padding-top: 150px;
 `;
 
 const GifBox = styled.div`
   width: 180px;
   height: 100px;
   position: absolute;
-  left: 500px;
   img{
   }
 `;
