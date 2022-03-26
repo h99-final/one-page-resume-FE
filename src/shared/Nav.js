@@ -102,7 +102,7 @@ const Nav = (props) => {
             <>
               <NavSet
                 onClick={() => {
-                  history.push(`/editinfo/changeinfo/${props.userId}`)
+                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`)
                 }}
               >
                 <img

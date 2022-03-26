@@ -164,7 +164,7 @@ function TsModal(props) {
                   </TokenTitle>
                   <FormTextLight>
                     파일을 불러오기 위해 Git Token을 인증해주세요.{" "}
-                    <a href="https://github.com/settings/tokens">
+                    <a href="https://github.com/settings/tokens" target="_blank">
                       GitHub 바로가기
                     </a>
                   </FormTextLight>

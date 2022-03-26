@@ -101,7 +101,9 @@ const PorfList = () => {
             다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
             프로젝트를 북마크 해보세요.
           </h2>
-
+          <button onClick={() => {
+            history.push(`/write/portfolio/introduce/${userInfo.porfId}`)
+          }}>내 포트폴리오 &gt; </button>
         </Title>
         <InputBox>
           <InputStack style={{ width: "100%" }} />
@@ -181,6 +183,7 @@ const Title = styled.div`
   width: 100%;
   margin-top: 120px;
   margin-bottom: 60px;
+  text-align: center;
   h1 {
     width: 100%;
     text-align: center;
@@ -200,7 +203,20 @@ const Title = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: white;
+    color: white; 
+    margin-bottom: 50px;
+  }
+  button{
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 12px 35px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #191919;
   }
 `;
 
