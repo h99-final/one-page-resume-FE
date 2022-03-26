@@ -70,7 +70,7 @@ function MyPage() {
             <LeftBox>
               <Avatar
                 style={{ marginBottom: "50px" }}
-                alt="사진을 등록해주세요"
+                alt=""
                 src={userInfo?.profileImage ? userInfo?.profileImage : null}
                 sx={{ width: "250px", height: "250px" }}
               />

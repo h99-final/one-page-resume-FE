@@ -10,6 +10,7 @@ import MainCard from "../components/Element/MainCard";
 import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { InputCustom, InputStack } from '../components/makeporf/shared/_sharedStyle';
+import { useHistory } from 'react-router-dom';
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -27,7 +28,7 @@ export const options = [
 
 const ProjList = () => {
   const userInfo = useSelector((state) => state.user.user);
-
+  const history = useHistory();
   const [proj, setProj] = useState([]);
   const [newStack, setNewStack] = useState("");
 
@@ -109,6 +110,9 @@ const ProjList = () => {
             다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
             프로젝트를 북마크 해보세요.
           </h2>
+          <button onClick={() => {
+            history.replace("/write/project/info");
+          }}>새 프로젝트 +</button>
         </Title>
         <InputBox>
           <InputStack
@@ -177,6 +181,7 @@ const Project = styled.div`
   }
 `;
 
+
 const InputBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -188,6 +193,7 @@ const Title = styled.div`
   width: 100%;
   margin-top: 120px;
   margin-bottom: 60px;
+  text-align: center;
   h1 {
     width: 100%;
     text-align: center;
@@ -208,6 +214,19 @@ const Title = styled.div`
     line-height: 24px;
     letter-spacing: -0.01em;
     color: white;
+    margin-bottom: 50px;
+  }
+  button{
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 12px 35px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #191919;
   }
 `;
 

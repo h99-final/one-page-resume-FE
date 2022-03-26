@@ -102,7 +102,7 @@ const Nav = (props) => {
             <>
               <NavSet
                 onClick={() => {
-                  history.push(`/editinfo/changeinfo/${props.userId}`)
+                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`)
                 }}
               >
                 <img
@@ -115,7 +115,7 @@ const Nav = (props) => {
               </NavSet>
               <NavSet
                 onClick={() => {
-                  history.push(`/editinfo/changeinfo/${props.userId}`)
+                  history.push("/write/project/info")
                 }}
               >
                 <img
@@ -142,7 +142,7 @@ const Nav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
-  z-index: 10;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,7 +161,7 @@ const Profile = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 200px;
+  width: 160px;
   height: 70px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -219,7 +219,7 @@ const NavLog = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding: 17px 116px 17px 116px;
+  padding: 17px 96px 17px 96px;
   width: 88px;
   height: 40px;
   cursor: pointer;
