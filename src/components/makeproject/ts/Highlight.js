@@ -6,8 +6,6 @@ function Highlighted({ text = [], show, height }) {
   const [value, setValue] = useState([]);
   const [elementHeight, setElementHeight] = useState();
 
-  useEffect(() => {});
-
   useEffect(() => {
     if (text.length === 0) {
       return;
@@ -17,7 +15,7 @@ function Highlighted({ text = [], show, height }) {
       return e.charAt(0) === "-"
         ? _text.push(
             <TextBody
-              key={`text-${i}`}
+              key={`text-red-${i}`}
               style={{
                 background: "rgba(255, 155, 0, 0.7)",
               }}
@@ -28,7 +26,7 @@ function Highlighted({ text = [], show, height }) {
         : e.charAt(0) === "+"
         ? _text.push(
             <TextBody
-              key={`text-${i}`}
+              key={`text-blue-${i}`}
               style={{
                 background: "rgba(3, 218, 197, 0.7)",
               }}
@@ -38,14 +36,14 @@ function Highlighted({ text = [], show, height }) {
           )
         : e.charAt(0) === "@"
         ? _text.push(
-            <TextBody key={`text-${i}`}>
+            <TextBody key={`text-title-${i}`}>
               {e}
               <hr />
             </TextBody>
           )
         : e.charAt(0) === " "
         ? _text.push(<br />)
-        : _text.push(<TextBody key={`text-${i}`}>{e}</TextBody>);
+        : _text.push(<TextBody key={`text-normal-${i}`}>{e}</TextBody>);
     });
     setValue(_text);
   }, [text]);
@@ -64,7 +62,12 @@ function Highlighted({ text = [], show, height }) {
 const InputSize = styled.div`
   /* position: relative; */
   height: ${(props) =>
-    props.show ? (props.height > 600 ? `${props.height}` : "600px") : "350px"};
+    props.show
+      ? props.height > 600
+        ? `calc(${props.height}px - 9vw - 10px)`
+        : // "500px"
+          "600px"
+      : "350px"};
   width: ${(props) => (props.show ? "" : "auto")};
   min-width: auto;
   justify-content: center;

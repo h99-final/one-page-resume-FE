@@ -11,6 +11,7 @@ import MDEditor, {
   TextAreaTextApi,
 } from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import Spinner from "../../../shared/Spinner";
 
 const TroubleShooting = (props) => {
   const {
@@ -51,11 +52,17 @@ const TroubleShooting = (props) => {
       ));
 
   // 자동 영역 조절
+  const [is_highlight_loading, setIs_highlight_loading] = useState(false);
+
   const leftBox = useRef(null);
 
   useEffect(() => {
-    console.log(leftBox?.current?.getBoundingClientRect().height);
-  });
+    setIs_highlight_loading(true);
+    if (leftBox.current.getBoundingClientRect().height) {
+      setIs_highlight_loading(false);
+    }
+    return () => setIs_highlight_loading(false);
+  }, []);
 
   return (
     <>
@@ -82,26 +89,25 @@ const TroubleShooting = (props) => {
             rehypePlugins={[[rehypeSanitize]]}
           />
         </LeftBox>
-        <RightBox
-          height={
-            leftBox?.current?.getBoundingClientRect().height > 600
-              ? leftBox?.current?.getBoundingClientRect().height
-              : 600
-          }
-        >
+        <RightBox>
           <Num>
             <NumBoxs />
           </Num>
           <Font>{commitMsg}</Font>
-          <Highlighted
-            height={
-              leftBox?.current?.getBoundingClientRect().height > 600
-                ? leftBox?.current?.getBoundingClientRect().height
-                : 600
-            }
-            show={true}
-            text={tsPatchCodes}
-          />
+          {!is_highlight_loading &&
+          leftBox?.current?.getBoundingClientRect().height ? (
+            <Highlighted
+              height={
+                leftBox?.current?.getBoundingClientRect().height > 600
+                  ? leftBox.current.getBoundingClientRect().height
+                  : 600
+              }
+              show={true}
+              text={tsPatchCodes}
+            />
+          ) : (
+            <Spinner />
+          )}
         </RightBox>
       </SampleCard>
     </>
@@ -113,7 +119,6 @@ const Num = styled.div`
   grid-gap: 0;
   flex-direction: row;
   width: 45vw;
-  border: 1px solid #000;
 `;
 
 const SampleCard = styled.div`
@@ -156,9 +161,10 @@ const LeftBottomBox = styled.div`
 `;
 const RightBox = styled.div`
   /* margin: 0px auto; */
-  display: inline-block;
+  /* display: inline-block; */
   flex-direction: column;
-  height: ${(props) => (props.height > 600 ? `${props.height}px` : 600)};
+  /* height: ${(props) => (props.height > 600 ? `${props.height}px` : 600)}; */
+  height: 600px;
   width: 50vw;
   /* max-width: 800px; */
 `;

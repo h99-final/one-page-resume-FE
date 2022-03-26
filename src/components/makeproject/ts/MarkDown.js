@@ -15,9 +15,8 @@ function MarkDown({ value, setValue }) {
       <MDEditor
         style={{
           backgroundColor: "#393a47",
-          width: "65%",
+          width: "100%",
           minWidth: "55%",
-          maxWidth: "65%",
           height: "600px",
           borderRadius: "10px",
           padding: "14px 0px",
@@ -33,22 +32,6 @@ function MarkDown({ value, setValue }) {
         onChange={(newValue) => setValue(newValue)}
         enableScroll={true}
         visiableDragbar={false}
-      />
-      {/* <hr /> */}
-      <MDEditor.Markdown
-        style={{
-          backgroundColor: "#393a47",
-          borderRadius: "10px",
-          padding: "14px 14px",
-          border: "1px solid #393a47",
-          color: "#fff",
-          height: "auto",
-          overflowY: "auto",
-          maxWidth: "35%",
-          boxSizing: "border-box",
-        }}
-        source={value}
-        rehypePlugins={[[rehypeSanitize]]}
       />
     </Container>
   );
