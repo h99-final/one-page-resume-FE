@@ -28,6 +28,8 @@ import { apis } from "../../shared/axios";
 import TemplateProject from "./shared/TemplateProject";
 import MarkDown from "./ts/MarkDown";
 
+import Spinner from "../../shared/Spinner";
+
 function MakeProject() {
   const history = useHistory();
   const { id, projectId } = useParams();
@@ -77,8 +79,10 @@ function MakeProject() {
   const [isModify, setIsModify] = useState(false);
 
   const [mdValue, setMDValue] = useState();
+  const [is_loading, setIs_Loading] = useState(false);
   // form 제출
   const projectSubmit = (data) => {
+    setIs_Loading(true);
     const { projectTitle, gitRepoUrl } = data;
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
@@ -118,6 +122,7 @@ function MakeProject() {
         history.push(`/write/project/troubleShooting/${id}`);
       });
     }
+    setIs_Loading(false);
   };
   // const handleClick = () => {
   //   history.push("/write/project/troubleshooting/id");
@@ -229,6 +234,7 @@ function MakeProject() {
         <TemplateProject />
       </form>
       {projectId && <PreviousNextProject />}
+      {is_loading && <Spinner />}
     </>
   );
 }

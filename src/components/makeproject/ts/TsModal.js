@@ -15,9 +15,9 @@ import PreviousNextProject from "../PreviousNextProject";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../redux/modules/patchcode";
 import { apis } from "../../../shared/axios";
-import TokenHelp from './TokenHelp';
-import Loading from './Loading';
-import GithubSpinner from '../../../shared/GithubSpinner';
+import TokenHelp from "./TokenHelp";
+import Loading from "./Loading";
+import GithubSpinner from "../../../shared/GithubSpinner";
 
 const customStyles = {
   content: {
@@ -78,21 +78,32 @@ function TsModal(props) {
 
   // 싱크 맞추기
   const handlesync = () => {
-    setIsLoading(true)
-    apis.gitsync(projectId).then((res) => {
-      apis.gitCommit(projectId).then((res) => {
-        setMessage_list(res.data.data);
+    setIsLoading(true);
+    apis
+      .gitsync(projectId)
+      .then((res) => {
+        setTimeout(apis.checkSync(projectId), 1000).then((res) => {
+          if (res.data.data.isDone) {
+            apis.gitCommit(projectId).then((res) => {
+              setMessage_list(res.data.data);
+            });
+          }
+        });
       })
-    }).then((res) => {
-      setIsLoading(false)
-    });
+      .then((res) => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        alert("깃헙 불러오기는 20초에 1번 가능합니다.");
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
     if (page === 0) {
       apis.gitCommit(projectId).then((res) => {
         setMessage_list(res.data.data);
-      })
+      });
     }
     if (page === 1) {
       dispatch(actionCreators.setPatchCodeAPI(projectId, selectedSha));
@@ -134,18 +145,28 @@ function TsModal(props) {
         <IconBoxLeft onClick={closeModalWithoutPatchcode}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
         </IconBoxLeft>
-        {isLoading ? <GithubSpinner /> : (
+        {isLoading ? (
+          <GithubSpinner />
+        ) : (
           <FormContentsModal>
             {page === 2 ? (
               <>
                 <FormTitleFlex>
                   <TokenTitle>
                     Git Token 인증이 필요합니다
-
-                    <img onClick={() => { setHelpModalOpen(true) }} alt='' src={process.env.PUBLIC_URL + "/img/colortkhelp.svg"} />
+                    <img
+                      onClick={() => {
+                        setHelpModalOpen(true);
+                      }}
+                      alt=""
+                      src={process.env.PUBLIC_URL + "/img/colortkhelp.svg"}
+                    />
                   </TokenTitle>
                   <FormTextLight>
-                    파일을 불러오기 위해 Git Token을 인증해주세요. <a href='https://github.com/settings/tokens'>GitHub 바로가기</a>
+                    파일을 불러오기 위해 Git Token을 인증해주세요.{" "}
+                    <a href="https://github.com/settings/tokens">
+                      GitHub 바로가기
+                    </a>
                   </FormTextLight>
                 </FormTitleFlex>
                 <GetTokenBox>
@@ -167,7 +188,6 @@ function TsModal(props) {
                       </button>
                     </div>
                   </InputBox>
-
                 </GetTokenBox>
               </>
             ) : (
@@ -215,7 +235,8 @@ function TsModal(props) {
                                       width="30"
                                       height="auto"
                                       src={
-                                        process.env.PUBLIC_URL + "/img/check.svg"
+                                        process.env.PUBLIC_URL +
+                                        "/img/check.svg"
                                       }
                                       alt="checked"
                                     />
@@ -266,7 +287,8 @@ function TsModal(props) {
                                       width="30"
                                       height="auto"
                                       src={
-                                        process.env.PUBLIC_URL + "/img/check.svg"
+                                        process.env.PUBLIC_URL +
+                                        "/img/check.svg"
                                       }
                                       alt="checked"
                                     />
@@ -306,7 +328,10 @@ function TsModal(props) {
           </FormContentsModal>
         )}
       </Modal>
-      <TokenHelp helpModalOpen={helpModalOpen} setHelpModalOpen={setHelpModalOpen} />
+      <TokenHelp
+        helpModalOpen={helpModalOpen}
+        setHelpModalOpen={setHelpModalOpen}
+      />
       {/* <Loading helpModalOpen={helpModalOpen} setHelpModalOpen={setHelpModalOpen} /> */}
     </>
   );
@@ -330,11 +355,10 @@ export const TokenTitle = styled.div`
   font-size: 36px;
   line-height: 43px;
   letter-spacing: -0.01em;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 20px;
-  img{
+  img {
     margin-left: 10px;
-    
   }
 `;
 
@@ -386,8 +410,7 @@ const FormTextCenter = styled(FormText)`
   padding: 10px;
   font-size: 36px;
   line-height: 43px;
-  img{
-
+  img {
   }
 `;
 
@@ -407,19 +430,19 @@ export const FormTextLight = styled(FormText)`
   font-weight: 100;
   width: auto;
   a {
-      color: #cfd3e2;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 16px;
-      line-height: 19px;
-      text-decoration: underline;
-      :visited {
-        color: #00C4B4;
-      }
-      :link {
-        color: #00C4B4;
-      }
+    color: #cfd3e2;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: underline;
+    :visited {
+      color: #00c4b4;
     }
+    :link {
+      color: #00c4b4;
+    }
+  }
 `;
 
 const IconBoxLeft = styled(IconBox)`
