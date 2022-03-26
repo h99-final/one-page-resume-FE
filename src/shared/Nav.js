@@ -6,14 +6,41 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from 'react-router-dom';
 
 // JS파일
+export function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
 
 const Nav = (props) => {
+  const size = useWindowSize();
   const token = document.cookie;
   const dispatch = useDispatch();
   const history = useHistory();
   // props.nav (false or true)
   const navState = props.nav;
 
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // NavBar 설정
   const [nav, setNav] = useState(false);
 
@@ -32,6 +59,17 @@ const Nav = (props) => {
     sessionStorage.clear()
     window.location.replace("/");
   };
+  const [num, setNum] = useState(0);
+
+  useEffect(() => {
+
+    if (size.width <= 971) {
+      setNum(1);
+    }
+    if (size.width > 971) {
+      setNum(0);
+    }
+  }, [size.width]);
 
   return (
     <React.Fragment>
@@ -60,6 +98,40 @@ const Nav = (props) => {
               alt="" src={process.env.PUBLIC_URL + "/img/navpencil.svg"} />
             내 정보 수정
           </NavSet>
+          {num === 1 ?
+            <>
+              <NavSet
+                onClick={() => {
+                  history.push(`/editinfo/changeinfo/${props.userId}`)
+                }}
+              >
+                <img
+                  style={{
+                    marginLeft: "4px",
+                    marginRight: "15px"
+                  }}
+                  alt="" src={process.env.PUBLIC_URL + "/img/porf.svg"} />
+                내 포트폴리오
+              </NavSet>
+              <NavSet
+                onClick={() => {
+                  history.push(`/editinfo/changeinfo/${props.userId}`)
+                }}
+              >
+                <img
+                  style={{
+                    marginLeft: "4px",
+                    marginRight: "15px"
+                  }}
+                  alt="" src={process.env.PUBLIC_URL + "/img/proj.svg"} />
+                새 프로젝트
+              </NavSet>
+            </>
+            :
+            <>
+            </>
+          }
+
           <NavLog>
             <Logout onClick={() => { signOut() }}>로그아웃</Logout>
           </NavLog>
@@ -70,7 +142,7 @@ const Nav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
-  z-index: 999;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,7 +161,7 @@ const Profile = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 160px;
+  width: 200px;
   height: 70px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -129,9 +201,9 @@ const NavSet = styled.div`
   align-items: center;
   text-align: center;
   color: #CFD3E2;
-  width: 112px;
+  width: 120px;
   height: 50px;
-  padding: 5px 84px;
+  padding: 5px 80px;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
@@ -147,7 +219,7 @@ const NavLog = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding: 17px 96px 17px 96px;
+  padding: 17px 116px 17px 116px;
   width: 88px;
   height: 40px;
   cursor: pointer;

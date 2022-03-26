@@ -11,8 +11,36 @@ import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from "react-router-dom";
+import { debounce } from "../shared/common";
+
+export function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
 
 const Header = (props) => {
+  const size = useWindowSize();
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
@@ -53,6 +81,18 @@ const Header = (props) => {
     window.alert("내 포트폴리오를 보려면 로그인이 필요합니다.");
     setModalOpen(true);
   };
+
+  const [num, setNum] = useState(0);
+
+  useEffect(() => {
+
+    if (size.width <= 971) {
+      setNum(1);
+    }
+    if (size.width > 971) {
+      setNum(0);
+    }
+  }, [size.width]);
 
   if (!userInfo) {
     return (
@@ -139,29 +179,33 @@ const Header = (props) => {
             <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>
-            <SharedBtn
-              onClick={() => {
-                PnavBtn();
-              }}
-            >
-              작업 작성하기
-            </SharedBtn>
-            <BookmarkIcon
-              style={{
-                width: "26px",
-                height: "26px",
-                color: "#333333",
-                marginRight: "12px",
-              }}
-            />
-            <NotificationsIcon
-              style={{
-                width: "26px",
-                height: "26px",
-                color: "#333333",
-                marginRight: "15px",
-              }}
-            />
+            {num === 1 ? <></> :
+              <>
+                <SharedBtn
+                  onClick={() => {
+                    PnavBtn();
+                  }}
+                >
+                  작업 작성하기
+                </SharedBtn>
+                <BookmarkIcon
+                  style={{
+                    width: "26px",
+                    height: "26px",
+                    color: "#333333",
+                    marginRight: "12px",
+                  }}
+                />
+                <NotificationsIcon
+                  style={{
+                    width: "26px",
+                    height: "26px",
+                    color: "#333333",
+                    marginRight: "15px",
+                  }}
+                />
+              </>}
+
             <Avatar
               onClick={() => {
                 navBtn();
