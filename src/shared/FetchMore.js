@@ -14,6 +14,7 @@ const FetchMore = ({ is_loading, setPage }) => {
     }
     return () => {
       if (observerRefValue) fetchMoreObserver.unobserve(observerRefValue);
+      setPage(0);
     };
   }, [fetchMoreTrigger]);
 
@@ -24,7 +25,6 @@ const FetchMore = ({ is_loading, setPage }) => {
       }}
       ref={fetchMoreTrigger}
     >
-
       <img alt="" src={process.env.PUBLIC_URL + "/img/top.svg"} />
     </Fetch>
   );

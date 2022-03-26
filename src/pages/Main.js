@@ -75,9 +75,6 @@ const Main = () => {
     apis.mainPorf(stack).then((res) => {
       setPorf(res.data.data.slice(index, index + num));
     });
-    apis.mainProj(stack).then((res) => {
-      setProj(res.data.data);
-    });
   }, [index, num]);
 
   //무한 스크롤
@@ -89,22 +86,24 @@ const Main = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (!page) {
-      return;
-    }
     if (hasMore) {
       apis.mainProj(stack, page).then((res) => {
         if (res.data.data.length === 0) {
+          console.log(res.data.data.length);
           setHasMore(false);
           setLoading(false);
           return;
         }
         setProj((prev) => [...prev, ...res.data.data]);
       });
+    } else {
+      setLoading(false);
+      return;
     }
     setLoading(false);
     return () => {
       setLoading(false);
+      setHasMore(true);
     };
   }, [page]);
 

@@ -63,7 +63,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>POUG</title>
+        <title>포그</title>
         <link
           rel="icon"
           type="image/png"
