@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
 import { Link, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import NotFound from "../pages/NotFound";
 import MakeProj from "../pages/MakeProj";
 import MyPage from "../pages/MyPage";
@@ -16,8 +16,8 @@ import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
-import Loading from '../components/makeproject/ts/Loading';
-import GithubSpinner from './GithubSpinner';
+import Loading from "../components/makeproject/ts/Loading";
+import GithubSpinner from "./GithubSpinner";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,8 +64,12 @@ function App() {
     <>
       <Helmet>
         <title>POUG</title>
-        <link rel="icon" type="image/png" href={process.env.PUBLIC_URL + "/img/favicon.svg"} sizes="16x16" />
-        {/* <link rel="icon" type="image/png" href={process.env.PUBLIC_URL + "/img/favicon2.svg"} sizes="16x16" /> */}
+        <link
+          rel="icon"
+          type="image/png"
+          href={process.env.PUBLIC_URL + "/img/favicon.svg"}
+          sizes="16x16"
+        />
       </Helmet>
       <GlobalStyle />
       <Switch>
