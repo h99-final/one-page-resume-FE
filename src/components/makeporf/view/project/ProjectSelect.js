@@ -30,7 +30,7 @@ function ProjectSelect() {
   const projectSubmit = () => {
     if (selectedProjects.length === 0) {
       setError("프로젝트는 한 개 이상 이어야 합니다.");
-      history.push("/write/project/info");
+      // history.push("/write/project/info");
       return;
     }
     // 프로젝트 데이터 보내기
@@ -54,7 +54,7 @@ function ProjectSelect() {
     //   })
     //   .then(() => setIs_loading(false));
     // setSelectedProjects(porfProject);
-    return projectSubmit;
+    return () => projectSubmit();
   }, []);
 
   return (

@@ -89,7 +89,7 @@ const PorfList = () => {
   };
 
   const handleDelete = (stack) => {
-    setAddStack(addStack.filter((prev) => prev !== stack));
+    return setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
   return (
@@ -120,16 +120,16 @@ const PorfList = () => {
               fullWidth
               filterSelectedOptions
               id="tags-standard"
-              options={option.map((option) => option.stack)}
+              // options={option.map((option) => option.stack)}
+              options={option}
               value={addStack}
               defaultValue={userInfo?.stack}
               onChange={handleChange}
               renderTags={(addStack, getTagProps) =>
-                addStack.map((option, index) => (
+                addStack?.map((option, index) => (
                   <Chip
                     sx={{ display: "none" }}
                     variant="outlined"
-                    label={option}
                     {...getTagProps({ index })}
                   />
                 ))
