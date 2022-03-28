@@ -1,7 +1,8 @@
 const CLIENT_ID = "4c32bacbc9ab5815cc4d4c6b47e81b79";
 // const CLIENT_ID = "VJpTbajO0uCuxjMMDVHsySylcDugTWEN";
 
-const REDIRECT_URI = "http://localhost:3000/user/kakao/callback";
+// const REDIRECT_URI = "http://localhost:3000/user/kakao/callback";
+const REDIRECT_URI = "http://poug.me/user/kakao/callback";
 
 // const REDIRECT_URI_PRO =
 //   "http://localhost:3000/oauth/kakao/callback/properties";

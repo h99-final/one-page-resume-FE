@@ -21,7 +21,7 @@ const UserInfo = () => {
         <UserInfoBox>
           <ImageBox>
             <Image>
-              <img alt="ㅡ" src={user?.profileImage} />
+              <img alt="ㅡ" src={user?.profileImage ? user?.profileImage : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/welcome.png"} />
             </Image>
           </ImageBox>
           <InfoBox>
