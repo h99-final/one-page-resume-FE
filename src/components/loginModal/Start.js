@@ -175,7 +175,7 @@ const WriteBtn = styled.button`
   border: none;
   font-size: 14px;
   margin: 25px 0px 0px 262px;
-  padding: 5px 18px 5px 18px;
+  padding: 5px 10px 5px 10px;
   color: white;
   background-color: #00C4B4;
   :disabled {
@@ -206,7 +206,7 @@ const Or = styled.div`
   margin: 0px 152px 0px 152px;
   font-size: 14px;
   color: #999999;
-  padding: 8px 10px 10px 10px;
+  padding: 8px 0px 10px 0px;
 `;
 
 const KakaoBtn = styled.button`
