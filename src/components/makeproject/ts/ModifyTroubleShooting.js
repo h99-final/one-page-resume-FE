@@ -42,11 +42,7 @@ function ModifyTroubleShooting(props) {
     sha,
   } = props;
 
-  console.log(props);
-
   const tsFile = useSelector((state) => state.patchcode.tsFile);
-
-  console.log(commit);
 
   const handleDelete = () => {
     dispatch(tsFileActions.deleteTsDB(projectId, commitId));
@@ -69,7 +65,6 @@ function ModifyTroubleShooting(props) {
         patchCode: tsPatchCodes,
         ...obj,
       };
-      console.log(_tsFiles);
       __data.push(_tsFiles);
     }
     _data = { tsFile: __data, ..._data };

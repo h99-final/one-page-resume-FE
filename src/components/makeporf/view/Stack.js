@@ -72,7 +72,6 @@ function Stack() {
       setStack([...stack, id]);
     } else {
       setStack(stack.filter((e) => e !== id));
-      console.log("체크 해제 반영 완료");
     }
   };
 
@@ -99,16 +98,13 @@ function Stack() {
     const data = {
       stack: stack,
     };
-    console.log(data);
     const addS = {
       stack: addStack,
     };
     if (stack.length === 3) {
       await apis
         .putStack(data)
-        .then((res) => {
-          console.log(res);
-        })
+        .then((res) => {})
         .catch((error) => {
           window.alert(error.message);
         });
@@ -117,9 +113,7 @@ function Stack() {
     if (addStack.length > 2) {
       await apis
         .porfStack(addS)
-        .then((response) => {
-          console.log(response);
-        })
+        .then((response) => {})
         .catch((res) => {
           window.alert(res.error.message);
         });

@@ -110,7 +110,6 @@ function MakeProject() {
       new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
     );
     for (let i = 0; i < images.length; i++) {
-      console.log(images[i]);
       frm.append("images", images[i]);
       modifyPic.append("images", images[i]);
     }
@@ -121,7 +120,6 @@ function MakeProject() {
       });
     } else {
       apis.createProject(frm).then((res) => {
-        console.log(res.data.data);
         const { id } = res.data.data;
         history.push(`/write/project/troubleShooting/${id}`);
       });
@@ -135,7 +133,6 @@ function MakeProject() {
   useEffect(() => {
     if (projectId) {
       apis.projectGet(projectId).then((res) => {
-        console.log(res.data.data);
         const { title, gitRepoUrl, imageUrl, content, stack } = res.data.data;
         setValue("projectTitle", title);
         setValue("gitRepoUrl", gitRepoUrl);

@@ -61,7 +61,6 @@ const selectedProjectDB = (porfId) => {
       .then((res) => {
         let projectsInPorf = [];
         res.data.data.map((e) => projectsInPorf.push(e.id));
-        console.log(projectsInPorf);
         return projectsInPorf;
       })
       .then((projectsInPorf) => {

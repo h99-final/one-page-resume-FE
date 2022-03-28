@@ -57,8 +57,6 @@ function ProjectSelect() {
     return projectSubmit;
   }, []);
 
-  console.log(selectedProjects);
-
   return (
     <>
       {!is_loading ? (

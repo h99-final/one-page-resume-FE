@@ -8,8 +8,8 @@ import { Add } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import ProjectCardShow from '../components/Element/ProjectCardShow';
-import PortfolioBuisnesscard from '../components/Element/PortfolioBusinesscard';
+import ProjectCardShow from "../components/Element/ProjectCardShow";
+import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -22,7 +22,7 @@ const defaultprojects = {
   title: "",
   userJob: "",
   username: "",
-}
+};
 
 function MyPage() {
   const history = useHistory();
@@ -40,12 +40,9 @@ function MyPage() {
       setTitle(res.data.data.title);
     });
     apis.projectPorfGet().then((res) => {
-      setProjects(res.data.data)
-    })
-    apis.porfShow(values.show).then((res) => {
-      console.log(res)
-    })
-
+      setProjects(res.data.data);
+    });
+    apis.porfShow(values.show).then((res) => {});
   }, [values]);
 
   const handleClickShow = () => {
@@ -55,17 +52,21 @@ function MyPage() {
     });
     let timer;
     if (timer) {
-      timer = setTimeout(() => { setShow(true) }, 2000);
+      timer = setTimeout(() => {
+        setShow(true);
+      }, 2000);
     }
   };
-  console.log(values.show)
+  console.log(values.show);
 
   return (
     <Container>
       <Header />
       <Form>
         <UserInfoBox>
-          <Title><h1>기본 정보</h1></Title>
+          <Title>
+            <h1>기본 정보</h1>
+          </Title>
           <UserInfo>
             <LeftBox>
               <Avatar
@@ -131,14 +132,24 @@ function MyPage() {
           </UserInfo>
         </UserInfoBox>
         <PortfolioBox>
-          <Title style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between"
-          }}>
+          <Title
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-between",
+            }}
+          >
             <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
-              {values.show ? <h2 style={{ minWidth: "180px" }}>포트폴리오가 공개되었습니다.</h2> : <h2 style={{ minWidth: "200px" }}>포트폴리오가 비공개되었습니다.</h2>}
+              {values.show ? (
+                <h2 style={{ minWidth: "180px" }}>
+                  포트폴리오가 공개되었습니다.
+                </h2>
+              ) : (
+                <h2 style={{ minWidth: "200px" }}>
+                  포트폴리오가 비공개되었습니다.
+                </h2>
+              )}
               <button onClick={handleClickShow}>
                 {values.show ? <Visibility /> : <VisibilityOff />}
               </button>
@@ -162,9 +173,17 @@ function MyPage() {
               </Content>
             </Portfolio>
           ) : (
-            <Portfolio style={{ background: "#1F2029", border: "1px solid #1F2029" }}>
+            <Portfolio
+              style={{ background: "#1F2029", border: "1px solid #1F2029" }}
+            >
               <AddProfBox style={{ marginTop: "160px" }}>
-                <AddProfButton onClick={() => { history.push(`/write/portfolio/introduce/${userInfo?.porfId}`) }}>
+                <AddProfButton
+                  onClick={() => {
+                    history.push(
+                      `/write/portfolio/introduce/${userInfo?.porfId}`
+                    );
+                  }}
+                >
                   <Add />
                   포트폴리오 작성하기
                 </AddProfButton>
@@ -180,14 +199,16 @@ function MyPage() {
         </PortfolioBox>
       </Form>
       <Project>
-        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>프로젝트</ProjTitle>
+        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>
+          프로젝트
+        </ProjTitle>
 
         {projects.map((e, i) => {
           return (
             <>
               <ProjectCardShow key={`${e.id}`} {...e} />
             </>
-          )
+          );
         })}
         <AddProject
           style={{
@@ -196,9 +217,13 @@ function MyPage() {
             border: "1px solid #393A47",
           }}
         >
-          <AddProfBox style={{ marginTop: "160px", }}>
-            <AddProfButton style={{ background: "#696B7B" }}
-              onClick={() => { history.push('/write/project/info') }}>
+          <AddProfBox style={{ marginTop: "160px" }}>
+            <AddProfButton
+              style={{ background: "#696B7B" }}
+              onClick={() => {
+                history.push("/write/project/info");
+              }}
+            >
               <Add />
               프로젝트 추가
             </AddProfButton>
@@ -218,7 +243,7 @@ function MyPage() {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: #1F2029;
+  background: #1f2029;
 `;
 export const Title = styled.div`
   width: 113px;
@@ -226,7 +251,7 @@ export const Title = styled.div`
   height: 40px;
   margin-top: 60px;
   margin-bottom: 10px;
-  h1{
+  h1 {
     height: fit-content;
     padding: 10px 0px;
     font-style: normal;
@@ -235,9 +260,9 @@ export const Title = styled.div`
     line-height: 24px;
     color: white;
   }
-  h2{
-    background-color: #393A47;
-    color: #CFD3E2;
+  h2 {
+    background-color: #393a47;
+    color: #cfd3e2;
     padding: 10px 10px;
     height: fit-content;
     font-style: normal;
@@ -248,7 +273,7 @@ export const Title = styled.div`
     margin-right: 3px;
     border-radius: 5px;
   }
-  button{
+  button {
     width: 40px;
     height: 40px;
     text-align: center;
@@ -256,7 +281,7 @@ export const Title = styled.div`
     margin-right: 5px;
     padding-top: 3px;
     color: white;
-    background-color: #393A47;
+    background-color: #393a47;
     border: none;
   }
 `;
@@ -277,7 +302,7 @@ export const Font = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
-  color: #CFD3E2;
+  color: #cfd3e2;
 `;
 export const Stack = styled.div`
   font-family: Pretendard;
@@ -301,8 +326,8 @@ export const MainStack = styled.div`
   font-weight: normal;
   font-size: 20px;
   text-align: center;
-  color: #00B3A6;
-  border: 1px solid #00B3A6;
+  color: #00b3a6;
+  border: 1px solid #00b3a6;
   box-sizing: border-box;
   border-radius: 10px;
   margin-right: 10px;
@@ -332,7 +357,7 @@ const Form = styled.div`
   height: 600px;
   max-width: 1440px;
   min-height: 40vh;
-  background: #1F2029;
+  background: #1f2029;
   display: flex;
   @media screen and (min-width: 1440px) {
     & {
@@ -374,7 +399,7 @@ const PortfolioBox = styled.div`
   }
 `;
 const UserInfo = styled.div`
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   margin: 0px auto;
   width: 99%;
   min-width: 500px;
@@ -389,13 +414,13 @@ const EditButton = styled.button`
   font-weight: 500;
   font-size: 20px;
   color: white;
-  background-color: #00B3A6;
+  background-color: #00b3a6;
   border-radius: 43px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid #00B3A6;
+  border: 1px solid #00b3a6;
   width: 249px;
   height: 60px;
 `;
@@ -425,7 +450,7 @@ const AddProfButton = styled.button`
   font-weight: 500;
   font-size: 20px;
   color: white;
-  background-color: #696B7B;
+  background-color: #696b7b;
   border-radius: 43px;
   display: flex;
   flex-direction: row;
@@ -472,7 +497,7 @@ const AddProject = styled.div`
   width: 444px;
   height: 515px;
   border-radius: 10px;
-  background-color: #393A47;
+  background-color: #393a47;
   margin: 0px auto;
   box-sizing: border-box;
   margin-bottom: 40px;
@@ -495,7 +520,7 @@ const NnE = styled.div`
     font-weight: normal;
     font-size: 26px;
     margin-bottom: 20px;
-    color: #CFD3E2;
+    color: #cfd3e2;
     text-align: center;
   }
   h2 {

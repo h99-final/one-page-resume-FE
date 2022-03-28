@@ -18,7 +18,6 @@ function ForProjUpload(props) {
 
   const dropHandler = (file) => {
     let _images = [...file, ...images];
-    console.log(_images);
     setImages(_images);
     setFiles(
       file.map((e) =>
@@ -34,7 +33,6 @@ function ForProjUpload(props) {
     const file = images;
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(reader.result);
       setPreview(reader.result);
     };
   }

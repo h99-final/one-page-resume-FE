@@ -13,17 +13,6 @@ function MakeProj() {
   const { id, projectId } = useParams();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  if (projectId) {
-    if (!userInfo.projectId.includes(projectId)) {
-      alert("접근 권한이 없습니다.");
-      return (
-        // 유저 정보에 프로젝트가 있는지 여부에 따라서 보여줌
-        // 아니면 홈 화면으로
-        <Route render={(props) => <Redirect to="/" />} />
-      );
-    }
-  }
-
   return (
     <>
       <Header />

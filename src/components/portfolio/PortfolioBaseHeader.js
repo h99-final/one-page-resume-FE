@@ -23,7 +23,6 @@ function PortfolioBaseHeader(props) {
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
   const { projectId, refs, ...scrolldata } = props;
 
-  //   console.log(refs);
   const url = useRef();
   const copyUrl = (e) => {
     url.current.select();

@@ -8,8 +8,8 @@ import { TextField } from "@mui/material";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { orange } from '@mui/material/colors';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { orange } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -18,37 +18,36 @@ const theme = createTheme({
 });
 
 const CssTextField = styled(TextField, {
-  shouldForwardProp: (props) => props !== "focuscolor"
+  shouldForwardProp: (props) => props !== "focuscolor",
 })((p) => ({
   // input label when focused
   "& label.Mui-focused": {
-    color: p.focuscolor
+    color: p.focuscolor,
   },
   // focused color for input with variant='standard'
   "& .MuiInput-underline:after": {
-    borderBottomColor: p.focuscolor
+    borderBottomColor: p.focuscolor,
   },
   // focused color for input with variant='filled'
   "& .MuiFilledInput-underline:after": {
-    borderBottomColor: p.focuscolor
+    borderBottomColor: p.focuscolor,
   },
   // focused color for input with variant='outlined'
   "& .MuiOutlinedInput-root": {
     "&.Mui-focused fieldset": {
-      borderColor: p.focuscolor
-    }
+      borderColor: p.focuscolor,
+    },
   },
-  '& .MuiInputBase-input': {
-    position: 'relative',
+  "& .MuiInputBase-input": {
+    position: "relative",
     color: "white",
-    width: '100%',
-    borderBottom: '1px solid white',
+    width: "100%",
+    borderBottom: "1px solid white",
   },
-  '& input:valid + fieldset': {
-  },
-  '& input:invalid + fieldset': {
-  },
-  '& input:valid:focus + fieldset': { // override inline-style
+  "& input:valid + fieldset": {},
+  "& input:invalid + fieldset": {},
+  "& input:valid:focus + fieldset": {
+    // override inline-style
   },
 }));
 const AddInfo = (props) => {
@@ -71,13 +70,8 @@ const AddInfo = (props) => {
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
-
-      console.log("체크 반영 완료");
-      console.log(checked, id);
     } else {
       setStack(stack.filter((e) => e !== id));
-      console.log("체크 해제 반영 완료");
-      console.log(checked, id);
     }
   };
 
@@ -96,7 +90,6 @@ const AddInfo = (props) => {
     "git",
   ];
 
-
   const goNext = () => {
     if (!nameCheck(name) || name.length < 2) {
       setNameError("이름을 입력해주세요");
@@ -111,23 +104,21 @@ const AddInfo = (props) => {
     setPage("2");
   };
   const addInfo = () => {
-
     const data = {
       name: name,
       phoneNum: phoneNum,
       gitUrl: gitUrl,
       blogUrl: blogUrl,
       job: job,
-      stack: stack
+      stack: stack,
     };
     const _data = {
-      stack: stack
-    }
+      stack: stack,
+    };
     dispatch(userActions.addInfoDB(data));
     apis.putStack(_data).then((res) => {
-      console.log(res)
       window.location.reload();
-    })
+    });
   };
 
   return (
@@ -226,7 +217,7 @@ const AddInfo = (props) => {
                 id="blogurl"
                 name="blogurl"
                 placeholder="blogURl"
-              // error={blogUrlError !== '' || false}
+                // error={blogUrlError !== '' || false}
               />
               {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
               <CssTextField
@@ -241,7 +232,7 @@ const AddInfo = (props) => {
                 id="phone"
                 name="phone"
                 placeholder="전화번호"
-              // error={phoneNumError !== "" || false}
+                // error={phoneNumError !== "" || false}
               />
               {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -260,7 +251,7 @@ const AddInfo = (props) => {
                 id="job"
                 name="job"
                 placeholder="직무"
-              // error={jobError !== "" || false}
+                // error={jobError !== "" || false}
               />
               {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -281,10 +272,14 @@ const AddInfo = (props) => {
             <h1>
               나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)
             </h1>
-            <p style={{ color: "#CFD3E2" }}>선택하신 프레임워크와 관련된 프로젝트를 추천해드릴게요.</p>
+            <p style={{ color: "#CFD3E2" }}>
+              선택하신 프레임워크와 관련된 프로젝트를 추천해드릴게요.
+            </p>
           </TextContainer>
           {stack.length > 3 ? (
-            <p style={{ fontSize: "12px", color: "orange" }}>3가지만 골라주세요</p>
+            <p style={{ fontSize: "12px", color: "orange" }}>
+              3가지만 골라주세요
+            </p>
           ) : (
             <p style={{ color: "white", fontSize: "12px" }}>
               3가지만 골라주세요
@@ -376,10 +371,10 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin:100px 0px 0px 300px;
+  margin: 100px 0px 0px 300px;
   padding: 5px 18px 5px 18px;
   color: white;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   :disabled {
     border: none;
     background-color: #424453;
@@ -387,7 +382,7 @@ const WriteBtn = styled.button`
 `;
 const StyledBox = styled.button`
   border: none;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   padding: 10px 15px 10px 15px;
   margin-top: 10px;
   img {
@@ -414,8 +409,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    border: 2px solid #393A47;
-    background-color: #393A47;
+    border: 2px solid #393a47;
+    background-color: #393a47;
     color: white;
     cursor: pointer;
   }
@@ -425,8 +420,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #00C4B4;
-    border: 2px solid #00C4B4;
+    background-color: #00c4b4;
+    border: 2px solid #00c4b4;
     cursor: pointer;
   }
 `;
@@ -443,7 +438,7 @@ const ContinueBtn = styled.button`
   border-radius: 30px;
   border: none;
   color: white;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   :disabled {
     border: none;
     background-color: gray;

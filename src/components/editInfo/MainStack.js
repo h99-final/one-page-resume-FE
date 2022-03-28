@@ -9,10 +9,10 @@ import {
   InputCustom,
   Label,
   Font,
-  Star
+  Star,
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 export const options = [
   { value: "Python", label: "Python" },
@@ -50,11 +50,8 @@ function MainStack() {
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
-      console.log("체크 반영 완료");
-      console.log(checked);
     } else {
       setStack(stack.filter((e) => e !== id));
-      console.log("체크 해제 반영 완료");
     }
   };
 
@@ -69,13 +66,12 @@ function MainStack() {
     const data = {
       stack: stack,
     };
-    console.log(data);
     if (stack.length === 3) {
       await apis
         .putStack(data)
         .then((res) => {
-          alert("변경 완료")
-          history.push('/mypage')
+          alert("변경 완료");
+          history.push("/mypage");
         })
         .catch((error) => {
           window.alert(error.message);
@@ -97,7 +93,9 @@ function MainStack() {
 
       <MultiContent>
         <Label>
-          <Font>대표 스택<Star>*</Star></Font>
+          <Font>
+            대표 스택<Star>*</Star>
+          </Font>
         </Label>
         <StackBox>
           {defaultStack.map((s, index) => {
@@ -143,8 +141,8 @@ export const StackBox = styled.div`
   margin: 10px 0px;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #2C2E39;
-  background-color: #2C2E39;
+  border: 1px solid #2c2e39;
+  background-color: #2c2e39;
 `;
 
 export const MultiContent = styled.div`
@@ -155,7 +153,7 @@ export const MultiContent = styled.div`
 const Button = styled.button`
   width: 150px;
   height: 60px;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   color: white;
   border-radius: 43px;
   border: none;
@@ -164,7 +162,7 @@ const Button = styled.button`
 `;
 const StyledBox = styled.button`
   border: none;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   padding: 10px 15px 10px 15px;
   margin-top: 5px;
   border-radius: 10px;
@@ -193,8 +191,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #393A47;
-    border: 2px solid #393A47;
+    background-color: #393a47;
+    border: 2px solid #393a47;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + label {
@@ -203,8 +201,8 @@ const StyledBox = styled.button`
     width: 120px;
     height: 50px;
     border-radius: 15px;
-    background-color: #00C4B4;
-    border: 2px solid #00C4B4;
+    background-color: #00c4b4;
+    border: 2px solid #00c4b4;
     cursor: pointer;
   }
 `;

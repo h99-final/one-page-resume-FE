@@ -3,7 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
-import { InputCustom, ErrorMessage, StyledInput, Star } from "../shared/_sharedStyle";
+import {
+  InputCustom,
+  ErrorMessage,
+  StyledInput,
+  Star,
+} from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
 
@@ -20,7 +25,7 @@ function Introduce() {
 
   const introSubmit = (data) => {
     apis.introPorf(data).then((res) => {
-      setData(res.data.data);
+      window.alert("저장되었습니다.");
     });
   };
 
@@ -34,7 +39,7 @@ function Introduce() {
         setValue("contents", contents);
       });
     });
-    return handleSubmit(introSubmit);
+    return () => handleSubmit(introSubmit);
   }, []);
 
   return (
@@ -49,7 +54,8 @@ function Introduce() {
             <Label>
               <Font>
                 포트폴리오 제목
-                <Star>*</Star><br></br>(0/50)
+                <Star>*</Star>
+                <br></br>(0/50)
               </Font>
             </Label>
             <Controller

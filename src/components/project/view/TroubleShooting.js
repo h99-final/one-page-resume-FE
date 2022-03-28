@@ -23,7 +23,6 @@ const TroubleShooting = (props) => {
     commitMsg,
     tsLength,
   } = props;
-  console.log(props);
   const { id } = props;
 
   // const [ts, setTS] = useState([]);

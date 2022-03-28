@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -46,9 +46,11 @@ const Banner = () => {
           }}
           data-swiper-parallax="-23%"
         ></div>
-        <SwiperSlide style={{
-          background: "linear-gradient(180deg, #8BFF9E -71%, #00A497 91.67%)"
-        }}>
+        <SwiperSlide
+          style={{
+            background: "linear-gradient(180deg, #8BFF9E -71%, #00A497 91.67%)",
+          }}
+        >
           <Box>
             <TextBox>
               <h1>
@@ -74,20 +76,30 @@ const Banner = () => {
             </TextBox>
 
             <ContentBox>
-              <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1.gif' />
+              <img
+                alt=""
+                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1.gif"
+              />
             </ContentBox>
           </Box>
         </SwiperSlide>
-        <SwiperSlide style={{
-          background: `linear-gradient(180deg, #000000 -6.08%, #151724 41.36%, #2E3558 105%)`,
-        }}>
-          <Box >
+        <SwiperSlide
+          style={{
+            background: `linear-gradient(180deg, #000000 -6.08%, #151724 41.36%, #2E3558 105%)`,
+          }}
+        >
+          <Box>
             <TextBox>
               <h1>
-                <img style={{ width: "333px", marginBottom: "30px" }} alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/text.gif' />
+                <img
+                  style={{ width: "333px", marginBottom: "30px" }}
+                  alt=""
+                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/text.gif"
+                />
               </h1>
               <h2>
-                Portfolio는 내가 보여주고 싶은 프로젝트와 트러블 슈팅을<br />
+                Portfolio는 내가 보여주고 싶은 프로젝트와 트러블 슈팅을
+                <br />
                 한눈에 효과적으로 보여주는 유일한 이력서입니다.
               </h2>
 
@@ -110,10 +122,13 @@ const Banner = () => {
           </Box>
         </SwiperSlide>
 
-        <SwiperSlide style={{
-          background: "linear-gradient(180deg, #002E73 -23.33%, #E498FF 118.67%)"
-        }}>
-          <Box >
+        <SwiperSlide
+          style={{
+            background:
+              "linear-gradient(180deg, #002E73 -23.33%, #E498FF 118.67%)",
+          }}
+        >
+          <Box>
             <TextBox>
               <h1>
                 10분으로 만드는
@@ -121,7 +136,8 @@ const Banner = () => {
                 100시간짜리 나만의 포트폴리오
               </h1>
               <h2>
-                내가 등록한 프로젝트들을 모아 나의 개성을 드러내는 포트폴리오로 만들어 보세요.
+                내가 등록한 프로젝트들을 모아 나의 개성을 드러내는 포트폴리오로
+                만들어 보세요.
               </h2>
               <BtnBox>
                 <button
@@ -137,18 +153,25 @@ const Banner = () => {
             </TextBox>
 
             <ContentBox>
-              <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner3.gif' />
+              <img
+                alt=""
+                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner3.gif"
+              />
             </ContentBox>
           </Box>
         </SwiperSlide>
-        <SwiperSlide style={{
-          background: "linear-gradient(180deg, #020927 0%, #005551 100%)"
-        }}>
+        <SwiperSlide
+          style={{
+            background: "linear-gradient(180deg, #020927 0%, #005551 100%)",
+          }}
+        >
           <Box style={{ display: "inline", position: "relative" }}>
             <SvgBox>
               <img
                 style={{ borderRadius: "0px" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/BG5.svg"} />
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/BG5.svg"}
+              />
             </SvgBox>
 
             <BtnBox style={{ textAlign: "center" }}>
@@ -163,18 +186,36 @@ const Banner = () => {
                 지금 시작하기
               </button>
             </BtnBox>
-            <GifBox style={{ textAlign: "center", position: "fixed", right: "400px", top: "-140px" }}>
+            <GifBox
+              style={{
+                textAlign: "center",
+                position: "fixed",
+                right: "400px",
+                top: "-140px",
+              }}
+            >
               <button>
                 <img
                   style={{ width: "60%" }}
-                  alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/planet.gif' />
+                  alt=""
+                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/planet.gif"
+                />
               </button>
             </GifBox>
-            <GifBox style={{ textAlign: "center", position: "fixed", left: "550px", top: "-20px" }}>
+            <GifBox
+              style={{
+                textAlign: "center",
+                position: "fixed",
+                left: "550px",
+                top: "-20px",
+              }}
+            >
               <button>
                 <img
                   style={{ width: "400px" }}
-                  alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/ship.gif' />
+                  alt=""
+                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/ship.gif"
+                />
               </button>
             </GifBox>
           </Box>
@@ -184,12 +225,12 @@ const Banner = () => {
   );
 };
 const Box = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    max-width: 1440px;
-    min-width: 1000px;
-    margin: 0px auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  max-width: 1440px;
+  min-width: 1000px;
+  margin: 0px auto;
 `;
 
 const BtnBox = styled.div`
@@ -198,7 +239,10 @@ const BtnBox = styled.div`
   height: fit-content;
   margin-top: 160px;
   button {
-    &:hover { background: #00c4b4; transition: all 1s ease; } 
+    &:hover {
+      background: #00c4b4;
+      transition: all 1s ease;
+    }
     cursor: pointer;
     margin: 0px auto;
     padding: 15px 30px;
@@ -208,7 +252,7 @@ const BtnBox = styled.div`
     border-radius: 43px;
     color: white;
   }
-  img{
+  img {
     margin: 0px auto;
     padding: 15px 30px;
     border: 1px solid;
@@ -257,8 +301,8 @@ const TextBox = styled.div`
 
 const ContentBox = styled.div`
   width: 50%;
-  img{
-  width: 650px;
+  img {
+    width: 650px;
   }
 `;
 

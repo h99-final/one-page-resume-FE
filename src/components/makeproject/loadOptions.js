@@ -31,7 +31,6 @@ const loadOptions = async (search, prevOptions) => {
   // 800초씩 늦추는거 여기서 axios 가 필요한데?
   // 생각해보니 근본적으로 githubApi를 앞당겨주지는 않음
   await sleep(800);
-  console.log(search);
   let filteredOptions;
   if (!search) {
     filteredOptions = options;

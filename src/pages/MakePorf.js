@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Introduce from "../components/makeporf/view/Introduce";
 import PorfWriteHeader from "../components/makeporf/shared/PorfWriteHeader";
 import SideBar from "../components/makeporf/shared/SideBar";
@@ -17,16 +17,7 @@ import { Link, Redirect, Route, useParams } from "react-router-dom";
 
 function MakePorf() {
   const { id } = useParams();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  if (id !== userInfo.porfId) {
-    alert("접근 권한이 없습니다.");
-    return (
-      // 포트폴리오 아이디가 일치하는지 여부에 따라서 보여줌
-      // 아니면 홈 화면으로
-      <Route render={(props) => <Redirect to="/" />} />
-    );
-  }
   return (
     <>
       <Header />

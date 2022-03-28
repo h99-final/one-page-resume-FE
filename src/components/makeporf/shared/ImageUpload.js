@@ -7,17 +7,14 @@ import { useParams } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 
 function FileUpload() {
-
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
 
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
-    console.log(files);
 
     let formData = new FormData();
-    console.log(files);
 
     formData.append("profileImage", files[0]);
 
@@ -41,47 +38,51 @@ function FileUpload() {
         {({ getRootProps, getInputProps, isFocused, isDragActive }) => (
           <>
             <Inner {...getRootProps()}>
-              {userInfo.profileImage === "empty" ?
+              {userInfo.profileImage === "empty" ? (
                 <Image>
-                  {isFocused || isDragActive
-                    ? (<>
+                  {isFocused || isDragActive ? (
+                    <>
                       <img
                         style={{ borderRadius: "10px" }}
                         width="100%"
                         alt="여기에 이미지를 드래그해주세요"
                         src={process.env.PUBLIC_URL + "/img/eximghover.svg"}
                       />
-                    </>)
-                    : (<>
+                    </>
+                  ) : (
+                    <>
                       <img
                         style={{ borderRadius: "10px" }}
                         width="100%"
                         alt="이미지를 등록해주세요"
                         src={process.env.PUBLIC_URL + "/img/eximg.svg"}
                       />
-                    </>)}
+                    </>
+                  )}
                 </Image>
-                :
+              ) : (
                 <Image>
-                  {isFocused || isDragActive
-                    ? (<>
+                  {isFocused || isDragActive ? (
+                    <>
                       <img
                         style={{ borderRadius: "10px" }}
                         width="100%"
                         alt="여기에 이미지를 드래그해주세요"
                         src={img ? img : userInfo.profileImage}
                       />
-                    </>)
-                    : (<>
+                    </>
+                  ) : (
+                    <>
                       <img
                         style={{ borderRadius: "10px" }}
                         width="100%"
                         alt="이미지를 등록해주세요"
                         src={img ? img : userInfo.profileImage}
                       />
-                    </>)}
+                    </>
+                  )}
                 </Image>
-              }
+              )}
 
               <input {...getInputProps()} />
             </Inner>
@@ -99,11 +100,11 @@ const Inner = styled.div`
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
-  border: 1px solid #1F2029;
+  border: 1px solid #1f2029;
   :hover {
     outline: #00c4b4 !important;
     border: 1px solid #00c4b4 !important;
-  } 
+  }
   &:focus {
     outline: #00c4b4 !important;
     border: 1px solid #00c4b4 !important;
