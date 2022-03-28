@@ -38,8 +38,6 @@ const ProjectIntroduce = (props) => {
   // 트러블 슈팅 토글 버튼
   // 트러블 슈팅 api
 
-  console.log(troubleShootings);
-  console.log(project?.img?.length);
   return (
     <>
       <TitleBox>
@@ -106,7 +104,6 @@ const ProjectIntroduce = (props) => {
     </>
   );
 };
-
 
 const AboutBox = styled.div`
   width: 100%;

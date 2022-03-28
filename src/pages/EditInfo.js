@@ -1,16 +1,18 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import ChangeInfo from '../components/editInfo/ChangeInfo';
-import SideBar from '../components/editInfo/SideBar';
+import React, { useEffect } from "react";
+import ChangeInfo from "../components/editInfo/ChangeInfo";
+import SideBar from "../components/editInfo/SideBar";
 import Header from "../shared/Header";
 import styled from "styled-components";
-import MainStack from '../components/editInfo/MainStack';
-import EditPwd from '../components/editInfo/EditPwd';
-import EditInfoHeader from '../components/Element/EditInfoHeader';
+import MainStack from "../components/editInfo/MainStack";
+import EditPwd from "../components/editInfo/EditPwd";
+import EditInfoHeader from "../components/Element/EditInfoHeader";
+// router
+// private 접근권한막기
+import { Redirect, Route, useHistory, useParams } from "react-router-dom";
 
 function EditInfo() {
   const { id } = useParams();
-  console.log(id);
+
   return (
     <>
       <Header />
@@ -36,7 +38,7 @@ export const WriteForm = styled.div`
   display: block;
   justify-content: center;
   margin: 0px auto;
-  background: #1F2029;
+  background: #1f2029;
   @media screen and (min-width: 1194px) {
     & {
       width: 95%;
@@ -66,7 +68,7 @@ export const WriteableForm = styled.div`
   padding: 10px 0px;
   width: 100%;
   height: 100%;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   border-radius: 10px;
   flex: none;
   order: 1;

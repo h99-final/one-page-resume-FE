@@ -32,12 +32,10 @@ const loginDB = (email, password) => {
     apis
       .login(email, password)
       .then((res) => {
-        console.log(res);
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         if (res.data.data.isFirstLogin === true) {
-          console.log(res.data.data.isFirstLogin);
         } else {
           window.location.reload();
         }
@@ -54,13 +52,11 @@ const kakaoLoginDB = (code) => {
     apis
       .kakaoLogin1(code)
       .then((res) => {
-        console.log(res);
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-        history.push('/')
+        history.push("/");
         if (res.data.data.isFirstLogin === true) {
-          console.log(res.data.data.isFirstLogin);
         } else {
           window.location.reload();
         }
@@ -92,7 +88,6 @@ const userInfoDB = () => {
     apis
       .userInfo()
       .then(function (res) {
-        console.log(res.data.data);
         dispatch(setUser(res.data.data));
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
@@ -126,7 +121,7 @@ const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(data)
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
@@ -161,9 +156,8 @@ export default handleActions(
     [IS_FIRST_LOGIN]: (state, action) =>
       produce(state, (draft) => {
         draft.isFirstLogin = action.payload.status;
-        console.log(action.payload.status);
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

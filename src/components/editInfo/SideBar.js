@@ -9,7 +9,6 @@ function SideBar() {
   const { id } = useParams();
   const { userId } = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  console.log(userId)
   return (
     <>
       <List>
@@ -44,7 +43,7 @@ const List = styled.div`
   height: 70px;
   left: 0px;
   top: 0px;
-  background: #2C2E39;
+  background: #2c2e39;
   border-radius: 10px;
   flex: none;
   margin: 15px 0px;

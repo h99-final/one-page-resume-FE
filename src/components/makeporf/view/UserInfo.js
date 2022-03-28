@@ -36,12 +36,8 @@ function UserInfo() {
     const _data = { ...data, stack };
     apis
       .addInfo(_data)
-      .then((res) => {
-        console.log(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((res) => {})
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -72,7 +68,9 @@ function UserInfo() {
       <UserInfoForm onSubmit={handleSubmit(onValid)}>
         <Content>
           <Label>
-            <Font>이름(실명)<Star>*</Star></Font>
+            <Font>
+              이름(실명)<Star>*</Star>
+            </Font>
           </Label>
           <Controller
             render={({ field }) => (
@@ -140,12 +138,18 @@ function UserInfo() {
         <ErrorMessage>{errors?.phoneNum?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>이메일<Star>*</Star></Font>
+            <Font>
+              이메일<Star>*</Star>
+            </Font>
           </Label>
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ background: "#282933", color: "#424453", border: "none" }}
+                style={{
+                  background: "#282933",
+                  color: "#424453",
+                  border: "none",
+                }}
                 {...field}
                 defaultValue={data?.email}
                 readOnly
@@ -165,7 +169,9 @@ function UserInfo() {
         <ErrorMessage>{errors?.email?.message}</ErrorMessage>
         <Content>
           <Label>
-            <Font>GitHub URL<Star>*</Star></Font>
+            <Font>
+              GitHub URL<Star>*</Star>
+            </Font>
           </Label>
           <Controller
             render={({ field }) => (

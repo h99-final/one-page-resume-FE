@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 import Main from "../pages/Main";
-import { Link, Redirect, Route, Switch, useLocation } from "react-router-dom";
+import {
+  Link,
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import MakePorf from "../pages/MakePorf";
 import { Helmet } from "react-helmet";
 import NotFound from "../pages/NotFound";
@@ -24,6 +31,8 @@ function App() {
   const userInfo = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
 
+  const isUserInfo = () => sessionStorage.getItem("userInfo");
+
   useEffect(() => {
     dispatch(userActions.userInfoDB());
   }, []);
@@ -32,29 +41,17 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+  const PrivateRoute = ({ component: Component, restricted, ...rest }) => {
+    if (!isUserInfo()) {
+      window.alert("접근 권한이 없습니다.");
+    }
     return (
+      // 유저 정보가 있는지 여부에 따라서 보여줌
+      // 아니면 홈 화면으로
       <Route
         {...rest}
         render={(props) =>
-          userInfo && restricted ? (
-            <Redirect to="/" />
-          ) : (
-            <Component {...props} />
-          )
-        }
-      />
-    );
-  };
-
-  const PrivateRoute = ({ component: Component, ...rest }) => {
-    return (
-      // Show the component only when the user is logged in
-      // Otherwise, redirect the user to /login page
-      <Route
-        {...rest}
-        render={(props) =>
-          !!userInfo ? <Component {...props} /> : <Redirect to="/" />
+          !!isUserInfo() ? <Component {...props} /> : <Redirect to="/" />
         }
       />
     );
@@ -76,19 +73,23 @@ function App() {
         <Route exact path="/user/kakao/callback" component={KakaoAuthHandle} />
 
         <Route exact path="/test" component={GithubSpinner} />
-        <Route exact path="/editinfo/:id/:userId" component={EditInfo} />
+        <PrivateRoute exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />
 
         <Route exact path="/porf" component={Portfolio} />
         {/* 마이페이지 */}
-        <Route exact path="/mypage" component={MyPage} />
+        <PrivateRoute restricted exact path="/mypage" component={MyPage} />
         {/* 메인페이지 */}
-        <Route exact path="/" component={Main} />
+        <Route key={1} exact path="/" component={Main} />
         {/* 포트폴리오 페이지 */}
         <Route exact path="/portfolio" component={PorfList} />
         <Route exact path="/portfolio/:id" component={Portfolio} />
-        <Route exact path="/write/portfolio/:id/:profid" component={MakePorf} />
+        <PrivateRoute
+          exact
+          path="/write/portfolio/:id/:profid"
+          component={MakePorf}
+        />
         {/* 프로젝트 페이지 */}
         <Route exact path="/project" component={ProjList} />
         <Route exact path="/project/:id" component={Project} />

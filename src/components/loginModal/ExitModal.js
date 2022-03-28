@@ -13,7 +13,6 @@ import Start from "./Start";
 
 const ExitModal = ({ exitClose }) => {
   const userInfo = useSelector((state) => state.user.user);
-  console.log(userInfo);
 
   const dispatch = useDispatch();
 
@@ -21,8 +20,6 @@ const ExitModal = ({ exitClose }) => {
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState("");
-
-  console.log(email);
 
   return (
     <ModalBG>
@@ -77,7 +74,7 @@ const ModalBox = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   color: white;
 `;
 
@@ -108,7 +105,7 @@ const Btn2 = styled.button`
   border-radius: 30px;
   border: none;
   color: white;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
 `;
 
 const TextContainer = styled.div`
@@ -125,7 +122,7 @@ const TextContainer = styled.div`
     text-align: center;
     font-size: 16px;
     font-weight: normal;
-    color:#CFD3E2;
+    color: #cfd3e2;
     line-height: 24px;
     font-weight: 400;
   }

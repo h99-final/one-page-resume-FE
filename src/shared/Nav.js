@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie, getCookie } from "./cookie";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 // JS파일
 export function useWindowSize() {
@@ -52,17 +52,14 @@ const Nav = (props) => {
   // SignOut
   const signOut = () => {
     setNav(false);
-    console.log(getCookie("token"));
     deleteCookie("token");
     dispatch(userActions.logOutDB());
-    console.log(getCookie("token"));
-    sessionStorage.clear()
+    sessionStorage.clear();
     window.location.replace("/");
   };
   const [num, setNum] = useState(0);
 
   useEffect(() => {
-
     if (size.width <= 971) {
       setNum(1);
     }
@@ -79,61 +76,78 @@ const Nav = (props) => {
             <h1>{props.name}</h1>
             <p>{props.email}</p>
           </Profile>
-          <NavPro onClick={() => { history.push('/mypage') }}>
+          <NavPro
+            onClick={() => {
+              history.push("/mypage");
+            }}
+          >
             <img
               style={{ marginRight: "15px" }}
-              alt="" src={process.env.PUBLIC_URL + "/img/mypage.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/mypage.svg"}
+            />
             마이페이지
           </NavPro>
           <NavSet
             onClick={() => {
-              history.push(`/editinfo/changeinfo/${props.userId}`)
+              history.push(`/editinfo/changeinfo/${props.userId}`);
             }}
           >
             <img
               style={{
                 marginLeft: "4px",
-                marginRight: "15px"
+                marginRight: "15px",
               }}
-              alt="" src={process.env.PUBLIC_URL + "/img/navpencil.svg"} />
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
+            />
             내 정보 수정
           </NavSet>
-          {num === 1 ?
+          {num === 1 ? (
             <>
               <NavSet
                 onClick={() => {
-                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`)
+                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
                 }}
               >
                 <img
                   style={{
                     marginLeft: "4px",
-                    marginRight: "15px"
+                    marginRight: "15px",
                   }}
-                  alt="" src={process.env.PUBLIC_URL + "/img/porf.svg"} />
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/porf.svg"}
+                />
                 내 포트폴리오
               </NavSet>
               <NavSet
                 onClick={() => {
-                  history.push("/write/project/info")
+                  history.push("/write/project/info");
                 }}
               >
                 <img
                   style={{
                     marginLeft: "4px",
-                    marginRight: "15px"
+                    marginRight: "15px",
                   }}
-                  alt="" src={process.env.PUBLIC_URL + "/img/proj.svg"} />
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/proj.svg"}
+                />
                 새 프로젝트
               </NavSet>
             </>
-            :
-            <>
-            </>
-          }
+          ) : (
+            <></>
+          )}
 
           <NavLog>
-            <Logout onClick={() => { signOut() }}>로그아웃</Logout>
+            <Logout
+              onClick={() => {
+                signOut();
+              }}
+            >
+              로그아웃
+            </Logout>
           </NavLog>
         </NavBar>
       ) : null}
@@ -175,13 +189,13 @@ const Profile = styled.div`
   p {
     margin-top: 15px;
     font-size: 14px;
-    color: #696B7B;
+    color: #696b7b;
   }
 `;
 const NavPro = styled.div`
   border-top: none;
   border-bottom: none;
-  color: #CFD3E2;
+  color: #cfd3e2;
   width: 100px;
   height: 50px;
   padding: 5px 90px;
@@ -200,7 +214,7 @@ const NavSet = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  color: #CFD3E2;
+  color: #cfd3e2;
   width: 120px;
   height: 50px;
   padding: 5px 80px;
@@ -240,7 +254,7 @@ const Logout = styled.button`
   border-radius: 30px;
   :hover {
     color: #000000;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 `;
 export default Nav;

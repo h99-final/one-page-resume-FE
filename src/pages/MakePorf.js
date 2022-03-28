@@ -1,5 +1,4 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
 import Introduce from "../components/makeporf/view/Introduce";
 import PorfWriteHeader from "../components/makeporf/shared/PorfWriteHeader";
 import SideBar from "../components/makeporf/shared/SideBar";
@@ -12,9 +11,13 @@ import UserInfo from "../components/makeporf/view/UserInfo";
 import PreviousNext from "../components/makeporf/shared/PreviousNext";
 import Career from "../components/makeporf/view/Career/Career";
 import ProjectSelect from "../components/makeporf/view/project/ProjectSelect";
+// router
+// private 접근권한막기
+import { Link, Redirect, Route, useParams } from "react-router-dom";
 
 function MakePorf() {
   const { id } = useParams();
+
   return (
     <>
       <Header />

@@ -47,7 +47,6 @@ function CareerShow(props) {
   const careerSubmit = (oldData) => {
     if (update) {
       let _content = content.current.value.split(`\n`);
-      console.log(_content);
       let _data = {
         ...oldData,
         contents: _content,

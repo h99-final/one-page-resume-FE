@@ -13,14 +13,14 @@ import {
 } from "../makeporf/shared/_sharedStyle";
 import { apis } from "../../shared/axios";
 import FileUpload from "../makeporf/shared/ImageUpload";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import { orange } from '@mui/material/colors';
+import { orange } from "@mui/material/colors";
 import { TextField } from "@mui/material";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -29,36 +29,35 @@ const theme = createTheme({
 });
 
 const CssTextField = styled(TextField, {
-  shouldForwardProp: (props) => props !== "focuscolor"
+  shouldForwardProp: (props) => props !== "focuscolor",
 })((p) => ({
   // input label when focused
   "& label.Mui-focused": {
-    color: p.focuscolor
+    color: p.focuscolor,
   },
   // focused color for input with variant='standard'
   "& .MuiInput-underline:after": {
-    borderBottomColor: p.focuscolor
+    borderBottomColor: p.focuscolor,
   },
   // focused color for input with variant='filled'
   "& .MuiFilledInput-underline:after": {
-    borderBottomColor: p.focuscolor
+    borderBottomColor: p.focuscolor,
   },
   // focused color for input with variant='outlined'
   "& .MuiOutlinedInput-root": {
     "&.Mui-focused fieldset": {
-      borderColor: p.focuscolor
-    }
+      borderColor: p.focuscolor,
+    },
   },
-  '& .MuiInputBase-input': {
-    position: 'relative',
+  "& .MuiInputBase-input": {
+    position: "relative",
     color: "white",
-    width: '100%',
+    width: "100%",
   },
-  '& input:valid + fieldset': {
-  },
-  '& input:invalid + fieldset': {
-  },
-  '& input:valid:focus + fieldset': { // override inline-style
+  "& input:valid + fieldset": {},
+  "& input:invalid + fieldset": {},
+  "& input:valid:focus + fieldset": {
+    // override inline-style
   },
 }));
 function EditPwd() {
@@ -109,14 +108,13 @@ function EditPwd() {
     const data = {
       curPassword: curPassword,
       password: password,
-      passwordCheck: passwordCheck
-    }
+      passwordCheck: passwordCheck,
+    };
     apis
       .putPwd(data)
       .then((res) => {
-        alert("비밀번호 변경 완료")
-        history.push('/mypage')
-
+        alert("비밀번호 변경 완료");
+        history.push("/mypage");
       })
       .catch((error) => {
         alert("비밀번호가 맞지 않습니다. 다시 확인해 주세요");
@@ -126,7 +124,6 @@ function EditPwd() {
   const [passwordShow, setPasswordShow] = React.useState(false);
 
   const togglePasswordVisibility = () => setPasswordShow(!passwordShow);
-  console.log(passwordShow)
 
   return (
     <>
@@ -135,13 +132,17 @@ function EditPwd() {
       </FormTitle>
       <ThemeProvider theme={theme}>
         <UserInfoForm>
-          <Content >
+          <Content>
             <Label>
               <Font>기존 비밀번호</Font>
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{ background: "#393A47", borderRadius: "5px", border: "none" }}
+              style={{
+                background: "#393A47",
+                borderRadius: "5px",
+                border: "none",
+              }}
               onChange={(e) => {
                 setCurPw(e.target.value);
               }}
@@ -157,7 +158,7 @@ function EditPwd() {
                 endAdornment: (
                   <InputAdornment position="absolute">
                     <IconButton
-                      style={{ color: "white", height: "33px", }}
+                      style={{ color: "white", height: "33px" }}
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
@@ -167,10 +168,9 @@ function EditPwd() {
                 ),
               }}
             />
-
           </Content>
 
-          <ErrorMessage >
+          <ErrorMessage>
             {curPasswordError && (
               <span style={{ fontSize: "12px", color: "orange" }}>
                 {curPasswordError}
@@ -183,7 +183,11 @@ function EditPwd() {
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{ background: "#393A47", borderRadius: "5px", border: "none" }}
+              style={{
+                background: "#393A47",
+                borderRadius: "5px",
+                border: "none",
+              }}
               onChange={(e) => {
                 setPw(e.target.value);
               }}
@@ -199,7 +203,7 @@ function EditPwd() {
                 endAdornment: (
                   <InputAdornment position="absolute">
                     <IconButton
-                      style={{ color: "white", height: "33px", }}
+                      style={{ color: "white", height: "33px" }}
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
@@ -210,20 +214,24 @@ function EditPwd() {
               }}
             />
           </Content>
-          <ErrorMessage >
+          <ErrorMessage>
             {passwordError && (
               <span style={{ fontSize: "12px", color: "orange" }}>
                 {passwordError}
               </span>
             )}
           </ErrorMessage>
-          <Content >
+          <Content>
             <Label>
               <Font>새 비밀번호 확인</Font>
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{ background: "#393A47", borderRadius: "5px", border: "none" }}
+              style={{
+                background: "#393A47",
+                borderRadius: "5px",
+                border: "none",
+              }}
               onChange={(e) => {
                 setPwCheck(e.target.value);
               }}
@@ -239,7 +247,7 @@ function EditPwd() {
                 endAdornment: (
                   <InputAdornment position="absolute">
                     <IconButton
-                      style={{ color: "white", height: "33px", }}
+                      style={{ color: "white", height: "33px" }}
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
@@ -250,7 +258,7 @@ function EditPwd() {
               }}
             />
           </Content>
-          <ErrorMessage >
+          <ErrorMessage>
             {passwordCheckError && (
               <span style={{ fontSize: "12px", color: "orange" }}>
                 {passwordCheckError}
@@ -258,7 +266,13 @@ function EditPwd() {
             )}
           </ErrorMessage>
           <div style={{ width: "96%", textAlign: "right" }}>
-            <Button onClick={() => { editPwd() }}>변경 내용 저장</Button>
+            <Button
+              onClick={() => {
+                editPwd();
+              }}
+            >
+              변경 내용 저장
+            </Button>
           </div>
         </UserInfoForm>
       </ThemeProvider>
@@ -281,7 +295,7 @@ const UserInfoForm = styled.div`
 const Button = styled.button`
   width: 150px;
   height: 60px;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   color: white;
   border-radius: 43px;
   border: none;

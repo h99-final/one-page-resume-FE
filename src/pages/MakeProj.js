@@ -1,14 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 import MakeProject from "../components/makeproject/MakeProject";
 import MakeTroubleShooting from "../components/makeproject/ts/MakeTroubleShooting";
 import PorjWriteHeader from "../components/makeproject/ProjWriteHeader";
 import Header from "../shared/Header";
 import { WriteableForm, WriteForm, WriteTemplate } from "./MakePorf";
+// router
+// private 접근권한막기
+import { Redirect, Route, useParams } from "react-router-dom";
 
 function MakeProj() {
-  const { id } = useParams();
+  const { id, projectId } = useParams();
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
     <>

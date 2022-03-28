@@ -3,28 +3,20 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 import { useSelector } from "react-redux";
 import { apis } from "../shared/axios";
-import ClearIcon from "@mui/icons-material/Clear";
-import { grey } from "@mui/material/colors";
-import Select from "react-select";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import { Link, useHistory } from "react-router-dom";
 import FetchMore from "../shared/FetchMore";
-import { InputStack } from '../components/makeporf/shared/_sharedStyle';
-
-
-export const options = [
-  { value: "Python", label: "Python" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "Spring", label: "Spring" },
-  { value: "C", label: "C" },
-  { value: "C++", label: "C++" },
-  { value: "React", label: "React" },
-  { value: "iOS", label: "iOS" },
-  { value: "Android", label: "Android" },
-  { value: "Node.js", label: "Node.js" },
-  { value: "Vue.js", label: "Vue.js" },
-  { value: "Git", label: "Git" },
-];
+import {
+  InputCustom,
+  InputStack,
+} from "../components/makeporf/shared/_sharedStyle";
+// mui selector
+import { option } from "../shared/common";
+import ClearIcon from "@mui/icons-material/Clear";
+import { grey } from "@mui/material/colors";
+import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssTextField, theme } from "../shared/_sharedMuiStyle";
 
 export const customStyles = {
   control: (base, state) => ({
@@ -59,12 +51,10 @@ const PorfList = () => {
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  let stack = [];
-
   useEffect(() => {
     setLoading(true);
     if (hasMore) {
-      apis.mainPorf(stack, page).then((res) => {
+      apis.mainPorf(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
           setLoading(false);
@@ -81,14 +71,25 @@ const PorfList = () => {
       setLoading(false);
       setHasMore(true);
     };
-  }, [page]);
+  }, [page, addStack]);
 
-  const handleChange = (e) => {
-    let stackArray = [];
-    e.map((addStack) => {
-      return stackArray.push(addStack.value);
-    });
-    setAddStack(stackArray);
+  useEffect(() => {
+    if (userInfo) {
+      setAddStack(userInfo.stack);
+    }
+  }, []);
+
+  useEffect(() => {
+    setPage(0);
+    setPorf([]);
+  }, [addStack]);
+
+  const handleChange = (event, newValue) => {
+    setAddStack(newValue);
+  };
+
+  const handleDelete = (stack) => {
+    setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
   return (
@@ -101,12 +102,47 @@ const PorfList = () => {
             다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
             프로젝트를 북마크 해보세요.
           </h2>
-          <button onClick={() => {
-            history.push(`/write/portfolio/introduce/${userInfo.porfId}`)
-          }}>내 포트폴리오 &gt; </button>
+          <button
+            onClick={() => {
+              history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
+            }}
+          >
+            내 포트폴리오 &gt;{" "}
+          </button>
         </Title>
-        <InputBox>
+        {/* <InputBox>
           <InputStack style={{ width: "100%" }} />
+        </InputBox> */}
+        <InputBox>
+          <ThemeProvider theme={theme}>
+            <Autocomplete
+              multiple
+              fullWidth
+              filterSelectedOptions
+              id="tags-standard"
+              options={option.map((option) => option.stack)}
+              value={addStack}
+              defaultValue={userInfo?.stack}
+              onChange={handleChange}
+              renderTags={(addStack, getTagProps) =>
+                addStack.map((option, index) => (
+                  <Chip
+                    sx={{ display: "none" }}
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <CssTextField
+                  {...params}
+                  variant="standard"
+                  placeholder="기술스택으로 검색해보세요"
+                />
+              )}
+            />
+          </ThemeProvider>
         </InputBox>
 
         <StackBox style={{ marginBottom: "60px" }}>
@@ -115,16 +151,15 @@ const PorfList = () => {
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
                 <ClearIcon
+                  value={addStack}
                   sx={{
                     fontSize: 14,
                     color: grey[500],
                     marginLeft: 1,
                     borderRadius: 1000,
                   }}
-                  onClick={() => {
-                    alert("@@");
-                  }}
-                ></ClearIcon>
+                  onClick={() => handleDelete(addStack)}
+                />
               </SelectStack>
             );
           })}
@@ -203,10 +238,10 @@ const Title = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: white; 
+    color: white;
     margin-bottom: 50px;
   }
-  button{
+  button {
     cursor: pointer;
     border: 1px solid white;
     border-radius: 30px;

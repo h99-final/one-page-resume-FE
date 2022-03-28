@@ -59,7 +59,6 @@ const initialState = {
 const setPatchCodeAPI = (projectId, sha) => {
   return function (dispatch) {
     apis.gitCommitFile(projectId, sha).then((res) => {
-      console.log(res.data.data);
       dispatch(setPatchCode(res.data.data));
     });
   };
@@ -77,11 +76,8 @@ const troubleShootingDB = (projectId, data) => {
     };
     apis.createTroubleShooting(projectId, _data).then((res) => {
       let { commitId } = res.data.data;
-      console.log(commitId);
       let tsFiles = getState().patchcode.tsFile;
-      console.log(obj);
       let _index = tsFiles.findIndex((ts) => ts.commitId === commitId);
-      console.log(_index);
       let { commitMessage, tsFile, ..._obj } = _data;
       let { patchCode, ...__obj } = obj;
 
@@ -91,7 +87,6 @@ const troubleShootingDB = (projectId, data) => {
         tsFiles: [{ ...__obj, tsPatchCodes: patchCode }],
         commitMsg: commitMessage,
       };
-      console.log(__data);
       if (_index === -1) {
         dispatch(addFile(__data));
       } else {

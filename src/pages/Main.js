@@ -51,7 +51,6 @@ const Main = () => {
   const size = useWindowSize();
 
   const history = useHistory();
-  // console.log(userInfo)
 
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
@@ -89,7 +88,6 @@ const Main = () => {
     if (hasMore) {
       apis.mainProj(stack, page).then((res) => {
         if (res.data.data.length === 0) {
-          console.log(res.data.data.length);
           setHasMore(false);
           setLoading(false);
           return;

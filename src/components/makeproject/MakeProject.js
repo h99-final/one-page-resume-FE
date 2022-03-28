@@ -10,7 +10,6 @@ import {
   Label,
   Star,
 } from "../makeporf/shared/_sharedStyle";
-import ClearIcon from "@mui/icons-material/Clear";
 import styled from "styled-components";
 import { Font, FormContents, MultiContent } from "../makeporf/view/Introduce";
 import ForProjUpload from "../makeporf/shared/ForPorjUpload";
@@ -23,18 +22,23 @@ import {
   StackBox,
 } from "../makeporf/view/Stack";
 import PreviousNextProject from "./shared/PreviousNextProject";
-import { grey } from "@mui/material/colors";
 import { apis } from "../../shared/axios";
 import TemplateProject from "./shared/TemplateProject";
 import MarkDown from "./ts/MarkDown";
 
 import Spinner from "../../shared/Spinner";
+// mui selector
+import ClearIcon from "@mui/icons-material/Clear";
+import { grey } from "@mui/material/colors";
+import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssTextField, theme } from "../../shared/_sharedMuiStyle";
+import { option } from "../../shared/common";
 
 function MakeProject() {
   const history = useHistory();
   const { id, projectId } = useParams();
   //포트폴리오 프로젝트 생성
-  const animatedComponents = makeAnimated();
   const {
     register,
     handleSubmit,
@@ -64,14 +68,13 @@ function MakeProject() {
   // }, []);
 
   // const [stacks, setStacks] = useState([]);
-  //ToDO
-  const [addStack, setAddStack] = useState(["Python", "React", "Java"]);
-  const handleChange = (e) => {
-    let stackArray = [];
-    e.map((addStack) => {
-      return stackArray.push(addStack.value);
-    });
-    setAddStack(stackArray);
+  const [addStack, setAddStack] = useState([]);
+  const handleChange = (event, newValue) => {
+    setAddStack(newValue);
+  };
+
+  const handleDelete = (stack) => {
+    setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
   //이미지 파일 prop으로 넘겨줌
@@ -107,7 +110,6 @@ function MakeProject() {
       new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
     );
     for (let i = 0; i < images.length; i++) {
-      console.log(images[i]);
       frm.append("images", images[i]);
       modifyPic.append("images", images[i]);
     }
@@ -118,7 +120,6 @@ function MakeProject() {
       });
     } else {
       apis.createProject(frm).then((res) => {
-        console.log(res.data.data);
         const { id } = res.data.data;
         history.push(`/write/project/troubleShooting/${id}`);
       });
@@ -132,7 +133,6 @@ function MakeProject() {
   useEffect(() => {
     if (projectId) {
       apis.projectGet(projectId).then((res) => {
-        console.log(res.data.data);
         const { title, gitRepoUrl, imageUrl, content, stack } = res.data.data;
         setValue("projectTitle", title);
         setValue("gitRepoUrl", gitRepoUrl);
@@ -198,7 +198,35 @@ function MakeProject() {
                 기술 스택<Star>*</Star>
               </Font>
             </Label>
-            <InputCustom></InputCustom>
+            <ThemeProvider theme={theme}>
+              <Autocomplete
+                multiple
+                fullWidth
+                filterSelectedOptions
+                id="tags-standard"
+                options={option.map((option) => option.stack)}
+                value={addStack}
+                defaultValue={addStack}
+                onChange={handleChange}
+                renderTags={(addStack, getTagProps) =>
+                  addStack.map((option, index) => (
+                    <Chip
+                      sx={{ display: "none" }}
+                      variant="outlined"
+                      label={option}
+                      {...getTagProps({ index })}
+                    />
+                  ))
+                }
+                renderInput={(params) => (
+                  <CssTextField
+                    {...params}
+                    variant="standard"
+                    placeholder="기술스택으로 검색해보세요"
+                  />
+                )}
+              />
+            </ThemeProvider>
           </MultiContent>
           <MultiContent style={{ marginBottom: "30px" }}>
             <Label>
@@ -212,7 +240,7 @@ function MakeProject() {
                     <ClearIcon
                       sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
                       onClick={() => {
-                        alert("@@");
+                        handleDelete(addStack);
                       }}
                     ></ClearIcon>
                   </SelectStack>

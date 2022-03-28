@@ -13,7 +13,6 @@ const Stack = () => {
     apis.porfStackGet(id).then((res) => {
       setMainStack(res.data.data.mainStack);
       setSubStack(res.data.data.subStack);
-      console.log(subStack);
     });
   }, []);
 

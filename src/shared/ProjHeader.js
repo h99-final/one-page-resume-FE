@@ -22,7 +22,6 @@ const ProjHeader = (props) => {
     apis
       .deleteProject(id)
       .then((res) => {
-        console.log(res.data.data);
         history.push(`/project`);
       })
       .catch((errors) => {

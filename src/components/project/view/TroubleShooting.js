@@ -23,7 +23,6 @@ const TroubleShooting = (props) => {
     commitMsg,
     tsLength,
   } = props;
-  console.log(props);
   const { id } = props;
 
   // const [ts, setTS] = useState([]);
@@ -53,16 +52,18 @@ const TroubleShooting = (props) => {
 
   // 자동 영역 조절
   const [is_highlight_loading, setIs_highlight_loading] = useState(false);
+  const [height, setHeight] = useState(null);
 
   const leftBox = useRef(null);
 
   useEffect(() => {
     setIs_highlight_loading(true);
-    if (leftBox.current.getBoundingClientRect().height) {
+    setHeight(leftBox?.current?.getBoundingClientRect().height);
+    if (height) {
       setIs_highlight_loading(false);
     }
     return () => setIs_highlight_loading(false);
-  }, []);
+  }, [height]);
 
   return (
     <>
@@ -138,7 +139,7 @@ const LeftBox = styled.div`
 `;
 
 const LeftTopBox = styled.div`
-  height: 5vw;
+  height: 4.5vw;
   width: 50vw;
 `;
 
@@ -216,7 +217,7 @@ export const Font = styled.div`
 export const FontTitle = styled.div`
   /* padding: 20px; */
   position: relative;
-
+  height: 100%;
   top: 0;
   font-style: normal;
   font-weight: 400;

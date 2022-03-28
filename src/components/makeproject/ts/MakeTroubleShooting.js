@@ -63,7 +63,6 @@ function MakeTroubleShooting() {
       tsContent: mdValue,
     };
     // 트러블 슈팅 redux에만 추가
-    console.log(_data);
     // 트러블 슈팅 선택된 패치 코드 지우기
     // DB에 저장하기
     const { commit, ..._obj } = _data;

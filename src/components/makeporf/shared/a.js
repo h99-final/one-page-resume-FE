@@ -17,7 +17,6 @@ function FileUpload() {
     const file = fileInput?.current.files[0];
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(reader.result);
       setPreview(reader.result);
     };
   }
@@ -39,13 +38,18 @@ function FileUpload() {
         <>
           <Image>
             <label htmlFor="file">
-              <Inner src={preview ? preview : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"}>
-
-              </Inner>
-              <Font style={{ position: "relative" }} >Dragg files to upload</Font>
+              <Inner
+                src={
+                  preview
+                    ? preview
+                    : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/add_icon_143118.png"
+                }
+              ></Inner>
+              <Font style={{ position: "relative" }}>
+                Dragg files to upload
+              </Font>
             </label>
           </Image>
-
         </>
       ) : (
         <label htmlFor="file">
