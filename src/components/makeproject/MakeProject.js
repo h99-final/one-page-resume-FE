@@ -204,7 +204,7 @@ function MakeProject() {
                 fullWidth
                 filterSelectedOptions
                 id="tags-standard"
-                options={option.map((option) => option.stack)}
+                options={option}
                 value={addStack}
                 defaultValue={addStack}
                 onChange={handleChange}
@@ -213,7 +213,6 @@ function MakeProject() {
                     <Chip
                       sx={{ display: "none" }}
                       variant="outlined"
-                      label={option}
                       {...getTagProps({ index })}
                     />
                   ))
