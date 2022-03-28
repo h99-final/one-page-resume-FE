@@ -169,12 +169,12 @@ const InputBox = styled.div`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  width: fit-content;
+  width: 100px;
   height: 40px;
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 25px 0px 0px 262px;
+  margin: 25px 0px 0px 254px;
   padding: 5px 10px 5px 10px;
   color: white;
   background-color: #00C4B4;

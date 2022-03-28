@@ -218,7 +218,7 @@ const AddInfo = (props) => {
                 id="blogurl"
                 name="blogurl"
                 placeholder="blogURl"
-                // error={blogUrlError !== '' || false}
+              // error={blogUrlError !== '' || false}
               />
               {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
               <CssTextField
@@ -233,7 +233,7 @@ const AddInfo = (props) => {
                 id="phone"
                 name="phone"
                 placeholder="전화번호"
-                // error={phoneNumError !== "" || false}
+              // error={phoneNumError !== "" || false}
               />
               {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -252,7 +252,7 @@ const AddInfo = (props) => {
                 id="job"
                 name="job"
                 placeholder="직무"
-                // error={jobError !== "" || false}
+              // error={jobError !== "" || false}
               />
               {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -367,13 +367,13 @@ const InputBox = styled.div`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  width: 88px;
+  width: 100px;
   height: 40px;
   border-radius: 30px;
   border: none;
   font-size: 14px;
   margin: 100px 0px 0px 300px;
-  padding: 5px 18px 5px 18px;
+  padding: 5px 10px 5px 10px;
   color: white;
   background-color: #00c4b4;
   :disabled {
