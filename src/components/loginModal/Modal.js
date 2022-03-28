@@ -165,7 +165,6 @@ const WelcomeBox = styled.div`
 `;
 
 const TextContainer = styled.div`
-  border: 1px solid white;
   width: 450px;
   height: 323px;
   margin: 210px auto;
@@ -183,7 +182,7 @@ const TextContainer = styled.div`
 `;
 
 const TextBox = styled.div`
-  margin: 5px auto;
+  margin: 10px auto;
   background-color: rgba(66, 68, 83, 0.7);
   border-radius: 15px;
   align-items: center;
