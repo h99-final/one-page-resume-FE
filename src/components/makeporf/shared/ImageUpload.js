@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import { apis } from "../../../shared/axios";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as userActions } from '../../../redux/modules/user';
 
 function FileUpload() {
+  const dispatch = useDispatch()
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
+  const userInfo = useSelector((state) => state.user.user);
+  // const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem("userInfo")));
 
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
-
     let formData = new FormData();
-
     formData.append("profileImage", files[0]);
 
     apis
@@ -23,14 +26,16 @@ function FileUpload() {
       // 백엔드가 file저장하고 그 결과가 reponse에 담김
       // 백엔드는 그 결과를 프론트로 보내줌(3)
       .then((response) => {
-        if (response.data) {
-          setImages([...Images, response.data.data.img]);
-          setImg(response.data.data.img);
-        } else {
-          alert("파일 저장 실패");
-        }
+        setImages([...Images, response.data.data.img]);
+        setImg(response.data.data.img);
+        dispatch(userActions.userInfoDB());
       });
   };
+
+  // console.log(userInfo)
+  //   useEffect(() => {
+  //   dispatch(userActions.userInfoDB());
+  // }, []);
 
   return (
     <>
@@ -62,25 +67,12 @@ function FileUpload() {
                 </Image>
               ) : (
                 <Image>
-                  {isFocused || isDragActive ? (
-                    <>
-                      <img
-                        style={{ borderRadius: "10px" }}
-                        width="100%"
-                        alt="여기에 이미지를 드래그해주세요"
-                        src={img ? img : userInfo.profileImage}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <img
-                        style={{ borderRadius: "10px" }}
-                        width="100%"
-                        alt="이미지를 등록해주세요"
-                        src={img ? img : userInfo.profileImage}
-                      />
-                    </>
-                  )}
+                  <img
+                    style={{ borderRadius: "10px" }}
+                    width="100%"
+                    alt="이미지를 등록해주세요"
+                    src={userInfo.profileImage}
+                  />
                 </Image>
               )}
 
