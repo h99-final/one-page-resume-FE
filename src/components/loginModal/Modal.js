@@ -34,13 +34,13 @@ const Modal = ({ modalClose }) => {
 
               <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
 
-              <TextBox style={{ margin: "0px 33.5px 0px 33.5px", color: "#FF9B00" }}>
+              <TextBox style={{ color: "#FF9B00" }}>
                 내 프로젝트에 도움이 되는 다양한 영감을 얻어요!
               </TextBox>
-              <TextBox style={{ margin: "15px 73px 0px 73px", color: "#8EEE4E" }}>
+              <TextBox style={{ color: "#8EEE4E" }}>
                 예쁜 포트폴리오를 빠르게 만들어요.
               </TextBox>
-              <TextBox style={{ margin: "15px 0px", color: "#E498FF" }}>
+              <TextBox style={{ color: "#E498FF" }}>
                 내가 보여주고 싶은 GitHub코드만 골라서 보여줄 수 있어요.
               </TextBox>
             </TextContainer>
@@ -165,7 +165,8 @@ const WelcomeBox = styled.div`
 `;
 
 const TextContainer = styled.div`
-  width: 408px;
+  border: 1px solid white;
+  width: 450px;
   height: 323px;
   margin: 210px auto;
   h1 {
@@ -182,11 +183,12 @@ const TextContainer = styled.div`
 `;
 
 const TextBox = styled.div`
+  margin: 5px auto;
   background-color: rgba(66, 68, 83, 0.7);
   border-radius: 15px;
   align-items: center;
   text-align: center;
-  width: calc(fit-content + 10px);
+  width: fit-content;
   padding: 10px 10px;
   font-size: 15px;
   font-weight: normal;
