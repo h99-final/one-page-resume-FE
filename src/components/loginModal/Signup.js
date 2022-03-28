@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { apis } from "../../shared/axios";
 import { TextField } from "@mui/material";
 
+import { emailCheck } from "../../shared/common";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
@@ -57,7 +58,9 @@ const Signup = (props) => {
   const dispatch = useDispatch();
 
   const loginClose = props.loginClose;
-  const email = props.email;
+
+  const [email, setEmail] = React.useState();
+  const [emailError, setEmailError] = useState("");
 
   const [password, setPw] = React.useState("");
   const [passwordCheck, setPwCheck] = React.useState("");
@@ -68,6 +71,9 @@ const Signup = (props) => {
   const [values, setValues] = React.useState({
     showPassword: false,
   });
+  const inputEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -80,6 +86,11 @@ const Signup = (props) => {
   };
 
   const signup = () => {
+    if (!emailCheck(email) || !email) {
+      setEmailError("이메일 형식을 다시 확인해주세요!");
+      return;
+    }
+
     if (!password || password.length < 4) {
       setPasswordError(
         "비밀번호 입력란을 다시 확인해주세요! 비밀번호는 4자리 이상입니다"
@@ -93,15 +104,22 @@ const Signup = (props) => {
       return;
     }
     setPasswordCheckError("");
+    apis.dupCheck(email).then((res) => {
+      if (res.data.result === true) {
+        setEmailError("중복된 이메일 입니다. 다시 입력해 주세요.")
+      }
+      else {
+        apis
+          .signup(email, password, passwordCheck)
+          .then((res) => {
+            dispatch(userActions.loginDB(email, password));
+          })
+          .catch((error) => {
+            alert("회원가입에 실패했습니다.");
+          });
+      }
+    })
 
-    apis
-      .signup(email, password, passwordCheck)
-      .then((res) => {
-        dispatch(userActions.loginDB(email, password));
-      })
-      .catch((error) => {
-        alert("회원가입에 실패했습니다.");
-      });
   };
 
   return (
@@ -114,14 +132,21 @@ const Signup = (props) => {
         <InputBox>
           <CssTextField
             focuscolor="#00C4B4"
-            id="standard-read-only-input"
-            defaultValue={props.email}
-            fullWidth
-            InputProps={{
-              readOnly: true,
-            }}
+            onChange={inputEmail}
             variant="standard"
+            required
+            fullWidth
+            type="email"
+            id="email"
+            name="email"
+            placeholder="이메일 주소"
+            error={emailError !== "" || false}
           />
+          {emailError && (
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>{emailError}</span>
+            </div>
+          )}
           <CssTextField
             focuscolor="#00C4B4"
             style={{ marginTop: "35px" }}
@@ -151,9 +176,11 @@ const Signup = (props) => {
             }}
           />
           {passwordError && (
-            <span style={{ fontSize: "12px", color: "orange" }}>
-              {passwordError}
-            </span>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
+                {passwordError}
+              </span>
+            </div>
           )}
 
           <CssTextField
@@ -185,16 +212,18 @@ const Signup = (props) => {
             }}
           />
           {passwordCheckError && (
-            <span style={{ fontSize: "12px", color: "orange" }}>
-              {passwordCheckError}
-            </span>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
+                {passwordCheckError}
+              </span>
+            </div>
           )}
 
           <WriteBtn
             disabled={!passwordCheck || !password ? true : false}
             onClick={signup}
           >
-            다음 {">"}{" "}
+            다음
           </WriteBtn>
         </InputBox>
       </ThemeProvider>
