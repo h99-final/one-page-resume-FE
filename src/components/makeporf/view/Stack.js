@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import styled from "styled-components";
-import ClearIcon from "@mui/icons-material/Clear";
-import { grey } from "@mui/material/colors";
 
 import {
   Content,
@@ -23,20 +21,13 @@ import { apis } from "../../../shared/axios";
 import Template from "../shared/Template";
 import PreviousNext from "../shared/PreviousNext";
 import { useForm } from "react-hook-form";
-
-export const options = [
-  { value: "Python", label: "Python" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "Spring", label: "Spring" },
-  { value: "C", label: "C" },
-  { value: "C++", label: "C++" },
-  { value: "React", label: "React" },
-  { value: "iOS", label: "iOS" },
-  { value: "Android", label: "Android" },
-  { value: "Node.js", label: "Node.js" },
-  { value: "Vue.js", label: "Vue.js" },
-  { value: "Git", label: "Git" },
-];
+// mui select
+import ClearIcon from "@mui/icons-material/Clear";
+import { grey } from "@mui/material/colors";
+import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { option } from "../../../shared/common";
+import { CssTextField, theme } from "../../../shared/_sharedMuiStyle";
 
 export const customStyles = {
   control: (base, state) => ({
@@ -56,14 +47,7 @@ export const customStyles = {
   }),
 };
 
-//ToDO 왜인지 모르게 API가 너무 많이감
 function Stack() {
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-  const animatedComponents = makeAnimated();
-  const [stack, setStack] = useState([]);
-  const [addStack, setAddStack] = useState([]);
-
   const defaultStack = [
     "JS",
     "JAVA",
@@ -78,6 +62,10 @@ function Stack() {
     "Vue.js",
     "git",
   ];
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+  const [stack, setStack] = useState([]);
+  const [addStack, setAddStack] = useState([]);
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -88,20 +76,12 @@ function Stack() {
     }
   };
 
-  function handleDelete(e) {
-    setAddStack(addStack.filter((e) => e !== e.target));
-  }
+  const handleChange = (event, newValue) => {
+    setAddStack(newValue);
+  };
 
-  useEffect(() => {
-    return submitStack();
-  }, []);
-
-  const handleChange = (e) => {
-    let stackArray = [];
-    e.map((addStack) => {
-      return stackArray.push(addStack.value);
-    });
-    setAddStack(stackArray);
+  const handleDelete = (stack) => {
+    setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
   useEffect(() => {
@@ -112,6 +92,7 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
+    return submitStack;
   }, []);
 
   const submitStack = async () => {
@@ -198,14 +179,43 @@ function Stack() {
         <Label>
           <Font>기술 스택</Font>
         </Label>
-        <Select
+        {/* <Select
           styles={customStyles}
           closeMenuOnSelect={false}
-          components={animatedComponents}
+          // components={animatedComponents}
           options={options}
           isMulti
           onChange={handleChange}
-        />
+        /> */}{" "}
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            multiple
+            fullWidth
+            filterSelectedOptions
+            id="tags-standard"
+            options={option.map((option) => option.stack)}
+            value={addStack}
+            defaultValue={addStack}
+            onChange={handleChange}
+            renderTags={(addStack, getTagProps) =>
+              addStack.map((option, index) => (
+                <Chip
+                  sx={{ display: "none" }}
+                  variant="outlined"
+                  label={option}
+                  {...getTagProps({ index })}
+                />
+              ))
+            }
+            renderInput={(params) => (
+              <CssTextField
+                {...params}
+                variant="standard"
+                placeholder="기술스택으로 검색해보세요"
+              />
+            )}
+          />
+        </ThemeProvider>
       </MultiContent>
       <MultiContent>
         <Label>
@@ -215,7 +225,7 @@ function Stack() {
           style={{
             marginBottom: "60px",
             border: " 1px solid #393A47",
-            height: "160px",
+            height: "100%",
             width: "100%",
             background: "#393A47",
           }}
@@ -232,7 +242,7 @@ function Stack() {
                     marginLeft: 1,
                     borderRadius: 10,
                   }}
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(addStack)}
                 ></ClearIcon>
               </SelectStack>
             );

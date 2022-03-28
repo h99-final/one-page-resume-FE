@@ -47,3 +47,17 @@ export const debounce = (func, delay) => {
     timeoutId = setTimeout(func, delay);
   };
 };
+
+export const option = [
+  { stack: "JS", index: 0 },
+  { stack: "Android", index: 1 },
+  { stack: "Javascript", year: 1974 },
+  { stack: "Spring", year: 1974 },
+  { stack: "C", year: 1974 },
+  { stack: "C++", year: 1974 },
+  { stack: "React", year: 1974 },
+  { stack: "iOS", year: 1974 },
+  { stack: "Node,js", year: 1974 },
+  { stack: "Vue.js", year: 1974 },
+  { stack: "Git", year: 1974 },
+];

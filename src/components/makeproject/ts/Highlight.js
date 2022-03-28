@@ -64,7 +64,7 @@ const InputSize = styled.div`
   height: ${(props) =>
     props.show
       ? props.height > 600
-        ? `calc(${props.height}px - 9vw - 10px)`
+        ? `calc(${props.height}px - 9vw - 40px)`
         : // "500px"
           "600px"
       : "350px"};
