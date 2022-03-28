@@ -169,7 +169,7 @@ const InputBox = styled.div`
 
 const WriteBtn = styled.button`
   cursor: pointer;
-  width: 88px;
+  width: fit-content;
   height: 40px;
   border-radius: 30px;
   border: none;
@@ -201,7 +201,7 @@ const Line = styled.div`
 const Or = styled.div`
   position: absolute;
   background-color: #2C2E39;
-  width: 25px;
+  width: fit-content;
   height: 17px;
   margin: 0px 152px 0px 152px;
   font-size: 14px;
