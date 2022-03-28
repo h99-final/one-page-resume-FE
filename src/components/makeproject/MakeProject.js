@@ -39,7 +39,6 @@ function MakeProject() {
   const history = useHistory();
   const { id, projectId } = useParams();
   //포트폴리오 프로젝트 생성
-  const animatedComponents = makeAnimated();
   const {
     register,
     handleSubmit,
