@@ -52,6 +52,12 @@ const PorfList = () => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    if (userInfo) {
+      setAddStack(userInfo.stack);
+    }
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     if (hasMore) {
       apis.mainPorf(addStack, page).then((res) => {
@@ -72,12 +78,6 @@ const PorfList = () => {
       setHasMore(true);
     };
   }, [page, addStack]);
-
-  useEffect(() => {
-    if (userInfo) {
-      setAddStack(userInfo.stack);
-    }
-  }, []);
 
   useEffect(() => {
     setPage(0);
