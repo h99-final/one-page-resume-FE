@@ -61,8 +61,8 @@ function PortfolioBaseHeader(props) {
       setSelected(5);
     }
     return () => {
-      setScroll(0);
-      setSelected(1);
+      // setScroll(0);
+      // setSelected(1);
       document.body.removeEventListener("scroll", handleScroll);
     };
   }, [scroll]);

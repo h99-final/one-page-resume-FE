@@ -142,17 +142,16 @@ const ProjList = () => {
               fullWidth
               filterSelectedOptions
               id="tags-standard"
-              options={option.map((option) => option.stack)}
-              value={addStack}
-              //Todo
-              // defaultValue={userInfo?.stack}
+              // options={option.map((option) => option.stack)}
+              getOptionLabel={(option) => option}
+              options={option}
+              value={addStack ? addStack : []}
               onChange={handleChange}
               renderTags={(addStack, getTagProps) =>
-                addStack.map((option, index) => (
+                addStack?.map((option, index) => (
                   <Chip
                     sx={{ display: "none" }}
                     variant="outlined"
-                    label={option}
                     {...getTagProps({ index })}
                   />
                 ))

@@ -187,7 +187,7 @@ function Stack() {
             fullWidth
             filterSelectedOptions
             id="tags-standard"
-            options={option.map((option) => option.stack)}
+            options={option}
             value={addStack}
             defaultValue={addStack}
             onChange={handleChange}
