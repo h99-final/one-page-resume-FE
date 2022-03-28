@@ -186,8 +186,8 @@ const TextBox = styled.div`
   border-radius: 15px;
   align-items: center;
   text-align: center;
-  width: auto;
-  padding: 10px 20px;
+  width: fit-content;
+  padding: 10px 10px;
   font-size: 15px;
   font-weight: normal;
 `;
