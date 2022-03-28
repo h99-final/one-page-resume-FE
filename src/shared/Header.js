@@ -134,7 +134,7 @@ const Header = (props) => {
                 modalClose();
               }}
             >
-              로그인/회원가입
+              시작하기
             </WriteBtn>
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>

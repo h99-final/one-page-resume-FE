@@ -33,10 +33,10 @@ const Banner = () => {
         navigation={true}
         modules={[Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+      // autoplay={{
+      //   delay: 5000,
+      //   disableOnInteraction: false,
+      // }}
       >
         <div
           slot="container-start"
@@ -75,8 +75,9 @@ const Banner = () => {
               </BtnBox>
             </TextBox>
 
-            <ContentBox>
+            <ContentBox >
               <img
+                style={{ width: "665px" }}
                 alt=""
                 src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1.gif"
               />

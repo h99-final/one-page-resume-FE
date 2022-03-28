@@ -138,7 +138,7 @@ const AddInfo = (props) => {
             <p>추가정보를 3가지만 입력하면</p>
             <p>포그를 제대로 이용할 수 있어요.</p>
             <p>포트폴리오 제작은 물론</p>
-            <p>최신 프로젝트까지 추천드릴께요.</p>
+            <p>최신 프로젝트까지 추천해 드릴게요.</p>
           </ImgInputBox>
           <div>
             <span>
@@ -183,9 +183,12 @@ const AddInfo = (props) => {
                 error={nameError !== "" || false}
               />
               {nameError && (
-                <span style={{ fontSize: "12px", color: "orange" }}>
-                  {nameError}
-                </span>
+
+                <div style={{ textAlign: "left" }}>
+                  <span style={{ fontSize: "14px", color: "orange" }}>
+                    {nameError}
+                  </span>
+                </div>
               )}
 
               <CssTextField
@@ -203,9 +206,12 @@ const AddInfo = (props) => {
                 error={gitUrlError !== "" || false}
               />
               {gitUrlError && (
-                <span style={{ fontSize: "12px", color: "orange" }}>
-                  {gitUrlError}
-                </span>
+
+                <div style={{ textAlign: "left" }}>
+                  <span style={{ fontSize: "14px", color: "orange" }}>
+                    {gitUrlError}
+                  </span>
+                </div>
               )}
               <CssTextField
                 focuscolor="#00C4B4"
@@ -277,15 +283,17 @@ const AddInfo = (props) => {
               선택하신 프레임워크와 관련된 프로젝트를 추천해드릴게요.
             </p>
           </TextContainer>
+
           {stack.length > 3 ? (
-            <p style={{ fontSize: "12px", color: "orange" }}>
+            <p style={{ fontSize: "14px", color: "orange" }}>
               3가지만 골라주세요
             </p>
           ) : (
-            <p style={{ color: "white", fontSize: "12px" }}>
+            <p style={{ color: "#2C2E39", fontSize: "14px" }}>
               3가지만 골라주세요
             </p>
           )}
+
           {defaultStack.map((s, index) => {
             return (
               <StyledBox>

@@ -32,7 +32,7 @@ const Modal = ({ modalClose }) => {
                 <img style={{ width: "200px" }} alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/POUG.gif' />
               </h1>
 
-              <p>Portfolio와 함께 하면 할 수 있는 것들이에요!</p>
+              <p>POUG와 함께 하면 할 수 있는 것들이에요!</p>
 
               <TextBox style={{ color: "#FF9B00" }}>
                 내 프로젝트에 도움이 되는 다양한 영감을 얻어요!
@@ -51,8 +51,8 @@ const Modal = ({ modalClose }) => {
                 <div
                   style={{
                     position: "fixed",
-                    top: "2%",
-                    right: "2%",
+                    top: "20px",
+                    right: "20px",
                   }}
                 >
                   <button
@@ -165,7 +165,6 @@ const WelcomeBox = styled.div`
 `;
 
 const TextContainer = styled.div`
-  border: 1px solid white;
   width: 450px;
   height: 323px;
   margin: 210px auto;
@@ -183,7 +182,7 @@ const TextContainer = styled.div`
 `;
 
 const TextBox = styled.div`
-  margin: 5px auto;
+  margin: 15px auto;
   background-color: rgba(66, 68, 83, 0.7);
   border-radius: 15px;
   align-items: center;
