@@ -5,16 +5,15 @@ import { apis } from "../../../shared/axios";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as userActions } from '../../../redux/modules/user';
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../../../redux/modules/user";
 
 function FileUpload() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [Images, setImages] = useState([]);
   const [img, setImg] = useState("");
   const userInfo = useSelector((state) => state.user.user);
   // const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem("userInfo")));
-
 
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
@@ -36,6 +35,18 @@ function FileUpload() {
   //   useEffect(() => {
   //   dispatch(userActions.userInfoDB());
   // }, []);
+
+  function deletePreview(e) {
+    e.stopPropagation();
+    apis
+      .profileDelete()
+      .then((res) => {
+        dispatch(userActions.userInfoDB());
+      })
+      .catch((error) => {
+        window.alert(error.response.data.data.errors[0].message);
+      });
+  }
 
   return (
     <>
@@ -72,6 +83,11 @@ function FileUpload() {
                     width="100%"
                     alt="이미지를 등록해주세요"
                     src={userInfo.profileImage}
+                  />
+                  <TrashImg
+                    onClick={(e) => deletePreview(e)}
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/delete.svg"}
                   />
                 </Image>
               )}
@@ -112,8 +128,9 @@ const Image = styled.div`
   align-items: center;
   flex-direction: row;
   z-index: 2;
+  position: relative;
   img {
-    z-index: 115;
+    z-index: 5;
     :hover {
     }
     span {
@@ -121,6 +138,19 @@ const Image = styled.div`
       color: white;
       z-index: 1;
     }
+  }
+`;
+
+export const TrashImg = styled.img`
+  width: 30px;
+  height: auto;
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  ${Image}:hover & {
+    opacity: 1;
   }
 `;
 
