@@ -28,6 +28,9 @@ import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../../../shared/common";
 import { CssTextField, theme } from "../../../shared/_sharedMuiStyle";
+//redux
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../../redux/modules/user";
 
 export const customStyles = {
   control: (base, state) => ({
@@ -60,8 +63,11 @@ function Stack() {
     "Spring",
     "Node.js",
     "Vue.js",
+    "Git",
+    //ToDo 사용 금지
     "git",
   ];
+  const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const [stack, setStack] = useState([]);
@@ -91,7 +97,7 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
-    return submitStack;
+    return () => submitStack;
   }, []);
 
   const submitStack = async () => {
@@ -104,7 +110,9 @@ function Stack() {
     if (stack.length === 3) {
       await apis
         .putStack(data)
-        .then((res) => {})
+        .then((res) => {
+          dispatch(userActions.userInfoDB());
+        })
         .catch((error) => {
           window.alert(error.message);
         });

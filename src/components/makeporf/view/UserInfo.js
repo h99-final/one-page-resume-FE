@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useDebugValue, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -15,9 +15,13 @@ import FileUpload from "../shared/ImageUpload";
 import { apis } from "../../../shared/axios";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
+//redux
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../../redux/modules/user";
 
 function UserInfo() {
   const defaultValues = {};
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -33,10 +37,13 @@ function UserInfo() {
 
   const onValid = (data) => {
     const stack = userInfo.stack;
-    const _data = { ...data, stack };
+    const _data = { ...data };
     apis
       .addInfo(_data)
-      .then((res) => {})
+      .then((res) => {
+        // sessionStorage.setItem("userInfo", JSON.stringify(_data));
+        dispatch(userActions.userInfoDB());
+      })
       .catch((error) => {});
   };
 

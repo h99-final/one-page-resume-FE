@@ -54,7 +54,7 @@ function ProjectSelect() {
     //   })
     //   .then(() => setIs_loading(false));
     // setSelectedProjects(porfProject);
-    return () => projectSubmit();
+    return projectSubmit;
   }, []);
 
   return (

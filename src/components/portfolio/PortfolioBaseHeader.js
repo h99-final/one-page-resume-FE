@@ -44,7 +44,8 @@ function PortfolioBaseHeader(props) {
   const [selected, setSelected] = useState(1);
   //useEffect를 사용하여 scrollTop의 상태가 변할 때마다 스크롤 이벤트, 함수 실행
   useEffect(() => {
-    document.body.addEventListener("scroll", debounce(handleScroll, 200));
+    document.addEventListener("scroll", debounce(handleScroll, 200));
+    console.log(selected);
     if (scroll < defaultScroll.user && scroll >= 0) {
       setSelected(1);
     }
@@ -60,10 +61,9 @@ function PortfolioBaseHeader(props) {
     } else if (scroll >= defaultScroll.project) {
       setSelected(5);
     }
+
     return () => {
-      // setScroll(0);
-      // setSelected(1);
-      document.body.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
     };
   }, [scroll]);
 
