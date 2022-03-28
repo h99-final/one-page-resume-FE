@@ -64,7 +64,7 @@ function UserInfo() {
         setValue("");
       });
 
-    return handleSubmit(onValid);
+    return () => onValid();
   }, []);
 
   return (

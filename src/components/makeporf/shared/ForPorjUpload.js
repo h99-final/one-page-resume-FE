@@ -5,6 +5,7 @@ import { apis } from "../../../shared/axios";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../redux/modules/image";
+import { Icon, IconBox } from "./_sharedStyle";
 
 function ForProjUpload(props) {
   const dispatch = useDispatch();
@@ -28,14 +29,19 @@ function ForProjUpload(props) {
     );
   };
 
-  function onImageChange(e) {
-    const reader = new FileReader();
-    const file = images;
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreview(reader.result);
-    };
+  function deletePreview(file, i) {
+    let _files = files.filter((e, index) => index !== i);
+    setFiles(_files);
   }
+
+  // function onImageChange(e) {
+  //   const reader = new FileReader();
+  //   const file = images;
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setPreview(reader.result);
+  //   };
+  // }
 
   return (
     <ProfileBox style={{ display: "flex" }}>
@@ -68,13 +74,18 @@ function ForProjUpload(props) {
         )}
       </Dropzone>
 
-      {files.map((file) => (
+      {files.map((file, i) => (
         <Image>
           <img
             style={{ borderRadius: "10px" }}
             width="250px"
             alt="selected"
             src={file.preview}
+          />
+          <TrashImg
+            onClick={(e) => deletePreview(file, i)}
+            alt=""
+            src={process.env.PUBLIC_URL + "/img/delete.svg"}
           />
         </Image>
       ))}
@@ -102,11 +113,28 @@ const Inner = styled.div`
 
 const Image = styled.div`
   display: flex;
+  position: relative;
   height: 250px;
   margin: 10px;
   border-radius: 10px;
   background-image: ${(props) => (props ? props.bgUrl : null)};
   opacity: 1;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const TrashImg = styled.img`
+  width: 30px;
+  height: auto;
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  ${Image}:hover & {
+    opacity: 1;
+  }
 `;
 
 const portrait = styled.div`

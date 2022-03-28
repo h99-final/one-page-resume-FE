@@ -200,3 +200,8 @@ export const Font = styled.div`
   color: white;
   margin: 10px;
 `;
+
+export const Icon = styled.div`
+  background-color: #fff;
+  border-radius: 50px;
+`;
