@@ -51,6 +51,7 @@ const CssTextField = styled(TextField, {
   '& input:valid:focus + fieldset': { // override inline-style
   },
 }));
+
 const AddInfo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();

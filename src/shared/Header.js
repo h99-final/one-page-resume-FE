@@ -253,24 +253,16 @@ export const LeftMenu = styled.div`
   cursor: pointer;
 `;
 
-const Circle = styled.div`
-  background-color: #c4c4c4;
-  font-size: 25px;
-  width: 35px;
-  height: 35px;
-  border-radius: 35px;
-  margin-right: 10px;
-  cursor: pointer;
-`;
 const Port = styled.div`
   font-size: 20px;
-  width: 90px;
+  width: fit-content;
   margin-left: 50px;
   cursor: pointer;
 `;
+
 const Proj = styled.div`
   font-size: 20px;
-  width: 70px;
+  width: fit-content;
   margin-left: 40px;
   cursor: pointer;
 `;
@@ -287,12 +279,12 @@ export const RightMenu = styled.div`
 const SharedBtn = styled.button`
   cursor: pointer;
   background-color: #00b3a6;
-  width: 120px;
+  width: fit-content;
   height: 40px;
   color: white;
   border-radius: 24px;
   font-size: 17px;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 20px;
   border: none;
   margin-right: 30px;
 `;
@@ -300,11 +292,11 @@ const SharedBtn = styled.button`
 const WriteBtn = styled.button`
   cursor: pointer;
   background-color: #00c4b4;
-  width: 130px;
+  width: fit-content;
   height: 40px;
   color: white;
   border-radius: 25px;
   font-size: 17px;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 20px;
   border: none;
 `;
