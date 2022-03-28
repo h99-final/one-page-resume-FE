@@ -167,7 +167,7 @@ const WelcomeBox = styled.div`
 const TextContainer = styled.div`
   width: 408px;
   height: 323px;
-  margin: 200px 85px 240px 85px;
+  margin: 210px auto;
   h1 {
     font-size: 48px;
     font-weight: bold;
@@ -186,7 +186,7 @@ const TextBox = styled.div`
   border-radius: 15px;
   align-items: center;
   text-align: center;
-  width: fit-content;
+  width: calc(fit-content + 10px);
   padding: 10px 10px;
   font-size: 15px;
   font-weight: normal;
