@@ -67,7 +67,6 @@ const ProjList = () => {
   const userInfo = useSelector((state) => state.user.user);
   const history = useHistory();
   const [proj, setProj] = useState([]);
-  const [newStack, setNewStack] = useState("");
 
   const [addStack, setAddStack] = useState([]);
 
