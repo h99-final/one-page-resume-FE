@@ -130,9 +130,12 @@ const Login = (props) => {
           />
 
           {passwordError && (
-            <span style={{ fontSize: "12px", color: "orange" }}>
-              {passwordError}
-            </span>
+
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
+                {passwordError}
+              </span>
+            </div>
           )}
 
           <WriteBtn disabled={!password ? true : false} onClick={login}>
@@ -143,14 +146,12 @@ const Login = (props) => {
       <OrBox>
         <Line />
         <Or>또는</Or>
-        <KakaoBtn onClick={() => {
-          window.location.href = `${KAKAO_AUTH_URL}`;
-        }}>
-          <img
-            style={{ marginRight: "75px" }}
-            alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
-          카카오로 시작하기
-        </KakaoBtn>
+        <img
+          style={{ marginTop: "50px", cursor: "pointer" }}
+          onClick={() => {
+            window.location.href = `${KAKAO_AUTH_URL}`;
+          }}
+          alt="" src={process.env.PUBLIC_URL + "/img/kakaologin.svg"} />
       </OrBox>
     </>
   );
@@ -200,8 +201,10 @@ const WriteBtn = styled.button`
 const OrBox = styled.div`
   width: 350px;
   height: 118px;
-  margin: 0px 115px 0px 115px;
+  margin: 0px auto;
+  text-align: center;
   border: 1px solid #2C2E39;
+  position: relative;
 `;
 
 const Line = styled.div`
@@ -209,33 +212,22 @@ const Line = styled.div`
   border-top: 1px solid;
   color: #696B7B;
   width: 350px;
-  height: 138px;
+  z-index: 0;
   margin-top: 14px;
 `;
 
 const Or = styled.div`
-  position: absolute;
   background-color: #2C2E39;
-  width: 25px;
+  position: absolute;
+  text-align: center;
+  width: 45px;
+  z-index: 1;
   height: 17px;
-  margin: 0px 152px 0px 152px;
+  margin: 0px 151px;
   font-size: 14px;
   color: #999999;
-  padding: 8px 10px 10px 10px;
+  padding: 8px 0px 10px 0px;
 `;
 
-const KakaoBtn = styled.button`
-  cursor: pointer;
-  width: 350px;
-  border-radius: 12px;
-  border: 1px solid #424453;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-top: 37px;
-  padding: 15px 20px;
-  color: #191919;
-  background-color: #FEE500;
-`;
 
 export default Login;

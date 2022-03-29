@@ -69,6 +69,7 @@ const Start = (props) => {
 
   const [email, setEmail] = React.useState();
   const [emailError, setEmailError] = useState("");
+  const [sign, setSign] = useState(false);
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -77,6 +78,7 @@ const Start = (props) => {
   const sumitEmail = () => {
     if (!emailCheck(email) || !email) {
       setEmailError("이메일 형식을 다시 확인해주세요!");
+      setSign(false)
       return;
     }
 
@@ -87,7 +89,10 @@ const Start = (props) => {
       if (res.data.result === true) {
         return statusFunction(true);
       }
-      statusFunction(false);
+      else {
+        setSign(true)
+        setEmailError("등록되지 않은 이메일입니다.")
+      }
     });
   };
 
@@ -95,7 +100,7 @@ const Start = (props) => {
     <>
       <TextContainer>
         <h1>시작하기</h1>
-        <p>환영합니다 이메일을 입력해주세요.</p>
+        <p>포그가 처음이신가요? <span onClick={() => { statusFunction(false) }}>간편 가입하기</span></p>
       </TextContainer>
       <ThemeProvider theme={theme}>
         <InputBox>
@@ -112,7 +117,23 @@ const Start = (props) => {
             error={emailError !== "" || false}
           />
           {emailError && (
-            <span style={{ fontSize: "12px", color: "orange" }}>{emailError}</span>
+            <div style={{ textAlign: "left" }}>
+              {!sign ? <span style={{ fontSize: "14px", color: "orange" }}>{emailError}</span>
+                : <span style={{ fontSize: "14px", color: "orange" }}>{emailError}
+                  <span
+                    style={{
+                      cursor: "pointer",
+                      marginLeft: "5px",
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      lineHeight: "17px",
+                      fontSize: "14px",
+                      color: "#CFD3E2",
+                    }}
+                    onClick={() => { statusFunction(false) }}>간편 가입하기</span>
+                </span>
+              }
+            </div>
           )}
 
           <WriteBtn
@@ -126,14 +147,12 @@ const Start = (props) => {
       <OrBox>
         <Line />
         <Or>또는</Or>
-        <KakaoBtn onClick={() => {
-          window.location.href = `${KAKAO_AUTH_URL}`;
-        }}>
-          <img
-            style={{ marginRight: "75px" }}
-            alt="" src={process.env.PUBLIC_URL + "/img/kakao.svg"} />
-          카카오로 시작하기
-        </KakaoBtn>
+        <img
+          style={{ marginTop: "50px", cursor: "pointer" }}
+          onClick={() => {
+            window.location.href = `${KAKAO_AUTH_URL}`;
+          }}
+          alt="" src={process.env.PUBLIC_URL + "/img/kakaologin.svg"} />
       </OrBox>
     </>
   );
@@ -158,6 +177,17 @@ const TextContainer = styled.div`
     font-size: 16px;
     font-weight: normal;
     color: #CFD3E2CC;
+  }
+  span{
+    cursor: pointer;
+    margin-left: 5px;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #CFD3E2;
   }
 `;
 
@@ -184,10 +214,12 @@ const WriteBtn = styled.button`
   }
 `;
 const OrBox = styled.div`
+  border: 1px solid #2C2E39;
   width: 350px;
   height: 118px;
-  margin: 0px 115px 0px 115px;
-  border: 1px solid #2C2E39;
+  margin: 0px auto;
+  text-align: center;
+  /* border: 1px solid #2C2E39; */
 `;
 
 const Line = styled.div`
@@ -195,30 +227,19 @@ const Line = styled.div`
   border-top: 1px solid;
   color: #696B7B;
   width: 350px;
+  z-index: 0;
   margin-top: 14px;
 `;
 
 const Or = styled.div`
-  position: absolute;
+  border: 1px solid #2C2E39;
   background-color: #2C2E39;
-  width: fit-content;
+  position: absolute;
+  width: 45px;
+  z-index: 1;
   height: 17px;
-  margin: 0px 152px 0px 152px;
+  margin: 0px 152px;
   font-size: 14px;
   color: #999999;
   padding: 8px 0px 10px 0px;
-`;
-
-const KakaoBtn = styled.button`
-  cursor: pointer;
-  width: 350px;
-  border-radius: 12px;
-  border: 1px solid #424453;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-top: 37px;
-  padding: 15px 20px;
-  color: #191919;
-  background-color: #FEE500;
 `;

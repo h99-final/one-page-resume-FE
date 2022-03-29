@@ -211,8 +211,10 @@ const IntroBox = styled.div`
 `;
 
 const ImgBox = styled.div`
-  width: 47.5%;
-  margin-right: 2.5%;
+  width: 40%;
+  height: 100%;
+  min-width: 600px;
+  margin-right: 20px;
 `;
 
 const ContentBox = styled.div`

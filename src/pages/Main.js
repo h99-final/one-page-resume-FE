@@ -113,22 +113,19 @@ const Main = () => {
         <PortfolioBox>
           <TitleBox>
             <h1>실시간 베스트 포트폴리오</h1>
-            <h2>
-              <button
-                onClick={() => {
-                  setIndex((prev) => (prev - num) % 12);
-                }}
-              >
-                {"<"}
-              </button>
-              <button
-                onClick={() => {
-                  setIndex((prev) => (prev + num) % 12);
-                }}
-              >
-                {">"}
-              </button>
-            </h2>
+            <div>
+              <img onClick={() => {
+                setIndex((prev) => (prev - num) % 12);
+              }}
+                style={{ marginRight: "10px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/goLeft.svg"} />
+
+              <img onClick={() => {
+                setIndex((prev) => (prev + num) % 12);
+              }}
+                style={{ marginRight: "24px" }}
+                alt="" src={process.env.PUBLIC_URL + "/img/goRight.svg"} />
+            </div>
           </TitleBox>
           <Portfolio>
             {porf?.map((e, i) => {
@@ -209,25 +206,19 @@ const TitleBox = styled.div`
     letter-spacing: -0.01em;
     color: white;
   }
-  h2 {
     button {
       margin-right: 10px;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      font-weight: bolder;
-      color: white;
-      border: 1px solid #393a47;
-      border-radius: 25px;
-      background-color: #393a47;
-      font-size: 20px;
+      align-items: center;
+
+      border-radius: 100px;
+      border: 1px solid inherit;
       :hover {
         background-color: #000000;
         color: white;
-        border: none;
+        border: 1px solid black;
       }
     }
-  }
+  
 `;
 
 const PortfolioBox = styled.div`

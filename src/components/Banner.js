@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,11 +13,16 @@ import "./banner.css";
 import { Parallax, Pagination, Navigation, Autoplay } from "swiper";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import Modal from './loginModal/Modal';
 
 const Banner = () => {
   const history = useHistory();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalClose = () => {
+    setModalOpen(!modalOpen);
+  };
   return (
     <>
       <Swiper
@@ -33,10 +38,10 @@ const Banner = () => {
         navigation={true}
         modules={[Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+      // autoplay={{
+      //   delay: 5000,
+      //   disableOnInteraction: false,
+      // }}
       >
         <div
           slot="container-start"
@@ -58,25 +63,26 @@ const Banner = () => {
                 <br />
                 어디까지 해보셨나요?
               </h1>
-              <h2>
+              <h2 style={{ marginTop: "30px" }}>
                 개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
               </h2>
 
               <BtnBox>
-                <button
-                  onClick={() => {
-                    history.replace(
-                      `/write/portfolio/introduce/${userInfo.porfId}`
-                    );
-                  }}
-                >
-                  지금 시작하기
-                </button>
+                {userInfo ?
+                  <button
+                    onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
+                    지금 시작하기
+                  </button> :
+                  <button onClick={() => { modalClose(); }}>
+                    지금 시작하기
+                  </button>
+                }
               </BtnBox>
             </TextBox>
 
-            <ContentBox>
+            <ContentBox >
               <img
+                style={{ width: "665px" }}
                 alt=""
                 src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1.gif"
               />
@@ -104,15 +110,15 @@ const Banner = () => {
               </h2>
 
               <BtnBox style={{ marginTop: "60px" }}>
-                <button
-                  onClick={() => {
-                    history.replace(
-                      `/write/portfolio/introduce/${userInfo.porfId}`
-                    );
-                  }}
-                >
-                  지금 시작하기
-                </button>
+                {userInfo ?
+                  <button
+                    onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
+                    지금 시작하기
+                  </button> :
+                  <button onClick={() => { modalClose(); }}>
+                    지금 시작하기
+                  </button>
+                }
               </BtnBox>
             </TextBox>
 
@@ -135,20 +141,20 @@ const Banner = () => {
                 <br />
                 100시간짜리 나만의 포트폴리오
               </h1>
-              <h2>
+              <h2 style={{ marginTop: "30px" }}>
                 내가 등록한 프로젝트들을 모아 나의 개성을 드러내는 포트폴리오로
                 만들어 보세요.
               </h2>
               <BtnBox>
-                <button
-                  onClick={() => {
-                    history.replace(
-                      `/write/portfolio/introduce/${userInfo.porfId}`
-                    );
-                  }}
-                >
-                  지금 시작하기
-                </button>
+                {userInfo ?
+                  <button
+                    onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
+                    지금 시작하기
+                  </button> :
+                  <button onClick={() => { modalClose(); }}>
+                    지금 시작하기
+                  </button>
+                }
               </BtnBox>
             </TextBox>
 
@@ -166,7 +172,7 @@ const Banner = () => {
           }}
         >
           <Box style={{ display: "inline", position: "relative" }}>
-            <SvgBox>
+            <SvgBox >
               <img
                 style={{ borderRadius: "0px" }}
                 alt=""
@@ -175,16 +181,15 @@ const Banner = () => {
             </SvgBox>
 
             <BtnBox style={{ textAlign: "center" }}>
-              <button
-                style={{ marginLeft: "0px" }}
-                onClick={() => {
-                  history.replace(
-                    `/write/portfolio/introduce/${userInfo.porfId}`
-                  );
-                }}
-              >
-                지금 시작하기
-              </button>
+              {userInfo ?
+                <button
+                  onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
+                  지금 시작하기
+                </button> :
+                <button onClick={() => { modalClose(); }}>
+                  지금 시작하기
+                </button>
+              }
             </BtnBox>
             <GifBox
               style={{
@@ -204,15 +209,16 @@ const Banner = () => {
             </GifBox>
             <GifBox
               style={{
+                height: "30px",
                 textAlign: "center",
                 position: "fixed",
-                left: "550px",
-                top: "-20px",
+                left: "560px",
+                top: "-10px",
               }}
             >
               <button>
                 <img
-                  style={{ width: "400px" }}
+                  style={{ width: "400px", height: "440px" }}
                   alt=""
                   src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/ship.gif"
                 />
@@ -221,6 +227,8 @@ const Banner = () => {
           </Box>
         </SwiperSlide>
       </Swiper>
+
+      {modalOpen && <Modal modalClose={modalClose}></Modal>}
     </>
   );
 };
@@ -237,15 +245,16 @@ const BtnBox = styled.div`
   width: 100%;
   text-align: left;
   height: fit-content;
-  margin-top: 160px;
+  margin-top: 150px;
   button {
     &:hover {
-      background: #00c4b4;
-      transition: all 1s ease;
+      background: white;
+      transition: all 0.3s ease;
+      color: black;
     }
     cursor: pointer;
     margin: 0px auto;
-    padding: 15px 30px;
+    padding: 15px 50px;
     font-size: 18px;
     background: inherit;
     border: 1px solid white;
@@ -281,7 +290,7 @@ const TextBox = styled.div`
     width: fit-content;
     font-family: "Pretendard";
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 48px;
     line-height: 65px;
     letter-spacing: -0.01em;

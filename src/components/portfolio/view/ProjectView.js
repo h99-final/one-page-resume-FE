@@ -203,7 +203,9 @@ const IntroBox = styled.div`
 
 const ImgBox = styled.div`
   width: 40%;
+  min-width: 600px;
   height: 100%;
+  margin-right: 20px;
 `;
 
 export default ProjectViewIntro;

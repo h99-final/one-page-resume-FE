@@ -70,118 +70,185 @@ const Nav = (props) => {
 
   return (
     <React.Fragment>
-      {nav ? (
-        <NavBar>
-          <Profile>
-            <h1>{props.name}</h1>
-            <p>{props.email}</p>
-          </Profile>
-          <NavPro
-            onClick={() => {
-              history.push("/mypage");
-            }}
-          >
-            <img
-              style={{ marginRight: "15px" }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/mypage.svg"}
-            />
-            마이페이지
-          </NavPro>
-          <NavSet
-            onClick={() => {
-              history.push(`/editinfo/changeinfo/${props.userId}`);
-            }}
-          >
-            <img
-              style={{
-                marginLeft: "4px",
-                marginRight: "15px",
-              }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
-            />
-            내 정보 수정
-          </NavSet>
-          {num === 1 ? (
-            <>
-              <NavSet
-                onClick={() => {
-                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
-                }}
-              >
-                <img
-                  style={{
-                    marginLeft: "4px",
-                    marginRight: "15px",
-                  }}
-                  alt=""
-                  src={process.env.PUBLIC_URL + "/img/porf.svg"}
-                />
-                내 포트폴리오
-              </NavSet>
-              <NavSet
-                onClick={() => {
-                  history.push("/write/project/info");
-                }}
-              >
-                <img
-                  style={{
-                    marginLeft: "4px",
-                    marginRight: "15px",
-                  }}
-                  alt=""
-                  src={process.env.PUBLIC_URL + "/img/proj.svg"}
-                />
-                새 프로젝트
-              </NavSet>
-            </>
-          ) : (
-            <></>
-          )}
-
-          <NavLog>
-            <Logout
+      {num === 0 ? <>
+        {nav ? (
+          <NavBar>
+            <Profile>
+              <h1>{props.name}</h1>
+              <p>{props.email}</p>
+            </Profile>
+            <NavPro
               onClick={() => {
-                signOut();
+                history.push("/mypage");
               }}
             >
-              로그아웃
-            </Logout>
-          </NavLog>
-        </NavBar>
-      ) : null}
+              <img
+                style={{ marginRight: "15px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/mypage.svg"}
+              />
+              마이페이지
+            </NavPro>
+            <NavSet
+              onClick={() => {
+                history.push(`/editinfo/changeinfo/${props.userId}`);
+              }}
+            >
+              <img
+                style={{
+                  marginRight: "15px",
+                }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
+              />
+              내 정보 수정
+            </NavSet>
+            <NavLog>
+              <Logout
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                로그아웃
+              </Logout>
+            </NavLog>
+          </NavBar>
+        ) : null}
+      </> : <>
+        {nav ? (
+          <BigNavBar>
+            <BigProfile>
+              <Left>
+
+                <h1>{props.name}</h1>
+                <p>{props.email}</p>
+              </Left>
+              <Right>
+
+                <img
+                  style={{ marginTop: "45px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/fornav.svg"} />
+              </Right>
+            </BigProfile>
+            <NavPro
+              style={{ justifyContent: "center" }}
+              onClick={() => {
+                history.push("/mypage");
+              }}
+            >
+              <img
+                style={{ marginRight: "15px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/mypage.svg"}
+              />
+              <div style={{ marginRight: "180px" }}>마이페이지</div>
+            </NavPro>
+            <NavSet
+              onClick={() => {
+                history.push(`/editinfo/changeinfo/${props.userId}`);
+              }}
+            >
+              <img
+                style={{
+                  marginRight: "15px",
+                }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
+              />
+              <div style={{ marginRight: "178px" }}>내 정보 수정</div>
+            </NavSet>
+            <NavSet
+              onClick={() => {
+                history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
+              }}
+            >
+              <img
+                style={{
+                  marginRight: "15px",
+                }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/porf.svg"}
+              />
+              <div style={{ marginRight: "173px" }}>내 포트폴리오</div>
+            </NavSet>
+            <NavSet
+              onClick={() => {
+                history.push("/write/project/info");
+              }}
+            >
+              <img
+                style={{
+                  marginRight: "15px",
+                }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/proj.svg"}
+              />
+              <div style={{ marginRight: "180px" }}>새 프로젝트</div>
+            </NavSet>
+            <NavLog>
+              <Logout
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                로그아웃
+              </Logout>
+            </NavLog>
+          </BigNavBar>
+        ) : null}
+      </>}
+
     </React.Fragment>
   );
 };
 // NavBar component
 const NavBar = styled.nav`
-  z-index: 999;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  z-index: 15;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: auto;
+  width: 280px;
   top: 75px;
   margin-right: 30px;
   right: 0;
-  background-color: #424453;
-  border-radius: 5px;
+  background-color: #2C2E39;
 `;
-// NavList component
-const Profile = styled.div`
+const BigNavBar = styled.nav`
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  z-index: 15;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  width: 160px;
-  height: 70px;
+  position: absolute;
+  width: 350px;
+  top: 75px;
+  margin-right: 30px;
+  right: 0;
+  background-color: #2C2E39;
+`;
+
+const BigProfile = styled.div`
+  display: flex;
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid #999999;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 25px 60px 7px 60px;
-
+  
+`;
+const Left = styled.div`
+  width: 65%;
+  height: 100%;
+  margin-left: 40px;
   h1 {
+    margin-top: 35px;
     font-weight: 600;
     font-size: 26px;
     color: white;
@@ -189,23 +256,52 @@ const Profile = styled.div`
   p {
     margin-top: 15px;
     font-size: 14px;
-    color: #696b7b;
+    color: #CFD3E2;
+  }
+`;
+const Right = styled.div`
+  width: 35%;
+  height: 100%;
+`;
+const Profile = styled.div`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid #999999;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  h1 {
+    margin-top: 35px;
+    font-weight: 600;
+    font-size: 26px;
+    color: white;
+  }
+  p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #CFD3E2;
   }
 `;
 const NavPro = styled.div`
   border-top: none;
   border-bottom: none;
   color: #cfd3e2;
-  width: 100px;
+  width: 100%;
   height: 50px;
-  padding: 5px 90px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-weight: normal;
-  display: flex;
-  align-items: center;
   cursor: pointer;
   &:hover {
-    background-color: #999999;
+    width: 90%;
+    border-radius: 5px;
+    background-color: #424453;
   }
 `;
 
@@ -213,28 +309,32 @@ const NavSet = styled.div`
   border-bottom: none;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
   text-align: center;
+  margin: 10px auto;
   color: #cfd3e2;
-  width: 120px;
+  width: 100%;
   height: 50px;
-  padding: 5px 80px;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
   &:hover {
-    background-color: #999999;
+    width: 90%;
+    border-radius: 5px;
+    background-color: #424453;
   }
 `;
 const NavLog = styled.div`
   border-top: 1px solid #999999;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  flex-direction: column;
+  display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
-  padding: 17px 96px 17px 96px;
-  width: 88px;
+  padding: 17px 0px 17px 0px;
+  width: 100%;
   height: 40px;
   cursor: pointer;
   &:hover {
@@ -245,16 +345,18 @@ const Logout = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 88px;
+  width: 150px;
+  padding: 5px 20px;
   height: 40px;
-  background: inherit;
+  background: #424453;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid #424453;
   box-sizing: border-box;
   border-radius: 30px;
   :hover {
-    color: #000000;
-    background-color: #ffffff;
+    border: 1px solid #696B7B;
+    color: white;
+    background-color: #696B7B;
   }
 `;
 export default Nav;
