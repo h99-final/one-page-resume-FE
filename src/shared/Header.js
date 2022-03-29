@@ -210,6 +210,9 @@ const Header = (props) => {
               onClick={() => {
                 navBtn();
               }}
+              style={{
+                cursor: "pointer"
+              }}
               alt={userInfo?.name}
               src={userInfo?.profileImage}
               sx={{ width: 38, height: 38 }}

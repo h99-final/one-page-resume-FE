@@ -238,7 +238,7 @@ const BigProfile = styled.div`
   display: flex;
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #393A47;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   
@@ -270,7 +270,7 @@ const Profile = styled.div`
   text-align: center;
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #393A47;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   h1 {
@@ -327,7 +327,7 @@ const NavSet = styled.div`
   }
 `;
 const NavLog = styled.div`
-  border-top: 1px solid #999999;
+  border-top: 1px solid #393A47;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   display: flex;
@@ -336,11 +336,11 @@ const NavLog = styled.div`
   padding: 17px 0px 17px 0px;
   width: 100%;
   height: 40px;
-  cursor: pointer;
   &:hover {
   }
 `;
 const Logout = styled.button`
+cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
