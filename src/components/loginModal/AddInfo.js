@@ -267,7 +267,7 @@ const AddInfo = (props) => {
                 disabled={!name || !gitUrl ? true : false}
                 onClick={goNext}
               >
-                다음{">"}
+                다음
               </WriteBtn>
             </InputBox>
           </ThemeProvider>
