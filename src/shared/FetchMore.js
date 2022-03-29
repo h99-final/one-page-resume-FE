@@ -35,7 +35,8 @@ export const Fetch = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: 90%;
-  margin: 30px auto;
+  margin: 0px auto;
+  margin-top: 30px;
   cursor: pointer;
 `;
 

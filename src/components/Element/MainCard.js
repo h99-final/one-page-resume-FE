@@ -32,11 +32,11 @@ function MainCard(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack.length > 3
             ? stack.slice(0, 3).map((e, i) => {
-              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-            })
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })
             : stack.map((e, i) => {
-              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-            })}
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })}
           {stack.length > 3 && (
             <ProjectStack
               style={{
@@ -139,7 +139,6 @@ const InnerCard = styled.img`
   }
 
   @media only screen and (max-width: 1037px) {
-    
   }
 `;
 
@@ -155,11 +154,15 @@ export const ProjectForm = styled.div`
   box-sizing: border-box;
   margin-bottom: 30px;
   @media only screen and (max-width: 1377px) {
-    width: 48%
+    width: 48%;
   }
 
   @media only screen and (max-width: 1039px) {
-    width: 99%
+    width: 99%;
+  }
+  &:hover {
+    background-color: #424453;
+    transition: 0.2s ease-in-out;
   }
 `;
 

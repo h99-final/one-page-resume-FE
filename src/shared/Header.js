@@ -4,13 +4,11 @@ import Modal from "../components/loginModal/Modal";
 import { Avatar } from "@mui/material";
 import Nav from "./Nav";
 import Pnav from "./Pnav";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { debounce } from "../shared/common";
 
 export function useWindowSize() {
@@ -41,6 +39,7 @@ export function useWindowSize() {
 
 const Header = (props) => {
   const size = useWindowSize();
+  const location = useLocation();
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
@@ -55,7 +54,7 @@ const Header = (props) => {
 
   useEffect(() => {
     if (isFirstLogin) {
-      setModalOpen(true)
+      setModalOpen(true);
     }
   }, []);
 
@@ -85,7 +84,6 @@ const Header = (props) => {
   const [num, setNum] = useState(0);
 
   useEffect(() => {
-
     if (size.width <= 971) {
       setNum(1);
     }
@@ -114,6 +112,7 @@ const Header = (props) => {
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
             <Port
+              selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
                 history.push("/portfolio");
               }}
@@ -121,8 +120,9 @@ const Header = (props) => {
               포트폴리오
             </Port>
             <Proj
+              selected={location.pathname === "/project" ? true : false}
               onClick={() => {
-                history.push("/project/");
+                history.push("/project");
               }}
             >
               프로젝트
@@ -163,6 +163,7 @@ const Header = (props) => {
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
             <Port
+              selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
                 history.push("/portfolio");
               }}
@@ -170,6 +171,7 @@ const Header = (props) => {
               포트폴리오
             </Port>
             <Proj
+              selected={location.pathname === "/project" ? true : false}
               onClick={() => {
                 history.push("/project");
               }}
@@ -179,7 +181,9 @@ const Header = (props) => {
             <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>
-            {num === 1 ? <></> :
+            {num === 1 ? (
+              <></>
+            ) : (
               <>
                 <SharedBtn
                   onClick={() => {
@@ -188,7 +192,9 @@ const Header = (props) => {
                 >
                   작업 작성하기
                 </SharedBtn>
-                <BookmarkIcon
+                <img
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/BookmarkGrey.svg"}
                   style={{
                     width: "26px",
                     height: "26px",
@@ -196,7 +202,9 @@ const Header = (props) => {
                     marginRight: "12px",
                   }}
                 />
-                <NotificationsIcon
+                <img
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/BellGrey.svg"}
                   style={{
                     width: "26px",
                     height: "26px",
@@ -204,7 +212,8 @@ const Header = (props) => {
                     marginRight: "15px",
                   }}
                 />
-              </>}
+              </>
+            )}
 
             <Avatar
               onClick={() => {
@@ -221,7 +230,6 @@ const Header = (props) => {
               userId={userInfo?.userId}
             />
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
-
           </RightMenu>
         </StyledHeader>
       </>
@@ -234,12 +242,13 @@ export default Header;
 export const StyledHeader = styled.div`
   background-color: #13131b;
   display: flex;
-  /* position: fixed;
-  top: 0px; */
+  position: fixed;
+  top: 0px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  z-index: 5;
 `;
 
 export const LeftMenu = styled.div`
@@ -258,6 +267,11 @@ const Port = styled.div`
   width: fit-content;
   margin-left: 50px;
   cursor: pointer;
+  &:hover {
+    color: #00c4b4;
+    transition: 0.5s ease-in-out;
+  }
+  color: ${(props) => (props.selected ? "#00c4b4" : "")};
 `;
 
 const Proj = styled.div`
@@ -265,6 +279,11 @@ const Proj = styled.div`
   width: fit-content;
   margin-left: 40px;
   cursor: pointer;
+  &:hover {
+    color: #00c4b4;
+    transition: 0.5s ease-in-out;
+  }
+  color: ${(props) => (props.selected ? "#00c4b4" : "")};
 `;
 
 export const RightMenu = styled.div`
