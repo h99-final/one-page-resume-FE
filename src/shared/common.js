@@ -73,6 +73,7 @@ export const option = [
   "Node.js",
   "Vue.js",
   "Git",
+  "Github",
   "JAVA",
   "Python",
 ];
