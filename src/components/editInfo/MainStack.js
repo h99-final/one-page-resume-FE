@@ -81,22 +81,31 @@ function MainStack() {
 
   return (
     <>
-      <FormTitle>
+      <FormTitle style={{ display: "flex", justifyContent: "left" }}>
         <FormText>기술 스택</FormText>
-      </FormTitle>
-      <Font
-        style={{ color: "#CFD3E2", textAlign: "left", marginLeft: "205px" }}
-      >
-        나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
-        대표하는 명함에 들어가게 됩니다.
-      </Font>
 
+        <Font
+          style={{ color: "#CFD3E2", textAlign: "left", margin: "0px 0px 0px 10px" }}
+        >
+          나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
+          대표하는 명함에 들어가게 됩니다.
+        </Font>
+      </FormTitle>
+
+      {stack?.length > 3 ? (
+        <Font style={{ color: "orange", textAlign: "center" }}>
+          3가지만 골라주세요
+        </Font>
+      ) : (
+        <Font style={{ color: "#2c2e39", textAlign: "center" }}>3가지만 골라주세요</Font>
+      )}
       <MultiContent>
         <Label>
           <Font>
             대표 스택<Star>*</Star>
           </Font>
         </Label>
+
         <StackBox>
           {defaultStack.map((s, index) => {
             return (
@@ -123,13 +132,6 @@ function MainStack() {
           })}
         </StackBox>
       </MultiContent>
-      {stack?.length > 3 ? (
-        <Font style={{ color: "orange", textAlign: "center" }}>
-          3가지만 골라주세요
-        </Font>
-      ) : (
-        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
-      )}
       <div style={{ width: "96%", textAlign: "right" }}>
         <Button onClick={submitStack}>변경 내용 저장</Button>
       </div>

@@ -123,7 +123,7 @@ function Stack() {
     if (addStack.length > 2) {
       await apis
         .porfStack(addS)
-        .then((response) => {})
+        .then((response) => { })
         .catch((res) => {
           window.alert(res.error.message);
         });
@@ -133,13 +133,16 @@ function Stack() {
 
   return (
     <>
-      <FormTitle>
+      <FormTitle style={{ display: "flex", justifyContent: "left" }}>
         <FormText>기술 스택</FormText>
+
+        <Font
+          style={{ color: "#CFD3E2", textAlign: "left", margin: "0px 0px 0px 10px" }}
+        >
+          나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
+          대표하는 명함에 들어가게 됩니다.
+        </Font>
       </FormTitle>
-      <Font style={{ textAlign: "left", marginLeft: "225px" }}>
-        나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
-        대표하는 명함에 들어가게 됩니다.
-      </Font>
 
       <form onSubmit={handleSubmit(submitStack)}>
         <MultiContent>
@@ -175,7 +178,7 @@ function Stack() {
           </StackBox>
         </MultiContent>
         {stack?.length > 3 ? (
-          <ErrorMessage style={{ color: "red", textAlign: "center" }}>
+          <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
             3가지만 골라주세요
           </ErrorMessage>
         ) : (

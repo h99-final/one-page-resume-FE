@@ -75,6 +75,6 @@ export const WriteableForm = styled.div`
   order: 1;
   flex-grow: 0;
   margin: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
 `;
 export default EditInfo;

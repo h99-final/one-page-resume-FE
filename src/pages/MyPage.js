@@ -300,7 +300,6 @@ export const Stack = styled.div`
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
   text-align: center;
   color: white;
   border: 1px solid white;
@@ -316,7 +315,6 @@ export const MainStack = styled.div`
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
   text-align: center;
   color: #00b3a6;
   border: 1px solid #00b3a6;
@@ -376,7 +374,7 @@ const Project = styled.div`
 
 const UserInfoBox = styled.div`
   width: 64%;
-  min-width: 800px;
+  min-width: 850px;
   margin: 0px auto;
   margin-right: 24px;
   position: relative;
