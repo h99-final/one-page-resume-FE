@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { apis } from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { debounce } from "../shared/common";
 
 export function useWindowSize() {
@@ -39,6 +39,7 @@ export function useWindowSize() {
 
 const Header = (props) => {
   const size = useWindowSize();
+  const location = useLocation();
   const [nav, setNav] = React.useState(false);
   const [pnav, setPnav] = React.useState(false);
 
@@ -111,6 +112,7 @@ const Header = (props) => {
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
             <Port
+              selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
                 history.push("/portfolio");
               }}
@@ -118,8 +120,9 @@ const Header = (props) => {
               포트폴리오
             </Port>
             <Proj
+              selected={location.pathname === "/project" ? true : false}
               onClick={() => {
-                history.push("/project/");
+                history.push("/project");
               }}
             >
               프로젝트
@@ -160,6 +163,7 @@ const Header = (props) => {
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
             <Port
+              selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
                 history.push("/portfolio");
               }}
@@ -167,6 +171,7 @@ const Header = (props) => {
               포트폴리오
             </Port>
             <Proj
+              selected={location.pathname === "/project" ? true : false}
               onClick={() => {
                 history.push("/project");
               }}
@@ -266,6 +271,7 @@ const Port = styled.div`
     color: #00c4b4;
     transition: 0.5s ease-in-out;
   }
+  color: ${(props) => (props.selected ? "#00c4b4" : "")};
 `;
 
 const Proj = styled.div`
@@ -277,6 +283,7 @@ const Proj = styled.div`
     color: #00c4b4;
     transition: 0.5s ease-in-out;
   }
+  color: ${(props) => (props.selected ? "#00c4b4" : "")};
 `;
 
 export const RightMenu = styled.div`

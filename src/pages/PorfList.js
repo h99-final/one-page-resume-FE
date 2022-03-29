@@ -102,13 +102,25 @@ const PorfList = () => {
             다른 개발자들이 작업한 프로젝트를 한곳에서 모아보고 마음에 드는
             프로젝트를 북마크 해보세요.
           </h2>
-          <button
-            onClick={() => {
-              history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
-            }}
-          >
-            내 포트폴리오 &gt;{" "}
-          </button>
+          <ButtonHolder>
+            <button
+              onClick={() => {
+                history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
+              }}
+            >
+              내 포트폴리오
+              <img
+                style={{
+                  float: "right",
+                  width: "16px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                alt="arrow"
+                src={process.env.PUBLIC_URL + "/img/RightArrowSimple.svg"}
+              />
+            </button>
+          </ButtonHolder>
         </Title>
         {/* <InputBox>
           <InputStack style={{ width: "100%" }} />
@@ -183,6 +195,12 @@ const PorfList = () => {
     </>
   );
 };
+const ButtonHolder = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Container = styled.div`
   background-color: #1f2029;
   position: relative;
