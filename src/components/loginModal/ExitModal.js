@@ -26,7 +26,6 @@ const ExitModal = ({ exitClose }) => {
       <ModalBox>
         <TextContainer>
           <h1>정말 나가시겠어요?</h1>
-          <p>추가정보가 완전히 입력되지 않았어요.</p>
           <p>지금 나가면 정보가 저장되지 않아요. 그래도 나가시겠습니까?</p>
         </TextContainer>
         <div>
@@ -36,7 +35,7 @@ const ExitModal = ({ exitClose }) => {
                 window.location.replace("/");
               }}
             >
-              다음에 할게요
+              다음에 하기
             </Btn>
           </span>
           <Btn2
@@ -44,7 +43,7 @@ const ExitModal = ({ exitClose }) => {
               exitClose(false);
             }}
           >
-            입력할게요
+            계속하기
           </Btn2>
         </div>
       </ModalBox>
