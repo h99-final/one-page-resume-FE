@@ -22,7 +22,7 @@ function Template() {
 
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
-    window.alert("준비중입니다.");
+    // window.alert("준비중입니다.");
   };
 
   return (
@@ -37,7 +37,10 @@ function Template() {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <TableChartRoundedIcon onClick={handleClick} />
+            <img
+              alt="템플릿 선택"
+              src={process.env.PUBLIC_URL + "/img/template.svg"}
+            />
             <FormText style={{ color: "white" }}>템플릿 선택</FormText>
           </Button>
         </TemplateSelector>
