@@ -20,8 +20,8 @@ const instance = axios.create({
 });
 const testinstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://3.35.13.186/",
-  // baseURL: "https://jonghun.shop",
+  // baseURL: "http://3.35.13.186/",
+  baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
