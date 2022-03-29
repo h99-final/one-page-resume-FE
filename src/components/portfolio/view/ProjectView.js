@@ -71,7 +71,7 @@ const ProjectViewIntro = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`img-${i}`}>
-                  <img alt="" src={e.url} />
+                  <img style={{ width: "100%" }} alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
@@ -79,7 +79,7 @@ const ProjectViewIntro = (props) => {
           <Swiper
             onSwiper={setThumbsSwiper}
             // loop={true}
-            spaceBetween={10}
+            // spaceBetween={10}
             slidesPerView={project?.img?.length}
             freeMode={true}
             watchSlidesProgress={true}
@@ -89,7 +89,11 @@ const ProjectViewIntro = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`e.url-${i}`}>
-                  <img alt="" src={e.url} />
+                  <img
+                    style={{ width: "70px", margin: "0px 10px" }}
+                    alt=""
+                    src={e.url}
+                  />
                 </SwiperSlide>
               );
             })}
@@ -133,10 +137,10 @@ const ProjectViewIntro = (props) => {
 };
 
 const ContentBox = styled.div`
-  width: 55%;
+  width: 45%;
   height: 100%;
   justify-content: flex-start;
-  /* padding-bottom: 60px; */
+  margin: 0px 2.5%;
 `;
 
 const AboutBox = styled.div`
@@ -217,14 +221,14 @@ const IntroBox = styled.div`
   height: 100%;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ImgBox = styled.div`
-  width: 40%;
-  min-width: 600px;
-  height: 100%;
-  margin-right: 20px;
+  width: 45%;
+  height: inherit;
+  margin: 0px 2.5%;
 `;
 
 export default ProjectViewIntro;
