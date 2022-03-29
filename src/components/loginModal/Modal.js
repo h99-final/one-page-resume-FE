@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -22,10 +22,27 @@ const Modal = ({ modalClose }) => {
 
   const [email, setEmail] = React.useState();
 
+  const wrapperRef = useRef();
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  })
+  const handleClickOutside = (event) => {
+    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+      setModalOpen(true);
+    }
+    else {
+      setModalOpen(false);
+    }
+  }
   return (
     <>
-      <ModalBG>
-        <ModalBox>
+      <ModalBG >
+
+        <ModalBox ref={wrapperRef} >
           <WelcomeBox>
             <TextContainer>
               <h1>
@@ -115,10 +132,10 @@ const Modal = ({ modalClose }) => {
               </>
             )}
           </UserBox>
-
-          {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
         </ModalBox>
       </ModalBG>
+
+      {modalOpen && <ExitModal exitClose={exitClose}></ExitModal>}
     </>
   );
 };
