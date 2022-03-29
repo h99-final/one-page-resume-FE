@@ -37,7 +37,7 @@ function ShowMore(props) {
     if (!show) {
       setTroubleShootings([]);
     }
-    // return setShow(false);
+    return;
   }, [show]);
 
   return (

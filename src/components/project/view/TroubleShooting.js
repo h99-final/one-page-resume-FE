@@ -67,6 +67,9 @@ const TroubleShooting = (props) => {
 
   return (
     <>
+      <LeftTopBox>
+        <FontTitle>TroubleShooting</FontTitle>
+      </LeftTopBox>
       <SampleCard>
         <LeftBox ref={leftBox}>
           <LeftTopBox>
@@ -75,10 +78,8 @@ const TroubleShooting = (props) => {
           {/* <>{tsContent}</> */}
           <MDEditor.Markdown
             style={{
-              backgroundColor: "#393a47",
-              borderRadius: "10px",
+              backgroundColor: "transparent",
               padding: "14px 14px",
-              border: "1px solid #393a47",
               color: "#fff",
               height: "100%",
               minHeight: "600px",
