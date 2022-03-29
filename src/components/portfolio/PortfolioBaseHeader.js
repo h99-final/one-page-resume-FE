@@ -224,7 +224,7 @@ const StyledHeaderFix = styled(StyledHeader)`
 const ListItemButtonPorf = styled(ListItemButton)`
   width: 150px;
   background: ${(props) =>
-    props.selected ? "#424453" : "rgba(255, 255, 255, 0)"};
+    props.selected ? "#4485DF" : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
     color: ${(props) => (props.selected ? "white" : "white")};
