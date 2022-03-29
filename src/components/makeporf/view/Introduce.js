@@ -40,7 +40,7 @@ function Introduce() {
         setValue("contents", contents);
       });
     });
-    return () => handleSubmit(introSubmit);
+    return handleSubmit(introSubmit);
   }, []);
 
   return (

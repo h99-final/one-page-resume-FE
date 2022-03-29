@@ -45,6 +45,7 @@ const Portfolio = () => {
           stack={stack}
           career={career}
           project={project}
+          id={id}
           // refs={refs}
         />
         <div id="1" ref={intro}>

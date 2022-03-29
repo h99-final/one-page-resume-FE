@@ -15,8 +15,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const ProjHeader = (props) => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { id } = useParams();
-  console.log(id);
   const dispatch = useDispatch();
+  const [info, setInfo] = useState({});
   const bookmark = useSelector((state) => state.bookmark.myBookmark);
 
   const history = useHistory();
@@ -34,23 +34,24 @@ const ProjHeader = (props) => {
       });
   };
 
+  useEffect(() => {
+    apis
+      .projectGet(id)
+      .then((res) => {
+        setInfo(res.data.data);
+      })
+      .catch(() => {
+        setInfo({ username: "" });
+      });
+  }, []);
+
   if (!project?.isMyProject) {
     return (
       <>
         <StyledHeader>
           <LeftMenu>
-            <Avatar
-              alt={userInfo?.name}
-              src={userInfo?.profileImage}
-              sx={{ width: 38, height: 38, marginLeft: "25px" }}
-            />
-            <div
-              style={{ marginLeft: "10px", fontSize: "18px" }}
-              onClick={() => {
-                history.push(`/portfolio/${userInfo?.porfId}`);
-              }}
-            >
-              {userInfo?.name}
+            <div style={{ marginLeft: "10px", fontSize: "18px" }}>
+              {info?.username}
             </div>
           </LeftMenu>
           <RightMenu>
@@ -99,21 +100,13 @@ const ProjHeader = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
-            <Avatar
-              onClick={() => {
-                history.push("/");
-              }}
-              alt={userInfo?.name}
-              src={userInfo?.profileImage}
-              sx={{ width: 38, height: 38, marginLeft: "25px" }}
-            />
             <div
               style={{ marginLeft: "10px", fontSize: "18px" }}
               onClick={() => {
                 history.push(`/portfolio/${userInfo.porfId}`);
               }}
             >
-              {userInfo.name}
+              {info?.username}
             </div>
           </LeftMenu>
           <RightMenu>
