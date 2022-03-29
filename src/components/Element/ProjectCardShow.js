@@ -141,12 +141,12 @@ const InnerCard = styled.img`
 `;
 
 export const ProjectForm = styled.div`
-  width: 444px;
+  width: 31.9%;
+  margin: 0% 0.7%;
   min-width: 444px;
   max-height: 515px;
   border-radius: 10px;
   background-color: #393A47;
-  margin: 0px auto;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #393A47;"};
   box-sizing: border-box;

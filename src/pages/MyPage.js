@@ -189,7 +189,7 @@ function MyPage() {
         </PortfolioBox>
       </Form>
       <Project>
-        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px" }}>
+        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px", marginLeft: "0.7%" }}>
           프로젝트
         </ProjTitle>
 
@@ -366,7 +366,7 @@ const Project = styled.div`
   flex-wrap: wrap;
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   max-width: 1400px;
   border-radius: 10px;
   @media only screen and (max-width: 1300px) {
@@ -484,12 +484,12 @@ const Portfolio = styled.div`
 
 const AddProject = styled.div`
   background-color: lightblue;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 444px;
   height: 515px;
   border-radius: 10px;
+  margin: 0px 15px;
   background-color: #393a47;
-  margin: 0px auto;
   box-sizing: border-box;
   margin-bottom: 40px;
   @media only screen and (max-width: 1300px) {
