@@ -31,7 +31,6 @@ import Spinner from "../../shared/Spinner";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssTextField, theme } from "../../shared/_sharedMuiStyle";
 import { option } from "../../shared/common";
 
@@ -198,34 +197,32 @@ function MakeProject() {
                 기술 스택<Star>*</Star>
               </Font>
             </Label>
-            <ThemeProvider theme={theme}>
-              <Autocomplete
-                multiple
-                fullWidth
-                filterSelectedOptions
-                id="tags-standard"
-                options={option}
-                value={addStack}
-                defaultValue={addStack}
-                onChange={handleChange}
-                renderTags={(addStack, getTagProps) =>
-                  addStack.map((option, index) => (
-                    <Chip
-                      sx={{ display: "none" }}
-                      variant="outlined"
-                      {...getTagProps({ index })}
-                    />
-                  ))
-                }
-                renderInput={(params) => (
-                  <CssTextField
-                    {...params}
-                    variant="standard"
-                    placeholder="기술스택으로 검색해보세요"
+            <Autocomplete
+              multiple
+              fullWidth
+              filterSelectedOptions
+              id="tags-standard"
+              options={option}
+              value={addStack}
+              defaultValue={addStack}
+              onChange={handleChange}
+              renderTags={(addStack, getTagProps) =>
+                addStack.map((option, index) => (
+                  <Chip
+                    sx={{ display: "none" }}
+                    variant="outlined"
+                    {...getTagProps({ index })}
                   />
-                )}
-              />
-            </ThemeProvider>
+                ))
+              }
+              renderInput={(params) => (
+                <CssTextField
+                  {...params}
+                  variant="standard"
+                  placeholder="기술스택으로 검색해보세요"
+                />
+              )}
+            />
           </MultiContent>
           <MultiContent style={{ marginBottom: "30px" }}>
             <Label>

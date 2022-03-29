@@ -24,11 +24,6 @@ function Template() {
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
     window.alert("준비중입니다.");
-    // let data = {
-    //   idx: event.currentTarget,
-    // };
-    //ToDO템플릿 리덕스 필요
-    // apis.templatePut(data).then((res) => {});
   };
 
   const handleClose = (event) => {
@@ -64,11 +59,12 @@ function Template() {
               style={{ color: "white" }}
               onClick={() => history.push(`/portfolio/${porfId}`)}
             >
+              <input id="submit" type="submit" style={{ display: "none" }} />
               작성 완료
             </FormTextWhite>
           </Save>
           <Label id={id} htmlFor="submit">
-            <Save style={{ marginRight: "5px" }}>
+            <Save style={{ marginRight: "15px" }}>
               <input id="submit" type="submit" style={{ display: "none" }} />
               <FormTextWhite>임시 저장</FormTextWhite>
             </Save>

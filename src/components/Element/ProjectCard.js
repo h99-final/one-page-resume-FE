@@ -37,16 +37,12 @@ function ProjectCard(props) {
             {stack.length > 3
               ? stack.slice(0, 3).map((e, i) => {
                   return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
+                    <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
                   );
                 })
               : stack.map((e, i) => {
                   return (
-                    <>
-                      <ProjectStack key={i + "e"}>{e}</ProjectStack>
-                    </>
+                    <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
                   );
                 })}
             {stack.length > 3 && (

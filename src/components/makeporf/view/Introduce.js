@@ -11,9 +11,13 @@ import {
 } from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
+import { useHistory } from "react-router-dom";
 
 function Introduce() {
   const defaultValues = {};
+  const history = useHistory();
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
   const {
     handleSubmit,
     formState: { errors },
@@ -21,11 +25,9 @@ function Introduce() {
     setValue,
   } = useForm({ defaultValues });
 
-  const [data, setData] = useState({});
-
   const introSubmit = (data) => {
     apis.introPorf(data).then((res) => {
-      window.alert("저장되었습니다.");
+      history.push(`/write/portfolio/info/${userInfo.porfId}`);
     });
   };
 
@@ -34,7 +36,6 @@ function Introduce() {
       const { porfId } = res.data.data;
       apis.introPorfGet(porfId).then((res) => {
         const { title, contents } = res.data.data;
-        setData(res.data.data);
         setValue("title", title);
         setValue("contents", contents);
       });

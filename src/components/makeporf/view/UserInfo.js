@@ -18,10 +18,12 @@ import Template from "../shared/Template";
 //redux
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../../redux/modules/user";
+import { useHistory } from "react-router-dom";
 
 function UserInfo() {
   const defaultValues = {};
   const dispatch = useDispatch();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -43,6 +45,9 @@ function UserInfo() {
       .then((res) => {
         // sessionStorage.setItem("userInfo", JSON.stringify(_data));
         dispatch(userActions.userInfoDB());
+      })
+      .then(() => {
+        history.push(`/write/portfolio/stack/${userInfo.porfId}`);
       })
       .catch((error) => {});
   };

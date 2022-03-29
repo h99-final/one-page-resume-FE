@@ -16,6 +16,7 @@ import Project, { IntroduceContainer } from "./Project";
 import ProjectViewIntro from "../components/portfolio/view/ProjectView";
 import PortfolioBaseHeader from "../components/portfolio/PortfolioBaseHeader";
 import TopDown from "../shared/TopDown";
+import PortfolioFooter from "../components/portfolio/PortfolioFooter";
 
 const Portfolio = () => {
   const intro = useRef(null);
@@ -74,6 +75,7 @@ const Portfolio = () => {
             })}
           </CardsContainer>
         </div>
+        <PortfolioFooter />
       </section>
     </>
   );
