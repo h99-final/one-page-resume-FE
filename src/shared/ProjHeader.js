@@ -6,14 +6,18 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useEffect } from "react";
 import { apis } from "./axios";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory, useParams } from "react-router-dom";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as bookmarkActions } from "../redux/modules/bookmark";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const ProjHeader = (props) => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { id } = useParams();
-  // const userInfo = useSelector((state) => state.user.user);
+  console.log(id);
+  const dispatch = useDispatch();
+  const bookmark = useSelector((state) => state.bookmark.myBookmark);
 
   const history = useHistory();
   const project = useSelector((state) => state.setproject.project);
@@ -65,10 +69,26 @@ const ProjHeader = (props) => {
               src={process.env.PUBLIC_URL + "/img/star.svg"}
             />
 
+            {bookmark.includes(id) ? (
+              <img
+                onClick={() => dispatch(bookmarkActions.deleteBookmarkDB(id))}
+                style={{ marginRight: "25px" }}
+                alt="bookmark"
+                src={process.env.PUBLIC_URL + "/img/BookmarkGrey.svg"}
+              />
+            ) : (
+              <img
+                onClick={() => dispatch(bookmarkActions.addBookmarkDB(id))}
+                style={{ marginRight: "25px" }}
+                alt="bookmark"
+                src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+              />
+            )}
+
             <img
-              style={{ marginRight: "25px" }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+              onClick={() => history.goBack()}
+              alt="close"
+              src={process.env.PUBLIC_URL + "/img/close.svg"}
             />
           </RightMenu>
         </StyledHeader>
@@ -121,6 +141,11 @@ const ProjHeader = (props) => {
                 src={process.env.PUBLIC_URL + "/img/Trash.svg"}
               />
             </div>
+            <img
+              onClick={() => history.goBack()}
+              alt="close"
+              src={process.env.PUBLIC_URL + "/img/close.svg"}
+            />
           </RightMenu>
         </StyledHeader>
       </>
@@ -161,6 +186,7 @@ const RightMenu = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-weight: 500;
+  margin-right: 16px;
   cursor: pointer;
 `;
 

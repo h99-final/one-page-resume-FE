@@ -11,28 +11,32 @@ import { apis } from "../../../shared/axios";
 // import TSPortfolio from "../../portfolio/view/TSPortfolio";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
+import Spinner from "../../../shared/Spinner";
+//markdown
+import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 const ProjectIntroduce = (props) => {
   const { id } = props;
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [project, setProject] = useState({});
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const [troubleShootings, setTroubleShootings] = useState([]);
-  const [is_loading, setIs_loading] = useState(true);
+  const [is_loading, setIs_loading] = useState(false);
 
   useEffect(() => {
     // dispatch(actionCreators.setProjectDB(id));
+    setIs_loading(true);
     apis
       .projectGet(id)
       .then((res) => {
         setProject(res.data.data);
+        setIs_loading(false);
       })
       .catch((error) => {
         window.alert(error.response.data.data.errors[0].message);
       });
-    return () => setIs_loading(true);
+    return () => setIs_loading(false);
   }, []);
 
   // 트러블 슈팅 토글 버튼
@@ -75,13 +79,17 @@ const ProjectIntroduce = (props) => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper3"
           >
-            {project?.img?.map((e, i) => {
-              return (
-                <SwiperSlide>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
-                </SwiperSlide>
-              );
-            })}
+            {is_loading ? (
+              <Spinner />
+            ) : (
+              project?.img?.map((e, i) => {
+                return (
+                  <SwiperSlide>
+                    <img key={`${e.url - i}`} alt="" src={e.url} />
+                  </SwiperSlide>
+                );
+              })
+            )}
           </Swiper>
         </ImgBox>
         <ContentBox>
@@ -97,7 +105,24 @@ const ProjectIntroduce = (props) => {
           </StackBox>
           <AboutBox>
             <ContentTitle>ABOUT</ContentTitle>
-            <h2>{project?.content}</h2>
+            <h2>
+              <MDEditor.Markdown
+                style={{
+                  backgroundColor: "transparent",
+                  color: "#fff",
+                  height: "100%",
+                  minHeight: "600px",
+                  maxWidth: "100%",
+                  width: "100%",
+                  boxSizing: "border-box",
+                  fontFamily: "Pretendard",
+                  fontSize: "16px",
+                  lineHeight: "28px",
+                }}
+                source={project?.content}
+                rehypePlugins={[[rehypeSanitize]]}
+              />
+            </h2>
           </AboutBox>
         </ContentBox>
       </IntroBox>
@@ -146,7 +171,7 @@ const ContentTitle = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 28px;
   letter-spacing: -0.01em;
   color: #555555;
   margin-bottom: 5px;
@@ -193,8 +218,9 @@ const ImgBox = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: 55%;
+  width: 47.5%;
   height: 100%;
   justify-content: flex-start;
+  margin-left: 2.5%;
 `;
 export default ProjectIntroduce;

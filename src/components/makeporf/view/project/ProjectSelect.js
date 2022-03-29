@@ -38,23 +38,14 @@ function ProjectSelect() {
     apis.projectPorf(data).then((res) => {
       // 포트폴리오 화면으로 이동시켜주기
       setError("");
+      alert("프로젝트 선택 완료");
     });
   };
   // 사용자 프로젝트 가져오기 axios
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
-    // let porfProject = [];
-    // apis
-    //   .projectMYPorfGet(userInfo.porfId)
-    //   .then((res) => {
-    //     res.data.data.map((e) => {
-    //       return porfProject.push(e.id);
-    //     });
-    //   })
-    //   .then(() => setIs_loading(false));
-    // setSelectedProjects(porfProject);
-    return projectSubmit;
+    return () => projectSubmit();
   }, []);
 
   return (
@@ -70,7 +61,7 @@ function ProjectSelect() {
                 <ProjectCard
                   selectedProjects={selectedProjects}
                   setSelectedProjects={setSelectedProjects}
-                  key={i + "e"}
+                  key={`project-${i}-${e.id}`}
                   {...e}
                 />
               );

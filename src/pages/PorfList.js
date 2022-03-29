@@ -14,27 +14,16 @@ import {
 import { option } from "../shared/common";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Chip,
+  FormControl,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssTextField, theme } from "../shared/_sharedMuiStyle";
-
-export const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: "white",
-    // Overwrittes the different states of border
-    border: "1px solid #cccccc",
-    width: "70vw",
-    minWidth: "600px",
-    maxWidth: "1140px",
-    margin: "0px auto",
-    borderRadius: "10px",
-    "&:hover": {
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "blue" : "blue",
-    },
-  }),
-};
+import { AccountCircle } from "@mui/icons-material";
 
 const PorfList = () => {
   const history = useHistory();
@@ -42,7 +31,6 @@ const PorfList = () => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const [porf, setPorf] = useState([]);
-  const [proj, setProj] = useState([]);
 
   const [addStack, setAddStack] = useState([]);
 
@@ -126,35 +114,55 @@ const PorfList = () => {
           <InputStack style={{ width: "100%" }} />
         </InputBox> */}
         <InputBox>
-          <ThemeProvider theme={theme}>
-            <Autocomplete
-              multiple
-              fullWidth
-              filterSelectedOptions
-              id="tags-standard"
-              // options={option.map((option) => option.stack)}
-              options={option}
-              value={addStack}
-              defaultValue={userInfo?.stack}
-              onChange={handleChange}
-              renderTags={(addStack, getTagProps) =>
-                addStack?.map((option, index) => (
-                  <Chip
-                    sx={{ display: "none" }}
-                    variant="outlined"
-                    {...getTagProps({ index })}
-                  />
-                ))
-              }
-              renderInput={(params) => (
-                <CssTextField
-                  {...params}
-                  variant="standard"
-                  placeholder="기술스택으로 검색해보세요"
+          <Autocomplete
+            sx={{
+              display: "inline-block",
+              "& input": {
+                width: 200,
+                bgcolor: "none",
+                color: "#696B7B",
+                borderBottomColor: " #696B7B",
+              },
+            }}
+            multiple
+            fullWidth
+            filterSelectedOptions
+            id="tags-standard"
+            // options={option.map((option) => option.stack)}
+            options={option}
+            value={addStack}
+            defaultValue={userInfo?.stack}
+            onChange={handleChange}
+            renderTags={(addStack, getTagProps) =>
+              addStack?.map((option, index) => (
+                <Chip
+                  sx={{ display: "none" }}
+                  variant="outlined"
+                  {...getTagProps({ index })}
                 />
-              )}
-            />
-          </ThemeProvider>
+              ))
+            }
+            renderInput={(params) => (
+              <TextField
+                sx={{
+                  color: "#696B7B",
+                  "&.MuiInput-input ": {
+                    color: "#696B7B",
+                  },
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircle sx={{ color: "action.active" }} />
+                    </InputAdornment>
+                  ),
+                }}
+                {...params}
+                variant="standard"
+                placeholder="기술스택으로 검색해보세요"
+              />
+            )}
+          />
         </InputBox>
 
         <StackBox style={{ marginBottom: "60px" }}>
@@ -274,14 +282,14 @@ const Title = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 70%;
+  width: 80%;
   margin: 10px auto;
   height: 50px;
   border-radius: 10px;
 `;
 
 const SelectStack = styled.button`
-  margin: 15px 15px;
+  margin: 15px 10px;
   padding: 10px 20px;
   width: fit-content;
   height: 40px;

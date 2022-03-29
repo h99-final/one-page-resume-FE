@@ -15,7 +15,8 @@ export const CssTextField = styled(TextField, {
   },
   // focused color for input with variant='filled'
   "& .MuiFilledInput-underline:after": {
-    borderBottomColor: p.focuscolor,
+    // borderBottomColor: p.focuscolor,
+    borderBottomColor: "#696B7B",
   },
   // focused color for input with variant='outlined'
   "& .MuiOutlinedInput-root": {
@@ -25,21 +26,8 @@ export const CssTextField = styled(TextField, {
   },
   "& .MuiInputBase-input": {
     position: "relative",
-    color: "white",
+    color: "#696B7B",
     width: "100%",
+    borderBottomColor: "#696B7B",
   },
 }));
-
-export const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: "#fff",
-      contrastText: "#000",
-    },
-    secondary: {
-      // This is green.A700 as hex.
-      main: "#11cb5f",
-    },
-  },
-});

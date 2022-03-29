@@ -25,12 +25,12 @@ import { useForm } from "react-hook-form";
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
 import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../../../shared/common";
 import { CssTextField, theme } from "../../../shared/_sharedMuiStyle";
 //redux
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../../redux/modules/user";
+import { useHistory } from "react-router-dom";
 
 export const customStyles = {
   control: (base, state) => ({
@@ -51,6 +51,7 @@ export const customStyles = {
 };
 
 function Stack() {
+  const { handleSubmit } = useForm();
   const defaultStack = [
     "JS",
     "JAVA",
@@ -69,6 +70,7 @@ function Stack() {
   ];
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const history = useHistory();
 
   const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
@@ -126,6 +128,7 @@ function Stack() {
           window.alert(res.error.message);
         });
     }
+    // history.push(`/write/portfolio/career/${userInfo.porfId}`);
   };
 
   return (
@@ -138,58 +141,50 @@ function Stack() {
         대표하는 명함에 들어가게 됩니다.
       </Font>
 
-      <MultiContent>
-        <Label>
-          <Font>
-            대표 스택<Star>*</Star>
-          </Font>
-        </Label>
-        <StackBox>
-          {defaultStack.map((s, index) => {
-            return (
-              <StyledBox key={index}>
-                <input
-                  type="checkbox"
-                  id={s}
-                  checked={stack?.includes(`${s}`) ? true : false}
-                  onChange={(e) => {
-                    changeHandler(e.currentTarget.checked, `${s}`);
-                  }}
-                />
-                <label id={s} htmlFor={s}>
-                  <span>
-                    <img
-                      alt=""
-                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-                    />
-                    {s}
-                  </span>
-                </label>
-              </StyledBox>
-            );
-          })}
-        </StackBox>
-      </MultiContent>
-      {stack?.length > 3 ? (
-        <ErrorMessage style={{ color: "red", textAlign: "center" }}>
-          3가지만 골라주세요
-        </ErrorMessage>
-      ) : (
-        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
-      )}
-      <MultiContent>
-        <Label>
-          <Font>기술 스택</Font>
-        </Label>
-        {/* <Select
-          styles={customStyles}
-          closeMenuOnSelect={false}
-          // components={animatedComponents}
-          options={options}
-          isMulti
-          onChange={handleChange}
-        /> */}{" "}
-        <ThemeProvider theme={theme}>
+      <form onSubmit={handleSubmit(submitStack)}>
+        <MultiContent>
+          <Label>
+            <Font>
+              대표 스택<Star>*</Star>
+            </Font>
+          </Label>
+          <StackBox>
+            {defaultStack.map((s, index) => {
+              return (
+                <StyledBox key={index}>
+                  <input
+                    type="checkbox"
+                    id={s}
+                    checked={stack?.includes(`${s}`) ? true : false}
+                    onChange={(e) => {
+                      changeHandler(e.currentTarget.checked, `${s}`);
+                    }}
+                  />
+                  <label id={s} htmlFor={s}>
+                    <span>
+                      <img
+                        alt=""
+                        src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                      />
+                      {s}
+                    </span>
+                  </label>
+                </StyledBox>
+              );
+            })}
+          </StackBox>
+        </MultiContent>
+        {stack?.length > 3 ? (
+          <ErrorMessage style={{ color: "red", textAlign: "center" }}>
+            3가지만 골라주세요
+          </ErrorMessage>
+        ) : (
+          <Font style={{ color: "inherit", textAlign: "center" }}></Font>
+        )}
+        <MultiContent>
+          <Label>
+            <Font>기술 스택</Font>
+          </Label>
           <Autocomplete
             multiple
             fullWidth
@@ -217,40 +212,41 @@ function Stack() {
               />
             )}
           />
-        </ThemeProvider>
-      </MultiContent>
-      <MultiContent>
-        <Label>
-          <Font></Font>
-        </Label>
-        <StackBox
-          style={{
-            marginBottom: "60px",
-            border: " 1px solid #393A47",
-            height: "100%",
-            width: "100%",
-            background: "#393A47",
-          }}
-        >
-          {addStack.map((addStack, index) => {
-            return (
-              <SelectStack key={index} {...addStack}>
-                {addStack}
-                <ClearIcon
-                  id={addStack}
-                  sx={{
-                    fontSize: 14,
-                    color: grey[500],
-                    marginLeft: 1,
-                    borderRadius: 10,
-                  }}
-                  onClick={() => handleDelete(addStack)}
-                ></ClearIcon>
-              </SelectStack>
-            );
-          })}
-        </StackBox>
-      </MultiContent>
+        </MultiContent>
+        <MultiContent>
+          <Label>
+            <Font></Font>
+          </Label>
+          <StackBox
+            style={{
+              marginBottom: "60px",
+              border: " 1px solid #393A47",
+              height: "100%",
+              width: "100%",
+              background: "#393A47",
+            }}
+          >
+            {addStack.map((addStack, index) => {
+              return (
+                <SelectStack key={index} {...addStack}>
+                  {addStack}
+                  <ClearIcon
+                    id={addStack}
+                    sx={{
+                      fontSize: 14,
+                      color: grey[500],
+                      marginLeft: 1,
+                      borderRadius: 10,
+                    }}
+                    onClick={() => handleDelete(addStack)}
+                  ></ClearIcon>
+                </SelectStack>
+              );
+            })}
+          </StackBox>
+        </MultiContent>
+        <Template />
+      </form>
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={submitStack}>
           <ContentCareer>
@@ -259,7 +255,6 @@ function Stack() {
         </AddButton>
       </MakeCenter>
       <PreviousNext />
-      <Template />
     </>
   );
 }
