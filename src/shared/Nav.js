@@ -74,7 +74,7 @@ const Nav = (props) => {
         {nav ? (
           <NavBar>
             <Profile>
-              <h1>{props.name}</h1>
+              <h1>{props.name ? props.name : "ㅡ"}</h1>
               <p>{props.email}</p>
             </Profile>
             <NavPro

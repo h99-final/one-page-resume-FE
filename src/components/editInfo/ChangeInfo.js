@@ -143,11 +143,12 @@ function ChangeInfo() {
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom
+              <ReadOnly
                 style={{
                   border: "none",
                   background: "#282933",
-                  color: "#999999",
+                  color: "#424453",
+
                 }}
                 {...field}
                 defaultValue={userInfo?.email}
@@ -239,5 +240,28 @@ const Button = styled.button`
   border: none;
   position: relative;
   margin-bottom: 10px;
+`;
+export const ReadOnly = styled.textarea`
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
+  width: 1120px;
+  height: 19px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  resize: none;
+  border: 1px solid #393a47;
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
+  &:focus {
+    outline: #282933 !important;
+    border: 1px solid #282933 !important;
+  }
 `;
 export default ChangeInfo;

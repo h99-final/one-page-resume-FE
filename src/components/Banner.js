@@ -67,7 +67,7 @@ const Banner = () => {
                 개발자들은 포트폴리오 제작을 위해 평균 n시간을 투자하고 있어요.
               </h2>
 
-              <BtnBox>
+              <BtnBox style={{ marginTop: "140px" }}>
                 {userInfo ?
                   <button
                     onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
@@ -145,7 +145,7 @@ const Banner = () => {
                 내가 등록한 프로젝트들을 모아 나의 개성을 드러내는 포트폴리오로
                 만들어 보세요.
               </h2>
-              <BtnBox>
+              <BtnBox style={{ marginTop: "140px" }}>
                 {userInfo ?
                   <button
                     onClick={() => { history.replace(`/write/portfolio/introduce/${userInfo.porfId}`); }}>
@@ -168,7 +168,8 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide
           style={{
-            background: "linear-gradient(180deg, #020927 0%, #005551 100%)",
+            background: "cover",
+            backgroundImage: `url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/BG4.png")`
           }}
         >
           <Box style={{ display: "inline", position: "relative" }}>
@@ -236,16 +237,18 @@ const Box = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  
   max-width: 1440px;
   min-width: 1000px;
   margin: 0px auto;
+  
 `;
 
 const BtnBox = styled.div`
   width: 100%;
   text-align: left;
   height: fit-content;
-  margin-top: 150px;
+  margin-top: 110px;
   button {
     &:hover {
       background: white;
@@ -284,7 +287,8 @@ const GifBox = styled.div`
 const TextBox = styled.div`
   min-width: 650px;
   margin: 0px auto;
-  padding-top: 110px;
+  margin-top: 40px;
+  padding-top: 50px;
   padding-left: 120px;
   h1 {
     width: fit-content;

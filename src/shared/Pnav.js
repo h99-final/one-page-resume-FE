@@ -63,12 +63,13 @@ const Pnav = (props) => {
 };
 // NavBar component
 const NavBar = styled.nav`
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #424453;
+  background-color: #2C2E39;
   position: absolute;
   border-radius: 5px;
   width: auto;
@@ -80,7 +81,7 @@ const NavBar = styled.nav`
 const NavLog = styled.div`
   border: 1px solid #2C2E39;
   border-radius: 5px;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -101,9 +102,9 @@ const Logout = styled.button`
   height: 50px;
   margin-top: 5px;
   margin-bottom: 10px;
-  background: #696B7B;
+  background: #393A47;
   color: #FFFFFF;
-  border: 1px solid #696B7B;
+  border: 1px solid #393A47;
   box-sizing: border-box;
   border-radius: 30px;
   h1{
@@ -117,8 +118,8 @@ const Logout = styled.button`
   }
   :hover {
     color: white;
-    border: 1px solid #9C9EAE;
-    background-color: #9C9EAE;
+    border: 1px solid #696B7B;
+    background-color: #696B7B;
   }
 `;
 export default Pnav;

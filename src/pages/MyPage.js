@@ -235,6 +235,7 @@ const Container = styled.div`
   height: 100%;
   background: #1f2029;
   display: inline-block;
+  margin-top: 60px;
 `;
 export const Title = styled.div`
   width: 113px;
