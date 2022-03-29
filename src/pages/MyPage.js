@@ -29,7 +29,6 @@ function MyPage() {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
-  const [alert, setAlert] = useState(true);
   const [values, setValues] = useState({
     show: userInfo?.porfShow,
   });
@@ -42,7 +41,7 @@ function MyPage() {
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
     });
-    apis.porfShow(values.show).then((res) => {});
+    apis.porfShow(values.show).then((res) => { });
   }, [values]);
 
   const handleClickShow = () => {
@@ -50,14 +49,13 @@ function MyPage() {
       ...values,
       show: !values.show,
     });
-    let timer;
-    if (timer) {
-      timer = setTimeout(() => {
-        setShow(true);
-      }, 2000);
+    if (values.show === false) {
+      alert("포트폴리오가 공개되었습니다.")
+    }
+    if (values.show === true) {
+      alert("포트폴리오가 비공개되었습니다.")
     }
   };
-  console.log(values.show);
 
   return (
     <Container>
@@ -141,15 +139,7 @@ function MyPage() {
           >
             <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
-              {values.show ? (
-                <h2 style={{ minWidth: "180px" }}>
-                  포트폴리오가 공개되었습니다.
-                </h2>
-              ) : (
-                <h2 style={{ minWidth: "200px" }}>
-                  포트폴리오가 비공개되었습니다.
-                </h2>
-              )}
+
               <button onClick={handleClickShow}>
                 {values.show ? <Visibility /> : <VisibilityOff />}
               </button>
@@ -244,6 +234,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background: #1f2029;
+  display: inline-block;
 `;
 export const Title = styled.div`
   width: 113px;
@@ -301,7 +292,7 @@ export const Font = styled.div`
   font-family: Pretendard;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 16px;
   color: #cfd3e2;
 `;
 export const Stack = styled.div`
@@ -425,7 +416,7 @@ const EditButton = styled.button`
   height: 60px;
 `;
 const LeftBox = styled.div`
-  margin: 70px 25px;
+  margin: 70px 50px;
   min-width: 250px;
   position: relative;
   @media only screen and (max-width: 1300px) {
@@ -470,7 +461,7 @@ const AddProfText = styled.div`
   line-height: 24px;
   text-align: center;
   letter-spacing: -0.01em;
-  color: #999999;
+  color: #CFD3E2;
 `;
 const RightBox = styled.div`
   margin: 70px 30px 50px 40px;
@@ -518,7 +509,7 @@ const NnE = styled.div`
   p {
     font-style: normal;
     font-weight: normal;
-    font-size: 26px;
+    font-size: 20px;
     margin-bottom: 20px;
     color: #cfd3e2;
     text-align: center;

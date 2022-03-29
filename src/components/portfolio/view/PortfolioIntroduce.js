@@ -38,7 +38,9 @@ const PortfolioIntroduce = () => {
 const Container = styled.div`
   width: 100%;
   height: 1000px;
-  display: inline;
+  background: url('https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/%E1%84%87%E1%85%A2%E1%84%80%E1%85%A7%E1%86%BC1.png');
+  background-size: cover;
+  display: inline-block;
 `;
 
 const IntroBox = styled.div`
