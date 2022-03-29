@@ -323,7 +323,7 @@ const AddInfo = (props) => {
               disabled={stack.length !== 3 ? true : false}
               onClick={addInfo}
             >
-              가입하기
+              작성완료
             </WriteBtn>
           </div>
         </>
@@ -339,6 +339,7 @@ const TextContainer = styled.div`
   height: 38px;
   margin: 80px 115px 120px 115px;
   h1 {
+    line-height: 40px;
     text-align: center;
     font-size: 32px;
     font-weight: 600;

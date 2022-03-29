@@ -138,15 +138,11 @@ function EditPwd() {
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{
-                background: "#393A47",
-                borderRadius: "5px",
-                border: "none",
-              }}
               onChange={(e) => {
                 setCurPw(e.target.value);
               }}
               required
+              multiLine
               variant="outlined"
               fullWidth
               type={values.showPassword ? "text" : "password"}
@@ -155,6 +151,7 @@ function EditPwd() {
               placeholder="비밀번호(4글자 이상)*"
               error={curPasswordError !== "" || false}
               InputProps={{
+
                 endAdornment: (
                   <InputAdornment position="absolute">
                     <IconButton
@@ -172,7 +169,7 @@ function EditPwd() {
 
           <ErrorMessage>
             {curPasswordError && (
-              <span style={{ fontSize: "12px", color: "orange" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
                 {curPasswordError}
               </span>
             )}
@@ -183,11 +180,6 @@ function EditPwd() {
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{
-                background: "#393A47",
-                borderRadius: "5px",
-                border: "none",
-              }}
               onChange={(e) => {
                 setPw(e.target.value);
               }}
@@ -216,7 +208,7 @@ function EditPwd() {
           </Content>
           <ErrorMessage>
             {passwordError && (
-              <span style={{ fontSize: "12px", color: "orange" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
                 {passwordError}
               </span>
             )}
@@ -227,11 +219,6 @@ function EditPwd() {
             </Label>
             <CssTextField
               focuscolor="#00C4B4"
-              style={{
-                background: "#393A47",
-                borderRadius: "5px",
-                border: "none",
-              }}
               onChange={(e) => {
                 setPwCheck(e.target.value);
               }}
@@ -260,7 +247,7 @@ function EditPwd() {
           </Content>
           <ErrorMessage>
             {passwordCheckError && (
-              <span style={{ fontSize: "12px", color: "orange" }}>
+              <span style={{ fontSize: "14px", color: "orange" }}>
                 {passwordCheckError}
               </span>
             )}

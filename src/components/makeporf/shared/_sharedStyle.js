@@ -179,7 +179,7 @@ export const IconBox = styled.div`
 
 export const ErrorMessage = styled.span`
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 14px;
   color: orange;
   text-align: right;
   display: flex;

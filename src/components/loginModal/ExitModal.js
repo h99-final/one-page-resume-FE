@@ -28,7 +28,7 @@ const ExitModal = ({ exitClose }) => {
           <h1>정말 나가시겠어요?</h1>
           <p>지금 나가면 정보가 저장되지 않아요. 그래도 나가시겠습니까?</p>
         </TextContainer>
-        <div>
+        <BtnBox>
           <span>
             <Btn
               onClick={() => {
@@ -45,7 +45,7 @@ const ExitModal = ({ exitClose }) => {
           >
             계속하기
           </Btn2>
-        </div>
+        </BtnBox>
       </ModalBox>
     </ModalBG>
   );
@@ -64,7 +64,6 @@ const ModalBG = styled.div`
 `;
 const ModalBox = styled.div`
   border-radius: 10px;
-  display: flex;
   width: 678px;
   height: 280px;
   // Modal 창 브라우저 가운데로 조정
@@ -76,31 +75,31 @@ const ModalBox = styled.div`
   background-color: #2c2e39;
   color: white;
 `;
-
+const BtnBox = styled.div`
+  width: 50%;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+`
 const Btn = styled.button`
   cursor: pointer;
-  position: absolute;
-  right: 52%;
-  top: 70%;
   width: 140px;
   height: 42px;
   border-radius: 30px;
   font-size: 14px;
-  padding: 12.5px 20px;
+  padding: 10px 20px;
   border: none;
   color: white;
   background-color: #424453;
 `;
 const Btn2 = styled.button`
   cursor: pointer;
-  position: absolute;
-  right: 23%;
-  top: 70%;
   width: 140px;
   height: 42px;
   border-radius: 25px;
   font-size: 14px;
-  padding: 12.5px 20px;
+  padding: 10px 20px;
   border-radius: 30px;
   border: none;
   color: white;
@@ -110,7 +109,7 @@ const Btn2 = styled.button`
 const TextContainer = styled.div`
   width: 408px;
   height: 100px;
-  margin: 40px 135px 0px 135px;
+  margin: 70px 135px 0px 135px;
   h1 {
     text-align: center;
     font-size: 36px;
