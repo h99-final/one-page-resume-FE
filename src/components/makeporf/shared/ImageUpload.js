@@ -108,7 +108,8 @@ const Inner = styled.div`
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
-  border: 1px solid #1f2029;
+  border: 1px solid #282933;
+  background-color: #282933;
   :hover {
     outline: #00c4b4 !important;
     border: 1px solid #00c4b4 !important;
