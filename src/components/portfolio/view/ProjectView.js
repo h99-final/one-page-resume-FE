@@ -13,6 +13,9 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import ShowMore from "../ShowMore";
 import TroubleShooting from "../../project/view/TroubleShooting";
 import { TroubleShootingContainer } from "../../../pages/Project";
+//markdown
+import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 const ProjectViewIntro = (props) => {
   const { id } = props;
@@ -105,7 +108,22 @@ const ProjectViewIntro = (props) => {
           </StackBox>
           <AboutBox>
             <ContentTitle>ABOUT</ContentTitle>
-            <h2>{project?.content}</h2>
+            <MDEditor.Markdown
+              style={{
+                backgroundColor: "transparent",
+                color: "#fff",
+                height: "auto",
+                minHeight: "600px",
+                maxWidth: "100%",
+                width: "100%",
+                boxSizing: "border-box",
+                fontFamily: "Pretendard",
+                fontSize: "16px",
+                lineHeight: "28px",
+              }}
+              source={project?.content}
+              rehypePlugins={[[rehypeSanitize]]}
+            />
           </AboutBox>
         </ContentBox>
       </IntroBox>
@@ -124,6 +142,7 @@ const ContentBox = styled.div`
 const AboutBox = styled.div`
   width: 100%;
   min-height: 120px;
+  height: 100%;
   word-wrap: break-word;
   h2 {
     font-style: normal;
@@ -195,7 +214,7 @@ const TitleBox = styled.div`
 
 const IntroBox = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100%;
   margin: auto;
   display: flex;
   justify-content: space-between;

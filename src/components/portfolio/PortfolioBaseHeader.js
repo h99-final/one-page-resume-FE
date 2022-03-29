@@ -12,16 +12,16 @@ import { useSelector } from "react-redux";
 import { flexbox } from "@mui/system";
 // debounce
 import { debounce } from "../../shared/common";
+import { apis } from "../../shared/axios";
 
 function PortfolioBaseHeader(props) {
   // 포트폴리오 제작 사이드바에서 불러옴
   // 기본 헤더에서 불러옴
   // 스크롤바를 읽는 nav 바 형식 구현
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const history = useHistory();
-
+  const [info, setInfo] = useState({});
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
-  const { projectId, refs, ...scrolldata } = props;
+  const { projectId, refs, id, ...scrolldata } = props;
 
   const url = useRef();
   const copyUrl = (e) => {
@@ -81,6 +81,17 @@ function PortfolioBaseHeader(props) {
           </Link>
         </div>
       ));
+
+  useEffect(() => {
+    apis
+      .introPorfGet(id)
+      .then((res) => {
+        setInfo(res.data.data);
+      })
+      .catch((errors) => {
+        setInfo({ profileImage: "", username: "" });
+      });
+  }, []);
 
   return (
     <>
@@ -143,11 +154,11 @@ function PortfolioBaseHeader(props) {
           />
           <TextArea readOnly ref={url} value={window.location.href} />
           <Avatar
-            alt={userInfo?.name}
-            src={userInfo?.profileImage}
+            alt={info?.username}
+            src={info?.profileImage}
             sx={{ width: 38, height: 38 }}
           />
-          <Name>{userInfo?.name}</Name>
+          <Name>{info?.username}</Name>
         </RightMenu>
       </StyledHeaderFix>
       {scroll - defaultScroll.project > -50 ? (

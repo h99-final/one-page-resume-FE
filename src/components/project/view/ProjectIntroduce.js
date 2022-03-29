@@ -64,15 +64,16 @@ const ProjectIntroduce = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide>
-                  <img key={e.url + `${i}`} alt="" src={e.url} />
+                  <img key={`image-${i}`} alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
           </Swiper>
+          <ImagePreview></ImagePreview>
           <Swiper
             onSwiper={setThumbsSwiper}
             // loop={true}
-            spaceBetween={10}
+            spaceBetween={2}
             slidesPerView={project?.img?.length}
             freeMode={true}
             watchSlidesProgress={true}
@@ -85,7 +86,12 @@ const ProjectIntroduce = (props) => {
               project?.img?.map((e, i) => {
                 return (
                   <SwiperSlide>
-                    <img key={`${e.url - i}`} alt="" src={e.url} />
+                    <img
+                      style={{ width: "70px" }}
+                      key={`imagepreveiw-${i}`}
+                      alt=""
+                      src={e.url}
+                    />
                   </SwiperSlide>
                 );
               })
@@ -105,43 +111,44 @@ const ProjectIntroduce = (props) => {
           </StackBox>
           <AboutBox>
             <ContentTitle>ABOUT</ContentTitle>
-            <h2>
-              <MDEditor.Markdown
-                style={{
-                  backgroundColor: "transparent",
-                  color: "#fff",
-                  height: "100%",
-                  minHeight: "600px",
-                  maxWidth: "100%",
-                  width: "100%",
-                  boxSizing: "border-box",
-                  fontFamily: "Pretendard",
-                  fontSize: "16px",
-                  lineHeight: "28px",
-                }}
-                source={project?.content}
-                rehypePlugins={[[rehypeSanitize]]}
-              />
-            </h2>
+            <MDEditor.Markdown
+              style={{
+                backgroundColor: "transparent",
+                color: "#fff",
+                height: "100%",
+                minHeight: "600px",
+                maxWidth: "100%",
+                width: "100%",
+                boxSizing: "border-box",
+                fontFamily: "Pretendard",
+                fontSize: "16px",
+                lineHeight: "28px",
+              }}
+              source={project?.content}
+              rehypePlugins={[[rehypeSanitize]]}
+            />
           </AboutBox>
         </ContentBox>
       </IntroBox>
     </>
   );
 };
+const ImagePreview = styled.div`
+  width: 70%;
+`;
 
 const AboutBox = styled.div`
   width: 100%;
   min-height: 120px;
   word-wrap: break-word;
-  h2 {
+  /* h2 {
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
     color: #ffffff;
-  }
+  } */
 `;
 const SubStack = styled.button`
   width: fit-content;
@@ -207,20 +214,20 @@ const IntroBox = styled.div`
   height: 80vh;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ImgBox = styled.div`
-  width: 40%;
-  height: 100%;
-  min-width: 600px;
-  margin-right: 20px;
+  width: 45%;
+  height: inherit;
+  margin: 0px 2.5%;
 `;
 
 const ContentBox = styled.div`
-  width: 47.5%;
+  width: 45%;
   height: 100%;
   justify-content: flex-start;
-  margin-left: 2.5%;
+  margin: 0px 2.5%;
 `;
 export default ProjectIntroduce;
