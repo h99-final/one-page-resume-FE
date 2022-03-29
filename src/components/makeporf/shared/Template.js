@@ -17,7 +17,6 @@ function Template() {
   const { id } = useParams();
   const history = useHistory();
   const { porfId } = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
   const [template, setTemplate] = useState(0);
   const open = Boolean(template);
 
@@ -25,12 +24,6 @@ function Template() {
     setTemplate(event.currentTarget);
     window.alert("준비중입니다.");
   };
-
-  const handleClose = (event) => {
-    setTemplate(null);
-  };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -59,7 +52,7 @@ function Template() {
               style={{ color: "white" }}
               onClick={() => history.push(`/portfolio/${porfId}`)}
             >
-              <input id="submit" type="submit" style={{ display: "none" }} />
+              <input id="submitngo" type="submit" style={{ display: "none" }} />
               작성 완료
             </FormTextWhite>
           </Save>
