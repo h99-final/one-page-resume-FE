@@ -248,6 +248,7 @@ export const StyledHeader = styled.div`
   position: fixed;
   top: 0px;
   width: 100%;
+  min-width: 800px;
   align-items: center;
   justify-content: space-between;
   height: 60px;

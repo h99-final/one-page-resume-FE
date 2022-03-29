@@ -18,8 +18,8 @@ const Header = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 400px;
-  margin-left: 30px;
-  margin-top: 40px;
+  margin-left: 0px;
+  margin-top: 100px;
 `;
 
 const LayoutHeader = styled.div`
@@ -39,8 +39,6 @@ const LayoutHeader = styled.div`
 const WritePorf = styled.div`
   width: 400px;
   height: 43px;
-  left: 10px;
-  top: 10px;
   font-style: normal;
   font-weight: 600;
   font-size: 36px;

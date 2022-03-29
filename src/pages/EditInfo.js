@@ -38,6 +38,7 @@ export const WriteForm = styled.div`
   display: block;
   justify-content: center;
   margin: 0px auto;
+  margin-top: 60px;
   background: #1f2029;
   @media screen and (min-width: 1194px) {
     & {
