@@ -53,7 +53,7 @@ function Template() {
           >
             <FormTextWhite
               style={{ color: "white" }}
-              // onClick={() => history.push(`/portfolio/${porfId}`)}
+              onClick={() => history.push(`/portfolio/${porfId}`)}
             >
               <input id="submitngo" type="submit" style={{ display: "none" }} />
               작성 완료
@@ -83,8 +83,7 @@ const Save = styled(Next)`
 
 const Label = styled.label`
   cursor: pointer;
-  display: ${(props) =>
-    props.id === "career" || props.id === "project" ? "none" : "flex"};
+  display: flex;
 `;
 
 const TemplateSelector = styled.div`

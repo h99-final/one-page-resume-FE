@@ -78,7 +78,7 @@ export const ListItemButton = styled.div`
   height: 50px;
 
   background: ${(props) =>
-    props.selected ? "#424453" : "rgba(255, 255, 255, 0)"};
+    props.selected ? "rgba(66, 68, 83, 1)" : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
     color: ${(props) => (props.selected ? "white" : "white")};

@@ -75,8 +75,11 @@ const Portfolio = () => {
     if (templateIdx % 3 === 2) {
       setColor("rgba(234, 253, 140, 0.9)");
     }
-    if (templateIdx % 3 === 0) {
+    if (templateIdx % 3 === 0 && templateIdx !== 0) {
       setColor("rgba(68, 133, 223, 0.9)");
+    }
+    if (templateIdx === 0) {
+      setColor("rgba(255, 255, 255, 1)");
     }
   }, [templateIdx]);
 
