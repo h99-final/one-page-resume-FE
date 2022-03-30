@@ -7,8 +7,8 @@ const search = sessionStorage.getItem("search");
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
 
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -32,8 +32,8 @@ const testinstance = axios.create({
 });
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -96,6 +96,8 @@ export const apis = {
   careerPorfDelete: (careerId) => instance.delete(`/porf/career/${careerId}`),
   careerPorfPut: (careerId, data) =>
     instance.put(`/porf/career/${careerId}`, data),
+
+  templatePut: (idx) => instance.put("/porf/template", idx),
 
   //포트폴리오 스택 조회
   stackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),

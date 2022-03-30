@@ -138,7 +138,6 @@ const ProjectIntroduce = (props) => {
 const ImagePreview = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 300px;
 `;
 
@@ -216,11 +215,10 @@ const TitleBox = styled.div`
 
 const IntroBox = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const ImgBox = styled.div`

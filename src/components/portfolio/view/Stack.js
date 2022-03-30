@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
-const Stack = () => {
+const Stack = (props) => {
   const { id } = useParams();
-
+  const { color, fontcolor } = props;
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
 
@@ -20,15 +20,15 @@ const Stack = () => {
     <>
       <Container>
         <TitleBox>
-          <h1>Tech Stack</h1>
+          <h1 fontcolor={fontcolor}>Tech Stack</h1>
         </TitleBox>
         <StackBox>
           <Main>
-            <h1>Main</h1>
+            <h1 fontcolor={fontcolor}>Main</h1>
             <ForStack>
               {mainStack.map((s, index) => {
                 return (
-                  <MainStack key={index}>
+                  <MainStack color={color} key={index}>
                     <span>
                       <img
                         alt=""
@@ -42,7 +42,7 @@ const Stack = () => {
             </ForStack>
           </Main>
           <Sub>
-            <h1>Sub</h1>
+            <h1 fontcolor={fontcolor}>Sub</h1>
             <ForStack>
               {subStack.map((s, index) => {
                 return (
@@ -89,10 +89,10 @@ const SubStack = styled.button`
 `;
 
 const MainStack = styled.button`
-  background-color: #999999;
+  background-color: ${(props) => props.color};
   width: 120px;
   height: 50px;
-  border: 1px solid #999999;
+  border: ${(props) => `1px solid ${props.color}`};
   box-sizing: border-box;
   border-radius: 10px;
   text-align: center;
@@ -112,7 +112,7 @@ const MainStack = styled.button`
   span {
     font-size: 20px;
     position: relative;
-    color: #ffffff;
+    color: #000;
   }
 `;
 
@@ -134,7 +134,7 @@ const Main = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: ${(props) => props.fontcolor};
     margin-right: 190px;
   }
 `;
@@ -151,7 +151,7 @@ const Sub = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: ${(props) => props.fontcolor};
     margin-right: 190px;
   }
 `;
@@ -168,7 +168,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: ${(props) => props.fontcolor};
   }
 `;
 

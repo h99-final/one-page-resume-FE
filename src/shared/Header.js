@@ -220,7 +220,7 @@ const Header = (props) => {
                 navBtn();
               }}
               style={{
-                cursor: "pointer"
+                cursor: "pointer",
               }}
               alt={userInfo?.name}
               src={userInfo?.profileImage}
@@ -235,6 +235,7 @@ const Header = (props) => {
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
+        <div style={{ width: "100%", height: "60px" }}></div>
       </>
     );
   }

@@ -18,7 +18,7 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 
 const ProjectViewIntro = (props) => {
-  const { id } = props;
+  const { id, color, fontcolor } = props;
   const dispatch = useDispatch();
 
   const [project, setProject] = useState({});
@@ -52,7 +52,9 @@ const ProjectViewIntro = (props) => {
   return (
     <>
       <TitleBox>
-        <h1>{project?.title}</h1>
+        <h1 color={color} fontcolor={fontcolor}>
+          {project?.title}
+        </h1>
       </TitleBox>
       <IntroBox>
         <ImgBox>
@@ -115,7 +117,7 @@ const ProjectViewIntro = (props) => {
             <MDEditor.Markdown
               style={{
                 backgroundColor: "transparent",
-                color: "#fff",
+                color: `${fontcolor}`,
                 height: "auto",
                 minHeight: "600px",
                 maxWidth: "100%",
@@ -131,7 +133,7 @@ const ProjectViewIntro = (props) => {
           </AboutBox>
         </ContentBox>
       </IntroBox>
-      <ShowMore id={id} />
+      <ShowMore color={color} fontcolor={fontcolor} id={id} />
     </>
   );
 };
@@ -212,7 +214,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: ${(props) => props.fontcolor};
   }
 `;
 
@@ -222,7 +224,6 @@ const IntroBox = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const ImgBox = styled.div`

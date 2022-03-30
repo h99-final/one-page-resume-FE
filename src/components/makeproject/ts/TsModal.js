@@ -9,7 +9,7 @@ import {
   InputCustom,
   Label,
 } from "../../makeporf/shared/_sharedStyle";
-import { Font, FormContents } from "../../makeporf/view/Introduce";
+// import { FormContents } from "../../makeporf/view/Introduce";
 import styled from "styled-components";
 import PreviousNextProject from "../PreviousNextProject";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,9 @@ function TsModal(props) {
   const [token, setToken] = React.useState("");
   const file_list = useSelector((state) => state.patchcode.patchcode);
   const [selectedFileName, setSelectedFileName] = useState("");
+
   const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const [githubSpinner, setGithubSpinner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   //file 중복 선택이 가능하게 만들기 위해
   // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
@@ -176,8 +178,11 @@ function TsModal(props) {
                     />
                   </TokenTitle>
                   <FormTextLight>
-                    파일을 불러오기 위해 Git Token을 인증해주세요.{" "}
-                    <a href="https://github.com/settings/tokens" target="_blank">
+                    파일을 불러오기 위해 Git Token을 인증해주세요.
+                    <a
+                      href="https://github.com/settings/tokens"
+                      target="_blank"
+                    >
                       GitHub 바로가기
                     </a>
                   </FormTextLight>
@@ -208,72 +213,85 @@ function TsModal(props) {
                 {page === 0 ? (
                   <>
                     <FormTitleFlex>
-                      <FormTextCenter>Commit 선택하기</FormTextCenter>
+                      <FormTextCenter>
+                        Commit 선택하기{" "}
+                        <img
+                          onClick={() => {
+                            setGithubSpinner((prev) => !prev);
+                          }}
+                          alt=""
+                          src={process.env.PUBLIC_URL + "/img/colortkhelp.svg"}
+                        />
+                      </FormTextCenter>
                       <FormTextLight>
                         프로젝트에 첨부할 commit을 선택해 주세요.
                       </FormTextLight>
                     </FormTitleFlex>
-                    <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          marginLeft: "auto",
-                          marginRight: "100px",
-                          marginBottom: "10px",
-                        }}
-                        onClick={handlesync}
-                      >
-                        <img
-                          width="30px"
-                          alt="새로고침"
-                          height="auto"
-                          src={process.env.PUBLIC_URL + "/img/rotate.svg"}
-                        />
-                      </div>
-                      <Ulist>
-                        {message_list.map((e, i) => {
-                          if (selectedSha === e.sha) {
-                            return (
-                              <>
-                                <List
-                                  selected
-                                  onClick={handleCommitClick}
-                                  key={e.sha + `${i}`}
-                                  id={e.sha}
-                                  value={e.message}
-                                >
-                                  <div style={{ display: "flex" }}>
-                                    <img
-                                      width="30"
-                                      height="auto"
-                                      src={
-                                        process.env.PUBLIC_URL +
-                                        "/img/check.svg"
-                                      }
-                                      alt="checked"
-                                    />
+                    {githubSpinner ? (
+                      <GithubSpinner />
+                    ) : (
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            marginLeft: "auto",
+                            marginRight: "100px",
+                            marginBottom: "10px",
+                          }}
+                          onClick={handlesync}
+                        >
+                          <img
+                            width="30px"
+                            alt="새로고침"
+                            height="auto"
+                            src={process.env.PUBLIC_URL + "/img/rotate.svg"}
+                          />
+                        </div>
+                        <Ulist>
+                          {message_list.map((e, i) => {
+                            if (selectedSha === e.sha) {
+                              return (
+                                <>
+                                  <List
+                                    selected
+                                    onClick={handleCommitClick}
+                                    key={e.sha + `${i}`}
+                                    id={e.sha}
+                                    value={e.message}
+                                  >
+                                    <div style={{ display: "flex" }}>
+                                      <img
+                                        width="30"
+                                        height="auto"
+                                        src={
+                                          process.env.PUBLIC_URL +
+                                          "/img/check.svg"
+                                        }
+                                        alt="checked"
+                                      />
+                                      <Font>{e.message}</Font>
+                                    </div>
+                                  </List>
+                                </>
+                              );
+                            } else {
+                              return (
+                                <>
+                                  <List
+                                    onClick={handleCommitClick}
+                                    key={e.sha + `${i}`}
+                                    id={e.sha}
+                                  >
                                     <Font>{e.message}</Font>
-                                  </div>
-                                </List>
-                              </>
-                            );
-                          } else {
-                            return (
-                              <>
-                                <List
-                                  onClick={handleCommitClick}
-                                  key={e.sha + `${i}`}
-                                  id={e.sha}
-                                >
-                                  <Font>{e.message}</Font>
-                                </List>
-                              </>
-                            );
-                          }
-                        })}
-                      </Ulist>
-                    </div>
+                                  </List>
+                                </>
+                              );
+                            }
+                          })}
+                        </Ulist>
+                      </div>
+                    )}
                   </>
                 ) : (
                   <>
@@ -350,6 +368,26 @@ function TsModal(props) {
   );
 }
 
+const FormContents = styled.div`
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  height: 100%;
+`;
+const Font = styled.div`
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+
+  /* C1 */
+
+  color: #ffffff;
+  margin: 10px;
+`;
+
 const List = styled.li`
   display: flex;
   flex-direction: column;
@@ -417,7 +455,7 @@ const InputBox = styled.div`
   }
 `;
 
-const FormTextCenter = styled(FormText)`
+export const FormTextCenter = styled(FormText)`
   width: auto;
   height: 63px;
   padding: 10px;
@@ -427,7 +465,7 @@ const FormTextCenter = styled(FormText)`
   }
 `;
 
-const FormTitleFlex = styled(FormTitle)`
+export const FormTitleFlex = styled(FormTitle)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -458,7 +496,7 @@ export const FormTextLight = styled(FormText)`
   }
 `;
 
-const IconBoxLeft = styled(IconBox)`
+export const IconBoxLeft = styled(IconBox)`
   width: 50px;
   margin-left: auto;
   background-color: #2c2e39;

@@ -6,6 +6,7 @@ import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
 import { Button, Menu, MenuItem, Select } from "@mui/material";
 import { apis } from "../../../shared/axios";
+import TemplateModal from "./TemplateModal";
 
 const options = [
   { value: "template1", label: "template1", id: "0" },
@@ -20,6 +21,8 @@ function Template() {
   const [template, setTemplate] = useState(0);
   const open = Boolean(template);
 
+  const [openTemplate, setOpenTemplate] = useState(false);
+
   const handleClick = (event) => {
     setTemplate(event.currentTarget);
     // window.alert("준비중입니다.");
@@ -28,21 +31,18 @@ function Template() {
   return (
     <>
       <BottomNav>
-        <TemplateSelector>
-          <Button
-            sx={{ color: "white" }}
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            <img
-              alt="템플릿 선택"
-              src={process.env.PUBLIC_URL + "/img/template.svg"}
-            />
-            <FormText style={{ color: "white" }}>템플릿 선택</FormText>
-          </Button>
+        {openTemplate && (
+          <TemplateModal
+            openTemplate={openTemplate}
+            setOpenTemplate={setOpenTemplate}
+          />
+        )}
+        <TemplateSelector onClick={() => setOpenTemplate((prev) => !prev)}>
+          <img
+            alt="템플릿 선택"
+            src={process.env.PUBLIC_URL + "/img/template.svg"}
+          />
+          <FormText style={{ color: "white" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
           <Save
@@ -53,7 +53,7 @@ function Template() {
           >
             <FormTextWhite
               style={{ color: "white" }}
-              onClick={() => history.push(`/portfolio/${porfId}`)}
+              // onClick={() => history.push(`/portfolio/${porfId}`)}
             >
               <input id="submitngo" type="submit" style={{ display: "none" }} />
               작성 완료
@@ -109,7 +109,7 @@ const BottomNav = styled.div`
   padding: 0px 5px;
 `;
 
-const FormTextWhite = styled(FormText)`
+export const FormTextWhite = styled(FormText)`
   cursor: pointer;
   color: black;
   width: auto !important;

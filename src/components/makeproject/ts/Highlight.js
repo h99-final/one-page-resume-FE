@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
 
-function Highlighted({ text = [], show, height }) {
+function Highlighted({ text = [], show, height, fontcolor }) {
   const [value, setValue] = useState([]);
   const [elementHeight, setElementHeight] = useState();
 
@@ -50,7 +50,7 @@ function Highlighted({ text = [], show, height }) {
 
   return (
     <>
-      <InputSize show={show} height={height}>
+      <InputSize fontcolor={fontcolor} show={show} height={height}>
         {value.map((e) => {
           return e;
         })}
@@ -74,9 +74,9 @@ const InputSize = styled.div`
   align-items: center;
   padding: 5px 10px;
   background-color: "#2c2e39";
-  color: #ffffff;
   border-radius: ${(props) => (props.show ? "0px" : "10px")};
-  border: 1px solid ${(props) => (props.show ? "#fff" : "#696b7b")};
+  border: 1px solid
+    ${(props) => (props.show ? `${props.fontcolor}` : "#696B7B")};
   overflow: auto;
   &:focus {
     outline: none !important;

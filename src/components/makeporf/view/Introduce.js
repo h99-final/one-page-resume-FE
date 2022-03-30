@@ -11,12 +11,9 @@ import {
 } from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
-import { useHistory } from "react-router-dom";
 
 function Introduce() {
   const defaultValues = {};
-  const history = useHistory();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const {
     handleSubmit,
@@ -27,7 +24,7 @@ function Introduce() {
 
   const introSubmit = (data) => {
     apis.introPorf(data).then((res) => {
-      history.push(`/write/portfolio/info/${userInfo.porfId}`);
+      // history.push(`/write/portfolio/info/${userInfo.porfId}`);
     });
   };
 
@@ -40,7 +37,7 @@ function Introduce() {
         setValue("contents", contents);
       });
     });
-    return handleSubmit(introSubmit);
+    return () => handleSubmit(introSubmit);
   }, []);
 
   return (
@@ -60,16 +57,6 @@ function Introduce() {
               </Font>
             </Label>
             <Controller
-              render={({ field }) => (
-                <StyledInput
-                  type="text"
-                  {...field}
-                  // defaultValue={data?.title}
-                  placeholder="유저님을 가장 잘 표현할 수 있는 포트폴리오 제목을 만들어 보세요. 나만의 명함의 소개글이 됩니다."
-                  maxLength={50}
-                  errors={!!errors.title}
-                />
-              )}
               rules={{
                 required: "제목을 입력해주세요.",
                 maxLength: {
@@ -83,6 +70,16 @@ function Introduce() {
               }}
               name="title"
               control={control}
+              render={({ field }) => (
+                <StyledInput
+                  type="text"
+                  {...field}
+                  // defaultValue={data?.title}
+                  placeholder="유저님을 가장 잘 표현할 수 있는 포트폴리오 제목을 만들어 보세요. 나만의 명함의 소개글이 됩니다."
+                  maxLength={50}
+                  errors={!!errors.title}
+                />
+              )}
             />
           </Content>
           {/* <ErrorMessage style={{ paddingBottom: "20px" }}> */}
@@ -95,18 +92,6 @@ function Introduce() {
               </Font>
             </Label>
             <Controller
-              render={({ field }) => (
-                <StyledInput
-                  type="text"
-                  style={{
-                    height: "200px",
-                  }}
-                  {...field}
-                  // defaultValue={data?.contents}
-                  placeholder="포트폴리오에서 어떤 매력을 보여주실 건가요? 유저님의 개발 가치관, 개발에 대한 관심도, 장점 등을 작성해 보세요."
-                  errors={!!errors.contents}
-                />
-              )}
               rules={{
                 required: "소개글을 입력해주세요.",
                 maxLength: {
@@ -120,6 +105,18 @@ function Introduce() {
               }}
               name="contents"
               control={control}
+              render={({ field }) => (
+                <StyledInput
+                  type="text"
+                  style={{
+                    height: "200px",
+                  }}
+                  {...field}
+                  // defaultValue={data?.contents}
+                  placeholder="포트폴리오에서 어떤 매력을 보여주실 건가요? 유저님의 개발 가치관, 개발에 대한 관심도, 장점 등을 작성해 보세요."
+                  errors={!!errors.contents}
+                />
+              )}
             />
           </MultiContent>
           <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
