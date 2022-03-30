@@ -167,14 +167,16 @@ export const InputCustom = styled.textarea`
   align-items: center;
   padding: 15px 15px;
   resize: none;
-  border: 1px solid #393a47;
+  /* border: 1px solid #393a47; */
   background-color: #393a47;
   color: ${(props) => (props.readOnly ? "white" : "white")};
   &:focus {
     outline: #00c4b4 !important;
     border: 1px solid #00c4b4 !important;
   }
+  border: ${(props) => (props.errors ? "1px solid orange" : "1px solid #393a47")};
 `;
+
 export const InputStack = styled.input`
   &::-webkit-scrollbar {
     width: 4px;
