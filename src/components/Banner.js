@@ -240,7 +240,6 @@ const Box = styled.div`
   max-width: 1440px;
   min-width: 1000px;
   margin: 0px auto;
-  margin-top: 60px;
 `;
 
 const BtnBox = styled.div`
