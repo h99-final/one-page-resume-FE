@@ -95,7 +95,7 @@ function PortfolioBaseHeader(props) {
 
   return (
     <>
-      <StyledHeaderFix>
+      <StyledHeaderFix fontcolor={fontcolor}>
         <LeftMenu>
           {fontcolor === "#fff" ? (
             <>
@@ -220,7 +220,7 @@ function PortfolioBaseHeader(props) {
       {scroll - defaultScroll.project > -50 ? (
         <>
           <ProjectHeaderFix>
-            <ListItemButtonPorf>
+            <ListItemButtonPorf color={color} fontcolor={fontcolor}>
               <ProjectText color={color} fontcolor={fontcolor}>
                 Project
               </ProjectText>
@@ -287,7 +287,10 @@ const StyledHeaderFix = styled(StyledHeader)`
   top: 0;
   z-index: 2;
   backdrop-filter: blur(2px);
-  background: rgba(19, 19, 27, 0.5);
+  background: ${(props) =>
+    props.fontcolor === "#fff"
+      ? " rgba(19, 19, 27, 0.8)"
+      : "rgba(255, 255, 255, 0.8)"} !important;
 `;
 
 const ListItemButtonPorf = styled(ListItemButton)`
@@ -296,7 +299,12 @@ const ListItemButtonPorf = styled(ListItemButton)`
     props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
-    color: ${(props) => (props.selected ? "#000" : props.fontcolor)} !important;
+    color: ${(props) =>
+      props.color === "rgba(0,0,0, 0.9)"
+        ? "#fff"
+        : props.selected
+        ? "#000"
+        : props.fontcolor} !important;
   }
   cursor: pointer;
 `;

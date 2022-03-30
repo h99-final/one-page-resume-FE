@@ -6,6 +6,7 @@ import { apis } from "../../../shared/axios";
 const Stack = (props) => {
   const { id } = useParams();
   const { color, fontcolor } = props;
+  console.log(props);
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
 
@@ -19,12 +20,12 @@ const Stack = (props) => {
   return (
     <>
       <Container>
-        <TitleBox>
-          <h1 fontcolor={fontcolor}>Tech Stack</h1>
+        <TitleBox fontcolor={fontcolor}>
+          <h1>Tech Stack</h1>
         </TitleBox>
         <StackBox>
-          <Main>
-            <h1 fontcolor={fontcolor}>Main</h1>
+          <Main fontcolor={fontcolor}>
+            <h1>Main</h1>
             <ForStack>
               {mainStack.map((s, index) => {
                 return (
@@ -41,12 +42,12 @@ const Stack = (props) => {
               })}
             </ForStack>
           </Main>
-          <Sub>
-            <h1 fontcolor={fontcolor}>Sub</h1>
+          <Sub fontcolor={fontcolor}>
+            <h1>Sub</h1>
             <ForStack>
               {subStack.map((s, index) => {
                 return (
-                  <SubStack key={index}>
+                  <SubStack fontcolor={fontcolor} key={`stack-${index}`}>
                     <span>{s}</span>
                   </SubStack>
                 );
@@ -66,7 +67,8 @@ const Container = styled.div`
 `;
 const SubStack = styled.button`
   width: fit-content;
-  background-color: #1f2029;
+  background-color: ${(props) =>
+    props.fontcolor === "#fff" ? "#393A47" : "#F4F4F4"};
   height: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -74,8 +76,8 @@ const SubStack = styled.button`
   border: 1px solid #999999;
   font-style: normal;
   font-weight: 400;
+  color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   font-size: 16px;
-  color: #ffffff;
   margin-right: 15px;
   margin-bottom: 10px;
   span {
@@ -83,7 +85,7 @@ const SubStack = styled.button`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    color: #ffffff;
+    color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
     position: relative;
   }
 `;
