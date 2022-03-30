@@ -7,6 +7,7 @@ import {
   MakeCenter,
   Label,
   ErrorMessage,
+  StyledInput,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { Content, ContentCareer } from "../../shared/_sharedStyle";
@@ -36,7 +37,7 @@ const CareerWrite = () => {
     content.current.style.height = "20px";
     content.current.style.height = content.current.scrollHeight + "px";
 
-    return handleSubmit(careerSubmit);
+    // return handleSubmit(careerSubmit);
   }, []);
 
   const handleResizeHeight = useCallback(() => {
@@ -64,10 +65,11 @@ const CareerWrite = () => {
       setOpen((prev) => !prev);
       return;
     }
-    if (content.current.value.length === 0) {
+    if (oldData.contents === 0) {
       setError("contents", "필수 항목 입니다.");
+      return;
     }
-    let _content = content.current.value.split(`\n`);
+    let _content = oldData.contents.split(`\n`);
     let _endTime = oldData.endTime;
     if (oldData.endTime !== "current") {
       _endTime = oldData.endTime + "-01";
