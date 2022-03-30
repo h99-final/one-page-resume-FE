@@ -221,7 +221,9 @@ function PortfolioBaseHeader(props) {
         <>
           <ProjectHeaderFix>
             <ListItemButtonPorf>
-              <ProjectText>Project</ProjectText>
+              <ProjectText color={color} fontcolor={fontcolor}>
+                Project
+              </ProjectText>
             </ListItemButtonPorf>
 
             <div style={{ display: "flex" }}>
