@@ -22,7 +22,7 @@ const Header = styled.div`
   align-items: flex-start;
   width: fit-content;
   height: fit-content;
-  margin-top: 40px;
+  margin-top: 100px;
 `;
 
 const LayoutHeader = styled.div`

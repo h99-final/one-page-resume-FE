@@ -7,6 +7,7 @@ import {
   MakeCenter,
   Label,
   ErrorMessage,
+  StyledInput,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { Content, ContentCareer } from "../../shared/_sharedStyle";
@@ -98,20 +99,20 @@ const CareerWrite = () => {
               <Font>직무 카테고리</Font>
             </Label>
             <Controller
-              render={({ field }) => (
-                <InputCustom
-                  type="text"
-                  style={{ border: "none" }}
-                  {...field}
-                  maxLength={50}
-                  placeholder="학교, 회사, 부트캠프, 교육, 자격증, 공모전 등 활동 종류를 적어주세요."
-                />
-              )}
               rules={{
                 required: "필수 항목 입니다.",
               }}
               name="title"
               control={control}
+              render={({ field }) => (
+                <StyledInput
+                  type="text"
+                  {...field}
+                  maxLength={50}
+                  errors={!!errors.title}
+                  placeholder="학교, 회사, 부트캠프, 교육, 자격증, 공모전 등 활동 종류를 적어주세요."
+                />
+              )}
             />
           </Content>
 
@@ -122,11 +123,11 @@ const CareerWrite = () => {
             </Label>
             <Controller
               render={({ field }) => (
-                <InputCustom
+                <StyledInput
                   type="text"
-                  style={{ border: "none" }}
                   {...field}
                   maxLength={50}
+                  errors={!!errors.subTitle}
                   placeholder="학교/회사 이름, 부트캠프 기업명, 자격증명, 공모전 이름 등 활동의 이름을 적어주세요. (ex: 한국대학교 컴퓨터공학과, 항해99)"
                 />
               )}
@@ -144,11 +145,12 @@ const CareerWrite = () => {
             </Label>
             <Controller
               render={({ field }) => (
-                <InputCustom
+                <StyledInput
                   type="text"
-                  style={{ height: "40px" }}
+                  style={{ height: "50px" }}
                   {...field}
                   ref={content}
+                  errors={!!errors.contents}
                   onInput={handleResizeHeight}
                   placeholder="활동에서 담당한 역할, 프로젝트 등 직무 내용을 작성해주세요."
                 />
@@ -170,11 +172,11 @@ const CareerWrite = () => {
                 <InputCustomDate
                   type="text"
                   style={{
-                    border: "none",
                     marginRight: "10px",
                   }}
                   {...field}
                   placeholder="YYYY-MM"
+                  errors={errors.startTime}
                 />
               )}
               rules={{
@@ -193,11 +195,11 @@ const CareerWrite = () => {
                 <InputCustomDate
                   type="text"
                   style={{
-                    border: "none",
                     marginLeft: "10px",
                   }}
                   {...field}
                   placeholder="YYYY-MM"
+                  errors={errors.endTime}
                 />
               )}
               rules={{
@@ -234,7 +236,7 @@ const CareerWrite = () => {
   );
 };
 
-const InputCustomDate = styled(InputCustom)`
+const InputCustomDate = styled(StyledInput)`
   width: 8vw;
 `;
 

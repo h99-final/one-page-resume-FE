@@ -209,8 +209,8 @@ function Stack() {
             }
             renderInput={(params) => (
               <CssTextField
+                focuscolor="#00C4B4"
                 {...params}
-                variant="standard"
                 placeholder="기술스택으로 검색해보세요"
               />
             )}
@@ -223,10 +223,10 @@ function Stack() {
           <StackBox
             style={{
               marginBottom: "60px",
-              border: " 1px solid #393A47",
+              marginTop: "20px",
               height: "100%",
               width: "100%",
-              background: "#393A47",
+              background: "#393a47",
             }}
           >
             {addStack.map((addStack, index) => {
@@ -264,14 +264,16 @@ function Stack() {
 
 export const StackBox = styled.div`
   margin: 10px 0px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #2c2e39;
   background-color: #2c2e39;
+  
 `;
 
 export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px 20px;
+  
   width: fit-content;
   height: 50px;
   font-size: 17px;
@@ -318,7 +320,7 @@ const StyledBox = styled.button`
     display: inline-block;
     width: 120px;
     height: 50px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: #393a47;
     border: 2px solid #393a47;
     cursor: pointer;
@@ -328,7 +330,7 @@ const StyledBox = styled.button`
     display: inline-block;
     width: 120px;
     height: 50px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: #00c4b4;
     border: 2px solid #00c4b4;
     cursor: pointer;

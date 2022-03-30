@@ -23,7 +23,11 @@ export const CssTextField = styled(TextField, {
     "&.Mui-focused fieldset": {
       borderColor: p.focuscolor,
     },
+    '& fieldset': {
+      borderColor: "#CFD3E2"
+    },
   },
+
   "& .MuiInputBase-input": {
     position: "relative",
     color: "#696B7B",
