@@ -28,6 +28,7 @@ const PortfolioIntroduce = (props) => {
             ? "https://s3.amazonaws.com/www.poug.me/template/4-3.png"
             : ""
         }
+        templateIdx={templateIdx}
       >
         {templateIdx >= 1 && templateIdx <= 6 ? (
           <>
@@ -96,11 +97,25 @@ const Container = styled.div`
   background: ${(props) => `url(${props.background}) no-repeat top`};
   background-size: 100%;
   display: inline-block;
+  color: ${(props) =>
+    props.templateIdx === 1 ||
+    props.templateIdx === 2 ||
+    props.templateIdx === 3 ||
+    props.templateIdx === 7 ||
+    props.templateIdx === 8 ||
+    props.templateIdx === 9 ||
+    props.templateIdx === 13
+      ? "#000"
+      : "#fff"};
 `;
 
 const IntroBox = styled.div`
   margin: ${(props) =>
-    props.templateIdx >= 1 && props.templateIdx <= 6 ? "0px 2.5%" : "120px"};
+    props.templateIdx >= 1 && props.templateIdx <= 6
+      ? "0px 2.5%"
+      : props.templateIdx >= 7 || props.templateIdx <= 12
+      ? "260px auto"
+      : "120px"};
   min-height: 1100px;
   width: ${(props) =>
     props.templateIdx >= 1 && props.templateIdx <= 6 ? "45%" : "80%"};
@@ -122,16 +137,6 @@ const TitleBox = styled.div`
     font-size: 56px;
     line-height: 80px;
     letter-spacing: -0.01em;
-    color: ${(props) =>
-      props.templateIdx === 1 ||
-      props.templateIdx === 2 ||
-      props.templateIdx === 3 ||
-      props.templateIdx === 7 ||
-      props.templateIdx === 8 ||
-      props.templateIdx === 9 ||
-      props.templateIdx === 13
-        ? "#000"
-        : "#fff"};
   }
 `;
 
@@ -142,16 +147,6 @@ const Font = styled.div`
   font-size: 56px;
   line-height: 80px;
   letter-spacing: -0.01em;
-  color: ${(props) =>
-    props.templateIdx === 1 ||
-    props.templateIdx === 2 ||
-    props.templateIdx === 3 ||
-    props.templateIdx === 7 ||
-    props.templateIdx === 8 ||
-    props.templateIdx === 9 ||
-    props.templateIdx === 13
-      ? "#000"
-      : "#fff"};
 `;
 
 const ContentBox = styled.div`
@@ -168,18 +163,9 @@ const ContentBox = styled.div`
     font-size: 20px;
     line-height: 32px;
     letter-spacing: -0.01em;
-    color: ${(props) =>
-      props.templateIdx === 1 ||
-      props.templateIdx === 2 ||
-      props.templateIdx === 3 ||
-      props.templateIdx === 7 ||
-      props.templateIdx === 8 ||
-      props.templateIdx === 9 ||
-      props.templateIdx === 13
-        ? "#000"
-        : "#fff"};
   }
 `;
+
 const ScrollBox = styled.div`
   text-align: center;
   width: 150px;

@@ -51,10 +51,8 @@ const ProjectViewIntro = (props) => {
   // 트러블 슈팅 api
   return (
     <>
-      <TitleBox>
-        <h1 color={color} fontcolor={fontcolor}>
-          {project?.title}
-        </h1>
+      <TitleBox color={color} fontcolor={fontcolor}>
+        <h1>{project?.title}</h1>
       </TitleBox>
       <IntroBox>
         <ImgBox>
@@ -156,7 +154,6 @@ const AboutBox = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #ffffff;
   }
 `;
 const SubStack = styled.button`
@@ -182,6 +179,7 @@ const SubStack = styled.button`
     position: relative;
   }
 `;
+
 const ContentTitle = styled.div`
   font-family: "Pretendard";
   font-style: normal;
@@ -207,6 +205,7 @@ const TitleBox = styled.div`
   justify-content: space-between;
   display: flex;
   text-align: left;
+  color: ${(props) => props.fontcolor};
   h1 {
     width: fit-content;
     font-style: normal;
@@ -214,7 +213,6 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: ${(props) => props.fontcolor};
   }
 `;
 
@@ -224,6 +222,7 @@ const IntroBox = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
+  color: ${(props) => props.fontcolor};
 `;
 
 const ImgBox = styled.div`
