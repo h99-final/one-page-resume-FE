@@ -83,8 +83,7 @@ const Save = styled(Next)`
 
 const Label = styled.label`
   cursor: pointer;
-  display: ${(props) =>
-    props.id === "career" || props.id === "project" ? "none" : "flex"};
+  display: flex;
 `;
 
 const TemplateSelector = styled.div`

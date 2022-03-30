@@ -296,7 +296,7 @@ const ListItemButtonPorf = styled(ListItemButton)`
     props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
-    color: ${(props) => props.fontcolor};
+    color: ${(props) => (props.selected ? "#000" : props.fontcolor)} !important;
   }
   cursor: pointer;
 `;
