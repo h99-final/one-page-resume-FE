@@ -65,7 +65,7 @@ const CareerWrite = () => {
       setOpen((prev) => !prev);
       return;
     }
-    if (oldData.contents === 0) {
+    if (oldData.contents.length === 0) {
       setError("contents", "필수 항목 입니다.");
       return;
     }

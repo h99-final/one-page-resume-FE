@@ -66,7 +66,7 @@ function Stack() {
     "Vue.js",
     "Git",
     //ToDo 사용 금지
-    "git",
+    // "git",
   ];
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -148,112 +148,112 @@ function Stack() {
         </Font>
       </FormTitle>
 
-      <form onSubmit={handleSubmit(submitStack)}>
-        <MultiContent>
-          <Label>
-            <Font>
-              대표 스택<Star>*</Star>
-            </Font>
-          </Label>
-          <StackBox>
-            {defaultStack.map((s, index) => {
-              return (
-                <StyledBox key={index}>
-                  <input
-                    type="checkbox"
-                    id={s}
-                    checked={stack?.includes(`${s}`) ? true : false}
-                    onChange={(e) => {
-                      changeHandler(e.currentTarget.checked, `${s}`);
-                    }}
-                  />
-                  <label id={s} htmlFor={s}>
-                    <span>
-                      <img
-                        alt=""
-                        src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-                      />
-                      {s}
-                    </span>
-                  </label>
-                </StyledBox>
-              );
-            })}
-          </StackBox>
-        </MultiContent>
-        {stack?.length > 3 ? (
-          <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
-            3가지만 골라주세요
-          </ErrorMessage>
-        ) : (
-          <Font style={{ color: "inherit", textAlign: "center" }}></Font>
-        )}
-        <MultiContent>
-          <Label>
-            <Font>기술 스택</Font>
-          </Label>
-          <Autocomplete
-            multiple
-            fullWidth
-            filterSelectedOptions
-            id="tags-standard"
-            options={option}
-            value={addStack}
-            defaultValue={addStack}
-            onChange={handleChange}
-            renderTags={(addStack, getTagProps) =>
-              addStack.map((option, index) => (
-                <Chip
-                  sx={{ display: "none" }}
-                  variant="outlined"
-                  label={option}
-                  {...getTagProps({ index })}
+      {/* <form onSubmit={handleSubmit(submitStack)}> */}
+      <MultiContent>
+        <Label>
+          <Font>
+            대표 스택<Star>*</Star>
+          </Font>
+        </Label>
+        <StackBox>
+          {defaultStack.map((s, index) => {
+            return (
+              <StyledBox key={`stack-${index}`}>
+                <input
+                  type="checkbox"
+                  id={s}
+                  checked={stack?.includes(`${s}`) ? true : false}
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, `${s}`);
+                  }}
                 />
-              ))
-            }
-            renderInput={(params) => (
-              <CssTextField
-                focuscolor="#00C4B4"
-                {...params}
-                placeholder="기술스택으로 검색해보세요"
+                <label id={s} htmlFor={s}>
+                  <span>
+                    <img
+                      alt=""
+                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                    />
+                    {s}
+                  </span>
+                </label>
+              </StyledBox>
+            );
+          })}
+        </StackBox>
+      </MultiContent>
+      {stack?.length > 3 ? (
+        <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
+          3가지만 골라주세요
+        </ErrorMessage>
+      ) : (
+        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
+      )}
+      <MultiContent>
+        <Label>
+          <Font>기술 스택</Font>
+        </Label>
+        <Autocomplete
+          multiple
+          fullWidth
+          filterSelectedOptions
+          id="tags-standard"
+          options={option}
+          value={addStack}
+          defaultValue={addStack}
+          onChange={handleChange}
+          renderTags={(addStack, getTagProps) =>
+            addStack.map((option, index) => (
+              <Chip
+                sx={{ display: "none" }}
+                variant="outlined"
+                label={option}
+                {...getTagProps({ index })}
               />
-            )}
-          />
-        </MultiContent>
-        <MultiContent>
-          <Label>
-            <Font></Font>
-          </Label>
-          <StackBox
-            style={{
-              marginBottom: "60px",
-              marginTop: "20px",
-              height: "100%",
-              width: "100%",
-              background: "#393a47",
-            }}
-          >
-            {addStack.map((addStack, index) => {
-              return (
-                <SelectStack key={index} {...addStack}>
-                  {addStack}
-                  <ClearIcon
-                    id={addStack}
-                    sx={{
-                      fontSize: 14,
-                      color: grey[500],
-                      marginLeft: 1,
-                      borderRadius: 10,
-                    }}
-                    onClick={() => handleDelete(addStack)}
-                  ></ClearIcon>
-                </SelectStack>
-              );
-            })}
-          </StackBox>
-        </MultiContent>
-        <Template />
-      </form>
+            ))
+          }
+          renderInput={(params) => (
+            <CssTextField
+              focuscolor="#00C4B4"
+              {...params}
+              placeholder="기술스택으로 검색해보세요"
+            />
+          )}
+        />
+      </MultiContent>
+      <MultiContent>
+        <Label>
+          <Font></Font>
+        </Label>
+        <StackBox
+          style={{
+            marginBottom: "60px",
+            marginTop: "20px",
+            height: "100%",
+            width: "100%",
+            background: "#393a47",
+          }}
+        >
+          {addStack.map((addStack, index) => {
+            return (
+              <SelectStack key={index} {...addStack}>
+                {addStack}
+                <ClearIcon
+                  id={addStack}
+                  sx={{
+                    fontSize: 14,
+                    color: grey[500],
+                    marginLeft: 1,
+                    borderRadius: 10,
+                  }}
+                  onClick={() => handleDelete(addStack)}
+                ></ClearIcon>
+              </SelectStack>
+            );
+          })}
+        </StackBox>
+      </MultiContent>
+      <Template submitStack={submitStack} />
+      {/* </form> */}
       <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={submitStack}>
           <ContentCareer>
