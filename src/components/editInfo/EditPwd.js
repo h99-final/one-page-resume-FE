@@ -287,6 +287,7 @@ const UserInfoForm = styled.div`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   width: 150px;
   height: 60px;
   background-color: #00c4b4;

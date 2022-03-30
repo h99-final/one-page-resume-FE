@@ -232,13 +232,14 @@ const CareerWrite = () => {
         </form>
       ) : null}
 
-      <MakeCenter style={{ marginTop: "70px", marginBottom: "120px" }}>
-        <AddButton onClick={handleSubmit(careerSubmit)}>
-          <ContentCareer>
-            <ButtonText>+ 직무 경험 추가 하기</ButtonText>
-          </ContentCareer>
-        </AddButton>
-      </MakeCenter>
+      {/* <AddButton > */}
+      <Btn onClick={handleSubmit(careerSubmit)}
+        style={{ cursor: "pointer" }}>
+        <img alt="" src={process.env.PUBLIC_URL + "/img/plus.svg"} />
+
+      </Btn>
+      {/* </AddButton> */}
+
     </>
   );
 };
@@ -257,5 +258,11 @@ export const MultiContent = styled.div`
     display: flex;
     height: 70px;
   }
+`;
+const Btn = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 70px;
 `;
 export default CareerWrite;
