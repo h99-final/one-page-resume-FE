@@ -12,6 +12,8 @@ function Career() {
   const dispatch = useDispatch();
   const careers = useSelector((state) => state.career.careers);
 
+  console.log(careers);
+
   useEffect(() => {
     const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));
@@ -26,7 +28,7 @@ function Career() {
         </FormTextSpan>
       </FormTitleFlex>
       <CareerWrite />
-      {careers?.map((e, i) => {
+      {careers.map((e, i) => {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <PreviousNext />
@@ -44,7 +46,7 @@ export const FormTextSpan = styled(FormText)`
   font-size: 16px;
   width: auto;
   font-weight: 400;
-  color: #CFD3E2;
+  color: #cfd3e2;
 `;
 
 export default Career;

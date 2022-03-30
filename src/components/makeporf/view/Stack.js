@@ -123,7 +123,7 @@ function Stack() {
     if (addStack.length > 2) {
       await apis
         .porfStack(addS)
-        .then((response) => { })
+        .then((response) => {})
         .catch((res) => {
           window.alert(res.error.message);
         });
@@ -137,7 +137,11 @@ function Stack() {
         <FormText>기술 스택</FormText>
 
         <Font
-          style={{ color: "#CFD3E2", textAlign: "left", margin: "0px 0px 0px 10px" }}
+          style={{
+            color: "#CFD3E2",
+            textAlign: "left",
+            margin: "0px 0px 0px 10px",
+          }}
         >
           나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
           대표하는 명함에 들어가게 됩니다.
@@ -267,13 +271,12 @@ export const StackBox = styled.div`
   border-radius: 5px;
   border: 1px solid #2c2e39;
   background-color: #2c2e39;
-  
 `;
 
 export const SelectStack = styled.button`
   margin: 15px 15px;
   padding: 10px 20px;
-  
+
   width: fit-content;
   height: 50px;
   font-size: 17px;
