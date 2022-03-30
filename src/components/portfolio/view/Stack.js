@@ -6,7 +6,6 @@ import { apis } from "../../../shared/axios";
 const Stack = (props) => {
   const { id } = useParams();
   const { color, fontcolor } = props;
-  console.log(props);
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
 
@@ -23,6 +22,7 @@ const Stack = (props) => {
         <TitleBox fontcolor={fontcolor}>
           <h1>Tech Stack</h1>
         </TitleBox>
+        <Hr />
         <StackBox>
           <Main fontcolor={fontcolor}>
             <h1>Main</h1>
@@ -119,7 +119,7 @@ const MainStack = styled.button`
 `;
 
 const ForStack = styled.div`
-  height: 50px;
+  height: 100%;
   width: 100%;
 `;
 
@@ -146,7 +146,7 @@ const Sub = styled.div`
   flex-direction: row;
   width: 100%;
   margin: 0px auto;
-  height: 88px;
+  height: 100%;
   h1 {
     font-style: normal;
     font-weight: 400;
@@ -159,9 +159,10 @@ const Sub = styled.div`
 `;
 
 const TitleBox = styled.div`
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
   margin: 0px auto;
-  width: 96%;
+  padding: 2.5% 2.5% 0 2.5%;
+  width: 95%;
   height: 60px;
   text-align: left;
   h1 {
@@ -175,13 +176,14 @@ const TitleBox = styled.div`
 `;
 
 const StackBox = styled.div`
-  width: 70%;
-  height: 210px;
-  margin: 150px auto;
+  width: 77%;
+  height: 100%;
+  margin: 50px auto;
 `;
 
 const Hr = styled.hr`
-  width: 96%;
+  width: 95%;
   margin: 0px auto;
+  /* color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")}; */
 `;
 export default Stack;

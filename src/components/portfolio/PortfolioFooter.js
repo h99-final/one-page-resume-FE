@@ -1,17 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-function PortfolioFooter() {
+function PortfolioFooter({ fontcolor }) {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
-    <Section>
+    <Section fontcolor={fontcolor}>
       <Star onClick={() => window.open(`${userInfo.gitUrl}`)}>
-        <img
-          style={{ color: "black", width: "28px", margin: "3px" }}
-          alt="star"
-          src={process.env.PUBLIC_URL + "/img/star.svg"}
-        />
+        {fontcolor === "#fff" ? (
+          <img
+            style={{ color: "black", width: "28px", margin: "3px" }}
+            alt="star"
+            src={process.env.PUBLIC_URL + "/img/star.svg"}
+          />
+        ) : (
+          <img
+            style={{ color: "black", width: "28px", margin: "3px" }}
+            alt="star"
+            src={process.env.PUBLIC_URL + "/img/starBlack.svg"}
+          />
+        )}
         Star on Github
       </Star>
       {/* 
@@ -30,7 +38,8 @@ function PortfolioFooter() {
 const Section = styled.section`
   height: 480px;
   width: 100%;
-  background-color: #000;
+  background-color: ${(props) =>
+    props.fontcolor === "#fff" ? "#000" : "#ededed"};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,9 +52,9 @@ const Star = styled.button`
   width: 200px;
   height: 60px;
   border-radius: 30px;
-  border: 1px solid #fff;
+  border: 1px solid ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   background-color: transparent;
-  color: #fff;
+  border: 1px solid ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   margin-right: 20px;
 `;
 const Bookmark = styled(Star)`

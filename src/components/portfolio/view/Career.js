@@ -188,12 +188,12 @@ const CareerBox = styled.div`
   flex-direction: row;
   width: 100%;
   border-top: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12
+    props.templateIdx >= 7 && props.templateIdx <= 12
       ? "none"
       : (props) =>
           props.fontcolor === "#fff" ? "1px solid #fff" : "1px solid #000"};
   border-bottom: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12
+    props.templateIdx >= 7 && props.templateIdx <= 12
       ? "none"
       : (props) =>
           props.fontcolor === "#fff" ? "1px solid #fff" : "1px solid #000"};
@@ -207,16 +207,16 @@ const CareerBox = styled.div`
     margin-right: 190px;
   }
   margin: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12 ? "50px" : ""};
+    props.templateIdx >= 7 && props.templateIdx <= 12 ? "50px" : ""};
 `;
 
 const Label = styled.div`
   width: 30%;
   height: 100%;
   text-align: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12 ? "" : "center"};
+    props.templateIdx >= 7 && props.templateIdx <= 12 ? "" : "center"};
   align-items: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12 ? "" : "center"};
+    props.templateIdx >= 7 && props.templateIdx <= 12 ? "" : "center"};
   h1 {
     margin: auto;
     margin-top: 35px;
@@ -241,7 +241,7 @@ const CareerContent = styled.div`
   width: 70%;
   height: 100%;
   border-left: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 7
+    props.templateIdx >= 7 && props.templateIdx <= 12
       ? "none"
       : (props) =>
           props.fontcolor === "#fff" ? "1px solid #fff" : "1px solid #000"};
@@ -260,7 +260,7 @@ const CareerTitle = styled.div`
   width: 100%;
   height: 65px;
   border-bottom: ${(props) =>
-    props.templateIdx >= 7 || props.templateIdx <= 12
+    props.templateIdx >= 7 && props.templateIdx <= 12
       ? "none"
       : (props) =>
           props.fontcolor === "#fff" ? "1px solid #fff" : "1px solid #000"};
@@ -305,9 +305,11 @@ const NewCareerBox = styled.div`
       : "transparent"};
   margin-bottom: 36px;
   color: ${(props) =>
-    props.index % 4 === 1 || props.index % 4 === 2
-      ? `${props.fontcolor}`
-      : `${props.contrastcolor}`};
+    props.templateIdx === 3 || props.templateIdx === 6
+      ? props.index % 4 === 0 || props.index % 4 === 3
+        ? "#fff"
+        : `${props.fontcolor}`
+      : `${props.fontcolor}`};
 `;
 
 export default Career;
