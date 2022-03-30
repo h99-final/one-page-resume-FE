@@ -87,8 +87,6 @@ const Login = (props) => {
         <p>포그를 이용하시려면 비밀번호를 입력해 주세요.</p>
       </TextContainer>
       <ThemeProvider theme={theme}>
-
-
         <InputBox>
           <CssTextField
             id="standard-read-only-input"

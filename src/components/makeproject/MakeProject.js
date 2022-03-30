@@ -218,7 +218,7 @@ function MakeProject() {
               renderInput={(params) => (
                 <CssTextField
                   {...params}
-                  variant="standard"
+                  variant="outlined"
                   placeholder="기술스택으로 검색해보세요"
                 />
               )}
@@ -228,7 +228,15 @@ function MakeProject() {
             <Label>
               <Font></Font>
             </Label>
-            <StackBox>
+            <StackBox
+              style={{
+                marginBottom: "0px",
+                marginTop: "20px",
+                height: "100%",
+                width: "100%",
+                background: "#393a47",
+              }}
+            >
               {addStack.map((addStack, index) => {
                 return (
                   <SelectStack key={index} {...addStack}>

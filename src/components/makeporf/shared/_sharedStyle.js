@@ -80,7 +80,7 @@ export const Line = styled.hr``;
 
 export const ButtonText = styled(FormText)`
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
 `;
 
