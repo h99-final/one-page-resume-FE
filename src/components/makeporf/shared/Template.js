@@ -14,7 +14,7 @@ const options = [
   { value: "template3", label: "template3", id: "2" },
 ];
 
-function Template() {
+function Template({ submitStack }) {
   const { id } = useParams();
   const history = useHistory();
   const { porfId } = useSelector((state) => state.user.user);
@@ -59,12 +59,22 @@ function Template() {
               작성 완료
             </FormTextWhite>
           </Save>
-          <Label id={id} htmlFor="submit">
-            <Save style={{ marginRight: "15px" }}>
-              <input id="submit" type="submit" style={{ display: "none" }} />
+          {id === "stack" ?
+
+            <Save
+              onClick={submitStack}
+              style={{ marginRight: "15px" }}>
               <FormTextWhite style={{ fontSize: "16px" }}>임시 저장</FormTextWhite>
             </Save>
-          </Label>
+
+            :
+            <Label id={id} htmlFor="submit">
+              <Save style={{ marginRight: "15px" }}>
+                <input id="submit" type="submit" style={{ display: "none" }} />
+                <FormTextWhite style={{ fontSize: "16px" }}>임시 저장</FormTextWhite>
+              </Save>
+            </Label>}
+
         </div>
       </BottomNav>
     </>

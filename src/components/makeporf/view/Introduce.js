@@ -71,7 +71,7 @@ function Introduce() {
               name="title"
               control={control}
               render={({ field }) => (
-                <StyledInput
+                <InputCustom
                   type="text"
                   {...field}
                   // defaultValue={data?.title}
@@ -106,7 +106,7 @@ function Introduce() {
               name="contents"
               control={control}
               render={({ field }) => (
-                <StyledInput
+                <InputCustom
                   type="text"
                   style={{
                     height: "200px",

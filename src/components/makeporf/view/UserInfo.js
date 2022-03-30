@@ -88,7 +88,6 @@ function UserInfo() {
             render={({ field }) => (
               <InputCustom
                 {...field}
-                defaultValue={data?.name}
                 errors={errors.name}
               />
             )}
@@ -111,7 +110,6 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.job}
               />
             )}
             name="job"
@@ -133,7 +131,6 @@ function UserInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.phoneNum}
                 maxLength={13}
               />
             )}
@@ -163,7 +160,6 @@ function UserInfo() {
                   border: "none",
                 }}
                 {...field}
-                defaultValue={data?.email}
                 readOnly
               />
             )}
@@ -189,7 +185,6 @@ function UserInfo() {
             render={({ field }) => (
               <InputCustom
                 {...field}
-                defaultValue={data?.gitUrl}
                 errors={errors.gitUrl}
               />
             )}
@@ -213,9 +208,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none" }}
                 {...field}
-                defaultValue={data?.blogUrl}
               />
             )}
             rules={{
