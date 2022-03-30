@@ -181,9 +181,7 @@ const Header = (props) => {
             <Pnav pnav={pnav} />
           </LeftMenu>
           <RightMenu>
-            {num === 1 ? (
-              null
-            ) : (
+            {num === 1 ? null : (
               <>
                 <SharedBtn
                   onClick={() => {

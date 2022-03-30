@@ -69,7 +69,7 @@ const Portfolio = () => {
   const [fontcolor, setFontColor] = useState("");
 
   useEffect(() => {
-    if (templateIdx % 3 === 1) {
+    if (templateIdx % 3 === 1 && templateIdx !== 13) {
       setColor("rgba(255, 133, 81, 0.9)");
     }
     if (templateIdx % 3 === 2) {
@@ -79,7 +79,10 @@ const Portfolio = () => {
       setColor("rgba(68, 133, 223, 0.9)");
     }
     if (templateIdx === 0) {
-      setColor("rgba(255, 255, 255, 1)");
+      setColor("rgba(256,256,256, 0.9)");
+    }
+    if (templateIdx === 13) {
+      setColor("rgba(0,0,0, 0.9)");
     }
   }, [templateIdx]);
 

@@ -60,7 +60,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>포그</title>
+        <title>포그 :: 개발자 포트폴리오의 A to Z</title>
         <link
           rel="icon"
           type="image/png"

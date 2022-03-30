@@ -16,6 +16,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import { Checkbox } from "@mui/material";
+import Template from "../../shared/Template";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const CareerWrite = () => {
     content.current.style.height = "20px";
     content.current.style.height = content.current.scrollHeight + "px";
 
-    return handleSubmit(careerSubmit);
+    // return handleSubmit(careerSubmit);
   }, []);
 
   const handleResizeHeight = useCallback(() => {
@@ -64,10 +65,11 @@ const CareerWrite = () => {
       setOpen((prev) => !prev);
       return;
     }
-    if (content.current.value.length === 0) {
+    if (oldData.contents === 0) {
       setError("contents", "필수 항목 입니다.");
+      return;
     }
-    let _content = content.current.value.split(`\n`);
+    let _content = oldData.contents.split(`\n`);
     let _endTime = oldData.endTime;
     if (oldData.endTime !== "current") {
       _endTime = oldData.endTime + "-01";
@@ -222,6 +224,8 @@ const CareerWrite = () => {
           <ErrorMessage>
             {errors?.endTime?.message || errors?.startTime?.message}
           </ErrorMessage>
+
+          <Template />
         </form>
       ) : null}
 

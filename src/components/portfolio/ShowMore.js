@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { apis } from "../../shared/axios";
-//redux
-import { useDispatch } from "react-redux";
-import { actionCreators as troubleShootingActions } from "../../redux/modules/setProject";
 //style
 import styled from "styled-components";
 import { TroubleShootingContainer } from "../../pages/Project";
@@ -11,7 +8,6 @@ import TroubleShooting from "../project/view/TroubleShooting";
 
 function ShowMore(props) {
   const { id, color, fontcolor } = props;
-  const dispatch = useDispatch();
 
   const scrollTS = useRef(null);
 
@@ -66,7 +62,12 @@ function ShowMore(props) {
             );
           })
         : null}
-      <SampleButton color={color} ref={scrollTS} onClick={handleShow}>
+      <SampleButton
+        color={color}
+        fontcolor={fontcolor}
+        ref={scrollTS}
+        onClick={handleShow}
+      >
         {show ? (
           <img
             alt="show"
@@ -92,11 +93,16 @@ const SampleButton = styled.div`
   margin: 50px 0px;
   width: 100%;
   height: 50px;
-  background-color: ${(props) => props.color};
+  background-color: ${(props) =>
+    props.fontcolor === "#fff"
+      ? "rgba(66, 68, 83, 1)"
+      : "rgba(237, 237, 237, 1)"};
   border-radius: 10px;
   &:hover {
-    //ToDO
-    background: #00c4b4;
+    background-color: ${(props) =>
+      props.color === "rgba(256,256,256, 0.9)"
+        ? "rgba(0, 196, 180, 1)"
+        : `${props.color}`};
     transition: all 1s ease;
   }
   cursor: pointer;
