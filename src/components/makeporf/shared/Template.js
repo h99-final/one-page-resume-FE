@@ -42,7 +42,7 @@ function Template() {
             alt="템플릿 선택"
             src={process.env.PUBLIC_URL + "/img/template.svg"}
           />
-          <FormText style={{ color: "white" }}>템플릿 선택</FormText>
+          <FormText style={{ color: "white", marginLeft: "15px" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
           <Save
@@ -52,8 +52,8 @@ function Template() {
             }}
           >
             <FormTextWhite
-              style={{ color: "white" }}
-              // onClick={() => history.push(`/portfolio/${porfId}`)}
+              style={{ color: "white", fontSize: "16px" }}
+            // onClick={() => history.push(`/portfolio/${porfId}`)}
             >
               <input id="submitngo" type="submit" style={{ display: "none" }} />
               작성 완료
@@ -62,7 +62,7 @@ function Template() {
           <Label id={id} htmlFor="submit">
             <Save style={{ marginRight: "15px" }}>
               <input id="submit" type="submit" style={{ display: "none" }} />
-              <FormTextWhite>임시 저장</FormTextWhite>
+              <FormTextWhite style={{ fontSize: "16px" }}>임시 저장</FormTextWhite>
             </Save>
           </Label>
         </div>
@@ -72,7 +72,7 @@ function Template() {
 }
 
 const Save = styled(Next)`
-  width: 125px;
+  width: 120px;
   height: 42px;
   padding: 5px 10px;
   background-color: white;
@@ -92,6 +92,7 @@ const TemplateSelector = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 30px;
 `;
 
 const BottomNav = styled.div`
@@ -113,6 +114,7 @@ export const FormTextWhite = styled(FormText)`
   cursor: pointer;
   color: black;
   width: auto !important;
+  font-weight: 600;
 `;
 
 export default Template;

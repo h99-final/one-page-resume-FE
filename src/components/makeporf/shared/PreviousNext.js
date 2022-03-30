@@ -31,16 +31,25 @@ function PreviousNext() {
     <>
       <ButtonBucket>
         <Previous id={id} onClick={handlePreviousClick}>
-          <span>{`<`}</span>
+          <img
+            alt=""
+            src={process.env.PUBLIC_URL + "/img/leftBox.svg"}
+          />
         </Previous>
 
         {id === "project" ? (
           <Next id={id} onClick={handleNextClick}>
-            <span>{`>`}</span>
+            <img
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/rightBox.svg"}
+            />
           </Next>
         ) : (
           <Next id={id} onClick={handleNextClick}>
-            <span>{`>`}</span>
+            <img
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/rightBox.svg"}
+            />
           </Next>
         )}
       </ButtonBucket>
