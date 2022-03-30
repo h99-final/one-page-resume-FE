@@ -132,7 +132,10 @@ function MainStack() {
           })}
         </StackBox>
       </MultiContent>
-      <div style={{ width: "96%", textAlign: "right" }}>
+      <div style={{
+        position: "absolute", marginTop: "480px", maxWidth: "1440px",
+        width: "95%", textAlign: "right"
+      }}>
         <Button onClick={submitStack}>변경 내용 저장</Button>
       </div>
     </>
