@@ -166,7 +166,7 @@ const PorfList = () => {
         </InputBox>
 
         <StackBox style={{ marginBottom: "60px" }}>
-          {addStack.map((addStack, index) => {
+          {addStack?.map((addStack, index) => {
             return (
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
