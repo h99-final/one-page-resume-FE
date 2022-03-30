@@ -40,65 +40,6 @@ export const Next = styled.div`
   }
 `;
 
-export const FormTitle = styled.div`
-  margin: 50px 60px;
-  justify-content: center;
-`;
-
-export const InputCustom = styled.textarea`
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background: #696b7b;
-  }
-  width: 1120px;
-  height: 19px;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 15px;
-  resize: none;
-  border: 1px solid #393a47;
-  background-color: #393a47;
-  color: ${(props) => (props.readOnly ? "white" : "white")};
-  &:focus {
-    outline: #00c4b4 !important;
-    border: 1px solid #00c4b4 !important;
-  }
-`;
-export const InputStack = styled.input`
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background: #696b7b;
-  }
-  width: 1120px;
-  height: 19px;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 15px;
-  resize: none;
-  border: 1px solid #393a47;
-  background-color: #393a47;
-  color: ${(props) => (props.readOnly ? "white" : "white")};
-  &:focus {
-    outline: #00c4b4 !important;
-    border: 1px solid #00c4b4 !important;
-  }
-`;
-export const StyledInput = styled(({ errors, ...rest }) => (
-  <InputCustom {...rest} />
-))`
-  &&& {
-    border: ${(props) => (props.errors ? "1px solid orange" : "none")};
-  }
-`;
-
 export const Label = styled.div`
   display: flex;
   align-items: center;
@@ -204,4 +145,63 @@ export const Font = styled.div`
 export const Icon = styled.div`
   background-color: #fff;
   border-radius: 50px;
+`;
+
+export const FormTitle = styled.div`
+  margin: 50px 60px;
+  justify-content: center;
+`;
+
+export const InputCustom = styled.textarea`
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
+  width: 1120px;
+  height: 19px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  resize: none;
+  border: 1px solid #393a47;
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
+  &:focus {
+    outline: #00c4b4 !important;
+    border: 1px solid #00c4b4 !important;
+  }
+`;
+export const InputStack = styled.input`
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #696b7b;
+  }
+  width: 1120px;
+  height: 19px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  resize: none;
+  border: 1px solid #393a47;
+  background-color: #393a47;
+  color: ${(props) => (props.readOnly ? "white" : "white")};
+  &:focus {
+    outline: #00c4b4 !important;
+    border: 1px solid #00c4b4 !important;
+  }
+`;
+export const StyledInput = styled(({ errors, ...rest }) => (
+  <InputCustom {...rest} />
+))`
+  &&& {
+    border: ${(props) => (props.errors ? "1px solid orange" : "none")};
+  }
 `;

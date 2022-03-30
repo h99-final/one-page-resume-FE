@@ -9,7 +9,7 @@ import {
   InputCustom,
   Label,
 } from "../../makeporf/shared/_sharedStyle";
-import { Font, FormContents } from "../../makeporf/view/Introduce";
+// import { FormContents } from "../../makeporf/view/Introduce";
 import styled from "styled-components";
 import PreviousNextProject from "../PreviousNextProject";
 import { useDispatch, useSelector } from "react-redux";
@@ -368,6 +368,26 @@ function TsModal(props) {
   );
 }
 
+const FormContents = styled.div`
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  height: 100%;
+`;
+const Font = styled.div`
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+
+  /* C1 */
+
+  color: #ffffff;
+  margin: 10px;
+`;
+
 const List = styled.li`
   display: flex;
   flex-direction: column;
@@ -435,7 +455,7 @@ const InputBox = styled.div`
   }
 `;
 
-const FormTextCenter = styled(FormText)`
+export const FormTextCenter = styled(FormText)`
   width: auto;
   height: 63px;
   padding: 10px;
@@ -445,7 +465,7 @@ const FormTextCenter = styled(FormText)`
   }
 `;
 
-const FormTitleFlex = styled(FormTitle)`
+export const FormTitleFlex = styled(FormTitle)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -476,7 +496,7 @@ export const FormTextLight = styled(FormText)`
   }
 `;
 
-const IconBoxLeft = styled(IconBox)`
+export const IconBoxLeft = styled(IconBox)`
   width: 50px;
   margin-left: auto;
   background-color: #2c2e39;

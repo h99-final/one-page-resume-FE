@@ -222,7 +222,6 @@ const IntroBox = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const ImgBox = styled.div`

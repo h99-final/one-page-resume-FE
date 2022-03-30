@@ -99,7 +99,7 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
-    return () => submitStack;
+    // return () => handleSubmit(submitStack);
   }, []);
 
   const submitStack = async () => {
