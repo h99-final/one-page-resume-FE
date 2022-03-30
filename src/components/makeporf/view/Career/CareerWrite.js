@@ -17,6 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as careerActions } from "../../../../redux/modules/career";
 import { Checkbox } from "@mui/material";
+import Template from "../../shared/Template";
 
 const CareerWrite = () => {
   const dispatch = useDispatch();
@@ -225,6 +226,7 @@ const CareerWrite = () => {
           <ErrorMessage>
             {errors?.endTime?.message || errors?.startTime?.message}
           </ErrorMessage>
+          <Template />
         </form>
       ) : null}
 
