@@ -32,7 +32,6 @@ function Career() {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
       <PreviousNext />
-      <Template />
     </>
   );
 }

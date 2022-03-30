@@ -19,8 +19,6 @@ import { useHistory } from "react-router-dom";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const project = useSelector((state) => state.myproject.projects);
   const is_loading = useSelector((state) => state.myproject.is_loading);
   // props로 건네줘서 핸들링
@@ -68,9 +66,9 @@ function ProjectSelect() {
             })}
           </ProjectBox>
 
-          <div>{error && <ErrorMessageSpan
-            style={{
-            }}>{error}</ErrorMessageSpan>}</div>
+          <div>
+            {error && <ErrorMessageSpan style={{}}>{error}</ErrorMessageSpan>}
+          </div>
           <MakeCenter onClick={projectSubmit}>
             <AddButton>
               <ContentCareer>
@@ -79,7 +77,7 @@ function ProjectSelect() {
             </AddButton>
           </MakeCenter>
           <PreviousNext />
-          <Template />
+          <Template projectSubmit={projectSubmit} />
         </form>
       ) : (
         <div>로딩중</div>
