@@ -42,7 +42,6 @@ const loginDB = (email, password) => {
               sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
             })
             .then((res) => dispatch(setUser(res.data.data)));
-          window.location.reload();
         } else {
           //dispatch(userInfoDB())는 왜 안되지?
           apis
