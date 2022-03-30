@@ -87,7 +87,7 @@ const CareerWrite = () => {
     setValue("subTitle", "");
     setValue("startTime", "");
     setValue("endTime", "");
-    setOpen((prev) => !prev);
+    setOpen(true);
     setCheckDate((prev) => !prev);
   };
 
@@ -103,10 +103,10 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustom
                   type="text"
-                  style={{ border: "none" }}
                   {...field}
                   maxLength={50}
                   placeholder="학교, 회사, 부트캠프, 교육, 자격증, 공모전 등 활동 종류를 적어주세요."
+                  errors={!!errors.title}
                 />
               )}
               rules={{
@@ -125,8 +125,8 @@ const CareerWrite = () => {
             <Controller
               render={({ field }) => (
                 <InputCustom
+                  errors={!!errors.subTitle}
                   type="text"
-                  style={{ border: "none" }}
                   {...field}
                   maxLength={50}
                   placeholder="학교/회사 이름, 부트캠프 기업명, 자격증명, 공모전 이름 등 활동의 이름을 적어주세요. (ex: 한국대학교 컴퓨터공학과, 항해99)"
@@ -147,6 +147,8 @@ const CareerWrite = () => {
             <Controller
               render={({ field }) => (
                 <InputCustom
+
+                  errors={!!errors.contents}
                   type="text"
                   style={{ height: "40px" }}
                   {...field}
@@ -171,8 +173,9 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustomDate
                   type="text"
+
+                  errors={!!errors.startTime}
                   style={{
-                    border: "none",
                     marginRight: "10px",
                   }}
                   {...field}
@@ -194,8 +197,8 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustomDate
                   type="text"
+                  errors={!!errors.endTime}
                   style={{
-                    border: "none",
                     marginLeft: "10px",
                   }}
                   {...field}
@@ -229,7 +232,7 @@ const CareerWrite = () => {
         </form>
       ) : null}
 
-      <MakeCenter style={{ marginTop: "20px" }}>
+      <MakeCenter style={{ marginTop: "70px", marginBottom: "120px" }}>
         <AddButton onClick={handleSubmit(careerSubmit)}>
           <ContentCareer>
             <ButtonText>+ 직무 경험 추가 하기</ButtonText>

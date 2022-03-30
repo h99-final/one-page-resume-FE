@@ -126,6 +126,7 @@ export const ErrorMessage = styled.span`
   display: flex;
   justify-content: right;
   padding: 0px 0px;
+  padding-top: 5px;
   width: 94%;
   margin-bottom: 20px;
 `;
