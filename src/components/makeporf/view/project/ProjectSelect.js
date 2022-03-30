@@ -67,6 +67,10 @@ function ProjectSelect() {
               );
             })}
           </ProjectBox>
+
+          <div>{error && <ErrorMessageSpan
+            style={{
+            }}>{error}</ErrorMessageSpan>}</div>
           <MakeCenter onClick={projectSubmit}>
             <AddButton>
               <ContentCareer>
@@ -74,7 +78,6 @@ function ProjectSelect() {
               </ContentCareer>
             </AddButton>
           </MakeCenter>
-          {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
           <PreviousNext />
           <Template />
         </form>
@@ -86,7 +89,9 @@ function ProjectSelect() {
 }
 
 const ErrorMessageSpan = styled(ErrorMessage)`
-  position: absolute;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
 `;
 
 // 프로젝트 카드를 반응형으로 배치 하는 것 해야함

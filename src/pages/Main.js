@@ -167,6 +167,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 730px;
+  display: inline-block;
 `;
 
 const Project = styled.div`

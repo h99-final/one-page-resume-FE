@@ -249,6 +249,7 @@ function CareerShow(props) {
             </Label>
 
             <InputCustomDate
+              rows={1}
               type="text"
               style={{
                 border: "none",

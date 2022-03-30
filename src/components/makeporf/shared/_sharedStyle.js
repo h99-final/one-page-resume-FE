@@ -125,9 +125,9 @@ export const ErrorMessage = styled.span`
   text-align: right;
   display: flex;
   justify-content: right;
-  padding: 15px 0px;
+  padding: 0px 0px;
   width: 94%;
-  height: 10px;
+  margin-bottom: 20px;
 `;
 
 export const Font = styled.div`
