@@ -219,7 +219,9 @@ const CareerWrite = () => {
               활동을 진행하고 있어요
             </Label>
           </Content>
-          <ErrorMessage>{errors?.endTime?.message}</ErrorMessage>
+          <ErrorMessage>
+            {errors?.endTime?.message || errors?.startTime?.message}
+          </ErrorMessage>
         </form>
       ) : null}
 
