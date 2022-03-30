@@ -49,7 +49,7 @@ function UserInfo() {
       .then(() => {
         history.push(`/write/portfolio/stack/${userInfo.porfId}`);
       })
-      .catch((error) => { });
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -69,7 +69,7 @@ function UserInfo() {
         setValue("");
       });
 
-    return handleSubmit(onValid);
+    return () => handleSubmit(onValid);
   }, []);
 
   return (

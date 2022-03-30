@@ -55,7 +55,7 @@ const ProjectIntroduce = (props) => {
               "--swiper-pagination-color": "#fff",
             }}
             loop={true}
-            spaceBetween={10}
+            // spaceBetween={10}
             navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
@@ -63,17 +63,17 @@ const ProjectIntroduce = (props) => {
           >
             {project?.img?.map((e, i) => {
               return (
-                <SwiperSlide>
-                  <img key={`image-${i}`} alt="" src={e.url} />
+                <SwiperSlide key={`image-${i}`}>
+                  <img style={{ width: "100%" }} alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
           </Swiper>
-          <ImagePreview></ImagePreview>
+
           <Swiper
             onSwiper={setThumbsSwiper}
             // loop={true}
-            spaceBetween={2}
+            // spaceBetween={30}
             slidesPerView={project?.img?.length}
             freeMode={true}
             watchSlidesProgress={true}
@@ -83,18 +83,20 @@ const ProjectIntroduce = (props) => {
             {is_loading ? (
               <Spinner />
             ) : (
-              project?.img?.map((e, i) => {
-                return (
-                  <SwiperSlide>
-                    <img
-                      style={{ width: "70px" }}
-                      key={`imagepreveiw-${i}`}
-                      alt=""
-                      src={e.url}
-                    />
-                  </SwiperSlide>
-                );
-              })
+              <ImagePreview>
+                {project?.img?.map((e, i) => {
+                  return (
+                    <SwiperSlide>
+                      <img
+                        style={{ width: "70px", margin: "0px 10px" }}
+                        key={`imagepreveiw-${i}`}
+                        alt=""
+                        src={e.url}
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </ImagePreview>
             )}
           </Swiper>
         </ImgBox>
@@ -103,7 +105,7 @@ const ProjectIntroduce = (props) => {
             <ContentTitle>TECH STACK</ContentTitle>
             {project?.stack?.map((e, i) => {
               return (
-                <SubStack key={e}>
+                <SubStack key={`e.stack-${i}`}>
                   <span>{e}</span>
                 </SubStack>
               );
@@ -134,7 +136,9 @@ const ProjectIntroduce = (props) => {
   );
 };
 const ImagePreview = styled.div`
-  width: 70%;
+  display: flex;
+  justify-content: center;
+  width: 300px;
 `;
 
 const AboutBox = styled.div`
@@ -211,11 +215,10 @@ const TitleBox = styled.div`
 
 const IntroBox = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const ImgBox = styled.div`

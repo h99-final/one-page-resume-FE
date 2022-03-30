@@ -22,8 +22,18 @@ const TroubleShooting = (props) => {
     tsName,
     commitMsg,
     tsLength,
+    fontcolor,
   } = props;
   const { id } = props;
+
+  const [contrastColor, setContrastColor] = useState();
+  useEffect(() => {
+    if (fontcolor === "#000") {
+      setContrastColor("#fff");
+    } else {
+      setContrastColor("#000");
+    }
+  }, []);
 
   // const [ts, setTS] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -44,7 +54,12 @@ const TroubleShooting = (props) => {
           smooth={true}
           offset={-50}
         >
-          <NumberBox onClick={handleNumClick} id={i}>
+          <NumberBox
+            fontcolor={fontcolor}
+            contrastColor={contrastColor}
+            onClick={handleNumClick}
+            id={i}
+          >
             {i + 1}
           </NumberBox>
         </Link>
@@ -67,19 +82,24 @@ const TroubleShooting = (props) => {
 
   return (
     <>
+      <LeftTopBox>
+        <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
+          TroubleShooting
+        </FontTitle>
+      </LeftTopBox>
       <SampleCard>
         <LeftBox ref={leftBox}>
           <LeftTopBox>
-            <FontTitle>{tsName}</FontTitle>
+            <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
+              {tsName}
+            </FontTitle>
           </LeftTopBox>
           {/* <>{tsContent}</> */}
           <MDEditor.Markdown
             style={{
-              backgroundColor: "#393a47",
-              borderRadius: "10px",
+              backgroundColor: "transparent",
               padding: "14px 14px",
-              border: "1px solid #393a47",
-              color: "#fff",
+              color: `${fontcolor}`,
               height: "100%",
               minHeight: "600px",
               maxWidth: "100%",
@@ -94,10 +114,13 @@ const TroubleShooting = (props) => {
           <Num>
             <NumBoxs />
           </Num>
-          <Font>{commitMsg}</Font>
+          <Font fontcolor={fontcolor} contrastColor={contrastColor}>
+            {commitMsg}
+          </Font>
           {!is_highlight_loading &&
           leftBox?.current?.getBoundingClientRect().height ? (
             <Highlighted
+              fontcolor={fontcolor}
               height={
                 leftBox.current.getBoundingClientRect().height > 600
                   ? leftBox.current.getBoundingClientRect().height
@@ -141,6 +164,7 @@ const LeftBox = styled.div`
 const LeftTopBox = styled.div`
   height: 4.5vw;
   width: 50vw;
+  margin-top: 50px;
 `;
 
 const LeftBottomBox = styled.div`
@@ -173,7 +197,7 @@ const RightBox = styled.div`
 export const NumberBox = styled.div`
   width: calc(45vw / 10);
   height: calc(45vw / 10);
-  background-color: white;
+  background-color: ${(props) => props.contrastColor};
   text-align: center;
   display: flex;
   justify-content: center;
@@ -204,7 +228,7 @@ export const Font = styled.div`
   padding: 20px;
   position: relative;
   top: 0;
-  border: 1px solid #fff;
+  border: 1px solid ${(props) => props.fontcolor};
   /* position: relative; */
   /* flex-direction: row; */
   font-style: normal;
@@ -212,7 +236,6 @@ export const Font = styled.div`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  color: #ffffff;
 `;
 export const FontTitle = styled.div`
   /* padding: 20px; */
@@ -224,7 +247,6 @@ export const FontTitle = styled.div`
   font-size: 25px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  color: #ffffff;
 `;
 
 export default TroubleShooting;

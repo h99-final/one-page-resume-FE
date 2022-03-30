@@ -21,7 +21,7 @@ function PortfolioBaseHeader(props) {
   const history = useHistory();
   const [info, setInfo] = useState({});
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
-  const { projectId, refs, id, ...scrolldata } = props;
+  const { projectId, refs, id, color, fontcolor, ...scrolldata } = props;
 
   const url = useRef();
   const copyUrl = (e) => {
@@ -43,9 +43,9 @@ function PortfolioBaseHeader(props) {
   const [scroll, setScroll] = useState(0);
   const [selected, setSelected] = useState(1);
   //useEffect를 사용하여 scrollTop의 상태가 변할 때마다 스크롤 이벤트, 함수 실행
+
   useEffect(() => {
     document.addEventListener("scroll", debounce(handleScroll, 200));
-    console.log(selected);
     if (scroll < defaultScroll.user && scroll >= 0) {
       setSelected(1);
     }
@@ -77,7 +77,7 @@ function PortfolioBaseHeader(props) {
       .map((e, i) => (
         <div key={`numberBox-${i}`}>
           <Link to={`${i + 5}`} spy={true} smooth={true} offset={-50}>
-            <NumberBox>{i + 1}</NumberBox>
+            <NumberBox fontcolor={fontcolor}>{i + 1}</NumberBox>
           </Link>
         </div>
       ));
@@ -97,75 +97,133 @@ function PortfolioBaseHeader(props) {
     <>
       <StyledHeaderFix>
         <LeftMenu>
-          <img
-            onClick={() => {
-              history.push(`/`);
-            }}
-            style={{ marginRight: "5px" }}
-            alt=""
-            src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
-          />
-          <img
-            onClick={() => {
-              history.push(`/`);
-            }}
-            style={{ marginRight: "50px" }}
-            alt=""
-            src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
-          />
+          {fontcolor === "#fff" ? (
+            <>
+              <img
+                onClick={() => {
+                  history.push(`/`);
+                }}
+                style={{ marginRight: "5px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+              />
+              <img
+                onClick={() => {
+                  history.push(`/`);
+                }}
+                style={{ marginRight: "50px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+              />
+            </>
+          ) : (
+            <>
+              <img
+                onClick={() => {
+                  history.push(`/`);
+                }}
+                style={{ marginRight: "50px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/logoBlack.svg"}
+              />
+            </>
+          )}
           <Link to="1" spy={true} smooth={true} offset={-100}>
-            <ListItemButtonPorf selected={selected === 1 ? true : false}>
+            <ListItemButtonPorf
+              color={color}
+              fontcolor={fontcolor}
+              selected={selected === 1 ? true : false}
+            >
               <ListItemText>포트폴리오 정보</ListItemText>
             </ListItemButtonPorf>
           </Link>
           <Link to="2" spy={true} smooth={true} offset={-100}>
-            <ListItemButtonPorf selected={selected === 2 ? true : false}>
+            <ListItemButtonPorf
+              color={color}
+              fontcolor={fontcolor}
+              selected={selected === 2 ? true : false}
+            >
               <ListItemText>내 정보</ListItemText>
             </ListItemButtonPorf>
           </Link>
           <Link to="3" spy={true} smooth={true} offset={-100}>
-            <ListItemButtonPorf selected={selected === 3 ? true : false}>
+            <ListItemButtonPorf
+              color={color}
+              fontcolor={fontcolor}
+              selected={selected === 3 ? true : false}
+            >
               <ListItemText>기술 스택</ListItemText>
             </ListItemButtonPorf>
           </Link>
           <Link to="4" spy={true} smooth={true} offset={-100}>
-            <ListItemButtonPorf selected={selected === 4 ? true : false}>
+            <ListItemButtonPorf
+              color={color}
+              fontcolor={fontcolor}
+              selected={selected === 4 ? true : false}
+            >
               <ListItemText>직무 경험</ListItemText>
             </ListItemButtonPorf>
           </Link>
           <Link to="5" spy={true} smooth={true} offset={-50}>
-            <ListItemButtonPorf selected={selected === 5 ? true : false}>
+            <ListItemButtonPorf
+              color={color}
+              fontcolor={fontcolor}
+              selected={selected === 5 ? true : false}
+            >
               <ListItemText>프로젝트</ListItemText>
             </ListItemButtonPorf>
           </Link>
         </LeftMenu>
         <RightMenu>
-          <img
-            onClick={() => console.log("bookmarkclicked")}
-            style={{ marginRight: "25px" }}
-            alt=""
-            src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
-          />
-          <img
-            onClick={copyUrl}
-            style={{ marginRight: "25px" }}
-            alt=""
-            src={process.env.PUBLIC_URL + "/img/copyURLWhite.svg"}
-          />
+          {fontcolor === "#fff" ? (
+            <>
+              <img
+                onClick={() => console.log("bookmarkclicked")}
+                style={{ marginRight: "25px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+              />
+              <img
+                onClick={copyUrl}
+                style={{ marginRight: "25px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/copyURLWhite.svg"}
+              />
+            </>
+          ) : (
+            <>
+              {" "}
+              <img
+                onClick={() => console.log("bookmarkclicked")}
+                style={{ marginRight: "25px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/BookmarkBlack.svg"}
+              />
+              <img
+                onClick={copyUrl}
+                style={{ marginRight: "25px" }}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/copyUrlBlack.svg"}
+              />
+            </>
+          )}
+
           <TextArea readOnly ref={url} value={window.location.href} />
           <Avatar
             alt={info?.username}
             src={info?.profileImage}
             sx={{ width: 38, height: 38 }}
           />
-          <Name>{info?.username}</Name>
+          <Name fontcolor={fontcolor}>{info?.username}</Name>
         </RightMenu>
       </StyledHeaderFix>
       {scroll - defaultScroll.project > -50 ? (
         <>
           <ProjectHeaderFix>
             <ListItemButtonPorf>
-              <ProjectText>Project</ProjectText>
+              <ProjectText color={color} fontcolor={fontcolor}>
+                Project
+              </ProjectText>
             </ListItemButtonPorf>
 
             <div style={{ display: "flex" }}>
@@ -194,7 +252,7 @@ const ProjectHeaderFix = styled.div`
 `;
 
 const NumberBox = styled.div`
-  color: #fff;
+  color: ${(props) => props.fontcolor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,7 +264,7 @@ const NumberBox = styled.div`
 
 const ProjectText = styled.div`
   font-family: "Pretendard";
-  color: #fff;
+  color: ${(props) => props.fontcolor} !important;
   font-style: normal;
   font-weight: 600;
   font-size: 26px;
@@ -235,10 +293,10 @@ const StyledHeaderFix = styled(StyledHeader)`
 const ListItemButtonPorf = styled(ListItemButton)`
   width: 150px;
   background: ${(props) =>
-    props.selected ? "#4485DF" : "rgba(255, 255, 255, 0)"};
+    props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
   & > span {
-    color: ${(props) => (props.selected ? "white" : "white")};
+    color: ${(props) => props.fontcolor};
   }
   cursor: pointer;
 `;
@@ -246,7 +304,7 @@ const ListItemButtonPorf = styled(ListItemButton)`
 const Name = styled.div`
   margin-left: 10px;
   margin-top: 3px;
-  color: #fff;
+  color: ${(props) => props.fontcolor};
   font-size: 16px;
   display: flex;
   justify-content: center;

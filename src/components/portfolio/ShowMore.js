@@ -10,7 +10,7 @@ import { TroubleShootingContainer } from "../../pages/Project";
 import TroubleShooting from "../project/view/TroubleShooting";
 
 function ShowMore(props) {
-  const { id } = props;
+  const { id, color, fontcolor } = props;
   const dispatch = useDispatch();
 
   const scrollTS = useRef(null);
@@ -37,14 +37,11 @@ function ShowMore(props) {
     if (!show) {
       setTroubleShootings([]);
     }
-    // return setShow(false);
+    return;
   }, [show]);
 
   return (
     <>
-      <SampleButton ref={scrollTS} onClick={handleShow}>
-        Show
-      </SampleButton>
       {!!show
         ? troubleShootings.map((e, i) => {
             return (
@@ -56,6 +53,8 @@ function ShowMore(props) {
                       key={`t.fileId=${i}`}
                     >
                       <TroubleShooting
+                        color={color}
+                        fontcolor={fontcolor}
                         tsLength={troubleShootings[i].tsFiles?.length}
                         {...e}
                         {...t}
@@ -67,6 +66,20 @@ function ShowMore(props) {
             );
           })
         : null}
+      <SampleButton color={color} ref={scrollTS} onClick={handleShow}>
+        {show ? (
+          <img
+            alt="show"
+            src={process.env.PUBLIC_URL + "/img/UpArrowWhite.svg"}
+          />
+        ) : (
+          <img
+            style={{ transform: `rotate(180deg)` }}
+            alt="show"
+            src={process.env.PUBLIC_URL + "/img/UpArrowWhite.svg"}
+          />
+        )}
+      </SampleButton>
     </>
   );
 }
@@ -76,12 +89,13 @@ const SampleButton = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  margin-bottom: 50px;
+  margin: 50px 0px;
   width: 100%;
   height: 50px;
-  background: #424453;
+  background-color: ${(props) => props.color};
   border-radius: 10px;
   &:hover {
+    //ToDO
     background: #00c4b4;
     transition: all 1s ease;
   }

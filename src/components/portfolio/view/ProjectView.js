@@ -18,7 +18,7 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 
 const ProjectViewIntro = (props) => {
-  const { id } = props;
+  const { id, color, fontcolor } = props;
   const dispatch = useDispatch();
 
   const [project, setProject] = useState({});
@@ -52,7 +52,9 @@ const ProjectViewIntro = (props) => {
   return (
     <>
       <TitleBox>
-        <h1>{project?.title}</h1>
+        <h1 color={color} fontcolor={fontcolor}>
+          {project?.title}
+        </h1>
       </TitleBox>
       <IntroBox>
         <ImgBox>
@@ -71,7 +73,7 @@ const ProjectViewIntro = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`img-${i}`}>
-                  <img alt="" src={e.url} />
+                  <img style={{ width: "100%" }} alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
@@ -79,7 +81,7 @@ const ProjectViewIntro = (props) => {
           <Swiper
             onSwiper={setThumbsSwiper}
             // loop={true}
-            spaceBetween={10}
+            // spaceBetween={10}
             slidesPerView={project?.img?.length}
             freeMode={true}
             watchSlidesProgress={true}
@@ -89,7 +91,11 @@ const ProjectViewIntro = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`e.url-${i}`}>
-                  <img alt="" src={e.url} />
+                  <img
+                    style={{ width: "70px", margin: "0px 10px" }}
+                    alt=""
+                    src={e.url}
+                  />
                 </SwiperSlide>
               );
             })}
@@ -111,7 +117,7 @@ const ProjectViewIntro = (props) => {
             <MDEditor.Markdown
               style={{
                 backgroundColor: "transparent",
-                color: "#fff",
+                color: `${fontcolor}`,
                 height: "auto",
                 minHeight: "600px",
                 maxWidth: "100%",
@@ -127,16 +133,16 @@ const ProjectViewIntro = (props) => {
           </AboutBox>
         </ContentBox>
       </IntroBox>
-      <ShowMore id={id} />
+      <ShowMore color={color} fontcolor={fontcolor} id={id} />
     </>
   );
 };
 
 const ContentBox = styled.div`
-  width: 55%;
+  width: 45%;
   height: 100%;
   justify-content: flex-start;
-  /* padding-bottom: 60px; */
+  margin: 0px 2.5%;
 `;
 
 const AboutBox = styled.div`
@@ -208,7 +214,7 @@ const TitleBox = styled.div`
     font-size: 26px;
     line-height: 31px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: ${(props) => props.fontcolor};
   }
 `;
 
@@ -217,14 +223,13 @@ const IntroBox = styled.div`
   height: 100%;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const ImgBox = styled.div`
-  width: 40%;
-  min-width: 600px;
-  height: 100%;
-  margin-right: 20px;
+  width: 45%;
+  height: inherit;
+  margin: 0px 2.5%;
 `;
 
 export default ProjectViewIntro;
