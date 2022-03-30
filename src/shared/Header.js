@@ -182,7 +182,7 @@ const Header = (props) => {
           </LeftMenu>
           <RightMenu>
             {num === 1 ? (
-              <></>
+              null
             ) : (
               <>
                 <SharedBtn
@@ -235,7 +235,6 @@ const Header = (props) => {
             {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
-        <div style={{ width: "100%", height: "60px" }}></div>
       </>
     );
   }
@@ -252,7 +251,7 @@ export const StyledHeader = styled.div`
   min-width: 800px;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  padding: 10px 0px;
   z-index: 5;
 `;
 
