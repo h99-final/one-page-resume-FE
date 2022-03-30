@@ -118,7 +118,11 @@ const Portfolio = () => {
           <Stack color={color} fontcolor={fontcolor} />
         </div>
         <div id="4" ref={career}>
-          <Career x />
+          <Career
+            color={color}
+            fontcolor={fontcolor}
+            templateIdx={templateIdx}
+          />
         </div>
 
         <div id="5" ref={project}>
