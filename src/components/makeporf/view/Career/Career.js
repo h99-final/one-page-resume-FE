@@ -26,11 +26,9 @@ function Career() {
         </FormTextSpan>
       </FormTitleFlex>
       <CareerWrite />
-      <hr />
       {careers?.map((e, i) => {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
-      <hr />
       <PreviousNext />
       <Template />
     </>
@@ -45,6 +43,7 @@ const FormTitleFlex = styled(FormTitle)`
 export const FormTextSpan = styled(FormText)`
   font-size: 16px;
   width: auto;
+  font-weight: 400;
 `;
 
 export default Career;
