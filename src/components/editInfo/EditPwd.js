@@ -255,16 +255,20 @@ function EditPwd() {
               </span>
             )}
           </ErrorMessage>
-          <div style={{ width: "96%", textAlign: "right" }}>
-            <Button
-              onClick={() => {
-                editPwd();
-              }}
-            >
-              변경 내용 저장
-            </Button>
-          </div>
+
         </UserInfoForm>
+        <div style={{
+          position: "absolute", marginTop: "425px", maxWidth: "1440px",
+          width: "95%", textAlign: "right"
+        }}>
+          <Button
+            onClick={() => {
+              editPwd();
+            }}
+          >
+            변경 내용 저장
+          </Button>
+        </div>
       </ThemeProvider>
     </>
   );

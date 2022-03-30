@@ -242,7 +242,7 @@ export const Title = styled.div`
   margin: 3px;
   height: 40px;
   margin-top: 60px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   h1 {
     height: fit-content;
     padding: 10px 0px;

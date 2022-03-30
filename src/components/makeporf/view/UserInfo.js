@@ -49,7 +49,7 @@ function UserInfo() {
       .then(() => {
         history.push(`/write/portfolio/stack/${userInfo.porfId}`);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   useEffect(() => {
@@ -87,9 +87,9 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.name}
+                errors={errors.name}
               />
             )}
             rules={{
@@ -188,12 +188,13 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none" }}
                 {...field}
                 defaultValue={data?.gitUrl}
+                errors={errors.gitUrl}
               />
             )}
             rules={{
+              required: "필수 항목 입니다.",
               pattern: {
                 value:
                   /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/,

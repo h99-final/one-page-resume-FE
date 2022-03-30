@@ -211,10 +211,14 @@ function ChangeInfo() {
           />
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
-        <div style={{ width: "96%", textAlign: "right" }}>
-          <Button type="submit" >변경 내용 저장</Button>
-        </div>
+
       </UserInfoForm>
+      <div style={{
+        position: "absolute", marginTop: "915px", maxWidth: "1440px",
+        width: "95%", textAlign: "right"
+      }}>
+        <Button type="submit" >변경 내용 저장</Button>
+      </div>
     </>
   );
 }
@@ -239,7 +243,6 @@ const Button = styled.button`
   border-radius: 43px;
   border: none;
   position: relative;
-  margin-bottom: 10px;
 `;
 export const ReadOnly = styled.textarea`
   &::-webkit-scrollbar {

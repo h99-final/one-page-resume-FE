@@ -44,6 +44,7 @@ export const FormTextSpan = styled(FormText)`
   font-size: 16px;
   width: auto;
   font-weight: 400;
+  color: #CFD3E2;
 `;
 
 export default Career;
