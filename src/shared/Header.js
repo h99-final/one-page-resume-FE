@@ -136,9 +136,9 @@ const Header = (props) => {
             >
               시작하기
             </WriteBtn>
-            {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
+        {modalOpen && <Modal modalClose={modalClose}></Modal>}
       </>
     );
   } else {
@@ -230,9 +230,9 @@ const Header = (props) => {
               email={userInfo?.email}
               userId={userInfo?.userId}
             />
-            {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
+        {modalOpen && <Modal modalClose={modalClose}></Modal>}
       </>
     );
   }
@@ -241,7 +241,7 @@ const Header = (props) => {
 export default Header;
 
 export const StyledHeader = styled.div`
-  background: rgba(19, 19, 27, 0.8);
+  background-color: rgba(19, 19, 27, 0.8);
   backdrop-filter: blur(5px);
   display: flex;
   position: fixed;
@@ -251,7 +251,7 @@ export const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px 0px;
-  z-index: 2;
+  z-index: 5;
 `;
 
 export const LeftMenu = styled.div`
