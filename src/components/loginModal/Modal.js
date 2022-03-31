@@ -119,8 +119,7 @@ const Modal = ({ modalClose }) => {
                       exitClose();
                     }}
                   >
-                    <img
-                      alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+                    <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
                   </button>
                 </div>
                 {isFirstLogin === true && (

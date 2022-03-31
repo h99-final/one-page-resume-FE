@@ -43,7 +43,6 @@ function UserInfo() {
     apis
       .addInfo(_data)
       .then((res) => {
-        // sessionStorage.setItem("userInfo", JSON.stringify(_data));
         dispatch(userActions.userInfoDB());
       })
       .then(() => {

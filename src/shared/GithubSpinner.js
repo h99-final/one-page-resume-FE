@@ -10,7 +10,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../components/banner.css";
-import Spinner from "./Spinner";
+import Spinner from './Spinner';
+import { animated, useSpring, config } from "react-spring";
 
 const customStyles = {
   content: {
@@ -30,13 +31,22 @@ const customStyles = {
 };
 
 function GithubSpinner(props) {
+  const { totalCommitCount, curCommitCount } = props;
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const { helpModalOpen, setHelpModalOpen } = props;
 
+  const [progress, setProgress] = useState("0%");
+
+  const style = useSpring({ width: progress, config: config.slow });
+
   function closeModal() {
     setHelpModalOpen(false);
   }
+
+  useEffect(() => {
+    setProgress(Math.round(curCommitCount / totalCommitCount * 100))
+  }, [curCommitCount])
 
   // Modal.setAppElement("#root");
 
@@ -52,7 +62,7 @@ function GithubSpinner(props) {
         {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
-        <ProgressBar> <span></span></ProgressBar>
+        <ProgressBar><animated.span style={style} /></ProgressBar>
       </InfoBox>
 
       <Swiper
@@ -198,7 +208,8 @@ const InfoBox = styled.div`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #cfd3e2;
+    color: #CFD3E2;
+    margin-bottom: 30px;
   }
   img {
     width: fit-content;
@@ -207,26 +218,24 @@ const InfoBox = styled.div`
   }
 `;
 const ProgressBar = styled.div`
-  height: 20px; /* Can be anything */
+  /* height: 20px; */
+  margin: 0px auto;
   position: relative;
   background: #d9dce5;
-  -moz-border-radius: 25px;
-  -webkit-border-radius: 25px;
-  border-radius: 25px;
+  /* -moz-border-radius: 25px;
+  -webkit-border-radius: 25px; */
+  /* border-radius: 25px; */
   padding: 10px;
-  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
   width: 80vw;
   span{
     display: block;
   height: 100%;
-  border-top-right-radius: 8px;
+  /* border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 20px; */
   background-color: #a140ff;
-  background-image: linear-gradient(to bottom, #7dc9df, #a140ff);
-  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  /* background-image: linear-gradient(to bottom, #7dc9df, #a140ff); */
   position: relative;
   overflow: hidden;
   }

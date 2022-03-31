@@ -15,7 +15,7 @@ function PreviousNext() {
 
   const handleNextClick = () => {
     if (id === "project") {
-      history.push(`/porf`);
+      history.push(`/portfolio/${porfId}`);
       return;
     }
     const index = paramsId.findIndex(isSame);
