@@ -38,8 +38,9 @@ function FileUpload() {
 
   function deletePreview(e) {
     e.stopPropagation();
+
     apis
-      .profileDelete()
+      .delImg()
       .then((res) => {
         dispatch(userActions.userInfoDB());
       })
