@@ -33,6 +33,7 @@ import { grey } from "@mui/material/colors";
 import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { CssTextField, theme } from "../../shared/_sharedMuiStyle";
 import { option } from "../../shared/common";
+import ForModifyProjUpload from '../makeporf/shared/ForModifyProjUpload';
 
 function MakeProject() {
   const history = useHistory();
@@ -123,6 +124,7 @@ function MakeProject() {
         history.push(`/write/project/troubleShooting/${id}`);
       });
     }
+
     setIs_Loading(false);
   };
   // const handleClick = () => {
@@ -132,10 +134,10 @@ function MakeProject() {
   useEffect(() => {
     if (projectId) {
       apis.projectGet(projectId).then((res) => {
-        const { title, gitRepoUrl, imageUrl, content, stack } = res.data.data;
+        const { title, gitRepoUrl, img, content, stack } = res.data.data;
         setValue("projectTitle", title);
         setValue("gitRepoUrl", gitRepoUrl);
-        setValue("imageUrl", imageUrl);
+        setImages(img);
         setMDValue(content);
         setAddStack(stack);
         setIsModify(true);
@@ -188,7 +190,11 @@ function MakeProject() {
                 프로젝트 이미지<Star>*</Star>
               </Font>
             </Label>
-            <ForProjUpload images={images} setImages={setImages} />
+            {projectId
+              ? <ForModifyProjUpload images={images} setImages={setImages} projectId={projectId} />
+              : <ForProjUpload images={images} setImages={setImages} />
+            }
+
           </MultiContentFlex>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>

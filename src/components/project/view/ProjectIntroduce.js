@@ -64,7 +64,7 @@ const ProjectIntroduce = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`image-${i}`}>
-                  <img style={{ width: "100%", objectFit: "cover" }} alt="" src={e.url} />
+                  <MainCard alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}
@@ -87,8 +87,7 @@ const ProjectIntroduce = (props) => {
                 {project?.img?.map((e, i) => {
                   return (
                     <SwiperSlide>
-                      <img
-                        style={{ width: "70px", margin: "0px 10px" }}
+                      <SubCard
                         key={`imagepreveiw-${i}`}
                         alt=""
                         src={e.url}
@@ -138,9 +137,27 @@ const ProjectIntroduce = (props) => {
 const ImagePreview = styled.div`
   display: flex;
   justify-content: center;
-  width: 300px;
+  width: fit-content;
+  border: 1px solid white;
+  margin: 0px auto;
 `;
+const MainCard = styled.img`
+  width: 45vw;
+  height: 45vw;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`;
+const SubCard = styled.img`
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+  height: 70px;
 
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`;
 const AboutBox = styled.div`
   width: 100%;
   min-height: 120px;

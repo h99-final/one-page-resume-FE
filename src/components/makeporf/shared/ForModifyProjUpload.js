@@ -7,19 +7,21 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../redux/modules/image";
 import { Icon, IconBox } from "./_sharedStyle";
 
-function ForProjUpload(props) {
+function ForModifyProjUpload(props) {
   const dispatch = useDispatch();
 
   // 파일 상태 관리
-  const { images, setImages } = props;
+  const { images, setImages, projectId } = props;
 
   // 프리뷰 상태 관리
   const [preview, setPreview] = useState(null);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(images);
+  const [newFile, setNewFile] = useState(null);
 
   const dropHandler = (file) => {
-    let _images = [...file, ...images];
-    setImages(_images);
+    // let _images = Object.assign(file, {
+    //   preview: URL.createObjectURL(file),
+    // });
     setFiles(
       file.map((e) =>
         Object.assign(e, {
@@ -28,25 +30,25 @@ function ForProjUpload(props) {
       )
     );
 
+    console.log(file)
   };
+  console.log(files)
 
-  console.log(images[0].preview)
-
-  function deletePreview(file, i) {
-    let _files = files.filter((e, index) => index !== i);
-    setFiles(_files);
-    // let __files = images
+  function deletePreview(e) {
+    console.log(e.target.id)
+    apis.deletePictureProject(projectId, e.target.id)
+      .then((res) => {
+        let _files = images.filter((element) => element.id !== e.target.id)
+        setImages(_files)
+      })
+      .catch(err => { alert("삭제 실패했습니다.") })
   }
-  console.log(images)
-  // function onImageChange(e) {
-  //   const reader = new FileReader();
-  //   const file = images;
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setPreview(reader.result);
-  //   };
-  // }
 
+  useEffect(() => {
+    setFiles(images)
+  }, [])
+
+  // console.log(images)
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -78,22 +80,22 @@ function ForProjUpload(props) {
         )}
       </Dropzone>
 
-      {files.map((file, i) => (
-        <Image>
+      {images.map((file, i) => (
+        <Image key={`images-${file.id}`}>
           <img
             style={{ borderRadius: "10px" }}
             width="250px"
             alt="selected"
-            src={file.preview}
+            src={file.url}
           />
           <TrashImg
-            onClick={(e) => deletePreview(file, i)}
+            id={file.id}
+            onClick={(e) => deletePreview(e)}
             alt=""
             src={process.env.PUBLIC_URL + "/img/delete.svg"}
           />
         </Image>
       ))}
-      {images.map}
     </ProfileBox>
   );
 }
@@ -149,4 +151,4 @@ const portrait = styled.div`
   padding-top: 56.25%;
 `;
 
-export default ForProjUpload;
+export default ForModifyProjUpload;
