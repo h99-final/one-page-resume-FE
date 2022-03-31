@@ -117,13 +117,13 @@ const Main = () => {
               <img onClick={() => {
                 setIndex((prev) => (prev - num) % 12);
               }}
-                style={{ marginRight: "10px" }}
+                style={{ marginRight: "10px", cursor: "pointer" }}
                 alt="" src={process.env.PUBLIC_URL + "/img/goLeft.svg"} />
 
               <img onClick={() => {
                 setIndex((prev) => (prev + num) % 12);
               }}
-                style={{ marginRight: "24px" }}
+                style={{ marginRight: "24px", cursor: "pointer" }}
                 alt="" src={process.env.PUBLIC_URL + "/img/goRight.svg"} />
             </div>
           </TitleBox>

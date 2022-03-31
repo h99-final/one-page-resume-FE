@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import { actionCreators as userActions } from "../redux/modules/user";
 import { apis } from "../../shared/axios";
@@ -85,11 +85,15 @@ const Signup = (props) => {
     event.preventDefault();
   };
 
+  useEffect(() => {
+    setEmail(props.newEmail)
+  }, [])
+
   const signup = () => {
-    if (!emailCheck(email) || !email) {
-      setEmailError("이메일 형식을 다시 확인해주세요!");
-      return;
-    }
+    // if (!emailCheck(email) || !email) {
+    //   setEmailError("이메일 형식을 다시 확인해주세요!");
+    //   return;
+    // }
 
     if (!password || password.length < 4) {
       setPasswordError(
@@ -104,6 +108,7 @@ const Signup = (props) => {
       return;
     }
     setPasswordCheckError("");
+
     apis.dupCheck(email).then((res) => {
       if (res.data.result === true) {
         setEmailError("중복된 이메일 입니다. 다시 입력해 주세요.")
@@ -131,7 +136,7 @@ const Signup = (props) => {
       <ThemeProvider theme={theme}>
         <InputBox>
           <CssTextField
-            defaultValue={props.email}
+            value={props.newEmail}
             focuscolor="#00C4B4"
             onChange={inputEmail}
             variant="standard"

@@ -33,7 +33,7 @@ function ForProjUpload(props) {
     let _files = files.filter((e, index) => index !== i);
     setFiles(_files);
   }
-
+  console.log(images)
   // function onImageChange(e) {
   //   const reader = new FileReader();
   //   const file = images;
