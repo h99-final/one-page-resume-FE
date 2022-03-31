@@ -10,7 +10,11 @@ export const FormText = styled.div`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  color: #ffffff;
+  color: #fff;
+  &:hover {
+    color: #00c4b4;
+    transition: 0.2s ease-in-out;
+  }
 `;
 
 export const ButtonBucket = styled.div`

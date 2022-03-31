@@ -47,6 +47,8 @@ const Project = () => {
                 {e.tsFiles.map((t, i) => {
                   return (
                     <TroubleShooting
+                      // color="#fff"
+                      fontcolor="#fff"
                       key={t.fileId}
                       {...e}
                       {...t}
@@ -71,6 +73,7 @@ const CardsContainer = styled.div`
   /* flex-flow: row nowrap; */
   justify-content: flex-start;
   align-items: center;
+  color: "#fff";
 `;
 export const IntroduceContainer = styled.div`
   height: 100%;

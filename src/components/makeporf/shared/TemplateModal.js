@@ -7,6 +7,7 @@ import { FormTextLight } from "../../makeproject/ts/TokenHelp";
 import { FormTextCenter, FormTitleFlex } from "../../makeproject/ts/TsModal";
 import { FormTextWhite } from "./Template";
 import { IconBox, Next } from "./_sharedStyle";
+import "./_modal.css";
 
 const customStyles = {
   content: {
@@ -78,8 +79,7 @@ const options = [
 ];
 
 function TemplateModal(props) {
-  const { openTemplate, setOpenTemplate } = props;
-
+  const { openTemplate, setOpenTemplate, subtitle, afterOpenModal } = props;
   const closeModal = () => {
     setOpenTemplate(false);
   };
@@ -106,7 +106,10 @@ function TemplateModal(props) {
         isOpen={openTemplate}
         ariaHideApp={false}
         onRequestClose={closeModal}
-        style={customStyles}
+        onAfterOpen={afterOpenModal}
+        // style={customStyles}
+        className="Modal"
+        overlayClassName="Overlay"
       >
         <IconBoxLeft onClick={() => setOpenTemplate(false)}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
@@ -126,7 +129,7 @@ function TemplateModal(props) {
                   display: "inline-block",
                   margin: "3%",
                   position: "relative",
-                  width: "25%",
+                  width: "27%",
                 }}
               >
                 <Image
@@ -182,8 +185,20 @@ const Ulist = styled.ul`
   margin: auto 100px;
   height: 50vh;
   overflow: auto;
-  border: 1px solid #cccccc;
+  border: 1px solid #696b7b;
   border-radius: 10px;
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #696b7b;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 `;
 
 const Image = styled.img`

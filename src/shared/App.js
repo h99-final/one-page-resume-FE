@@ -176,6 +176,10 @@ input:-webkit-autofill,
   input:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
   }
+  html {
+    scrollbar-color: #696b7b;
+    scrollbar-width: thin;
+}
 `;
 
 export default App;

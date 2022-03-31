@@ -129,10 +129,10 @@ const Image = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  z-index: 2;
+  /* z-index: 1; */
   position: relative;
   img {
-    z-index: 5;
+    /* z-index: 2; */
     :hover {
     }
     span {

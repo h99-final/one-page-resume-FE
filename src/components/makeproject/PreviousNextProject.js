@@ -62,7 +62,7 @@ const BottomNav = styled.div`
   height: 70px;
   margin-top: 50px;
   bottom: 0px;
-  background: #393A47;
+  background: #393a47;
 `;
 const Next = styled.div`
   float: right;
@@ -73,7 +73,7 @@ const Next = styled.div`
   height: 62px;
   width: 115px;
   padding: 0px 10px;
-  background: #00C4B4;
+  background: #00c4b4;
   border-radius: 43px;
   & > span {
     font-family: Pretendard;
@@ -84,8 +84,11 @@ const Next = styled.div`
     letter-spacing: -0.01em;
     color: #ffffff;
   }
+  cursor: pointer;
 `;
 const Previous = styled(Next)`
+  cursor: pointer;
+
   float: left;
 `;
 

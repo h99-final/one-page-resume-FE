@@ -25,6 +25,8 @@ const TroubleShooting = (props) => {
     fontcolor,
   } = props;
 
+  console.log(fontcolor);
+
   const [contrastColor, setContrastColor] = useState();
   useEffect(() => {
     if (fontcolor === "#000") {
