@@ -22,7 +22,7 @@ import GithubHelper from "../../../shared/GithubHelper";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "53%",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -35,6 +35,7 @@ const customStyles = {
     padding: "0px",
     overflow: "hidden",
     minWidth: "1000px",
+    zIndex: 2,
   },
 };
 
@@ -370,6 +371,16 @@ function TsModal(props) {
     </>
   );
 }
+
+// const ModalBG = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background: rgba(0, 0, 0, 0.8);
+//   z-index: 1;
+// `;
 
 const FormContents = styled.div`
   flex-direction: column;
