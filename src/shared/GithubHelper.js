@@ -11,16 +11,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../components/banner.css";
 import Spinner from "./Spinner";
+import { IconBoxLeft } from "../components/makeproject/ts/TsModal";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "53%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    width: "100vw",
-    height: "100%",
+    width: "80vw",
+    height: "90%",
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#1F2029",
@@ -29,33 +30,29 @@ const customStyles = {
   },
 };
 
-function GithubSpinner(props) {
-  const dispatch = useDispatch();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  const { helpModalOpen, setHelpModalOpen } = props;
+function GithubHelper(props) {
+  const { help, setHelp } = props;
+
+  Modal.setAppElement("#root");
 
   function closeModal() {
-    setHelpModalOpen(false);
+    setHelp(false);
   }
 
-  // Modal.setAppElement("#root");
-
   return (
-    <Container
-    // ariaHideApp={false}
-    // isOpen={helpModalOpen}
-    // onRequestClose={closeModal}
-    // style={customStyles}
-    // contentLabel="Example Modal"
+    <Modal
+      ariaHideApp={false}
+      isOpen={help}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Example Modal"
     >
+      <IconBoxLeft onClick={closeModal}>
+        <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+      </IconBoxLeft>
       <InfoBox>
-        {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
-
-        <div style={{ width: "350px", margin: "0px auto" }}>
-          <Spinner />
-        </div>
-        <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
-        <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
+        <h1>트러블 슈팅을 작성하는데 어려움이 있으신가요?</h1>
+        <h2>Github에서 Patch Code를 불러오는 방법을 알려드릴게요.</h2>
       </InfoBox>
 
       <Swiper
@@ -129,7 +126,7 @@ function GithubSpinner(props) {
           </Box>
         </SwiperSlide>
       </Swiper>
-    </Container>
+    </Modal>
   );
 }
 const Container = styled.div`
@@ -160,7 +157,7 @@ const StepBox = styled.div`
     font-size: 28px;
     line-height: 34px;
     letter-spacing: -0.01em;
-    color: #00c4b4;
+    color: #ffffff;
     margin-bottom: 20px;
   }
   h2 {
@@ -179,7 +176,6 @@ const RightBox = styled.div`
 `;
 
 const InfoBox = styled.div`
-  background-color: #2c2e39;
   width: 100%;
   height: fit-content;
   text-align: center;
@@ -214,4 +210,4 @@ const SvgBox = styled.div`
   margin: 70px auto;
 `;
 
-export default GithubSpinner;
+export default GithubHelper;
