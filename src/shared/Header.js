@@ -101,13 +101,13 @@ const Header = (props) => {
               onClick={() => {
                 history.push(`/`);
               }}
-              style={{ marginRight: "5px", height: "20px" }}
+              style={{ marginRight: "5px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
             />
             <img
               onClick={toLogin}
-              style={{ marginRight: "5px", width: "5px" }}
+              style={{ marginRight: "5px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
@@ -156,7 +156,7 @@ const Header = (props) => {
             />
             <img
               onClick={() => {
-                history.push(`/portfolio/${userInfo.porfId}`);
+                history.push(`/`);
               }}
               style={{ marginRight: "5px" }}
               alt=""
