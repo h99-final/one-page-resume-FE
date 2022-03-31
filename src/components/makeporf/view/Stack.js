@@ -254,13 +254,13 @@ function Stack() {
       </MultiContent>
       <Template submitStack={submitStack} />
       {/* </form> */}
-      <MakeCenter style={{ marginTop: "20px" }}>
+      {/* <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={submitStack}>
           <ContentCareer>
             <ButtonText>+ 스택 저장 하기</ButtonText>
           </ContentCareer>
         </AddButton>
-      </MakeCenter>
+      </MakeCenter> */}
       <PreviousNext />
     </>
   );
