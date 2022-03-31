@@ -10,6 +10,7 @@ import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { debounce } from "../shared/common";
+
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -111,22 +112,31 @@ const Main = () => {
         <Header />
         <Banner />
         <PortfolioBox>
-          <TitleBox>
-            <h1>실시간 베스트 포트폴리오</h1>
-            <div>
-              <img onClick={() => {
-                setIndex((prev) => (prev - num) % 12);
-              }}
-                style={{ marginRight: "10px", cursor: "pointer" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/goLeft.svg"} />
+          <div style={{ display: "flex" }}>
+            <TitleBox>
+              <h1>실시간 베스트 포트폴리오</h1>
+              <div>
+                <img
+                  onClick={() => {
+                    setIndex((prev) => (prev - num) % 12);
+                  }}
+                  style={{ marginRight: "10px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/goLeft.svg"}
+                />
 
-              <img onClick={() => {
-                setIndex((prev) => (prev + num) % 12);
-              }}
-                style={{ marginRight: "24px", cursor: "pointer" }}
-                alt="" src={process.env.PUBLIC_URL + "/img/goRight.svg"} />
-            </div>
-          </TitleBox>
+                <img
+                  onClick={() => {
+                    setIndex((prev) => (prev + num) % 12);
+                  }}
+                  style={{ marginRight: "24px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/goRight.svg"}
+                />
+              </div>
+            </TitleBox>
+            <EventTitle>포그가 무조건 드려요</EventTitle>
+          </div>
           <Portfolio>
             {porf?.map((e, i) => {
               return (
@@ -138,6 +148,11 @@ const Main = () => {
                 </div>
               );
             })}
+            <Event>
+              <EventNum></EventNum>
+              <EventNum></EventNum>
+              <EventNum></EventNum>
+            </Event>
           </Portfolio>
         </PortfolioBox>
         <ProjectBox>
@@ -160,6 +175,29 @@ const Main = () => {
     </>
   );
 };
+const EventNum = styled.div`
+  height: 30%;
+  margin: 2% 0px;
+  background-color: #fff;
+  border-radius: 20px;
+`;
+const EventTitle = styled.div`
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  color: #fff;
+  width: 25%;
+  margin-left: 30px;
+`;
+const Event = styled.div`
+  margin: 10px;
+  width: 327px;
+  height: 410px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+`;
 
 const Container = styled.div`
   background-color: #1f2029;
@@ -181,9 +219,9 @@ const Project = styled.div`
 const Portfolio = styled.div`
   margin: 0px auto;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   display: flex;
-  width: 98%;
+  width: 100%;
   height: 430px;
   overflow: hidden;
   border-radius: 10px;
@@ -193,10 +231,10 @@ const Portfolio = styled.div`
 `;
 
 const TitleBox = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   h1 {
     margin-left: 20px;
@@ -207,24 +245,23 @@ const TitleBox = styled.div`
     letter-spacing: -0.01em;
     color: white;
   }
-    button {
-      margin-right: 10px;
-      align-items: center;
+  button {
+    margin-right: 10px;
+    align-items: center;
 
-      border-radius: 100px;
-      border: 1px solid inherit;
-      :hover {
-        background-color: #000000;
-        color: white;
-        border: 1px solid black;
-      }
+    border-radius: 100px;
+    border: 1px solid inherit;
+    :hover {
+      background-color: #000000;
+      color: white;
+      border: 1px solid black;
     }
-  
+  }
 `;
 
 const PortfolioBox = styled.div`
-  width: 100%;
-  margin: 30px auto;
+  width: 75%;
+  margin: 50px auto;
   height: 500px;
   max-width: 1440px;
 `;

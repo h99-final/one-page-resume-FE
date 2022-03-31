@@ -144,7 +144,15 @@ function ShowTroubleShooting(props) {
                       Patch Code<Star>*</Star>
                     </Font>
                   </Label>
-                  <Highlighted text={ts.tsPatchCodes} />
+                  <div
+                    style={{
+                      display: "inline-block",
+                      width: "100%",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Highlighted text={ts.tsPatchCodes} />
+                  </div>
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>

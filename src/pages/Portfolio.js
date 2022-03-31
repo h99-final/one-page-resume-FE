@@ -31,6 +31,8 @@ const Portfolio = () => {
   const [contents, setContents] = useState("");
   const [templateIdx, setTemplateIdx] = useState(0);
 
+  const [fontcolor, setFontColor] = useState("");
+
   useEffect(() => {
     dispatch(myprojectActions.selectedProjectDB(id));
     apis
@@ -66,7 +68,6 @@ const Portfolio = () => {
   }, []);
 
   const [color, setColor] = useState("");
-  const [fontcolor, setFontColor] = useState("");
 
   useEffect(() => {
     if (templateIdx % 3 === 1 && templateIdx !== 13) {

@@ -24,7 +24,6 @@ const TroubleShooting = (props) => {
     tsLength,
     fontcolor,
   } = props;
-  const { id } = props;
 
   const [contrastColor, setContrastColor] = useState();
   useEffect(() => {
@@ -82,12 +81,12 @@ const TroubleShooting = (props) => {
 
   return (
     <>
-      <LeftTopBox>
+      <LeftTopBox fontcolor={fontcolor}>
         <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
           TroubleShooting
         </FontTitle>
       </LeftTopBox>
-      <SampleCard>
+      <SampleCard fontcolor={fontcolor}>
         <LeftBox ref={leftBox}>
           <LeftTopBox>
             <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
@@ -110,7 +109,7 @@ const TroubleShooting = (props) => {
             rehypePlugins={[[rehypeSanitize]]}
           />
         </LeftBox>
-        <RightBox>
+        <RightBox fontcolor={fontcolor}>
           <Num>
             <NumBoxs />
           </Num>
@@ -165,6 +164,7 @@ const LeftTopBox = styled.div`
   height: 4.5vw;
   width: 50vw;
   margin-top: 50px;
+  color: ${(props) => props.fontcolor};
 `;
 
 const LeftBottomBox = styled.div`
@@ -192,12 +192,14 @@ const RightBox = styled.div`
   height: 600px;
   width: 50vw;
   /* max-width: 800px; */
+  color: ${(props) => props.fontcolor};
 `;
 
 export const NumberBox = styled.div`
   width: calc(45vw / 10);
   height: calc(45vw / 10);
-  background-color: ${(props) => props.contrastColor};
+  background-color: ${(props) => props.fontcolor};
+  color: ${(props) => props.contrastColor};
   text-align: center;
   display: flex;
   justify-content: center;
@@ -247,6 +249,7 @@ export const FontTitle = styled.div`
   font-size: 25px;
   line-height: 24px;
   letter-spacing: -0.01em;
+  color: ${(props) => props.fontcolor};
 `;
 
 export default TroubleShooting;

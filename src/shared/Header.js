@@ -114,7 +114,7 @@ const Header = (props) => {
             <Port
               selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
-                history.push("/portfolio");
+                history.push("/");
               }}
             >
               포트폴리오
@@ -136,9 +136,9 @@ const Header = (props) => {
             >
               시작하기
             </WriteBtn>
-            {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
+        {modalOpen && <Modal modalClose={modalClose}></Modal>}
       </>
     );
   } else {
@@ -156,7 +156,7 @@ const Header = (props) => {
             />
             <img
               onClick={() => {
-                history.push(`/portfolio/${userInfo.porfId}`);
+                history.push(`/`);
               }}
               style={{ marginRight: "5px" }}
               alt=""
@@ -230,9 +230,9 @@ const Header = (props) => {
               email={userInfo?.email}
               userId={userInfo?.userId}
             />
-            {modalOpen && <Modal modalClose={modalClose}></Modal>}
           </RightMenu>
         </StyledHeader>
+        {modalOpen && <Modal modalClose={modalClose}></Modal>}
       </>
     );
   }
@@ -241,7 +241,8 @@ const Header = (props) => {
 export default Header;
 
 export const StyledHeader = styled.div`
-  background-color: #13131b;
+  background-color: rgba(19, 19, 27, 0.8);
+  backdrop-filter: blur(5px);
   display: flex;
   position: fixed;
   top: 0px;

@@ -70,10 +70,10 @@ function MainCard(props) {
             />
             {bookmarkCount}
           </h1>
-          <h1>
+          {/* <h1>
             <img alt="" src={process.env.PUBLIC_URL + "/img/message.svg"} />
             9999+
-          </h1>
+          </h1> */}
         </Footer>
       </ProjectForm>
     </>
