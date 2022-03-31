@@ -77,6 +77,9 @@ function MainStack() {
           window.alert(error.message);
         });
     }
+    else {
+      alert("3개를 골라주세요")
+    }
   };
 
   return (
@@ -91,14 +94,6 @@ function MainStack() {
           대표하는 명함에 들어가게 됩니다.
         </Font>
       </FormTitle>
-
-      {stack?.length > 3 ? (
-        <Font style={{ color: "orange", textAlign: "center" }}>
-          3가지만 골라주세요
-        </Font>
-      ) : (
-        <Font style={{ color: "#2c2e39", textAlign: "center" }}>3가지만 골라주세요</Font>
-      )}
       <MultiContent>
         <Label>
           <Font>
@@ -132,6 +127,13 @@ function MainStack() {
           })}
         </StackBox>
       </MultiContent>
+      {stack?.length > 3 ? (
+        <Font style={{ color: "orange", textAlign: "left", marginLeft: "220px" }}>
+          3가지만 골라주세요
+        </Font>
+      ) : (
+        <Font style={{ color: "#2c2e39", textAlign: "center" }}>3가지만 골라주세요</Font>
+      )}
       <div style={{
         position: "absolute", marginTop: "480px", maxWidth: "1440px",
         width: "95%", textAlign: "right"
@@ -156,6 +158,7 @@ export const MultiContent = styled.div`
   margin: 0px 50px 0px 50px;
 `;
 const Button = styled.button`
+  cursor: pointer;
   width: 150px;
   height: 60px;
   background-color: #00c4b4;

@@ -76,9 +76,8 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none" }}
                 {...field}
-                defaultValue={userInfo?.name}
+                errors={!!errors.name}
               />
             )}
             rules={{
@@ -100,7 +99,6 @@ function ChangeInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={userInfo?.job}
               />
             )}
             name="job"
@@ -122,8 +120,8 @@ function ChangeInfo() {
               <InputCustom
                 style={{ border: "none" }}
                 {...field}
-                defaultValue={userInfo?.phoneNum}
                 maxLength={13}
+                errors={!!errors.phoneNum}
               />
             )}
             rules={{
@@ -151,7 +149,6 @@ function ChangeInfo() {
 
                 }}
                 {...field}
-                defaultValue={userInfo?.email}
                 readOnly
               />
             )}
@@ -173,7 +170,9 @@ function ChangeInfo() {
           </Label>
           <Controller
             render={({ field }) => (
-              <InputCustom {...field} defaultValue={userInfo?.gitUrl} />
+              <InputCustom {...field}
+                errors={!!errors.gitUrl}
+              />
             )}
             rules={{
               pattern: {
@@ -194,9 +193,7 @@ function ChangeInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
-                style={{ border: "none" }}
                 {...field}
-                defaultValue={userInfo?.blogUrl}
               />
             )}
             rules={{
@@ -212,13 +209,13 @@ function ChangeInfo() {
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
 
+        <div style={{
+          position: "absolute", marginTop: "60px", maxWidth: "1440px",
+          width: "95%", textAlign: "right", paddingBottom: "30px"
+        }}>
+          <Button type="submit" >변경 내용 저장</Button>
+        </div>
       </UserInfoForm>
-      <div style={{
-        position: "absolute", marginTop: "915px", maxWidth: "1440px",
-        width: "95%", textAlign: "right"
-      }}>
-        <Button type="submit" >변경 내용 저장</Button>
-      </div>
     </>
   );
 }
@@ -236,6 +233,7 @@ const UserInfoForm = styled.form`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   width: 150px;
   height: 60px;
   background-color: #00c4b4;
