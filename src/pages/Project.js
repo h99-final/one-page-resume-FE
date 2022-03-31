@@ -32,7 +32,7 @@ const Project = () => {
 
   return (
     <>
-      <ProjHeader />
+      <ProjHeader id={id} />
 
       <CardsContainer>
         <IntroduceContainer>

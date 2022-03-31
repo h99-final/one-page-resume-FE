@@ -25,8 +25,6 @@ const TroubleShooting = (props) => {
     fontcolor,
   } = props;
 
-  console.log(fontcolor);
-
   const [contrastColor, setContrastColor] = useState();
   useEffect(() => {
     if (fontcolor === "#000") {
@@ -200,7 +198,8 @@ const RightBox = styled.div`
 export const NumberBox = styled.div`
   width: calc(45vw / 10);
   height: calc(45vw / 10);
-  background-color: ${(props) => props.contrastColor};
+  background-color: ${(props) => props.fontcolor};
+  color: ${(props) => props.contrastColor};
   text-align: center;
   display: flex;
   justify-content: center;

@@ -45,7 +45,7 @@ export default handleActions(
   {
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
-        draft.previews = action.payload.previews;
+        draft.myBookmark = action.payload.previews;
       }),
     [ADD_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {

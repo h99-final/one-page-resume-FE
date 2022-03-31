@@ -53,7 +53,7 @@ function Introduce() {
               <Font>
                 포트폴리오 제목
                 <Star>*</Star>
-                <br></br>(0/50)
+                <br></br>(50자 이내)
               </Font>
             </Label>
             <Controller
@@ -87,7 +87,7 @@ function Introduce() {
             <Label>
               <Font>
                 포트폴리오 소개글
-                <Star>*</Star> <br></br>(0/2000)
+                <Star>*</Star> <br></br>(2000자 이내)
               </Font>
             </Label>
             <Controller

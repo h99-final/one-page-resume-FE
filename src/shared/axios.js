@@ -7,8 +7,8 @@ const search = sessionStorage.getItem("search");
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
 
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -32,8 +32,8 @@ const testinstance = axios.create({
 });
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
@@ -102,8 +102,6 @@ export const apis = {
   //포트폴리오 스택 조회
   stackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
-  templatePut: (data) => instance.put("/porf/template", data),
-
   projectPorf: (data) => instance.put("/porf/project", data),
   projectPorfGet: () => instance.get("/user/project"),
   projectMYPorfGet: (porfId) => instance.get(`/porf/${porfId}/project`),
@@ -158,4 +156,7 @@ export const apis = {
 
   gitToken: (token) => instance.put("/user/git/token", token),
   delGitToken: () => instance.delete("/user/git/token"),
+
+  addBookmark: (id) => instance.post(`/bookmark/project/${id}`),
+  deleteBookmark: (id) => instance.delete(`/bookmark/project/${id}`),
 };
