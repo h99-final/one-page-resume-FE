@@ -40,95 +40,108 @@ function GithubHelper(props) {
   }
 
   return (
-    <Modal
-      ariaHideApp={false}
-      isOpen={help}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Example Modal"
-    >
-      <IconBoxLeft onClick={closeModal}>
-        <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
-      </IconBoxLeft>
-      <InfoBox>
-        <h1>트러블 슈팅을 작성하는데 어려움이 있으신가요?</h1>
-        <h2>Github에서 Patch Code를 불러오는 방법을 알려드릴게요.</h2>
-      </InfoBox>
-
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={false}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper5"
+    <div style={{ zIndex: 3 }}>
+      <Modal
+        ariaHideApp={false}
+        isOpen={help}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
       >
-        <SwiperSlide>
-          <Box>
-            <LeftBox>
-              <StepBox>
-                <h2>트러블슈팅 작성 STEP 1.</h2>
-                <h1>Commit 선택</h1>
-                <h2>
-                  트러블슈팅을 작성할 파일을 불러오기위해
-                  <br />
-                  파일이 속한 Commit을 선택해 주세요.
-                </h2>
-              </StepBox>
-            </LeftBox>
-            <RightBox>
-              <SvgBox>
-                <img alt="" src={process.env.PUBLIC_URL + "/img/TL1.svg"} />
-              </SvgBox>
-            </RightBox>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Box>
-            <LeftBox>
-              <StepBox>
-                <h2>트러블슈팅 작성 STEP 2.</h2>
-                <h1> Patch Code 선택</h1>
-                <h2>트러블슈팅을 작성할 파일을 선택해주세요.</h2>
-              </StepBox>
-            </LeftBox>
-            <RightBox>
-              <SvgBox>
-                <img alt="" src={process.env.PUBLIC_URL + "/img/TL2.svg"} />
-              </SvgBox>
-            </RightBox>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Box>
-            <LeftBox>
-              <StepBox>
-                <h2>트러블슈팅 작성 STEP 3.</h2>
-                <h1>트러블 슈팅 작성</h1>
-                <h2>
-                  불러온 트러블슈팅의 제목과 상세 내용을 적고 <br />
-                  저장버튼을 눌러주세요. 저장된 트러블 슈팅은 <br />
-                  commit 별로 저장이 됩니다.
-                </h2>
-              </StepBox>
-            </LeftBox>
-            <RightBox>
-              <SvgBox>
-                <img alt="" src={process.env.PUBLIC_URL + "/img/TL3.svg"} />
-              </SvgBox>
-            </RightBox>
-          </Box>
-        </SwiperSlide>
-      </Swiper>
-    </Modal>
+        <IconBoxLeft onClick={closeModal}>
+          <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+        </IconBoxLeft>
+        <InfoBox>
+          <h1>트러블 슈팅을 작성하는데 어려움이 있으신가요?</h1>
+          <h2>Github에서 Patch Code를 불러오는 방법을 알려드릴게요.</h2>
+        </InfoBox>
+
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={false}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper5"
+        >
+          <SwiperSlide>
+            <Box>
+              <LeftBox>
+                <StepBox>
+                  <h2>트러블슈팅 작성 STEP 1.</h2>
+                  <h1>Commit 선택</h1>
+                  <h2>
+                    트러블슈팅을 작성할 파일을 불러오기위해
+                    <br />
+                    파일이 속한 Commit을 선택해 주세요.
+                  </h2>
+                </StepBox>
+              </LeftBox>
+              <RightBox>
+                <SvgBox>
+                  <img alt="" src={process.env.PUBLIC_URL + "/img/TL1.svg"} />
+                </SvgBox>
+              </RightBox>
+            </Box>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Box>
+              <LeftBox>
+                <StepBox>
+                  <h2>트러블슈팅 작성 STEP 2.</h2>
+                  <h1> Patch Code 선택</h1>
+                  <h2>트러블슈팅을 작성할 파일을 선택해주세요.</h2>
+                </StepBox>
+              </LeftBox>
+              <RightBox>
+                <SvgBox>
+                  <img alt="" src={process.env.PUBLIC_URL + "/img/TL2.svg"} />
+                </SvgBox>
+              </RightBox>
+            </Box>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Box>
+              <LeftBox>
+                <StepBox>
+                  <h2>트러블슈팅 작성 STEP 3.</h2>
+                  <h1>트러블 슈팅 작성</h1>
+                  <h2>
+                    불러온 트러블슈팅의 제목과 상세 내용을 적고 <br />
+                    저장버튼을 눌러주세요. 저장된 트러블 슈팅은 <br />
+                    commit 별로 저장이 됩니다.
+                  </h2>
+                </StepBox>
+              </LeftBox>
+              <RightBox>
+                <SvgBox>
+                  <img alt="" src={process.env.PUBLIC_URL + "/img/TL3.svg"} />
+                </SvgBox>
+              </RightBox>
+            </Box>
+          </SwiperSlide>
+        </Swiper>
+      </Modal>
+    </div>
   );
 }
+
+const ModalBG = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+`;
+
 const Container = styled.div`
   background-color: #1f2029;
   width: 100%;

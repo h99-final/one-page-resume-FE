@@ -81,7 +81,7 @@ const BtnBox = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
-`
+`;
 const Btn = styled.button`
   cursor: pointer;
   width: 140px;

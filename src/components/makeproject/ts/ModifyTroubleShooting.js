@@ -92,7 +92,11 @@ function ModifyTroubleShooting(props) {
             width: "100px",
           }}
         >
-          <IconBox id={commitId} onClick={handleSubmit(onValid)}>
+          <IconBox
+            style={{ backgroundColor: "#00C4B4" }}
+            id={commitId}
+            onClick={handleSubmit(onValid)}
+          >
             <img alt="" src={process.env.PUBLIC_URL + "/img/pencil.svg"} />
           </IconBox>
           <IconBox onClick={handleDelete}>
