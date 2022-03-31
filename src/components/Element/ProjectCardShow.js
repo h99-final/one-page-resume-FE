@@ -32,22 +32,26 @@ function ProjectCardShow(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack.length > 3
             ? stack.slice(0, 3).map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })
+                return (
+                  <>
+                    <ProjectStack key={i}>#{e}</ProjectStack>
+                  </>
+                );
+              })
             : stack.map((e, i) => {
-              return (
-                <>
-                  <ProjectStack key={i}>#{e}</ProjectStack>
-                </>
-              );
-            })}
+                return (
+                  <>
+                    <ProjectStack key={i}>#{e}</ProjectStack>
+                  </>
+                );
+              })}
           {stack.length > 3 && (
             <ProjectStack
-              style={{ backgroundColor: "#393A47", color: "#666982", border: "1px solid #666982" }}
+              style={{
+                backgroundColor: "#393A47",
+                color: "#666982",
+                border: "1px solid #666982",
+              }}
             >
               + {stack.length - 3}
             </ProjectStack>
@@ -74,10 +78,10 @@ function ProjectCardShow(props) {
             />
             {bookmarkCount}
           </h1>
-          <h1>
+          {/* <h1>
             <img alt="" src={process.env.PUBLIC_URL + "/img/message.svg"} />
             9999+
-          </h1>
+          </h1> */}
         </Footer>
       </ProjectForm>
     </>
@@ -90,7 +94,7 @@ const Footer = styled.div`
   border-top: 1px solid #666982;
   display: flex;
   justify-content: right;
-  color: #CFD3E2;
+  color: #cfd3e2;
   h1 {
     font-style: normal;
     font-weight: 400;
@@ -100,11 +104,11 @@ const Footer = styled.div`
     align-items: center;
     margin-right: 20px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
-  img {
-    margin-right: 5px;
-    color: #CFD3E2;
-  }
+    color: #cfd3e2;
+    img {
+      margin-right: 5px;
+      color: #cfd3e2;
+    }
   }
 `;
 
@@ -119,7 +123,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 
   h2 {
@@ -129,7 +133,7 @@ const ProjectOwner = styled.div`
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 `;
 
@@ -146,7 +150,7 @@ export const ProjectForm = styled.div`
   min-width: 444px;
   max-height: 515px;
   border-radius: 10px;
-  background-color: #393A47;
+  background-color: #393a47;
   border: ${(props) =>
     props.selected ? "1px solid blue;" : "1px solid #393A47;"};
   box-sizing: border-box;

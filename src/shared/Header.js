@@ -101,20 +101,20 @@ const Header = (props) => {
               onClick={() => {
                 history.push(`/`);
               }}
-              style={{ marginRight: "5px" }}
+              style={{ marginRight: "5px", height: "20px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
             />
             <img
               onClick={toLogin}
-              style={{ marginRight: "5px" }}
+              style={{ marginRight: "5px", width: "5px" }}
               alt=""
               src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
             />
             <Port
               selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
-                history.push("/portfolio");
+                history.push("/");
               }}
             >
               포트폴리오
@@ -241,7 +241,8 @@ const Header = (props) => {
 export default Header;
 
 export const StyledHeader = styled.div`
-  background-color: #13131b;
+  background: rgba(19, 19, 27, 0.8);
+  backdrop-filter: blur(5px);
   display: flex;
   position: fixed;
   top: 0px;
@@ -250,7 +251,7 @@ export const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px 0px;
-  z-index: 5;
+  z-index: 2;
 `;
 
 export const LeftMenu = styled.div`

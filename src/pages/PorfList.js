@@ -39,13 +39,15 @@ const PorfList = () => {
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
-    setLoading(true);
     if (userInfo) {
       setAddStack(userInfo.stack);
     }
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+
     if (hasMore) {
       apis.mainPorf(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
