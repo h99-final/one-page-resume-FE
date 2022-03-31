@@ -191,7 +191,7 @@ const EventTitle = styled.div`
 `;
 const Event = styled.div`
   margin: 10px;
-  /* min-width: 327px; */
+  width: 327px;
   height: 410px;
   border-radius: 10px;
   display: flex;

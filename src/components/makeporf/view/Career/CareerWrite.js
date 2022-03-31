@@ -48,7 +48,7 @@ const CareerWrite = () => {
     content.current.style.height = content.current.scrollHeight + "px";
   }, []);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [checkDate, setCheckDate] = useState(false);
 
   const handleCheckClick = () => {
@@ -231,13 +231,10 @@ const CareerWrite = () => {
       ) : null}
 
       {/* <AddButton > */}
-      <Btn onClick={handleSubmit(careerSubmit)}
-        style={{ cursor: "pointer" }}>
+      <Btn onClick={handleSubmit(careerSubmit)} style={{ cursor: "pointer" }}>
         <img alt="" src={process.env.PUBLIC_URL + "/img/plus.svg"} />
-
       </Btn>
       {/* </AddButton> */}
-
     </>
   );
 };

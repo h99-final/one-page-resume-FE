@@ -56,7 +56,8 @@ const Content = styled.div`
 `;
 const Portfolio = styled.div`
   margin: 10px auto;
-  background-color: #414457;
+  /* background-color: #414457; */
+  background-image: url("https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg");
   width: 327px;
   height: 410px;
   border-radius: 10px;

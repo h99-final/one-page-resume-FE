@@ -99,10 +99,10 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
-    // return () => handleSubmit(submitStack);
+    return submitStack;
   }, []);
 
-  const submitStack = async () => {
+  const submitStack = () => {
     const data = {
       stack: stack,
     };
@@ -110,7 +110,7 @@ function Stack() {
       stack: addStack,
     };
     if (stack.length === 3) {
-      await apis
+      apis
         .putStack(data)
         .then((res) => {
           dispatch(userActions.userInfoDB());
@@ -121,7 +121,7 @@ function Stack() {
     }
 
     if (addStack.length > 2) {
-      await apis
+      apis
         .porfStack(addS)
         .then((response) => {})
         .catch((res) => {

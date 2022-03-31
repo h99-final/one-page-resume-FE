@@ -3,16 +3,21 @@ import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FormText, Next } from "./_sharedStyle";
 import TemplateModal from "./TemplateModal";
-import FinishModal from './FinishModal';
+import FinishModal from "./FinishModal";
 
 function Template({ submitStack, projectSubmit }) {
   const { id } = useParams();
-
+  let subtitle;
   const [modalOpen, setModalOpen] = useState(false);
 
   const exitClose = () => {
     setModalOpen(!modalOpen);
   };
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
 
   const [openTemplate, setOpenTemplate] = useState(false);
 
@@ -30,12 +35,9 @@ function Template({ submitStack, projectSubmit }) {
             alt="템플릿 선택"
             src={process.env.PUBLIC_URL + "/img/template.svg"}
           />
-          <FormText style={{ color: "white", marginLeft: "15px" }}>
-            템플릿 선택
-          </FormText>
+          <FormText style={{ marginLeft: "15px" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
-
           <Save
             style={{
               marginRight: "20px",
@@ -44,7 +46,8 @@ function Template({ submitStack, projectSubmit }) {
           >
             <FormTextWhite
               style={{ color: "white", fontSize: "16px" }}
-              onClick={() => setModalOpen((prev) => !prev)}>
+              // onClick={() => setModalOpen((prev) => !prev)}
+            >
               {/* <input id="submitngo" type="submit" style={{ display: "none" }} /> */}
               작성 완료
             </FormTextWhite>
@@ -73,7 +76,13 @@ function Template({ submitStack, projectSubmit }) {
           )}
         </div>
       </BottomNav>
-      {modalOpen && <FinishModal exitClose={exitClose}></FinishModal>}
+      {modalOpen && (
+        <FinishModal
+          subtitle={subtitle}
+          afterOpenModal={afterOpenModal}
+          exitClose={exitClose}
+        ></FinishModal>
+      )}
     </>
   );
 }
@@ -99,9 +108,15 @@ const TemplateSelector = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 30px;
+  color: #fff;
+  &:hover {
+    color: #00c4b4;
+    transition: 0.2s ease-in-out;
+  }
 `;
 
 const BottomNav = styled.div`
+  z-index: 5;
   display: fixed;
   position: fixed;
   align-items: center;

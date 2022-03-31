@@ -31,25 +31,16 @@ function PreviousNext() {
     <>
       <ButtonBucket>
         <Previous id={id} onClick={handlePreviousClick}>
-          <img
-            alt=""
-            src={process.env.PUBLIC_URL + "/img/leftBox.svg"}
-          />
+          <img alt="" src={process.env.PUBLIC_URL + "/img/leftBox.svg"} />
         </Previous>
 
         {id === "project" ? (
           <Next id={id} onClick={handleNextClick}>
-            <img
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/rightBox.svg"}
-            />
+            <img alt="" src={process.env.PUBLIC_URL + "/img/rightBox.svg"} />
           </Next>
         ) : (
           <Next id={id} onClick={handleNextClick}>
-            <img
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/rightBox.svg"}
-            />
+            <img alt="" src={process.env.PUBLIC_URL + "/img/rightBox.svg"} />
           </Next>
         )}
       </ButtonBucket>
@@ -76,10 +67,16 @@ const Next = styled.div`
     letter-spacing: -0.01em;
     color: #999999;
   }
+  cursor: pointer;
+  &:hover {
+    background-color: #424453;
+    transition: 0.2s ease-in-out;
+  }
 `;
 const Previous = styled(Next)`
   float: left;
   display: ${(props) => (props.id === "introduce" ? "none" : null)};
+  cursor: pointer;
 `;
 
 const ButtonBucket = styled.div`
@@ -87,7 +84,7 @@ const ButtonBucket = styled.div`
   flex-direction: row;
   justify-content: space-between;
   height: 60px;
-  width: 91%;
+  width: 92%;
   margin: 0px 50px;
 `;
 
