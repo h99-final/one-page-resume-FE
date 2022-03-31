@@ -112,13 +112,21 @@ const Portfolio = () => {
           />
         </div>
         <div id="2" ref={user}>
-          <UserInfo />
+          <UserInfo
+            color={color}
+            fontcolor={fontcolor}
+            templateIdx={templateIdx}
+          />
         </div>
         <div id="3" ref={stack}>
           <Stack color={color} fontcolor={fontcolor} />
         </div>
         <div id="4" ref={career}>
-          <Career x />
+          <Career
+            color={color}
+            fontcolor={fontcolor}
+            templateIdx={templateIdx}
+          />
         </div>
 
         <div id="5" ref={project}>
@@ -140,7 +148,7 @@ const Portfolio = () => {
             })}
           </CardsContainer>
         </div>
-        <PortfolioFooter />
+        <PortfolioFooter fontcolor={fontcolor} />
       </section>
     </>
   );

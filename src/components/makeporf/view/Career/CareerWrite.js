@@ -147,7 +147,6 @@ const CareerWrite = () => {
             <Controller
               render={({ field }) => (
                 <InputCustom
-
                   errors={!!errors.contents}
                   type="text"
                   style={{ height: "40px" }}
@@ -173,7 +172,6 @@ const CareerWrite = () => {
               render={({ field }) => (
                 <InputCustomDate
                   type="text"
-
                   errors={!!errors.startTime}
                   style={{
                     marginRight: "10px",

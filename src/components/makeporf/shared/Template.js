@@ -14,7 +14,7 @@ const options = [
   { value: "template3", label: "template3", id: "2" },
 ];
 
-function Template({ submitStack }) {
+function Template({ submitStack, projectSubmit }) {
   const { id } = useParams();
   const history = useHistory();
   const { porfId } = useSelector((state) => state.user.user);
@@ -42,7 +42,9 @@ function Template({ submitStack }) {
             alt="템플릿 선택"
             src={process.env.PUBLIC_URL + "/img/template.svg"}
           />
-          <FormText style={{ color: "white", marginLeft: "15px" }}>템플릿 선택</FormText>
+          <FormText style={{ color: "white", marginLeft: "15px" }}>
+            템플릿 선택
+          </FormText>
         </TemplateSelector>
         <div>
           <Save
@@ -53,28 +55,34 @@ function Template({ submitStack }) {
           >
             <FormTextWhite
               style={{ color: "white", fontSize: "16px" }}
-            // onClick={() => history.push(`/portfolio/${porfId}`)}
+              // onClick={() => history.push(`/portfolio/${porfId}`)}
             >
               <input id="submitngo" type="submit" style={{ display: "none" }} />
               작성 완료
             </FormTextWhite>
           </Save>
-          {id === "stack" ?
-
-            <Save
-              onClick={submitStack}
-              style={{ marginRight: "15px" }}>
-              <FormTextWhite style={{ fontSize: "16px" }}>임시 저장</FormTextWhite>
+          {id === "stack" ? (
+            <Save onClick={submitStack} style={{ marginRight: "15px" }}>
+              <FormTextWhite style={{ fontSize: "16px" }}>
+                임시 저장
+              </FormTextWhite>
             </Save>
-
-            :
+          ) : id === "project" ? (
+            <Save onClick={projectSubmit} style={{ marginRight: "15px" }}>
+              <FormTextWhite style={{ fontSize: "16px" }}>
+                임시 저장
+              </FormTextWhite>
+            </Save>
+          ) : (
             <Label id={id} htmlFor="submit">
               <Save style={{ marginRight: "15px" }}>
                 <input id="submit" type="submit" style={{ display: "none" }} />
-                <FormTextWhite style={{ fontSize: "16px" }}>임시 저장</FormTextWhite>
+                <FormTextWhite style={{ fontSize: "16px" }}>
+                  임시 저장
+                </FormTextWhite>
               </Save>
-            </Label>}
-
+            </Label>
+          )}
         </div>
       </BottomNav>
     </>
