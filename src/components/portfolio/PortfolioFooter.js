@@ -6,7 +6,10 @@ function PortfolioFooter({ fontcolor }) {
 
   return (
     <Section fontcolor={fontcolor}>
-      <Star onClick={() => window.open(`${userInfo.gitUrl}`)}>
+      <Star
+        fontcolor={fontcolor}
+        onClick={() => window.open(`${userInfo.gitUrl}`)}
+      >
         {fontcolor === "#fff" ? (
           <img
             style={{ color: "black", width: "28px", margin: "3px" }}
@@ -54,9 +57,10 @@ const Star = styled.button`
   border-radius: 30px;
   border: 1px solid ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   background-color: transparent;
-  border: 1px solid ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
+  color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   margin-right: 20px;
 `;
+
 const Bookmark = styled(Star)`
   margin-left: 20px;
 `;
