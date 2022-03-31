@@ -97,7 +97,7 @@ const Modal = ({ modalClose }) => {
                   />
                 )}
                 {status === false && (
-                  <Signup email={email} loginClose={modalClose} />
+                  <Signup newEmail={email} loginClose={modalClose} />
                 )}
               </>
             ) : (

@@ -50,12 +50,9 @@ function GithubSpinner(props) {
     >
       <InfoBox>
         {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
-
-        <div style={{ width: "350px", margin: "0px auto" }}>
-          <Spinner />
-        </div>
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
+        <ProgressBar> <span></span></ProgressBar>
       </InfoBox>
 
       <Swiper
@@ -183,6 +180,7 @@ const InfoBox = styled.div`
   width: 100%;
   height: fit-content;
   text-align: center;
+  padding-top: 30px;
   padding-bottom: 90px;
   h1 {
     margin-top: 30px;
@@ -208,6 +206,32 @@ const InfoBox = styled.div`
     margin-top: 0px;
   }
 `;
+const ProgressBar = styled.div`
+  height: 20px; /* Can be anything */
+  position: relative;
+  background: #d9dce5;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  width: 80vw;
+  span{
+    display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #a140ff;
+  background-image: linear-gradient(to bottom, #7dc9df, #a140ff);
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  }
+`;
+
 
 const SvgBox = styled.div`
   width: fit-content;
