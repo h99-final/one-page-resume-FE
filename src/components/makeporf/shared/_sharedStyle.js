@@ -126,8 +126,8 @@ export const ErrorMessage = styled.span`
   display: flex;
   justify-content: right;
   padding: 0px 0px;
-  padding-top: 5px;
-  width: 94%;
+  padding-top: 10px;
+  width: 96%;
   margin-bottom: 20px;
 `;
 
@@ -175,7 +175,8 @@ export const InputCustom = styled.textarea`
     outline: #00c4b4 !important;
     border: 1px solid #00c4b4 !important;
   }
-  border: ${(props) => (props.errors ? "1px solid orange" : "1px solid #393a47")};
+  border: ${(props) =>
+    props.errors ? "1px solid orange" : "1px solid #393a47"};
 `;
 
 export const InputStack = styled.input`

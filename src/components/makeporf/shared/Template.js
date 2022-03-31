@@ -112,7 +112,8 @@ const BottomNav = styled.div`
   height: 80px;
   margin-top: 50px;
   bottom: 0px;
-  background: #2c2e39;
+  background: rgba(19, 19, 27, 0.8);
+  backdrop-filter: blur(20px);
   padding: 0px 5px;
 `;
 

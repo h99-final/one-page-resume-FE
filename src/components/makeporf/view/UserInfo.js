@@ -45,7 +45,10 @@ function UserInfo() {
       .then((res) => {
         dispatch(userActions.userInfoDB());
       })
-      .catch((error) => { });
+      .then(() => {
+        alert("저장되었습니다.");
+      })
+      .catch((error) => {});
   };
 
   useEffect(() => {
@@ -85,6 +88,7 @@ function UserInfo() {
               <InputCustom
                 {...field}
                 errors={errors.name}
+                placeholder="유저님의 이름을 입력해주세요."
               />
             )}
             rules={{
@@ -104,6 +108,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
+                placeholder="직무나 전공분야를 입력해주세요 (ex: 프론트 개발자, Web Developer)"
                 style={{ border: "none" }}
                 {...field}
               />
@@ -128,6 +133,7 @@ function UserInfo() {
                 style={{ border: "none" }}
                 {...field}
                 maxLength={13}
+                placeholder="010-0000-0000"
               />
             )}
             rules={{
@@ -180,6 +186,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
+                placeholder="깃허브 주소를 입력해주세요."
                 {...field}
                 errors={errors.gitUrl}
               />
@@ -204,6 +211,7 @@ function UserInfo() {
           <Controller
             render={({ field }) => (
               <InputCustom
+                placeholder="블로그 주소를 입력해주세요."
                 {...field}
               />
             )}

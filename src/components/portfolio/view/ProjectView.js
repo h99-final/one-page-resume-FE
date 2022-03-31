@@ -52,7 +52,7 @@ const ProjectViewIntro = (props) => {
   return (
     <>
       <TitleBox color={color} fontcolor={fontcolor}>
-        <h1>{project?.title}</h1>
+        <h1 fontcolor={fontcolor}>{project?.title}</h1>
       </TitleBox>
       <IntroBox>
         <ImgBox>

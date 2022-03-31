@@ -18,10 +18,11 @@ import { apis } from "../../../shared/axios";
 import TokenHelp from "./TokenHelp";
 import Loading from "./Loading";
 import GithubSpinner from "../../../shared/GithubSpinner";
+import GithubHelper from "../../../shared/GithubHelper";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "53%",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -34,6 +35,7 @@ const customStyles = {
     padding: "0px",
     overflow: "hidden",
     minWidth: "1000px",
+    zIndex: 2,
   },
 };
 
@@ -49,6 +51,7 @@ function TsModal(props) {
   const [selectedFileName, setSelectedFileName] = useState("");
 
   const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const [help, setHelp] = useState(false);
   const [githubSpinner, setGithubSpinner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -221,10 +224,10 @@ function TsModal(props) {
                   <>
                     <FormTitleFlex>
                       <FormTextCenter>
-                        Commit 선택하기{" "}
+                        Commit 선택하기
                         <img
                           onClick={() => {
-                            setGithubSpinner((prev) => !prev);
+                            setHelp(true);
                           }}
                           alt=""
                           src={process.env.PUBLIC_URL + "/img/colortkhelp.svg"}
@@ -370,10 +373,21 @@ function TsModal(props) {
         helpModalOpen={helpModalOpen}
         setHelpModalOpen={setHelpModalOpen}
       />
+      {help && <GithubHelper help={help} setHelp={setHelp} />}
       {/* <Loading helpModalOpen={helpModalOpen} setHelpModalOpen={setHelpModalOpen} /> */}
     </>
   );
 }
+
+// const ModalBG = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background: rgba(0, 0, 0, 0.8);
+//   z-index: 1;
+// `;
 
 const FormContents = styled.div`
   flex-direction: column;
