@@ -64,7 +64,7 @@ const ProjectIntroduce = (props) => {
             {project?.img?.map((e, i) => {
               return (
                 <SwiperSlide key={`image-${i}`}>
-                  <img style={{ width: "100%" }} alt="" src={e.url} />
+                  <img style={{ width: "100%", objectFit: "cover" }} alt="" src={e.url} />
                 </SwiperSlide>
               );
             })}

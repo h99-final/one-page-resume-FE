@@ -136,6 +136,7 @@ const ProjectOwner = styled.div`
 const InnerCard = styled.img`
   width: 100%;
   height: 235px;
+  object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 `;

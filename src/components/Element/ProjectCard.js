@@ -36,15 +36,15 @@ function ProjectCard(props) {
             {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
             {stack.length > 3
               ? stack.slice(0, 3).map((e, i) => {
-                  return (
-                    <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
-                  );
-                })
+                return (
+                  <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
+                );
+              })
               : stack.map((e, i) => {
-                  return (
-                    <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
-                  );
-                })}
+                return (
+                  <ProjectStack key={`stackdetail-${i}`}>{e}</ProjectStack>
+                );
+              })}
             {stack.length > 3 && (
               <ProjectStack style={{ background: "none", color: "#696B7B" }}>
                 +{stack.length - 3}
@@ -76,6 +76,7 @@ const FontProject = styled(Font)`
 const InnerCard = styled.img`
   width: 100%;
   height: 180px;
+  object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
