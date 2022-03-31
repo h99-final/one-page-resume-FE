@@ -51,6 +51,9 @@ function TsModal(props) {
   const [helpModalOpen, setHelpModalOpen] = useState(false);
   const [githubSpinner, setGithubSpinner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [totalCommitCount, setTotalCommitCount] = useState(0);
+
   //file 중복 선택이 가능하게 만들기 위해
   // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
 
@@ -85,6 +88,10 @@ function TsModal(props) {
         apis
           .checkSync(projectId)
           .then((res) => {
+            if (res.data.data.totalCommitCount !== 0) {
+              setTotalCommitCount(res.data.data.totalCommitCount)
+              setProgress(res.data.data.curCommitCount)
+            }
             if (res.data.data.isDone) {
               apis.gitCommit(projectId).then((res) => {
                 setMessage_list(res.data.data);
@@ -161,7 +168,7 @@ function TsModal(props) {
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
         </IconBoxLeft>
         {isLoading ? (
-          <GithubSpinner />
+          <GithubSpinner totalCommitCount={totalCommitCount} curCommitCount={progress} />
         ) : (
           <FormContentsModal>
             {page === 2 ? (

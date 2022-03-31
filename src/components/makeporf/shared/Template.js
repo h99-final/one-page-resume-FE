@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
 import { FormText, Next } from "./_sharedStyle";
-import { Button, Menu, MenuItem, Select } from "@mui/material";
-import { apis } from "../../../shared/axios";
 import TemplateModal from "./TemplateModal";
-
-const options = [
-  { value: "template1", label: "template1", id: "0" },
-  { value: "template2", label: "template2", id: "1" },
-  { value: "template3", label: "template3", id: "2" },
-];
+import FinishModal from './FinishModal';
 
 function Template({ submitStack, projectSubmit }) {
   const { id } = useParams();
-  const history = useHistory();
-  const { porfId } = useSelector((state) => state.user.user);
-  const [template, setTemplate] = useState(0);
-  const open = Boolean(template);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const exitClose = () => {
+    setModalOpen(!modalOpen);
+  };
 
   const [openTemplate, setOpenTemplate] = useState(false);
-
-  const handleClick = (event) => {
-    setTemplate(event.currentTarget);
-    // window.alert("준비중입니다.");
-  };
 
   return (
     <>
@@ -47,6 +35,7 @@ function Template({ submitStack, projectSubmit }) {
           </FormText>
         </TemplateSelector>
         <div>
+
           <Save
             style={{
               marginRight: "20px",
@@ -55,9 +44,8 @@ function Template({ submitStack, projectSubmit }) {
           >
             <FormTextWhite
               style={{ color: "white", fontSize: "16px" }}
-              // onClick={() => history.push(`/portfolio/${porfId}`)}
-            >
-              <input id="submitngo" type="submit" style={{ display: "none" }} />
+              onClick={() => setModalOpen((prev) => !prev)}>
+              {/* <input id="submitngo" type="submit" style={{ display: "none" }} /> */}
               작성 완료
             </FormTextWhite>
           </Save>
@@ -85,6 +73,7 @@ function Template({ submitStack, projectSubmit }) {
           )}
         </div>
       </BottomNav>
+      {modalOpen && <FinishModal exitClose={exitClose}></FinishModal>}
     </>
   );
 }

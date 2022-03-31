@@ -16,6 +16,7 @@ import Template from "../../shared/Template";
 import { actionCreators as projectActions } from "../../../../redux/modules/myproject";
 import PreviousNext from "../../shared/PreviousNext";
 import { useHistory } from "react-router-dom";
+import Spinner from '../../../../shared/Spinner';
 
 function ProjectSelect() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function ProjectSelect() {
     }
     // 프로젝트 데이터 보내기
     const data = { projectId: selectedProjects };
+
     apis.projectPorf(data).then((res) => {
       // 포트폴리오 화면으로 이동시켜주기
       setError("");
@@ -43,7 +45,7 @@ function ProjectSelect() {
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
-    return () => projectSubmit();
+    return projectSubmit;
   }, []);
 
   return (
@@ -80,7 +82,7 @@ function ProjectSelect() {
           <Template projectSubmit={projectSubmit} />
         </form>
       ) : (
-        <div>로딩중</div>
+        <Spinner />
       )}
     </>
   );
