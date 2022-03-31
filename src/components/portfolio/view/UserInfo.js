@@ -96,7 +96,7 @@ const UserInfo = ({ templateIdx, color, fontcolor }) => {
       ) : (
         <Container fontcolor={fontcolor} templateIdx={templateIdx}>
           <UserInfoBox>
-            {user?.profileImage ? (
+            {!user?.profileImage === "empty" ? (
               <ImageBox>
                 <Image>
                   <img
