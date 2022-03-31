@@ -11,16 +11,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../components/banner.css";
 import Spinner from "./Spinner";
+import { IconBoxLeft } from "../components/makeproject/ts/TsModal";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "53%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    width: "100vw",
-    height: "100%",
+    width: "80vw",
+    height: "90%",
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#1F2029",
@@ -29,30 +30,29 @@ const customStyles = {
   },
 };
 
-function GithubSpinner(props) {
-  const dispatch = useDispatch();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  const { helpModalOpen, setHelpModalOpen } = props;
+function GithubHelper(props) {
+  const { help, setHelp } = props;
+
+  Modal.setAppElement("#root");
 
   function closeModal() {
-    setHelpModalOpen(false);
+    setHelp(false);
   }
 
-  // Modal.setAppElement("#root");
-
   return (
-    <Container
-    // ariaHideApp={false}
-    // isOpen={helpModalOpen}
-    // onRequestClose={closeModal}
-    // style={customStyles}
-    // contentLabel="Example Modal"
+    <Modal
+      ariaHideApp={false}
+      isOpen={help}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Example Modal"
     >
+      <IconBoxLeft onClick={closeModal}>
+        <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+      </IconBoxLeft>
       <InfoBox>
-        {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
-        <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
-        <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
-        <ProgressBar> <span></span></ProgressBar>
+        <h1>트러블 슈팅을 작성하는데 어려움이 있으신가요?</h1>
+        <h2>Github에서 Patch Code를 불러오는 방법을 알려드릴게요.</h2>
       </InfoBox>
 
       <Swiper
@@ -126,7 +126,7 @@ function GithubSpinner(props) {
           </Box>
         </SwiperSlide>
       </Swiper>
-    </Container>
+    </Modal>
   );
 }
 const Container = styled.div`
@@ -157,7 +157,7 @@ const StepBox = styled.div`
     font-size: 28px;
     line-height: 34px;
     letter-spacing: -0.01em;
-    color: #00c4b4;
+    color: #ffffff;
     margin-bottom: 20px;
   }
   h2 {
@@ -176,11 +176,9 @@ const RightBox = styled.div`
 `;
 
 const InfoBox = styled.div`
-  background-color: #2c2e39;
   width: 100%;
   height: fit-content;
   text-align: center;
-  padding-top: 30px;
   padding-bottom: 90px;
   h1 {
     margin-top: 30px;
@@ -206,36 +204,10 @@ const InfoBox = styled.div`
     margin-top: 0px;
   }
 `;
-const ProgressBar = styled.div`
-  height: 20px; /* Can be anything */
-  position: relative;
-  background: #d9dce5;
-  -moz-border-radius: 25px;
-  -webkit-border-radius: 25px;
-  border-radius: 25px;
-  padding: 10px;
-  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-  width: 80vw;
-  span{
-    display: block;
-  height: 100%;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  background-color: #a140ff;
-  background-image: linear-gradient(to bottom, #7dc9df, #a140ff);
-  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  }
-`;
-
 
 const SvgBox = styled.div`
   width: fit-content;
   margin: 70px auto;
 `;
 
-export default GithubSpinner;
+export default GithubHelper;
