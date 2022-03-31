@@ -193,6 +193,7 @@ const WriteBtn = styled.button`
   background-color: #00C4B4;
   :disabled {
     border: none;
+    color: #696B7B;
     background-color: #424453;
   }
 `;

@@ -209,6 +209,7 @@ const WriteBtn = styled.button`
   color: white;
   background-color: #00C4B4;
   :disabled {
+    color: #696B7B;
     border: none;
     background-color: #424453;
   }

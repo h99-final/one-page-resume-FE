@@ -131,6 +131,7 @@ const Signup = (props) => {
       <ThemeProvider theme={theme}>
         <InputBox>
           <CssTextField
+            defaultValue={props.email}
             focuscolor="#00C4B4"
             onChange={inputEmail}
             variant="standard"
@@ -271,6 +272,7 @@ const WriteBtn = styled.button`
   color: white;
   background-color: #00C4B4;
   :disabled {
+    color: #696B7B;
     border: none;
     background-color: #424453;
   }
