@@ -38,10 +38,10 @@ const Banner = () => {
         navigation={true}
         modules={[Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
-      // autoplay={{
-      //   delay: 5000,
-      //   disableOnInteraction: false,
-      // }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
       >
         <div
           slot="container-start"
