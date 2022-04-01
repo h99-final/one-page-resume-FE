@@ -130,17 +130,17 @@ export const IconBox = styled.div`
   border-radius: 50px;
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.div`
   font-family: Pretendard;
   font-size: 14px;
   color: orange;
-  text-align: right;
   display: flex;
   justify-content: right;
   padding: 0px 0px;
   padding-top: 10px;
-  width: 96%;
+  /* width: 1120px; */
   margin-bottom: 20px;
+  margin-right: 50px;
 `;
 
 export const Font = styled.div`

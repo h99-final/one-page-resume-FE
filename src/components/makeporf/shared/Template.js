@@ -9,7 +9,7 @@ import FinishModal from "./FinishModal";
 import { ReactComponent as TemplateIcon } from "../../../assets/template.svg";
 import { apis } from "../../../shared/axios";
 
-function Template({ submitStack, projectSubmit }) {
+function Template({ submitStack, projectSubmit, submitOnlyUserStack, stack }) {
   const { id } = useParams();
   const history = useHistory();
   let subtitle;
@@ -17,11 +17,12 @@ function Template({ submitStack, projectSubmit }) {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const exitClose = () => {
-    setModalOpen(!modalOpen);
+    setModalOpen(false);
   };
 
+  const [openTemplate, setOpenTemplate] = useState(false);
+
   const handleCheck = () => {
-    console.log(userInfo);
     apis
       .introPorfGet(userInfo.porfId)
       .then((res) => {
@@ -40,18 +41,21 @@ function Template({ submitStack, projectSubmit }) {
         }
       })
       .then(() => {
-        if (userInfo.stack.length === 0) {
+        if (stack.length !== 3) {
           history.push(`/write/portfolio/stack/${userInfo.porfId}`);
           alert("필수값을 입력해 주세요.");
           return;
         }
+        if (stack.length === 3) {
+          apis.putStack(stack).then((res) => {});
+          // .catch((error) => alert("필수값을 입력해주세요"));
+        }
       })
       .then(() => {
-        setModalOpen((prev) => !prev);
+        setModalOpen(true);
       });
+    setModalOpen(true);
   };
-
-  const [openTemplate, setOpenTemplate] = useState(false);
 
   // TemplateModal.setAppElement("#root");
 
