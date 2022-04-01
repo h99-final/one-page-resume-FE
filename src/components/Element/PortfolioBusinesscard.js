@@ -16,37 +16,43 @@ function PortfolioBuisnesscard(props) {
 
   return (
     <>
-      {templateIdx === 0 || templateIdx === 7 || 8 || 9 || 10 || 11 || 12 ? (
+      {templateIdx === 0 ||
+      templateIdx === 7 ||
+      templateIdx === 8 ||
+      templateIdx === 9 ||
+      templateIdx === 10 ||
+      templateIdx === 11 ||
+      templateIdx === 12 ? (
         <Portfolio
           background={
             templateIdx === 0
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/0.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/0.svg"
               : templateIdx === 1
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
               : templateIdx === 2
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
               : templateIdx === 3
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
               : templateIdx === 4
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
               : templateIdx === 5
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
               : templateIdx === 6
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
               : templateIdx === 7
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
               : templateIdx === 8
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
               : templateIdx === 9
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
               : templateIdx === 10
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
               : templateIdx === 11
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
               : templateIdx === 12
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
               : templateIdx === 13
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
               : null
           }
           templateIdx={templateIdx}
@@ -56,7 +62,7 @@ function PortfolioBuisnesscard(props) {
           <TitleCircle>{title ? title : "ㅡ"}</TitleCircle>
           <ContentCircle>
             {userStack?.map((e, i) => {
-              return <Stack key={`stack-${i}`}>{e}</Stack>;
+              return <StackCircle key={`stack-${i}`}>{e}</StackCircle>;
             })}
           </ContentCircle>
         </Portfolio>
@@ -64,33 +70,33 @@ function PortfolioBuisnesscard(props) {
         <Portfolio
           background={
             templateIdx === 0
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/0.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/0.svg"
               : templateIdx === 1
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
               : templateIdx === 2
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
               : templateIdx === 3
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
               : templateIdx === 4
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
               : templateIdx === 5
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
               : templateIdx === 6
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
               : templateIdx === 7
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
               : templateIdx === 8
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
               : templateIdx === 9
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
               : templateIdx === 10
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
               : templateIdx === 11
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-2.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
               : templateIdx === 12
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
               : templateIdx === 13
-              ? "https://s3.amazonaws.com/www.poug.me/namecard/1.svg"
+              ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
               : null
           }
           templateIdx={templateIdx}
@@ -155,7 +161,7 @@ const Portfolio = styled.div`
   margin: 10px 0px;
   /* position: absolute; */
   /* background-color: #414457; */
-  /* background-image: url("https://s3.amazonaws.com/www.poug.me/namecard/0.svg"); */
+  /* background-image: url("https://s3.amazonaws.com/www.poug.me/card/0.svg"); */
   background-size: 100%;
   /* background-repeat: no-repeat; */
   background-image: ${(props) => `url(${props.background})`};
@@ -191,12 +197,56 @@ const Name = styled.div`
   margin-left: 25px;
   margin-right: 25px;
 `;
-const NameCircle = styled(Name)`
+const NameCircle = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
+  margin-top: 45px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 `;
 
-const ContentCircle = styled(Content)`
+const ContentCircle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  padding: 10px 10px 20px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 149px;
+`;
+
+const StackCircle = styled.div`
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: #cfd3e2; */
+  border: 1px solid
+    ${(props) =>
+      props.templateIdx === 0 ||
+      props.templateIdx === 4 ||
+      props.templateIdx === 5 ||
+      props.templateIdx === 6 ||
+      props.templateIdx === 10 ||
+      props.templateIdx === 11 ||
+      props.templateIdx === 12
+        ? "#000"
+        : "#fff"};
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: fit-content;
+  height: 100%;
+  margin-top: 4.5%;
 `;
 
 const Job = styled.div`
@@ -210,8 +260,14 @@ const Job = styled.div`
   letter-spacing: -0.01em;
 `;
 
-const JobCircle = styled(Job)`
+const JobCircle = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
+  margin-top: 9px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 const Title = styled.div`
@@ -227,8 +283,14 @@ const Title = styled.div`
   letter-spacing: -0.01em;
 `;
 
-const TitleCircle = styled(Title)`
+const TitleCircle = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
+  margin-top: 28px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
 `;
 
 export default PortfolioBuisnesscard;
