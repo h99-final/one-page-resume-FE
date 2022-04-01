@@ -30,7 +30,7 @@ export const CssTextField = styled(TextField, {
 
   "& .MuiInputBase-input": {
     position: "relative",
-    color: "#696B7B",
+    color: "white",
     width: "100%",
     borderBottomColor: "#696B7B",
   },

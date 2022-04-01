@@ -31,24 +31,7 @@ import { CssTextField, theme } from "../../../shared/_sharedMuiStyle";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../../redux/modules/user";
 import { useHistory } from "react-router-dom";
-
-export const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: "white",
-    // Overwrittes the different states of border
-    border: "1px solid #cccccc",
-    borderRadius: "10px",
-    width: "70vw",
-    height: "40px",
-    minWidth: "600px",
-    maxWidth: "1140px",
-    "&:hover": {
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "red" : "blue",
-    },
-  }),
-};
+import "../../banner.css"
 
 function Stack() {
   const { handleSubmit } = useForm();
@@ -123,7 +106,7 @@ function Stack() {
     if (addStack.length > 2) {
       apis
         .porfStack(addS)
-        .then((response) => {})
+        .then((response) => { })
         .catch((res) => {
           window.alert(res.error.message);
         });
@@ -189,8 +172,10 @@ function Stack() {
         <Font style={{ color: "inherit", textAlign: "center" }}></Font>
       )}
       <MultiContent>
-        <Label>
-          <Font>기술 스택</Font>
+        <Label style={{ height: "auto" }}>
+          <Font style={{ margin: "0px 10px " }}>
+            기술 스택<Star>*</Star>
+          </Font>
         </Label>
         <Autocomplete
           multiple
@@ -213,7 +198,7 @@ function Stack() {
           }
           renderInput={(params) => (
             <CssTextField
-              focuscolor="#00C4B4"
+              variant="standard"
               {...params}
               placeholder="기술스택으로 검색해보세요"
             />

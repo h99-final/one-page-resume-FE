@@ -23,7 +23,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../shared/common";
 import { actionCreators } from "../redux/modules/bookmark";
 import MainFooter from '../shared/MainFooter';
-
+import '../components/banner.css'
 const CssTextField = styled(TextField, {
   shouldForwardProp: (props) => props !== "focuscolor",
 })((p) => ({
