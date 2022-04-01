@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+//style
 import styled from "styled-components";
 import { Inner } from "../makeporf/shared/_sharedStyle";
 import { Font } from "../makeporf/view/Introduce";
 import { useHistory } from "react-router-dom";
-
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators } from "../../redux/modules/bookmark";
 function MainCard(props) {
   const history = useHistory();
-  const userinfo = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const bookmark = useSelector((state) => state.bookmark.myBookmark);
   const {
     id,
     title,
@@ -21,6 +24,13 @@ function MainCard(props) {
 
   const handleClick = () => {
     history.push(`/project/${id}`);
+  };
+
+  const handleDeleteBookmark = () => {
+    dispatch(actionCreators.deleteBookmarkDB(id));
+  };
+  const handleAddBookmark = () => {
+    dispatch(actionCreators.addBookmarkDB(id));
   };
 
   return (
@@ -64,10 +74,20 @@ function MainCard(props) {
         )}
         <Footer>
           <h1>
-            <img
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
-            />
+            {bookmark?.includes(id) ? (
+              <img
+                onClick={handleDeleteBookmark}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+              />
+            ) : (
+              <img
+                onClick={handleAddBookmark}
+                alt=""
+                src={process.env.PUBLIC_URL + "/img/BookmarkWhite.svg"}
+              />
+            )}
+
             {bookmarkCount}
           </h1>
           {/* <h1>

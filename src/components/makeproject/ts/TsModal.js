@@ -92,8 +92,8 @@ function TsModal(props) {
           .checkSync(projectId)
           .then((res) => {
             if (res.data.data.totalCommitCount !== 0) {
-              setTotalCommitCount(res.data.data.totalCommitCount)
-              setProgress(res.data.data.curCommitCount)
+              setTotalCommitCount(res.data.data.totalCommitCount);
+              setProgress(res.data.data.curCommitCount);
             }
             if (res.data.data.isDone) {
               apis.gitCommit(projectId).then((res) => {
@@ -122,6 +122,11 @@ function TsModal(props) {
     //   alert("깃헙 불러오기는 20초에 1번 가능합니다.");
     //   setIsLoading(false);
     // });
+    return () => {
+      clearTimeout(timeout);
+
+      setPage(0);
+    };
   };
 
   useEffect(() => {
@@ -171,7 +176,10 @@ function TsModal(props) {
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
         </IconBoxLeft>
         {isLoading ? (
-          <GithubSpinner totalCommitCount={totalCommitCount} curCommitCount={progress} />
+          <GithubSpinner
+            totalCommitCount={totalCommitCount}
+            curCommitCount={progress}
+          />
         ) : (
           <FormContentsModal>
             {page === 2 ? (

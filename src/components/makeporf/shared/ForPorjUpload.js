@@ -27,10 +27,7 @@ function ForProjUpload(props) {
         })
       )
     );
-
   };
-
-  // console.log(images[0].preview)
 
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);

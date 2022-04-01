@@ -144,4 +144,5 @@ export const apis = {
 
   addBookmark: (id) => instance.post(`/bookmark/project/${id}`),
   deleteBookmark: (id) => instance.delete(`/bookmark/project/${id}`),
+  getBookmark: () => instance.get(`/bookmark/projectId`),
 };

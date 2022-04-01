@@ -79,7 +79,7 @@ const options = [
 ];
 
 function TemplateModal(props) {
-  const { openTemplate, setOpenTemplate, subtitle, afterOpenModal } = props;
+  const { openTemplate, setOpenTemplate, subtitle } = props;
   const closeModal = () => {
     setOpenTemplate(false);
   };
@@ -100,13 +100,13 @@ function TemplateModal(props) {
   };
 
   Modal.setAppElement("#root");
+
   return (
     <>
       <Modal
         isOpen={openTemplate}
         ariaHideApp={false}
         onRequestClose={closeModal}
-        onAfterOpen={afterOpenModal}
         // style={customStyles}
         className="Modal"
         overlayClassName="Overlay"
@@ -130,11 +130,12 @@ function TemplateModal(props) {
                   margin: "3%",
                   position: "relative",
                   width: "27%",
+                  height: "50%",
                 }}
               >
                 <Image
                   selected={selected === e.templateIndex ? true : false}
-                  style={{ width: "100%", margin: "3%" }}
+                  style={{ width: "100%" }}
                   onClick={() => setSelected(e.templateIndex)}
                   alt="index1"
                   src={e.source}
@@ -203,6 +204,7 @@ const Ulist = styled.ul`
 
 const Image = styled.img`
   width: 100%;
+  /* border: 1px solid ${(props) => (props.selected ? "#00C4B4" : "none")}; */
 `;
 
 const CheckImg = styled.img`
@@ -210,8 +212,8 @@ const CheckImg = styled.img`
   height: auto;
   position: absolute;
   z-index: 3;
-  top: 80px;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   opacity: ${(props) => (props.selected ? 1 : 0)};
 `;
 

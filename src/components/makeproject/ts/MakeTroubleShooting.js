@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {
   AddButton,
   ButtonText,
+  ButtonTextTS,
   Content,
   ContentCareer,
   ErrorMessage,
@@ -205,13 +206,13 @@ function MakeTroubleShooting() {
               커밋 조회를 통해 프로젝트에서 해결한 문제들을 가져올 수 있어요.
             </FormSubText>
           </FormContentsP>
-          <ButtonText
+          <ButtonTextTS
             onClick={() => {
               delGitToken();
             }}
           >
             토큰삭제
-          </ButtonText>
+          </ButtonTextTS>
           <hr style={{ margin: "50px" }} />
 
           {tsFile
