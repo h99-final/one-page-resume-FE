@@ -1,24 +1,31 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from "styled-components";
 
 const MainFooter = () => {
-
-  const location = useLocation();
+  const history = useHistory();
   return (
     <>
       <StyledHeader>
         <LeftMenu>
-          <Port>
+          <Port onClick={() => {
+            window.open('https://useful-jonquil-43d.notion.site/POUG-0111568c60b74c679782702fb8686653', '_blank')
+          }}>
             포그팀 소개
           </Port>
-          <Port>
+          <Port onClick={() => {
+            history.push('/policy')
+          }}>
             운영정책
           </Port>
-          <Port>
+          <Port onClick={() => {
+            history.push('/privacy')
+          }}>
             개인정보처리방침
           </Port>
-          <Port>
+          <Port onClick={() => {
+            window.open('https://forms.gle/1wwX7GwG92QaSQcp7', '_blank')
+          }}>
             버그제보
           </Port>
         </LeftMenu>
@@ -67,6 +74,9 @@ export const LeftMenu = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  a {
+      text-decoration: none;
+  }
 `;
 
 const Port = styled.div`

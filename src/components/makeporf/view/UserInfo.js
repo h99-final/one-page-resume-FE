@@ -71,9 +71,9 @@ function UserInfo() {
       });
   }, []);
 
-  useEffect(() => {
-    return handleSubmit(onValid);
-  }, []);
+  // useEffect(() => {
+  //   return handleSubmit(onValid);
+  // }, []);
 
   return (
     <>

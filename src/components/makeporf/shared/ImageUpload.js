@@ -38,6 +38,7 @@ function FileUpload() {
 
   function deletePreview(e) {
     e.stopPropagation();
+
     apis
       .delImg()
       .then((res) => {
