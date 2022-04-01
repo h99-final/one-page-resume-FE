@@ -55,11 +55,12 @@ const Content = styled.div`
   margin: 0px auto;
 `;
 const Portfolio = styled.div`
-  margin: 10px auto;
+  margin: 0px auto;
   /* background-color: #414457; */
+  background: no-repeat;
   background-image: url("https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg");
   width: 327px;
-  height: 410px;
+  height: 400px;
   border-radius: 10px;
   border: 1px solid #414457;
   @media only screen and (min-width: 1900px) {

@@ -10,6 +10,7 @@ import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { debounce } from "../shared/common";
+import { style } from '@mui/system';
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -56,17 +57,17 @@ const Main = () => {
   const [porf, setPorf] = useState([]);
   const [proj, setProj] = useState([]);
   const [index, setIndex] = useState(0);
-  const [num, setNum] = useState(4);
+  const [num, setNum] = useState(3);
 
   useEffect(() => {
     if (size.width < 1040 && size.width > 700) {
-      setNum(2);
+      setNum(1);
     }
     if (size.width <= 1378 && size.width > 1040) {
-      setNum(3);
+      setNum(2);
     }
     if (size.width > 1378) {
-      setNum(4);
+      setNum(3);
     }
   }, [size.width]);
 
@@ -112,15 +113,15 @@ const Main = () => {
         <Header />
         <Banner />
         <PortfolioBox>
-          <div style={{ display: "flex" }}>
+          <LeftBox>
             <TitleBox>
-              <h1>실시간 베스트 포트폴리오</h1>
-              <div>
+              <h1>실시간 베스트 포트폴리오 🔥</h1>
+              <div style={{ width: "90px", minWidth: "90px" }}>
                 <img
                   onClick={() => {
                     setIndex((prev) => (prev - num) % 12);
                   }}
-                  style={{ marginRight: "10px" }}
+                  style={{ marginRight: "10px", }}
                   alt=""
                   src={process.env.PUBLIC_URL + "/img/goLeft.svg"}
                 />
@@ -135,25 +136,43 @@ const Main = () => {
                 />
               </div>
             </TitleBox>
-            <EventTitle>포그가 무조건 드려요</EventTitle>
-          </div>
-          <Portfolio>
-            {porf?.map((e, i) => {
-              return (
-                <div
-                  key={`porf-${e.porfId}-${i}`}
-                  onClick={() => history.push(`/portfolio/${e.porfId}`)}
-                >
-                  <PortfolioBuisnesscard {...e} />
-                </div>
-              );
-            })}
+            <Portfolio>
+              {porf?.map((e, i) => {
+                return (
+                  <div
+                    key={`porf-${e.porfId}-${i}`}
+                    onClick={() => history.push(`/portfolio/${e.porfId}`)}
+                  >
+                    <PortfolioBuisnesscard {...e} />
+                  </div>
+                );
+              })}
+
+            </Portfolio>
+          </LeftBox>
+          <RightBox>
+            <EventTitle>포그가 무조건 드려요  🎁</EventTitle>
             <Event>
-              <EventNum></EventNum>
-              <EventNum></EventNum>
-              <EventNum></EventNum>
+              <EventNum>
+                <a target="_blank" rel='noreferrer' href='https://forms.gle/1wwX7GwG92QaSQcp7'>
+                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event1.png' />
+                </a>
+              </EventNum>
+              <EventNum>
+                <a target="_blank" rel='noreferrer' href='https://forms.gle/vozB1fSbmg4zjBjM8'>
+                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event2.png' />
+                </a>
+              </EventNum>
+              <EventNum>
+                <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event3.png' />
+              </EventNum>
             </Event>
-          </Portfolio>
+          </RightBox>
+          {/* <div style={{ display: "flex" }}>
+            
+            <EventTitle>포그가 무조건 드려요  🎁</EventTitle>
+          </div>
+          */}
         </PortfolioBox>
         <ProjectBox>
           <TitleBox>
@@ -175,9 +194,23 @@ const Main = () => {
     </>
   );
 };
+
+const LeftBox = styled.div`
+  width: 75%;
+  margin: 0px auto;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  justify-content: space-around;
+`;
+const RightBox = styled.div`
+  height: 410px;
+`;
 const EventNum = styled.div`
-  height: 30%;
-  margin: 2% 0px;
+  height: 112px;
+  margin-bottom: 24px;
   background-color: #fff;
   border-radius: 20px;
 `;
@@ -185,18 +218,26 @@ const EventTitle = styled.div`
   font-weight: 600;
   font-size: 26px;
   line-height: 31px;
+  margin: 0px auto;
   color: #fff;
-  width: 25%;
-  margin-left: 30px;
+  width: 250px;
+  min-width: 250px;
+  margin-left: 10px;
 `;
 const Event = styled.div`
   margin: 10px;
+  margin-top: 25px;
   width: 327px;
-  height: 410px;
+  min-width: 327px;
+  height: 384px;
   border-radius: 10px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  img{
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const Container = styled.div`
@@ -222,7 +263,7 @@ const Portfolio = styled.div`
   /* flex-wrap: wrap; */
   display: flex;
   width: 100%;
-  height: 430px;
+  height: 410px;
   overflow: hidden;
   border-radius: 10px;
   justify-content: space-around;
@@ -231,7 +272,7 @@ const Portfolio = styled.div`
 `;
 
 const TitleBox = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -244,6 +285,8 @@ const TitleBox = styled.div`
     line-height: 31px;
     letter-spacing: -0.01em;
     color: white;
+    min-width: 290px;
+    margin-right: 10px;
   }
   button {
     margin-right: 10px;
@@ -260,9 +303,10 @@ const TitleBox = styled.div`
 `;
 
 const PortfolioBox = styled.div`
-  width: 75%;
+  display: flex;
+  width: 100%;
   margin: 50px auto;
-  height: 500px;
+  height: 463px;
   max-width: 1440px;
 `;
 
