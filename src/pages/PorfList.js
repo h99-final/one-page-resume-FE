@@ -24,6 +24,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssTextField, theme } from "../shared/_sharedMuiStyle";
 import { AccountCircle } from "@mui/icons-material";
+import MainFooter from '../shared/MainFooter';
 
 const PorfList = () => {
   const history = useHistory();
@@ -201,6 +202,7 @@ const PorfList = () => {
         </PortfolioBox>
       </Container>
       <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
+      <MainFooter />
     </>
   );
 };
