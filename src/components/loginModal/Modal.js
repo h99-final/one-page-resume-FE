@@ -156,7 +156,7 @@ const ModalBG = styled.div`
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
+  z-index: 5;
 `;
 
 const ModalBox = styled.div`
@@ -169,7 +169,7 @@ const ModalBox = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
+  z-index:6;
   @media only screen and (max-width: 1300px) {
     width: 580px;
     height: 800px;
