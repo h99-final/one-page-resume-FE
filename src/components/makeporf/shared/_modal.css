@@ -5,10 +5,10 @@
   right: auto;
   bottom: auto;
   background: #2c2e39;
-  z-index: 2;
   transform: translate(-50%, -50%);
   width: 70vw;
   height: 85%;
+  z-index: 9999;
 }
 
 /* top: "50%",
@@ -26,6 +26,7 @@ overflow: "hidden",
 minWidth: "1000px", */
 
 .Overlay {
+  /* z-index: 9999; */
   position: fixed;
   top: 0;
   left: 0;
@@ -34,10 +35,10 @@ minWidth: "1000px", */
   background-color: rgba(0, 0, 0, 0.7); /* blur */
   backdrop-filter: blur(5px);
 }
-.Overlay::-webkit-scrollbar {
+/* .Overlay::-webkit-scrollbar {
   width: 4px;
 }
 .Overlay::-webkit-scrollbar-thumb {
   border-radius: 2px;
   background: #696b7b;
-}
+} */

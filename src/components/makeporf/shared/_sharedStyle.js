@@ -82,10 +82,18 @@ export const Inner = styled.img`
 
 export const Line = styled.hr``;
 
+export const ButtonTextTS = styled(FormText)`
+  width: 10%;
+  font-size: 20px;
+  font-style: normal;
+  cursor: pointer;
+  float: right;
+`;
 export const ButtonText = styled(FormText)`
   width: 100%;
   font-size: 20px;
   font-style: normal;
+  cursor: pointer;
 `;
 
 export const AddButton = styled.div`
