@@ -51,13 +51,7 @@ function GithubSpinner(props) {
   // Modal.setAppElement("#root");
 
   return (
-    <Container
-    // ariaHideApp={false}
-    // isOpen={helpModalOpen}
-    // onRequestClose={closeModal}
-    // style={customStyles}
-    // contentLabel="Example Modal"
-    >
+    <Container>
       <InfoBox>
         {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
