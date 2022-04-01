@@ -15,50 +15,38 @@ function ForModifyProjUpload(props) {
 
   // 프리뷰 상태 관리
   const [preview, setPreview] = useState(null);
-  const [files, setFiles] = useState(images);
+  const [files, setFiles] = useState([]);
   const [newFile, setNewFile] = useState(null);
 
   const dropHandler = (file) => {
-    // let _images = Object.assign(file, {
-    //   preview: URL.createObjectURL(file),
-    // });
-    setFiles(
-      file.map((e) =>
-        Object.assign(e, {
-          preview: URL.createObjectURL(e),
-        })
-      )
-    );
     if (file.length !== 0) {
       let modifyPic = new FormData();
       for (let i = 0; i < file.length; i++) {
         modifyPic.append("images", file[i]);
-
       }
       apis.modifyPictureProject(modifyPic, projectId).then((res) => {
-
+        setFiles(res.data.data)
       });
     }
-
-    console.log(file)
   };
-  console.log(files)
+
+  useEffect(() => {
+    apis.projectGet(projectId).then((res) => {
+      setFiles(res.data.data.img)
+    })
+  }, [])
 
   function deletePreview(e) {
     console.log(e.target.id)
     apis.deletePictureProject(projectId, e.target.id)
       .then((res) => {
-        let _files = images.filter((element) => element.id !== e.target.id)
-        setImages(_files)
       })
       .catch(err => { alert("삭제 실패했습니다.") })
+
+    let _files = files.filter((element, index) => Number(element.id) !== Number(e.target.id))
+    setFiles(_files)
   }
 
-  useEffect(() => {
-    setFiles(images)
-  }, [images])
-
-  // console.log(images)
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -90,7 +78,7 @@ function ForModifyProjUpload(props) {
         )}
       </Dropzone>
 
-      {images.map((file, i) => (
+      {files.map((file, i) => (
         <Image key={`images-${file.id}`}>
           <img
             style={{ borderRadius: "10px" }}

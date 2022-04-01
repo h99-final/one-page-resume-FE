@@ -29,24 +29,14 @@ function ForProjUpload(props) {
     );
 
   };
-
-  // console.log(images[0].preview)
-
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);
+
     setFiles(_files);
     setImages(_files);
     // let __files = images
   }
-  // function onImageChange(e) {
-  //   const reader = new FileReader();
-  //   const file = images;
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setPreview(reader.result);
-  //   };
-  // }
-
+  console.log(files)
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
