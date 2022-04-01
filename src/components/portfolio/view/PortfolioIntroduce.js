@@ -154,6 +154,7 @@ const ContentBox = styled.div`
     props.templateIdx >= 1 && props.templateIdx <= 6 ? "240px 2.5%" : ""};
   width: ${(props) =>
     props.templateIdx >= 1 && props.templateIdx <= 6 ? "45%" : "100%"};
+  word-wrap: break-word;
   height: 250px;
   h1 {
     padding: ${(props) =>

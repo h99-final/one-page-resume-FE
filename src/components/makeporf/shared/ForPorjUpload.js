@@ -34,7 +34,6 @@ function ForProjUpload(props) {
     setImages(_files);
     // let __files = images
   }
-  console.log(files);
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -45,7 +44,10 @@ function ForProjUpload(props) {
               {isFocused || isDragActive ? (
                 <>
                   <img
-                    style={{ borderRadius: "10px" }}
+                    style={{
+                      borderRadius: "10px",
+                      border: "1px solid #00C4B4",
+                    }}
                     width="100%"
                     alt=""
                     src={process.env.PUBLIC_URL + "/img/eximghover.svg"}

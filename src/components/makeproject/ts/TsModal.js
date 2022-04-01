@@ -124,9 +124,23 @@ function TsModal(props) {
 
   useEffect(() => {
     if (page === 0) {
-      apis.gitCommit(projectId).then((res) => {
-        setMessage_list(res.data.data);
-      });
+      setIsLoading(true);
+      apis
+        .gitCommit(projectId)
+        .then((res) => {
+          if (res.data.data.length === 0) {
+            handlesync();
+            return;
+          }
+          setMessage_list(res.data.data);
+        })
+        .then(() => {
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          window.alert(error.response.data.data.errors[0].message);
+          setIsLoading(false);
+        });
     }
     if (page === 1) {
       dispatch(actionCreators.setPatchCodeAPI(projectId, selectedSha));
