@@ -16,6 +16,19 @@ const initialState = {
   myBookmark: [],
 };
 
+const setBookmarkDB = () => {
+  return function (dispatch, getState) {
+    apis
+      .getBookmark()
+      .then((res) => {
+        dispatch(setBookmark(res.data.data));
+      })
+      .catch((error) => {
+        alert("정보가 없습니다.");
+      });
+  };
+};
+
 const addBookmarkDB = (projectId) => {
   return function (dispatch, getState) {
     apis
@@ -45,13 +58,12 @@ export default handleActions(
   {
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
-        draft.myBookmark = action.payload.previews;
+        draft.myBookmark = action.payload.projects;
       }),
     [ADD_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
         draft.myBookmark.unshift(action.payload.projectId);
       }),
-
     [DELETE_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
         draft.myBookmark = draft.myBookmark.filter(
@@ -68,6 +80,7 @@ const actionCreators = {
   deleteBookmark,
   addBookmarkDB,
   deleteBookmarkDB,
+  setBookmarkDB,
 };
 
 export { actionCreators };

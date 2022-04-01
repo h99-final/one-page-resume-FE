@@ -12,8 +12,6 @@ function Career() {
   const dispatch = useDispatch();
   const careers = useSelector((state) => state.career.careers);
 
-  console.log(careers);
-
   useEffect(() => {
     const porfId = JSON.parse(sessionStorage.getItem("userInfo")).porfId;
     dispatch(careerActions.setCareerDB(porfId));

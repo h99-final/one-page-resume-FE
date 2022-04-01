@@ -38,7 +38,6 @@ function UserInfo() {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const onValid = (data) => {
-    const stack = userInfo.stack;
     const _data = { ...data };
     apis
       .addInfo(_data)
@@ -51,6 +50,7 @@ function UserInfo() {
       .catch((error) => {
         // alert("필수 정보를 입력해주세요");
       });
+    return;
   };
 
   useEffect(() => {
@@ -69,8 +69,10 @@ function UserInfo() {
       .catch((error) => {
         setValue("");
       });
+  }, []);
 
-    // return handleSubmit(onValid);
+  useEffect(() => {
+    return handleSubmit(onValid);
   }, []);
 
   return (

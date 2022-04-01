@@ -10,7 +10,6 @@ import Start from "./Start";
 import ExitModal from "./ExitModal";
 
 const Modal = ({ modalClose }) => {
-
   const isFirstLogin = useSelector((state) => state.user.isFirstLogin);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -23,30 +22,34 @@ const Modal = ({ modalClose }) => {
   const [email, setEmail] = React.useState();
 
   const wrapperRef = useRef();
+
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-  })
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
   const handleClickOutside = (event) => {
     if (wrapperRef && !wrapperRef.current.contains(event.target)) {
       setModalOpen(true);
-    }
-    else {
+    } else {
       setModalOpen(false);
     }
-  }
+  };
   return (
     <>
-      <ModalBG >
-
-        <ModalBox ref={wrapperRef} >
+      <ModalBG>
+        <ModalBox ref={wrapperRef}>
           <WelcomeBox>
             <TextContainer>
               <h1>
-                <img style={{ width: "200px" }} alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/POUG.gif' />
+                <img
+                  style={{ width: "200px" }}
+                  alt=""
+                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/POUG.gif"
+                />
               </h1>
 
               <p>POUG와 함께 하면 할 수 있는 것들이에요!</p>
@@ -83,7 +86,9 @@ const Modal = ({ modalClose }) => {
                     }}
                   >
                     <img
-                      alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+                      alt=""
+                      src={process.env.PUBLIC_URL + "/img/close.svg"}
+                    />
                   </button>
                 </div>
                 {status === "aaa" && (
@@ -119,7 +124,10 @@ const Modal = ({ modalClose }) => {
                       exitClose();
                     }}
                   >
-                    <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
+                    <img
+                      alt=""
+                      src={process.env.PUBLIC_URL + "/img/close.svg"}
+                    />
                   </button>
                 </div>
                 {isFirstLogin === true && (
@@ -152,7 +160,6 @@ const ModalBG = styled.div`
 `;
 
 const ModalBox = styled.div`
-
   text-align: center;
   border-radius: 10px;
   display: flex;
@@ -170,7 +177,7 @@ const ModalBox = styled.div`
 `;
 
 const WelcomeBox = styled.div`
-  background: url('https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/welcome.png');
+  background: url("https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/welcome.png");
   width: 50%;
   position: relative;
   border-bottom-left-radius: 10px;
@@ -210,7 +217,7 @@ const TextBox = styled.div`
 `;
 
 const UserBox = styled.div`
-  background-color: #2C2E39;
+  background-color: #2c2e39;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 

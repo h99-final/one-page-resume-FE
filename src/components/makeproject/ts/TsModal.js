@@ -1,43 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+//style
+import "../../../components/makeporf/shared/_modal.css";
 import {
   Content,
   FormText,
   FormTitle,
   IconBox,
-  Inner,
   InputCustom,
-  Label,
 } from "../../makeporf/shared/_sharedStyle";
-// import { FormContents } from "../../makeporf/view/Introduce";
 import styled from "styled-components";
+// component
 import PreviousNextProject from "../PreviousNextProject";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../../../redux/modules/patchcode";
-import { apis } from "../../../shared/axios";
 import TokenHelp from "./TokenHelp";
-import Loading from "./Loading";
 import GithubSpinner from "../../../shared/GithubSpinner";
 import GithubHelper from "../../../shared/GithubHelper";
-
-const customStyles = {
-  content: {
-    top: "53%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    width: "80vw",
-    height: "90%",
-    transform: "translate(-50%, -50%)",
-    position: "fixed",
-    background: "#2C2E39",
-    padding: "0px",
-    overflow: "hidden",
-    minWidth: "1000px",
-    zIndex: 2,
-  },
-};
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators } from "../../../redux/modules/patchcode";
+// api
+import { apis } from "../../../shared/axios";
 
 function TsModal(props) {
   const dispatch = useDispatch();
@@ -92,18 +74,27 @@ function TsModal(props) {
           .checkSync(projectId)
           .then((res) => {
             if (res.data.data.totalCommitCount !== 0) {
-              setTotalCommitCount(res.data.data.totalCommitCount)
-              setProgress(res.data.data.curCommitCount)
+              setTotalCommitCount(res.data.data.totalCommitCount);
+              setProgress(res.data.data.curCommitCount);
             }
             if (res.data.data.isDone) {
-              apis.gitCommit(projectId).then((res) => {
-                setMessage_list(res.data.data);
-                clearTimeout(timeout);
-                setIsLoading(false);
-              });
+              apis
+                .gitCommit(projectId)
+                .then((res) => {
+                  setMessage_list(res.data.data);
+                  clearTimeout(timeout);
+                  setIsLoading(false);
+                })
+                .catch((res) => {
+                  clearTimeout(timeout);
+                  alert("github 정보를 불러오는데 실패하였습니다.");
+                });
             }
           })
-          .catch((res) => console.log(res.data.data)),
+          .catch((res) => {
+            clearTimeout(timeout);
+            alert("github 정보를 불러오는데 실패하였습니다.");
+          }),
       1500
     );
     setIsLoading(true);
@@ -113,7 +104,9 @@ function TsModal(props) {
         .then((res) => {
           timeout();
         })
-        .catch((error) => console.log("워험"));
+        .catch((error) => {
+          window.alert(error.response.data.data.errors[0].message);
+        });
     } else {
       setIsLoading(false);
     }
@@ -122,6 +115,11 @@ function TsModal(props) {
     //   alert("깃헙 불러오기는 20초에 1번 가능합니다.");
     //   setIsLoading(false);
     // });
+    return () => {
+      clearTimeout(timeout);
+
+      setPage(0);
+    };
   };
 
   useEffect(() => {
@@ -164,14 +162,19 @@ function TsModal(props) {
         ariaHideApp={false}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        // style={customStyles}
         contentLabel="Example Modal"
+        className="Modal"
+        overlayClassName="Overlay"
       >
         <IconBoxLeft onClick={closeModalWithoutPatchcode}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
         </IconBoxLeft>
         {isLoading ? (
-          <GithubSpinner totalCommitCount={totalCommitCount} curCommitCount={progress} />
+          <GithubSpinner
+            totalCommitCount={totalCommitCount}
+            curCommitCount={progress}
+          />
         ) : (
           <FormContentsModal>
             {page === 2 ? (
@@ -379,16 +382,6 @@ function TsModal(props) {
   );
 }
 
-// const ModalBG = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   background: rgba(0, 0, 0, 0.8);
-//   z-index: 1;
-// `;
-
 const FormContents = styled.div`
   flex-direction: column;
   align-items: center;
@@ -452,6 +445,18 @@ const Ulist = styled.ul`
   overflow: auto;
   border: 1px solid #cccccc;
   border-radius: 10px;
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #696b7b;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 `;
 
 const GetTokenBox = styled.div`

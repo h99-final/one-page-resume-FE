@@ -27,7 +27,6 @@ function ForProjUpload(props) {
         })
       )
     );
-
   };
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);
