@@ -20,6 +20,7 @@ function PortfolioBaseHeader(props) {
   // 스크롤바를 읽는 nav 바 형식 구현
   const history = useHistory();
   const [info, setInfo] = useState({});
+  const [contrastcolor, setContrastcolor] = useState("");
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
   const { projectId, refs, id, color, fontcolor, ...scrolldata } = props;
 
@@ -93,6 +94,14 @@ function PortfolioBaseHeader(props) {
       });
   }, []);
 
+  useEffect(() => {
+    if (fontcolor === "#fff") {
+      setContrastcolor("#000");
+    } else {
+      setContrastcolor("#fff");
+    }
+  }, []);
+
   return (
     <>
       <StyledHeaderFix fontcolor={fontcolor}>
@@ -132,6 +141,7 @@ function PortfolioBaseHeader(props) {
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
+              contrastcolor={contrastcolor}
               selected={selected === 1 ? true : false}
             >
               <ListItemText>포트폴리오 정보</ListItemText>
@@ -141,6 +151,7 @@ function PortfolioBaseHeader(props) {
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
+              contrastcolor={contrastcolor}
               selected={selected === 2 ? true : false}
             >
               <ListItemText>내 정보</ListItemText>
@@ -150,6 +161,7 @@ function PortfolioBaseHeader(props) {
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
+              contrastcolor={contrastcolor}
               selected={selected === 3 ? true : false}
             >
               <ListItemText>기술 스택</ListItemText>
@@ -159,6 +171,7 @@ function PortfolioBaseHeader(props) {
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
+              contrastcolor={contrastcolor}
               selected={selected === 4 ? true : false}
             >
               <ListItemText>직무 경험</ListItemText>
@@ -168,6 +181,7 @@ function PortfolioBaseHeader(props) {
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
+              contrastcolor={contrastcolor}
               selected={selected === 5 ? true : false}
             >
               <ListItemText>프로젝트</ListItemText>
@@ -303,8 +317,8 @@ const ListItemButtonPorf = styled(ListItemButton)`
       props.color === "rgba(0, 0, 0, 0.9)"
         ? "#000"
         : props.selected
-        ? "#fff"
-        : "#000"} !important;
+        ? `${props.contrastcolor}`
+        : `${props.fontcolor}`} !important;
   }
   cursor: pointer;
 `;
