@@ -25,6 +25,8 @@ import ProjList from "../pages/ProjList";
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
 import Loading from "../components/makeproject/ts/Loading";
 import GithubSpinner from "./GithubSpinner";
+import Policy from '../pages/Policy';
+import Privacy from '../pages/Privacy';
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +75,8 @@ function App() {
         <Route exact path="/user/kakao/callback" component={KakaoAuthHandle} />
 
         <Route exact path="/test" component={GithubSpinner} />
+        <Route exact path="/policy" component={Policy} />
+        <Route exact path="/privacy" component={Privacy} />
         <PrivateRoute exact path="/editinfo/:id/:userId" component={EditInfo} />
         <Route exact path="/porflist" component={PorfList} />
         <Route exact path="/projlist" component={ProjList} />
