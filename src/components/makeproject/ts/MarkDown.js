@@ -9,7 +9,6 @@ import rehypeSanitize from "rehype-sanitize";
 import { InputCustom } from "../../makeporf/shared/_sharedStyle";
 //style
 import styled from "styled-components";
-import "./_markdown.css";
 
 function MarkDown({ value, setValue }) {
   return (

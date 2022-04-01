@@ -20,13 +20,12 @@ function ForProjUpload(props) {
   const dropHandler = (file) => {
     let _images = [...file, ...images];
     setImages(_images);
-    setFiles(
-      file.map((e) =>
-        Object.assign(e, {
-          preview: URL.createObjectURL(e),
-        })
-      )
+    let _files = file.map((e) =>
+      Object.assign(e, {
+        preview: URL.createObjectURL(e),
+      })
     );
+    setFiles((prev) => [...prev, ..._files]);
   };
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);
@@ -109,7 +108,8 @@ const Image = styled.div`
   display: flex;
   position: relative;
   height: 250px;
-  margin: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   background-image: ${(props) => (props ? props.bgUrl : null)};
   opacity: 1;
