@@ -11,52 +11,60 @@ import "./_modal.css";
 
 const options = [
   {
+    templateIndex: 0,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/0.svg"}`,
+  },
+  {
+    templateIndex: 13,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1.svg"}`,
+  },
+  {
     templateIndex: 1,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-1.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-1.svg"}`,
   },
   {
     templateIndex: 2,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-2.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-2.svg"}`,
   },
   {
     templateIndex: 3,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-3.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/1-3.svg"}`,
   },
   {
     templateIndex: 4,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-1.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-1.svg"}`,
   },
   {
     templateIndex: 5,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-2.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-2.svg"}`,
   },
   {
     templateIndex: 6,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-3.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/2-3.svg"}`,
   },
   {
     templateIndex: 7,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-1.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-1.svg"}`,
   },
   {
     templateIndex: 8,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-2.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-2.svg"}`,
   },
   {
     templateIndex: 9,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-3.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/3-3.svg"}`,
   },
   {
     templateIndex: 10,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-1.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-1.svg"}`,
   },
   {
     templateIndex: 11,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-2.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-2.svg"}`,
   },
   {
     templateIndex: 12,
-    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-3.png"}`,
+    source: `${process.env.PUBLIC_URL + "/templateAssets/card/4-3.svg"}`,
   },
 ];
 

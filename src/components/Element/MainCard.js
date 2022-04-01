@@ -26,10 +26,12 @@ function MainCard(props) {
     history.push(`/project/${id}`);
   };
 
-  const handleDeleteBookmark = () => {
+  const handleDeleteBookmark = (e) => {
+    e.preventDefault();
     dispatch(actionCreators.deleteBookmarkDB(id));
   };
-  const handleAddBookmark = () => {
+  const handleAddBookmark = (e) => {
+    e.preventDefault();
     dispatch(actionCreators.addBookmarkDB(id));
   };
 
@@ -74,26 +76,21 @@ function MainCard(props) {
         )}
         <Footer>
           <h1>
-            {bookmark?.includes(id) ? (
+            {bookmark?.includes(`${id}`) ? (
               <img
                 onClick={handleDeleteBookmark}
                 alt=""
-                src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
+                src={process.env.PUBLIC_URL + "/img/BookmarkGrey.svg"}
               />
             ) : (
               <img
                 onClick={handleAddBookmark}
                 alt=""
-                src={process.env.PUBLIC_URL + "/img/BookmarkWhite.svg"}
+                src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
               />
             )}
-
             {bookmarkCount}
           </h1>
-          {/* <h1>
-            <img alt="" src={process.env.PUBLIC_URL + "/img/message.svg"} />
-            9999+
-          </h1> */}
         </Footer>
       </ProjectForm>
     </>
