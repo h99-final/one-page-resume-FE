@@ -69,6 +69,7 @@ function MakeProject() {
 
   // const [stacks, setStacks] = useState([]);
   const [addStack, setAddStack] = useState([]);
+  const [stackError, setStackError] = useState("");
   const handleChange = (event, newValue) => {
     setAddStack(newValue);
   };
@@ -91,8 +92,8 @@ function MakeProject() {
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
 
-    if (addStack.length < 2) {
-      setError("stack", "2개 이상 골라주세요.");
+    if (addStack.length === 0) {
+      setStackError("1개 이상 골라주세요.");
       return;
     }
 
@@ -119,10 +120,16 @@ function MakeProject() {
         history.push(`/write/project/troubleShooting/${projectId}`);
       });
     } else {
-      apis.createProject(frm).then((res) => {
-        const { id } = res.data.data;
-        history.push(`/write/project/troubleShooting/${id}`);
-      });
+      apis
+        .createProject(frm)
+        .then((res) => {
+          const { id } = res.data.data;
+          alert("프로젝트 작성이 완료되었습니다.");
+          history.push(`/write/project/troubleShooting/${id}`);
+        })
+        .catch((error) => {
+          window.alert(error.response.data.data.errors[0].message);
+        });
     }
 
     setIs_Loading(false);
@@ -241,6 +248,10 @@ function MakeProject() {
               )}
             />
           </MultiContent>
+          {addStack.length > 0 ? null : (
+            <ErrorMessage>{stackError}</ErrorMessage>
+          )}
+
           <MultiContent style={{ marginBottom: "30px" }}>
             <Label>
               <Font></Font>
@@ -269,6 +280,7 @@ function MakeProject() {
               })}
             </StackBox>
           </MultiContent>
+
           <Content>
             <Label style={{ minWidth: "150px" }}>
               <Font>
