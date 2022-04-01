@@ -226,7 +226,7 @@ const CareerWrite = () => {
             {errors?.endTime?.message || errors?.startTime?.message}
           </ErrorMessage>
 
-          <Template />
+          <Template careerSubmit={handleSubmit(careerSubmit)} />
         </form>
       ) : null}
 

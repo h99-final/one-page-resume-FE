@@ -21,7 +21,7 @@ const setBookmarkDB = () => {
     apis
       .getBookmark()
       .then((res) => {
-        dispatch(setBookmark(res.data.data));
+        dispatch(setBookmark(res.data.data.projectIds));
       })
       .catch((error) => {
         alert("정보가 없습니다.");

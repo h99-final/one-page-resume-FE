@@ -43,7 +43,7 @@ const Save = styled(Next)`
   height: 42px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   display: flex;
   justify-content: center !important;
   align-items: center;
@@ -74,8 +74,10 @@ const BottomNav = styled.div`
   height: 70px;
   margin-top: 50px;
   bottom: 0px;
-  background: #13131BCC;
+  background: #13131bcc;
   padding: 0px 5px;
+  background: rgba(19, 19, 27, 0.8);
+  backdrop-filter: blur(20px);
 `;
 
 export default TemplateProject;

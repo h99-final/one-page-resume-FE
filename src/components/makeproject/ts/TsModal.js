@@ -105,7 +105,7 @@ function TsModal(props) {
           timeout();
         })
         .catch((error) => {
-          window.alert(error.response.data.data.errors[0].message);
+          window.alert(error.response.data.errors[0].message);
         });
     } else {
       setIsLoading(false);
