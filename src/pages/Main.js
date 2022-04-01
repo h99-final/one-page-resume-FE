@@ -156,16 +156,16 @@ const Main = () => {
             <Event>
               <EventNum>
                 <a target="_blank" rel='noreferrer' href='https://forms.gle/1wwX7GwG92QaSQcp7'>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event1.png' />
+                  <img alt='' src={process.env.PUBLIC_URL + "/img/Event1.svg"} />
                 </a>
               </EventNum>
               <EventNum>
                 <a target="_blank" rel='noreferrer' href='https://forms.gle/vozB1fSbmg4zjBjM8'>
-                  <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event2.png' />
+                  <img alt='' src={process.env.PUBLIC_URL + "/img/Event2.svg"} />
                 </a>
               </EventNum>
               <EventNum>
-                <img alt='' src='https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Event3.png' />
+                <img alt='' src={process.env.PUBLIC_URL + "/img/Event3.svg"} />
               </EventNum>
             </Event>
           </RightBox>
@@ -222,8 +222,8 @@ const EventTitle = styled.div`
   line-height: 31px;
   margin: 0px auto;
   color: #fff;
-  width: 250px;
-  min-width: 250px;
+  width: 260px;
+  min-width: 260px;
   margin-left: 10px;
 `;
 const Event = styled.div`
