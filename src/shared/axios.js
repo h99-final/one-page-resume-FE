@@ -100,6 +100,8 @@ export const apis = {
     instance.put(`/project/${projectId}`, data),
   modifyPictureProject: (frmData, projectId) =>
     formInstance.post(`/project/${projectId}/image`, frmData),
+  deletePictureProject: (projectId, imageId) =>
+    instance.delete(`/project/${projectId}/image/${imageId}`),
   deleteProject: (projectId) => instance.delete(`/project/${projectId}`),
 
   createTroubleShooting: (projectId, data) =>

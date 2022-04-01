@@ -45,9 +45,9 @@ function GithubSpinner(props) {
   }
 
   useEffect(() => {
-    setProgress(Math.round(curCommitCount / totalCommitCount * 100))
+    setProgress(Math.round(curCommitCount / totalCommitCount * 100) + "%")
   }, [curCommitCount])
-
+  console.log(progress)
   // Modal.setAppElement("#root");
 
   return (
@@ -62,9 +62,11 @@ function GithubSpinner(props) {
         {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
-        <ProgressBar><animated.span style={style} /></ProgressBar>
+        <ProgressBar>
+          <animated.span style={style}></animated.span>
+        </ProgressBar>
+        <h2>Commit을 불러오는중... ({curCommitCount}/{totalCommitCount})</h2>
       </InfoBox>
-
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -178,6 +180,14 @@ const StepBox = styled.div`
     letter-spacing: -0.01em;
     color: #ffffff;
   }
+  span{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    color: #00C4B4;
+  }
 `;
 
 const RightBox = styled.div`
@@ -218,26 +228,23 @@ const InfoBox = styled.div`
   }
 `;
 const ProgressBar = styled.div`
-  /* height: 20px; */
+  height: 10px; /* Can be anything */
   margin: 0px auto;
+  margin-bottom: 5px;
   position: relative;
   background: #d9dce5;
-  /* -moz-border-radius: 25px;
-  -webkit-border-radius: 25px; */
-  /* border-radius: 25px; */
-  padding: 10px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 0px;
   width: 80vw;
   span{
     display: block;
-  height: 100%;
-  /* border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px; */
-  background-color: #a140ff;
-  /* background-image: linear-gradient(to bottom, #7dc9df, #a140ff); */
-  position: relative;
-  overflow: hidden;
+    height: 100%;
+    background-color: #00C4B4;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
   }
 `;
 

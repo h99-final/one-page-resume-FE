@@ -30,11 +30,12 @@ function ForProjUpload(props) {
 
   };
 
-  console.log(images[0].preview)
+  // console.log(images[0].preview)
 
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);
     setFiles(_files);
+    setImages(_files);
     // let __files = images
   }
   // function onImageChange(e) {
@@ -92,7 +93,6 @@ function ForProjUpload(props) {
           />
         </Image>
       ))}
-      {images.map}
     </ProfileBox>
   );
 }
@@ -141,11 +141,5 @@ const TrashImg = styled.img`
   }
 `;
 
-const portrait = styled.div`
-  background-image: url("/static/images/profile.png");
-  background-size: cover;
-  background-position: center;
-  padding-top: 56.25%;
-`;
 
 export default ForProjUpload;
