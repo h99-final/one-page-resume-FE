@@ -73,11 +73,16 @@ function MakeTroubleShooting() {
     // setValue("content", "");
   };
   const delGitToken = () => {
-    apis.delGitToken().then(() => {
-      apis.userInfo().then((res) => {
-        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+    apis
+      .delGitToken()
+      .then(() => {
+        apis.userInfo().then((res) => {
+          sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        });
+      })
+      .catch((error) => {
+        window.alert(error.response.data.data.errors[0].message);
       });
-    });
   };
 
   const modalOpen = () => {
