@@ -22,6 +22,7 @@ const Modal = ({ modalClose }) => {
   const [email, setEmail] = React.useState();
 
   const wrapperRef = useRef();
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -29,6 +30,7 @@ const Modal = ({ modalClose }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   });
+
   const handleClickOutside = (event) => {
     if (wrapperRef && !wrapperRef.current.contains(event.target)) {
       setModalOpen(true);

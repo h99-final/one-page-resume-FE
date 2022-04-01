@@ -6,9 +6,10 @@
   bottom: auto;
   background: #2c2e39;
   transform: translate(-50%, -50%);
-  width: 70vw;
-  height: 85%;
+  width: 75vw;
+  height: 88%;
   z-index: 9999;
+  outline: none;
 }
 
 /* top: "50%",
