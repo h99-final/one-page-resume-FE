@@ -11,6 +11,7 @@ import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { debounce } from "../shared/common";
 import { style } from '@mui/system';
+import MainFooter from '../shared/MainFooter';
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -191,6 +192,7 @@ const Main = () => {
         {is_loading ? <Spinner /> : null}
       </Container>
       <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
+      <MainFooter />
     </>
   );
 };
