@@ -7,7 +7,9 @@ import MDEditor, {
 } from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import { InputCustom } from "../../makeporf/shared/_sharedStyle";
+//style
 import styled from "styled-components";
+import "./_markdown.css";
 
 function MarkDown({ value, setValue }) {
   return (
@@ -17,13 +19,12 @@ function MarkDown({ value, setValue }) {
           backgroundColor: "#393a47",
           width: "100%",
           minWidth: "55%",
-          height: "600px",
           borderRadius: "10px",
-          padding: "14px 0px",
+          padding: "15px 15px",
           border: "1px solid #393a47",
           color: "#fff",
-          boxSizing: "border-box",
-          fontSize: "24px",
+
+          // boxSizing: "border-box",
         }}
         textareaProps={{
           placeholder: "마크다운으로 작성이 가능합니다. Readme를 관리해보세요.",
@@ -36,6 +37,9 @@ function MarkDown({ value, setValue }) {
         onChange={(newValue) => setValue(newValue)}
         enableScroll={true}
         visiableDragbar={false}
+        previewOptions={{
+          rehypePlugins: [[rehypeSanitize]],
+        }}
       />
     </Container>
   );

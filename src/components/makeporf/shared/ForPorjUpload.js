@@ -35,7 +35,7 @@ function ForProjUpload(props) {
     setImages(_files);
     // let __files = images
   }
-  console.log(files)
+  console.log(files);
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -87,18 +87,19 @@ function ForProjUpload(props) {
 }
 
 const ProfileBox = styled.div`
-  margin: 10px auto;
-  width: 100%;
+  margin: 10px 0px;
+  width: 1150px;
   height: auto;
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 10px;
-  border: 1px solid #cccccc;
 `;
 const Inner = styled.div`
   width: 250px;
   height: 250px;
-  margin: 10px;
+  /* margin: 10px; */
+  margin-right: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
@@ -129,6 +130,5 @@ const TrashImg = styled.img`
     opacity: 1;
   }
 `;
-
 
 export default ForProjUpload;

@@ -168,7 +168,7 @@ table {
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 19px;
+  /* line-height: 19px; */
   letter-spacing: -0.01em;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }

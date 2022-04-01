@@ -16,53 +16,95 @@ function PortfolioBuisnesscard(props) {
 
   return (
     <>
-      <Portfolio
-        background={
-          templateIdx === 0
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/0.svg"
-            : templateIdx === 1
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/1-1.svg"
-            : templateIdx === 2
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/1-2.svg"
-            : templateIdx === 3
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/1-3.svg"
-            : templateIdx === 4
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/2-1.svg"
-            : templateIdx === 5
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/2-2.svg"
-            : templateIdx === 6
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/2-3.svg"
-            : templateIdx === 7
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/3-1.svg"
-            : templateIdx === 8
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/3-2.svg"
-            : templateIdx === 9
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/3-3.svg"
-            : templateIdx === 10
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/4-1.svg"
-            : templateIdx === 11
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/4-2.svg"
-            : templateIdx === 12
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg"
-            : templateIdx === 13
-            ? "https://s3.amazonaws.com/www.poug.me/namecard/1.svg"
-            : null
-        }
-        templateIdx={templateIdx}
-      >
-        <div style={{ width: "100%", height: "100%" }}>
-          <NnE>
-            <h2>{username ? username : "ㅡ"}</h2>
-            <h3>{job ? job : "ㅡ"}</h3>
-            <h4>{title ? title : "ㅡ"}</h4>
-          </NnE>
+      {templateIdx === 0 || templateIdx === 7 || 8 || 9 || 10 || 11 || 12 ? (
+        <Portfolio
+          background={
+            templateIdx === 0
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/0.svg"
+              : templateIdx === 1
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-1.svg"
+              : templateIdx === 2
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-2.svg"
+              : templateIdx === 3
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-3.svg"
+              : templateIdx === 4
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-1.svg"
+              : templateIdx === 5
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-2.svg"
+              : templateIdx === 6
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-3.svg"
+              : templateIdx === 7
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-1.svg"
+              : templateIdx === 8
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-2.svg"
+              : templateIdx === 9
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-3.svg"
+              : templateIdx === 10
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-1.svg"
+              : templateIdx === 11
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-2.svg"
+              : templateIdx === 12
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg"
+              : templateIdx === 13
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1.svg"
+              : null
+          }
+          templateIdx={templateIdx}
+        >
+          <NameCircle>{username ? username : "ㅡ"}</NameCircle>
+          <JobCircle>{job ? job : "ㅡ"}</JobCircle>
+          <TitleCircle>{title ? title : "ㅡ"}</TitleCircle>
+          <ContentCircle>
+            {userStack?.map((e, i) => {
+              return <Stack key={`stack-${i}`}>{e}</Stack>;
+            })}
+          </ContentCircle>
+        </Portfolio>
+      ) : (
+        <Portfolio
+          background={
+            templateIdx === 0
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/0.svg"
+              : templateIdx === 1
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-1.svg"
+              : templateIdx === 2
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-2.svg"
+              : templateIdx === 3
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1-3.svg"
+              : templateIdx === 4
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-1.svg"
+              : templateIdx === 5
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-2.svg"
+              : templateIdx === 6
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/2-3.svg"
+              : templateIdx === 7
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-1.svg"
+              : templateIdx === 8
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-2.svg"
+              : templateIdx === 9
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/3-3.svg"
+              : templateIdx === 10
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-1.svg"
+              : templateIdx === 11
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-2.svg"
+              : templateIdx === 12
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/4-3.svg"
+              : templateIdx === 13
+              ? "https://s3.amazonaws.com/www.poug.me/namecard/1.svg"
+              : null
+          }
+          templateIdx={templateIdx}
+        >
+          <Name>{username ? username : "ㅡ"}</Name>
+          <Job>{job ? job : "ㅡ"}</Job>
+          <Title>{title ? title : "ㅡ"}</Title>
           <Content>
             {userStack?.map((e, i) => {
               return <Stack key={`stack-${i}`}>{e}</Stack>;
             })}
           </Content>
-        </div>
-      </Portfolio>
+        </Portfolio>
+      )}
     </>
   );
 }
@@ -97,19 +139,21 @@ const Stack = styled.div`
 `;
 
 const Content = styled.div`
-  position: relative;
   display: flex;
   flex-direction: flex-start;
   /* justify-content: space-around; */
   /* width: 351px; */
-  height: 7.9%;
-  margin-bottom: 10%;
-  margin-left: 5.6%;
+  margin-bottom: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
 `;
 const Portfolio = styled.div`
-
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
   margin: 10px 0px;
+  /* position: absolute; */
   /* background-color: #414457; */
   /* background-image: url("https://s3.amazonaws.com/www.poug.me/namecard/0.svg"); */
   background-size: 100%;
@@ -135,35 +179,56 @@ const Portfolio = styled.div`
   }
 `;
 
-const NnE = styled.div`
-  position: relative;
-  margin: 0px 5.6%;
-  h2 {
-    width: 100%;
-    margin-top: 10%;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-  }
-  h3 {
-    margin-top: 4%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-  }
-  h4 {
-    margin-top: 16.9%;
-    height: 150px;
-    margin-bottom: 30px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-  }
+const Name = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  width: auto;
+  height: auto;
+  margin-top: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
 `;
+const NameCircle = styled(Name)`
+  align-items: center;
+`;
+
+const ContentCircle = styled(Content)`
+  align-items: center;
+`;
+
+const Job = styled.div`
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-right: 25px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+`;
+
+const JobCircle = styled(Job)`
+  align-items: center;
+`;
+
+const Title = styled.div`
+  margin-top: 51px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 150px;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+`;
+
+const TitleCircle = styled(Title)`
+  align-items: center;
+`;
+
 export default PortfolioBuisnesscard;

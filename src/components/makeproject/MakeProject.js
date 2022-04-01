@@ -33,7 +33,7 @@ import { grey } from "@mui/material/colors";
 import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { CssTextField, theme } from "../../shared/_sharedMuiStyle";
 import { option } from "../../shared/common";
-import ForModifyProjUpload from '../makeporf/shared/ForModifyProjUpload';
+import ForModifyProjUpload from "../makeporf/shared/ForModifyProjUpload";
 
 function MakeProject() {
   const history = useHistory();
@@ -161,7 +161,7 @@ function MakeProject() {
             <Label>
               <Font>
                 프로젝트 제목<Star>*</Star>
-                <br></br>(0/50)
+                <br></br>(50자 이내)
               </Font>
             </Label>
             <InputCustom
@@ -190,11 +190,15 @@ function MakeProject() {
                 프로젝트 이미지<Star>*</Star>
               </Font>
             </Label>
-            {projectId
-              ? <ForModifyProjUpload images={images} setImages={setImages} projectId={projectId} />
-              : <ForProjUpload images={images} setImages={setImages} />
-            }
-
+            {projectId ? (
+              <ForModifyProjUpload
+                images={images}
+                setImages={setImages}
+                projectId={projectId}
+              />
+            ) : (
+              <ForProjUpload images={images} setImages={setImages} />
+            )}
           </MultiContentFlex>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>
@@ -263,7 +267,7 @@ function MakeProject() {
               <Font>
                 프로젝트 내용 <Star>*</Star>
                 <br />
-                (0/1200)
+                (5000자 이내)
               </Font>
             </Label>
             <MarkDown setValue={setMDValue} value={mdValue} />
