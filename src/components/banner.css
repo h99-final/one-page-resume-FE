@@ -145,3 +145,73 @@ body {
   color: #fff;
   background: #00c4b4;
 }
+
+.css-1q60rmi-MuiAutocomplete-endAdornment {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 14px);
+  display: none;
+}
+.css-ghsjzk-MuiInputBase-root-MuiInput-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: black;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.MuiAutocomplete-hasPopupIcon.css-eozd4h-MuiAutocomplete-root
+  .MuiAutocomplete-inputRoot,
+.MuiAutocomplete-hasClearIcon.css-eozd4h-MuiAutocomplete-root
+  .MuiAutocomplete-inputRoot {
+  padding-right: 30px;
+  color: white;
+  border-color: #00c4b4;
+}
+.css-ghsjzk-MuiInputBase-root-MuiInput-root.Mui-focused:after {
+  border-bottom: 2px solid #00c4b4;
+  left: 0;
+  bottom: -1px;
+  content: "";
+  position: absolute;
+  right: 0;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  pointer-events: none;
+}
+.css-lj2z6i-MuiInputBase-root-MuiInput-root.Mui-focused:after {
+  border-bottom: 2px solid #00c4b4;
+  left: 0;
+  bottom: -1px;
+  content: "";
+  position: absolute;
+  right: 0;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  pointer-events: none;
+}
+.css-eozd4h-MuiAutocomplete-root {
+  width: 100%;
+  border-bottom: 1px solid white;
+}

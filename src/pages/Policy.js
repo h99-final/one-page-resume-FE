@@ -9,7 +9,8 @@ import rehypeSanitize from "rehype-sanitize";
 
 const Policy = () => {
 
-  const mdMermaid = `(제 1 조) 목적
+  const mdMermaid = `
+  (제 1 조) 목적
 
   이 약관은 포그가 운영하는 poug.me(이하 "포그(poug)"라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버 "포그(poug)"와 이용자의 권리•의무 및 책임사항을 규정함을 목적으로 합니다. 
   서비스에 접속하거나 이용함으로써, 이용자는 우리의 이용자로 등록되었는지 여부에 관계없이, 이용자가 본 이용약관을 읽었고 이해하였으며 적용 받는 것에 동의하게 됩니다.
@@ -243,6 +244,7 @@ const Policy = () => {
               color: "#fff",
               height: "auto",
               overflowY: "auto",
+              lineHeight: "26px",
               maxWidth: "100%",
               width: "100%",
               boxSizing: "border-box",

@@ -167,7 +167,7 @@ export const InputCustom = styled.textarea`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: #696b7b;
+    /* background: #696b7b; */
   }
   width: 1120px;
   height: 19px;

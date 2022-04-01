@@ -122,6 +122,7 @@ const Privacy = () => {
               height: "auto",
               overflowY: "auto",
               maxWidth: "100%",
+              lineHeight: "26px",
               width: "100%",
               boxSizing: "border-box",
               marginBottom: "100px",

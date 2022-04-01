@@ -117,15 +117,6 @@ const PorfList = () => {
         </InputBox> */}
         <InputBox>
           <Autocomplete
-            sx={{
-              display: "inline-block",
-              "& input": {
-                width: 200,
-                bgcolor: "none",
-                color: "#696B7B",
-                borderBottomColor: " #696B7B",
-              },
-            }}
             multiple
             fullWidth
             filterSelectedOptions
@@ -146,12 +137,6 @@ const PorfList = () => {
             }
             renderInput={(params) => (
               <TextField
-                sx={{
-                  color: "#696B7B",
-                  "&.MuiInput-input ": {
-                    color: "#696B7B",
-                  },
-                }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

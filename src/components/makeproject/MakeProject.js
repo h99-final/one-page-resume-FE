@@ -30,10 +30,10 @@ import Spinner from "../../shared/Spinner";
 // mui selector
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
-import { CssTextField, theme } from "../../shared/_sharedMuiStyle";
+import { Autocomplete, Chip, FormControl, InputAdornment, TextField } from "@mui/material";
 import { option } from "../../shared/common";
 import ForModifyProjUpload from "../makeporf/shared/ForModifyProjUpload";
+import { AccountCircle } from '@mui/icons-material';
 
 function MakeProject() {
   const history = useHistory();
@@ -209,8 +209,8 @@ function MakeProject() {
           </MultiContentFlex>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>
-            <Label>
-              <Font>
+            <Label style={{ height: "auto" }}>
+              <Font style={{ margin: "0px 10px " }}>
                 기술 스택<Star>*</Star>
               </Font>
             </Label>
@@ -233,10 +233,17 @@ function MakeProject() {
                 ))
               }
               renderInput={(params) => (
-                <CssTextField
+                <TextField
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircle sx={{ color: "action.active" }} />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...params}
-                  variant="outlined"
-                  placeholder="사용하신 모든 기술 스택을 검색해주세요."
+                  variant="standard"
+                  placeholder="기술스택으로 검색해보세요"
                 />
               )}
             />
