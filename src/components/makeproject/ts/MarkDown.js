@@ -23,6 +23,10 @@ function MarkDown({ value, setValue }) {
           border: "1px solid #393a47",
           color: "#fff",
           boxSizing: "border-box",
+          fontSize: "24px",
+        }}
+        textareaProps={{
+          placeholder: "마크다운으로 작성이 가능합니다. Readme를 관리해보세요.",
         }}
         hideToolbar={true}
         defaultTabEnable={true}

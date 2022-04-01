@@ -208,6 +208,9 @@ export const IconBox = styled.div`
   margin-bottom: 10px;
   width: 40px;
   height: 40px;
+  &:hover {
+    background-color: #696b7b;
+  }
 `;
 
 export default ShowTroubleShooting;

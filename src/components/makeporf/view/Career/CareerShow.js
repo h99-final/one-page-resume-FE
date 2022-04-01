@@ -33,7 +33,7 @@ function CareerShow(props) {
 
   return (
     <>
-      <hr style={{ margin: "50px" }} />
+      <hr style={{ margin: "50px", border: "1px solid #424453" }} />
       <FormContents>
         <IconBox>
           <DeleteForeverIcon onClick={handleDelete} />
@@ -119,10 +119,13 @@ const IconBox = styled.div`
   margin-left: auto;
   width: 45px;
   height: 45px;
-  background-color: #ffffff;
+  background-color: #424453;
   border-radius: 50px;
   margin-right: 50px;
   margin-bottom: 10px;
+  &:hover {
+    background-color: #696b7b;
+  }
 `;
 
 const Message = styled(ErrorMessage)`

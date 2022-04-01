@@ -252,7 +252,7 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
-      <Template submitStack={submitStack} />
+      <Template submitStack={submitStack} stack={stack} />
       {/* </form> */}
       {/* <MakeCenter style={{ marginTop: "20px" }}>
         <AddButton onClick={submitStack}>
@@ -267,7 +267,7 @@ function Stack() {
 }
 
 export const StackBox = styled.div`
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
   border-radius: 5px;
   border: 1px solid #2c2e39;
   background-color: #2c2e39;

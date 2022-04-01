@@ -73,8 +73,13 @@ function MakeTroubleShooting() {
     // setValue("content", "");
   };
   const delGitToken = () => {
-    apis.delGitToken();
+    apis.delGitToken().then(() => {
+      apis.userInfo().then((res) => {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+      });
+    });
   };
+
   const modalOpen = () => {
     setIsOpen(true);
     // apis.gitCommit(projectId).then((res) => {
@@ -110,9 +115,21 @@ function MakeTroubleShooting() {
         <FormContents>
           {!!commit && !!patchcode ? (
             <>
-              <IconBox onClick={handleDelete}>
-                <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
-              </IconBox>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  marginLeft: "auto",
+                  marginRight: "50px",
+                  width: "100px",
+                  cursor: "pointer",
+                }}
+              >
+                <IconBox onClick={handleDelete}>
+                  <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
+                </IconBox>
+              </div>
               <Content>
                 <Label>
                   <Font>
@@ -213,7 +230,7 @@ function MakeTroubleShooting() {
           >
             토큰삭제
           </ButtonTextTS>
-          <hr style={{ margin: "50px" }} />
+          <hr style={{ margin: "50px", border: "1px solid #424453" }} />
 
           {tsFile
             ? tsFile.map((e, i) => {
@@ -250,6 +267,7 @@ const ContentCareerBottom = styled(ContentCareer)`
 
 const FormContentsP = styled(FormContents)`
   margin-bottom: 0px;
+  padding-top: 24px;
 `;
 
 export default MakeTroubleShooting;

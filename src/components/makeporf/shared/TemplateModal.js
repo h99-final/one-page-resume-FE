@@ -9,24 +9,6 @@ import { FormTextWhite } from "./Template";
 import { IconBox, Next } from "./_sharedStyle";
 import "./_modal.css";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    width: "70vw",
-    height: "85%",
-    transform: "translate(-50%, -50%)",
-    position: "fixed",
-    background: "#2C2E39",
-    padding: "0px",
-    overflow: "hidden",
-    minWidth: "1000px",
-  },
-};
-
 const options = [
   {
     templateIndex: 1,
