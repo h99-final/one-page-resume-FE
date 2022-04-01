@@ -34,7 +34,7 @@ import { Autocomplete, Chip, FormControl, InputAdornment, TextField } from "@mui
 import { option } from "../../shared/common";
 import ForModifyProjUpload from "../makeporf/shared/ForModifyProjUpload";
 import { AccountCircle } from '@mui/icons-material';
-
+import '../banner.css'
 function MakeProject() {
   const history = useHistory();
   const { id, projectId } = useParams();
