@@ -9,7 +9,13 @@ import FinishModal from "./FinishModal";
 import { ReactComponent as TemplateIcon } from "../../../assets/template.svg";
 import { apis } from "../../../shared/axios";
 
-function Template({ submitStack, projectSubmit, submitOnlyUserStack, stack }) {
+function Template({
+  submitStack,
+  projectSubmit,
+  submitOnlyUserStack,
+  stack,
+  careerSubmit,
+}) {
   const { id } = useParams();
   const history = useHistory();
   let subtitle;
@@ -47,8 +53,7 @@ function Template({ submitStack, projectSubmit, submitOnlyUserStack, stack }) {
           return;
         }
         if (stack.length === 3) {
-          apis.putStack(stack).then((res) => {});
-          // .catch((error) => alert("필수값을 입력해주세요"));
+          apis.putStack(stack);
         }
       })
       .then(() => {
@@ -84,7 +89,13 @@ function Template({ submitStack, projectSubmit, submitOnlyUserStack, stack }) {
               // onClick={}
               onClick={handleCheck}
             >
-              {/* <input id="submitngo" type="submit" style={{ display: "none" }} /> */}
+              {id === "career" ? (
+                <input
+                  id="submitngo"
+                  type="submit"
+                  style={{ display: "none" }}
+                />
+              ) : null}
               작성 완료
             </FormTextWhite>
           </Save>

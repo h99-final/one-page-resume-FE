@@ -192,6 +192,7 @@ const PorfList = () => {
                 <div
                   key={`porf-${e.porfId}-${i}`}
                   onClick={() => history.push(`/portfolio/${e.porfId}`)}
+                  style={{ display: "flex", flexWrap: "nowrap" }}
                 >
                   <PortfolioBuisnesscard {...e} />
                 </div>

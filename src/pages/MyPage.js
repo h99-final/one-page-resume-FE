@@ -41,7 +41,7 @@ function MyPage() {
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
     });
-    apis.porfShow(values.show).then((res) => { });
+    apis.porfShow(values.show).then((res) => {});
   }, [values]);
 
   const handleClickShow = () => {
@@ -50,10 +50,10 @@ function MyPage() {
       show: !values.show,
     });
     if (values.show === false) {
-      alert("포트폴리오가 공개되었습니다.")
+      alert("포트폴리오가 공개되었습니다.");
     }
     if (values.show === true) {
-      alert("포트폴리오가 비공개되었습니다.")
+      alert("포트폴리오가 비공개되었습니다.");
     }
   };
 
@@ -129,7 +129,9 @@ function MyPage() {
             </RightBox>
           </UserInfo>
         </UserInfoBox>
-        <PortfolioBox>
+        <PortfolioBox
+          onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}
+        >
           <Title
             style={{
               display: "flex",
@@ -139,7 +141,6 @@ function MyPage() {
           >
             <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
-
               <button onClick={handleClickShow}>
                 {values.show ? <Visibility /> : <VisibilityOff />}
               </button>
@@ -189,7 +190,13 @@ function MyPage() {
         </PortfolioBox>
       </Form>
       <Project>
-        <ProjTitle style={{ marginTop: "120px", marginBottom: "20px", marginLeft: "0.7%" }}>
+        <ProjTitle
+          style={{
+            marginTop: "120px",
+            marginBottom: "20px",
+            marginLeft: "0.7%",
+          }}
+        >
           프로젝트
         </ProjTitle>
 
@@ -385,6 +392,7 @@ const PortfolioBox = styled.div`
   position: relative;
   margin: 0px auto;
   width: 450px;
+  cursor: pointer;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -460,7 +468,7 @@ const AddProfText = styled.div`
   line-height: 24px;
   text-align: center;
   letter-spacing: -0.01em;
-  color: #CFD3E2;
+  color: #cfd3e2;
 `;
 const RightBox = styled.div`
   margin: 70px 30px 50px 40px;

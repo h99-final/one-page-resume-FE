@@ -64,7 +64,7 @@ const UserInfo = ({ templateIdx, color, fontcolor }) => {
               </InfoBox>
             </LeftBox>
 
-            {!user?.profileImage ? (
+            {user?.profileImage === "empty" ? (
               <RightBox>
                 <img
                   alt="ㅡ"
