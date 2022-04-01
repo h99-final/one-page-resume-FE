@@ -106,7 +106,7 @@ function MakeTroubleShooting() {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onValid)}>
         <FormTitle>
           <FormMainText>STEP 2</FormMainText>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -248,9 +248,8 @@ function MakeTroubleShooting() {
                 );
               })
             : null}
-
-          <TemplateProject />
         </FormContents>
+        <TemplateProject />
       </form>
 
       {modalIsOpen ? (
