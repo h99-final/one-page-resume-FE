@@ -30,7 +30,7 @@ function TemplateProject() {
         <Label htmlFor="submit" onClick={handleComplete}>
           <Save style={{ marginRight: "25px" }}>
             <input id="submit" type="submit" style={{ display: "none" }} />
-            <h2>작성 완료</h2>
+            <h2>다음으로</h2>
           </Save>
         </Label>
       </BottomNav>

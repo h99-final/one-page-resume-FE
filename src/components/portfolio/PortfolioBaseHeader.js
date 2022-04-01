@@ -300,11 +300,11 @@ const ListItemButtonPorf = styled(ListItemButton)`
   border-radius: 10px;
   & > span {
     color: ${(props) =>
-      props.color === "rgba(0,0,0, 0.9)"
-        ? "#fff"
-        : props.selected
+      props.color === "rgba(0, 0, 0, 0.9)"
         ? "#000"
-        : props.fontcolor} !important;
+        : props.selected
+        ? "#fff"
+        : "#000"} !important;
   }
   cursor: pointer;
 `;
