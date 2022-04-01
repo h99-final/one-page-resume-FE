@@ -115,10 +115,7 @@ const Main = () => {
         <PortfolioBox>
           <LeftBox>
             <TitleBox>
-              <h1>실시간 베스트 포트폴리오 🔥
-
-              </h1>
-
+              <h1>실시간 베스트 포트폴리오 🔥</h1>
               <div style={{ width: "90px", minWidth: "90px" }}>
                 <img
                   onClick={() => {
@@ -225,7 +222,7 @@ const EventTitle = styled.div`
   color: #fff;
   width: 250px;
   min-width: 250px;
-  margin-left: 30px;
+  margin-left: 10px;
 `;
 const Event = styled.div`
   margin: 10px;
