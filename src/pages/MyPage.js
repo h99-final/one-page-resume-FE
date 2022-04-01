@@ -12,6 +12,7 @@ import ProjectCardShow from "../components/Element/ProjectCardShow";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import MainFooter from '../shared/MainFooter';
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -234,6 +235,8 @@ function MyPage() {
           </AddProfBox>
         </AddProject>
       </Project>
+
+      <MainFooter />
     </Container>
   );
 }
@@ -373,6 +376,7 @@ const Project = styled.div`
   display: flex;
   width: 100%;
   /* justify-content: space-around; */
+  margin-bottom: 30px;
   max-width: 1400px;
   border-radius: 10px;
   @media only screen and (max-width: 1300px) {

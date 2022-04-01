@@ -190,7 +190,7 @@ const StyledBox = styled.button`
     display: none;
   }
   span {
-    font-size: 20px;
+    font-size: 16px;
     position: relative;
     top: 20%;
   }

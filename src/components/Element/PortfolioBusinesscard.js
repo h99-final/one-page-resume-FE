@@ -107,6 +107,7 @@ const Content = styled.div`
   margin-left: 5.6%;
 `;
 const Portfolio = styled.div`
+
   position: absolute;
   margin: 10px 0px;
   /* background-color: #414457; */
@@ -118,6 +119,7 @@ const Portfolio = styled.div`
   height: 502px; */
   width: 327px;
   height: 370px;
+
   border-radius: 10px;
   color: ${(props) =>
     props.templateIdx === 0 ||

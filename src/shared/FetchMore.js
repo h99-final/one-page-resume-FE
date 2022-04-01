@@ -34,9 +34,10 @@ export const Fetch = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 90%;
+  width: 95%;
   margin: 0px auto;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 80px;
   cursor: pointer;
 `;
 

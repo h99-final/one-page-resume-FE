@@ -22,6 +22,7 @@ import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../shared/common";
 import { actionCreators } from "../redux/modules/bookmark";
+import MainFooter from '../shared/MainFooter';
 
 const CssTextField = styled(TextField, {
   shouldForwardProp: (props) => props !== "focuscolor",
@@ -208,6 +209,7 @@ const ProjList = () => {
         {!!is_loading && <Spinner />}
       </Container>
       <FetchMore loading={page !== 0 && is_loading} setPage={setPage} />
+      <MainFooter />
     </>
   );
 };
