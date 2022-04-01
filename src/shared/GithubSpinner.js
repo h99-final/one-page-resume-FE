@@ -231,7 +231,7 @@ const ProgressBar = styled.div`
   -webkit-border-radius: 25px;
   border-radius: 25px;
   padding: 0px;
-  width: 80vw;
+  width: 50%;
   span{
     display: block;
     height: 100%;
