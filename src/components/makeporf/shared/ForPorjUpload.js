@@ -20,13 +20,12 @@ function ForProjUpload(props) {
   const dropHandler = (file) => {
     let _images = [...file, ...images];
     setImages(_images);
-    setFiles(
-      file.map((e) =>
-        Object.assign(e, {
-          preview: URL.createObjectURL(e),
-        })
-      )
+    let _files = file.map((e) =>
+      Object.assign(e, {
+        preview: URL.createObjectURL(e),
+      })
     );
+    setFiles((prev) => [...prev, ..._files]);
   };
   function deletePreview(file, i) {
     let _files = files.filter((e, index) => index !== i);
@@ -35,7 +34,7 @@ function ForProjUpload(props) {
     setImages(_files);
     // let __files = images
   }
-  console.log(files)
+  console.log(files);
   return (
     <ProfileBox style={{ display: "flex" }}>
       <Dropzone onDrop={dropHandler}>
@@ -87,18 +86,19 @@ function ForProjUpload(props) {
 }
 
 const ProfileBox = styled.div`
-  margin: 10px auto;
-  width: 100%;
+  margin: 10px 0px;
+  width: 1150px;
   height: auto;
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 10px;
-  border: 1px solid #cccccc;
 `;
 const Inner = styled.div`
   width: 250px;
   height: 250px;
-  margin: 10px;
+  /* margin: 10px; */
+  margin-right: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
   object-fit: cover;
@@ -108,7 +108,8 @@ const Image = styled.div`
   display: flex;
   position: relative;
   height: 250px;
-  margin: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   background-image: ${(props) => (props ? props.bgUrl : null)};
   opacity: 1;
@@ -129,6 +130,5 @@ const TrashImg = styled.img`
     opacity: 1;
   }
 `;
-
 
 export default ForProjUpload;

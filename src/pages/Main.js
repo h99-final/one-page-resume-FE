@@ -10,8 +10,8 @@ import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import FetchMore from "../shared/FetchMore";
 import Spinner from "../shared/Spinner";
 import { debounce } from "../shared/common";
-import { style } from '@mui/system';
-import MainFooter from '../shared/MainFooter';
+import { style } from "@mui/system";
+import MainFooter from "../shared/MainFooter";
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -122,7 +122,7 @@ const Main = () => {
                   onClick={() => {
                     setIndex((prev) => (prev - num) % 12);
                   }}
-                  style={{ marginRight: "10px", }}
+                  style={{ marginRight: "10px" }}
                   alt=""
                   src={process.env.PUBLIC_URL + "/img/goLeft.svg"}
                 />
@@ -148,24 +148,37 @@ const Main = () => {
                   </div>
                 );
               })}
-
             </Portfolio>
           </LeftBox>
           <RightBox>
-            <EventTitle>포그가 무조건 드려요  🎁</EventTitle>
+            <EventTitle>포그가 무조건 드려요 🎁</EventTitle>
             <Event>
               <EventNum>
-                <a target="_blank" rel='noreferrer' href='https://forms.gle/1wwX7GwG92QaSQcp7'>
-                  <img alt='' src={process.env.PUBLIC_URL + "/img/Event1.svg"} />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://forms.gle/1wwX7GwG92QaSQcp7"
+                >
+                  <img
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/Event1.svg"}
+                  />
                 </a>
               </EventNum>
               <EventNum>
-                <a target="_blank" rel='noreferrer' href='https://forms.gle/vozB1fSbmg4zjBjM8'>
-                  <img alt='' src={process.env.PUBLIC_URL + "/img/Event2.svg"} />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://forms.gle/vozB1fSbmg4zjBjM8"
+                >
+                  <img
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/Event2.svg"}
+                  />
                 </a>
               </EventNum>
               <EventNum>
-                <img alt='' src={process.env.PUBLIC_URL + "/img/Event3.svg"} />
+                <img alt="" src={process.env.PUBLIC_URL + "/img/Event3.svg"} />
               </EventNum>
             </Event>
           </RightBox>
@@ -236,7 +249,7 @@ const Event = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  img{
+  img {
     height: 100%;
     width: 100%;
   }

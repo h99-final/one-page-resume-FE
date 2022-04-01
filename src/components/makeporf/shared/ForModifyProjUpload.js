@@ -25,26 +25,30 @@ function ForModifyProjUpload(props) {
         modifyPic.append("images", file[i]);
       }
       apis.modifyPictureProject(modifyPic, projectId).then((res) => {
-        setFiles(res.data.data)
+        setFiles(res.data.data);
       });
     }
   };
 
   useEffect(() => {
     apis.projectGet(projectId).then((res) => {
-      setFiles(res.data.data.img)
-    })
-  }, [])
+      setFiles(res.data.data.img);
+    });
+  }, []);
 
   function deletePreview(e) {
-    console.log(e.target.id)
-    apis.deletePictureProject(projectId, e.target.id)
-      .then((res) => {
-      })
-      .catch(err => { alert("삭제 실패했습니다.") })
+    console.log(e.target.id);
+    apis
+      .deletePictureProject(projectId, e.target.id)
+      .then((res) => {})
+      .catch((err) => {
+        alert("삭제 실패했습니다.");
+      });
 
-    let _files = files.filter((element, index) => Number(element.id) !== Number(e.target.id))
-    setFiles(_files)
+    let _files = files.filter(
+      (element, index) => Number(element.id) !== Number(e.target.id)
+    );
+    setFiles(_files);
   }
 
   return (
@@ -105,7 +109,6 @@ const ProfileBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 10px;
-  border: 1px solid #cccccc;
 `;
 const Inner = styled.div`
   width: 250px;
