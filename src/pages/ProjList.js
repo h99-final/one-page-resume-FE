@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { apis } from "../shared/axios";
 
 import MainCard from "../components/Element/MainCard";
@@ -20,6 +21,7 @@ import { grey } from "@mui/material/colors";
 import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../shared/common";
+import { actionCreators } from "../redux/modules/bookmark";
 
 const CssTextField = styled(TextField, {
   shouldForwardProp: (props) => props !== "focuscolor",
@@ -66,6 +68,7 @@ const theme = createTheme({
 const ProjList = () => {
   const userInfo = useSelector((state) => state.user.user);
   const history = useHistory();
+  const dispatch = useDispatch();
   const [proj, setProj] = useState([]);
 
   const [addStack, setAddStack] = useState([]);
@@ -74,6 +77,8 @@ const ProjList = () => {
   const [page, setPage] = useState(0);
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+
+  const bookmark = useSelector((state) => state.bookmark.myBookmark);
 
   useEffect(() => {
     setLoading(true);
@@ -107,6 +112,10 @@ const ProjList = () => {
     setPage(0);
     setProj([]);
   }, [addStack]);
+
+  useEffect(() => {
+    dispatch(actionCreators.setBookmarkDB());
+  }, []);
 
   const handleChange = (event, newValue) => {
     setAddStack(newValue);

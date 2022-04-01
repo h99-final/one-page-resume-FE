@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { apis } from '../../../shared/axios';
+import { apis } from "../../../shared/axios";
 
 const FinishModal = ({ exitClose }) => {
   const history = useHistory();
@@ -15,16 +15,16 @@ const FinishModal = ({ exitClose }) => {
   const handleClickShow = () => {
     let show = true;
     apis.porfShow(show).then((res) => {
-      history.push(`/portfolio/${userInfo.porfId}`)
+      history.push(`/portfolio/${userInfo.porfId}`);
     });
-
-  }
+  };
   const handleClickNoShow = () => {
     let show = false;
     apis.porfShow(show).then((res) => {
-      history.push('/mypage')
+      history.push("/mypage");
     });
-  }
+  };
+
   return (
     <ModalBG>
       <ModalBox>
@@ -41,31 +41,23 @@ const FinishModal = ({ exitClose }) => {
               backgroundColor: "inherit",
               border: "none",
             }}
-            onClick={() => {
-              exitClose();
-            }}
+            onClick={exitClose}
           >
             <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
           </button>
         </div>
         <TextContainer>
           <h1>포트폴리오를 작성했어요</h1>
-          <p>아래의 버튼을 눌러 저장한 포트폴리오를 <br />
-            다른 사람들과 공유 할 수 있어요.</p>
+          <p>
+            아래의 버튼을 눌러 저장한 포트폴리오를 <br />
+            다른 사람들과 공유 할 수 있어요.
+          </p>
         </TextContainer>
         <BtnBox>
-          <Btn
-            onClick={handleClickShow}
-          >
-            포트폴리오를 공개할게요
-          </Btn>
+          <Btn onClick={handleClickShow}>포트폴리오를 공개할게요</Btn>
         </BtnBox>
         <BtnBox>
-          <Btn2
-            onClick={handleClickNoShow}
-          >
-            포트폴리오를 비공개할게요
-          </Btn2>
+          <Btn2 onClick={handleClickNoShow}>포트폴리오를 비공개할게요</Btn2>
         </BtnBox>
       </ModalBox>
     </ModalBG>
@@ -101,7 +93,7 @@ const BtnBox = styled.div`
   width: fit-content;
   margin: 0px auto;
   margin-top: 20px;
-`
+`;
 const Btn = styled.button`
   cursor: pointer;
   width: 280px;
@@ -112,7 +104,7 @@ const Btn = styled.button`
   margin-top: 5px;
   border: none;
   color: white;
-  background-color: #00C4B4;
+  background-color: #00c4b4;
   /* :hover{
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #00C4B4;
   } */

@@ -5,36 +5,71 @@ import { FormText, Next } from "./_sharedStyle";
 import TemplateModal from "./TemplateModal";
 import FinishModal from "./FinishModal";
 
-function Template({ submitStack, projectSubmit }) {
+//svg
+import { ReactComponent as TemplateIcon } from "../../../assets/template.svg";
+import { apis } from "../../../shared/axios";
+
+function Template({ submitStack, projectSubmit, submitOnlyUserStack, stack }) {
   const { id } = useParams();
+  const history = useHistory();
   let subtitle;
   const [modalOpen, setModalOpen] = useState(false);
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const exitClose = () => {
-    setModalOpen(!modalOpen);
+    setModalOpen(false);
   };
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
 
   const [openTemplate, setOpenTemplate] = useState(false);
 
+  const handleCheck = () => {
+    apis
+      .introPorfGet(userInfo.porfId)
+      .then((res) => {
+        let { title, contents } = res.data.data;
+        if (title === null || contents === null) {
+          history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
+          alert("필수값을 입력해 주세요.");
+          return;
+        }
+      })
+      .then(() => {
+        if (userInfo.name === null || userInfo.githubUrl === null) {
+          history.push(`/write/portfolio/info/${userInfo.porfId}`);
+          alert("필수값을 입력해 주세요.");
+          return;
+        }
+      })
+      .then(() => {
+        if (stack.length !== 3) {
+          history.push(`/write/portfolio/stack/${userInfo.porfId}`);
+          alert("필수값을 입력해 주세요.");
+          return;
+        }
+        if (stack.length === 3) {
+          apis.putStack(stack).then((res) => {});
+          // .catch((error) => alert("필수값을 입력해주세요"));
+        }
+      })
+      .then(() => {
+        setModalOpen(true);
+      });
+    setModalOpen(true);
+  };
+
+  // TemplateModal.setAppElement("#root");
+
   return (
     <>
+      {openTemplate && (
+        <TemplateModal
+          openTemplate={openTemplate}
+          setOpenTemplate={setOpenTemplate}
+        />
+      )}
       <BottomNav>
-        {openTemplate && (
-          <TemplateModal
-            openTemplate={openTemplate}
-            setOpenTemplate={setOpenTemplate}
-          />
-        )}
         <TemplateSelector onClick={() => setOpenTemplate((prev) => !prev)}>
-          <img
-            alt="템플릿 선택"
-            src={process.env.PUBLIC_URL + "/img/template.svg"}
-          />
+          <TemplateIconSet />
           <FormText style={{ marginLeft: "15px" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
@@ -46,7 +81,8 @@ function Template({ submitStack, projectSubmit }) {
           >
             <FormTextWhite
               style={{ color: "white", fontSize: "16px" }}
-              // onClick={() => setModalOpen((prev) => !prev)}
+              // onClick={}
+              onClick={handleCheck}
             >
               {/* <input id="submitngo" type="submit" style={{ display: "none" }} /> */}
               작성 완료
@@ -76,16 +112,18 @@ function Template({ submitStack, projectSubmit }) {
           )}
         </div>
       </BottomNav>
+
       {modalOpen && (
-        <FinishModal
-          subtitle={subtitle}
-          afterOpenModal={afterOpenModal}
-          exitClose={exitClose}
-        ></FinishModal>
+        <FinishModal subtitle={subtitle} exitClose={exitClose}></FinishModal>
       )}
     </>
   );
 }
+const TemplateIconSet = styled(TemplateIcon)`
+  path {
+    fill: #fff;
+  }
+`;
 
 const Save = styled(Next)`
   width: 120px;
@@ -110,13 +148,15 @@ const TemplateSelector = styled.div`
   margin-left: 30px;
   color: #fff;
   &:hover {
+    path {
+      fill: #00c4b4;
+    }
     color: #00c4b4;
-    transition: 0.2s ease-in-out;
   }
 `;
 
 const BottomNav = styled.div`
-  z-index: 5;
+  z-index: 3;
   display: fixed;
   position: fixed;
   align-items: center;
