@@ -29,6 +29,16 @@ function ForModifyProjUpload(props) {
         })
       )
     );
+    if (file.length !== 0) {
+      let modifyPic = new FormData();
+      for (let i = 0; i < file.length; i++) {
+        modifyPic.append("images", file[i]);
+
+      }
+      apis.modifyPictureProject(modifyPic, projectId).then((res) => {
+
+      });
+    }
 
     console.log(file)
   };
@@ -46,7 +56,7 @@ function ForModifyProjUpload(props) {
 
   useEffect(() => {
     setFiles(images)
-  }, [])
+  }, [images])
 
   // console.log(images)
   return (
