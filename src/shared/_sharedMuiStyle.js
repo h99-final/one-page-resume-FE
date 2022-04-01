@@ -34,4 +34,11 @@ export const CssTextField = styled(TextField, {
     width: "100%",
     borderBottomColor: "#696B7B",
   },
+  "& .MuiAutocomplete-endAdornment": {
+    position: "absolute",
+    right: 0,
+    top: "calc(50 % - 14px)",
+    display: "none",
+    color: "white",
+  }
 }));
