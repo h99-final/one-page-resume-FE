@@ -23,7 +23,7 @@ function Introduce() {
   } = useForm({ defaultValues });
 
   const introSubmit = (data) => {
-    apis.introPorf(data).then((res) => {});
+    apis.introPorf(data).then((res) => { });
     // .catch((error) => {
     //   alert("필수 정보를 입력해주세요.");
     // });
