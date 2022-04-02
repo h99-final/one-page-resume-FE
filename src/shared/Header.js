@@ -191,6 +191,7 @@ const Header = (props) => {
                   작업 작성하기
                 </SharedBtn>
                 <img
+                  onClick={() => alert("준비중입니다.")}
                   alt=""
                   src={process.env.PUBLIC_URL + "/img/BookmarkGrey.svg"}
                   style={{

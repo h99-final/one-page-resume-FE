@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { apis } from "../shared/axios";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // 리덕스
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ import TopDown from "../shared/TopDown";
 import PortfolioFooter from "../components/portfolio/PortfolioFooter";
 
 const Portfolio = () => {
+  const history = useHistory();
   const intro = useRef(null);
   const user = useRef(null);
   const stack = useRef(null);
@@ -60,6 +61,7 @@ const Portfolio = () => {
       })
       .catch((error) => {
         alert("포트폴리오가 없습니다.");
+        history.push("/");
       });
     return () => {
       dispatch(projectActions.resetTroubleShooting());
