@@ -38,7 +38,7 @@ const PorfList = () => {
   const [addStack, setAddStack] = useState([]);
 
   //무한 스크롤
-  const [page, setPage] = useState(null);
+  const [page, setPage] = useState(0);
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -73,7 +73,6 @@ const PorfList = () => {
   useEffect(() => {
     setPage(0);
     setPorf([]);
-    setHasMore(true);
   }, [addStack]);
 
   const handleChange = (event, newValue) => {
