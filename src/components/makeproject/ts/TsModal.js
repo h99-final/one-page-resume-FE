@@ -107,13 +107,14 @@ function TsModal(props) {
           }),
       1500
     );
+
     setIsLoading(true);
     if (projectId) {
       apis
         .gitsync(projectId)
-        .then((res) => {
-          timeout();
-        })
+        // .then((res) => {
+        //   timeout
+        // })
         .catch((error) => {
           // clearTimeout(timeout);
           setIsLoading(false);
@@ -128,7 +129,7 @@ function TsModal(props) {
     //   setIsLoading(false);
     // });
     return () => {
-      clearInterval();
+      clearInterval(timeout);
       setPage(0);
     };
   };
@@ -140,7 +141,7 @@ function TsModal(props) {
         .then((res) => {
           if (res.data.data.length === 0) {
             setIsLoading(true);
-            handlesync();
+            // handlesync();
             return;
           }
           setMessage_list(res.data.data);
@@ -166,14 +167,12 @@ function TsModal(props) {
     const _token = { token: token };
     apis.gitToken(_token).then((res) => {
       setPage(0);
-      apis
-        .userInfo()
-        .then((res) => {
-          sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-        })
-        .then(() => {
-          handlesync();
-        });
+      apis.userInfo().then((res) => {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+      });
+      // .then(() => {
+      //   handlesync();
+      // });
     });
   };
 
