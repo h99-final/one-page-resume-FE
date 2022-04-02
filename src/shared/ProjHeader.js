@@ -11,6 +11,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as bookmarkActions } from "../redux/modules/bookmark";
 import { actionCreators as userActions } from "../redux/modules/user";
+import DeleteModal from './DeleteModal';
 
 const ProjHeader = (props) => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -21,6 +22,12 @@ const ProjHeader = (props) => {
 
   const history = useHistory();
   const project = useSelector((state) => state.setproject.project);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const exitClose = () => {
+    setModalOpen(false);
+  };
 
   const handleDelete = () => {
     apis
@@ -178,7 +185,7 @@ const ProjHeader = (props) => {
               />
             </div>
 
-            <div onClick={handleDelete}>
+            <div onClick={() => { setModalOpen(true) }}>
               <img
                 style={{ marginRight: "40px" }}
                 alt=""
@@ -193,6 +200,9 @@ const ProjHeader = (props) => {
             />
           </RightMenu>
         </StyledHeader>
+        {modalOpen && (
+          <DeleteModal exitClose={exitClose}></DeleteModal>
+        )}
       </>
     );
   }

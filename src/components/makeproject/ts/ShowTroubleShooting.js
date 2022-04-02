@@ -60,7 +60,7 @@ function ShowTroubleShooting(props) {
     }
   };
 
-  useEffect(() => {}, [commitId]);
+  useEffect(() => { }, [commitId]);
 
   return (
     <>
@@ -79,6 +79,7 @@ function ShowTroubleShooting(props) {
               justifyContent: "space-between",
               marginLeft: "auto",
               marginRight: "50px",
+              marginBottom: "20px",
               width: "100px",
             }}
           >
@@ -96,7 +97,7 @@ function ShowTroubleShooting(props) {
               </Font>
             </Label>
             <InputCustom
-              style={{ overflow: "hidden" }}
+              style={{ overflow: "hidden", width: "100%" }}
               type="text"
               value={tsName}
               maxLength={50}
@@ -110,7 +111,7 @@ function ShowTroubleShooting(props) {
               </Font>
             </Label>
             <InputCustom
-              style={{ overflow: "hidden" }}
+              style={{ overflow: "hidden", width: "100%" }}
               type="text"
               //Todo
               defaultValue={commitMsg}
@@ -131,7 +132,7 @@ function ShowTroubleShooting(props) {
                     </Font>
                   </Label>
                   <InputCustom
-                    style={{ overflow: "hidden" }}
+                    style={{ overflow: "hidden", width: "100%" }}
                     type="text"
                     defaultValue={ts.fileName}
                     maxLength={50}
@@ -158,7 +159,7 @@ function ShowTroubleShooting(props) {
                   <Label>
                     <Font>
                       추가 설명<Star>*</Star>
-                      <br></br>(0/500)
+                      <br></br>(5000자 이내)
                     </Font>
                   </Label>
                   {/* <InputCustom
@@ -192,7 +193,7 @@ function ShowTroubleShooting(props) {
         </>
       )}
 
-      <hr style={{ margin: "50px" }} />
+      <hr style={{ margin: "50px", border: "1px solid #424453" }} />
     </>
   );
 }

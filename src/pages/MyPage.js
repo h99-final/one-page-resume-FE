@@ -13,7 +13,8 @@ import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MainFooter from '../shared/MainFooter';
-
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -27,13 +28,11 @@ const defaultprojects = {
 
 function MyPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
-  const [values, setValues] = useState({
-    show: userInfo?.porfShow,
-  });
-  const [show, setShow] = useState(false);
+  const [values, setValues] = useState(userInfo?.porfShow);
 
   useEffect(() => {
     apis.introPorfGet(userInfo?.porfId).then((res) => {
@@ -42,22 +41,34 @@ function MyPage() {
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
     });
-    apis.porfShow(values.show).then((res) => {});
-  }, [values]);
+  }, []);
+
 
   const handleClickShow = () => {
-    setValues({
-      ...values,
-      show: !values.show,
-    });
-    if (values.show === false) {
-      alert("포트폴리오가 공개되었습니다.");
+    setValues(prev => !prev);
+
+    if (values === false) {
+      let _show = {
+        show: true
+      }
+      apis.porfShow(_show).then((res) => {
+        apis.userInfo().then((res) => {
+          sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        });
+      });
     }
-    if (values.show === true) {
-      alert("포트폴리오가 비공개되었습니다.");
+
+    else {
+      let _show = {
+        show: false
+      }
+      apis.porfShow(_show).then((res) => {
+        apis.userInfo().then((res) => {
+          sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        });
+      });
     }
   };
-
   return (
     <Container>
       <Header />
@@ -130,9 +141,7 @@ function MyPage() {
             </RightBox>
           </UserInfo>
         </UserInfoBox>
-        <PortfolioBox
-          onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}
-        >
+        <PortfolioBox>
           <Title
             style={{
               display: "flex",
@@ -143,12 +152,12 @@ function MyPage() {
             <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
               <button onClick={handleClickShow}>
-                {values.show ? <Visibility /> : <VisibilityOff />}
+                {values ? <Visibility /> : <VisibilityOff />}
               </button>
             </div>
           </Title>
           {title ? (
-            <Portfolio>
+            <Portfolio onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}>
               <NnE>
                 <h2>{userInfo?.name ? userInfo?.name : "ㅡ"}</h2>
               </NnE>
@@ -489,6 +498,7 @@ const Portfolio = styled.div`
   height: 502px;
   border-radius: 10px;
   border: 1px solid lightblue;
+  word-wrap: break-word;
   @media only screen and (max-width: 1300px) {
   }
 `;
@@ -509,6 +519,7 @@ const AddProject = styled.div`
 
 const NnE = styled.div`
   min-width: 350px;
+  word-wrap: break-word;
   h1 {
     font-style: normal;
     font-weight: 500;
@@ -516,6 +527,7 @@ const NnE = styled.div`
     margin-bottom: 20px;
     text-align: center;
     color: white;
+    word-wrap: break-word;
   }
   p {
     font-style: normal;
@@ -524,6 +536,7 @@ const NnE = styled.div`
     margin-bottom: 20px;
     color: #cfd3e2;
     text-align: center;
+    word-wrap: break-word;
   }
   h2 {
     font-style: normal;
@@ -531,6 +544,7 @@ const NnE = styled.div`
     font-size: 26px;
     margin: 50px 0px 20px 25px;
     color: white;
+    word-wrap: break-word;
   }
   h3 {
     font-style: normal;
@@ -538,6 +552,7 @@ const NnE = styled.div`
     font-size: 26px;
     margin-left: 25px;
     color: white;
+    word-wrap: break-word;
   }
   h4 {
     line-height: 25px;
@@ -549,6 +564,7 @@ const NnE = styled.div`
     font-weight: 400;
     font-size: 20px;
     color: white;
+    word-wrap: break-word;
   }
 `;
 

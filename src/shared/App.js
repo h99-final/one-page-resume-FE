@@ -36,7 +36,9 @@ function App() {
   const isUserInfo = () => sessionStorage.getItem("userInfo");
 
   useEffect(() => {
-    dispatch(userActions.userInfoDB());
+    if (!!isUserInfo()) {
+      dispatch(userActions.userInfoDB());
+    }
   }, []);
 
   useEffect(() => {

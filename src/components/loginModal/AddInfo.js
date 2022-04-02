@@ -234,7 +234,7 @@ const AddInfo = (props) => {
                 id="blogurl"
                 name="blogurl"
                 placeholder="blogURl"
-                // error={blogUrlError !== '' || false}
+              // error={blogUrlError !== '' || false}
               />
               {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
               <CssTextField
@@ -249,7 +249,7 @@ const AddInfo = (props) => {
                 id="phone"
                 name="phone"
                 placeholder="전화번호"
-                // error={phoneNumError !== "" || false}
+              // error={phoneNumError !== "" || false}
               />
               {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -268,7 +268,7 @@ const AddInfo = (props) => {
                 id="job"
                 name="job"
                 placeholder="직무"
-                // error={jobError !== "" || false}
+              // error={jobError !== "" || false}
               />
               {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -330,6 +330,9 @@ const AddInfo = (props) => {
 
           <div>
             <WriteBtn
+              style={{
+                margin: "50px 0px 0px 430px"
+              }}
               disabled={stack.length !== 3 ? true : false}
               onClick={addInfo}
             >
@@ -391,7 +394,7 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 50px 0px 0px 405px;
+  margin: 50px 0px 0px 255px;
   padding: 5px 10px 5px 10px;
   color: white;
   background-color: #00c4b4;
@@ -459,6 +462,7 @@ export const StyleBoxLogin = styled.button`
   }
   input[type="checkbox"] {
     display: none;
+    
   }
   span {
     font-size: ${(props) => (props.native ? "12px" : "14px")};
@@ -467,7 +471,7 @@ export const StyleBoxLogin = styled.button`
   }
   input[type="checkbox"] + label {
     display: inline-block;
-    width: 112px;
+    width: 120px;
     height: 50px;
     border-radius: 15px;
     border: 2px solid #393a47;

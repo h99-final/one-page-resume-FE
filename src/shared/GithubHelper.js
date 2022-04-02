@@ -22,6 +22,7 @@ const customStyles = {
     marginRight: "-50%",
     width: "80vw",
     height: "90%",
+    minWidth: "700px",
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#1F2029",
@@ -40,15 +41,17 @@ function GithubHelper(props) {
   }
 
   return (
-    <div style={{ zIndex: 3 }}>
+    <div style={{ zIndex: 3 }} >
       <Modal
         ariaHideApp={false}
         isOpen={help}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
+        className="Modal"
+        overlayClassName="Overlay"
       >
-        <IconBoxLeft onClick={closeModal}>
+        <IconBoxLeft onClick={closeModal} style={{ backgroundColor: "inherit" }}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />
         </IconBoxLeft>
         <InfoBox>
@@ -170,7 +173,7 @@ const StepBox = styled.div`
     font-size: 28px;
     line-height: 34px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: #00C4B4;
     margin-bottom: 20px;
   }
   h2 {
@@ -192,7 +195,7 @@ const InfoBox = styled.div`
   width: 100%;
   height: fit-content;
   text-align: center;
-  padding-bottom: 90px;
+  padding-bottom: 0px;
   h1 {
     margin-top: 30px;
     font-style: normal;
