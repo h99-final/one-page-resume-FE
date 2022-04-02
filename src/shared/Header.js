@@ -199,9 +199,11 @@ const Header = (props) => {
                     height: "26px",
                     color: "#333333",
                     marginRight: "12px",
+                    cursor: "pointer",
                   }}
                 />
                 <img
+                  onClick={() => alert("준비중입니다.")}
                   alt=""
                   src={process.env.PUBLIC_URL + "/img/BellGrey.svg"}
                   style={{
@@ -209,6 +211,7 @@ const Header = (props) => {
                     height: "26px",
                     color: "#333333",
                     marginRight: "15px",
+                    cursor: "pointer",
                   }}
                 />
               </>
