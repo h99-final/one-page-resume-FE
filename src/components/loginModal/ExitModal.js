@@ -59,13 +59,14 @@ const ModalBG = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 6;
 `;
 const ModalBox = styled.div`
   border-radius: 10px;
   width: 678px;
   height: 280px;
+  z-index: 7;
   // Modal 창 브라우저 가운데로 조정
   position: absolute;
   left: 50%;
