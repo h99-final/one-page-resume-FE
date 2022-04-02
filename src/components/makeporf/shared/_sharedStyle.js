@@ -79,11 +79,15 @@ export const Inner = styled.img`
 export const Line = styled.hr``;
 
 export const ButtonTextTS = styled(FormText)`
-  width: 10%;
+  width: fit-content;
   font-size: 20px;
   font-style: normal;
+  margin-right: 50px;
   cursor: pointer;
   float: right;
+  /* :hover{
+    background-color: black;
+  } */
 `;
 export const ButtonText = styled(FormText)`
   width: 100%;

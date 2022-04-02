@@ -33,7 +33,7 @@ function PreviousNextProject(props) {
     <BottomNav>
       <ButtonBucket>
         {page === 1 ? (
-          <Previous onClick={handlePreviousClick}>
+          <Previous onClick={handlePreviousClick} style={{ background: "#424453" }}>
             <span>이전으로</span>
           </Previous>
         ) : null}
@@ -99,6 +99,7 @@ const ButtonBucket = styled.div`
   height: 60px;
   width: 98%;
   margin: 0px auto;
+  margin-top: 4px;
 `;
 
 export default PreviousNextProject;

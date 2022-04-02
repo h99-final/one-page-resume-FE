@@ -24,13 +24,13 @@ function TemplateProject() {
   return (
     <>
       <BottomNav id={id}>
-        <Save id={id}>
+        <Save id={id} style={{ background: "#424453", marginLeft: "25px" }}>
           <h2 onClick={handlePreviousClick}>이전으로</h2>
         </Save>
         <Label htmlFor="submit" onClick={handleComplete}>
-          <Save style={{ marginRight: "25px" }}>
+          <Save style={{ marginRight: "30px" }}>
             <input id="submit" type="submit" style={{ display: "none" }} />
-            <h2>다음으로</h2>
+            <h2>작성완료</h2>
           </Save>
         </Label>
       </BottomNav>

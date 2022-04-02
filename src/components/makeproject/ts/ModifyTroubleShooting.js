@@ -9,6 +9,7 @@ import {
   FormTitle,
   InputCustom,
   Label,
+  Star,
 } from "../../makeporf/shared/_sharedStyle";
 import { Font, FormContents } from "../../makeporf/view/Introduce";
 import { FormMainText, FormSubText } from "../MakeProject";
@@ -90,6 +91,7 @@ function ModifyTroubleShooting(props) {
             marginLeft: "auto",
             marginRight: "50px",
             width: "100px",
+            marginBottom: "20px"
           }}
         >
           <IconBox
@@ -106,10 +108,10 @@ function ModifyTroubleShooting(props) {
         <form>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>트러블 슈팅 제목</Font>
+              <Font>트러블 슈팅 제목<Star>*</Star></Font>
             </Label>
             <InputCustom
-              style={{ overflow: "hidden" }}
+              style={{ overflow: "hidden", width: "100%" }}
               type="text"
               defaultValue={tsName}
               {...register("tsName", { required: true })}
@@ -118,10 +120,10 @@ function ModifyTroubleShooting(props) {
           </Content>
           <Content style={{ marginBottom: "30px" }}>
             <Label>
-              <Font>Commit</Font>
+              <Font>Commit<Star>*</Star></Font>
             </Label>
             <InputCustom
-              style={{ overflow: "hidden" }}
+              style={{ overflow: "hidden", width: "100%" }}
               type="text"
               //Todo
               defaultValue={commitMsg}
@@ -137,10 +139,10 @@ function ModifyTroubleShooting(props) {
   </IconBox> */}
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>File Name</Font>
+                    <Font>File Name<Star>*</Star></Font>
                   </Label>
                   <InputCustom
-                    style={{ overflow: "hidden" }}
+                    style={{ overflow: "hidden", width: "100%" }}
                     type="text"
                     defaultValue={ts.fileName}
                     maxLength={50}
@@ -148,7 +150,7 @@ function ModifyTroubleShooting(props) {
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>Patch Code</Font>
+                    <Font>Patch Code<Star>*</Star></Font>
                   </Label>
                   <div
                     style={{
@@ -162,10 +164,10 @@ function ModifyTroubleShooting(props) {
                 </Content>
                 <Content style={{ marginBottom: "30px" }}>
                   <Label>
-                    <Font>*추가 설명</Font>
+                    <Font>추가 설명<Star>*</Star><br />(5000자 이내)</Font>
                   </Label>
                   <InputCustom
-                    style={{ overflow: "auto", height: "20vh" }}
+                    style={{ overflow: "auto", height: "17vh", width: "100%" }}
                     type="text"
                     {...register(`tsContent${i}`)}
                     defaultValue={ts.tsContent}
@@ -176,7 +178,7 @@ function ModifyTroubleShooting(props) {
           })}
         </form>
       </>
-      <hr style={{ margin: "50px" }} />
+      {/* <hr style={{ margin: "50px", border: "1px solid #424453" }} /> */}
     </>
   );
 }

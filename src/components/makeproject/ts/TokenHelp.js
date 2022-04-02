@@ -35,7 +35,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#1F2029",
-
+    paddingTop: "150px",
     // overflow: "hidden",
   },
 };
@@ -133,9 +133,14 @@ function TokenHelp(props) {
               <img alt="" src={process.env.PUBLIC_URL + "/img/TH4.svg"} />
             </SvgBox>
             <GoButton>
-              <button onClick={() => { }}>
-                Git token 인증하러 가기
-              </button>
+              <a
+                href="https://github.com/settings/tokens"
+                target="_blank"
+              >
+                <button onClick={() => { }}>
+                  Git token 인증하러 가기
+                </button>
+              </a>
             </GoButton>
           </Box>
         </SwiperSlide>
@@ -159,9 +164,10 @@ const IconBoxLeft = styled(IconBox)`
 `;
 
 const Box = styled.div`
+  
   width: 60%;
   height: 650px;
-  margin: 150px auto;
+  margin: 50px auto;
 `;
 
 const InfoBox = styled.div`
@@ -209,6 +215,7 @@ const GoButton = styled.div`
   text-align: center;
   margin-top: 70px;
   button{
+  cursor: pointer;
     color: white;
     text-align: center;
     padding: 15px 20px;

@@ -129,6 +129,7 @@ function MakeTroubleShooting() {
                   marginRight: "50px",
                   width: "100px",
                   cursor: "pointer",
+                  marginBottom: "20px"
                 }}
               >
                 <IconBox onClick={handleDelete}>
@@ -143,7 +144,7 @@ function MakeTroubleShooting() {
                 </Label>
                 <InputCustom
                   placeholder="제목을 적어주세요."
-                  style={{ overflow: "hidden" }}
+                  style={{ overflow: "hidden", width: "100%" }}
                   type="text"
                   {...register("title", { required: "제목을 입력해주세요." })}
                   maxLength={50}
@@ -157,7 +158,7 @@ function MakeTroubleShooting() {
                   </Font>
                 </Label>
                 <InputCustom
-                  style={{ overflow: "hidden" }}
+                  style={{ overflow: "hidden", width: "100%" }}
                   type="text"
                   defaultValue={commit.message}
                   maxLength={50}
@@ -171,7 +172,7 @@ function MakeTroubleShooting() {
                   </Font>
                 </Label>
                 <InputCustom
-                  style={{ overflow: "hidden" }}
+                  style={{ overflow: "hidden", width: "100%" }}
                   type="text"
                   defaultValue={patchcode[0]?.name}
                   maxLength={50}
@@ -196,7 +197,7 @@ function MakeTroubleShooting() {
               <Content>
                 <Label>
                   <Font>
-                    *추가 설명<br></br>(0/1500)
+                    추가 설명<Star>*</Star><br></br>(5000자 이내)
                   </Font>
                 </Label>
                 <MarkDown setValue={setMDValue} value={mdValue} />
@@ -212,12 +213,12 @@ function MakeTroubleShooting() {
                   {/* <ButtonText onClick={handleSubmit(onValid)}> */}
                   {patchcode && commit ? (
                     <ButtonText onClick={handleSubmit(onValid)}>
-                      + 트러블 슈팅 파일 저장 하기
+                      트러블 슈팅 파일 저장 하기
                     </ButtonText>
                   ) : (
                     <>
                       <ButtonText onClick={modalOpen}>
-                        + 트러블 슈팅 파일 추가 하기
+                        트러블 슈팅 파일 추가 하기
                       </ButtonText>
                     </>
                   )}
@@ -239,14 +240,14 @@ function MakeTroubleShooting() {
 
           {tsFile
             ? tsFile.map((e, i) => {
-                return (
-                  <ShowTroubleShooting
-                    key={`tsFile.fileName-${i}`}
-                    commit={commit}
-                    {...e}
-                  />
-                );
-              })
+              return (
+                <ShowTroubleShooting
+                  key={`tsFile.fileName-${i}`}
+                  commit={commit}
+                  {...e}
+                />
+              );
+            })
             : null}
         </FormContents>
         <TemplateProject />
