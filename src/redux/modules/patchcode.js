@@ -37,7 +37,6 @@ const deleteTs = createAction(DELETE_TS, (projectId, commitId) => ({
   projectId,
   commitId,
 }));
-//ToDo
 const deleteTsFile = createAction(DELETE_TS_FILE, (commitId, fileId) => ({
   commitId,
   fileId,
