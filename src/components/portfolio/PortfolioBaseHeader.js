@@ -22,7 +22,8 @@ function PortfolioBaseHeader(props) {
   const [info, setInfo] = useState({});
   const [contrastcolor, setContrastcolor] = useState("");
   // ref 로 직접 요소에 접근, props로 받는건데 forwardRef를 써야함?
-  const { projectId, refs, id, color, fontcolor, ...scrolldata } = props;
+  const { projectId, refs, id, color, fontcolor, templateIdx, ...scrolldata } =
+    props;
 
   const url = useRef();
   const copyUrl = (e) => {
@@ -142,6 +143,7 @@ function PortfolioBaseHeader(props) {
               color={color}
               fontcolor={fontcolor}
               contrastcolor={contrastcolor}
+              templateIdx={templateIdx}
               selected={selected === 1 ? true : false}
             >
               <ListItemText>포트폴리오 정보</ListItemText>
@@ -152,6 +154,7 @@ function PortfolioBaseHeader(props) {
               color={color}
               fontcolor={fontcolor}
               contrastcolor={contrastcolor}
+              templateIdx={templateIdx}
               selected={selected === 2 ? true : false}
             >
               <ListItemText>내 정보</ListItemText>
@@ -162,6 +165,7 @@ function PortfolioBaseHeader(props) {
               color={color}
               fontcolor={fontcolor}
               contrastcolor={contrastcolor}
+              templateIdx={templateIdx}
               selected={selected === 3 ? true : false}
             >
               <ListItemText>기술 스택</ListItemText>
@@ -172,6 +176,7 @@ function PortfolioBaseHeader(props) {
               color={color}
               fontcolor={fontcolor}
               contrastcolor={contrastcolor}
+              templateIdx={templateIdx}
               selected={selected === 4 ? true : false}
             >
               <ListItemText>직무 경험</ListItemText>
@@ -182,6 +187,7 @@ function PortfolioBaseHeader(props) {
               color={color}
               fontcolor={fontcolor}
               contrastcolor={contrastcolor}
+              templateIdx={templateIdx}
               selected={selected === 5 ? true : false}
             >
               <ListItemText>프로젝트</ListItemText>
@@ -286,7 +292,7 @@ const NumberBox = styled.div`
 
 const ProjectText = styled.div`
   font-family: "Pretendard";
-  color: ${(props) => props.fontcolor} !important;
+  color: ${(props) => props.fontcolor};
   font-style: normal;
   font-weight: 600;
   font-size: 26px;
@@ -315,25 +321,29 @@ const StyledHeaderFix = styled(StyledHeader)`
       : "rgba(255, 255, 255, 0.8)"} !important;
 `;
 
-const ListItemButtonPorf = styled(ListItemButton)`
+const ListItemButtonPorf = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
-  background: ${(props) =>
-    props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
+  background-color: ${(props) =>
+    props.selected
+      ? props.templateIdx === 13
+        ? "#000"
+        : `${props.color}`
+      : ""};
   border-radius: 10px;
+  height: 50px;
   /* & > span {
     color: ${(props) =>
     props.color === "rgba(0, 0, 0, 0.9)"
       ? "#000"
       : props.selected
-        ? `${props.contrastcolor}`
-        : `${props.fontcolor}`} !important;
-  } */
-  & > span {
-    color: ${(props) =>
-    props.selected
       ? `${props.contrastcolor}`
       : `${props.fontcolor}`} !important;
-  }
+  } */
+  color: ${(props) =>
+    props.selected ? `${props.contrastcolor}` : `${props.fontcolor}`};
   cursor: pointer;
 `;
 

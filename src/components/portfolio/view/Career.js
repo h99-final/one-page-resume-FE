@@ -20,6 +20,7 @@ const Career = ({ color, fontcolor, templateIdx }) => {
       return contrast;
     }
   };
+  console.log(color, fontcolor, templateIdx);
 
   useEffect(() => {
     dispatch(actionCreators.setCareerDB(id));
@@ -48,7 +49,7 @@ const Career = ({ color, fontcolor, templateIdx }) => {
                       </Date>
                       <Content>
                         {e.contents.map((c, index) => {
-                          return <h1 key={index}>{c}</h1>;
+                          return <h1 key={`content-${index}`}>{c}</h1>;
                         })}
                       </Content>
                     </NewCareerBox>
