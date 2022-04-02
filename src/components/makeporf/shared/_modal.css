@@ -10,6 +10,7 @@
   height: 88%;
   z-index: 9999;
   outline: none;
+  border-radius: 10px;
 }
 
 /* top: "50%",

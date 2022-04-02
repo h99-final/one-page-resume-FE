@@ -96,6 +96,7 @@ export const apis = {
   porfStackGet: (porfId) => instance.get(`/porf/${porfId}/stack`),
 
   createProject: (frmData) => formInstance.post("/project", frmData),
+  repoCheck: (urldata) => instance.post("/git/repo/validation", urldata),
   modifyInfoProject: (data, projectId) =>
     instance.put(`/project/${projectId}`, data),
   modifyPictureProject: (frmData, projectId) =>
