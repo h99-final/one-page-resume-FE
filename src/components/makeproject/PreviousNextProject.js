@@ -60,17 +60,19 @@ const BottomNav = styled.div`
   left: 0;
   width: 100%;
   height: 70px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  margin: auto;
   bottom: 0px;
   background: #393a47;
+  border-radius: 10px;
 `;
 const Next = styled.div`
   float: right;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
-  height: 62px;
+  height: 55px;
   width: 115px;
   padding: 0px 10px;
   background: #00c4b4;

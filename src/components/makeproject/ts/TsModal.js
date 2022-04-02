@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../../redux/modules/patchcode";
 // api
 import { apis } from "../../../shared/axios";
+import { Routing } from "../MakeProject";
 
 function TsModal(props) {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ function TsModal(props) {
   };
 
   // 싱크 맞추기
-  const handlesync = async () => {
+  const handlesync = () => {
     let timeout = setInterval(
       () =>
         apis
@@ -83,7 +84,7 @@ function TsModal(props) {
                 .then((res) => {
                   setMessage_list(res.data.data);
                   clearTimeout(timeout);
-                  setIsLoading(false);
+                  // setIsLoading(false);
                 })
                 .catch((res) => {
                   clearTimeout(timeout);
@@ -92,28 +93,31 @@ function TsModal(props) {
                 });
             }
           })
-          // .catch((error) => {
+          // .catch((res) => {
+          //   clearTimeout(timeout);
           //   window.alert(error.response.data.data.errors[0].message);
+          //   console.log(res);
           // }),
           .catch((res) => {
             clearTimeout(timeout);
-            alert(
-              "github 정보를 불러오는데 실패하였습니다. 토큰이 만료되었는지 확인해주세요."
-            );
+            // alert(
+            //   "github 정보를 불러오는데 실패하였습니다. 토큰이 만료되었는지 확인해주세요."
+            // );
             setIsLoading(false);
           }),
       1500
     );
     setIsLoading(true);
     if (projectId) {
-      await apis
+      apis
         .gitsync(projectId)
         .then((res) => {
           timeout();
         })
         .catch((error) => {
-          clearTimeout(timeout);
-          window.alert(error.response.data.errors[0].message);
+          // clearTimeout(timeout);
+          setIsLoading(false);
+          alert(error.response.data?.data?.errors[0].message);
         });
     } else {
       setIsLoading(false);
@@ -164,7 +168,7 @@ function TsModal(props) {
   const submitToken = () => {
     const _token = { token: token };
     apis.gitToken(_token).then((res) => {
-      setPage(0);
+      setPage(1);
       apis
         .userInfo()
         .then((res) => {
@@ -248,9 +252,14 @@ function TsModal(props) {
                 {page === 0 ? (
                   <>
                     <FormTitleFlex>
-                      <FormTextCenter>
+                      <FormTextCenter style={{ display: "flex" }}>
                         Commit 선택하기
                         <img
+                          style={{
+                            marginTop: "5px",
+                            marginLeft: "5px",
+                            cursor: "pointer",
+                          }}
                           onClick={() => {
                             setHelp(true);
                           }}
@@ -260,6 +269,9 @@ function TsModal(props) {
                       </FormTextCenter>
                       <FormTextLight>
                         프로젝트에 첨부할 commit을 선택해 주세요.
+                        <Routing href={userInfo.gitUrl} target="_blank">
+                          GitHub 바로가기
+                        </Routing>
                       </FormTextLight>
                     </FormTitleFlex>
                     {githubSpinner ? (
@@ -274,9 +286,10 @@ function TsModal(props) {
                             marginRight: "100px",
                             marginBottom: "10px",
                           }}
-                          onClick={handlesync}
                         >
                           <img
+                            onClick={handlesync}
+                            style={{ cursor: "pointer" }}
                             width="30px"
                             alt="새로고침"
                             height="auto"
@@ -510,7 +523,13 @@ export const FormTextCenter = styled(FormText)`
   padding: 10px;
   font-size: 36px;
   line-height: 43px;
+  align-content: center;
+  align-items: center;
   img {
+    filter: grayscale(100%);
+    &:hover {
+      filter: none;
+    }
   }
 `;
 

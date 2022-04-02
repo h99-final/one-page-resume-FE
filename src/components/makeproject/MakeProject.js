@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import {
   Content,
   ErrorMessage,
@@ -30,14 +30,23 @@ import Spinner from "../../shared/Spinner";
 // mui selector
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import { Autocomplete, Chip, FormControl, InputAdornment, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Chip,
+  FormControl,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import { option } from "../../shared/common";
 import ForModifyProjUpload from "../makeporf/shared/ForModifyProjUpload";
-import { AccountCircle } from '@mui/icons-material';
-import '../banner.css'
+import { AccountCircle } from "@mui/icons-material";
+import "../banner.css";
+
 function MakeProject() {
   const history = useHistory();
   const { id, projectId } = useParams();
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
   //포트폴리오 프로젝트 생성
   const {
     register,
@@ -92,47 +101,59 @@ function MakeProject() {
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
 
-    if (addStack.length === 0) {
-      setStackError("1개 이상 골라주세요.");
-      return;
-    }
-
-    const jsonFrm = {
-      title: projectTitle,
-      content: mdValue,
-      stack: addStack,
+    const repoCheckData = {
       gitRepoUrl: gitRepoUrl,
       gitRepoName: gitRepoName,
     };
-    let frm = new FormData();
-    let modifyPic = new FormData();
-    frm.append(
-      "data",
-      new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
-    );
-    for (let i = 0; i < images.length; i++) {
-      frm.append("images", images[i]);
-      modifyPic.append("images", images[i]);
-    }
 
-    if (projectId) {
-      apis.modifyInfoProject(jsonFrm, projectId).then((res) => {
-        history.push(`/write/project/troubleShooting/${projectId}`);
-      });
-    } else {
-      apis
-        .createProject(frm)
-        .then((res) => {
-          const { id } = res.data.data;
-          alert("프로젝트 작성이 완료되었습니다.");
-          history.push(`/write/project/troubleShooting/${id}`);
-        })
-        .catch((error) => {
-          window.alert(error.response.data.data.errors[0].message);
-        });
-    }
+    apis.repoCheck(repoCheckData).then((res) => {
+      if (res.data.data.isOk) {
+        if (addStack.length === 0) {
+          setStackError("1개 이상 골라주세요.");
+          return;
+        }
 
-    setIs_Loading(false);
+        const jsonFrm = {
+          title: projectTitle,
+          content: mdValue,
+          stack: addStack,
+          gitRepoUrl: gitRepoUrl,
+          gitRepoName: gitRepoName,
+        };
+        let frm = new FormData();
+        let modifyPic = new FormData();
+        frm.append(
+          "data",
+          new Blob([JSON.stringify(jsonFrm)], { type: "application/json" })
+        );
+        for (let i = 0; i < images.length; i++) {
+          frm.append("images", images[i]);
+          modifyPic.append("images", images[i]);
+        }
+
+        if (projectId) {
+          apis.modifyInfoProject(jsonFrm, projectId).then((res) => {
+            history.push(`/write/project/troubleShooting/${projectId}`);
+          });
+        } else {
+          apis
+            .createProject(frm)
+            .then((res) => {
+              const { id } = res.data.data;
+              alert("프로젝트 작성이 완료되었습니다.");
+              history.push(`/write/project/troubleShooting/${id}`);
+            })
+            .catch((error) => {
+              window.alert(error.response.data.data.errors[0].message);
+            });
+        }
+
+        setIs_Loading(false);
+      } else {
+        alert("깃허브 레포지토리가 유효하지 않습니다.");
+        setIs_Loading(false);
+      }
+    });
   };
   // const handleClick = () => {
   //   history.push("/write/project/troubleshooting/id");
@@ -159,7 +180,12 @@ function MakeProject() {
         <FormMainText>STEP 1</FormMainText>
         <div style={{ display: "flex", alignItems: "center" }}>
           <FormText>프로젝트 정보</FormText>
-          <FormSubText>프로젝트의 전반적인 내용을 작성해주세요</FormSubText>
+          <FormSubText>
+            프로젝트의 전반적인 내용을 작성해주세요{" "}
+            <Routing target="_blank" href={userInfo.gitUrl}>
+              Github 바로가기
+            </Routing>
+          </FormSubText>
         </div>
       </FormTitle>
       <form onSubmit={handleSubmit(projectSubmit)}>
@@ -301,6 +327,18 @@ function MakeProject() {
   );
 }
 
+export const MultiContentFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0px 50px;
+`;
+
+export const Routing = styled.a`
+  margin-left: 10px;
+  text-decoration: underline;
+  color: #00c4b4;
+`;
+
 export const FormSubText = styled.p`
   font-style: normal;
   font-weight: 400;
@@ -313,10 +351,6 @@ export const FormSubText = styled.p`
 export const FormMainText = styled(FormText)`
   padding: 10px 0;
   color: #ffffff;
-`;
-
-export const MultiContentFlex = styled(MultiContent)`
-  display: flex;
 `;
 
 export default MakeProject;
