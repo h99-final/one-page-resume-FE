@@ -34,7 +34,7 @@ const loginDB = (email, password) => {
       .then((res) => {
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
-        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         if (res.data.data.isFirstLogin === true) {
           apis
             .userInfo()
@@ -67,7 +67,7 @@ const kakaoLoginDB = (code) => {
       .then((res) => {
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
-        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         history.push("/");
         if (res.data.data.isFirstLogin === true) {
           apis
@@ -147,7 +147,7 @@ const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(data)
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
@@ -183,7 +183,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isFirstLogin = action.payload.status;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

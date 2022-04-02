@@ -50,14 +50,15 @@ const CareerWrite = () => {
 
   const [open, setOpen] = useState(true);
   const [checkDate, setCheckDate] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleCheckClick = () => {
-    if (checkDate === false) {
+    if (checked === false) {
       setValue("endTime", "current");
     } else {
       setValue("endTime", "");
     }
-    setCheckDate((prev) => !prev);
+    setChecked((prev) => !prev);
   };
 
   const careerSubmit = (oldData) => {
@@ -88,8 +89,12 @@ const CareerWrite = () => {
     setValue("startTime", "");
     setValue("endTime", "");
     setOpen(true);
-    setCheckDate((prev) => !prev);
+    setChecked(false);
   };
+
+  useEffect(() => {
+    return handleSubmit(careerSubmit);
+  }, []);
 
   return (
     <>
@@ -216,6 +221,7 @@ const CareerWrite = () => {
             <Checkbox
               // sx={{ backgroundColor: "white" }}
               id="current"
+              checked={checked}
               onClick={handleCheckClick}
             />
             <Label htmlFor="current" style={{ color: "white" }}>

@@ -78,16 +78,16 @@ function TsModal(props) {
               setTotalCommitCount(res.data.data.totalCommitCount);
               setProgress(res.data.data.curCommitCount);
             }
-            if (res.data.data.isDone) {
+            if (res.data.data.isDone === true) {
               apis
                 .gitCommit(projectId)
                 .then((res) => {
                   setMessage_list(res.data.data);
-                  clearTimeout(timeout);
-                  // setIsLoading(false);
+                  clearInterval(timeout);
+                  setIsLoading(false);
                 })
                 .catch((res) => {
-                  clearTimeout(timeout);
+                  clearInterval(timeout);
                   alert("github 정보를 불러오는데 실패하였습니다.");
                   setIsLoading(false);
                 });
@@ -99,10 +99,10 @@ function TsModal(props) {
           //   console.log(res);
           // }),
           .catch((res) => {
-            clearTimeout(timeout);
-            // alert(
-            //   "github 정보를 불러오는데 실패하였습니다. 토큰이 만료되었는지 확인해주세요."
-            // );
+            clearInterval(timeout);
+            alert(
+              "github 정보를 불러오는데 실패하였습니다. 토큰이 만료되었는지 확인해주세요."
+            );
             setIsLoading(false);
           }),
       1500
@@ -128,27 +128,24 @@ function TsModal(props) {
     //   setIsLoading(false);
     // });
     return () => {
-      clearTimeout(timeout);
-
+      clearInterval();
       setPage(0);
     };
   };
 
   useEffect(() => {
     if (page === 0) {
-      setIsLoading(true);
       apis
         .gitCommit(projectId)
         .then((res) => {
           if (res.data.data.length === 0) {
+            setIsLoading(true);
             handlesync();
             return;
           }
           setMessage_list(res.data.data);
         })
-        .then(() => {
-          setIsLoading(false);
-        })
+
         .catch((error) => {
           window.alert(error.response.data.data.errors[0].message);
           setIsLoading(false);
@@ -168,7 +165,7 @@ function TsModal(props) {
   const submitToken = () => {
     const _token = { token: token };
     apis.gitToken(_token).then((res) => {
-      setPage(1);
+      setPage(0);
       apis
         .userInfo()
         .then((res) => {

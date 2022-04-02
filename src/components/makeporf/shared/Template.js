@@ -34,26 +34,33 @@ function Template({
       .then((res) => {
         let { title, contents } = res.data.data;
         if (title === null || contents === null) {
+          alert("필수값을 입력해 주세요.");
           history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
-          alert("필수값을 입력해 주세요.");
           return;
         }
-      })
-      .then(() => {
+
         if (userInfo.name === null || userInfo.githubUrl === null) {
-          history.push(`/write/portfolio/info/${userInfo.porfId}`);
           alert("필수값을 입력해 주세요.");
+          history.push(`/write/portfolio/info/${userInfo.porfId}`);
           return;
         }
-      })
-      .then(() => {
-        if (stack.length !== 3) {
+
+        if (stack?.length !== 3) {
           history.push(`/write/portfolio/stack/${userInfo.porfId}`);
           alert("필수값을 입력해 주세요.");
           return;
         }
-        if (stack.length === 3) {
-          apis.putStack(stack);
+        if (stack?.length === 3) {
+          const data = {
+            stack: stack,
+          };
+          apis
+            .putStack(data)
+            .then()
+            .catch((error) => {
+              alert("대표 스택 필수값을 입력해 주세요.");
+              return;
+            });
         }
       })
       .then(() => {

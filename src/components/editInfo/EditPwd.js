@@ -48,8 +48,8 @@ const CssTextField = styled(TextField, {
     "&.Mui-focused fieldset": {
       borderColor: p.focuscolor,
     },
-    '& fieldset': {
-      borderColor: "#696B7B"
+    "& fieldset": {
+      borderColor: "#696B7B",
     },
   },
   "& .MuiInputBase-input": {
@@ -154,7 +154,6 @@ function EditPwd() {
               placeholder="비밀번호(4글자 이상)*"
               error={curPasswordError !== "" || false}
               InputProps={{
-
                 endAdornment: (
                   <InputAdornment position="absolute">
                     <IconButton
@@ -255,12 +254,17 @@ function EditPwd() {
               </span>
             )}
           </ErrorMessage>
-
         </UserInfoForm>
-        <div style={{
-          position: "absolute", marginTop: "425px", maxWidth: "1440px",
-          width: "95%", textAlign: "right"
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            marginTop: "445px",
+            marginBottom: "100px",
+            maxWidth: "1440px",
+            width: "95%",
+            textAlign: "right",
+          }}
+        >
           <Button
             onClick={() => {
               editPwd();

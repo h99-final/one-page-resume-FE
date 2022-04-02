@@ -15,11 +15,11 @@ const PortfolioIntroduce = (props) => {
       <Container
         background={
           templateIdx === 7
-            ? "https://s3.amazonaws.com/www.poug.me/template/4-1.png"
+            ? "https://s3.amazonaws.com/www.poug.me/template/3-1.png"
             : templateIdx === 8
-            ? "https://s3.amazonaws.com/www.poug.me/template/4-2.png"
+            ? "https://s3.amazonaws.com/www.poug.me/template/3-2.png"
             : templateIdx === 9
-            ? "https://s3.amazonaws.com/www.poug.me/template/4-3.png"
+            ? "https://s3.amazonaws.com/www.poug.me/template/3-3.png"
             : templateIdx === 10
             ? "https://s3.amazonaws.com/www.poug.me/template/4-1.png"
             : templateIdx === 11
