@@ -99,7 +99,7 @@ const TroubleShooting = (props) => {
           <MDEditor.Markdown
             style={{
               backgroundColor: "transparent",
-              padding: "14px 14px",
+              // padding: "14px 14px",
               color: `${fontcolor}`,
               height: "100%",
               minHeight: "600px",
