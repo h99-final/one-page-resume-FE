@@ -62,7 +62,7 @@ export const StyledHeader = styled.div`
   min-width: 800px;
   align-items: center;
   justify-content: space-between;
-  z-index: 5;
+  z-index: 4;
 `;
 
 export const LeftMenu = styled.div`
