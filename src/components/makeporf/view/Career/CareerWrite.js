@@ -93,7 +93,7 @@ const CareerWrite = () => {
   };
 
   useEffect(() => {
-    return handleSubmit(careerSubmit);
+    return () => handleSubmit(careerSubmit);
   }, []);
 
   return (

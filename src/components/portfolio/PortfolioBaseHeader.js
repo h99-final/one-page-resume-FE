@@ -317,22 +317,21 @@ const StyledHeaderFix = styled(StyledHeader)`
 
 const ListItemButtonPorf = styled(ListItemButton)`
   width: 150px;
-  background: ${(props) =>
-    props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
+  background: ${(props) => (props.selected ? `${props.color}` : "")};
   border-radius: 10px;
   /* & > span {
     color: ${(props) =>
     props.color === "rgba(0, 0, 0, 0.9)"
       ? "#000"
       : props.selected
-        ? `${props.contrastcolor}`
-        : `${props.fontcolor}`} !important;
+      ? `${props.contrastcolor}`
+      : `${props.fontcolor}`} !important;
   } */
   & > span {
     color: ${(props) =>
-    props.selected
-      ? `${props.contrastcolor}`
-      : `${props.fontcolor}`} !important;
+      props.selected
+        ? `${props.contrastcolor}`
+        : `${props.fontcolor}`} !important;
   }
   cursor: pointer;
 `;

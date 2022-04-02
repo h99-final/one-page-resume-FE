@@ -46,7 +46,7 @@ function ProjectSelect() {
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
-    return projectSubmit;
+    return () => projectSubmit();
   }, []);
 
   return (
