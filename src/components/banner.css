@@ -239,3 +239,6 @@ body {
   width: 100%;
   border-bottom: 1px solid white;
 }
+.MuiAutocomplete-popper {
+  background: rgba(255, 255, 255, 0.5);
+}
