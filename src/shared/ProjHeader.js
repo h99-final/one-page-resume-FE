@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Modal from "../components/loginModal/Modal";
 import { Avatar } from "@mui/material";
@@ -45,48 +45,80 @@ const ProjHeader = (props) => {
       });
   }, []);
 
+  const url = useRef();
+
+  const copyUrl = (e) => {
+    url.current.select();
+    document.execCommand("copy");
+
+    setTimeout(() => {
+      alert("url이 복사되었습니다.");
+    }, 200);
+  };
+
   if (!project?.isMyProject) {
     return (
       <>
         <StyledHeader>
           <LeftMenu>
-            <div style={{ marginLeft: "10px", fontSize: "18px" }}>
-              {info?.username}
-            </div>
+            <img
+              onClick={() => {
+                history.push(`/`);
+              }}
+              style={{ marginRight: "5px", marginLeft: "30px" }}
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
+            <img
+              onClick={() => {
+                history.push(`/`);
+              }}
+              style={{ marginRight: "5px" }}
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
           </LeftMenu>
           <RightMenu>
-            <SharedBtn>
+            <div style={{ marginRight: "16px", fontSize: "16px" }}>
+              {info?.username}
+            </div>
+            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
+              <SharedBtn>
+                <img
+                  style={{ marginRight: "7px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/link.svg"}
+                />
+                GitHub
+              </SharedBtn>
+            </a>
+            <TextArea readOnly ref={url} value={window.location.href} />
+            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
+
               <img
-                style={{ marginRight: "7px" }}
+                style={{ marginRight: "16px" }}
                 alt=""
-                src={process.env.PUBLIC_URL + "/img/link.svg"}
+                src={process.env.PUBLIC_URL + "/img/star.svg"}
               />
-              GitHub
-            </SharedBtn>
-
-            <img
-              style={{ marginRight: "16px" }}
-              alt=""
-              src={process.env.PUBLIC_URL + "/img/star.svg"}
-            />
-
+            </a>
             {bookmark.includes(id) ? (
               <img
                 onClick={() => dispatch(bookmarkActions.deleteBookmarkDB(id))}
-                style={{ marginRight: "25px" }}
+                style={{ marginRight: "39px" }}
                 alt="bookmark"
                 src={process.env.PUBLIC_URL + "/img/BookmarkGrey.svg"}
               />
             ) : (
               <img
                 onClick={() => dispatch(bookmarkActions.addBookmarkDB(id))}
-                style={{ marginRight: "25px" }}
+                style={{ marginRight: "41px" }}
                 alt="bookmark"
                 src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
               />
             )}
 
             <img
+              style={{ marginRight: "20px" }}
               onClick={() => history.goBack()}
               alt="close"
               src={process.env.PUBLIC_URL + "/img/close.svg"}
@@ -100,24 +132,43 @@ const ProjHeader = (props) => {
       <>
         <StyledHeader>
           <LeftMenu>
+            <img
+              onClick={() => {
+                history.push(`/`);
+              }}
+              style={{ marginRight: "5px", marginLeft: "30px" }}
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoBefore.svg"}
+            />
+            <img
+              onClick={() => {
+                history.push(`/`);
+              }}
+              style={{ marginRight: "5px" }}
+              alt=""
+              src={process.env.PUBLIC_URL + "/img/LogoAfter.svg"}
+            />
+          </LeftMenu>
+          <RightMenu>
+
             <div
-              style={{ marginLeft: "10px", fontSize: "18px" }}
+              style={{ marginRight: "16px", fontSize: "16px" }}
               onClick={() => {
                 history.push(`/portfolio/${userInfo.porfId}`);
               }}
             >
               {info?.username}
             </div>
-          </LeftMenu>
-          <RightMenu>
-            <SharedBtn>
-              <img
-                style={{ marginRight: "7px" }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/link.svg"}
-              />
-              GitHub
-            </SharedBtn>
+            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
+              <SharedBtn>
+                <img
+                  style={{ marginRight: "7px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/link.svg"}
+                />
+                GitHub
+              </SharedBtn>
+            </a>
 
             <div onClick={() => history.push(`/write/project/info/${id}`)}>
               <img
@@ -129,13 +180,14 @@ const ProjHeader = (props) => {
 
             <div onClick={handleDelete}>
               <img
-                style={{ marginRight: "35px" }}
+                style={{ marginRight: "40px" }}
                 alt=""
                 src={process.env.PUBLIC_URL + "/img/Trash.svg"}
               />
             </div>
             <img
               onClick={() => history.goBack()}
+              style={{ marginRight: "20px" }}
               alt="close"
               src={process.env.PUBLIC_URL + "/img/close.svg"}
             />
@@ -149,8 +201,8 @@ const ProjHeader = (props) => {
 export default ProjHeader;
 
 const StyledHeader = styled.div`
-  background: none;
-  backdrop-filter: blur(2px);
+  background: rgba(19, 19, 27, 0.8);
+  backdrop-filter: blur(5px);
   align-items: center;
   justify-content: space-between;
   width: 100vw;
@@ -173,9 +225,19 @@ const LeftMenu = styled.div`
   cursor: pointer;
 `;
 
+const TextArea = styled.textarea`
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+`;
 const RightMenu = styled.div`
   display: flex;
   align-items: center;
+  color: white;
   font-size: 25px;
   font-weight: bold;
   font-weight: 500;
@@ -187,6 +249,8 @@ const SharedBtn = styled.button`
   cursor: pointer;
   background-color: black;
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   text-align: center;
   color: #ffffff;
