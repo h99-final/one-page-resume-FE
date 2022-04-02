@@ -229,6 +229,12 @@ function PortfolioBaseHeader(props) {
             sx={{ width: 38, height: 38 }}
           />
           <Name fontcolor={fontcolor}>{info?.username}</Name>
+          <img
+            style={{ marginLeft: "30px" }}
+            onClick={() => history.goBack()}
+            alt="close"
+            src={process.env.PUBLIC_URL + "/img/close.svg"}
+          />
         </RightMenu>
       </StyledHeaderFix>
       {scroll - defaultScroll.project > -50 ? (
