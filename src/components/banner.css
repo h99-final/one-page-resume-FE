@@ -198,7 +198,7 @@ body {
 }
 .MuiInputBase-input {
   position: relative;
-  color: #ffffff;
+  color: #ffffff !important;
   width: 100%;
 }
 .MuiInputBase-input-MuiInput-input {
@@ -238,6 +238,7 @@ body {
 .MuiAutocomplete-root {
   width: 100%;
   border-bottom: 1px solid white;
+  /* color: white; */
 }
 .MuiAutocomplete-popper {
   background: rgba(255, 255, 255, 0.5);

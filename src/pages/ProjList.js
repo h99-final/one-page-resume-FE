@@ -145,35 +145,35 @@ const ProjList = () => {
           </button>
         </Title>
         <InputBox>
-          <ThemeProvider theme={theme}>
-            <Autocomplete
-              multiple
-              fullWidth
-              filterSelectedOptions
-              id="tags-standard"
-              // options={option.map((option) => option.stack)}
-              getOptionLabel={(option) => option}
-              options={option}
-              value={addStack ? addStack : []}
-              onChange={handleChange}
-              renderTags={(addStack, getTagProps) =>
-                addStack?.map((option, index) => (
-                  <Chip
-                    sx={{ display: "none" }}
-                    variant="outlined"
-                    {...getTagProps({ index })}
-                  />
-                ))
-              }
-              renderInput={(params) => (
-                <CssTextField
-                  {...params}
-                  variant="standard"
-                  placeholder="기술스택으로 검색해보세요"
+
+          <Autocomplete
+            multiple
+            fullWidth
+            filterSelectedOptions
+            id="tags-standard"
+            // options={option.map((option) => option.stack)}
+            getOptionLabel={(option) => option}
+            options={option}
+            value={addStack ? addStack : []}
+            onChange={handleChange}
+            renderTags={(addStack, getTagProps) =>
+              addStack?.map((option, index) => (
+                <Chip
+                  sx={{ display: "none" }}
+                  variant="outlined"
+                  {...getTagProps({ index })}
                 />
-              )}
-            />
-          </ThemeProvider>
+              ))
+            }
+            renderInput={(params) => (
+              <CssTextField
+                {...params}
+                variant="standard"
+                placeholder="기술스택으로 검색해보세요"
+              />
+            )}
+          />
+
         </InputBox>
         <StackBox style={{ marginBottom: "60px" }}>
           {addStack?.map((addStack, index) => {

@@ -260,13 +260,6 @@ function MakeProject() {
               }
               renderInput={(params) => (
                 <TextField
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <AccountCircle sx={{ color: "action.active" }} />
-                      </InputAdornment>
-                    ),
-                  }}
                   {...params}
                   variant="standard"
                   placeholder="기술스택으로 검색해보세요"
