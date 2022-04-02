@@ -83,14 +83,10 @@ const TroubleShooting = (props) => {
 
   return (
     <>
-      <LeftTopBox fontcolor={fontcolor}>
-        <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
-          TroubleShooting
-        </FontTitle>
-      </LeftTopBox>
+
       <SampleCard fontcolor={fontcolor}>
         <LeftBox ref={leftBox}>
-          <LeftTopBox>
+          <LeftTopBox style={{ marginBottom: "40px" }}>
             <FontTitle fontcolor={fontcolor} contrastColor={contrastColor}>
               {tsName}
             </FontTitle>
@@ -119,7 +115,7 @@ const TroubleShooting = (props) => {
             {commitMsg}
           </Font>
           {!is_highlight_loading &&
-          leftBox?.current?.getBoundingClientRect().height ? (
+            leftBox?.current?.getBoundingClientRect().height ? (
             <Highlighted
               fontcolor={fontcolor}
               height={
@@ -140,6 +136,8 @@ const TroubleShooting = (props) => {
 };
 
 const Num = styled.div`
+  border: 1px solid white;
+  border-bottom: none;
   display: flex;
   grid-gap: 0;
   flex-direction: row;
@@ -165,7 +163,6 @@ const LeftBox = styled.div`
 const LeftTopBox = styled.div`
   height: 4.5vw;
   width: 50vw;
-  margin-top: 50px;
   color: ${(props) => props.fontcolor};
 `;
 

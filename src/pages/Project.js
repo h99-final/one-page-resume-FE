@@ -29,7 +29,6 @@ const Project = () => {
     dispatch(actionCreators.setTroubleShootingDB(id));
     return setIs_loading(true);
   }, []);
-
   return (
     <>
       <ProjHeader id={id} />
@@ -38,6 +37,13 @@ const Project = () => {
         <IntroduceContainer>
           <Introduce id={id} />
         </IntroduceContainer>
+
+        <LeftTopBox style={{ marginBottom: "80px", marginTop: "100px" }}>
+          <FontTitle >
+            TroubleShooting
+          </FontTitle>
+        </LeftTopBox>
+
         {is_loading ? (
           <Spinner />
         ) : (
@@ -64,7 +70,24 @@ const Project = () => {
     </>
   );
 };
+export const FontTitle = styled.div`
+  /* padding: 20px; */
+  position: relative;
+  height: 100%;
+  top: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: ${(props) => props.fontcolor};
+`;
 
+const LeftTopBox = styled.div`
+  height: 4.5vw;
+  width: 97%;
+  color: white;
+`;
 const CardsContainer = styled.div`
   /* position: relative; */
   height: 100%;
@@ -86,6 +109,7 @@ export const TroubleShootingContainer = styled.div`
   position: relative;
   height: 100%;
   width: 95vw;
+  margin-bottom: 100px;
   justify-content: space-between;
   /* background-color: #111f30; */
   flex-shrink: 1;

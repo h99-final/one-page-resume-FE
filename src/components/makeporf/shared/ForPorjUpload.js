@@ -46,7 +46,7 @@ function ForProjUpload(props) {
                   <img
                     style={{
                       borderRadius: "10px",
-                      border: "1px solid #00C4B4",
+                      // border: "1px solid #00C4B4",
                     }}
                     width="100%"
                     alt=""
