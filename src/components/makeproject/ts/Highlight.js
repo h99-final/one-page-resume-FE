@@ -38,7 +38,7 @@ function Highlighted({ text = [], show, height, fontcolor }) {
         ? _text.push(
             <TextBody key={`text-title-${i}`}>
               {e}
-              <hr />
+              <hr style={{ color: "#CFD3E2" }} />
             </TextBody>
           )
         : e.charAt(0) === " "

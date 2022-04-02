@@ -48,19 +48,6 @@ export const debounce = (func, delay) => {
   };
 };
 
-// export const option = [
-//   { stack: "JS", index: 0 },
-//   { stack: "Android", index: 1 },
-//   { stack: "Javascript", index: 1974 },
-//   { stack: "Spring", index: 1974 },
-//   { stack: "C", index: 1974 },
-//   { stack: "C++", index: 1974 },
-//   { stack: "React", index: 1974 },
-//   { stack: "iOS", index: 1974 },
-//   { stack: "Node,js", index: 1974 },
-//   { stack: "Vue.js", index: 1974 },
-//   { stack: "Git", index: 1974 },
-// ];
 export const option = [
   "HTML",
   "AWS",
@@ -96,7 +83,6 @@ export const option = [
   "JUnit",
   "JWT",
   "Java",
-  "JAVA",
   "JavaScript",
   "SCSS",
   "JS",

@@ -65,6 +65,7 @@ function UserInfo() {
         setValue("gitUrl", gitUrl);
         setValue("email", email);
         setValue("blogUrl", blogUrl);
+        // history.push(`/write/portfolio/stack/${userInfo.porfId}`);
       })
       .catch((error) => {
         setValue("");
@@ -72,7 +73,7 @@ function UserInfo() {
   }, []);
 
   useEffect(() => {
-    // return handleSubmit(onValid);
+    return handleSubmit(onValid);
   }, []);
 
   return (

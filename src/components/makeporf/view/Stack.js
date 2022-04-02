@@ -98,7 +98,6 @@ function Stack() {
     apis.stackGet(userInfo.porfId).then((res) => {
       setAddStack(res.data.data.subStack);
     });
-    return submitStack;
   }, []);
 
   const submitStack = () => {
@@ -115,16 +114,16 @@ function Stack() {
           dispatch(userActions.userInfoDB());
         })
         .catch((error) => {
-          window.alert(error.message);
+          window.alert("no");
         });
     }
 
-    if (addStack.length > 2) {
+    if (addStack.length > 0) {
       apis
         .porfStack(addS)
         .then((response) => {})
         .catch((res) => {
-          window.alert(res.error.message);
+          window.alert("no");
         });
     }
     // history.push(`/write/portfolio/career/${userInfo.porfId}`);

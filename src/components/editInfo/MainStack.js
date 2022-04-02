@@ -14,19 +14,19 @@ import {
 import { apis } from "../../shared/axios";
 import { useHistory } from "react-router-dom";
 
-export const options = [
-  { value: "Python", label: "Python" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "Spring", label: "Spring" },
-  { value: "C", label: "C" },
-  { value: "C++", label: "C++" },
-  { value: "React", label: "React" },
-  { value: "iOS", label: "iOS" },
-  { value: "Android", label: "Android" },
-  { value: "Node.js", label: "Node.js" },
-  { value: "Vue.js", label: "Vue.js" },
-  { value: "Git", label: "Git" },
-];
+// export const options = [
+//   { value: "Python", label: "Python" },
+//   { value: "Javascript", label: "Javascript" },
+//   { value: "Spring", label: "Spring" },
+//   { value: "C", label: "C" },
+//   { value: "C++", label: "C++" },
+//   { value: "React", label: "React" },
+//   { value: "iOS", label: "iOS" },
+//   { value: "Android", label: "Android" },
+//   { value: "Node.js", label: "Node.js" },
+//   { value: "Vue.js", label: "Vue.js" },
+//   { value: "Git", label: "Git" },
+// ];
 
 function MainStack() {
   const history = useHistory();
@@ -34,18 +34,30 @@ function MainStack() {
   const [stack, setStack] = useState(userInfo.stack);
 
   const defaultStack = [
+    "HTML",
     "JS",
-    "JAVA",
+    "CSS",
+    "SCSS",
+    "TS",
+    "Java",
     "Python",
     "C",
     "C++",
     "iOS",
     "Android",
     "React",
+    "React-Native",
+    "django",
     "Spring",
     "Node.js",
+    "Next.js",
     "Vue.js",
     "git",
+    "Github",
+    "jQuery",
+    "C#",
+    "Flask",
+    "Express",
   ];
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -76,9 +88,8 @@ function MainStack() {
         .catch((error) => {
           window.alert(error.message);
         });
-    }
-    else {
-      alert("3개를 골라주세요")
+    } else {
+      alert("3개를 골라주세요");
     }
   };
 
@@ -88,7 +99,11 @@ function MainStack() {
         <FormText>기술 스택</FormText>
 
         <Font
-          style={{ color: "#CFD3E2", textAlign: "left", margin: "0px 0px 0px 10px" }}
+          style={{
+            color: "#CFD3E2",
+            textAlign: "left",
+            margin: "0px 0px 0px 10px",
+          }}
         >
           나를 대표하는 프레임워크 3가지를 골라주세요. 유저님의 포트폴리오를
           대표하는 명함에 들어가게 됩니다.
@@ -104,7 +119,7 @@ function MainStack() {
         <StackBox>
           {defaultStack.map((s, index) => {
             return (
-              <StyledBox key={index}>
+              <StyledBox key={`stack-${index}`}>
                 <input
                   type="checkbox"
                   id={s}
@@ -112,12 +127,12 @@ function MainStack() {
                   onChange={(e) => {
                     changeHandler(e.currentTarget.checked, `${s}`);
                   }}
-                ></input>
+                />
                 <label id={s} htmlFor={s}>
                   <span>
                     <img
                       alt=""
-                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
                     />
                     {s}
                   </span>
@@ -128,16 +143,26 @@ function MainStack() {
         </StackBox>
       </MultiContent>
       {stack?.length > 3 ? (
-        <Font style={{ color: "orange", textAlign: "left", marginLeft: "220px" }}>
+        <Font
+          style={{ color: "orange", textAlign: "left", marginLeft: "220px" }}
+        >
           3가지만 골라주세요
         </Font>
       ) : (
-        <Font style={{ color: "#2c2e39", textAlign: "center" }}>3가지만 골라주세요</Font>
+        <Font style={{ color: "#2c2e39", textAlign: "center" }}>
+          3가지만 골라주세요
+        </Font>
       )}
-      <div style={{
-        position: "absolute", marginTop: "480px", maxWidth: "1440px",
-        width: "95%", textAlign: "right"
-      }}>
+      <div
+        style={{
+          position: "absolute",
+          marginTop: "645px",
+          marginBottom: "100px",
+          maxWidth: "1440px",
+          width: "95%",
+          textAlign: "right",
+        }}
+      >
         <Button onClick={submitStack}>변경 내용 저장</Button>
       </div>
     </>
