@@ -88,12 +88,19 @@ function TsModal(props) {
                 .catch((res) => {
                   clearTimeout(timeout);
                   alert("github 정보를 불러오는데 실패하였습니다.");
+                  setIsLoading(false);
                 });
             }
           })
+          // .catch((error) => {
+          //   window.alert(error.response.data.data.errors[0].message);
+          // }),
           .catch((res) => {
             clearTimeout(timeout);
-            alert("github 정보를 불러오는데 실패하였습니다.");
+            alert(
+              "github 정보를 불러오는데 실패하였습니다. 토큰이 만료되었는지 확인해주세요."
+            );
+            setIsLoading(false);
           }),
       1500
     );
@@ -105,6 +112,7 @@ function TsModal(props) {
           timeout();
         })
         .catch((error) => {
+          clearTimeout(timeout);
           window.alert(error.response.data.errors[0].message);
         });
     } else {
@@ -426,6 +434,7 @@ const List = styled.li`
   ${Font} {
     color: ${(props) => (props.selected ? "#00C4B4" : "white")};
   }
+  cursor: pointer;
 `;
 export const TokenTitle = styled.div`
   display: flex;
