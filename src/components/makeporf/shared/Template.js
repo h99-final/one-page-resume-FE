@@ -45,12 +45,12 @@ function Template({
           return;
         }
 
-        if (stack?.length !== 3) {
+        if (userInfo?.stack.length !== 3) {
           history.push(`/write/portfolio/stack/${userInfo.porfId}`);
           alert("필수값을 입력해 주세요.");
           return;
         }
-        if (stack?.length === 3) {
+        if (userInfo?.stack.length === 3) {
           const data = {
             stack: stack,
           };

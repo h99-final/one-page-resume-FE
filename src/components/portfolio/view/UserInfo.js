@@ -74,7 +74,7 @@ const UserInfo = ({ templateIdx, color, fontcolor }) => {
                 />
               </RightBox>
             ) : (
-              <RightBox user={user.profileImage ? true : false} color={color}>
+              <RightBox user={user?.profileImage ? true : false} color={color}>
                 <ImageBox>
                   <Image templateIdx={templateIdx}>
                     <img
