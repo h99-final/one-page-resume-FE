@@ -192,7 +192,9 @@ function PortfolioBaseHeader(props) {
           {fontcolor === "#fff" ? (
             <>
               <img
-                onClick={() => console.log("bookmarkclicked")}
+                onClick={() =>
+                  alert("준비중입니다. 프로젝트 북마크만 가능합니다.")
+                }
                 style={{ marginRight: "25px" }}
                 alt=""
                 src={process.env.PUBLIC_URL + "/img/BookmarkSimple.svg"}
@@ -229,6 +231,12 @@ function PortfolioBaseHeader(props) {
             sx={{ width: 38, height: 38 }}
           />
           <Name fontcolor={fontcolor}>{info?.username}</Name>
+          <img
+            style={{ marginLeft: "30px" }}
+            onClick={() => history.goBack()}
+            alt="close"
+            src={process.env.PUBLIC_URL + "/img/close.svg"}
+          />
         </RightMenu>
       </StyledHeaderFix>
       {scroll - defaultScroll.project > -50 ? (
@@ -312,11 +320,17 @@ const ListItemButtonPorf = styled(ListItemButton)`
   background: ${(props) =>
     props.selected ? `${props.color}` : "rgba(255, 255, 255, 0)"};
   border-radius: 10px;
+  /* & > span {
+    color: ${(props) =>
+    props.color === "rgba(0, 0, 0, 0.9)"
+      ? "#000"
+      : props.selected
+      ? `${props.contrastcolor}`
+      : `${props.fontcolor}`} !important;
+  } */
   & > span {
     color: ${(props) =>
-      props.color === "rgba(0, 0, 0, 0.9)"
-        ? "#000"
-        : props.selected
+      props.selected
         ? `${props.contrastcolor}`
         : `${props.fontcolor}`} !important;
   }

@@ -42,20 +42,30 @@ import "../../banner.css";
 function Stack() {
   const { handleSubmit } = useForm();
   const defaultStack = [
+    "HTML",
     "JS",
-    "JAVA",
+    "CSS",
+    "SCSS",
+    "TS",
+    "Java",
     "Python",
     "C",
     "C++",
     "iOS",
     "Android",
     "React",
+    "React-Native",
+    "django",
     "Spring",
     "Node.js",
+    "Next.js",
     "Vue.js",
-    "Git",
-    //ToDo 사용 금지
-    // "git",
+    "git",
+    "Github",
+    "jQuery",
+    "C#",
+    "Flask",
+    "Express",
   ];
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -160,7 +170,7 @@ function Stack() {
                   <span>
                     <img
                       alt=""
-                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
                     />
                     {s}
                   </span>
@@ -170,6 +180,13 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      {stack?.length < 3 ? (
+        <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
+          3가지를 골라주세요
+        </ErrorMessage>
+      ) : (
+        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
+      )}
       {stack?.length > 3 ? (
         <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
           3가지만 골라주세요
@@ -306,8 +323,11 @@ const StyledBox = styled.button`
     display: none;
   }
   span {
-    font-size: 16px;
+    vertical-align: middle;
+    font-size: 14px;
     position: relative;
+    align-items: center;
+    text-align: center;
     top: 20%;
   }
   input[type="checkbox"] + label {

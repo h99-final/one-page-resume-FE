@@ -77,18 +77,30 @@ const AddInfo = (props) => {
   };
 
   const defaultStack = [
+    "HTML",
     "JS",
-    "JAVA",
+    "CSS",
+    "SCSS",
+    "TS",
+    "Java",
     "Python",
     "C",
     "C++",
     "iOS",
     "Android",
     "React",
+    "django",
     "Spring",
     "Node.js",
+    "Next.js",
     "Vue.js",
+    "React-Native",
     "git",
+    "Github",
+    "jQuery",
+    "C#",
+    "Flask",
+    "Express",
   ];
 
   const goNext = () => {
@@ -183,7 +195,6 @@ const AddInfo = (props) => {
                 error={nameError !== "" || false}
               />
               {nameError && (
-
                 <div style={{ textAlign: "left" }}>
                   <span style={{ fontSize: "14px", color: "orange" }}>
                     {nameError}
@@ -206,7 +217,6 @@ const AddInfo = (props) => {
                 error={gitUrlError !== "" || false}
               />
               {gitUrlError && (
-
                 <div style={{ textAlign: "left" }}>
                   <span style={{ fontSize: "14px", color: "orange" }}>
                     {gitUrlError}
@@ -224,7 +234,7 @@ const AddInfo = (props) => {
                 id="blogurl"
                 name="blogurl"
                 placeholder="blogURl"
-              // error={blogUrlError !== '' || false}
+                // error={blogUrlError !== '' || false}
               />
               {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
               <CssTextField
@@ -239,7 +249,7 @@ const AddInfo = (props) => {
                 id="phone"
                 name="phone"
                 placeholder="전화번호"
-              // error={phoneNumError !== "" || false}
+                // error={phoneNumError !== "" || false}
               />
               {/* {phoneNumError && (
             <span style={{ fontSize: "12px", color: "red" }}>
@@ -258,7 +268,7 @@ const AddInfo = (props) => {
                 id="job"
                 name="job"
                 placeholder="직무"
-              // error={jobError !== "" || false}
+                // error={jobError !== "" || false}
               />
               {/* {jobError && (
             <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
@@ -296,7 +306,7 @@ const AddInfo = (props) => {
 
           {defaultStack.map((s, index) => {
             return (
-              <StyledBox>
+              <StyleBoxLogin native={s === "React-Native" ? true : false}>
                 <input
                   type="checkbox"
                   id={s}
@@ -306,15 +316,15 @@ const AddInfo = (props) => {
                   }}
                 ></input>
                 <label id={s} htmlFor={s}>
-                  <span>
+                  <span native={s === "React-Native" ? true : false}>
                     <img
                       alt=""
-                      src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
+                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
                     />
                     {s}
                   </span>
                 </label>
-              </StyledBox>
+              </StyleBoxLogin>
             );
           })}
 
@@ -381,61 +391,17 @@ const WriteBtn = styled.button`
   border-radius: 30px;
   border: none;
   font-size: 14px;
-  margin: 100px 0px 0px 300px;
+  margin: 50px 0px 0px 405px;
   padding: 5px 10px 5px 10px;
   color: white;
   background-color: #00c4b4;
   :disabled {
-    color: #696B7B;
+    color: #696b7b;
     border: none;
     background-color: #424453;
   }
 `;
-const StyledBox = styled.button`
-  border: none;
-  background-color: #2c2e39;
-  padding: 10px 15px 10px 15px;
-  margin-top: 10px;
-  img {
-    border-radius: 5px;
-    background-color: gray;
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 5%;
-    padding: 1px;
-    object-fit: cover;
-    margin-right: 5px;
-  }
-  input[type="checkbox"] {
-    display: none;
-  }
-  span {
-    font-size: 20px;
-    position: relative;
-    top: 20%;
-  }
-  input[type="checkbox"] + label {
-    display: inline-block;
-    width: 120px;
-    height: 50px;
-    border-radius: 15px;
-    border: 2px solid #393a47;
-    background-color: #393a47;
-    color: white;
-    cursor: pointer;
-  }
-  input[type="checkbox"]:checked + label {
-    color: white;
-    display: inline-block;
-    width: 120px;
-    height: 50px;
-    border-radius: 15px;
-    background-color: #00c4b4;
-    border: 2px solid #00c4b4;
-    cursor: pointer;
-  }
-`;
+
 const ContinueBtn = styled.button`
   cursor: pointer;
   position: absolute;
@@ -472,5 +438,51 @@ const CloseBtn = styled.button`
   :disabled {
     border: none;
     background-color: gray;
+  }
+`;
+
+export const StyleBoxLogin = styled.button`
+  border: none;
+  background-color: #2c2e39;
+  padding: 5px 7.5px 5px 7.5px;
+  margin-top: 5px;
+  img {
+    border-radius: 5px;
+    background-color: gray;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5%;
+    padding: 1px;
+    object-fit: cover;
+    margin-right: 5px;
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  span {
+    font-size: ${(props) => (props.native ? "12px" : "14px")};
+    position: relative;
+    top: 20%;
+  }
+  input[type="checkbox"] + label {
+    display: inline-block;
+    width: 112px;
+    height: 50px;
+    border-radius: 15px;
+    border: 2px solid #393a47;
+    background-color: #393a47;
+    color: white;
+    cursor: pointer;
+  }
+  input[type="checkbox"]:checked + label {
+    color: white;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #00c4b4;
+    border: 2px solid #00c4b4;
+    cursor: pointer;
   }
 `;

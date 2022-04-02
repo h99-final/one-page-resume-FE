@@ -16,10 +16,11 @@ import Template from "../../shared/Template";
 import { actionCreators as projectActions } from "../../../../redux/modules/myproject";
 import PreviousNext from "../../shared/PreviousNext";
 import { useHistory } from "react-router-dom";
-import Spinner from '../../../../shared/Spinner';
+import Spinner from "../../../../shared/Spinner";
 
 function ProjectSelect() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const project = useSelector((state) => state.myproject.projects);
   const is_loading = useSelector((state) => state.myproject.is_loading);
   // props로 건네줘서 핸들링
@@ -71,10 +72,10 @@ function ProjectSelect() {
           <div>
             {error && <ErrorMessageSpan style={{}}>{error}</ErrorMessageSpan>}
           </div>
-          <MakeCenter onClick={projectSubmit}>
+          <MakeCenter onClick={() => history.push(`/write/project/info`)}>
             <AddButton>
               <ContentCareer>
-                <ButtonText>포트폴리오에 프로젝트 추가 하기</ButtonText>
+                <ButtonText>+ 새 프로젝트 작성하기</ButtonText>
               </ContentCareer>
             </AddButton>
           </MakeCenter>

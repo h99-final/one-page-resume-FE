@@ -59,7 +59,6 @@ function Template({
       .then(() => {
         setModalOpen(true);
       });
-    setModalOpen(true);
   };
 
   // TemplateModal.setAppElement("#root");

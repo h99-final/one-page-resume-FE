@@ -24,12 +24,14 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssTextField, theme } from "../shared/_sharedMuiStyle";
 import { AccountCircle } from "@mui/icons-material";
-import MainFooter from '../shared/MainFooter';
-import '../components/banner.css'
+import MainFooter from "../shared/MainFooter";
+import "../components/banner.css";
 const PorfList = () => {
   const history = useHistory();
 
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const userInfo = useSelector((state) => state.user.user);
+
+  // const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const [porf, setPorf] = useState([]);
 
@@ -41,14 +43,7 @@ const PorfList = () => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    if (userInfo) {
-      setAddStack(userInfo.stack);
-    }
-  }, []);
-
-  useEffect(() => {
     setLoading(true);
-
     if (hasMore) {
       apis.mainPorf(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
@@ -70,6 +65,12 @@ const PorfList = () => {
   }, [page, addStack]);
 
   useEffect(() => {
+    if (userInfo) {
+      setAddStack(userInfo.stack);
+    }
+  }, []);
+
+  useEffect(() => {
     setPage(0);
     setPorf([]);
   }, [addStack]);
@@ -79,7 +80,7 @@ const PorfList = () => {
   };
 
   const handleDelete = (stack) => {
-    return setAddStack(addStack.filter((prev) => prev !== stack));
+    setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
   return (
@@ -121,10 +122,9 @@ const PorfList = () => {
             fullWidth
             filterSelectedOptions
             id="tags-standard"
-            // options={option.map((option) => option.stack)}
+            getOptionLabel={(option) => option}
             options={option}
-            value={addStack}
-            defaultValue={userInfo?.stack}
+            value={addStack ? addStack : []}
             onChange={handleChange}
             renderTags={(addStack, getTagProps) =>
               addStack?.map((option, index) => (
@@ -136,14 +136,20 @@ const PorfList = () => {
               ))
             }
             renderInput={(params) => (
-              <TextField
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <AccountCircle sx={{ color: "action.active" }} />
-                    </InputAdornment>
-                  ),
-                }}
+              //   <TextField
+              //     InputProps={{
+              //       startAdornment: (
+              //         <InputAdornment position="start">
+              //           <AccountCircle sx={{ color: "action.active" }} />
+              //         </InputAdornment>
+              //       ),
+              //     }}
+              //     {...params}
+              //     variant="standard"
+              //     placeholder="기술스택으로 검색해보세요"
+              //   />
+              // )}
+              <CssTextField
                 {...params}
                 variant="standard"
                 placeholder="기술스택으로 검색해보세요"
