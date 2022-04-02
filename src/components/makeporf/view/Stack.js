@@ -170,6 +170,13 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      {stack?.length < 3 ? (
+        <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
+          3가지를 골라주세요
+        </ErrorMessage>
+      ) : (
+        <Font style={{ color: "inherit", textAlign: "center" }}></Font>
+      )}
       {stack?.length > 3 ? (
         <ErrorMessage style={{ color: "orange", textAlign: "center" }}>
           3가지만 골라주세요
