@@ -29,6 +29,7 @@ const Project = () => {
     dispatch(actionCreators.setTroubleShootingDB(id));
     return setIs_loading(true);
   }, []);
+
   return (
     <>
       <ProjHeader id={id} />
@@ -39,9 +40,7 @@ const Project = () => {
         </IntroduceContainer>
 
         <LeftTopBox style={{ marginBottom: "80px", marginTop: "100px" }}>
-          <FontTitle >
-            TroubleShooting
-          </FontTitle>
+          <FontTitle>TroubleShooting</FontTitle>
         </LeftTopBox>
 
         {is_loading ? (
@@ -52,14 +51,21 @@ const Project = () => {
               <TroubleShootingContainer key={i}>
                 {e.tsFiles.map((t, i) => {
                   return (
-                    <TroubleShooting
-                      // color="#fff"
-                      fontcolor="#fff"
-                      key={t.fileId}
-                      {...e}
-                      {...t}
-                      tsLength={e.tsFiles.length}
-                    />
+                    <div
+                      id={`troubleShooting-${e.commitId}-${i}`}
+                      key={`t.fileId=${i}`}
+                    >
+                      <TroubleShooting
+                        color="#000"
+                        fontcolor="#fff"
+                        key={t.fileId}
+                        {...e}
+                        {...t}
+                        troubleShootingLength={e.tsFiles.length}
+                        index={i}
+                        linkIndex={e.commitId}
+                      />
+                    </div>
                   );
                 })}
               </TroubleShootingContainer>
