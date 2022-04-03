@@ -36,7 +36,7 @@ const ProjHeader = (props) => {
         history.push(`/project`);
       })
       .catch((errors) => {
-        console.log(errors);
+
         history.push(`/mypage`);
       });
   };

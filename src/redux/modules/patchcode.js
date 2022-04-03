@@ -104,7 +104,7 @@ const updateTsDB = (projectId, commitId, data) => {
         dispatch(getTroubleShootingDB(projectId));
       })
       .catch((error) => {
-        console.log(error);
+
       });
   };
 };
@@ -119,7 +119,7 @@ const getTroubleShootingDB = (projectId) => {
         dispatch(setFile(_tsFiles));
       })
       .catch((error) => {
-        console.log(error);
+
       })
       .catch((error) => {
         window.alert(error);
@@ -143,7 +143,7 @@ const deleteTsFileDB = (projectId, commitId, fileId) => {
         dispatch(deleteTsFile(commitId, fileId));
       })
       .catch((res) => {
-        console.log(res.errors);
+
         // window.alert(res.errors.message);
       });
   };

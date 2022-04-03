@@ -16,7 +16,7 @@ const DeleteModal = ({ exitClose }) => {
         history.push(`/project`);
       })
       .catch((errors) => {
-        console.log(errors);
+
         history.push(`/mypage`);
       });
   };

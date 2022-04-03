@@ -25,7 +25,6 @@ function CareerShow(props) {
 
   const { title, subTitle, contents, startTime, endTime, id } = props;
 
-  console.log(props);
 
   function handleDelete() {
     dispatch(careerActions.deleteCareerDB(id));

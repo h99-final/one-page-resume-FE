@@ -45,8 +45,9 @@ const loginDB = (email, password) => {
           apis.userInfo().then((res) => {
             sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
             dispatch(setUser(res.data.data));
+            window.location.reload();
           });
-          window.location.reload();
+          // window.location.reload();
         }
       })
       .catch((error) => {
@@ -116,7 +117,7 @@ const userInfoDB = () => {
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
       .catch(function (error) {
-        console.log(error);
+
       });
   };
 };
@@ -145,7 +146,7 @@ const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(data)
-      .then((res) => {})
+      .then((res) => { })
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
@@ -181,7 +182,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isFirstLogin = action.payload.status;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) => produce(state, (draft) => { }),
   },
   initialState
 );

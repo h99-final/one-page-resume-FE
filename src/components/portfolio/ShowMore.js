@@ -41,35 +41,34 @@ function ShowMore(props) {
     return;
   }, [show]);
 
-  console.log(troubleShootings);
 
   return (
     <>
       {!!show
         ? troubleShootings.map((e, i) => {
-            return (
-              <TroubleShootingContainer key={`troubleShooting-${i}`}>
-                {e.tsFiles.map((t, i) => {
-                  return (
-                    <div
-                      id={`troubleShooting-${e.commitId}-${i}`}
-                      key={`t.fileId=${i}`}
-                    >
-                      <TroubleShooting
-                        color={color}
-                        fontcolor={fontcolor}
-                        troubleShootingLength={e.tsFiles.length}
-                        index={i}
-                        linkIndex={e.commitId}
-                        {...e}
-                        {...t}
-                      />
-                    </div>
-                  );
-                })}
-              </TroubleShootingContainer>
-            );
-          })
+          return (
+            <TroubleShootingContainer key={`troubleShooting-${i}`}>
+              {e.tsFiles.map((t, i) => {
+                return (
+                  <div
+                    id={`troubleShooting-${e.commitId}-${i}`}
+                    key={`t.fileId=${i}`}
+                  >
+                    <TroubleShooting
+                      color={color}
+                      fontcolor={fontcolor}
+                      troubleShootingLength={e.tsFiles.length}
+                      index={i}
+                      linkIndex={e.commitId}
+                      {...e}
+                      {...t}
+                    />
+                  </div>
+                );
+              })}
+            </TroubleShootingContainer>
+          );
+        })
         : null}
       <SampleButton
         color={color}
@@ -109,9 +108,9 @@ const SampleButton = styled.div`
   border-radius: 10px;
   &:hover {
     background-color: ${(props) =>
-      props.color === "rgba(256,256,256, 0.9)"
-        ? "rgba(0, 196, 180, 1)"
-        : `${props.color}`};
+    props.color === "rgba(256,256,256, 0.9)"
+      ? "rgba(0, 196, 180, 1)"
+      : `${props.color}`};
     transition: all 1s ease;
   }
   cursor: pointer;
