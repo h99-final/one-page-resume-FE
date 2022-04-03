@@ -17,43 +17,43 @@ function PortfolioBuisnesscard(props) {
   return (
     <>
       {templateIdx === 0 ||
-      templateIdx === 7 ||
-      templateIdx === 8 ||
-      templateIdx === 9 ||
-      templateIdx === 10 ||
-      templateIdx === 11 ||
-      templateIdx === 12 ? (
+        templateIdx === 7 ||
+        templateIdx === 8 ||
+        templateIdx === 9 ||
+        templateIdx === 10 ||
+        templateIdx === 11 ||
+        templateIdx === 12 ? (
         <Portfolio
           background={
             templateIdx === 0
               ? "https://s3.amazonaws.com/www.poug.me/card/0.svg"
               : templateIdx === 1
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
-              : templateIdx === 2
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
-              : templateIdx === 3
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
-              : templateIdx === 4
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
-              : templateIdx === 5
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
-              : templateIdx === 6
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
-              : templateIdx === 7
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
-              : templateIdx === 8
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
-              : templateIdx === 9
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
-              : templateIdx === 10
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
-              : templateIdx === 11
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
-              : templateIdx === 12
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
-              : templateIdx === 13
-              ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
-              : null
+                ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
+                : templateIdx === 2
+                  ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
+                  : templateIdx === 3
+                    ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
+                    : templateIdx === 4
+                      ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
+                      : templateIdx === 5
+                        ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
+                        : templateIdx === 6
+                          ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
+                          : templateIdx === 7
+                            ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
+                            : templateIdx === 8
+                              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
+                              : templateIdx === 9
+                                ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
+                                : templateIdx === 10
+                                  ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
+                                  : templateIdx === 11
+                                    ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
+                                    : templateIdx === 12
+                                      ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
+                                      : templateIdx === 13
+                                        ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
+                                        : null
           }
           templateIdx={templateIdx}
         >
@@ -72,32 +72,32 @@ function PortfolioBuisnesscard(props) {
             templateIdx === 0
               ? "https://s3.amazonaws.com/www.poug.me/card/0.svg"
               : templateIdx === 1
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
-              : templateIdx === 2
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
-              : templateIdx === 3
-              ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
-              : templateIdx === 4
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
-              : templateIdx === 5
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
-              : templateIdx === 6
-              ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
-              : templateIdx === 7
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
-              : templateIdx === 8
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
-              : templateIdx === 9
-              ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
-              : templateIdx === 10
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
-              : templateIdx === 11
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
-              : templateIdx === 12
-              ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
-              : templateIdx === 13
-              ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
-              : null
+                ? "https://s3.amazonaws.com/www.poug.me/card/1-1.svg"
+                : templateIdx === 2
+                  ? "https://s3.amazonaws.com/www.poug.me/card/1-2.svg"
+                  : templateIdx === 3
+                    ? "https://s3.amazonaws.com/www.poug.me/card/1-3.svg"
+                    : templateIdx === 4
+                      ? "https://s3.amazonaws.com/www.poug.me/card/2-1.svg"
+                      : templateIdx === 5
+                        ? "https://s3.amazonaws.com/www.poug.me/card/2-2.svg"
+                        : templateIdx === 6
+                          ? "https://s3.amazonaws.com/www.poug.me/card/2-3.svg"
+                          : templateIdx === 7
+                            ? "https://s3.amazonaws.com/www.poug.me/card/3-1.svg"
+                            : templateIdx === 8
+                              ? "https://s3.amazonaws.com/www.poug.me/card/3-2.svg"
+                              : templateIdx === 9
+                                ? "https://s3.amazonaws.com/www.poug.me/card/3-3.svg"
+                                : templateIdx === 10
+                                  ? "https://s3.amazonaws.com/www.poug.me/card/4-1.svg"
+                                  : templateIdx === 11
+                                    ? "https://s3.amazonaws.com/www.poug.me/card/4-2.svg"
+                                    : templateIdx === 12
+                                      ? "https://s3.amazonaws.com/www.poug.me/card/4-3.svg"
+                                      : templateIdx === 13
+                                        ? "https://s3.amazonaws.com/www.poug.me/card/1.svg"
+                                        : null
           }
           templateIdx={templateIdx}
         >
@@ -127,15 +127,15 @@ const Stack = styled.div`
   /* color: #cfd3e2; */
   border: 1px solid
     ${(props) =>
-      props.templateIdx === 0 ||
+    props.templateIdx === 0 ||
       props.templateIdx === 4 ||
       props.templateIdx === 5 ||
       props.templateIdx === 6 ||
       props.templateIdx === 10 ||
       props.templateIdx === 11 ||
       props.templateIdx === 12
-        ? "#fff"
-        : "#000"};
+      ? "#fff"
+      : "#000"};
   box-sizing: border-box;
   border-radius: 30px;
   padding: 10px 20px;
@@ -173,12 +173,12 @@ const Portfolio = styled.div`
   border-radius: 10px;
   color: ${(props) =>
     props.templateIdx === 0 ||
-    props.templateIdx === 4 ||
-    props.templateIdx === 5 ||
-    props.templateIdx === 6 ||
-    props.templateIdx === 10 ||
-    props.templateIdx === 11 ||
-    props.templateIdx === 12
+      props.templateIdx === 4 ||
+      props.templateIdx === 5 ||
+      props.templateIdx === 6 ||
+      props.templateIdx === 10 ||
+      props.templateIdx === 11 ||
+      props.templateIdx === 12
       ? "#fff"
       : "#000"};
   @media only screen and (min-width: 1900px) {
@@ -217,7 +217,7 @@ const ContentCircle = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 120px;
-  height: 149px;
+  height: 120px;
 `;
 
 const StackCircle = styled.div`
@@ -232,15 +232,15 @@ const StackCircle = styled.div`
   /* color: #cfd3e2; */
   border: 1px solid
     ${(props) =>
-      props.templateIdx === 0 ||
+    props.templateIdx === 0 ||
       props.templateIdx === 4 ||
       props.templateIdx === 5 ||
       props.templateIdx === 6 ||
       props.templateIdx === 10 ||
       props.templateIdx === 11 ||
       props.templateIdx === 12
-        ? "#000"
-        : "#fff"};
+      ? "#000"
+      : "#fff"};
   box-sizing: border-box;
   border-radius: 30px;
   padding: 10px 20px;
