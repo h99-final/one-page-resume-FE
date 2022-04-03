@@ -36,20 +36,16 @@ const loginDB = (email, password) => {
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
         // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         if (res.data.data.isFirstLogin === true) {
-          apis
-            .userInfo()
-            .then((res) => {
-              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            })
-            .then((res) => dispatch(setUser(res.data.data)));
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+          });
         } else {
           //dispatch(userInfoDB())는 왜 안되지?
-          apis
-            .userInfo()
-            .then((res) => {
-              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            })
-            .then((res) => dispatch(setUser(res.data.data)));
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+          });
           window.location.reload();
         }
       })
@@ -60,6 +56,7 @@ const loginDB = (email, password) => {
       });
   };
 };
+
 const kakaoLoginDB = (code) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -70,16 +67,20 @@ const kakaoLoginDB = (code) => {
         // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         history.push("/");
         if (res.data.data.isFirstLogin === true) {
-          apis.userInfo().then((res) => {
-            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            dispatch(setUser(res.data.data));
-          });
+          apis
+            .userInfo()
+            .then((res) => {
+              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            })
+            .then((res) => dispatch(setUser(res.data.data)));
           // window.location.reload();
         } else {
-          apis.userInfo().then((res) => {
-            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            dispatch(setUser(res.data.data));
-          });
+          apis
+            .userInfo()
+            .then((res) => {
+              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            })
+            .then((res) => dispatch(setUser(res.data.data)));
           window.location.reload();
         }
       })
@@ -90,6 +91,7 @@ const kakaoLoginDB = (code) => {
       });
   };
 };
+
 const SignUpDB = (email, password, passwordcheck) => {
   return function (dispatch, getState, { history }) {
     apis

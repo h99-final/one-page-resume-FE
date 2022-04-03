@@ -58,7 +58,6 @@ function Template({
             .putStack(data)
             .then()
             .catch((error) => {
-              alert("대표 스택 필수값을 입력해 주세요.");
               return;
             });
         }

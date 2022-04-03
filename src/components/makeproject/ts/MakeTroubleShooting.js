@@ -70,7 +70,7 @@ function MakeTroubleShooting() {
     handleSubmitDB(_obj);
     dispatch(tsfileactions.resetSelectPatchCode());
     setValue("title", "");
-    // setValue("content", "");
+    setMDValue("");
   };
   const delGitToken = () => {
     apis
@@ -129,7 +129,7 @@ function MakeTroubleShooting() {
                   marginRight: "50px",
                   width: "100px",
                   cursor: "pointer",
-                  marginBottom: "20px"
+                  marginBottom: "20px",
                 }}
               >
                 <IconBox onClick={handleDelete}>
@@ -197,7 +197,8 @@ function MakeTroubleShooting() {
               <Content>
                 <Label>
                   <Font>
-                    추가 설명<Star>*</Star><br></br>(5000자 이내)
+                    추가 설명<Star>*</Star>
+                    <br></br>(5000자 이내)
                   </Font>
                 </Label>
                 <MarkDown setValue={setMDValue} value={mdValue} />
@@ -240,14 +241,14 @@ function MakeTroubleShooting() {
 
           {tsFile
             ? tsFile.map((e, i) => {
-              return (
-                <ShowTroubleShooting
-                  key={`tsFile.fileName-${i}`}
-                  commit={commit}
-                  {...e}
-                />
-              );
-            })
+                return (
+                  <ShowTroubleShooting
+                    key={`tsFile.fileName-${i}`}
+                    commit={commit}
+                    {...e}
+                  />
+                );
+              })
             : null}
         </FormContents>
         <TemplateProject />

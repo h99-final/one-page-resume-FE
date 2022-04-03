@@ -149,7 +149,7 @@ function PortfolioBaseHeader(props) {
               <ListItemText>포트폴리오 정보</ListItemText>
             </ListItemButtonPorf>
           </Link>
-          <Link to="2" spy={true} smooth={true} offset={-100}>
+          <Link to="2" spy={true} smooth={true} offset={-150}>
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
@@ -160,7 +160,7 @@ function PortfolioBaseHeader(props) {
               <ListItemText>내 정보</ListItemText>
             </ListItemButtonPorf>
           </Link>
-          <Link to="3" spy={true} smooth={true} offset={-100}>
+          <Link to="3" spy={true} smooth={true} offset={-150}>
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
@@ -171,7 +171,7 @@ function PortfolioBaseHeader(props) {
               <ListItemText>기술 스택</ListItemText>
             </ListItemButtonPorf>
           </Link>
-          <Link to="4" spy={true} smooth={true} offset={-100}>
+          <Link to="4" spy={true} smooth={true} offset={-150}>
             <ListItemButtonPorf
               color={color}
               fontcolor={fontcolor}
