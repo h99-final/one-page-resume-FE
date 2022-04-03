@@ -121,7 +121,7 @@ function Stack() {
     if (addStack.length > 0) {
       apis
         .porfStack(addS)
-        .then((response) => {})
+        .then((response) => { })
         .catch((res) => {
           window.alert("no");
         });
@@ -167,10 +167,20 @@ function Stack() {
                 />
                 <label id={s} htmlFor={s}>
                   <span>
-                    <img
+                    {s === "C++" ? <img
                       alt=""
-                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
-                    />
+                      src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                    /> :
+                      s === "C#" ? <img
+                        alt=""
+                        src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
+                      />
+                        :
+                        <img
+                          alt=""
+                          src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                        />
+                    }
                     {s}
                   </span>
                 </label>
