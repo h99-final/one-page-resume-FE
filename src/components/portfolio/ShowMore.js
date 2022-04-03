@@ -29,7 +29,11 @@ function ShowMore(props) {
             alert(error.response.data.data.errors[0].message);
           }
         });
-      scrollTS.current.scrollIntoView();
+      scrollTS.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
     }
     if (!show) {
       setTroubleShootings([]);
