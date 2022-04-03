@@ -66,23 +66,19 @@ const kakaoLoginDB = (code) => {
         setCookie("token", res.headers.authorization, 5);
         dispatch(setFirstLogin(res.data.data.isFirstLogin));
         // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-        history.push("/");
         if (res.data.data.isFirstLogin === true) {
-          apis
-            .userInfo()
-            .then((res) => {
-              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            })
-            .then((res) => dispatch(setUser(res.data.data)));
-          // window.location.reload();
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+          });
         } else {
-          apis
-            .userInfo()
-            .then((res) => {
-              sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
-            })
-            .then((res) => dispatch(setUser(res.data.data)));
-          window.location.reload();
+          //dispatch(userInfoDB())는 왜 안되지?
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+            window.location.reload();
+          });
+          // window.location.reload();
         }
       })
       .catch((error) => {
