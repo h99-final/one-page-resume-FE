@@ -233,6 +233,7 @@ const TitleBox = styled.div`
 const IntroBox = styled.div`
   width: 100%;
   height: 100%;
+  min-width: 700px;
   margin: auto;
   display: flex;
   justify-content: center;

@@ -24,7 +24,6 @@ const setBookmarkDB = () => {
         dispatch(setBookmark(res.data.data.projectIds));
       })
       .catch((error) => {
-        alert("정보가 없습니다.");
       });
   };
 };
