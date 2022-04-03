@@ -15,6 +15,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MainFooter from '../shared/MainFooter';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
+import MypagePorf from '../components/Element/MypagePorf';
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -33,16 +34,17 @@ function MyPage() {
   const [title, setTitle] = useState("");
   const [projects, setProjects] = useState([defaultprojects]);
   const [values, setValues] = useState(userInfo?.porfShow);
+  const [porf, setPorf] = useState([]);
 
   useEffect(() => {
     apis.introPorfGet(userInfo?.porfId).then((res) => {
       setTitle(res.data.data.title);
+      setPorf(res.data.data)
     });
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
     });
   }, []);
-
 
   const handleClickShow = () => {
     setValues(prev => !prev);
@@ -157,22 +159,11 @@ function MyPage() {
             </div>
           </Title>
           {title ? (
-            <Portfolio onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}>
-              <NnE>
-                <h2>{userInfo?.name ? userInfo?.name : "ㅡ"}</h2>
-              </NnE>
-              <NnE>
-                <h3>{userInfo?.job}</h3>
-              </NnE>
-              <NnE>
-                <h4>{title}</h4>
-              </NnE>
-              <Content style={{ margin: "0px 0px 0px 25px" }}>
-                <Stack>{userInfo?.stack[0]}</Stack>
-                <Stack>{userInfo?.stack[1]}</Stack>
-                <Stack>{userInfo?.stack[2]}</Stack>
-              </Content>
-            </Portfolio>
+            <div
+              onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}
+            >
+              <MypagePorf {...porf} userStack={userInfo.stack} />
+            </div>
           ) : (
             <Portfolio
               style={{ background: "#1F2029", border: "1px solid #1F2029" }}
