@@ -45,7 +45,7 @@ function UserInfo() {
         dispatch(userActions.userInfoDB());
       })
       .then(() => {
-        // alert("저장되었습니다.");
+        alert("저장되었습니다.");
       })
       .catch((error) => {
         // alert("필수 정보를 입력해주세요");
