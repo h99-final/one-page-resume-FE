@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { TroubleShootingContainer } from "../../pages/Project";
 //component
 import TroubleShooting from "../project/view/TroubleShooting";
+import { Link } from "react-scroll";
 
 function ShowMore(props) {
   const { id, color, fontcolor } = props;
@@ -36,6 +37,8 @@ function ShowMore(props) {
     return;
   }, [show]);
 
+  console.log(troubleShootings);
+
   return (
     <>
       {!!show
@@ -45,13 +48,15 @@ function ShowMore(props) {
                 {e.tsFiles.map((t, i) => {
                   return (
                     <div
-                      id={`troubleShooting-${t.fileId}-${i}`}
+                      id={`troubleShooting-${e.commitId}-${i}`}
                       key={`t.fileId=${i}`}
                     >
                       <TroubleShooting
                         color={color}
                         fontcolor={fontcolor}
-                        tsLength={troubleShootings[i].tsFiles?.length}
+                        troubleShootingLength={e.tsFiles.length}
+                        index={i}
+                        linkIndex={e.commitId}
                         {...e}
                         {...t}
                       />

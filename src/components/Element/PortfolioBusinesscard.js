@@ -285,8 +285,11 @@ const Title = styled.div`
 
 const TitleCircle = styled.div`
   display: flex;
+  /* width: 100px; */
   justify-content: center;
   align-items: center;
+  padding: 0px 10px;
+  word-break: break-all;
   margin-top: 28px;
   font-weight: 400;
   font-size: 16px;

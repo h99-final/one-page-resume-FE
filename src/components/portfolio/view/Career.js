@@ -20,7 +20,6 @@ const Career = ({ color, fontcolor, templateIdx }) => {
       return contrast;
     }
   };
-  console.log(color, fontcolor, templateIdx);
 
   useEffect(() => {
     dispatch(actionCreators.setCareerDB(id));

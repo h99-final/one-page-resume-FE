@@ -18,20 +18,15 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 
 const ProjectViewIntro = (props) => {
-  const { id, color, fontcolor } = props;
+  const { id, color, fontcolor, projectLength } = props;
   const dispatch = useDispatch();
 
   const [project, setProject] = useState({});
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  // const troubleShootings = useSelector(
-  //   (state) => state.setproject.troubleShootings
-  // );
   const [is_loading, setIs_loading] = useState(true);
-  // const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // dispatch(actionCreators.setProjectDB(id));
     apis
       .projectGet(id)
       .then((res) => {

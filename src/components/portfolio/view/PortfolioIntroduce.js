@@ -131,6 +131,7 @@ const TitleBox = styled.div`
   padding: ${(props) =>
     props.templateIdx >= 1 && props.templateIdx <= 6 ? "240px 0px" : ""};
   text-align: left;
+  word-break: break-all;
   h1 {
     font-style: normal;
     font-weight: 600;

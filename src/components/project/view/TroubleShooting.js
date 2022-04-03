@@ -23,9 +23,10 @@ const TroubleShooting = (props) => {
     commitMsg,
     tsLength,
     fontcolor,
+    troubleShootingLength,
+    index,
+    linkIndex,
   } = props;
-
-  console.log(fontcolor);
 
   const [contrastColor, setContrastColor] = useState();
   useEffect(() => {
@@ -36,6 +37,8 @@ const TroubleShooting = (props) => {
     }
   }, []);
 
+  console.log(linkIndex);
+
   // const [ts, setTS] = useState([]);
   const [selected, setSelected] = useState(0);
 
@@ -45,21 +48,22 @@ const TroubleShooting = (props) => {
 
   // 번호칸 만들기
   const NumBoxs = () =>
-    Array(tsLength)
+    Array(troubleShootingLength)
       .fill(0)
       .map((_e, i) => (
         <Link
           key={`number-${i}`}
-          to={`troubleShooting-${fileId}-${i}`}
+          to={`troubleShooting-${linkIndex}-${i}`}
           spy={true}
           smooth={true}
-          offset={-50}
+          offset={-150}
         >
           <NumberBox
             fontcolor={fontcolor}
             contrastColor={contrastColor}
             onClick={handleNumClick}
-            id={i}
+            number={i}
+            index={index}
           >
             {i + 1}
           </NumberBox>
@@ -83,7 +87,6 @@ const TroubleShooting = (props) => {
 
   return (
     <>
-
       <SampleCard fontcolor={fontcolor}>
         <LeftBox ref={leftBox}>
           <LeftTopBox style={{ marginBottom: "40px" }}>
@@ -91,11 +94,9 @@ const TroubleShooting = (props) => {
               {tsName}
             </FontTitle>
           </LeftTopBox>
-          {/* <>{tsContent}</> */}
           <MDEditor.Markdown
             style={{
               backgroundColor: "transparent",
-              // padding: "14px 14px",
               color: `${fontcolor}`,
               height: "100%",
               minHeight: "600px",
@@ -115,7 +116,7 @@ const TroubleShooting = (props) => {
             {commitMsg}
           </Font>
           {!is_highlight_loading &&
-            leftBox?.current?.getBoundingClientRect().height ? (
+          leftBox?.current?.getBoundingClientRect().height ? (
             <Highlighted
               fontcolor={fontcolor}
               height={
@@ -197,8 +198,15 @@ const RightBox = styled.div`
 export const NumberBox = styled.div`
   width: calc(45vw / 10);
   height: calc(45vw / 10);
-  background-color: ${(props) => props.fontcolor};
-  color: ${(props) => props.contrastColor};
+  /* background-color: ${(props) => props.fontcolor}; */
+  background-color: ${(props) =>
+    props.number === props.index
+      ? `${props.fontcolor}`
+      : `${props.contrastColor}`};
+  color: ${(props) =>
+    props.number === props.index
+      ? `${props.contrastColor}`
+      : `${props.fontcolor}`};
   text-align: center;
   display: flex;
   justify-content: center;

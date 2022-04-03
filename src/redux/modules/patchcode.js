@@ -182,7 +182,6 @@ export default handleActions(
     [ADD_FILE]: (state, action) =>
       produce(state, (draft) => {
         draft.tsFile.unshift(action.payload.tsFile);
-        console.log(state.tsFile);
         draft.patchcode = null;
       }),
     [ADD_TS_FILE]: (state, action) =>

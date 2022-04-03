@@ -58,7 +58,6 @@ function TsModal(props) {
     let commit = message_list.filter(
       (commit) => commit.sha === e.currentTarget.id
     );
-    console.log(commit);
     dispatch(actionCreators.setCommit(commit[0]));
   };
 
