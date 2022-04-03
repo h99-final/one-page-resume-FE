@@ -62,9 +62,6 @@ const deleteCareerDB = (index) => {
       .then((res) => {
         dispatch(deleteCareer(index));
       })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 };
 
@@ -102,7 +99,6 @@ export default handleActions(
     [UPDATE_CAREER]: (state, action) =>
       produce(state, (draft) => {
         let _index = draft.careers.findIndex((e) => e.id === action.payload.id);
-        console.log(_index);
         draft.careers[_index] = action.payload.careers;
       }),
   },

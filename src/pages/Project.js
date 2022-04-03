@@ -25,7 +25,6 @@ const Project = () => {
       .projectTSGet(id)
       .then((res) => setTroubleShootings(res.data.data))
       .then(() => setIs_loading(false))
-      .catch((error) => console.log(error));
     dispatch(actionCreators.setTroubleShootingDB(id));
     return setIs_loading(true);
   }, []);

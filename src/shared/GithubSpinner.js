@@ -47,7 +47,7 @@ function GithubSpinner(props) {
   useEffect(() => {
     setProgress(Math.round(curCommitCount / totalCommitCount * 100) + "%")
   }, [curCommitCount])
-  console.log(progress)
+
   // Modal.setAppElement("#root");
 
   return (

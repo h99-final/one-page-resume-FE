@@ -37,10 +37,9 @@ function ForModifyProjUpload(props) {
   }, []);
 
   function deletePreview(e) {
-    console.log(e.target.id);
     apis
       .deletePictureProject(projectId, e.target.id)
-      .then((res) => {})
+      .then((res) => { })
       .catch((err) => {
         alert("삭제 실패했습니다.");
       });

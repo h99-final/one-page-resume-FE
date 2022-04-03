@@ -216,7 +216,7 @@ function PortfolioBaseHeader(props) {
             <>
               {" "}
               <img
-                onClick={() => console.log("bookmarkclicked")}
+                onClick={() => alert("준비중입니다.")}
                 style={{ marginRight: "25px" }}
                 alt=""
                 src={process.env.PUBLIC_URL + "/img/BookmarkBlack.svg"}
@@ -339,8 +339,8 @@ const ListItemButtonPorf = styled.div`
     props.color === "rgba(0, 0, 0, 0.9)"
       ? "#000"
       : props.selected
-      ? `${props.contrastcolor}`
-      : `${props.fontcolor}`} !important;
+        ? `${props.contrastcolor}`
+        : `${props.fontcolor}`} !important;
   } */
   color: ${(props) =>
     props.selected ? `${props.contrastcolor}` : `${props.fontcolor}`};

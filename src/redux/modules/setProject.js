@@ -117,7 +117,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.projects.unshift(action.payload.project);
         draft.is_loading = false;
-        console.log(draft.projects);
       }),
     [SET_TROUBLE_SHOOTING]: (state, action) =>
       produce(state, (draft) => {

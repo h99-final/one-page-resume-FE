@@ -95,7 +95,6 @@ function TsModal(props) {
           // .catch((res) => {
           //   clearTimeout(timeout);
           //   window.alert(error.response.data.data.errors[0].message);
-          //   console.log(res);
           // }),
           .catch((res) => {
             clearInterval(timeout);

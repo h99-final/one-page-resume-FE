@@ -31,11 +31,6 @@ function FileUpload() {
       });
   };
 
-  // console.log(userInfo)
-  //   useEffect(() => {
-  //   dispatch(userActions.userInfoDB());
-  // }, []);
-
   function deletePreview(e) {
     e.stopPropagation();
 
