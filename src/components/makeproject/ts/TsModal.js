@@ -139,7 +139,7 @@ function TsModal(props) {
         .then((res) => {
           if (res.data.data.length === 0) {
             setIsLoading(true);
-            // handlesync();
+            handlesync();
             return;
           }
           setMessage_list(res.data.data);
