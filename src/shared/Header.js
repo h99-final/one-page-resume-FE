@@ -114,7 +114,7 @@ const Header = (props) => {
             <Port
               selected={location.pathname === "/portfolio" ? true : false}
               onClick={() => {
-                history.push("/");
+                history.push("/portfolio");
               }}
             >
               포트폴리오
