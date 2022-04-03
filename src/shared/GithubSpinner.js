@@ -138,7 +138,8 @@ function GithubSpinner(props) {
 const Container = styled.div`
   background-color: #1f2029;
   width: 100%;
-  height: 95%;
+  height: 96%;
+  border-radius: 10px;
   /* height: calc(100%-45px); */
 `;
 
@@ -151,7 +152,7 @@ const Box = styled.div`
 
 const LeftBox = styled.div`
   width: 40%;
-  height: 100%;
+  height: fit-content;
 `;
 
 const StepBox = styled.div`
@@ -186,7 +187,7 @@ const StepBox = styled.div`
 
 const RightBox = styled.div`
   width: 60%;
-  height: 100%;
+  height: fit-content;
 `;
 
 const InfoBox = styled.div`
@@ -195,7 +196,7 @@ const InfoBox = styled.div`
   height: fit-content;
   text-align: center;
   padding-top: 30px;
-  padding-bottom: 90px;
+  padding-bottom: 50px;
   h1 {
     margin-top: 30px;
     font-style: normal;

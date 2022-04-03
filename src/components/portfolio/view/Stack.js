@@ -31,10 +31,20 @@ const Stack = (props) => {
                 return (
                   <MainStack color={color} key={index}>
                     <span>
-                      <img
+                      {s === "C++" ? <img
                         alt=""
-                        src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/logo192.png"
-                      />
+                        src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                      /> :
+                        s === "C#" ? <img
+                          alt=""
+                          src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
+                        />
+                          :
+                          <img
+                            alt=""
+                            src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                          />
+                      }
                       {s}
                     </span>
                   </MainStack>
