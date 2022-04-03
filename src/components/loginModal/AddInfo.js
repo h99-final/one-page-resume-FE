@@ -317,10 +317,21 @@ const AddInfo = (props) => {
                 ></input>
                 <label id={s} htmlFor={s}>
                   <span native={s === "React-Native" ? true : false}>
-                    <img
+                    {s === "C++" ? <img
                       alt=""
-                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
-                    />
+                      src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                    /> :
+                      s === "C#" ? <img
+                        alt=""
+                        src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
+                      />
+                        :
+                        <img
+                          alt=""
+                          src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                        />
+                    }
+
                     {s}
                   </span>
                 </label>

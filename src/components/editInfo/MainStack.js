@@ -130,10 +130,20 @@ function MainStack() {
                 />
                 <label id={s} htmlFor={s}>
                   <span>
-                    <img
+                    {s === "C++" ? <img
                       alt=""
-                      src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
-                    />
+                      src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                    /> :
+                      s === "C#" ? <img
+                        alt=""
+                        src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
+                      />
+                        :
+                        <img
+                          alt=""
+                          src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                        />
+                    }
                     {s}
                   </span>
                 </label>
