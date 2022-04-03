@@ -45,7 +45,8 @@ const loginDB = (email, password) => {
           apis.userInfo().then((res) => {
             sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
             dispatch(setUser(res.data.data));
-            window.location.reload();
+            // window.location.reload();
+            window.location.replace('/')
           });
           // window.location.reload();
         }
