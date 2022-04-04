@@ -174,6 +174,19 @@ function TsModal(props) {
     });
   };
 
+  const [date, setDate] = useState("");
+
+  // useEffect(() => {
+  //   apis
+  //     .gitCommitDate(projectId, date)
+  //     .then((res) => {
+  //       setMessage_list(res.data.data);
+  //     })
+  //     .catch(() => {
+  //       alert("날짜가 유효하지 않습니다.");
+  //     });
+  // }, [date]);
+
   Modal.setAppElement("#root");
 
   return (
@@ -267,6 +280,10 @@ function TsModal(props) {
                           GitHub 바로가기
                         </Routing>
                       </FormTextLight>
+                      {/* <input
+                        type="date"
+                        onChange={(e) => setDate(e.target.value)}
+                      /> */}
                     </FormTitleFlex>
                     {githubSpinner ? (
                       <GithubSpinner />

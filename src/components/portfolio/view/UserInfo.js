@@ -104,7 +104,9 @@ const UserInfo = ({ templateIdx, color, fontcolor }) => {
                     src={
                       user?.profileImage
                         ? user?.profileImage
-                        : "https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/welcome.png"
+                        : `https://s3.amazonaws.com/www.poug.me/template/1-${
+                            templateIdx % 3
+                          }userInfoFalse.svg`
                     }
                   />
                 </Image>
