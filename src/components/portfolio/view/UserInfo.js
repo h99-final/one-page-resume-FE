@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
 
@@ -289,5 +289,7 @@ const InfoBox = styled.div`
     }
   }
 `;
+
+const Link = styled.a``;
 
 export default UserInfo;
