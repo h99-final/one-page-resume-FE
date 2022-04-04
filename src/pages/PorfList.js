@@ -100,8 +100,6 @@ const PorfList = () => {
     setAddStack(addStack.filter((prev) => prev !== stack));
   };
 
-  console.log(porf);
-
   return (
     <>
       <Container>

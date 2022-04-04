@@ -11,6 +11,7 @@
   z-index: 9999;
   outline: none;
   border-radius: 10px;
+  overflow: auto;
 }
 
 /* top: "50%",
