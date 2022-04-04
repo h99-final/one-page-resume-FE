@@ -107,7 +107,8 @@ function MypagePorf(props) {
           <Title>{title ? title : "ㅡ"}</Title>
           <Content>
             {userStack?.map((e, i) => {
-              return <Stack key={`stack-${i}`}>{e}</Stack>;
+              return <Stack key={`stack-${i}`}
+                templateIdx={templateIdx}>{e}</Stack>;
             })}
           </Content>
         </Portfolio>
@@ -214,8 +215,8 @@ const ContentCircle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 10px 20px;
-  margin-top: 120px;
+  padding: 10px 20px;
+  margin-top: 140px;
   margin-left: auto;
   margin-right: auto;
   width: 120px;
