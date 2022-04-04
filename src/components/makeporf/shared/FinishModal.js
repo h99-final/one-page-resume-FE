@@ -13,13 +13,13 @@ const FinishModal = ({ exitClose }) => {
   // }, [setShow]);
 
   const handleClickShow = () => {
-    let show = true;
+    let show = { show: true };
     apis.porfShow(show).then((res) => {
       history.push(`/portfolio/${userInfo.porfId}`);
     });
   };
   const handleClickNoShow = () => {
-    let show = false;
+    let show = { show: false };
     apis.porfShow(show).then((res) => {
       history.push("/mypage");
     });
