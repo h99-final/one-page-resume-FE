@@ -12,10 +12,10 @@ import ProjectCardShow from "../components/Element/ProjectCardShow";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import MainFooter from '../shared/MainFooter';
-import { useDispatch } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
-import MypagePorf from '../components/Element/MypagePorf';
+import MainFooter from "../shared/MainFooter";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import MypagePorf from "../components/Element/MypagePorf";
 const defaultprojects = {
   bookmarkCount: 0,
   content: "",
@@ -39,7 +39,7 @@ function MyPage() {
   useEffect(() => {
     apis.introPorfGet(userInfo?.porfId).then((res) => {
       setTitle(res.data.data.title);
-      setPorf(res.data.data)
+      setPorf(res.data.data);
     });
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
@@ -47,23 +47,21 @@ function MyPage() {
   }, []);
 
   const handleClickShow = () => {
-    setValues(prev => !prev);
+    setValues((prev) => !prev);
 
     if (values === false) {
       let _show = {
-        show: true
-      }
+        show: true,
+      };
       apis.porfShow(_show).then((res) => {
         apis.userInfo().then((res) => {
           sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
         });
       });
-    }
-
-    else {
+    } else {
       let _show = {
-        show: false
-      }
+        show: false,
+      };
       apis.porfShow(_show).then((res) => {
         apis.userInfo().then((res) => {
           sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
@@ -159,9 +157,7 @@ function MyPage() {
             </div>
           </Title>
           {title ? (
-            <div
-              onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}
-            >
+            <div onClick={() => history.push(`/portfolio/${userInfo.porfId}`)}>
               <MypagePorf {...porf} userStack={userInfo.stack} />
             </div>
           ) : (
@@ -204,7 +200,7 @@ function MyPage() {
         {projects.map((e, i) => {
           return (
             <>
-              <ProjectCardShow key={`${e.id}`} {...e} />
+              <ProjectCardShow key={`projects-${i}`} {...e} />
             </>
           );
         })}

@@ -59,6 +59,7 @@ const Star = styled.button`
   background-color: transparent;
   color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
   margin-right: 20px;
+  cursor: pointer;
 `;
 
 const Bookmark = styled(Star)`
