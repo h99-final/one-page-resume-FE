@@ -26,6 +26,7 @@ import { CssTextField, theme } from "../shared/_sharedMuiStyle";
 import { AccountCircle } from "@mui/icons-material";
 import MainFooter from "../shared/MainFooter";
 import "../components/banner.css";
+import Spinner from "../shared/Spinner";
 const PorfList = () => {
   const history = useHistory();
 
@@ -41,6 +42,12 @@ const PorfList = () => {
   const [page, setPage] = useState(0);
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    setPage(0);
+    setPorf([]);
+    setHasMore(true);
+  }, [addStack]);
 
   useEffect(() => {
     setLoading(true);
@@ -72,7 +79,7 @@ const PorfList = () => {
       setLoading(false);
       return;
     }
-    setLoading(false);
+    // setLoading(false);
     return () => {
       setLoading(false);
       setHasMore(true);
@@ -85,11 +92,6 @@ const PorfList = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setPage(0);
-    setPorf([]);
-  }, [addStack]);
-
   const handleChange = (event, newValue) => {
     setAddStack(newValue);
   };
@@ -97,6 +99,8 @@ const PorfList = () => {
   const handleDelete = (stack) => {
     setAddStack(addStack.filter((prev) => prev !== stack));
   };
+
+  console.log(porf);
 
   return (
     <>
@@ -179,7 +183,7 @@ const PorfList = () => {
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
                 <ClearIcon
-                  value={addStack}
+                  // value={addStack}
                   sx={{
                     fontSize: 14,
                     color: grey[500],
@@ -207,6 +211,7 @@ const PorfList = () => {
             })}
           </Portfolio>
         </PortfolioBox>
+        {!!is_loading && <Spinner />}
       </Container>
       <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
       <MainFooter />

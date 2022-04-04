@@ -22,8 +22,8 @@ import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../shared/common";
 import { actionCreators } from "../redux/modules/bookmark";
-import MainFooter from '../shared/MainFooter';
-import '../components/banner.css'
+import MainFooter from "../shared/MainFooter";
+import "../components/banner.css";
 const CssTextField = styled(TextField, {
   shouldForwardProp: (props) => props !== "focuscolor",
 })((p) => ({
@@ -83,7 +83,21 @@ const ProjList = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (hasMore) {
+    if (hasMore && page === 0) {
+      apis.mainProj(addStack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setProj(res.data.data);
+      });
+    } else {
+      setLoading(false);
+      return;
+    }
+
+    if (hasMore && page > 0) {
       apis.mainProj(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
@@ -96,7 +110,7 @@ const ProjList = () => {
       setLoading(false);
       return;
     }
-    setLoading(false);
+    // setLoading(false);
     return () => {
       setLoading(false);
       setHasMore(true);
@@ -112,6 +126,7 @@ const ProjList = () => {
   useEffect(() => {
     setPage(0);
     setProj([]);
+    setHasMore(true);
   }, [addStack]);
 
   useEffect(() => {
@@ -145,7 +160,6 @@ const ProjList = () => {
           </button>
         </Title>
         <InputBox>
-
           <Autocomplete
             multiple
             fullWidth
@@ -173,7 +187,6 @@ const ProjList = () => {
               />
             )}
           />
-
         </InputBox>
         <StackBox style={{ marginBottom: "60px" }}>
           {addStack?.map((addStack, index) => {

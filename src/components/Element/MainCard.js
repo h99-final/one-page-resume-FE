@@ -42,14 +42,14 @@ function MainCard(props) {
 
         <ProjectStacks>
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
-          {stack.length > 3
-            ? stack.slice(0, 3).map((e, i) => {
+          {stack?.length > 3
+            ? stack?.slice(0, 3)?.map((e, i) => {
                 return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
               })
-            : stack.map((e, i) => {
+            : stack?.map((e, i) => {
                 return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
               })}
-          {stack.length > 3 && (
+          {stack?.length > 3 && (
             <ProjectStack
               style={{
                 backgroundColor: "#393A47",
@@ -57,14 +57,14 @@ function MainCard(props) {
                 border: "1px solid #666982",
               }}
             >
-              + {stack.length - 3}
+              + {stack?.length - 3}
             </ProjectStack>
           )}
         </ProjectStacks>
         <ProjectTitle>
           <h1>{title}</h1>
           <h2>
-            {content?.length < 68 ? content : content.slice(0, 68) + `...`}
+            {content?.length < 68 ? content : content?.slice(0, 68) + `...`}
           </h2>
         </ProjectTitle>
 
