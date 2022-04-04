@@ -60,7 +60,7 @@ function PortfolioBuisnesscard(props) {
           <NameCircle>{username ? username : "ㅡ"}</NameCircle>
           <JobCircle>{job ? job : "ㅡ"}</JobCircle>
           <TitleCircle>{title ? title : "ㅡ"}</TitleCircle>
-          <ContentCircle>
+          <ContentCircle templateIdx={templateIdx}>
             {userStack?.map((e, i) => {
               return <StackCircle key={`stack-${i}`} >{e}</StackCircle>;
             })}
@@ -160,7 +160,7 @@ const Portfolio = styled.div`
   background-size: 100%;
   background-image: ${(props) => `url(${props.background})`};
   width: 327px;
-  height: 370px;
+  height: 369px;
 
   border-radius: 10px;
   color: ${(props) =>
@@ -205,7 +205,11 @@ const ContentCircle = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  margin-top: 40px;
+
+  margin-top: ${(props) =>
+    props.templateIdx === 0
+      ? "60px"
+      : "40px"};
   margin-left: auto;
   margin-right: auto;
   width: 120px;
