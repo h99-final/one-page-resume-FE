@@ -120,6 +120,7 @@ function TemplateModal(props) {
                   margin: "3%",
                   position: "relative",
                   width: "27%",
+                  // height: "auto",
                   height: "50%",
                 }}
               >
@@ -174,7 +175,7 @@ const Save = styled(Next)`
 
 const Ulist = styled.ul`
   margin: auto 100px;
-  height: 50vh;
+  height: 50%;
   overflow: auto;
   border: 1px solid #696b7b;
   border-radius: 10px;
