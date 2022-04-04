@@ -42,9 +42,6 @@ function TsModal(props) {
 
   const [minmaxdate, setMinmaxdate] = useState({});
 
-  //file 중복 선택이 가능하게 만들기 위해
-  // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -460,9 +457,6 @@ const Font = styled.div`
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-
-  /* C1 */
-
   color: #ffffff;
   margin: 10px;
 `;

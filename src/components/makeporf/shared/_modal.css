@@ -37,6 +37,7 @@ minWidth: "1000px", */
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7); /* blur */
   backdrop-filter: blur(5px);
+  z-index: 10;
 }
 /* .Overlay::-webkit-scrollbar {
   width: 4px;
