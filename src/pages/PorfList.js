@@ -44,7 +44,22 @@ const PorfList = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (hasMore) {
+
+    if (hasMore && page === 0) {
+      apis.mainPorf(addStack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setPorf(res.data.data);
+      });
+    } else {
+      setLoading(false);
+      return;
+    }
+
+    if (hasMore && page > 0) {
       apis.mainPorf(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
