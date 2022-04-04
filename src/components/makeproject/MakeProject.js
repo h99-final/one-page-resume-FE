@@ -97,6 +97,9 @@ function MakeProject() {
   // form 제출
   const projectSubmit = (data) => {
     setIs_Loading(true);
+    if (!!is_loading) {
+      return;
+    }
     const { projectTitle, gitRepoUrl } = data;
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
@@ -142,13 +145,15 @@ function MakeProject() {
               const { id } = res.data.data;
               alert("프로젝트 작성이 완료되었습니다.");
               history.push(`/write/project/troubleShooting/${id}`);
+              setIs_Loading(false);
             })
             .catch((error) => {
               window.alert(error.response.data.data.errors[0].message);
+              setIs_Loading(false);
             });
         }
 
-        setIs_Loading(false);
+        // setIs_Loading(false);
       } else {
         alert("깃허브 레포지토리가 유효하지 않습니다.");
         setIs_Loading(false);

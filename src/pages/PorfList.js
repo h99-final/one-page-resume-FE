@@ -26,6 +26,7 @@ import { CssTextField, theme } from "../shared/_sharedMuiStyle";
 import { AccountCircle } from "@mui/icons-material";
 import MainFooter from "../shared/MainFooter";
 import "../components/banner.css";
+import Spinner from "../shared/Spinner";
 const PorfList = () => {
   const history = useHistory();
 
@@ -43,8 +44,29 @@ const PorfList = () => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    setPage(0);
+    setPorf([]);
+    setHasMore(true);
+  }, [addStack]);
+
+  useEffect(() => {
     setLoading(true);
-    if (hasMore) {
+
+    if (hasMore && page === 0) {
+      apis.mainPorf(addStack, page).then((res) => {
+        if (res.data.data.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        setPorf(res.data.data);
+      });
+    } else {
+      setLoading(false);
+      return;
+    }
+
+    if (hasMore && page > 0) {
       apis.mainPorf(addStack, page).then((res) => {
         if (res.data.data.length === 0) {
           setHasMore(false);
@@ -57,7 +79,7 @@ const PorfList = () => {
       setLoading(false);
       return;
     }
-    setLoading(false);
+    // setLoading(false);
     return () => {
       setLoading(false);
       setHasMore(true);
@@ -70,11 +92,6 @@ const PorfList = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setPage(0);
-    setPorf([]);
-  }, [addStack]);
-
   const handleChange = (event, newValue) => {
     setAddStack(newValue);
   };
@@ -82,6 +99,8 @@ const PorfList = () => {
   const handleDelete = (stack) => {
     setAddStack(addStack.filter((prev) => prev !== stack));
   };
+
+  console.log(porf);
 
   return (
     <>
@@ -164,7 +183,7 @@ const PorfList = () => {
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
                 <ClearIcon
-                  value={addStack}
+                  // value={addStack}
                   sx={{
                     fontSize: 14,
                     color: grey[500],
@@ -192,6 +211,7 @@ const PorfList = () => {
             })}
           </Portfolio>
         </PortfolioBox>
+        {!!is_loading && <Spinner />}
       </Container>
       <FetchMore is_loading={page !== 0 && is_loading} setPage={setPage} />
       <MainFooter />
