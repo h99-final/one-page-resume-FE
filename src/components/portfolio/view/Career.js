@@ -28,64 +28,70 @@ const Career = ({ color, fontcolor, templateIdx }) => {
   return (
     <>
       {templateIdx >= 1 && templateIdx <= 6 ? (
-        <div style={{ display: "flex" }}>
-          <LeftContainer>
-            {careers.map((e, i) => {
-              if ((i + 1) % 2 === 1) {
-                return (
-                  <>
-                    <NewCareerBox
-                      color={color}
-                      fontcolor={fontcolor}
-                      contrastcolor={contrastcolor()}
-                      index={i}
-                      key={`odd-career-${i}`}
-                    >
-                      <Index>{i + 1}</Index>
-                      <Title>{e.title}</Title>
-                      <Date>
-                        {e.startTime}~{e.endTime}
-                      </Date>
-                      <Content>
-                        {e.contents.map((c, index) => {
-                          return <h1 key={`content-${index}`}>{c}</h1>;
-                        })}
-                      </Content>
-                    </NewCareerBox>
-                  </>
-                );
-              }
-            })}
-          </LeftContainer>
-          <RightContainer>
-            {careers.map((e, i) => {
-              if ((i + 1) % 2 === 0) {
-                return (
-                  <>
-                    <NewCareerBox
-                      color={color}
-                      fontcolor={fontcolor}
-                      contrastcolor={contrastcolor()}
-                      index={i}
-                      key={`odd-career-${i}`}
-                    >
-                      <Index>{i + 1}</Index>
-                      <Title>{e.title}</Title>
-                      <Date>
-                        {e.startTime}~{e.endTime}
-                      </Date>
-                      <Content>
-                        {e.contents.map((c, index) => {
-                          return <h1 key={index}>{c}</h1>;
-                        })}
-                      </Content>
-                    </NewCareerBox>
-                  </>
-                );
-              }
-            })}
-          </RightContainer>
-        </div>
+        <>
+          {" "}
+          <TitleBox>
+            <h1>Work Experience</h1>
+          </TitleBox>
+          <div style={{ display: "flex", marginBottom: "150px" }}>
+            <LeftContainer>
+              {careers.map((e, i) => {
+                if ((i + 1) % 2 === 1) {
+                  return (
+                    <>
+                      <NewCareerBox
+                        color={color}
+                        fontcolor={fontcolor}
+                        contrastcolor={contrastcolor()}
+                        index={i}
+                        key={`odd-career-${i}`}
+                      >
+                        <Index>{i + 1}</Index>
+                        <Title>{e.title}</Title>
+                        <Date>
+                          {e.startTime}~{e.endTime}
+                        </Date>
+                        <Content>
+                          {e.contents.map((c, index) => {
+                            return <h1 key={`content-${index}`}>{c}</h1>;
+                          })}
+                        </Content>
+                      </NewCareerBox>
+                    </>
+                  );
+                }
+              })}
+            </LeftContainer>
+            <RightContainer>
+              {careers.map((e, i) => {
+                if ((i + 1) % 2 === 0) {
+                  return (
+                    <>
+                      <NewCareerBox
+                        color={color}
+                        fontcolor={fontcolor}
+                        contrastcolor={contrastcolor()}
+                        index={i}
+                        key={`odd-career-${i}`}
+                      >
+                        <Index>{i + 1}</Index>
+                        <Title>{e.title}</Title>
+                        <Date>
+                          {e.startTime}~{e.endTime}
+                        </Date>
+                        <Content>
+                          {e.contents.map((c, index) => {
+                            return <h1 key={index}>{c}</h1>;
+                          })}
+                        </Content>
+                      </NewCareerBox>
+                    </>
+                  );
+                }
+              })}
+            </RightContainer>
+          </div>
+        </>
       ) : (
         <Container fontcolor={fontcolor}>
           <TitleBox>
@@ -176,6 +182,7 @@ const Container = styled.div`
   width: 100%;
   display: inline;
   color: ${(props) => (props.fontcolor === "#fff" ? "#fff" : "#000")};
+  margin-bottom: 150px;
 `;
 
 const Box = styled.div`
@@ -277,7 +284,7 @@ const CareerTitle = styled.div`
   }
 `;
 const TitleBox = styled.div`
-  margin: 0px auto;
+  margin: 200px auto 100px auto;
   width: 96%;
   height: 30px;
   text-align: left;

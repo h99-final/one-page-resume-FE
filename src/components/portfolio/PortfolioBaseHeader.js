@@ -276,6 +276,7 @@ const ProjectHeaderFix = styled.div`
   justify-content: space-between;
   backdrop-filter: blur(2px);
   z-index: 2;
+  /* border-bottom: 1px solid #000; */
   /* background: rgba(19, 19, 27, 0.5); */
 `;
 
@@ -339,8 +340,8 @@ const ListItemButtonPorf = styled.div`
     props.color === "rgba(0, 0, 0, 0.9)"
       ? "#000"
       : props.selected
-        ? `${props.contrastcolor}`
-        : `${props.fontcolor}`} !important;
+      ? `${props.contrastcolor}`
+      : `${props.fontcolor}`} !important;
   } */
   color: ${(props) =>
     props.selected ? `${props.contrastcolor}` : `${props.fontcolor}`};

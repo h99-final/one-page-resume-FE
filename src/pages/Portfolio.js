@@ -13,7 +13,9 @@ import Stack from "../components/portfolio/view/Stack";
 import UserInfo from "../components/portfolio/view/UserInfo";
 import PortfolioIntroduce from "../components/portfolio/view/PortfolioIntroduce";
 import Project, { IntroduceContainer } from "./Project";
-import ProjectViewIntro from "../components/portfolio/view/ProjectView";
+import ProjectViewIntro, {
+  TitleBox,
+} from "../components/portfolio/view/ProjectView";
 import PortfolioBaseHeader from "../components/portfolio/PortfolioBaseHeader";
 import TopDown from "../shared/TopDown";
 import PortfolioFooter from "../components/portfolio/PortfolioFooter";
@@ -149,7 +151,11 @@ const Portfolio = () => {
               />
             </div>
             <div id="3" ref={stack}>
-              <Stack color={color} fontcolor={fontcolor} />
+              <Stack
+                color={color}
+                fontcolor={fontcolor}
+                templateIdx={templateIdx}
+              />
             </div>
             <div id="4" ref={career}>
               <Career
