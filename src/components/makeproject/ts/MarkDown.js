@@ -22,7 +22,6 @@ function MarkDown({ value, setValue }) {
           padding: "15px 15px",
           border: "1px solid #393a47",
           color: "#fff",
-
           // boxSizing: "border-box",
         }}
         textareaProps={{
@@ -30,7 +29,7 @@ function MarkDown({ value, setValue }) {
         }}
         hideToolbar={true}
         defaultTabEnable={true}
-        height={600}
+        height={400}
         preview="edit"
         value={value}
         onChange={(newValue) => setValue(newValue)}
@@ -46,7 +45,7 @@ function MarkDown({ value, setValue }) {
 
 const Container = styled.div`
   width: 100%;
-  height: 573px;
+  /* height: 573px; */
   display: flex;
 `;
 

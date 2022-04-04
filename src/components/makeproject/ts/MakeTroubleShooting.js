@@ -194,7 +194,7 @@ function MakeTroubleShooting() {
                   <Highlighted text={patchcode[0]?.patchCode} />
                 </div>
               </Content>
-              <Content>
+              <Content style={{ marginBottom: "0px" }}>
                 <Label>
                   <Font>
                     추가 설명<Star>*</Star>
