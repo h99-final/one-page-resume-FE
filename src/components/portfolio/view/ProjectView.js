@@ -192,7 +192,7 @@ const StackBox = styled.div`
   margin-bottom: 40px;
 `;
 
-const TitleBox = styled.div`
+export const TitleBox = styled.div`
   width: 100%;
   margin: 0px auto;
   margin-top: 100px;

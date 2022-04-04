@@ -5,7 +5,7 @@ import { apis } from "../../../shared/axios";
 
 const Stack = (props) => {
   const { id } = useParams();
-  const { color, fontcolor } = props;
+  const { color, fontcolor, templateIdx } = props;
   const [mainStack, setMainStack] = useState([]);
   const [subStack, setSubStack] = useState([]);
 
@@ -22,7 +22,15 @@ const Stack = (props) => {
         <TitleBox fontcolor={fontcolor}>
           <h1>Tech Stack</h1>
         </TitleBox>
-        <Hr />
+        {templateIdx === 1 ||
+        templateIdx === 2 ||
+        templateIdx === 3 ||
+        templateIdx === 4 ||
+        templateIdx === 5 ||
+        templateIdx === 6 ? null : (
+          <Hr />
+        )}
+
         <StackBox>
           <Main fontcolor={fontcolor}>
             <h1>Main</h1>
@@ -31,20 +39,22 @@ const Stack = (props) => {
                 return (
                   <MainStack color={color} key={index}>
                     <span>
-                      {s === "C++" ? <img
-                        alt=""
-                        src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
-                      /> :
-                        s === "C#" ? <img
+                      {s === "C++" ? (
+                        <img
+                          alt=""
+                          src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                        />
+                      ) : s === "C#" ? (
+                        <img
                           alt=""
                           src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
                         />
-                          :
-                          <img
-                            alt=""
-                            src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
-                          />
-                      }
+                      ) : (
+                        <img
+                          alt=""
+                          src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                        />
+                      )}
                       {s}
                     </span>
                   </MainStack>

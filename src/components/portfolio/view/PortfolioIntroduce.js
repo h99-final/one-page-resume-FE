@@ -65,10 +65,10 @@ const PortfolioIntroduce = (props) => {
                 <h1 templateIdx={templateIdx}>{contents}</h1>
               </ContentBox>
             </div>
-            <ScrollBox>
+            {/* <ScrollBox>
               <img alt="" src={process.env.PUBLIC_URL + "/img/scroll.svg"} />
               <h1>Scroll Down</h1>
-            </ScrollBox>
+            </ScrollBox> */}
           </>
         ) : (
           <>
@@ -112,7 +112,7 @@ const Container = styled.div`
 const IntroBox = styled.div`
   margin: ${(props) =>
     props.templateIdx >= 1 && props.templateIdx <= 6
-      ? "0px 2.5%"
+      ? "60px 2.5%"
       : props.templateIdx >= 7 || props.templateIdx <= 12
       ? "260px auto"
       : "120px"};
@@ -120,7 +120,7 @@ const IntroBox = styled.div`
   width: ${(props) =>
     props.templateIdx >= 1 && props.templateIdx <= 6 ? "45%" : "80%"};
   background: ${(props) => `url(${props.background}) no-repeat top center`};
-  background-size: 100%;
+  /* background-size: 100%; */
 `;
 
 const TitleBox = styled.div`
