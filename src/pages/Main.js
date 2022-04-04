@@ -243,8 +243,9 @@ const Event = styled.div`
   margin: 10px;
   margin-top: 25px;
   width: 327px;
+  margin-right: 25px;
   min-width: 327px;
-  height: 384px;
+  height: 380px;
   border-radius: 10px;
   display: flex;
   justify-content: flex-start;
