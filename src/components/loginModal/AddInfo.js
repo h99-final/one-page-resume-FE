@@ -1,278 +1,503 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import { phoneCheck, urlCheck, nameCheck } from "../../shared/common";
 
-import { current } from 'immer';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { phoneCheck, urlCheck } from '../../shared/common';
-// import { actionCreators as userActions } from "../redux/modules/user";
-import { apis } from '../../shared/axios';
-import { TextField } from '@mui/material';
+import { apis } from "../../shared/axios";
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
+import { TextField } from "@mui/material";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { orange } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { actionCreators, actionCreators as userActions } from '../../redux/modules/user';
-import { useDispatch } from 'react-redux';
+const theme = createTheme({
+  palette: {
+    error: orange,
+  },
+});
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focuscolor",
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focuscolor,
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focuscolor,
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focuscolor,
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focuscolor,
+    },
+  },
+  "& .MuiInputBase-input": {
+    position: "relative",
+    color: "white",
+    width: "100%",
+    borderBottom: "1px solid white",
+  },
+  "& input:valid + fieldset": {},
+  "& input:invalid + fieldset": {},
+  "& input:valid:focus + fieldset": {
+    // override inline-style
+  },
+}));
 
 const AddInfo = (props) => {
   const dispatch = useDispatch();
-
-
-
+  const history = useHistory();
+  const loginClose = props.loginClose;
   const [name, setName] = React.useState("");
   const [phoneNum, setPhoneNum] = React.useState("");
   const [gitUrl, setGitUrl] = React.useState("");
   const [blogUrl, setBlogUrl] = React.useState("");
+  const [job, setJob] = React.useState("");
 
-  const [page, setPage] = React.useState("1");
+  const [page, setPage] = React.useState("0");
 
   const [nameError, setNameError] = React.useState("");
-  const [phoneNumError, setPhoneNumError] = React.useState("");
   const [gitUrlError, setGitUrlError] = React.useState("");
-  const [blogUrlError, setBlogUrlError] = React.useState("");
-
-
 
   const [stack, setStack] = useState([]);
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
-
 
   const changeHandler = (checked, id) => {
     if (checked) {
       setStack([...stack, id]);
-      console.log("체크 반영 완료", stack);
     } else {
-      setStack(stack.filter(el => el !== id));
-      console.log("체크 해제 반영 완료", stack);
+      setStack(stack.filter((e) => e !== id));
     }
   };
-  console.log(stack)
-  const isAllChecked = stack.length === 2;
-  const disabled = !isAllChecked;
 
+  const defaultStack = [
+    "HTML",
+    "JS",
+    "CSS",
+    "SCSS",
+    "TS",
+    "Java",
+    "Python",
+    "C",
+    "C++",
+    "iOS",
+    "Android",
+    "React",
+    "django",
+    "Spring",
+    "Node.js",
+    "Next.js",
+    "Vue.js",
+    "React-Native",
+    "git",
+    "Github",
+    "jQuery",
+    "C#",
+    "Flask",
+    "Express",
+  ];
 
   const goNext = () => {
-    const nameRegex = /^[가-힣a-zA-Z]+$/;
-    if (!nameRegex.test(name) || name.length < 2) {
+    if (!nameCheck(name) || name.length < 2) {
       setNameError("이름을 입력해주세요");
       return;
     }
-    else setNameError("")
-
-    if (!phoneCheck(phoneNum)) {
-      setPhoneNumError("올바른 번호를 입력하세요");
-      return;
-    }
-    else setPhoneNumError("")
-
-    if (!urlCheck(gitUrl)) {
+    setNameError("");
+    if (!urlCheck(gitUrl) || gitUrl.length < 0) {
       setGitUrlError("URL형식이 잘못되었습니다.");
       return;
     }
-
-    setPage("2")
-  }
+    setGitUrlError("");
+    setPage("2");
+  };
   const addInfo = () => {
-    console.log(name, stack, phoneNum, gitUrl, blogUrl)
-
-    dispatch(userActions.userInfoDB(name, stack, phoneNum, gitUrl, blogUrl))
-
-  }
+    const data = {
+      name: name,
+      phoneNum: phoneNum,
+      gitUrl: gitUrl,
+      blogUrl: blogUrl,
+      job: job,
+      stack: stack,
+    };
+    const _data = {
+      stack: stack,
+    };
+    dispatch(userActions.addInfoDB(data));
+    apis.putStack(_data).then((res) => {
+      window.location.reload();
+    });
+  };
 
   return (
     <>
+      {page === "0" && (
+        <>
+          <TextContainer style={{ marginBottom: "70px" }}>
+            <h1>추가정보를 입력하시겠어요?</h1>
+          </TextContainer>
+          <ImgInputBox>
+            <img
+              alt=""
+              src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/111.png"
+            />
+            <p>회원가입을 완료했어요👏👏</p>
+            <p>추가정보를 3가지만 입력하면</p>
+            <p>포그를 제대로 이용할 수 있어요.</p>
+            <p>포트폴리오 제작은 물론</p>
+            <p>최신 프로젝트까지 추천해 드릴게요.</p>
+          </ImgInputBox>
+          <div>
+            <span>
+              <CloseBtn
+                onClick={() => {
+                  history.go(0);
+                }}
+              >
+                다음에 할게요
+              </CloseBtn>
+            </span>
+            <ContinueBtn
+              onClick={() => {
+                setPage("1");
+              }}
+            >
+              추가정보 입력하기
+            </ContinueBtn>
+          </div>
+        </>
+      )}
+      {page === "1" && (
+        <>
+          <TextContainer>
+            <h1>추가정보 입력하기 (1/2)</h1>
+            <p>몇가지 정보만 더 기입하면 돼요!</p>
+          </TextContainer>
+          <ThemeProvider theme={theme}>
+            <InputBox>
+              <CssTextField
+                focuscolor="#00C4B4"
+                style={{ marginTop: "55px" }}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                required
+                variant="standard"
+                fullWidth
+                id="name"
+                name="name"
+                placeholder="이름*"
+                error={nameError !== "" || false}
+              />
+              {nameError && (
+                <div style={{ textAlign: "left" }}>
+                  <span style={{ fontSize: "14px", color: "orange" }}>
+                    {nameError}
+                  </span>
+                </div>
+              )}
 
-      {page === "1" &&
-        <Wrap>
-          <h2>추가정보 입력하기 (2/3)</h2>
-          <p>Portfolio와 함께 멋진 포트폴리오를 만들어보세요.</p>
-          <TextField
-            onChange={(e) => { setName(e.target.value) }}
-            required
-            variant='standard'
-            fullWidth
-            id="name"
-            name="name"
-            label="이름"
-            error={nameError !== '' || false}
-          />
-          {nameError && <span style={{ fontSize: "12px", color: "red" }}>{nameError}</span>}
+              <CssTextField
+                focuscolor="#00C4B4"
+                onChange={(e) => {
+                  setGitUrl(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                required
+                variant="standard"
+                fullWidth
+                id="gitURL"
+                name="gitURL"
+                placeholder="gitURL*"
+                error={gitUrlError !== "" || false}
+              />
+              {gitUrlError && (
+                <div style={{ textAlign: "left" }}>
+                  <span style={{ fontSize: "14px", color: "orange" }}>
+                    {gitUrlError}
+                  </span>
+                </div>
+              )}
+              <CssTextField
+                focuscolor="#00C4B4"
+                onChange={(e) => {
+                  setBlogUrl(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="blogurl"
+                name="blogurl"
+                placeholder="blogURl"
+              // error={blogUrlError !== '' || false}
+              />
+              {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
+              <CssTextField
+                autoComplete="off"
+                focuscolor="#00C4B4"
+                onChange={(e) => {
+                  setPhoneNum(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="phone"
+                name="phone"
+                placeholder="전화번호"
+              // error={phoneNumError !== "" || false}
+              />
+              {/* {phoneNumError && (
+            <span style={{ fontSize: "12px", color: "red" }}>
+              {phoneNumError}
+            </span>
+          )} */}
 
-          <br />
-          <br />
-          <TextField
-            onChange={(e) => { setPhoneNum(e.target.value) }}
-            required
-            variant='standard'
-            fullWidth
-            id="phone"
-            name="phone"
-            label="전화번호"
-            error={phoneNumError !== '' || false}
-          />
-          {phoneNumError && <span style={{ fontSize: "12px", color: "red" }}>{phoneNumError}</span>}
-          <br />
-          <br />
-          <TextField
-            onChange={(e) => { setGitUrl(e.target.value) }}
-            variant='standard'
-            fullWidth
-            id="giturl"
-            name="giturl"
-            label="gitURl"
-            error={gitUrlError !== '' || false}
-          />
-          {gitUrlError && <span style={{ fontSize: "12px", color: "red" }}>{gitUrlError}</span>}
-          <br />
-          <br />
-          <TextField
-            onChange={(e) => { setBlogUrl(e.target.value) }}
-            variant='standard'
-            fullWidth
-            id="blogurl"
-            name="blogurl"
-            label="blogURl"
-          // error={blogUrlError !== '' || false}
-          />
-          {/* {blogUrlError && <span style={{ fontSize: "12px", color: "red" }}>{blogUrlError}</span>} */}
+              <CssTextField
+                focuscolor="#00C4B4"
+                onChange={(e) => {
+                  setJob(e.target.value);
+                }}
+                style={{ marginTop: "35px" }}
+                variant="standard"
+                fullWidth
+                id="job"
+                name="job"
+                placeholder="직무"
+              // error={jobError !== "" || false}
+              />
+              {/* {jobError && (
+            <span style={{ fontSize: "12px", color: "red" }}>{jobError}</span>
+          )} */}
+              <WriteBtn
+                disabled={!name || !gitUrl ? true : false}
+                onClick={goNext}
+              >
+                다음
+              </WriteBtn>
+            </InputBox>
+          </ThemeProvider>
+        </>
+      )}
+      {page === "2" && (
+        <>
+          <TextContainer>
+            <h1>
+              나를 대표하는 프레임워크 <br /> 3가지를 골라주세요(2/2)
+            </h1>
+            <p style={{ color: "#CFD3E2" }}>
+              선택하신 프레임워크와 관련된 프로젝트를 추천해드릴게요.
+            </p>
+          </TextContainer>
 
+          {stack.length > 3 ? (
+            <p style={{ fontSize: "14px", color: "orange" }}>
+              3가지만 골라주세요
+            </p>
+          ) : (
+            <p style={{ color: "#2C2E39", fontSize: "14px" }}>
+              3가지만 골라주세요
+            </p>
+          )}
+
+          {defaultStack.map((s, index) => {
+            return (
+              <StyleBoxLogin native={s === "React-Native" ? true : false}>
+                <input
+                  type="checkbox"
+                  id={s}
+                  checked={stack.includes(`${s}`) ? true : false}
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, `${s}`);
+                  }}
+                ></input>
+                <label id={s} htmlFor={s}>
+                  <span native={s === "React-Native" ? true : false}>
+                    {s === "C++" ? <img
+                      alt=""
+                      src="https://s3.amazonaws.com/www.poug.me/stack/C%2B%2B.png"
+                    /> :
+                      s === "C#" ? <img
+                        alt=""
+                        src="https://s3.amazonaws.com/www.poug.me/stack/C%23.png"
+                      />
+                        :
+                        <img
+                          alt=""
+                          src={`https://s3.amazonaws.com/www.poug.me/stack/${s}.png`}
+                        />
+                    }
+
+                    {s}
+                  </span>
+                </label>
+              </StyleBoxLogin>
+            );
+          })}
 
           <div>
-            <WriteBtn disabled={!(name) || !(gitUrl) ? true : false} onClick={goNext}>다음{'>'}</WriteBtn>
+            <WriteBtn
+              style={{
+                margin: "50px 0px 0px 430px"
+              }}
+              disabled={stack.length !== 3 ? true : false}
+              onClick={addInfo}
+            >
+              작성완료
+            </WriteBtn>
           </div>
-        </Wrap>
-      }
-      {page === "2" &&
-        <Wrap>
-          <h2>3가지 고르세요(3/3)</h2>
-          <p>Portfolio 추천 프로젝트에 반영될 수 있어요!</p>
-
-          <input
-            type="checkbox"
-            id="JS"
-            checked={stack.includes('JS') ? true : false}
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'JS');
-            }}
-          ></input>
-          <label id="JS" htmlFor="JS"></label>
-          <span>JS</span>
-
-          <input
-
-            type="checkbox"
-            id="JAVA"
-            checked={stack.includes('JAVA') ? true : false}
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'JAVA');
-            }}
-          ></input>
-          <label id="JAVA" htmlFor="JAVA"></label>
-          <span>JAVA</span>
-
-          <input
-            type="checkbox"
-            id="PYTHON"
-            checked={stack.includes('PYTHON') ? true : false}
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'PYTHON');
-            }}
-          ></input>
-          <label id="PYTHON" htmlFor="PYTHON"></label>
-          <span>PYTHON</span>
-
-          <input
-            type="checkbox"
-            id="C"
-            checked={stack.includes('C') ? true : false}
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'C');
-            }}
-          ></input>
-          <label id="C" htmlFor="C"></label>
-          <span>C</span>
-
-          <input
-            type="checkbox"
-            id="REACT"
-            checked={stack.includes('REACT') ? true : false}
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'REACT');
-            }}
-          ></input>
-          <label id="REACT" htmlFor="REACT"></label>
-          <span>REACT</span>
-
-          <div>
-            <WriteBtn onClick={addInfo}>가입하기</WriteBtn>
-          </div>
-        </Wrap>
-      }
+        </>
+      )}
     </>
-  )
-}
-
-
-
+  );
+};
 
 export default AddInfo;
 
-const StyledBox = styled.div`
-margin: auto;
-
-  padding: 20px;
-  min-width: 250px;
-  width: auto;
-  height: auto;
-`
-
-
-const Stack = styled.button`
-  margin: 10px 10px 0px 0px;
-  font-size: 16px;
-  background-color: #4cbc9b;
-  color: white;
-  padding: 10px 1px;
-  font-weight: bold;
-  width: 90px;
-  height: 45px;
-  border: none;
-  border-radius: 25px;
-  :hover{
-    background-color: red;
+const TextContainer = styled.div`
+  width: 370px;
+  height: 38px;
+  margin: 80px 115px 120px 115px;
+  h1 {
+    line-height: 40px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: white;
   }
-  :checked{
-    background-color: yellow;
+  p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    color: white;
   }
 `;
+const ImgInputBox = styled.div`
+  margin: 0px 115px 123px 115px;
+  img {
+    width: 150px;
+    margin-bottom: 40px;
+  }
+  p {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    color: white;
+  }
+`;
+
+const InputBox = styled.div`
+  width: 350px;
+  height: 240px;
+  margin: 70px 115px 193px 115px;
+`;
+
 const WriteBtn = styled.button`
   cursor: pointer;
-  position: absolute;
-  right: 80px;
-  top: 80%;
-  border-radius: 25px;
-  margin: 15px 0px 0px 5px;
-  font-size: 17px;
-  padding: 10px 10px;
-  border: 1px none;
-  border-radius: 25px;
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  margin: 50px 0px 0px 255px;
+  padding: 5px 10px 5px 10px;
   color: white;
-  background-color: black;
-  :disabled{
+  background-color: #00c4b4;
+  :disabled {
+    color: #696b7b;
+    border: none;
+    background-color: #424453;
+  }
+`;
+
+const ContinueBtn = styled.button`
+  cursor: pointer;
+  position: absolute;
+  right: 20%;
+  top: 83%;
+  width: 145px;
+  height: 42px;
+  border-radius: 25px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: #00c4b4;
+  :disabled {
     border: none;
     background-color: gray;
   }
 `;
 
-const Wrap = styled.div` 
-  padding: 20px;
-  margin: 90px 0px 0px 0px ;
+const CloseBtn = styled.button`
+  cursor: pointer;
+  position: absolute;
+  right: 55%;
+  top: 83%;
+  width: 145px;
+  height: 42px;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  background-color: #424453;
+  :disabled {
+    border: none;
+    background-color: gray;
+  }
 `;
 
+export const StyleBoxLogin = styled.button`
+  border: none;
+  background-color: #2c2e39;
+  padding: 5px 7.5px 5px 7.5px;
+  margin-top: 5px;
+  img {
+    border-radius: 5px;
+    background-color: gray;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5%;
+    padding: 1px;
+    object-fit: cover;
+    margin-right: 5px;
+  }
+  input[type="checkbox"] {
+    display: none;
+    
+  }
+  span {
+    font-size: ${(props) => (props.native ? "12px" : "14px")};
+    position: relative;
+    top: 20%;
+  }
+  input[type="checkbox"] + label {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    border: 2px solid #393a47;
+    background-color: #393a47;
+    color: white;
+    cursor: pointer;
+  }
+  input[type="checkbox"]:checked + label {
+    color: white;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #00c4b4;
+    border: 2px solid #00c4b4;
+    cursor: pointer;
+  }
+`;

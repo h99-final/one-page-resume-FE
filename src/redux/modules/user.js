@@ -1,22 +1,29 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { deleteCookie, setCookie } from "../../shared/cookie";
 import { apis } from "../../shared/axios";
+import {
+  deleteCookie,
+  getCookie,
+  resetCookie,
+  setCookie,
+} from "../../shared/cookie";
 
 // actions
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
+const IS_FIRST_LOGIN = "IS_FIRST_LOGIN";
 
 // action creators
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
-
+const setUser = createAction(SET_USER, (user, token) => ({ user, token }));
+const setFirstLogin = createAction(IS_FIRST_LOGIN, (status) => ({ status }));
 // initialState
 const initialState = {
-  user: { email: "aaa@aaa.com", isFirstLogin: false, },
+  user: {},
   token: null,
+  isFirstLogin: false,
 };
 
 // middleware actions
@@ -25,35 +32,63 @@ const loginDB = (email, password) => {
     apis
       .login(email, password)
       .then((res) => {
-        setCookie("token", res.headers.Authorization, 5);
-        const token = res.headers.Authorization;
-        console.log(res.headers)
-        dispatch(
-          setUser({
-            isFirstLogin: res.data.data.isFirstLogin,
-            portfolioId: res.data.data.portfolioId,
-            userId: res.data.data.userId,
-            email: res.data.data.email,
-            stack: res.data.data.stack,
-            token: token
-          })
-        )
+        setCookie("token", res.headers.authorization, 5);
+        dispatch(setFirstLogin(res.data.data.isFirstLogin));
+        // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        if (res.data.data.isFirstLogin === true) {
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+          });
+        } else {
+          //dispatch(userInfoDB())는 왜 안되지?
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+            window.location.reload();
+          });
+          // window.location.reload();
+        }
       })
-      .catch((error) => alert("회원정보가 일치하지 않습니다."));
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        } else {
+          alert("로그인 정보가 잘못되었습니다. 비밀번호를 확인하세요.");
+        }
+      });
   };
 };
 
-
-
-const logOutDB = () => {
+const kakaoLoginDB = (code) => {
   return function (dispatch, getState, { history }) {
-    deleteCookie("token");
-    deleteCookie("token");
-    deleteCookie("token");
-    // localStorage.removeItem("authorization");
-    dispatch(logOut({ userinfo: { email: "", nickname: "" }, token: null }));
-    history.replace("/");
-    history.go(0);
+    apis
+      .kakaoLogin1(code)
+      .then((res) => {
+        setCookie("token", res.headers.authorization, 5);
+        dispatch(setFirstLogin(res.data.data.isFirstLogin));
+        // sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+        history.push("/");
+        if (res.data.data.isFirstLogin === true) {
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+          });
+        } else {
+          //dispatch(userInfoDB())는 왜 안되지?
+          apis.userInfo().then((res) => {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+            dispatch(setUser(res.data.data));
+            window.location.reload();
+          });
+          // window.location.reload();
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
   };
 };
 
@@ -62,12 +97,25 @@ const SignUpDB = (email, password, passwordcheck) => {
     apis
       .signup(email, password, passwordcheck)
       .then((res) => {
-        dispatch(loginDB(email, password))
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
-        alert("회원가입에 실패했습니다.");
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
+  };
+};
+
+const userInfoDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .userInfo()
+      .then(function (res) {
+        dispatch(setUser(res.data.data));
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {});
   };
 };
 
@@ -78,25 +126,37 @@ const emailCheckDB = (email) => {
       .then((res) => {
         dispatch(
           setUser({
-            email: email
+            email: email,
           })
-        )
+        );
         alert("회원가입이 완료되었습니다.");
       })
       .catch((error) => {
-        alert("회원가입에 실패했습니다.");
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
       });
   };
 };
 
-
-const userInfoDB = (name, stack, phoneNum, gitURl, blogURl) => {
+const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addInfo(name, stack, phoneNum, gitURl, blogURl)
-      .then((res) => {
-      })
-      .catch((error) => console.log(error));
+      .addInfo(data)
+      .then((res) => {})
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.data.errors[0].message);
+        }
+      });
+  };
+};
+
+const logOutDB = () => {
+  return function (dispatch, getState, { history }) {
+    deleteCookie("token");
+    resetCookie("token");
+    history.go("/");
   };
 };
 
@@ -106,16 +166,8 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        // setCookie("is_login", "success");
         draft.token = action.payload.user.token;
-        draft.user = {
-          email: action.payload.user.email,
-          isFirstLogin: action.payload.user.isFirstLogin,
-          portfolioId: action.payload.user.portfolioId,
-          stack: action.payload.user.stack,
-          userId: action.payload.user.userId,
-        };
-        console.log(action.payload)
+        draft.user = action.payload.user;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
@@ -123,7 +175,11 @@ export default handleActions(
         draft.userinfo = null;
         draft.token = null;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [IS_FIRST_LOGIN]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isFirstLogin = action.payload.status;
+      }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -131,14 +187,16 @@ export default handleActions(
 // action creator export
 
 const actionCreators = {
+  setUser,
   logOut,
   getUser,
   loginDB,
   SignUpDB,
   emailCheckDB,
-  // loginCheckDB,
+  addInfoDB,
   userInfoDB,
   logOutDB,
+  kakaoLoginDB,
 };
 
 export { actionCreators };

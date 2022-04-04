@@ -1,18 +1,30 @@
 import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import MakeProject from "../components/makeproject/MakeProject";
+import MakeTroubleShooting from "../components/makeproject/ts/MakeTroubleShooting";
+import PorjWriteHeader from "../components/makeproject/ProjWriteHeader";
 import Header from "../shared/Header";
+import { WriteableForm, WriteForm, WriteTemplate } from "./MakePorf";
+// router
+// private 접근권한막기
+import { Redirect, Route, useParams } from "react-router-dom";
 
-function MakeProj(props) {
-  const { id } = useParams();
-  console.log(id);
+function MakeProj() {
+  const { id, projectId } = useParams();
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
     <>
       <Header />
-      <h2>프로젝트만 보여주는 페이지입니다</h2>
-      <Link to={`/write`}>프로젝트 작성하기</Link>
+      <WriteForm>
+        <PorjWriteHeader />
+        <WriteTemplate>
+          <WriteableForm>
+            {id === "info" && <MakeProject />}
+            {id === "troubleShooting" && <MakeTroubleShooting />}
+          </WriteableForm>
+        </WriteTemplate>
+      </WriteForm>
     </>
   );
 }
