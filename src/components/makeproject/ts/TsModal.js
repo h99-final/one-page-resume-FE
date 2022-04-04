@@ -176,16 +176,18 @@ function TsModal(props) {
 
   const [date, setDate] = useState("");
 
-  // useEffect(() => {
-  //   apis
-  //     .gitCommitDate(projectId, date)
-  //     .then((res) => {
-  //       setMessage_list(res.data.data);
-  //     })
-  //     .catch(() => {
-  //       alert("날짜가 유효하지 않습니다.");
-  //     });
-  // }, [date]);
+  useEffect(() => {
+    if (date) {
+      apis
+        .gitCommitDate(projectId, date)
+        .then((res) => {
+          setMessage_list(res.data.data);
+        })
+        .catch(() => {
+          alert("날짜가 유효하지 않습니다.");
+        });
+    }
+  }, [date]);
 
   Modal.setAppElement("#root");
 
