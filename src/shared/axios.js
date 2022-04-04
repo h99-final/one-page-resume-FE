@@ -126,7 +126,7 @@ export const apis = {
   gitCommitFile: (projectId, sha) =>
     instance.get(`/project/${projectId}/git/commit/${sha}/file`),
   gitCommitDate: (projectId, date) =>
-    instance.get(`/project/${projectId}/git/commit?date=${date}`),
+    instance.get(`/project/${projectId}/git/commit/search?date=${date}`),
   checkSync: (projectId) =>
     instance.get(`/project/${projectId}/git/completion`),
 

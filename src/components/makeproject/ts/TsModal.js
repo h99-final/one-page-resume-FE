@@ -40,6 +40,8 @@ function TsModal(props) {
   const [progress, setProgress] = useState(0);
   const [totalCommitCount, setTotalCommitCount] = useState(0);
 
+  const [minmaxdate, setMinmaxdate] = useState({});
+
   //file 중복 선택이 가능하게 만들기 위해
   // const [selectedFileName_list, setSelectedFileName_list] = useState([]);
 
@@ -143,8 +145,12 @@ function TsModal(props) {
             return;
           }
           setMessage_list(res.data.data);
+          let _date = {
+            minDate: res.data.data[0].date,
+            maxDate: res.data.data[res.data.data.length - 1].date,
+          };
+          setMinmaxdate(_date);
         })
-
         .catch((error) => {
           window.alert(error.response.data.data.errors[0].message);
           setIsLoading(false);
@@ -176,16 +182,18 @@ function TsModal(props) {
 
   const [date, setDate] = useState("");
 
-  // useEffect(() => {
-  //   apis
-  //     .gitCommitDate(projectId, date)
-  //     .then((res) => {
-  //       setMessage_list(res.data.data);
-  //     })
-  //     .catch(() => {
-  //       alert("날짜가 유효하지 않습니다.");
-  //     });
-  // }, [date]);
+  useEffect(() => {
+    if (date) {
+      apis
+        .gitCommitDate(projectId, date)
+        .then((res) => {
+          setMessage_list(res.data.data);
+        })
+        .catch(() => {
+          alert("날짜가 유효하지 않습니다.");
+        });
+    }
+  }, [date]);
 
   Modal.setAppElement("#root");
 
@@ -280,10 +288,12 @@ function TsModal(props) {
                           GitHub 바로가기
                         </Routing>
                       </FormTextLight>
-                      {/* <input
+                      <Date
                         type="date"
                         onChange={(e) => setDate(e.target.value)}
-                      /> */}
+                        min={minmaxdate?.minDate}
+                        max={minmaxdate?.maxDate}
+                      />
                     </FormTitleFlex>
                     {githubSpinner ? (
                       <GithubSpinner />
@@ -427,6 +437,15 @@ function TsModal(props) {
     </>
   );
 }
+
+const Date = styled.input`
+  margin-top: 20px;
+  background: #2c2e39;
+  color: white;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+`;
 
 const FormContents = styled.div`
   flex-direction: column;

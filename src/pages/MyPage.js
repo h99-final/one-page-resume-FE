@@ -40,10 +40,12 @@ function MyPage() {
     apis.introPorfGet(userInfo?.porfId).then((res) => {
       setTitle(res.data.data.title);
       setPorf(res.data.data);
+      // dispatch(userActions.userInfoDB())
     });
     apis.projectPorfGet().then((res) => {
       setProjects(res.data.data);
     });
+
   }, []);
 
   const handleClickShow = () => {
@@ -152,7 +154,7 @@ function MyPage() {
             <h1 style={{ minWidth: "120px" }}>포트폴리오</h1>
             <div style={{ display: "flex" }}>
               <button onClick={handleClickShow}>
-                {values ? <Visibility /> : <VisibilityOff />}
+                {userInfo.porfShow ? <Visibility /> : <VisibilityOff />}
               </button>
             </div>
           </Title>

@@ -243,3 +243,12 @@ body {
 .MuiAutocomplete-popper {
   background: rgba(255, 255, 255, 0.5);
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(247, 245, 245, 0.5) !important;
+  opacity: 0.5;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+}

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { apis } from "../../../shared/axios";
+import { actionCreators as userActions } from '../../../redux/modules/user';
 
 const FinishModal = ({ exitClose }) => {
   const history = useHistory();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const dispatch = useDispatch()
   // const [show, setShow] = useState();
 
   // useEffect(() => {
@@ -13,14 +16,16 @@ const FinishModal = ({ exitClose }) => {
   // }, [setShow]);
 
   const handleClickShow = () => {
-    let show = true;
+    let show = { show: true };
     apis.porfShow(show).then((res) => {
+      dispatch(userActions.userInfoDB())
       history.push(`/portfolio/${userInfo.porfId}`);
     });
   };
   const handleClickNoShow = () => {
-    let show = false;
+    let show = { show: false };
     apis.porfShow(show).then((res) => {
+      dispatch(userActions.userInfoDB())
       history.push("/mypage");
     });
   };
