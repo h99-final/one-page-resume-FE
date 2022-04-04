@@ -125,6 +125,8 @@ export const apis = {
   //git file 불러오기
   gitCommitFile: (projectId, sha) =>
     instance.get(`/project/${projectId}/git/commit/${sha}/file`),
+  gitCommitDate: (projectId, date) =>
+    instance.get(`/project/${projectId}/git/commit?date=${date}`),
   checkSync: (projectId) =>
     instance.get(`/project/${projectId}/git/completion`),
 

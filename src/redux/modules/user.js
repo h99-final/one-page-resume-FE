@@ -53,6 +53,8 @@ const loginDB = (email, password) => {
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
+        } else {
+          alert("로그인 정보가 잘못되었습니다. 비밀번호를 확인하세요.");
         }
       });
   };
@@ -116,9 +118,7 @@ const userInfoDB = () => {
         dispatch(setUser(res.data.data));
         sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
       })
-      .catch(function (error) {
-
-      });
+      .catch(function (error) {});
   };
 };
 
@@ -146,7 +146,7 @@ const addInfoDB = (data) => {
   return function (dispatch, getState, { history }) {
     apis
       .addInfo(data)
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.data.errors[0].message);
@@ -182,7 +182,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isFirstLogin = action.payload.status;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => { }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
