@@ -146,8 +146,8 @@ function TsModal(props) {
           }
           setMessage_list(res.data.data);
           let _date = {
-            minDate: res.data.data[0].date,
-            maxDate: res.data.data[res.data.data.length - 1].date,
+            minDate: res.data.data[res.data.data.length - 1].date,
+            maxDate: res.data.data[0].date,
           };
           setMinmaxdate(_date);
         })
@@ -183,16 +183,16 @@ function TsModal(props) {
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    if (date) {
-      apis
-        .gitCommitDate(projectId, date)
-        .then((res) => {
-          setMessage_list(res.data.data);
-        })
-        .catch(() => {
+    apis
+      .gitCommitDate(projectId, date)
+      .then((res) => {
+        setMessage_list(res.data.data);
+      })
+      .catch(() => {
+        if (date) {
           alert("날짜가 유효하지 않습니다.");
-        });
-    }
+        }
+      });
   }, [date]);
 
   Modal.setAppElement("#root");
