@@ -280,10 +280,10 @@ function TsModal(props) {
                           GitHub 바로가기
                         </Routing>
                       </FormTextLight>
-                      {/* <input
+                      <Date
                         type="date"
                         onChange={(e) => setDate(e.target.value)}
-                      /> */}
+                      />
                     </FormTitleFlex>
                     {githubSpinner ? (
                       <GithubSpinner />
@@ -427,6 +427,15 @@ function TsModal(props) {
     </>
   );
 }
+
+const Date = styled.input`
+  margin-top: 20px;
+  background: #2c2e39;
+  color: white;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+`;
 
 const FormContents = styled.div`
   flex-direction: column;
