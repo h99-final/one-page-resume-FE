@@ -10,6 +10,7 @@ const Pnav = (props) => {
   const user = document.cookie;
   // props.nav (false or true)
   const navState = props.pnav;
+  const setNavState = props.setPnav;
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // NavBar 설정
   const [pnav, setPnav] = useState(false);
@@ -29,9 +30,9 @@ const Pnav = (props) => {
   });
   const handleClickOutside = (event) => {
     if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setPnav(false);
+      setNavState(false);
     } else {
-      setPnav(true);
+      setNavState(true);
     }
   };
   // SignOut
