@@ -114,8 +114,6 @@ export const MakeCenter = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* flex-direction: row; */
-  /* vertical-align: middle; */
 `;
 
 export const IconBox = styled.div`

@@ -235,7 +235,7 @@ const CareerWrite = () => {
               name="startTime"
               control={control}
             />
-            <Font>~</Font>
+            <div style={{ color: "white", margin: "auto 0px" }}>~</div>
             <Controller
               render={({ field }) => (
                 <InputCustomDate

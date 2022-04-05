@@ -86,7 +86,7 @@ function CareerShow(props) {
             readOnly
           />
 
-          <div>~</div>
+          <div style={{ color: "white" }}>~</div>
 
           <InputCustomDate
             type="text"
@@ -122,7 +122,7 @@ const IconBox = styled.div`
   background-color: #424453;
   border-radius: 50px;
   margin-right: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   &:hover {
     background-color: #696b7b;
   }
