@@ -90,10 +90,10 @@ const Signup = (props) => {
   }, [])
 
   const signup = () => {
-    // if (!emailCheck(email) || !email) {
-    //   setEmailError("이메일 형식을 다시 확인해주세요!");
-    //   return;
-    // }
+    if (!emailCheck(email) || !email) {
+      setEmailError("이메일 형식을 다시 확인해주세요!");
+      return;
+    }
 
     if (!password || password.length < 4) {
       setPasswordError(
