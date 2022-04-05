@@ -28,16 +28,15 @@ function TemplateProject() {
           <h2 onClick={handlePreviousClick}>이전으로</h2>
         </Save>
         <Label htmlFor="submit" onClick={handleComplete}>
-          <Save style={{ marginRight: "30px" }}>
+          <Save2 style={{ marginRight: "30px" }}>
             <input id="submit" type="submit" style={{ display: "none" }} />
             <h2>작성완료</h2>
-          </Save>
+          </Save2>
         </Label>
       </BottomNav>
     </>
   );
 }
-
 const Save = styled(Next)`
   width: 125px;
   height: 42px;
@@ -50,6 +49,23 @@ const Save = styled(Next)`
   display: ${(props) => (props.id === "info" ? "none" : null)};
   & > h2 {
     color: white;
+  }
+`;
+const Save2 = styled(Next)`
+  width: 125px;
+  height: 42px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #00c4b4;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  display: ${(props) => (props.id === "info" ? "none" : null)};
+  & > h2 {
+    color: white;
+  }
+  :hover{
+    background-color: #03DAC5;
   }
 `;
 

@@ -48,7 +48,7 @@ function ProjectSelect() {
     dispatch(projectActions.setProjectDB());
     return () => projectSubmit();
   }, []);
-
+  console.log(project)
   return (
     <>
       {!is_loading ? (
@@ -69,16 +69,23 @@ function ProjectSelect() {
             })}
           </ProjectBox>
 
-          <div>
-            {error && <ErrorMessageSpan style={{}}>{error}</ErrorMessageSpan>}
-          </div>
-          <MakeCenter onClick={() => history.push(`/write/project/info`)}>
+          <MakeCenter style={{ marginBottom: "10px" }} onClick={() => history.push(`/write/project/info`)}>
             <AddButton>
               <ContentCareer>
                 <ButtonText>+ 새 프로젝트 작성하기</ButtonText>
               </ContentCareer>
             </AddButton>
           </MakeCenter>
+          <div style={{ marginBottom: "60px" }}>
+            {project?.length === 0 && <ErrorMessageSpan style={{
+              fontSize: "16px",
+              color: "#CFD3E2", textAlign: "center", lineHeight: "24px"
+            }}>
+              포트폴리오에 추가할 프로젝트가 없어요. <br />
+              새 프로젝트 작성 버튼을 눌러 포트폴리오를 완성해보세요.
+            </ErrorMessageSpan>}
+            {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
+          </div>
           <PreviousNext />
           <Template projectSubmit={projectSubmit} />
         </form>
@@ -98,7 +105,7 @@ const ErrorMessageSpan = styled(ErrorMessage)`
 // 프로젝트 카드를 반응형으로 배치 하는 것 해야함
 const ProjectBox = styled.div`
   justify-content: space-around;
-  margin: 0px auto;
+  margin: 60px auto;
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;

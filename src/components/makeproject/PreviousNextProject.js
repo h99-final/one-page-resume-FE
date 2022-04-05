@@ -87,6 +87,10 @@ const Next = styled.div`
     color: #ffffff;
   }
   cursor: pointer;
+
+  :hover{
+    background-color: #03DAC5;
+  }
 `;
 const Previous = styled(Next)`
   cursor: pointer;

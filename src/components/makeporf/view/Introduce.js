@@ -23,7 +23,7 @@ function Introduce() {
   } = useForm({ defaultValues });
 
   const introSubmit = (data) => {
-    apis.introPorf(data).then((res) => {});
+    apis.introPorf(data).then((res) => { });
     // .catch((error) => {
     //   alert("필수 정보를 입력해주세요.");
     // });
@@ -186,9 +186,6 @@ export const Font = styled.div`
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.01em;
-
-  /* C1 */
-
   color: #ffffff;
   margin: 10px;
 `;
