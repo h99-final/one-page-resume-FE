@@ -39,6 +39,7 @@ const Nav = (props) => {
   const history = useHistory();
   // props.nav (false or true)
   const navState = props.nav;
+  const setNavState = props.setNav;
 
   const wrapperRef = useRef();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -57,16 +58,15 @@ const Nav = (props) => {
 
   const handleClickOutside = (event) => {
     if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setNav(false);
+      setNavState(false);
     } else {
-      setNav(true);
+      setNavState(true);
     }
   };
   // useEffect로 navState가 바뀔때마다 렌더링
   useEffect(() => {
     setNav(navState);
   }, [navState]);
-  console.log(nav)
   // SignOut
   const signOut = () => {
     setNav(false);

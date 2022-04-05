@@ -178,7 +178,8 @@ const Header = (props) => {
             >
               프로젝트
             </Proj>
-            <Pnav pnav={pnav} />
+            <Pnav pnav={pnav}
+              setPnav={setPnav} />
           </LeftMenu>
           <RightMenu>
             {num === 1 ? null : (
@@ -230,6 +231,7 @@ const Header = (props) => {
             />
             <Nav
               nav={nav}
+              setNav={setNav}
               name={userInfo?.name}
               email={userInfo?.email}
               userId={userInfo?.userId}
