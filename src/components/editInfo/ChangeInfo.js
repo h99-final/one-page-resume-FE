@@ -14,6 +14,8 @@ import {
 import { apis } from "../../shared/axios";
 import FileUpload from "../makeporf/shared/ImageUpload";
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '../../redux/modules/user';
 
 function ChangeInfo() {
   const history = useHistory()
@@ -28,7 +30,7 @@ function ChangeInfo() {
   } = useForm({ defaultValues });
 
   const [data, setData] = useState({});
-
+  const dispatch = useDispatch()
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const onValid = (data) => {
@@ -37,6 +39,7 @@ function ChangeInfo() {
     apis
       .addInfo(_data)
       .then((res) => {
+        dispatch(actionCreators.userInfoDB())
         window.alert("변경 완료");
         history.push('/mypage')
       })

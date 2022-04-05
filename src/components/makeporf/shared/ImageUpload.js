@@ -10,34 +10,32 @@ import { actionCreators as userActions } from "../../../redux/modules/user";
 
 function FileUpload() {
   const dispatch = useDispatch();
-  const [Images, setImages] = useState([]);
-  const [img, setImg] = useState("");
+
   const userInfo = useSelector((state) => state.user.user);
+  const [img, setImg] = useState(userInfo.profileImage);
   // const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem("userInfo")));
 
   const dropHandler = (files) => {
     //file을 백엔드에 전해줌(1)
     let formData = new FormData();
     formData.append("profileImage", files[0]);
-
     apis
       .addImg(formData)
       // 백엔드가 file저장하고 그 결과가 reponse에 담김
       // 백엔드는 그 결과를 프론트로 보내줌(3)
       .then((response) => {
-        setImages([...Images, response.data.data.img]);
         setImg(response.data.data.img);
-        dispatch(userActions.userInfoDB());
       });
   };
-
+  console.log(img)
   function deletePreview(e) {
     e.stopPropagation();
 
     apis
       .delImg()
       .then((res) => {
-        dispatch(userActions.userInfoDB());
+        setImg("empty")
+        // dispatch(userActions.userInfoDB());
       })
       .catch((error) => {
         window.alert(error.response.data.data.errors[0].message);
@@ -50,7 +48,7 @@ function FileUpload() {
         {({ getRootProps, getInputProps, isFocused, isDragActive }) => (
           <>
             <Inner {...getRootProps()}>
-              {userInfo.profileImage === "empty" ? (
+              {img === "empty" ? (
                 <Image>
                   {isFocused || isDragActive ? (
                     <>
@@ -78,7 +76,7 @@ function FileUpload() {
                     style={{ borderRadius: "10px" }}
                     width="100%"
                     alt="이미지를 등록해주세요"
-                    src={userInfo.profileImage}
+                    src={img}
                   />
                   <TrashImg
                     onClick={(e) => deletePreview(e)}
