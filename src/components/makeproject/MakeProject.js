@@ -148,7 +148,7 @@ function MakeProject() {
               setIs_Loading(false);
             })
             .catch((error) => {
-              window.alert(error.response.data.data.errors[0].message);
+              window.alert(error.response.data?.data?.errors[0].message);
               setIs_Loading(false);
             });
         }
