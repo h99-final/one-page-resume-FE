@@ -105,6 +105,9 @@ const Btn2 = styled.button`
   border: none;
   color: white;
   background-color: #00c4b4;
+  :hover{
+      background-color: #03DAC5;
+    }
 `;
 
 const TextContainer = styled.div`

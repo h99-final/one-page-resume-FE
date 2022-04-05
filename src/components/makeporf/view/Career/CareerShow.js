@@ -34,8 +34,8 @@ function CareerShow(props) {
     <>
       <hr style={{ margin: "50px", border: "1px solid #424453" }} />
       <FormContents>
-        <IconBox>
-          <DeleteForeverIcon onClick={handleDelete} />
+        <IconBox onClick={handleDelete}>
+          <img alt="" src={process.env.PUBLIC_URL + "/img/trash.svg"} />
         </IconBox>
         <Content style={{ marginBottom: "40px" }}>
           <Label>
@@ -112,6 +112,7 @@ const InputCustomDate = styled(InputCustom)`
 `;
 
 const IconBox = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -86,6 +86,7 @@ const Modal = ({ modalClose }) => {
                     }}
                   >
                     <img
+                      style={{ cursor: "pointer" }}
                       alt=""
                       src={process.env.PUBLIC_URL + "/img/close.svg"}
                     />
@@ -125,6 +126,7 @@ const Modal = ({ modalClose }) => {
                     }}
                   >
                     <img
+                      style={{ cursor: "pointer" }}
                       alt=""
                       src={process.env.PUBLIC_URL + "/img/close.svg"}
                     />

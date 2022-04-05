@@ -201,7 +201,13 @@ const WriteBtn = styled.button`
     border: none;
     color: #696b7b;
     background-color: #424453;
+    :hover{
+      background-color: #424453;
+    }
   }
+  :hover{
+      background-color: #03DAC5;
+    }
 `;
 const OrBox = styled.div`
   width: 350px;

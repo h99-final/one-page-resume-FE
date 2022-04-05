@@ -251,11 +251,17 @@ export const StyledHeader = styled.div`
   position: fixed;
   top: 0px;
   width: 100%;
-  min-width: 800px;
+  min-width: 400px;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0px;
   z-index: 5;
+
+  img{
+    :hover{
+    filter: brightness(120%);
+  }
+  }
 `;
 
 export const LeftMenu = styled.div`
@@ -313,6 +319,9 @@ const SharedBtn = styled.button`
   padding: 10px 20px;
   border: none;
   margin-right: 30px;
+  :hover{
+    background-color: #03DAC5;
+  }
 `;
 
 const WriteBtn = styled.button`
@@ -325,4 +334,7 @@ const WriteBtn = styled.button`
   font-size: 17px;
   padding: 10px 20px;
   border: none;
+  :hover{
+    background-color: #03DAC5;
+  }
 `;

@@ -44,11 +44,11 @@ function MainCard(props) {
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack?.length > 3
             ? stack?.slice(0, 3)?.map((e, i) => {
-                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-              })
+              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+            })
             : stack?.map((e, i) => {
-                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-              })}
+              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+            })}
           {stack?.length > 3 && (
             <ProjectStack
               style={{
@@ -161,7 +161,7 @@ const InnerCard = styled.img`
 
 export const ProjectForm = styled.div`
   width: 31.9%;
-
+  cursor: pointer;
   margin: 0% 0.7%;
   background-color: #393a47;
   max-height: 515px;

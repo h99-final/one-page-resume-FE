@@ -410,10 +410,16 @@ const WriteBtn = styled.button`
   color: white;
   background-color: #00c4b4;
   :disabled {
-    color: #696b7b;
     border: none;
+    color: #696b7b;
     background-color: #424453;
+    :hover{
+      background-color: #424453;
+    }
   }
+  :hover{
+      background-color: #03DAC5;
+    }
 `;
 
 const ContinueBtn = styled.button`
@@ -432,8 +438,15 @@ const ContinueBtn = styled.button`
   background-color: #00c4b4;
   :disabled {
     border: none;
-    background-color: gray;
+    color: #696b7b;
+    background-color: #424453;
+    :hover{
+      background-color: #424453;
+    }
   }
+  :hover{
+      background-color: #03DAC5;
+    }
 `;
 
 const CloseBtn = styled.button`
