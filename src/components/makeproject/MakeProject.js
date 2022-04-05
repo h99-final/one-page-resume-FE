@@ -294,6 +294,7 @@ function MakeProject() {
                   <SelectStack key={index} {...addStack}>
                     {addStack}
                     <ClearIcon
+                      style={{ cursor: "pointer" }}
                       sx={{ fontSize: 14, color: grey[500], marginLeft: 1 }}
                       onClick={() => {
                         handleDelete(addStack);
@@ -335,6 +336,9 @@ export const Routing = styled.a`
   margin-left: 10px;
   text-decoration: underline;
   color: #00c4b4;
+  :hover{
+    color: #03DAC5;
+  }
 `;
 
 export const FormSubText = styled.p`

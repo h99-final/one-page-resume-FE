@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie } from "./cookie";
@@ -14,11 +14,26 @@ const Pnav = (props) => {
   // NavBar 설정
   const [pnav, setPnav] = useState(false);
 
+  const wrapperRef = useRef();
   // useEffect로 navState가 바뀔때마다 렌더링
   useEffect(() => {
     setPnav(navState);
   }, [navState]);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+  const handleClickOutside = (event) => {
+    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+      setPnav(false);
+    } else {
+      setPnav(true);
+    }
+  };
   // SignOut
   const signOut = () => {
     setPnav(false);
@@ -27,7 +42,7 @@ const Pnav = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div ref={wrapperRef}>
       {pnav ? (
         <NavBar>
           <NavLog>
@@ -58,7 +73,7 @@ const Pnav = (props) => {
           </NavLog>
         </NavBar>
       ) : null}
-    </React.Fragment>
+    </div>
   );
 };
 // NavBar component

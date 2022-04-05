@@ -296,15 +296,7 @@ function TsModal(props) {
                       <GithubSpinner />
                     ) : (
                       <div>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            marginLeft: "auto",
-                            marginRight: "100px",
-                            marginBottom: "10px",
-                          }}
-                        >
+                        <Update>
                           <img
                             onClick={handlesync}
                             style={{ cursor: "pointer" }}
@@ -313,7 +305,7 @@ function TsModal(props) {
                             height="auto"
                             src={process.env.PUBLIC_URL + "/img/rotate.svg"}
                           />
-                        </div>
+                        </Update>
                         <Ulist>
                           {message_list.map((e, i) => {
                             if (selectedSha === e.sha) {
@@ -486,7 +478,16 @@ export const TokenTitle = styled.div`
     margin-left: 10px;
   }
 `;
-
+const Update = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 100px;
+  margin-bottom: 10px;
+  :hover{
+    filter: brightness(120%);
+  }
+`
 const FormContentsModal = styled(FormContents)`
   height: 50vh;
   padding-bottom: 0px;

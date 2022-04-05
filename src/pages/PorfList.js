@@ -182,6 +182,7 @@ const PorfList = () => {
                 {addStack}
                 <ClearIcon
                   // value={addStack}
+                  style={{ cursor: "pointer" }}
                   sx={{
                     fontSize: 14,
                     color: grey[500],

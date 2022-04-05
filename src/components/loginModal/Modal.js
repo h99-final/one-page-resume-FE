@@ -32,7 +32,7 @@ const Modal = ({ modalClose }) => {
   });
 
   const handleClickOutside = (event) => {
-    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+    if (wrapperRef && !wrapperRef.current?.contains(event.target)) {
       setModalOpen(true);
     } else {
       setModalOpen(false);

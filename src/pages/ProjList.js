@@ -194,6 +194,7 @@ const ProjList = () => {
               <SelectStack key={`stack-${index}`} {...addStack}>
                 {addStack}
                 <ClearIcon
+                  style={{ cursor: "pointer" }}
                   sx={{
                     fontSize: 14,
                     color: grey[500],

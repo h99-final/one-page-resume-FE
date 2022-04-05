@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { deleteCookie, getCookie } from "./cookie";
@@ -40,15 +40,33 @@ const Nav = (props) => {
   // props.nav (false or true)
   const navState = props.nav;
 
+  const wrapperRef = useRef();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // NavBar 설정
   const [nav, setNav] = useState(false);
 
+
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
+  const handleClickOutside = (event) => {
+    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+      setNav(false);
+    } else {
+      setNav(true);
+    }
+  };
   // useEffect로 navState가 바뀔때마다 렌더링
   useEffect(() => {
     setNav(navState);
   }, [navState]);
-
+  console.log(nav)
   // SignOut
   const signOut = () => {
     setNav(false);
@@ -70,9 +88,9 @@ const Nav = (props) => {
 
   return (
     <React.Fragment>
-      {num === 0 ? <>
+      {num === 0 ? <div ref={wrapperRef}>
         {nav ? (
-          <NavBar>
+          <NavBar >
             <Profile>
               <h1>{props.name ? props.name : "ㅡ"}</h1>
               <p>{props.email}</p>
@@ -114,9 +132,9 @@ const Nav = (props) => {
             </NavLog>
           </NavBar>
         ) : null}
-      </> : <>
+      </div> : <>
         {nav ? (
-          <BigNavBar>
+          <BigNavBar ref={wrapperRef}>
             <BigProfile>
               <Left>
 

@@ -251,6 +251,7 @@ function Stack() {
               <SelectStack key={index} {...addStack}>
                 {addStack}
                 <ClearIcon
+                  style={{ cursor: "pointer" }}
                   id={addStack}
                   sx={{
                     fontSize: 14,
