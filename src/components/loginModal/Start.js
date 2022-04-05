@@ -188,6 +188,9 @@ const TextContainer = styled.div`
     line-height: 19px;
     letter-spacing: -0.01em;
     color: #CFD3E2;
+    :hover{
+      color: #fff;
+    }
   }
 `;
 

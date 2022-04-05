@@ -83,15 +83,14 @@ function Template({
           <FormText style={{ marginLeft: "15px" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
-          <Save
+
+          <Save2
             style={{
               marginRight: "20px",
-              background: "#00C4B4",
             }}
           >
             <FormTextWhite
               style={{ color: "white", fontSize: "16px" }}
-              // onClick={}
               onClick={handleCheck}
             >
               {id === "career" ? (
@@ -103,7 +102,7 @@ function Template({
               ) : null}
               작성 완료
             </FormTextWhite>
-          </Save>
+          </Save2>
           {id === "stack" ? (
             <Save onClick={submitStack} style={{ marginRight: "15px" }}>
               <FormTextWhite style={{ fontSize: "16px" }}>
@@ -150,7 +149,19 @@ const Save = styled(Next)`
   justify-content: center !important;
   align-items: center;
 `;
-
+const Save2 = styled(Next)`
+  cursor: pointer;
+  width: 120px;
+  height: 42px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  background: #00C4B4;
+  :hover{
+    background-color: #03DAC5;
+  }
+`;
 const Label = styled.label`
   cursor: pointer;
   display: flex;

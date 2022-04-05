@@ -152,6 +152,7 @@ const Content = styled.div`
   margin-right: 25px;
 `;
 const Portfolio = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -161,7 +162,6 @@ const Portfolio = styled.div`
   background-image: ${(props) => `url(${props.background})`};
   width: 327px;
   height: 369px;
-
   border-radius: 10px;
   color: ${(props) =>
     props.templateIdx === 0 ||
@@ -173,6 +173,9 @@ const Portfolio = styled.div`
       props.templateIdx === 12
       ? "#fff"
       : "#000"};
+  :hover{
+    margin-top: 0px;
+      }
   @media only screen and (min-width: 1900px) {
   }
 `;
