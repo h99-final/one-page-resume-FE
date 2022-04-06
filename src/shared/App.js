@@ -42,7 +42,7 @@ function App() {
   const isUserInfo = () => sessionStorage.getItem("userInfo");
 
   useEffect(() => {
-    if (token) {
+    if (!!isUserInfo()) {
       dispatch(userActions.userInfoDB());
     }
   }, []);
