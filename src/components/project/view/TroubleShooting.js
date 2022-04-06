@@ -37,7 +37,6 @@ const TroubleShooting = (props) => {
     }
   }, []);
 
-
   // const [ts, setTS] = useState([]);
   const [selected, setSelected] = useState(0);
 
@@ -115,7 +114,7 @@ const TroubleShooting = (props) => {
             {commitMsg}
           </Font>
           {!is_highlight_loading &&
-            leftBox?.current?.getBoundingClientRect().height ? (
+          leftBox?.current?.getBoundingClientRect().height ? (
             <Highlighted
               fontcolor={fontcolor}
               height={
