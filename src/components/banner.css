@@ -71,7 +71,8 @@ body {
   text-transform: none;
   font-variant: initial;
   line-height: 1;
-  color: black;
+  color: rgb(255, 255, 255, 0.6);
+  
 }
 
 .mySwiper.swiper-slide img {
@@ -136,6 +137,7 @@ body {
   width: 50%;
   height: fit-content;
 }
+
 .swiper-pagination-bullet {
   color: #000;
   opacity: 1;
