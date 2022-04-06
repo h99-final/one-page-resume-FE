@@ -20,20 +20,20 @@ const Pnav = (props) => {
     setPnav(navState);
   }, [navState]);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  });
-  const handleClickOutside = (event) => {
-    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setNavState(false);
-    } else {
-      setNavState(true);
-    }
-  };
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // });
+  // const handleClickOutside = (event) => {
+  //   if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+  //     setNavState(false);
+  //   } else {
+  //     setNavState(true);
+  //   }
+  // };
   // SignOut
   const signOut = () => {
     setPnav(false);
