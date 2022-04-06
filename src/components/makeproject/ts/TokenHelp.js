@@ -35,7 +35,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     position: "fixed",
     background: "#1F2029",
-    paddingTop: "150px",
+    paddingTop: "15px",
     // overflow: "hidden",
   },
 };
@@ -59,6 +59,7 @@ function TokenHelp(props) {
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
+      overlayClassName="Overlay2"
     >
       <IconBoxLeft onClick={closeModal}>
         <img alt="" src={process.env.PUBLIC_URL + "/img/close.svg"} />

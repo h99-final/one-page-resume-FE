@@ -45,21 +45,23 @@ const Nav = (props) => {
   // NavBar 설정
   const [nav, setNav] = useState(false);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  });
 
-  const handleClickOutside = (event) => {
-    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setNavState(false);
-    } else {
-      setNavState(true);
-    }
-  };
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // });
+
+  // const handleClickOutside = (event) => {
+  //   if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+  //     setNavState(false);
+  //   } else {
+  //     setNavState(true);
+  //   }
+  // };
   // useEffect로 navState가 바뀔때마다 렌더링
   useEffect(() => {
     setNav(navState);
