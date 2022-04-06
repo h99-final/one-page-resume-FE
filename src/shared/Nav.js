@@ -34,7 +34,6 @@ export function useWindowSize() {
 
 const Nav = (props) => {
   const size = useWindowSize();
-  const token = getCookie("token");
   const dispatch = useDispatch();
   const history = useHistory();
   // props.nav (false or true)

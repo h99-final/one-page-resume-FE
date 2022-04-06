@@ -7,7 +7,6 @@ import { Link, useHistory } from "react-router-dom";
 
 const Pnav = (props) => {
   const history = useHistory();
-  const user = getCookie("token");
   // props.nav (false or true)
   const navState = props.pnav;
   const setNavState = props.setPnav;

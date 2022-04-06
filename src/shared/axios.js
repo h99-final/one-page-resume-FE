@@ -1,44 +1,44 @@
 import axios from "axios";
 import { getCookie } from "./cookie";
 const tokencheck = getCookie("token");
-const token = tokencheck.split(";")[1];
+// const token = tokencheck.split(";")[1];
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
 
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
-    token: token,
+    token: tokencheck,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
   },
 });
 const formInstance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  // baseURL: "http://3.35.13.186/",
-  baseURL: "https://jonghun.shop",
+  baseURL: "http://3.35.13.186/",
+  // baseURL: "https://jonghun.shop",
   headers: {
     // "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     // accept: "*/*",
     "content-type": "multipart/form-data",
     accept: "application/json",
-    token: token,
+    token: tokencheck,
     //로그인 후에는 토큰도 headers에 담아서 건내줘야한다.
   },
 });
 
 instance.interceptors.request.use(function (config) {
-  const accesstoken = getCookie("token").split("=")[1];
+  const accesstoken = getCookie("token");
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });
 
 formInstance.interceptors.request.use(function (config) {
-  const accesstoken = getCookie("token").split("=")[1];
+  const accesstoken = getCookie("token");
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });
