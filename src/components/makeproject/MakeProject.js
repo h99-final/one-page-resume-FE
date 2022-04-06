@@ -79,6 +79,7 @@ function MakeProject() {
   // const [stacks, setStacks] = useState([]);
   const [addStack, setAddStack] = useState([]);
   const [stackError, setStackError] = useState("");
+  const [imagesError, setImagesError] = useState("");
   const handleChange = (event, newValue) => {
     setAddStack(newValue);
   };
@@ -96,10 +97,21 @@ function MakeProject() {
   const [is_loading, setIs_Loading] = useState(false);
   // form 제출
   const projectSubmit = (data) => {
-    setIs_Loading(true);
+
     if (!!is_loading) {
       return;
     }
+
+    if (addStack.length === 0) {
+      setStackError("1개 이상 골라주세요.");
+      return;
+    }
+
+    if (images.length === 0) {
+      setImagesError("이미지를 1개 이상 등록해주세요.")
+      return
+    }
+
     const { projectTitle, gitRepoUrl } = data;
     const _gitRepoName = gitRepoUrl.split("/");
     const gitRepoName = _gitRepoName[_gitRepoName.length - 1];
@@ -108,14 +120,9 @@ function MakeProject() {
       gitRepoUrl: gitRepoUrl,
       gitRepoName: gitRepoName,
     };
-
+    setIs_Loading(true);
     apis.repoCheck(repoCheckData).then((res) => {
       if (res.data.data.isOk) {
-        if (addStack.length === 0) {
-          setStackError("1개 이상 골라주세요.");
-          return;
-        }
-
         const jsonFrm = {
           title: projectTitle,
           content: mdValue,
@@ -238,6 +245,8 @@ function MakeProject() {
               <ForProjUpload images={images} setImages={setImages} />
             )}
           </MultiContentFlex>
+
+          <ErrorMessage>{imagesError}</ErrorMessage>
           {/* // 파일 여러개 받는 법 */}
           <MultiContent>
             <Label style={{ height: "auto" }}>

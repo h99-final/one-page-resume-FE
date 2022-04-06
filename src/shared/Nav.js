@@ -48,21 +48,21 @@ const Nav = (props) => {
 
 
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  });
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // });
 
-  const handleClickOutside = (event) => {
-    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setNavState(false);
-    } else {
-      setNavState(true);
-    }
-  };
+  // const handleClickOutside = (event) => {
+  //   if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+  //     setNavState(false);
+  //   } else {
+  //     setNavState(true);
+  //   }
+  // };
   // useEffect로 navState가 바뀔때마다 렌더링
   useEffect(() => {
     setNav(navState);
