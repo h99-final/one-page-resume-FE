@@ -30,6 +30,9 @@ import Privacy from "../pages/Privacy";
 
 import ReactGA from "react-ga";
 import useGaTracker from "../useGaTracker";
+import { getCookie } from "./cookie";
+
+const token = getCookie("token");
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +42,7 @@ function App() {
   const isUserInfo = () => sessionStorage.getItem("userInfo");
 
   useEffect(() => {
-    if (!!isUserInfo()) {
+    if (token) {
       dispatch(userActions.userInfoDB());
     }
   }, []);
