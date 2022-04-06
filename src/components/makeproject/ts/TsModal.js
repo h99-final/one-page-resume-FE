@@ -484,10 +484,10 @@ const Update = styled.div`
   margin-left: auto;
   margin-right: 100px;
   margin-bottom: 10px;
-  :hover{
+  :hover {
     filter: brightness(120%);
   }
-`
+`;
 const FormContentsModal = styled(FormContents)`
   height: 50vh;
   padding-bottom: 0px;

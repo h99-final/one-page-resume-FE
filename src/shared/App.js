@@ -25,8 +25,11 @@ import ProjList from "../pages/ProjList";
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
 import Loading from "../components/makeproject/ts/Loading";
 import GithubSpinner from "./GithubSpinner";
-import Policy from '../pages/Policy';
-import Privacy from '../pages/Privacy';
+import Policy from "../pages/Policy";
+import Privacy from "../pages/Privacy";
+
+import ReactGA from "react-ga";
+import useGaTracker from "../useGaTracker";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +63,8 @@ function App() {
       />
     );
   };
+
+  useGaTracker();
 
   return (
     <>
