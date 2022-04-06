@@ -1,5 +1,6 @@
 import axios from "axios";
-const tokencheck = document.cookie;
+import { getCookie } from "./cookie";
+const tokencheck = getCookie("token");
 const token = tokencheck.split(";")[1];
 
 const instance = axios.create({
@@ -31,13 +32,13 @@ const formInstance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
-  const accesstoken = document.cookie.split("=")[1];
+  const accesstoken = getCookie("token").split("=")[1];
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });
 
 formInstance.interceptors.request.use(function (config) {
-  const accesstoken = document.cookie.split("=")[1];
+  const accesstoken = getCookie("token").split("=")[1];
   config.headers.common["Authorization"] = `${accesstoken}`;
   return config;
 });

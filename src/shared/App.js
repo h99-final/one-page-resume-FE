@@ -44,6 +44,8 @@ function App() {
     }
   }, []);
 
+  useGaTracker();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -63,8 +65,6 @@ function App() {
       />
     );
   };
-
-  useGaTracker();
 
   return (
     <>
