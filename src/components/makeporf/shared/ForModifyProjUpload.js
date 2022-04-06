@@ -82,7 +82,7 @@ function ForModifyProjUpload(props) {
       </Dropzone>
 
       {files.map((file, i) => (
-        <Image key={`images-${file.id}`}>
+        <Image key={`files-${file.id}`}>
           <img
             style={{ borderRadius: "10px" }}
             width="250px"

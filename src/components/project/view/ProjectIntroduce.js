@@ -86,9 +86,8 @@ const ProjectIntroduce = (props) => {
               <ImagePreview>
                 {project?.img?.map((e, i) => {
                   return (
-                    <SwiperSlide>
+                    <SwiperSlide key={`imagepreveiw-${i}`}>
                       <SubCard
-                        key={`imagepreveiw-${i}`}
                         alt=""
                         src={e.url}
                       />

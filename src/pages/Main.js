@@ -195,9 +195,7 @@ const Main = () => {
           <Project>
             {proj?.map((e, i) => {
               return (
-                <>
-                  <MainCard key={`project-${e.id}-${i}`} {...e} />
-                </>
+                <MainCard key={`project-${e.id}-${i}`} {...e} />
               );
             })}
           </Project>
