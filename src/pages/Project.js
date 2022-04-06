@@ -24,7 +24,7 @@ const Project = () => {
     apis
       .projectTSGet(id)
       .then((res) => setTroubleShootings(res.data.data))
-      .then(() => setIs_loading(false))
+      .then(() => setIs_loading(false));
     dispatch(actionCreators.setTroubleShootingDB(id));
     return setIs_loading(true);
   }, []);
@@ -114,7 +114,7 @@ export const TroubleShootingContainer = styled.div`
   position: relative;
   height: 100%;
   width: 95vw;
-  margin-bottom: 100px;
+  margin: 100px 0px 100px 0px;
   justify-content: space-between;
   /* background-color: #111f30; */
   flex-shrink: 1;
