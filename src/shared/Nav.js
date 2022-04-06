@@ -34,7 +34,6 @@ export function useWindowSize() {
 
 const Nav = (props) => {
   const size = useWindowSize();
-  const token = document.cookie;
   const dispatch = useDispatch();
   const history = useHistory();
   // props.nav (false or true)
@@ -88,135 +87,137 @@ const Nav = (props) => {
 
   return (
     <React.Fragment>
-      {num === 0 ? <div ref={wrapperRef}>
-        {nav ? (
-          <NavBar >
-            <Profile>
-              <h1>{props.name ? props.name : "ㅡ"}</h1>
-              <p>{props.email}</p>
-            </Profile>
-            <NavPro
-              onClick={() => {
-                history.push("/mypage");
-              }}
-            >
-              <img
-                style={{ marginRight: "15px" }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/mypage.svg"}
-              />
-              마이페이지
-            </NavPro>
-            <NavSet
-              onClick={() => {
-                history.push(`/editinfo/changeinfo/${props.userId}`);
-              }}
-            >
-              <img
-                style={{
-                  marginRight: "15px",
-                }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
-              />
-              내 정보 수정
-            </NavSet>
-            <NavLog>
-              <Logout
-                onClick={() => {
-                  signOut();
-                }}
-              >
-                로그아웃
-              </Logout>
-            </NavLog>
-          </NavBar>
-        ) : null}
-      </div> : <>
-        {nav ? (
-          <BigNavBar ref={wrapperRef}>
-            <BigProfile>
-              <Left>
-
-                <h1>{props.name}</h1>
+      {num === 0 ? (
+        <div ref={wrapperRef}>
+          {nav ? (
+            <NavBar>
+              <Profile>
+                <h1>{props.name ? props.name : "ㅡ"}</h1>
                 <p>{props.email}</p>
-              </Left>
-              <Right>
-
-                <img
-                  style={{ marginTop: "45px" }}
-                  alt=""
-                  src={process.env.PUBLIC_URL + "/img/fornav.svg"} />
-              </Right>
-            </BigProfile>
-            <NavPro
-              style={{ justifyContent: "center" }}
-              onClick={() => {
-                history.push("/mypage");
-              }}
-            >
-              <img
-                style={{ marginRight: "15px" }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/mypage.svg"}
-              />
-              <div style={{ marginRight: "180px" }}>마이페이지</div>
-            </NavPro>
-            <NavSet
-              onClick={() => {
-                history.push(`/editinfo/changeinfo/${props.userId}`);
-              }}
-            >
-              <img
-                style={{
-                  marginRight: "15px",
-                }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
-              />
-              <div style={{ marginRight: "178px" }}>내 정보 수정</div>
-            </NavSet>
-            <NavSet
-              onClick={() => {
-                history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
-              }}
-            >
-              <img
-                style={{
-                  marginRight: "15px",
-                }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/porf.svg"}
-              />
-              <div style={{ marginRight: "173px" }}>내 포트폴리오</div>
-            </NavSet>
-            <NavSet
-              onClick={() => {
-                history.push("/write/project/info");
-              }}
-            >
-              <img
-                style={{
-                  marginRight: "15px",
-                }}
-                alt=""
-                src={process.env.PUBLIC_URL + "/img/proj.svg"}
-              />
-              <div style={{ marginRight: "180px" }}>새 프로젝트</div>
-            </NavSet>
-            <NavLog>
-              <Logout
+              </Profile>
+              <NavPro
                 onClick={() => {
-                  signOut();
+                  history.push("/mypage");
                 }}
               >
-                로그아웃
-              </Logout>
-            </NavLog>
-          </BigNavBar>
-        ) : null}
-      </>}
-
+                <img
+                  style={{ marginRight: "15px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/mypage.svg"}
+                />
+                마이페이지
+              </NavPro>
+              <NavSet
+                onClick={() => {
+                  history.push(`/editinfo/changeinfo/${props.userId}`);
+                }}
+              >
+                <img
+                  style={{
+                    marginRight: "15px",
+                  }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
+                />
+                내 정보 수정
+              </NavSet>
+              <NavLog>
+                <Logout
+                  onClick={() => {
+                    signOut();
+                  }}
+                >
+                  로그아웃
+                </Logout>
+              </NavLog>
+            </NavBar>
+          ) : null}
+        </div>
+      ) : (
+        <>
+          {nav ? (
+            <BigNavBar ref={wrapperRef}>
+              <BigProfile>
+                <Left>
+                  <h1>{props.name}</h1>
+                  <p>{props.email}</p>
+                </Left>
+                <Right>
+                  <img
+                    style={{ marginTop: "45px" }}
+                    alt=""
+                    src={process.env.PUBLIC_URL + "/img/fornav.svg"}
+                  />
+                </Right>
+              </BigProfile>
+              <NavPro
+                style={{ justifyContent: "center" }}
+                onClick={() => {
+                  history.push("/mypage");
+                }}
+              >
+                <img
+                  style={{ marginRight: "15px" }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/mypage.svg"}
+                />
+                <div style={{ marginRight: "180px" }}>마이페이지</div>
+              </NavPro>
+              <NavSet
+                onClick={() => {
+                  history.push(`/editinfo/changeinfo/${props.userId}`);
+                }}
+              >
+                <img
+                  style={{
+                    marginRight: "15px",
+                  }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/navpencil.svg"}
+                />
+                <div style={{ marginRight: "178px" }}>내 정보 수정</div>
+              </NavSet>
+              <NavSet
+                onClick={() => {
+                  history.push(`/write/portfolio/introduce/${userInfo.porfId}`);
+                }}
+              >
+                <img
+                  style={{
+                    marginRight: "15px",
+                  }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/porf.svg"}
+                />
+                <div style={{ marginRight: "173px" }}>내 포트폴리오</div>
+              </NavSet>
+              <NavSet
+                onClick={() => {
+                  history.push("/write/project/info");
+                }}
+              >
+                <img
+                  style={{
+                    marginRight: "15px",
+                  }}
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/img/proj.svg"}
+                />
+                <div style={{ marginRight: "180px" }}>새 프로젝트</div>
+              </NavSet>
+              <NavLog>
+                <Logout
+                  onClick={() => {
+                    signOut();
+                  }}
+                >
+                  로그아웃
+                </Logout>
+              </NavLog>
+            </BigNavBar>
+          ) : null}
+        </>
+      )}
     </React.Fragment>
   );
 };
@@ -234,7 +235,7 @@ const NavBar = styled.nav`
   top: 75px;
   margin-right: 30px;
   right: 0;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
 `;
 const BigNavBar = styled.nav`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -249,17 +250,16 @@ const BigNavBar = styled.nav`
   top: 75px;
   margin-right: 30px;
   right: 0;
-  background-color: #2C2E39;
+  background-color: #2c2e39;
 `;
 
 const BigProfile = styled.div`
   display: flex;
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid #393A47;
+  border-bottom: 1px solid #393a47;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  
 `;
 const Left = styled.div`
   width: 65%;
@@ -274,7 +274,7 @@ const Left = styled.div`
   p {
     margin-top: 15px;
     font-size: 14px;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 `;
 const Right = styled.div`
@@ -288,7 +288,7 @@ const Profile = styled.div`
   text-align: center;
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid #393A47;
+  border-bottom: 1px solid #393a47;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   h1 {
@@ -300,7 +300,7 @@ const Profile = styled.div`
   p {
     margin-top: 15px;
     font-size: 14px;
-    color: #CFD3E2;
+    color: #cfd3e2;
   }
 `;
 const NavPro = styled.div`
@@ -345,7 +345,7 @@ const NavSet = styled.div`
   }
 `;
 const NavLog = styled.div`
-  border-top: 1px solid #393A47;
+  border-top: 1px solid #393a47;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   display: flex;
@@ -358,7 +358,7 @@ const NavLog = styled.div`
   }
 `;
 const Logout = styled.button`
-cursor: pointer;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -372,9 +372,9 @@ cursor: pointer;
   box-sizing: border-box;
   border-radius: 30px;
   :hover {
-    border: 1px solid #696B7B;
+    border: 1px solid #696b7b;
     color: white;
-    background-color: #696B7B;
+    background-color: #696b7b;
   }
 `;
 export default Nav;

@@ -15,6 +15,8 @@ import Template from "../shared/Template";
 function Introduce() {
   const defaultValues = {};
 
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
   const {
     handleSubmit,
     formState: { errors },
@@ -23,21 +25,19 @@ function Introduce() {
   } = useForm({ defaultValues });
 
   const introSubmit = (data) => {
-    apis.introPorf(data).then((res) => { });
+    apis.introPorf(data).then((res) => {});
     // .catch((error) => {
     //   alert("필수 정보를 입력해주세요.");
     // });
   };
 
   useEffect(() => {
-    apis.userInfo().then((res) => {
-      const { porfId } = res.data.data;
-      apis.introPorfGet(porfId).then((res) => {
-        // alert("저장되었습니다.");
-        const { title, contents } = res.data.data;
-        setValue("title", title);
-        setValue("contents", contents);
-      });
+    const { porfId } = userInfo;
+    apis.introPorfGet(porfId).then((res) => {
+      // alert("저장되었습니다.");
+      const { title, contents } = res.data.data;
+      setValue("title", title);
+      setValue("contents", contents);
     });
   }, []);
 
