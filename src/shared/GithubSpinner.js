@@ -138,7 +138,6 @@ function GithubSpinner(props) {
 const Container = styled.div`
   background-color: #1f2029;
   width: 100%;
-  height: 95%;
   border-radius: 10px;
   /* height: calc(100%-45px); */
 `;
@@ -146,8 +145,7 @@ const Container = styled.div`
 const Box = styled.div`
   display: flex;
   margin: 0px auto;
-  width: 90%;
-  height: 527px;
+  width: 70%;
 `;
 
 const LeftBox = styled.div`
@@ -157,7 +155,7 @@ const LeftBox = styled.div`
 
 const StepBox = styled.div`
   width: fit-content;
-  margin: 70px auto;
+  margin: 40px auto;
   margin-right: 20px;
   h1 {
     font-style: normal;
@@ -196,26 +194,25 @@ const InfoBox = styled.div`
   width: 100%;
   height: fit-content;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   h1 {
-    margin-top: 30px;
+    margin-top: 20px;
     font-style: normal;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 26px;
     line-height: 34px;
     letter-spacing: -0.01em;
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   h2 {
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.01em;
     color: #CFD3E2;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   img {
     width: fit-content;
@@ -247,7 +244,8 @@ const ProgressBar = styled.div`
 
 const SvgBox = styled.div`
   width: fit-content;
-  margin: 70px auto;
+  margin: 40px auto;
+  margin-bottom: 30px;
 `;
 
 export default GithubSpinner;
