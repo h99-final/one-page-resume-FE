@@ -8,6 +8,11 @@ import {
   ErrorMessage,
   StyledInput,
   Star,
+  MakeCenter,
+  AddButton,
+  ContentCareer,
+  ButtonText,
+  SuccessMessage,
 } from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
@@ -17,6 +22,8 @@ function Introduce() {
 
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
+  const [success, setSucess] = useState("");
+
   const {
     handleSubmit,
     formState: { errors },
@@ -25,7 +32,9 @@ function Introduce() {
   } = useForm({ defaultValues });
 
   const introSubmit = (data) => {
-    apis.introPorf(data).then((res) => {});
+    apis.introPorf(data).then((res) => {
+      setSucess("저장이 완료되었습니다.");
+    });
     // .catch((error) => {
     //   alert("필수 정보를 입력해주세요.");
     // });
@@ -124,6 +133,18 @@ function Introduce() {
           </MultiContent>
           <ErrorMessage>{errors?.contents?.message}</ErrorMessage>
         </FormContents>
+        <MakeCenter
+          style={{ marginBottom: "10px" }}
+          onClick={handleSubmit(introSubmit)}
+          // onClick={() => history.push(`/write/project/info`)}
+        >
+          <AddButton>
+            <ContentCareer>
+              <ButtonText>적용하기</ButtonText>
+            </ContentCareer>
+          </AddButton>
+        </MakeCenter>
+        <SuccessMessage>{success}</SuccessMessage>
         <PreviousNext />
         <Template />
       </form>

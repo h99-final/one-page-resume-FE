@@ -93,13 +93,14 @@ export const ButtonText = styled(FormText)`
   width: 100%;
   font-size: 20px;
   font-style: normal;
+  color: #000;
   cursor: pointer;
 `;
 
 export const AddButton = styled.div`
-  width: 350px;
-  height: 80px;
-  background: #696b7b;
+  width: 250px;
+  height: 70px;
+  background: #fff;
   border-radius: 50px;
 `;
 
@@ -132,6 +133,19 @@ export const ErrorMessage = styled.div`
   font-family: Pretendard;
   font-size: 14px;
   color: orange;
+  display: flex;
+  justify-content: right;
+  padding: 0px 0px;
+  padding-top: 10px;
+  /* width: 1120px; */
+  margin-bottom: 20px;
+  margin-right: 50px;
+`;
+
+export const SuccessMessage = styled.div`
+  font-family: Pretendard;
+  font-size: 14px;
+  color: #fff;
   display: flex;
   justify-content: right;
   padding: 0px 0px;

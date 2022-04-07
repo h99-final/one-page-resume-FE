@@ -2,13 +2,18 @@ import React, { useDebugValue, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 import {
+  AddButton,
+  ButtonText,
   Content,
+  ContentCareer,
   ErrorMessage,
   FormText,
   FormTitle,
   InputCustom,
   Label,
+  MakeCenter,
   Star,
+  SuccessMessage,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import FileUpload from "../shared/ImageUpload";
@@ -33,24 +38,26 @@ function UserInfo() {
     setValue,
   } = useForm({ defaultValues });
 
-  const [data, setData] = useState({});
+  const [success, setSucess] = useState("");
 
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     const _data = { ...data };
-    apis
+
+    // if (userInfo.profileImage === "empty") {
+    //   return;
+    // }
+
+    await apis
       .addInfo(_data)
       .then((res) => {
+        setSucess("저장되었습니다.");
         dispatch(userActions.userInfoDB());
       })
-      .then(() => {
-        alert("저장되었습니다.");
-      })
       .catch((error) => {
-        // alert("필수 정보를 입력해주세요");
+        alert("필수 정보를 입력해주세요");
       });
-    return;
   };
 
   useEffect(() => {
@@ -58,7 +65,6 @@ function UserInfo() {
       .userInfo()
       .then((res) => {
         const { name, job, phoneNum, gitUrl, email, blogUrl } = res.data.data;
-        setData(res.data.data);
         setValue("name", name);
         setValue("job", job);
         setValue("phoneNum", phoneNum);
@@ -70,10 +76,6 @@ function UserInfo() {
       .catch((error) => {
         setValue("");
       });
-  }, []);
-
-  useEffect(() => {
-    // return handleSubmit(onValid);
   }, []);
 
   return (
@@ -232,6 +234,18 @@ function UserInfo() {
           />
         </Content>
         <ErrorMessage>{errors?.blogUrl?.message}</ErrorMessage>
+        <MakeCenter
+          style={{ marginBottom: "10px" }}
+          onClick={handleSubmit(onValid)}
+          // onClick={() => history.push(`/write/project/info`)}
+        >
+          <AddButton>
+            <ContentCareer>
+              <ButtonText>적용하기</ButtonText>
+            </ContentCareer>
+          </AddButton>
+        </MakeCenter>
+        <SuccessMessage>{success}</SuccessMessage>
         <br />
         <PreviousNext onClick={handleSubmit(onValid)} />
         <Template />

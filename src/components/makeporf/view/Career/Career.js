@@ -25,10 +25,10 @@ function Career() {
           학교, 회사 또는 부트캠프, 교육, 자격증 등을 자유롭게 작성해주세요.
         </FormTextSpan>
       </FormTitleFlex>
-      <CareerWrite />
       {careers.map((e, i) => {
         return <CareerShow key={i + "e.id"} {...e} index={i} />;
       })}
+      <CareerWrite />
       <PreviousNext />
     </>
   );
