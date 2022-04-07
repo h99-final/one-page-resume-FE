@@ -9,6 +9,7 @@ import {
   FormText,
   FormTitle,
   MakeCenter,
+  SuccessMessage,
 } from "../../shared/_sharedStyle";
 import styled from "styled-components";
 import { apis } from "../../../../shared/axios";
@@ -26,6 +27,7 @@ function ProjectSelect() {
   // props로 건네줘서 핸들링
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [error, setError] = useState("");
+  const [success, setSucess] = useState("");
 
   const projectSubmit = () => {
     if (selectedProjects.length === 0) {
@@ -39,16 +41,15 @@ function ProjectSelect() {
     apis.projectPorf(data).then((res) => {
       // 포트폴리오 화면으로 이동시켜주기
       setError("");
-      alert("프로젝트 선택 완료");
+      setSucess("프로젝트 선택 완료");
     });
   };
   // 사용자 프로젝트 가져오기 axios
   // 프로젝트 작성 페이지 기능 마치고
   useEffect(() => {
     dispatch(projectActions.setProjectDB());
-    return () => projectSubmit();
   }, []);
-  console.log(project)
+
   return (
     <>
       {!is_loading ? (
@@ -69,23 +70,34 @@ function ProjectSelect() {
             })}
           </ProjectBox>
 
-          <MakeCenter style={{ marginBottom: "10px" }} onClick={() => history.push(`/write/project/info`)}>
+          <MakeCenter
+            style={{ marginBottom: "10px" }}
+            // onClick={() => history.push(`/write/project/info`)}
+            onClick={projectSubmit}
+          >
             <AddButton>
               <ContentCareer>
-                <ButtonText>+ 새 프로젝트 작성하기</ButtonText>
+                <ButtonText>적용하기</ButtonText>
               </ContentCareer>
             </AddButton>
           </MakeCenter>
           <div style={{ marginBottom: "60px" }}>
-            {project?.length === 0 && <ErrorMessageSpan style={{
-              fontSize: "16px",
-              color: "#CFD3E2", textAlign: "center", lineHeight: "24px"
-            }}>
-              포트폴리오에 추가할 프로젝트가 없어요. <br />
-              새 프로젝트 작성 버튼을 눌러 포트폴리오를 완성해보세요.
-            </ErrorMessageSpan>}
+            {project?.length === 0 && (
+              <ErrorMessageSpan
+                style={{
+                  fontSize: "16px",
+                  color: "#CFD3E2",
+                  textAlign: "center",
+                  lineHeight: "24px",
+                }}
+              >
+                포트폴리오에 추가할 프로젝트가 없어요. <br />새 프로젝트 작성
+                버튼을 눌러 포트폴리오를 완성해보세요.
+              </ErrorMessageSpan>
+            )}
             {error && <ErrorMessageSpan>{error}</ErrorMessageSpan>}
           </div>
+          <SuccessMessage>{success}</SuccessMessage>
           <PreviousNext />
           <Template projectSubmit={projectSubmit} />
         </form>

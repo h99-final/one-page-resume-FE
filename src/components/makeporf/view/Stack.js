@@ -15,6 +15,7 @@ import {
   AddButton,
   ButtonText,
   Star,
+  SuccessMessage,
 } from "../shared/_sharedStyle";
 import { Font } from "./Introduce";
 import { apis } from "../../../shared/axios";
@@ -67,12 +68,13 @@ function Stack() {
     "Flask",
     "Express",
   ];
+
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  const history = useHistory();
 
   const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
+  const [success, setSucess] = useState("");
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -112,19 +114,23 @@ function Stack() {
         .putStack(data)
         .then((res) => {
           dispatch(userActions.userInfoDB());
-          alert("저장되었습니다.");
+        })
+        .then(() => {
+          setSucess("저장되었습니다.");
         })
         .catch((error) => {
-          window.alert("no");
+          window.alert("저장 실패하였습니다.");
         });
     }
 
     if (addStack.length > 0) {
       apis
         .porfStack(addS)
-        .then((response) => { })
+        .then((response) => {
+          setSucess("저장되었습니다.");
+        })
         .catch((res) => {
-          window.alert("no");
+          window.alert("저장 실패하였습니다.");
         });
     }
     // history.push(`/write/portfolio/career/${userInfo.porfId}`);
@@ -193,7 +199,13 @@ function Stack() {
         </StackBox>
       </MultiContent>
       {stack?.length !== 3 ? (
-        <ErrorMessage style={{ color: "orange", justifyContent: "left", marginLeft: "217px" }}>
+        <ErrorMessage
+          style={{
+            color: "orange",
+            justifyContent: "left",
+            marginLeft: "217px",
+          }}
+        >
           3가지를 골라주세요
         </ErrorMessage>
       ) : (
@@ -201,9 +213,7 @@ function Stack() {
       )}
       <MultiContent style={{ marginTop: "70px" }}>
         <Label style={{ height: "auto" }}>
-          <Font style={{ margin: "0px 10px " }}>
-            기술 스택
-          </Font>
+          <Font style={{ margin: "0px 10px " }}>기술 스택</Font>
         </Label>
         <Autocomplete
           multiple
@@ -266,6 +276,18 @@ function Stack() {
           })}
         </StackBox>
       </MultiContent>
+      <MakeCenter
+        style={{ marginBottom: "10px" }}
+        onClick={submitStack}
+        // onClick={() => history.push(`/write/project/info`)}
+      >
+        <AddButton>
+          <ContentCareer>
+            <ButtonText>적용하기</ButtonText>
+          </ContentCareer>
+        </AddButton>
+      </MakeCenter>
+      <SuccessMessage>{success}</SuccessMessage>
       <Template submitStack={submitStack} stack={stack} />
       {/* </form> */}
       {/* <MakeCenter style={{ marginTop: "20px" }}>

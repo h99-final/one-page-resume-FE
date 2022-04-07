@@ -25,16 +25,17 @@ function FileUpload() {
       // 백엔드는 그 결과를 프론트로 보내줌(3)
       .then((response) => {
         setImg(response.data.data.img);
+        return;
       });
   };
-  console.log(img)
+
   function deletePreview(e) {
     e.stopPropagation();
 
     apis
       .delImg()
       .then((res) => {
-        setImg("empty")
+        setImg("empty");
         // dispatch(userActions.userInfoDB());
       })
       .catch((error) => {

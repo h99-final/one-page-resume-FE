@@ -25,14 +25,12 @@ function CareerShow(props) {
 
   const { title, subTitle, contents, startTime, endTime, id } = props;
 
-
   function handleDelete() {
     dispatch(careerActions.deleteCareerDB(id));
   }
 
   return (
     <>
-      <hr style={{ margin: "50px", border: "1px solid #424453" }} />
       <FormContents>
         <IconBox onClick={handleDelete}>
           <img alt="" src={process.env.PUBLIC_URL + "/img/trash.svg"} />
@@ -99,6 +97,7 @@ function CareerShow(props) {
           />
         </Content>
       </FormContents>
+      <hr style={{ margin: "50px", border: "1px solid #424453" }} />
     </>
   );
 }

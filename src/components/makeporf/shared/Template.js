@@ -83,7 +83,6 @@ function Template({
           <FormText style={{ marginLeft: "15px" }}>템플릿 선택</FormText>
         </TemplateSelector>
         <div>
-
           <Save2
             style={{
               marginRight: "20px",
@@ -103,28 +102,6 @@ function Template({
               작성 완료
             </FormTextWhite>
           </Save2>
-          {id === "stack" ? (
-            <Save onClick={submitStack} style={{ marginRight: "15px" }}>
-              <FormTextWhite style={{ fontSize: "16px" }}>
-                임시 저장
-              </FormTextWhite>
-            </Save>
-          ) : id === "project" ? (
-            <Save onClick={projectSubmit} style={{ marginRight: "15px" }}>
-              <FormTextWhite style={{ fontSize: "16px" }}>
-                임시 저장
-              </FormTextWhite>
-            </Save>
-          ) : (
-            <Label id={id} htmlFor="submit">
-              <Save style={{ marginRight: "15px" }}>
-                <input id="submit" type="submit" style={{ display: "none" }} />
-                <FormTextWhite style={{ fontSize: "16px" }}>
-                  임시 저장
-                </FormTextWhite>
-              </Save>
-            </Label>
-          )}
         </div>
       </BottomNav>
 
@@ -157,9 +134,9 @@ const Save2 = styled(Next)`
   display: flex;
   justify-content: center !important;
   align-items: center;
-  background: #00C4B4;
-  :hover{
-    background-color: #03DAC5;
+  background: #00c4b4;
+  :hover {
+    background-color: #03dac5;
   }
 `;
 const Label = styled.label`
