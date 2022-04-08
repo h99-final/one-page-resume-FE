@@ -16,10 +16,11 @@ import {
 } from "../shared/_sharedStyle";
 import PreviousNext from "../shared/PreviousNext";
 import Template from "../shared/Template";
+import { useHistory } from 'react-router-dom';
 
 function Introduce() {
   const defaultValues = {};
-
+  const history = useHistory();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const [success, setSucess] = useState("");
@@ -34,6 +35,7 @@ function Introduce() {
   const introSubmit = (data) => {
     apis.introPorf(data).then((res) => {
       setSucess("저장이 완료되었습니다.");
+      history.push(`/write/portfolio/info/${userInfo.porfId}`)
     });
     // .catch((error) => {
     //   alert("필수 정보를 입력해주세요.");
@@ -78,7 +80,7 @@ function Introduce() {
                   message: "50자 제한 입니다.",
                 },
                 minLength: {
-                  value: 5,
+                  value: 1,
                   message: "제목이 너무 짧습니다.",
                 },
               }}
@@ -112,7 +114,7 @@ function Introduce() {
                   message: "500자 제한 입니다.",
                 },
                 minLength: {
-                  value: 50,
+                  value: 1,
                   message: "소개글이 너무 짧습니다.",
                 },
               }}
@@ -136,7 +138,7 @@ function Introduce() {
         <MakeCenter
           style={{ marginBottom: "10px" }}
           onClick={handleSubmit(introSubmit)}
-          // onClick={() => history.push(`/write/project/info`)}
+        // onClick={() => history.push(`/write/project/info`)}
         >
           <AddButton>
             <ContentCareer>

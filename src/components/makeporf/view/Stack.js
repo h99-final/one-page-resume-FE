@@ -71,7 +71,7 @@ function Stack() {
 
   const dispatch = useDispatch();
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
+  const history = useHistory();
   const [stack, setStack] = useState([]);
   const [addStack, setAddStack] = useState([]);
   const [success, setSucess] = useState("");
@@ -102,29 +102,16 @@ function Stack() {
     });
   }, []);
 
-  const submitStack = () => {
+  const submitStack = async () => {
     const data = {
       stack: stack,
     };
     const addS = {
       stack: addStack,
     };
-    if (stack.length === 3) {
-      apis
-        .putStack(data)
-        .then((res) => {
-          dispatch(userActions.userInfoDB());
-        })
-        .then(() => {
-          setSucess("저장되었습니다.");
-        })
-        .catch((error) => {
-          window.alert("저장 실패하였습니다.");
-        });
-    }
 
-    if (addStack.length > 0) {
-      apis
+    if (stack.length === 3 && addStack.length > 0) {
+      await apis
         .porfStack(addS)
         .then((response) => {
           setSucess("저장되었습니다.");
@@ -132,8 +119,20 @@ function Stack() {
         .catch((res) => {
           window.alert("저장 실패하였습니다.");
         });
+      await apis
+        .putStack(data)
+        .then(() => {
+          setSucess("저장되었습니다.");
+        })
+        .catch((error) => {
+          window.alert("저장 실패하였습니다.");
+        });
+      history.push(`/write/portfolio/career/${userInfo.porfId}`)
     }
-    // history.push(`/write/portfolio/career/${userInfo.porfId}`);
+    else {
+      setSucess("필수정보를 입력해주세요.")
+    }
+
   };
 
   return (
@@ -279,7 +278,7 @@ function Stack() {
       <MakeCenter
         style={{ marginBottom: "10px" }}
         onClick={submitStack}
-        // onClick={() => history.push(`/write/project/info`)}
+      // onClick={() => history.push(`/write/project/info`)}
       >
         <AddButton>
           <ContentCareer>

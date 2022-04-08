@@ -53,7 +53,8 @@ function UserInfo() {
       .addInfo(_data)
       .then((res) => {
         setSucess("저장되었습니다.");
-        dispatch(userActions.userInfoDB());
+        history.push(`/write/portfolio/stack/${userInfo.porfId}`)
+        // dispatch(userActions.userInfoDB());
       })
       .catch((error) => {
         alert("필수 정보를 입력해주세요");
@@ -237,7 +238,7 @@ function UserInfo() {
         <MakeCenter
           style={{ marginBottom: "10px" }}
           onClick={handleSubmit(onValid)}
-          // onClick={() => history.push(`/write/project/info`)}
+        // onClick={() => history.push(`/write/project/info`)}
         >
           <AddButton>
             <ContentCareer>
