@@ -20,6 +20,7 @@ import { useHistory } from "react-router-dom";
 import Spinner from "../../../../shared/Spinner";
 
 function ProjectSelect() {
+  const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const project = useSelector((state) => state.myproject.projects);
@@ -42,6 +43,7 @@ function ProjectSelect() {
       // 포트폴리오 화면으로 이동시켜주기
       setError("");
       setSucess("프로젝트 선택 완료");
+      setModalOpen(true)
     });
   };
   // 사용자 프로젝트 가져오기 axios
@@ -99,7 +101,7 @@ function ProjectSelect() {
           </div>
           <SuccessMessage>{success}</SuccessMessage>
           <PreviousNext />
-          <Template projectSubmit={projectSubmit} />
+          <Template projectSubmit={projectSubmit} modalOpen={modalOpen} setModalOpen={setModalOpen} />
         </form>
       ) : (
         <Spinner />

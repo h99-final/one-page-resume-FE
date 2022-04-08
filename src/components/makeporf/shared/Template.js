@@ -15,11 +15,14 @@ function Template({
   submitOnlyUserStack,
   stack,
   careerSubmit,
+  modalOpen,
+  setModalOpen
 }) {
   const { id } = useParams();
   const history = useHistory();
   let subtitle;
-  const [modalOpen, setModalOpen] = useState(false);
+
+  // const [modalOpen, setModalOpen] = useState(false);
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const exitClose = () => {
