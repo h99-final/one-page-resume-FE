@@ -33,7 +33,7 @@ function CareerShow(props) {
     <>
       <FormContents>
         <IconBox onClick={handleDelete}>
-          <img alt="" src={process.env.PUBLIC_URL + "/img/trash.svg"} />
+          <img alt="" src={process.env.PUBLIC_URL + "/img/Trash.svg"} />
         </IconBox>
         <Content style={{ marginBottom: "40px" }}>
           <Label>
