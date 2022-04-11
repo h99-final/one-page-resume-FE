@@ -38,17 +38,17 @@ function MainCard(props) {
   return (
     <>
       <ProjectForm onClick={handleClick}>
-        <InnerCard src={imageUrl} />
+        <InnerCard src={imageUrl} alt={content} />
 
         <ProjectStacks>
           {/* 스택의 길이가 3보다 길때 잘라서 보여줌 */}
           {stack?.length > 3
             ? stack?.slice(0, 3)?.map((e, i) => {
-              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-            })
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })
             : stack?.map((e, i) => {
-              return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
-            })}
+                return <ProjectStack key={`stack-${i}`}>#{e}</ProjectStack>;
+              })}
           {stack?.length > 3 && (
             <ProjectStack
               style={{
