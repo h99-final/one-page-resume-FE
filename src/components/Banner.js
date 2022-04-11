@@ -6,11 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
+import "swiper/css/lazy";
 import "./banner.css";
 
 // import required modules
-import { Parallax, Pagination, Navigation, Autoplay } from "swiper";
+import { Parallax, Pagination, Navigation, Autoplay, Lazy } from "swiper";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Modal from './loginModal/Modal';
@@ -31,12 +31,13 @@ const Banner = () => {
           "--swiper-pagination-color": "#fff",
         }}
         speed={600}
+        lazy={true}
         parallax={true}
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
         navigation={true}
-        modules={[Parallax, Pagination, Navigation, Autoplay]}
+        modules={[Lazy, Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
         autoplay={{
           delay: 5000,
@@ -79,13 +80,14 @@ const Banner = () => {
                 }
               </BtnBox>
             </TextBox>
-
             <ContentBox >
               <img
+                className='swiper-lazy'
                 style={{ width: "665px" }}
                 alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1.gif"
+                data-src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner1-min.gif"
               />
+              <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </ContentBox>
           </Box>
         </SwiperSlide>
@@ -98,10 +100,12 @@ const Banner = () => {
             <TextBox>
               <h1>
                 <img
+                  className='swiper-lazy'
                   style={{ width: "333px", marginBottom: "30px" }}
                   alt=""
-                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/text.gif"
+                  data-src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/text.gif"
                 />
+                <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
               </h1>
               <h2>
                 Portfolio는 내가 보여주고 싶은 프로젝트와 트러블 슈팅을
@@ -160,9 +164,12 @@ const Banner = () => {
 
             <ContentBox>
               <img
+                className='swiper-lazy'
                 alt=""
-                src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner3.gif"
+                data-src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/Banner3-min.gif"
               />
+
+              <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </ContentBox>
           </Box>
         </SwiperSlide>
@@ -202,9 +209,10 @@ const Banner = () => {
             >
               <button>
                 <img
+                  className='swiper-lazy'
                   style={{ width: "60%" }}
                   alt=""
-                  src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/planet.gif"
+                  data-src="https://ricefriendimage.s3.ap-northeast-2.amazonaws.com/planet.gif"
                 />
               </button>
             </GifBox>
