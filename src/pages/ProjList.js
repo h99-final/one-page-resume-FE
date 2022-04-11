@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 // mui selector
 import ClearIcon from "@mui/icons-material/Clear";
 import { grey } from "@mui/material/colors";
-import { Autocomplete, Chip, FormControl, TextField } from "@mui/material";
+import { Autocomplete, Chip, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { option } from "../shared/common";
 import { actionCreators } from "../redux/modules/bookmark";
@@ -75,6 +75,7 @@ const ProjList = () => {
   const [addStack, setAddStack] = useState([]);
 
   // 무한 스크롤
+
   const [page, setPage] = useState(0);
   const [is_loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -140,6 +141,8 @@ const ProjList = () => {
   const handleDelete = (stack) => {
     setAddStack(addStack.filter((prev) => prev !== stack));
   };
+
+  const MainCard = lazy(() => import("../components/Element/MainCard"));
 
   return (
     <>
@@ -214,7 +217,9 @@ const ProjList = () => {
             {proj?.map((e, i) => {
               return (
                 <>
-                  <MainCard key={`${e.id}`} {...e} />
+                  <Suspense fallback={<div>...loading</div>}>
+                    <MainCard key={`${e.id}`} {...e} />
+                  </Suspense>
                 </>
               );
             })}

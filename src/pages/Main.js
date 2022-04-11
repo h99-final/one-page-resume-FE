@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import Banner from "../components/Banner";
@@ -7,11 +14,12 @@ import { apis } from "../shared/axios";
 import { useHistory } from "react-router-dom";
 import MainCard from "../components/Element/MainCard";
 import PortfolioBuisnesscard from "../components/Element/PortfolioBusinesscard";
-import FetchMore from "../shared/FetchMore";
+// 무한 스크롤
 import Spinner from "../shared/Spinner";
 import { debounce } from "../shared/common";
 import { style } from "@mui/system";
 import MainFooter from "../shared/MainFooter";
+import FetchMore from "../shared/FetchMore";
 
 const defaultprojects = {
   bookmarkCount: 0,
@@ -23,30 +31,23 @@ const defaultprojects = {
   userJob: "",
   username: "",
 };
-// 사이즈 불러와줌
+
 export function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
   });
   useEffect(() => {
-    // Handler to call on window resize
     function handleResize() {
-      // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     }
-    // Add event listener
     window.addEventListener("resize", debounce(handleResize, 50));
-    // Call handler right away so state gets updated with initial window size
     handleResize();
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
   return windowSize;
 }
 
@@ -107,6 +108,9 @@ const Main = () => {
       setHasMore(true);
     };
   }, [page]);
+
+  //lazy loading
+  const MainCard = lazy(() => import("../components/Element/MainCard"));
 
   return (
     <>
@@ -195,7 +199,9 @@ const Main = () => {
           <Project>
             {proj?.map((e, i) => {
               return (
-                <MainCard key={`project-${e.id}-${i}`} {...e} />
+                <Suspense fallback={<Spinner />}>
+                  <MainCard key={`project-${e.id}-${i}`} {...e} />;
+                </Suspense>
               );
             })}
           </Project>
@@ -314,10 +320,10 @@ const TitleBox = styled.div`
       border: 1px solid black;
     }
   }
-  img{
-    :hover{
-    filter: brightness(120%);
-  }
+  img {
+    :hover {
+      filter: brightness(120%);
+    }
   }
 `;
 

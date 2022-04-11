@@ -8,8 +8,15 @@ function Spinner() {
     function tick() {
       return setTimeout(() => setTime((time + 1) % 5), 500);
     }
+
+    function stop() {
+      if (time > 15) {
+        clearTimeout(tick);
+      }
+    }
     // if (!isIncrease) return undefined;
     tick();
+    stop();
     return () => {
       clearTimeout(tick);
     };
@@ -51,6 +58,7 @@ const SpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 `;
 
 const Font = styled.div`
