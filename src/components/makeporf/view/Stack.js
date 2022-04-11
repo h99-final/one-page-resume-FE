@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
 import styled from "styled-components";
 
 import {

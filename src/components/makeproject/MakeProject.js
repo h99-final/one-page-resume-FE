@@ -13,8 +13,6 @@ import {
 import styled from "styled-components";
 import { Font, FormContents, MultiContent } from "../makeporf/view/Introduce";
 import ForProjUpload from "../makeporf/shared/ForPorjUpload";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import {
   customStyles,
   options,
