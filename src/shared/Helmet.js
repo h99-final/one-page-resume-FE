@@ -1,17 +1,29 @@
-import React from "react";
 import { Helmet } from "react-helmet";
+import React from "react";
 
-class Application extends React.Component {
-
-  render() {
-    return (
-      <div className="application">
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>My Title</title>
-          <link rel="canonical" href="http://mysite.com/example" />
-        </Helmet>
-      </div>
-    );
-  }
+const Seo = ({ title, description, id, keywords }) => {
+  const url = `https://poug.me/portfolio/${id}`;
+  return (
+    <Helmet
+      htmlAttributes={{ lang: "en" }}
+      title={title}
+      meta={[
+        {
+          name: "description",
+          content: description,
+        },
+        {
+          name: "keywords",
+          content: keywords.join(),
+        },
+      ]}
+      links={[
+        {
+          rel: "canonical",
+          href: url,
+        },
+      ]}
+    />
+  );
 };
+export default Seo;

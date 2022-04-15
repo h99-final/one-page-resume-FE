@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 function Spinner() {
   const [time, setTime] = useState(1);
-  const [isIncrease, setIsIncrease] = useState(false);
   useEffect(() => {
     function tick() {
       return setTimeout(() => setTime((time + 1) % 5), 500);

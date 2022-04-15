@@ -1,12 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/axios";
-import {
-  deleteCookie,
-  getCookie,
-  resetCookie,
-  setCookie,
-} from "../../shared/cookie";
+import { deleteCookie, resetCookie, setCookie } from "../../shared/cookie";
 
 // actions
 const LOG_OUT = "LOG_OUT";

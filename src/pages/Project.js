@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import HorizontalScroll from "../components/project/view/horizontalScroll";
+//redux
+import { useDispatch } from "react-redux";
 import { actionCreators } from "../redux/modules/setProject";
-
-// import Header from "../shared/Header";
+//components
 import Introduce from "../components/project/view/ProjectIntroduce";
 import TroubleShooting from "../components/project/view/TroubleShooting";
-import ProjHeader from "../shared/ProjHeader";
-import { apis } from "../shared/axios";
+import ProjHeader from "../components/portfolio/ProjHeader";
 import { Spinner } from "react-bootstrap";
+//axios
+import { apis } from "../shared/axios";
+//style
+import styled from "styled-components";
 
 const Project = () => {
   const dispatch = useDispatch();

@@ -1,42 +1,32 @@
 import { createGlobalStyle } from "styled-components";
-import Main from "../pages/Main";
-import {
-  Link,
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-  useParams,
-} from "react-router-dom";
-import MakePorf from "../pages/MakePorf";
-import { Helmet } from "react-helmet";
-import NotFound from "../pages/NotFound";
-import MakeProj from "../pages/MakeProj";
-import MyPage from "../pages/MyPage";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 
+//redux
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { actionCreators as userActions } from "../redux/modules/user";
+//components
 import EditInfo from "../pages/EditInfo";
 import Portfolio from "../pages/Portfolio";
 import Project from "../pages/Project";
 import PorfList from "../pages/PorfList";
 import ProjList from "../pages/ProjList";
 import KakaoAuthHandle from "../components/KakaoAuthHandle";
-import Loading from "../components/makeproject/ts/Loading";
 import GithubSpinner from "./GithubSpinner";
 import Policy from "../pages/Policy";
 import Privacy from "../pages/Privacy";
+import MakePorf from "../pages/MakePorf";
+import { Helmet } from "react-helmet";
+import NotFound from "../pages/NotFound";
+import MakeProj from "../pages/MakeProj";
+import MyPage from "../pages/MyPage";
+import Main from "../pages/Main";
 
-import ReactGA from "react-ga";
+//g.a
 import useGaTracker from "../useGaTracker";
-import { getCookie } from "./cookie";
-
-const token = getCookie("token");
 
 function App() {
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
 
   const isUserInfo = () => sessionStorage.getItem("userInfo");
@@ -79,6 +69,14 @@ function App() {
           href={process.env.PUBLIC_URL + "/img/favicon.svg"}
           sizes="16x16"
         />
+        <meta property="og:title" content="포그" />
+        <meta property="og:description" content="개발자를 위한 포트폴리오" />
+        <meta
+          property="og:image"
+          content="{{ url_for('../../public/templateAssets', filename='snsThumbnailImg.png') }}"
+        />
+        <meta name="description" content="App Description" />
+        <meta name="theme-color" content="#008f68" />
       </Helmet>
       <GlobalStyle />
       <Switch>
