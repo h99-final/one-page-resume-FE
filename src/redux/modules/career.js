@@ -9,10 +9,6 @@ const UPDATE_CAREER = "UPDATE_CAREER";
 
 const setCareer = createAction(SET_CAREER, (careers) => ({ careers }));
 const addCareer = createAction(ADD_CAREER, (newcareer) => ({ newcareer }));
-const updateCareer = createAction(UPDATE_CAREER, (id, career) => ({
-  id,
-  career,
-}));
 const deleteCareer = createAction(DELETE_CAREER, (careerIndex) => ({
   careerIndex,
 }));
@@ -57,11 +53,9 @@ const addCareerDB = (career) => {
 
 const deleteCareerDB = (index) => {
   return async function (dispatch, getState, { history }) {
-    await apis
-      .careerPorfDelete(index)
-      .then((res) => {
-        dispatch(deleteCareer(index));
-      })
+    await apis.careerPorfDelete(index).then((res) => {
+      dispatch(deleteCareer(index));
+    });
   };
 };
 

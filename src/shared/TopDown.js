@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Font } from "../components/project/view/TroubleShooting";
 
 function TopDown() {
   return (

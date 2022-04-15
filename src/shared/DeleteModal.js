@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { apis } from './axios';
+import { apis } from "./axios";
 
 const DeleteModal = ({ exitClose }) => {
   const history = useHistory();
@@ -16,22 +16,8 @@ const DeleteModal = ({ exitClose }) => {
         history.push(`/project`);
       })
       .catch((errors) => {
-
         history.push(`/mypage`);
       });
-  };
-
-  const handleClickShow = () => {
-    let show = true;
-    apis.porfShow(show).then((res) => {
-      history.push(`/portfolio/${userInfo.porfId}`);
-    });
-  };
-  const handleClickNoShow = () => {
-    let show = false;
-    apis.porfShow(show).then((res) => {
-      history.push("/mypage");
-    });
   };
 
   return (

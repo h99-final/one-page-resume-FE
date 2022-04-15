@@ -1,17 +1,14 @@
 import React, { useRef, useState } from "react";
-import styled from "styled-components";
-import Modal from "../components/loginModal/Modal";
-import { Avatar } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useEffect } from "react";
-import { apis } from "./axios";
-import { useHistory, useParams } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as bookmarkActions } from "../redux/modules/bookmark";
-import { actionCreators as userActions } from "../redux/modules/user";
-import DeleteModal from './DeleteModal';
+import { actionCreators as bookmarkActions } from "../../redux/modules/bookmark";
+//components
+import DeleteModal from "../../shared/DeleteModal";
+
+import { apis } from "../../shared/axios";
+import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const ProjHeader = (props) => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -29,18 +26,6 @@ const ProjHeader = (props) => {
     setModalOpen(false);
   };
 
-  const handleDelete = () => {
-    apis
-      .deleteProject(id)
-      .then((res) => {
-        history.push(`/project`);
-      })
-      .catch((errors) => {
-
-        history.push(`/mypage`);
-      });
-  };
-
   useEffect(() => {
     apis
       .projectGet(id)
@@ -53,15 +38,6 @@ const ProjHeader = (props) => {
   }, []);
 
   const url = useRef();
-
-  const copyUrl = (e) => {
-    url.current.select();
-    document.execCommand("copy");
-
-    setTimeout(() => {
-      alert("url이 복사되었습니다.");
-    }, 200);
-  };
 
   if (!project?.isMyProject) {
     return (
@@ -89,7 +65,11 @@ const ProjHeader = (props) => {
             <div style={{ marginRight: "16px", fontSize: "16px" }}>
               {info?.username}
             </div>
-            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
+            <a
+              href={info.gitRepoUrl}
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <SharedBtn>
                 <img
                   style={{ marginRight: "7px" }}
@@ -100,8 +80,11 @@ const ProjHeader = (props) => {
               </SharedBtn>
             </a>
             <TextArea readOnly ref={url} value={window.location.href} />
-            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
-
+            <a
+              href={info.gitRepoUrl}
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <img
                 style={{ marginRight: "16px" }}
                 alt=""
@@ -157,7 +140,6 @@ const ProjHeader = (props) => {
             />
           </LeftMenu>
           <RightMenu>
-
             <div
               style={{ marginRight: "16px", fontSize: "16px" }}
               onClick={() => {
@@ -166,7 +148,11 @@ const ProjHeader = (props) => {
             >
               {info?.username}
             </div>
-            <a href={info.gitRepoUrl} target="_blank" style={{ textDecoration: "none" }}>
+            <a
+              href={info.gitRepoUrl}
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <SharedBtn>
                 <img
                   style={{ marginRight: "7px" }}
@@ -185,7 +171,11 @@ const ProjHeader = (props) => {
               />
             </div>
 
-            <div onClick={() => { setModalOpen(true) }}>
+            <div
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
               <img
                 style={{ marginRight: "40px" }}
                 alt=""
@@ -200,9 +190,7 @@ const ProjHeader = (props) => {
             />
           </RightMenu>
         </StyledHeader>
-        {modalOpen && (
-          <DeleteModal exitClose={exitClose}></DeleteModal>
-        )}
+        {modalOpen && <DeleteModal exitClose={exitClose}></DeleteModal>}
       </>
     );
   }

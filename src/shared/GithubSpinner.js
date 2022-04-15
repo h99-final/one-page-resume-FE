@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
-import { FormText, IconBox } from "../components/makeporf/shared/_sharedStyle";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
@@ -10,56 +7,32 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../components/banner.css";
-import Spinner from './Spinner';
 import { animated, useSpring, config } from "react-spring";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    width: "100vw",
-    height: "100%",
-    transform: "translate(-50%, -50%)",
-    position: "fixed",
-    background: "#1F2029",
-    padding: "0px",
-    // overflow: "hidden",
-  },
-};
 
 function GithubSpinner(props) {
   const { totalCommitCount, curCommitCount } = props;
-  const dispatch = useDispatch();
-  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  const { helpModalOpen, setHelpModalOpen } = props;
 
   const [progress, setProgress] = useState("0%");
 
   const style = useSpring({ width: progress, config: config.slow });
 
-  function closeModal() {
-    setHelpModalOpen(false);
-  }
-
   useEffect(() => {
-    setProgress(Math.round(curCommitCount / totalCommitCount * 100) + "%")
-  }, [curCommitCount])
+    setProgress(Math.round((curCommitCount / totalCommitCount) * 100) + "%");
+  }, [curCommitCount]);
 
   // Modal.setAppElement("#root");
 
   return (
     <Container>
       <InfoBox>
-        {/* <img alt="" src={process.env.PUBLIC_URL + "/img/loading.svg"} /> */}
         <h1>Git을 불러오기 위해 열심히 Github를 헤엄치고 있습니다.</h1>
         <h2>Git을 불러오는 동안 포그의 트러블슈팅 작성법을 알려드릴게요.</h2>
         <ProgressBar>
           <animated.span style={style}></animated.span>
         </ProgressBar>
-        <h2>Commit을 불러오는중... ({curCommitCount}/{totalCommitCount})</h2>
+        <h2>
+          Commit을 불러오는중... ({curCommitCount}/{totalCommitCount})
+        </h2>
       </InfoBox>
       <Swiper
         spaceBetween={30}
@@ -139,7 +112,6 @@ const Container = styled.div`
   background-color: #1f2029;
   width: 100%;
   border-radius: 10px;
-  /* height: calc(100%-45px); */
 `;
 
 const Box = styled.div`
@@ -174,13 +146,13 @@ const StepBox = styled.div`
     letter-spacing: -0.01em;
     color: #ffffff;
   }
-  span{
+  span {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: -0.01em;
-    color: #00C4B4;
+    color: #00c4b4;
   }
 `;
 
@@ -211,7 +183,7 @@ const InfoBox = styled.div`
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: #CFD3E2;
+    color: #cfd3e2;
     margin-bottom: 10px;
   }
   img {
@@ -231,16 +203,15 @@ const ProgressBar = styled.div`
   border-radius: 25px;
   padding: 0px;
   width: 50%;
-  span{
+  span {
     display: block;
     height: 100%;
-    background-color: #00C4B4;
+    background-color: #00c4b4;
     border-radius: 25px;
     position: relative;
     overflow: hidden;
   }
 `;
-
 
 const SvgBox = styled.div`
   width: fit-content;

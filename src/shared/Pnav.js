@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { deleteCookie, getCookie } from "./cookie";
-import { Link, useHistory } from "react-router-dom";
-// JS파일
 
 const Pnav = (props) => {
   const history = useHistory();
   // props.nav (false or true)
   const navState = props.pnav;
-  const setNavState = props.setPnav;
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // NavBar 설정
   const [pnav, setPnav] = useState(false);
@@ -19,27 +15,6 @@ const Pnav = (props) => {
   useEffect(() => {
     setPnav(navState);
   }, [navState]);
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // });
-  // const handleClickOutside = (event) => {
-  //   if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-  //     setNavState(false);
-  //   } else {
-  //     setNavState(true);
-  //   }
-  // };
-  // SignOut
-  const signOut = () => {
-    setPnav(false);
-    deleteCookie("token");
-    window.location.reload();
-  };
 
   return (
     <div ref={wrapperRef}>
